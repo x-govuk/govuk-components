@@ -1,4 +1,4 @@
-class Panel::PanelComponent < ViewComponent::Base
+class GovukComponent::Panel < ViewComponent::Base
   attr_accessor :title, :body
 
   def initialize(title:, body:)

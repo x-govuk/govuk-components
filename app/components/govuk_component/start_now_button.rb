@@ -1,4 +1,4 @@
-class StartNowButton::StartNowButtonComponent < ViewComponent::Base
+class GovukComponent::StartNowButton < ViewComponent::Base
   attr_accessor :text, :href
 
   def initialize(text:, href:)
