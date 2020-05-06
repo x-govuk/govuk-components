@@ -22,7 +22,13 @@ $ gem install govuk-components
 ```
 
 ## Contributing
-Contribution directions go here.
+To setup the dummy app  
+`cd spec/dummy`  
+`yarn install`  
+`bundle install`  
+`bin/rails db:create`  
+`bin/rails db:migrate`  
+`bin/rails s`  
 
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
