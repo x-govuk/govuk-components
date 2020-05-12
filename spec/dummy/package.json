@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "govuk-frontend": "^3.6.0"
+  }
+}
