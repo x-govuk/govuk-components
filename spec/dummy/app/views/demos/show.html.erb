@@ -14,5 +14,7 @@
 end} %>
 
     <%= render "example", title: 'Start now button', example: %{render GovukComponent::StartNowButton.new(text: 'Department for Education', href: 'https://www.gov.uk/government/organisations/department-for-education')} %>
+
+    <%= render "example", title: 'Breadcrumbs', example: %{render GovukComponent::Breadcrumbs.new(breadcrumbs: { 'Level one': '/level-one/', 'Level two': '/level-one/level-two/', 'Level three': '/level-one/level-two/level-three' })} %>
   </div>
 </div>
