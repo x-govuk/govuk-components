@@ -1,0 +1,18 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-xl">GovukComponents</h1>
+
+    <%= render "example", title: 'Inset text', example: %{render GovukComponent::InsetText.new(text: 'Bake him away, toys.')} %>
+
+    <%= render "example", title: 'Panel', example: %{render GovukComponent::Panel.new(title: 'Springfield', body: 'A noble spirit embiggens the smallest man')} %>
+
+    <%= render "example", title: 'Phase banner - with text', example: %{render GovukComponent::PhaseBanner.new(tag: 'Gamma', text: 'This is an experimental service – be cautious')} %>
+
+    <%= render "example", title: 'Phase banner - with block', example: \
+%{render GovukComponent::PhaseBanner.new(tag: 'Alpha') do
+  tag.strong('This is an Alpha project, ignore everything')
+end} %>
+
+    <%= render "example", title: 'Start now button', example: %{render GovukComponent::StartNowButton.new(text: 'Department for Education', href: 'https://www.gov.uk/government/organisations/department-for-education')} %>
+  </div>
+</div>
