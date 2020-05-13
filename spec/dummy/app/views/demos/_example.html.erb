@@ -1,0 +1,9 @@
+<article class="example govuk-!-margin-top-9" id=<%= title.downcase.gsub(' ', '-') %>>
+  <h2 class="govuk-heading-s"><%= title %></h2>
+  <section>
+    <%= eval example %>
+  </section>
+  <section>
+    <pre><code class="language-ruby"><%= example %></code></pre>
+  </section>
+</article>

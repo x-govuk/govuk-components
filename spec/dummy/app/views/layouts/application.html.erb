@@ -6,9 +6,14 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="govuk-width-container">
+      <main class="govuk-main-wrapper">
+        <%= yield %>
+      </main>
+    </div>
   </body>
 </html>
