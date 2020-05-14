@@ -2,9 +2,17 @@
   <div class="govuk-grid-column-full">
     <h1 class="govuk-heading-xl">GovukComponents</h1>
 
-    <%= render "example", title: 'Back link - default', example: %{render GovukComponent::BackLink.new(text: 'Department for Education', href: 'https://www.gov.uk/government/organisations/department-for-education')} %>
+    <%= render "example", title: 'Back link - default',
+               example: %{render GovukComponent::BackLink.new(text: 'Department for Education', href: 'https://www.gov.uk/government/organisations/department-for-education')} %>
 
-    <%= render "example", title: 'Back link - with custom css classes', example: %{render GovukComponent::BackLink.new(text: 'Department for Education', href: 'https://www.gov.uk/government/organisations/department-for-education', classes: 'my-class')} %>
+    <%= render "example", title: 'Back link - with custom css classes',
+               example: %{render GovukComponent::BackLink.new(text: 'Department for Education', href: 'https://www.gov.uk/government/organisations/department-for-education', classes: 'my-class')} %>
+
+    <%= render "example", title: 'Back link - with custom HTML attributes',
+               example: %{render GovukComponent::BackLink.new(text: 'Department for Education', href: 'https://www.gov.uk/government/organisations/department-for-education', attributes:{id: "my-link"})} %>
+
+    <%= render "example", title: 'Back link - with custom css classes and HTML attributes',
+               example: %{render GovukComponent::BackLink.new(text: 'Department for Education', href: 'https://www.gov.uk/government/organisations/department-for-education', classes: 'app-class', attributes:{data: {qa: "my-qa-value"}})} %>
 
     <%= render "example", title: 'Inset text', example: %{render GovukComponent::InsetText.new(text: 'Bake him away, toys.')} %>
 
