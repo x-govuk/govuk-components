@@ -5,3 +5,5 @@ module Govuk
     end
   end
 end
+
+require Govuk::Components::Engine.root.join(*%w(app helpers govuk_link_helper))
