@@ -1,4 +1,6 @@
 # Govuk::Components
+<https://dfe-digital.github.io/govuk-components/>  
+
 Short description and motivation.
 
 ## Usage
@@ -29,6 +31,9 @@ To setup the dummy app
 `bin/rails db:create`  
 `bin/rails db:migrate`  
 `bin/rails s`  
+
+After adding a new component update the examples page by cd-ing into the dummy
+app `cd spec/dummy` and running the rake task `bin/rake generate_examples_page`.
 
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
