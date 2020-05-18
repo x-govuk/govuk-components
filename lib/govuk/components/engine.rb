@@ -6,4 +6,4 @@ module Govuk
   end
 end
 
-require Govuk::Components::Engine.root.join(*%w(app helpers govuk_link_helper))
+Dir[Govuk::Components::Engine.root.join(*%w(app helpers *.rb))].each { |f| require f }

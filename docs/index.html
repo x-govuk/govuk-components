@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Dummy</title>
     <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="R5Q8FXQx9kCYUaKvy345d3RN31A27MYEMSuXtNN9CvS5Li8u4kKQ74mWXvx0smTur031eHkjmEhu1EmavmymwA==">
+<meta name="csrf-token" content="jztGJhpH2lbwUFfvzUHP5SS5dj+Mz/aZxr/xLRlBlOpsfSQdz4xFqWzLwUJjLN5XKKANnf7TtSaeSaATRyU9xg==">
     
 
     <style>/* line 7, node_modules/govuk-frontend/govuk/core/_links.scss */
@@ -10670,6 +10670,28 @@ end</code></pre>
   </section>
   <section>
     <pre><code class="language-ruby">render GovukComponent::Header.new(logo: 'Custom')</code></pre>
+  </section>
+</article>
+
+
+    <article class="example govuk-!-margin-top-9" id="links">
+  <h2 class="govuk-heading-s">Links</h2>
+  <section>
+    <a class="govuk-link" href="/">Home</a>
+  </section>
+  <section>
+    <pre><code class="language-ruby">govuk_link_to('Home', '/')</code></pre>
+  </section>
+</article>
+
+
+    <article class="example govuk-!-margin-top-9" id="back-to-top-link">
+  <h2 class="govuk-heading-s">Back to top link</h2>
+  <section>
+    <a class="govuk-link govuk-link--no-visited-state" href="#top"><svg class="app-back-to-top__icon" xmlns="http://www.w3.org/2000/svg" width="13" height="17" viewbox="0 0 13 17"> <path fill="currentColor" d="M6.5 0L0 6.5 1.4 8l4-4v12.7h2V4l4.3 4L13 6.4z"></path> </svg> Back to top</a>
+  </section>
+  <section>
+    <pre><code class="language-ruby">govuk_back_to_top_link</code></pre>
   </section>
 </article>
 

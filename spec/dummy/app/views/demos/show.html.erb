@@ -53,5 +53,7 @@ end} %>
     <%= render "example", title: 'Header without service name', example: %{render GovukComponent::Header.new(logo: 'Custom')} %>
 
     <%= render "example", title: 'Links', example: %{govuk_link_to('Home', '/')} %>
+
+    <%= render "example", title: 'Back to top link', example: %{govuk_back_to_top_link} %>
   </div>
 </div>
