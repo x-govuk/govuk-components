@@ -20,4 +20,6 @@ task generate_examples_page: :environment do
 
   output_path = Rails.application.root.join('..', '..', 'docs', 'index.html')
   File.write output_path, doc.to_s
+
+  puts "example page generated in #{output_path}"
 end
