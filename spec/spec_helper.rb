@@ -108,3 +108,7 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
+
+Capybara.configure do |config|
+  config.default_normalize_ws = true
+end
