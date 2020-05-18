@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 RSpec.describe(GovukLinkHelper, type: 'helper') do
+  include ActionView::Helpers::UrlHelper
+
   let(:text) { 'Menu' }
   let(:url) { '/stuff/menu/' }
   describe '#govuk_link_to' do
