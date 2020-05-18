@@ -1,6 +1,6 @@
 module GovukLinkHelper
-  def govuk_link_to(body, url, html_options = {})
-    link_to(body, url, html_options.deep_merge(class: 'govuk-link'))
+  def govuk_link_to(*args, **kwargs)
+    link_to(*args, **{ class: 'govuk-link' }.deep_merge(kwargs))
   end
 end
 
