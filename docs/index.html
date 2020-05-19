@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Dummy</title>
     <meta name="csrf-param" content="authenticity_token">
-<meta name="csrf-token" content="jztGJhpH2lbwUFfvzUHP5SS5dj+Mz/aZxr/xLRlBlOpsfSQdz4xFqWzLwUJjLN5XKKANnf7TtSaeSaATRyU9xg==">
+<meta name="csrf-token" content="tys28Qfu90k/mBQMeInxwHZsXk7gzWj+sLHN/F+ZCFlI+kGjityWK57VkALdee+1woAVY5usuufal0Thf7C3jg==">
     
 
     <style>/* line 7, node_modules/govuk-frontend/govuk/core/_links.scss */
@@ -10416,8 +10416,9 @@ Prism.languages.js = Prism.languages.javascript;
   </head>
 
   <body>
+    <a class="govuk-skip-link" href="#main-content">Skip to main content</a>
     <div class="govuk-width-container">
-      <main class="govuk-main-wrapper">
+      <main class="govuk-main-wrapper" id="main-content">
         <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
     <h1 class="govuk-heading-xl">GovukComponents</h1>
@@ -10692,6 +10693,39 @@ end</code></pre>
   </section>
   <section>
     <pre><code class="language-ruby">govuk_back_to_top_link</code></pre>
+  </section>
+</article>
+
+
+    <article class="example govuk-!-margin-top-9" id="skip-link">
+  <h2 class="govuk-heading-s">Skip link</h2>
+  <section>
+    <a class="govuk-skip-link" href="#main-content">Skip to main content</a>
+  </section>
+  <section>
+    <pre><code class="language-ruby">govuk_skip_link</code></pre>
+  </section>
+</article>
+
+
+    <article class="example govuk-!-margin-top-9" id="skip-link-with-custom-text">
+  <h2 class="govuk-heading-s">Skip link with custom text</h2>
+  <section>
+    <a class="govuk-skip-link" href="#main-content">Skip to important information</a>
+  </section>
+  <section>
+    <pre><code class="language-ruby">govuk_skip_link text: 'Skip to important information'</code></pre>
+  </section>
+</article>
+
+
+    <article class="example govuk-!-margin-top-9" id="skip-link-with-custom-href">
+  <h2 class="govuk-heading-s">Skip link with custom href</h2>
+  <section>
+    <a class="govuk-skip-link" href="#skip-link-target">Skip to main content</a>
+  </section>
+  <section>
+    <pre><code class="language-ruby">govuk_skip_link href: '#skip-link-target'</code></pre>
   </section>
 </article>
 
