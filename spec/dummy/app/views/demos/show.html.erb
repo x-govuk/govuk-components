@@ -55,5 +55,11 @@ end} %>
     <%= render "example", title: 'Links', example: %{govuk_link_to('Home', '/')} %>
 
     <%= render "example", title: 'Back to top link', example: %{govuk_back_to_top_link} %>
+
+    <%= render "example", title: 'Skip link', example: %{govuk_skip_link} %>
+
+    <%= render "example", title: 'Skip link with custom text', example: %{govuk_skip_link text: 'Skip to important information'} %>
+
+    <%= render "example", title: 'Skip link with custom href', example: %{govuk_skip_link href: '#skip-link-target'} %>
   </div>
 </div>
