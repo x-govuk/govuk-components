@@ -1,5 +1,7 @@
-# Govuk::Components
+# [Work in progress] Govuk::Components
 <https://dfe-digital.github.io/govuk-components/>  
+
+> Note! This repository is very new and not yet fully built and documented. Breaking changes can happen at any time. Please check the [components tracker](https://github.com/DFE-Digital/govuk-components/issues/18) to see progress.
 
 Short description and motivation.
 
