@@ -68,5 +68,11 @@ end} %>
 %{render GovukComponent::Details.new(summary: 'The new Ribwich') do
   tag.strong(%(You're way off. Think smaller, and more legs.))
 end} %>
+
+    <%= render "example", title: 'Warning', example: %{render GovukComponent::Warning.new(text: "Talkin' out of turn, that's a paddlin'")} %>
+
+    <%= render "example", title: 'Warning with custom classes', example: %{render GovukComponent::Warning.new(text: "Lookin' out the window, that's a paddlin'", classes: 'my-custom-class')} %>
+
+    <%= render "example", title: 'Warning with custom icon fallback text', example: %{render GovukComponent::Warning.new(text: "Starin' at my sandals, that's a paddlin'", icon_fallback_text: "Paddlin' warning")} %>
   </div>
 </div>

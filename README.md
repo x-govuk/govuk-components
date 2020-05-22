@@ -21,7 +21,7 @@ The gem will include the following components and helpers, [track their progress
 * Start now button ✔️
 * Summary list
 * Tag ✔️
-* Warning text
+* Warning text ✔️
 
 ### Helpers
 
