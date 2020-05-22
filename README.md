@@ -12,7 +12,7 @@ The gem will include the following components and helpers, [track their progress
 
 * Back link ✔️
 * Breadcrumbs ✔️
-* Details
+* Details ✔️
 * Footer
 * Header ✔️
 * Inset text ✔️

@@ -10727,6 +10727,50 @@ end</code></pre>
   </section>
 </article>
 
+
+    <article class="example govuk-!-margin-top-9" id="details---with-text">
+  <h2 class="govuk-heading-s">Details - with text</h2>
+  <section>
+    <details class="govuk-details" data-module="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      The new Ribwich
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    Now without lettuce
+  </div>
+</details>
+
+  </section>
+  <section>
+    <pre><code class="language-ruby">render GovukComponent::Details.new(summary: 'The new Ribwich', text: 'Now without lettuce')</code></pre>
+  </section>
+</article>
+
+
+    <article class="example govuk-!-margin-top-9" id="details---with-block">
+  <h2 class="govuk-heading-s">Details - with block</h2>
+  <section>
+    <details class="govuk-details" data-module="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      The new Ribwich
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    <strong>You're way off. Think smaller, and more legs.</strong>
+  </div>
+</details>
+
+  </section>
+  <section>
+    <pre><code class="language-ruby">render GovukComponent::Details.new(summary: 'The new Ribwich') do
+  tag.strong(%(You're way off. Think smaller, and more legs.))
+end</code></pre>
+  </section>
+</article>
+
   </div>
 </div>
 
