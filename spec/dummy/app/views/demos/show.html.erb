@@ -61,5 +61,12 @@ end} %>
     <%= render "example", title: 'Skip link with custom text', example: %{govuk_skip_link text: 'Skip to important information'} %>
 
     <%= render "example", title: 'Skip link with custom href', example: %{govuk_skip_link href: '#skip-link-target'} %>
+
+    <%= render "example", title: 'Details - with text', example: %{render GovukComponent::Details.new(summary: 'The new Ribwich', text: 'Now without lettuce')} %>
+
+    <%= render "example", title: 'Details - with block', example: \
+%{render GovukComponent::Details.new(summary: 'The new Ribwich') do
+  tag.strong(%(You're way off. Think smaller, and more legs.))
+end} %>
   </div>
 </div>
