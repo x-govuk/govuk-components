@@ -10771,6 +10771,60 @@ end</code></pre>
   </section>
 </article>
 
+
+    <article class="example govuk-!-margin-top-9" id="warning">
+  <h2 class="govuk-heading-s">Warning</h2>
+  <section>
+    <div class="govuk-warning-text ">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-warning-text__assistive">Warning</span>
+    Talkin' out of turn, that's a paddlin'
+  </strong>
+</div>
+
+  </section>
+  <section>
+    <pre><code class="language-ruby">render GovukComponent::Warning.new(text: "Talkin' out of turn, that's a paddlin'")</code></pre>
+  </section>
+</article>
+
+
+    <article class="example govuk-!-margin-top-9" id="warning-with-custom-classes">
+  <h2 class="govuk-heading-s">Warning with custom classes</h2>
+  <section>
+    <div class="govuk-warning-text my-custom-class">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-warning-text__assistive">Warning</span>
+    Lookin' out the window, that's a paddlin'
+  </strong>
+</div>
+
+  </section>
+  <section>
+    <pre><code class="language-ruby">render GovukComponent::Warning.new(text: "Lookin' out the window, that's a paddlin'", classes: 'my-custom-class')</code></pre>
+  </section>
+</article>
+
+
+    <article class="example govuk-!-margin-top-9" id="warning-with-custom-icon-fallback-text">
+  <h2 class="govuk-heading-s">Warning with custom icon fallback text</h2>
+  <section>
+    <div class="govuk-warning-text ">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-warning-text__assistive">Paddlin' warning</span>
+    Starin' at my sandals, that's a paddlin'
+  </strong>
+</div>
+
+  </section>
+  <section>
+    <pre><code class="language-ruby">render GovukComponent::Warning.new(text: "Starin' at my sandals, that's a paddlin'", icon_fallback_text: "Paddlin' warning")</code></pre>
+  </section>
+</article>
+
   </div>
 </div>
 
