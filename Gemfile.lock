@@ -185,7 +185,7 @@ GEM
     tilt (2.0.10)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
-    view_component (2.5.1)
+    view_component (2.7.0)
       activesupport (>= 5.0.0, < 7.0)
     websocket-driver (0.7.2)
       websocket-extensions (>= 0.1.0)
