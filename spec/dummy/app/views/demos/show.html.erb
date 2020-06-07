@@ -74,5 +74,9 @@ end} %>
     <%= render "example", title: 'Warning with custom classes', example: %{render GovukComponent::Warning.new(text: "Lookin' out the window, that's a paddlin'", classes: 'my-custom-class')} %>
 
     <%= render "example", title: 'Warning with custom icon fallback text', example: %{render GovukComponent::Warning.new(text: "Starin' at my sandals, that's a paddlin'", icon_fallback_text: "Paddlin' warning")} %>
+
+    <%= render "example", title: 'Default footer', example: %{render GovukComponent::Footer.new} %>
+
+    <%= render "example", title: 'Footer with custom text', example: %{render GovukComponent::Footer.new(licence: 'Custom licence', copyright_text: 'Custom copyright', copyright_url: 'https://design-system.service.gov.uk/')} %>
   </div>
 </div>
