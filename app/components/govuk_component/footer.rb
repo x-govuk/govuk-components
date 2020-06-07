@@ -1,12 +1,26 @@
 class GovukComponent::Footer < ViewComponent::Base
-  attr_accessor :licence, :copyright
+  attr_accessor :meta, :licence, :copyright
 
-  def initialize(licence: nil, copyright_text: default_copright_text, copyright_url: default_copyright_url)
-    @licence   = licence || default_licence
-    @copyright = build_copyright(copyright_text, copyright_url)
+  def initialize(meta_links: nil, meta_heading: default_meta_heading, licence: nil, copyright_text: default_copright_text, copyright_url: default_copyright_url)
+    @meta_links   = build_meta_links(meta_links)
+    @meta_heading = raw(tag.h2(meta_heading, class: 'govuk-visually-hidden'))
+    @licence      = licence || default_licence
+    @copyright    = build_copyright(copyright_text, copyright_url)
   end
 
 private
+
+  def build_meta_links(links)
+    return [] if links.blank?
+
+    fail(ArgumentError, 'meta links must be a hash') unless links.is_a?(Hash)
+
+    links.map { |text, href| raw(link_to(text, href, class: %w(govuk-footer__link))) }
+  end
+
+  def default_meta_heading
+    'Supporting links'
+  end
 
   def default_licence
     link = link_to("Open Government Licence v3.0", "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/")

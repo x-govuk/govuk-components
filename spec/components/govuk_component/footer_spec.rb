@@ -76,4 +76,37 @@ RSpec.describe(GovukComponent::Footer, type: :component) do
       end
     end
   end
+
+  describe 'meta links' do
+    let(:component) { GovukComponent::Footer.new(meta_links: links, meta_heading: heading) }
+
+    context 'when meta links are supplied' do
+      let(:heading) { 'Related info' }
+
+      let(:links) do
+        { one: '/one', two: '/two', three: '/three' }
+      end
+
+      it { is_expected.to have_css('ul.govuk-footer__inline-list') }
+      it { is_expected.to have_css('h2', class: 'govuk-visually-hidden', text: heading) }
+
+      specify 'the meta links should be rendered' do
+        expect(subject).to have_css('footer.govuk-footer .govuk-footer__meta') do
+          expect(page).to have_css('li', class: 'govuk-footer__inline-list-item', count: links.size)
+
+          links.each do |text, href|
+            expect(page).to have_link(text, href: href)
+          end
+        end
+      end
+    end
+
+    context 'when no meta links are supplied' do
+      let(:links) { {} }
+      let(:heading) { 'This should be absent' }
+
+      it { is_expected.not_to have_css('ul.govuk-footer__inline-list') }
+      it { is_expected.not_to have_css('h2', class: 'govuk-visually-hidden', text: heading) }
+    end
+  end
 end
