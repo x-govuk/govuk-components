@@ -59,4 +59,21 @@ RSpec.describe(GovukComponent::Footer, type: :component) do
       end
     end
   end
+
+  xcontext 'when custom content is passed in' do
+    let(:content) do
+      capture do
+        content_tag('nav') do
+          concat(tag.h3('Navigation'))
+        end
+      end
+    end
+    let(:component) { GovukComponent::Footer.new { content } }
+
+    specify 'the content should be rendered' do
+      expect(subject).to have_css('footer.govuk-footer .govuk-footer__meta') do
+        expect(page).to have_css('nav', text: 'Navigation')
+      end
+    end
+  end
 end

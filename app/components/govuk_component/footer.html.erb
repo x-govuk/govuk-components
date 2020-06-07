@@ -1,5 +1,8 @@
 <footer class="govuk-footer " role="contentinfo">
   <div class="govuk-width-container ">
+    <% if content.present? %>
+      <%= content %>
+    <% end %>
     <div class="govuk-footer__meta">
       <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
         <svg aria-hidden="true" focusable="false" class="govuk-footer__licence-logo" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 483.2 195.7" height="17" width="41">
