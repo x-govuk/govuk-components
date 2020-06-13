@@ -26,8 +26,8 @@ The gem will include the following components and helpers, [track their progress
 ### Helpers
 
 * `#govuk_link_to` ✔️
-* `#govuk_mail_to`
-* `#govuk_button_to`
+* `#govuk_mail_to` ✔️
+* `#govuk_button_to` ✔️
 * `#govuk_back_to_top_link` ✔️
 * Skip link ✔️
 
