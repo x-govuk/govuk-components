@@ -10683,6 +10683,28 @@ end</code></pre>
   </section>
 </article>
 
+    <article class="example govuk-!-margin-top-9" id="email-links">
+  <h2 class="govuk-heading-s">Email links</h2>
+  <section>
+    <a class="govuk-link" href="mailto:Home">test@test.org</a>
+  </section>
+  <section>
+    <pre><code class="language-ruby">govuk_mail_to('Home', 'test@test.org')</code></pre>
+  </section>
+</article>
+
+    <article class="example govuk-!-margin-top-9" id="button-links">
+  <h2 class="govuk-heading-s">Button links</h2>
+  <section>
+    <form class="button_to" method="post" action="/">
+<input class="govuk-button" type="submit" value="Home"><input type="hidden" name="authenticity_token" value="2XVL+ClTE8x4pt9YsIBl9TXoTbXHKBei3xiabOqo05yxsN869T7d4gZonWhB2xfmhjGdtJp+BndSUrbINcScdw==">
+</form>
+  </section>
+  <section>
+    <pre><code class="language-ruby">govuk_button_to('Home', '/')</code></pre>
+  </section>
+</article>
+
 
     <article class="example govuk-!-margin-top-9" id="back-to-top-link">
   <h2 class="govuk-heading-s">Back to top link</h2>
