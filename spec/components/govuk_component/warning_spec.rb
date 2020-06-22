@@ -29,9 +29,8 @@ RSpec.describe(GovukComponent::Warning, type: :component) do
     end
   end
 
-  context 'with custom classes' do
-    let(:component) { GovukComponent::Warning.new(text: text, classes: %w(custom-class)) }
-    subject { node }
-    it { is_expected.to have_css('.govuk-warning-text.custom-class') }
+  it_behaves_like 'a component that accepts custom classes' do
+    let(:component_class) { GovukComponent::Warning }
+    let(:kwargs) { { text: text } }
   end
 end

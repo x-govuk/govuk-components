@@ -1,13 +1,21 @@
-class GovukComponent::BackLink < ViewComponent::Base
+class GovukComponent::BackLink < GovukComponent::Base
   attr_accessor :text, :href, :options
 
-  def initialize(text:, href:, classes: nil, attributes: nil)
-    @text = text
-    @href = href
-    @classes = "govuk-back-link"
-    @classes << " #{classes}" if classes.present?
+  def initialize(text:, href:, classes: nil, attributes: {})
+    super(classes: classes)
 
-    @options = { class: @classes }
-    @options.merge!(attributes) if attributes.present?
+    @text       = text
+    @href       = href
+    @attributes = attributes
+  end
+
+private
+
+  def default_classes
+    %w(govuk-back-link)
+  end
+
+  def options
+    { class: classes }.merge(@attributes)
   end
 end
