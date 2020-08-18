@@ -1,0 +1,19 @@
+<div class="govuk-tabs" data-module="govuk-tabs">
+  <h2 class="govuk-tabs__title">
+    <%= title %>
+  </h2>
+  <ul class="govuk-tabs__list">
+    <% tabs.each.with_index do |tab, i| %>
+      <li class="govuk-tabs__list-item <%= 'govuk-tabs__list-item--selected' if i.zero? %>">
+        <a class="govuk-tabs__tab" href="<%= tab.id(prefix: '#') %>">
+          <%= tab.title %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+  <% tabs.each.with_index do |tab, i| %>
+    <div class="govuk-tabs__panel <%= 'govuk-tabs__panel--hidden' unless i.zero? %>" id="<%= tab.id %>">
+      <%= tab.content %>
+    </div>
+  <% end %>
+</div>
