@@ -9,11 +9,17 @@
   </head>
 
   <body>
+    <script>
+      document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
+    </script>
     <%= govuk_skip_link %>
     <div class="govuk-width-container">
       <main class="govuk-main-wrapper" id="main-content">
         <%= yield %>
       </main>
     </div>
+  <script>
+    window.GOVUKFrontend.initAll();
+  </script>
   </body>
 </html>

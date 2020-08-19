@@ -15,5 +15,3 @@
 //= require prismjs
 //= require prismjs/components/prism-ruby
 //= require_tree .
-
-initAll();
