@@ -82,5 +82,22 @@ end} %>
     <%= render "example", title: 'Footer with custom text', example: %{render GovukComponent::Footer.new(licence: 'Custom licence', copyright_text: 'Custom copyright', copyright_url: 'https://design-system.service.gov.uk/')} %>
 
     <%= render "example", title: 'Footer with meta links', example: %{render GovukComponent::Footer.new(meta_links: { One: "/one", Two: "/two" }, meta_heading: 'Supporting links')} %>
+
+    <%= render "example", title: "Tabs", example: <<~TABS
+      render GovukComponent::Tabs.new(title: 'Days of the week') do |component|
+        component.slot(:tab, title: 'Monday') do
+          tag.p("Monday's child is fair of face", class: 'govuk-body')
+        end
+
+        component.slot(:tab, title: 'Tuesday') do
+          tag.p("Tuesday's child is full of grace", class: 'govuk-body')
+        end
+
+        component.slot(:tab, title: 'Wednesday') do
+          tag.p("Wednesday's child is full of woe", class: 'govuk-body')
+        end
+      end
+    TABS
+    %>
   </div>
 </div>
