@@ -19,7 +19,20 @@
           <%= @service_name %>
         </a>
       <% end %>
-      <%= nav %>
+
+      <% if items.any? %>
+        <nav>
+          <ul class="govuk-header__navigation " aria-label="Top Level Navigation">
+            <% items.each do |item| %>
+              <li class="govuk-header__navigation-item <%= 'govuk-header__navigation-item--active' if item.active? %>">
+                <a class="govuk-header__link" href="<%= item.href %>">
+                  <%= item.title %>
+                </a>
+              </li>
+            <% end %>
+          </ul>
+        </nav>
+      <% end %>
     </div>
   </div>
 </header>
