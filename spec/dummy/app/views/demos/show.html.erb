@@ -2,7 +2,11 @@
   <div class="govuk-grid-column-full">
     <h1 class="govuk-heading-xl">GovukComponents</h1>
 
-    <% @partials.each do |p| %>
+    <% Dir
+        .glob(Rails.root.join('app', 'views', 'demos', 'examples', '*.html.erb'))
+        .map { |f| File.basename(f)[%r{_(?<partial>.*)\.html.erb}, %(partial)] }
+        .sort
+        .each do |p| %>
       <section class="component-example">
         <%= render %(demos/examples/#{p}) %>
       </section>

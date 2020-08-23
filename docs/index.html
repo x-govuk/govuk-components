@@ -7468,6 +7468,17 @@ pre[class*="language-"] {
 .token.entity {
   cursor: help;
 }
+
+/* line 6, spec/dummy/app/assets/stylesheets/application.scss */
+.component-example {
+  border: 1px solid #b1b4b6;
+  padding: 2em;
+}
+
+/* line 10, spec/dummy/app/assets/stylesheets/application.scss */
+.component-example + .component-example {
+  margin-top: 3em;
+}
 </style>
     <script>/*
 Unobtrusive JavaScript
@@ -10475,7 +10486,79 @@ Prism.languages.js = Prism.languages.javascript;
   <div class="govuk-grid-column-full">
     <h1 class="govuk-heading-xl">GovukComponents</h1>
 
-    <h2 class="govuk-heading-l">Back links</h2>
+      <section class="component-example">
+        <h2 class="govuk-heading-l">Accordion</h2>
+
+<article class="example govuk-!-margin-top-9" id="accordion">
+  <h2 class="govuk-heading-s">Accordion</h2>
+  <section>
+    <div id="abc123" class="govuk-accordion" data-module="govuk-accordion">
+    <div id="home-electronics-section" class="govuk-accordion__section">
+      <div class="govuk-accordion__section-header">
+        <h2 class="govuk-accordion__section-heading">
+          <span id="home-electronics" class="govuk-accordion__section-button">Home electronics</span>
+        </h2>
+          <div id="home-electronics-summary" class="govuk-accordion__section-summary govuk-body">Entertainment, communication and recreation</div>
+      </div>
+      <div id="home-electronics-content" class="govuk-accordion__section-content" aria-labelledby="home-electronics"><p class="govuk-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></div>
+</div>    <div id="appliances-section" class="govuk-accordion__section">
+      <div class="govuk-accordion__section-header">
+        <h2 class="govuk-accordion__section-heading">
+          <span id="appliances" class="govuk-accordion__section-button">Appliances</span>
+        </h2>
+          <div id="appliances-summary" class="govuk-accordion__section-summary govuk-body">Laundry, cookers and vacuum cleaners</div>
+      </div>
+      <div id="appliances-content" class="govuk-accordion__section-content" aria-labelledby="appliances"><p class="govuk-body">Ut et elementum tortor. Donec a tellus sed sem euismod congue</p></div>
+</div>    <div id="toys-section" class="govuk-accordion__section">
+      <div class="govuk-accordion__section-header">
+        <h2 class="govuk-accordion__section-heading">
+          <span id="toys" class="govuk-accordion__section-button">Toys</span>
+        </h2>
+      </div>
+      <div id="toys-content" class="govuk-accordion__section-content" aria-labelledby="toys">
+<p class="govuk-body">In et nunc vitae tortor sollicitudin ultrices. Vivamus a purus justo.</p>
+<p class="govuk-body">Duis a turpis non nunc pulvinar venenatis quis congue mauris</p>
+</div>
+</div>
+</div>
+  </section>
+  <section>
+    <pre><code class="language-ruby">render GovukComponent::Accordion.new(id: 'abc123') do |component|
+  component.slot(:section,
+    title: 'Home electronics',
+    summary: 'Entertainment, communication and recreation') do
+      tag.p(class: 'govuk-body') do
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      end
+    end
+
+  component.slot(:section,
+    title: 'Appliances', summary: 'Laundry, cookers and vacuum cleaners') do
+      tag.p(class: 'govuk-body') do
+        "Ut et elementum tortor. Donec a tellus sed sem euismod congue"
+      end
+  end
+
+  component.slot(:section, title: 'Toys') do
+    safe_join([
+      tag.p(class: 'govuk-body') do
+        "In et nunc vitae tortor sollicitudin ultrices. Vivamus a purus justo."
+      end,
+
+      tag.p(class: 'govuk-body') do
+        "Duis a turpis non nunc pulvinar venenatis quis congue mauris"
+      end
+    ])
+  end
+end
+</code></pre>
+  </section>
+</article>
+
+
+      </section>
+      <section class="component-example">
+        <h2 class="govuk-heading-l">Back links</h2>
 
 <article class="example govuk-!-margin-top-9" id="back-link---default">
   <h2 class="govuk-heading-s">Back link - default</h2>
@@ -10551,7 +10634,9 @@ Prism.languages.js = Prism.languages.javascript;
 </article>
 
 
-    <h2 class="govuk-heading-l">Back to top link</h2>
+      </section>
+      <section class="component-example">
+        <h2 class="govuk-heading-l">Back to top link</h2>
 
 <article class="example govuk-!-margin-top-9" id="back-to-top-link">
   <h2 class="govuk-heading-s">Back to top link</h2>
@@ -10565,7 +10650,9 @@ Prism.languages.js = Prism.languages.javascript;
 
 
 
-    <h2 class="govuk-heading-l">Breadcrumbs</h2>
+      </section>
+      <section class="component-example">
+        <h2 class="govuk-heading-l">Breadcrumbs</h2>
 
 <article class="example govuk-!-margin-top-9" id="breadcrumbs">
   <h2 class="govuk-heading-s">Breadcrumbs</h2>
@@ -10591,13 +10678,20 @@ Prism.languages.js = Prism.languages.javascript;
 </div>
   </section>
   <section>
-    <pre><code class="language-ruby">render GovukComponent::Breadcrumbs.new(breadcrumbs: { 'Level one': '/level-one/', 'Level two': '/level-one/level-two/', 'Level three': '/level-one/level-two/level-three' })</code></pre>
+    <pre><code class="language-ruby">render GovukComponent::Breadcrumbs.new(breadcrumbs: {
+  'Level one': '/level-one/',
+  'Level two': '/level-one/level-two/',
+  'Level three': '/level-one/level-two/level-three'
+})
+</code></pre>
   </section>
 </article>
 
 
 
-    <h2 class="govuk-heading-l">Details</h2>
+      </section>
+      <section class="component-example">
+        <h2 class="govuk-heading-l">Details</h2>
 
 <article class="example govuk-!-margin-top-9" id="details---with-text">
   <h2 class="govuk-heading-s">Details - with text</h2>
@@ -10614,7 +10708,11 @@ Prism.languages.js = Prism.languages.javascript;
 </details>
   </section>
   <section>
-    <pre><code class="language-ruby">render GovukComponent::Details.new(summary: 'The new Ribwich', description: 'Now without lettuce')</code></pre>
+    <pre><code class="language-ruby">render GovukComponent::Details.new(
+  summary: 'The new Ribwich',
+  description: 'Now without lettuce'
+)
+</code></pre>
   </section>
 </article>
 
@@ -10642,7 +10740,9 @@ end
 </article>
 
 
-    <h2 class="govuk-heading-l">Footer</h2>
+      </section>
+      <section class="component-example">
+        <h2 class="govuk-heading-l">Footer</h2>
 
 <article class="example govuk-!-margin-top-9" id="default-footer">
   <h2 class="govuk-heading-s">Default footer</h2>
@@ -10667,7 +10767,8 @@ end
 
   </section>
   <section>
-    <pre><code class="language-ruby">render GovukComponent::Footer.new</code></pre>
+    <pre><code class="language-ruby">render GovukComponent::Footer.new
+</code></pre>
   </section>
 </article>
 
@@ -10695,7 +10796,11 @@ end
 
   </section>
   <section>
-    <pre><code class="language-ruby">render GovukComponent::Footer.new(licence: 'Custom licence', copyright_text: 'Custom copyright', copyright_url: 'https://design-system.service.gov.uk/')</code></pre>
+    <pre><code class="language-ruby">render GovukComponent::Footer.new(
+  licence: 'Custom licence',
+  copyright_text: 'Custom copyright',
+  copyright_url: 'https://design-system.service.gov.uk/')
+</code></pre>
   </section>
 </article>
 
@@ -10732,12 +10837,20 @@ end
 
   </section>
   <section>
-    <pre><code class="language-ruby">render GovukComponent::Footer.new(meta_links: { One: "/one", Two: "/two" }, meta_heading: 'Supporting links')</code></pre>
+    <pre><code class="language-ruby">render GovukComponent::Footer.new(
+  meta_links: {
+    One: "/one",
+    Two: "/two"
+  },
+  meta_heading: 'Supporting links')
+</code></pre>
   </section>
 </article>
 
 
-    
+      </section>
+      <section class="component-example">
+        
 <h2 class="govuk-heading-l">Header</h2>
 
 <article class="example govuk-!-margin-top-9" id="header">
@@ -10768,9 +10881,14 @@ end
 </header>
   </section>
   <section>
-    <pre><code class="language-ruby">render GovukComponent::Header.new(logo: 'GOV.UK', service_name: 'Amazing service', service_name_href: '/amazing-service/home')</code></pre>
+    <pre><code class="language-ruby">render GovukComponent::Header.new(
+  logo: 'GOV.UK',
+  service_name: 'Amazing service',
+  service_name_href: '/amazing-service/home')
+</code></pre>
   </section>
 </article>
+
 
 <article class="example govuk-!-margin-top-9" id="header-without-service-name">
   <h2 class="govuk-heading-s">Header without service name</h2>
@@ -10800,6 +10918,7 @@ end
     <pre><code class="language-ruby">render GovukComponent::Header.new(logo: 'Custom')</code></pre>
   </section>
 </article>
+
 
 <article class="example govuk-!-margin-top-9" id="header-with-navigation">
   <h2 class="govuk-heading-s">Header with navigation</h2>
@@ -10855,7 +10974,9 @@ end
 </article>
 
 
-    <h2 class="govuk-heading-l">Inset text</h2>
+      </section>
+      <section class="component-example">
+        <h2 class="govuk-heading-l">Inset text</h2>
 
 <article class="example govuk-!-margin-top-9" id="inset-text">
   <h2 class="govuk-heading-s">Inset text</h2>
@@ -10868,7 +10989,9 @@ end
 </article>
 
 
-    <h2 class="govuk-heading-l">Links and buttons</h2>
+      </section>
+      <section class="component-example">
+        <h2 class="govuk-heading-l">Links and buttons</h2>
 
 <article class="example govuk-!-margin-top-9" id="links">
   <h2 class="govuk-heading-s">Links</h2>
@@ -10894,7 +11017,7 @@ end
   <h2 class="govuk-heading-s">Button links</h2>
   <section>
     <form class="button_to" method="post" action="/">
-<input class="govuk-button" type="submit" value="Home"><input type="hidden" name="authenticity_token" value="uUHn79GblKPyF16Ox1hRA29GRWuLp9HkRkX5uBavURJVCZRSx7lEKPwkfqUjvId4gvM/+mEc9cpcG7PZfjspTg==">
+<input class="govuk-button" type="submit" value="Home"><input type="hidden" name="authenticity_token" value="0AqcleTzL9GxSp1JLnRYU51ieZMTUSEElciTMGBpoJD8co5ej6gVDWVrTiHUtX9555MJcBvuMnx2wHgkuBY6+A==">
 </form>
   </section>
   <section>
@@ -10903,7 +11026,9 @@ end
 </article>
 
 
-    <h2 class="govuk-heading-l">Panel</h2>
+      </section>
+      <section class="component-example">
+        <h2 class="govuk-heading-l">Panel</h2>
 
 <article class="example govuk-!-margin-top-9" id="panel">
   <h2 class="govuk-heading-s">Panel</h2>
@@ -10919,13 +11044,18 @@ end
 </div>
   </section>
   <section>
-    <pre><code class="language-ruby">render GovukComponent::Panel.new(title: 'Springfield', body: 'A noble spirit embiggens the smallest man')</code></pre>
+    <pre><code class="language-ruby">render GovukComponent::Panel.new(
+  title: 'Springfield',
+  body: 'A noble spirit embiggens the smallest man')
+</code></pre>
   </section>
 </article>
 
 
 
-    <h2 class="govuk-heading-l">Phase banner</h2>
+      </section>
+      <section class="component-example">
+        <h2 class="govuk-heading-l">Phase banner</h2>
 
 <article class="example govuk-!-margin-top-9" id="phase-banner---with-text">
   <h2 class="govuk-heading-s">Phase banner - with text</h2>
@@ -10942,7 +11072,10 @@ end
 </div>
   </section>
   <section>
-    <pre><code class="language-ruby">render GovukComponent::PhaseBanner.new(phase: 'Gamma', text: 'This is an experimental service – be cautious')</code></pre>
+    <pre><code class="language-ruby">render GovukComponent::PhaseBanner.new(
+  phase: 'Gamma',
+  text: 'This is an experimental service – be cautious')
+</code></pre>
   </section>
 </article>
 
@@ -10970,7 +11103,9 @@ end
 </article>
 
 
-    <h2 class="govuk-heading-l">Skip link</h2>
+      </section>
+      <section class="component-example">
+        <h2 class="govuk-heading-l">Skip link</h2>
 
 <article class="example govuk-!-margin-top-9" id="skip-link">
   <h2 class="govuk-heading-s">Skip link</h2>
@@ -11005,7 +11140,9 @@ end
 </article>
 
 
-    <h2 class="govuk-heading-l">Start now button</h2>
+      </section>
+      <section class="component-example">
+        <h2 class="govuk-heading-l">Start now button</h2>
 
 <article class="example govuk-!-margin-top-9" id="start-now-button">
   <h2 class="govuk-heading-s">Start now button</h2>
@@ -11018,12 +11155,17 @@ end
 </a>
   </section>
   <section>
-    <pre><code class="language-ruby">render GovukComponent::StartNowButton.new(text: 'Department for Education', href: 'https://www.gov.uk/government/organisations/department-for-education')</code></pre>
+    <pre><code class="language-ruby">render GovukComponent::StartNowButton.new(
+  text: 'Department for Education',
+  href: 'https://www.gov.uk/government/organisations/department-for-education')
+</code></pre>
   </section>
 </article>
 
 
-    <h2 class="govuk-heading-l">Tabs</h2>
+      </section>
+      <section class="component-example">
+        <h2 class="govuk-heading-l">Tabs</h2>
 
 <article class="example govuk-!-margin-top-9" id="tabs">
   <h2 class="govuk-heading-s">Tabs</h2>
@@ -11079,7 +11221,9 @@ end
 </article>
 
 
-    <h2 class="govuk-heading-l">Warning</h2>
+      </section>
+      <section class="component-example">
+        <h2 class="govuk-heading-l">Warning</h2>
 
 <article class="example govuk-!-margin-top-9" id="warning">
   <h2 class="govuk-heading-s">Warning</h2>
@@ -11093,7 +11237,9 @@ end
 </div>
   </section>
   <section>
-    <pre><code class="language-ruby">render GovukComponent::Warning.new(text: "Talkin' out of turn, that's a paddlin'")</code></pre>
+    <pre><code class="language-ruby">render GovukComponent::Warning.new(
+  text: "Talkin' out of turn, that's a paddlin'")
+</code></pre>
   </section>
 </article>
 
@@ -11110,7 +11256,10 @@ end
 </div>
   </section>
   <section>
-    <pre><code class="language-ruby">render GovukComponent::Warning.new(text: "Lookin' out the window, that's a paddlin'", classes: 'my-custom-class')</code></pre>
+    <pre><code class="language-ruby">render GovukComponent::Warning.new(
+  text: "Lookin' out the window, that's a paddlin'",
+  classes: 'my-custom-class')
+</code></pre>
   </section>
 </article>
 
@@ -11127,10 +11276,15 @@ end
 </div>
   </section>
   <section>
-    <pre><code class="language-ruby">render GovukComponent::Warning.new(text: "Starin' at my sandals, that's a paddlin'", icon_fallback_text: "Paddlin' warning")</code></pre>
+    <pre><code class="language-ruby">render GovukComponent::Warning.new(
+  text: "Starin' at my sandals, that's a paddlin'",
+  icon_fallback_text: "Paddlin' warning")
+</code></pre>
   </section>
 </article>
 
+
+      </section>
 
   </div>
 </div>
