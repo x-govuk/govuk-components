@@ -1,12 +1,20 @@
-class GovukComponent::Tabs < ViewComponent::Base
+class GovukComponent::Tabs < GovukComponent::Base
   include ViewComponent::Slotable
 
   attr_accessor :title
 
   with_slot :tab, collection: true, class_name: 'Tab'
 
-  def initialize(title:)
+  def initialize(title:, classes: [])
+    super(classes: classes)
+
     self.title = title
+  end
+
+private
+
+  def default_classes
+    %w(govuk-tabs)
   end
 
   class Tab < ViewComponent::Slot

@@ -2,42 +2,39 @@ require 'spec_helper'
 
 RSpec.describe(GovukComponent::Details, type: :component) do
   let(:summary) { 'The new Ribwich' }
+  let(:description) { %(You're way off. Think smaller, and more legs.) }
+  let(:kwargs) { { description: description, summary: summary } }
+
   subject { Capybara::Node::Simple.new(render_inline(component).to_html) }
 
-  context 'when text is supplied' do
-    let(:text) { 'Now without lettuce' }
-    let(:component) { GovukComponent::Details.new(summary: summary, text: text) }
+  context 'when a description is supplied' do
+    let(:description) { 'Now without lettuce' }
 
-    specify 'contains a details element with the correct summary and text' do
-      expect(subject).to have_css('details', class: %w(govuk-details)) do
-        expect(page).to have_css('summary.govuk-details__summary > span.govuk-details__summary-text', text: summary)
-        expect(page).to have_css('div.govuk-details__text', text: text, visible: false)
+    subject! { render_inline(GovukComponent::Details.new(**kwargs)) }
+
+    specify 'contains a details element with the correct summary and description' do
+      expect(page).to have_css('details', class: %w(govuk-details)) do |details|
+        expect(details).to have_css('summary.govuk-details__summary > span.govuk-details__summary-text', text: summary)
+        expect(details).to have_css('div.govuk-details__text', text: description, visible: false)
       end
     end
   end
 
-  # This approach won't work until support for passing blocks to components in
-  # tests is added, see https://github.com/github/view_component/issues/215
-  xcontext 'when a block is supplied' do
-    let(:content) { %(You're way off. Think smaller, and more legs.) }
+  context 'when a block is supplied' do
 
-    let(:content) do
-      capture do
-        content_tag('section') do
-          concat(tag.strong(content))
-        end
+    subject! do
+      render_inline(GovukComponent::Details.new(**kwargs.except(:description))) { description }
+    end
+
+    specify 'contains a details element with the correct summary and description' do
+      expect(page).to have_css('details', class: %w(govuk-details)) do |details|
+        expect(details).to have_css('summary.govuk-details__summary > span.govuk-details__summary-text', text: summary)
+        expect(details).to have_css('div.govuk-details__text', text: description, visible: false)
       end
     end
+  end
 
-    let(:component) do
-      GovukComponent::Details.new(summary: summary) { content }
-    end
-
-    specify 'contains a details element with the correct summary and text' do
-      expect(subject).to have_css('details', class: %w(govuk-details)) do
-        expect(page).to have_css('summary.govuk-details__summary > span.govuk-details__summary-text', text: summary)
-        expect(page).to have_css('div.govuk-details__text > section > strong', text: content, visible: false)
-      end
-    end
+  it_behaves_like 'a component that accepts custom classes' do
+    let(:component_class) { described_class }
   end
 end

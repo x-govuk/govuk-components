@@ -1,10 +1,10 @@
-<div class="govuk-phase-banner">
+<%= tag.div(class: classes) do %>
   <p class="govuk-phase-banner__content">
     <strong class="govuk-tag govuk-phase-banner__content__tag">
-      <%= @tag %>
+      <%= @phase %>
     </strong>
     <span class="govuk-phase-banner__text">
       <%= @text || content %>
     </span>
   </p>
-</div>
+<% end %>

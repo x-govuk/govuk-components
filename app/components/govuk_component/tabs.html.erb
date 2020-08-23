@@ -1,4 +1,4 @@
-<div class="govuk-tabs" data-module="govuk-tabs">
+<%= tag.div(class: classes, data: { module: 'govuk-tabs' }) do %>
   <h2 class="govuk-tabs__title">
     <%= title %>
   </h2>
@@ -16,4 +16,4 @@
       <%= tab.content %>
     </div>
   <% end %>
-</div>
+<% end %>

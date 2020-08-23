@@ -1,4 +1,4 @@
-<div class="govuk-breadcrumbs">
+<%= tag.div(class: classes) do %>
   <ol class="govuk-breadcrumbs__list">
     <%- @breadcrumbs.each do |text, link| %>
 
@@ -14,4 +14,4 @@
 
     <% end %>
   </ol>
-</div>
+<% end %>

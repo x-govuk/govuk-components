@@ -5,7 +5,7 @@ RSpec.describe(GovukComponent::Header, type: :component) do
   let(:logo_href) { 'https://omg.uk/bbq' }
   let(:service_name) { 'Amazing service 1' }
   let(:service_name_href) { 'https://omg.uk/bbq/amazing-service-1/home' }
-  let(:default_args) do
+  let(:kwargs) do
     {
       logo: logo,
       logo_href: logo_href,
@@ -14,7 +14,7 @@ RSpec.describe(GovukComponent::Header, type: :component) do
     }
   end
 
-  let(:component) { GovukComponent::Header.new(**default_args) }
+  let(:component) { GovukComponent::Header.new(**kwargs) }
   subject! { render_inline(component) }
 
   context 'when only the logo and service are specified' do
@@ -28,7 +28,7 @@ RSpec.describe(GovukComponent::Header, type: :component) do
     end
 
     context 'when no service name is present' do
-      let(:component) { GovukComponent::Header.new(**default_args.except(:service_name)) }
+      let(:component) { GovukComponent::Header.new(**kwargs.except(:service_name)) }
 
       specify 'no service name related markup should be present' do
         expect(page).not_to have_css('.govuk-header__link--service-name')
@@ -53,7 +53,7 @@ RSpec.describe(GovukComponent::Header, type: :component) do
       end
 
       subject! do
-        render_inline(GovukComponent::Header.new(**default_args)) do |component|
+        render_inline(GovukComponent::Header.new(**kwargs)) do |component|
           items.each { |item| component.slot(:item, **item) }
         end
       end
@@ -88,5 +88,9 @@ RSpec.describe(GovukComponent::Header, type: :component) do
         end
       end
     end
+  end
+
+  it_behaves_like 'a component that accepts custom classes' do
+    let(:component_class) { described_class }
   end
 end
