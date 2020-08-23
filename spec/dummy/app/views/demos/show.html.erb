@@ -2,19 +2,11 @@
   <div class="govuk-grid-column-full">
     <h1 class="govuk-heading-xl">GovukComponents</h1>
 
-    <%= render partial: %(demos/examples/back_link) %>
-    <%= render partial: %(demos/examples/back_to_top_link) %>
-    <%= render partial: %(demos/examples/breadcrumbs) %>
-    <%= render partial: %(demos/examples/details) %>
-    <%= render partial: %(demos/examples/footer) %>
-    <%= render partial: %(demos/examples/header) %>
-    <%= render partial: %(demos/examples/inset_text) %>
-    <%= render partial: %(demos/examples/links) %>
-    <%= render partial: %(demos/examples/panel) %>
-    <%= render partial: %(demos/examples/phase_banner) %>
-    <%= render partial: %(demos/examples/skip_link) %>
-    <%= render partial: %(demos/examples/start_now_button) %>
-    <%= render partial: %(demos/examples/tabs) %>
-    <%= render partial: %(demos/examples/warning) %>
+    <% @partials.each do |p| %>
+      <section class="component-example">
+        <%= render %(demos/examples/#{p}) %>
+      </section>
+    <% end %>
+
   </div>
 </div>
