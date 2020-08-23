@@ -1,7 +1,21 @@
 <%= example_heading('Warning') %>
 
-<%= render "shared/example", title: 'Warning', example: %{render GovukComponent::Warning.new(text: "Talkin' out of turn, that's a paddlin'")} %>
+<%= render "shared/example", title: 'Warning', example: <<~WARNING
+  render GovukComponent::Warning.new(
+    text: "Talkin' out of turn, that's a paddlin'")
+  WARNING
+%>
 
-<%= render "shared/example", title: 'Warning with custom classes', example: %{render GovukComponent::Warning.new(text: "Lookin' out the window, that's a paddlin'", classes: 'my-custom-class')} %>
+<%= render "shared/example", title: 'Warning with custom classes', example: <<~WARNING
+  render GovukComponent::Warning.new(
+    text: "Lookin' out the window, that's a paddlin'",
+    classes: 'my-custom-class')
+  WARNING
+%>
 
-<%= render "shared/example", title: 'Warning with custom icon fallback text', example: %{render GovukComponent::Warning.new(text: "Starin' at my sandals, that's a paddlin'", icon_fallback_text: "Paddlin' warning")} %>
+<%= render "shared/example", title: 'Warning with custom icon fallback text', example: <<~WARNING
+  render GovukComponent::Warning.new(
+    text: "Starin' at my sandals, that's a paddlin'",
+    icon_fallback_text: "Paddlin' warning")
+  WARNING
+%>

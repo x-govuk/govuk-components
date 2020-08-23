@@ -1,3 +1,8 @@
 <%= example_heading('Start now button') %>
 
-<%= render "shared/example", title: 'Start now button', example: %{render GovukComponent::StartNowButton.new(text: 'Department for Education', href: 'https://www.gov.uk/government/organisations/department-for-education')} %>
+<%= render "shared/example", title: 'Start now button', example: <<~START_NOW_BUTTON
+  render GovukComponent::StartNowButton.new(
+    text: 'Department for Education',
+    href: 'https://www.gov.uk/government/organisations/department-for-education')
+  START_NOW_BUTTON
+%>

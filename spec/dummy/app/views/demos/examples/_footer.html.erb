@@ -1,7 +1,24 @@
 <%= example_heading('Footer') %>
 
-<%= render "shared/example", title: 'Default footer', example: %{render GovukComponent::Footer.new} %>
+<%= render "shared/example", title: 'Default footer', example: <<~FOOTER
+  render GovukComponent::Footer.new
+  FOOTER
+%>
 
-<%= render "shared/example", title: 'Footer with custom text', example: %{render GovukComponent::Footer.new(licence: 'Custom licence', copyright_text: 'Custom copyright', copyright_url: 'https://design-system.service.gov.uk/')} %>
+<%= render "shared/example", title: 'Footer with custom text', example: <<~FOOTER
+  render GovukComponent::Footer.new(
+    licence: 'Custom licence',
+    copyright_text: 'Custom copyright',
+    copyright_url: 'https://design-system.service.gov.uk/')
+  FOOTER
+%>
 
-<%= render "shared/example", title: 'Footer with meta links', example: %{render GovukComponent::Footer.new(meta_links: { One: "/one", Two: "/two" }, meta_heading: 'Supporting links')} %>
+<%= render "shared/example", title: 'Footer with meta links', example: <<~FOOTER
+  render GovukComponent::Footer.new(
+    meta_links: {
+      One: "/one",
+      Two: "/two"
+    },
+    meta_heading: 'Supporting links')
+  FOOTER
+%>
