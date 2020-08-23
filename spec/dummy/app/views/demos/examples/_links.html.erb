@@ -1,0 +1,5 @@
+<%= example_heading('Links and buttons') %>
+
+<%= render "shared/example", title: 'Links', example: %{govuk_link_to('Home', '/')} %>
+<%= render "shared/example", title: 'Email links', example: %{govuk_mail_to('Home', 'test@test.org')} %>
+<%= render "shared/example", title: 'Button links', example: %{govuk_button_to('Home', '/')} %>
