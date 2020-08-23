@@ -1,8 +1,16 @@
-class GovukComponent::PhaseBanner < ViewComponent::Base
-  attr_accessor :tag, :text
+class GovukComponent::PhaseBanner < GovukComponent::Base
+  attr_accessor :phase, :text
 
-  def initialize(tag:, text: nil)
-    @tag  = tag
-    @text = text
+  def initialize(phase:, text: nil, classes: [])
+    super(classes: classes)
+
+    @phase = phase
+    @text  = text
+  end
+
+private
+
+  def default_classes
+    %w(govuk-phase-banner)
   end
 end

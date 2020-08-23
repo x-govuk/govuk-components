@@ -11,8 +11,10 @@ RSpec.describe(GovukComponent::Tabs, type: :component) do
     }
   end
 
+  let(:kwargs) { { title: title } }
+
   subject! do
-    render_inline(GovukComponent::Tabs.new(title: title)) do |component|
+    render_inline(GovukComponent::Tabs.new(**kwargs)) do |component|
       tabs.each do |title, content|
         component.slot(:tab, title: title) { content }
       end
@@ -35,6 +37,7 @@ RSpec.describe(GovukComponent::Tabs, type: :component) do
 
   specify 'only the first tab should be selected' do
     selected_tab_classes = '.govuk-tabs__list-item.govuk-tabs__list-item--selected'
+
     expect(page).to have_css(selected_tab_classes, text: tabs.keys.first)
     expect(page).to have_css(selected_tab_classes, count: 1)
   end
@@ -67,5 +70,9 @@ RSpec.describe(GovukComponent::Tabs, type: :component) do
     panel_ids = page.all('div.govuk-tabs__panel').map { |panel| panel[:id] }
 
     expect(tab_link_hrefs).to eql(panel_ids)
+  end
+
+  it_behaves_like 'a component that accepts custom classes' do
+    let(:component_class) { described_class }
   end
 end

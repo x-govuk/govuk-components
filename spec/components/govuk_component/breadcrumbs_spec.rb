@@ -9,21 +9,27 @@ RSpec.describe(GovukComponent::Breadcrumbs, type: :component) do
       "Anglepoise Desk Lamp" => nil
     }
   end
-  let(:component) { GovukComponent::Breadcrumbs.new(breadcrumbs: breadcrumbs) }
-  subject { Capybara::Node::Simple.new(render_inline(component).to_html) }
+
+  let(:kwargs) { { breadcrumbs: breadcrumbs } }
+
+  subject! { render_inline(GovukComponent::Breadcrumbs.new(**kwargs)) }
 
   specify 'contains correctly-rendered breadcrumbs' do
-    expect(subject).to have_css('ol', class: 'govuk-breadcrumbs__list') do
-      expect(page).to have_css('li', class: 'govuk-breadcrumbs__list-item', count: 4)
+    expect(page).to have_css('ol', class: 'govuk-breadcrumbs__list') do |list|
+      expect(list).to have_css('li', class: 'govuk-breadcrumbs__list-item', count: 4)
 
-      expect(page).to have_css('li > a', class: 'govuk-breadcrumbs__link', count: 3)
+      expect(list).to have_css('li > a', class: 'govuk-breadcrumbs__link', count: 3)
 
       breadcrumbs
         .reject { |_, link| link.nil? }
-        .each { |text, link| expect(page).to have_link(text, href: link) }
+        .each { |text, link| expect(list).to have_link(text, href: link) }
 
-      expect(page).to have_css('li', text: 'Anglepoise Desk Lamp')
-      expect(page).to_not have_link('Anglepoise Desk Lamp')
+      expect(list).to have_css('li', text: 'Anglepoise Desk Lamp')
+      expect(list).to_not have_link('Anglepoise Desk Lamp')
     end
+  end
+
+  it_behaves_like 'a component that accepts custom classes' do
+    let(:component_class) { described_class }
   end
 end
