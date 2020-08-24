@@ -12,6 +12,7 @@ The gem will include the following components and helpers, [track their progress
 
 ### Components
 
+* Accordion ✔️
 * Back link ✔️
 * Breadcrumbs ✔️
 * Details ✔️
@@ -22,6 +23,7 @@ The gem will include the following components and helpers, [track their progress
 * Phase banner ✔️
 * Start now button ✔️
 * Summary list
+* Tabs ✔️
 * Tag ✔️
 * Warning text ✔️
 
