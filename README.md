@@ -22,7 +22,7 @@ The gem will include the following components and helpers, [track their progress
 * Panel ✔️
 * Phase banner ✔️
 * Start now button ✔️
-* Summary list
+* Summary list ✔️
 * Tabs ✔️
 * Tag ✔️
 * Warning text ✔️

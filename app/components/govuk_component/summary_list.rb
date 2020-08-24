@@ -1,0 +1,21 @@
+class GovukComponent::SummaryList < GovukComponent::Base
+  include ViewComponent::Slotable
+
+  with_slot :row, collection: true, class_name: 'Row'
+
+private
+
+  def default_classes
+    %w(govuk-summary-list)
+  end
+
+  class Row < ViewComponent::Slot
+    attr_accessor :key, :value, :action
+
+    def initialize(key:, value:, action: nil)
+      self.key    = key
+      self.value  = value
+      self.action = action
+    end
+  end
+end
