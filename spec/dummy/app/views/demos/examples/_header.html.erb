@@ -1,0 +1,21 @@
+
+<%= example_heading('Header') %>
+
+<%= render "shared/example", title: 'Header', example: <<~HEADER
+  render GovukComponent::Header.new(
+    logo: 'GOV.UK',
+    service_name: 'Amazing service',
+    service_name_href: '/amazing-service/home')
+  HEADER
+%>
+
+<%= render "shared/example", title: 'Header without service name', example: %{render GovukComponent::Header.new(logo: 'Custom')} %>
+
+<%= render "shared/example", title: 'Header with navigation', example: <<~HEADER
+  render GovukComponent::Header.new(logo: 'Some service') do |component|
+    component.slot(:item, title: 'Page A', href: '/#page-a')
+    component.slot(:item, title: 'Page B', href: '/#page-b')
+    component.slot(:item, title: 'Page C', href: '/#page-c', active: true)
+  end
+HEADER
+%>

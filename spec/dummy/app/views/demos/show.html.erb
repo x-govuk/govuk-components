@@ -1,132 +1,16 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
-    <h1 class="govuk-heading-xl">GovukComponents</h1>
+    <h1 class="govuk-heading-xl">GOV.UK Rails Components</h1>
 
-    <%= render "example", title: 'Back link - default', example: \
-%{render GovukComponent::BackLink.new(
-  text: 'Department for Education',
-  href: 'https://www.gov.uk/government/organisations/department-for-education'
-)} %>
+    <% Dir
+        .glob(Rails.root.join('app', 'views', 'demos', 'examples', '*.html.erb'))
+        .map { |f| File.basename(f)[%r{_(?<partial>.*)\.html.erb}, %(partial)] }
+        .sort
+        .each do |p| %>
+      <section class="component-example">
+        <%= render %(demos/examples/#{p}) %>
+      </section>
+    <% end %>
 
-    <%= render "example", title: 'Back link - with custom css classes', example: \
-%{render GovukComponent::BackLink.new(
-  text: 'Department for Education',
-  href: 'https://www.gov.uk/government/organisations/department-for-education',
-  classes: 'my-class'
-)} %>
-
-    <%= render "example", title: 'Back link - with custom HTML attributes', example: \
-%{render GovukComponent::BackLink.new(
-  text: 'Department for Education',
-  href: 'https://www.gov.uk/government/organisations/department-for-education',
-  attributes:{
-    id: "my-link"
-  }
-)} %>
-
-    <%= render "example", title: 'Back link - with custom css classes and HTML attributes', example: \
-%{render GovukComponent::BackLink.new(
-  text: 'Department for Education',
-  href: 'https://www.gov.uk/government/organisations/department-for-education',
-  classes: 'app-class',
-  attributes:{
-    data: { qa: "my-qa-value"}
-  }
- )} %>
-
-    <%= render "example", title: 'Inset text', example: %{render GovukComponent::InsetText.new(text: 'Bake him away, toys.')} %>
-
-    <%= render "example", title: 'Panel', example: %{render GovukComponent::Panel.new(title: 'Springfield', body: 'A noble spirit embiggens the smallest man')} %>
-
-    <%= render "example", title: 'Phase banner - with text', example: %{render GovukComponent::PhaseBanner.new(tag: 'Gamma', text: 'This is an experimental service – be cautious')} %>
-
-    <%= render "example", title: 'Phase banner - with block', example: \
-%{render GovukComponent::PhaseBanner.new(tag: 'Alpha') do
-  tag.strong('This is an Alpha project, ignore everything')
-end} %>
-
-    <%= render "example", title: 'Start now button', example: %{render GovukComponent::StartNowButton.new(text: 'Department for Education', href: 'https://www.gov.uk/government/organisations/department-for-education')} %>
-
-    <%= render "example", title: 'Breadcrumbs', example: %{render GovukComponent::Breadcrumbs.new(breadcrumbs: { 'Level one': '/level-one/', 'Level two': '/level-one/level-two/', 'Level three': '/level-one/level-two/level-three' })} %>
-
-    <%= render "example", title: 'Header', example: %{render GovukComponent::Header.new(logo: 'GOV.UK', service_name: 'Amazing service', service_name_href: '/amazing-service/home')} %>
-    <%= render "example", title: 'Header without service name', example: %{render GovukComponent::Header.new(logo: 'Custom')} %>
-    <%= render "example", title: 'Header with navigation', example: <<~HEADER
-      render GovukComponent::Header.new(logo: 'Some service') do |component|
-        component.slot(:item, title: 'Page A', href: '/#page-a')
-        component.slot(:item, title: 'Page B', href: '/#page-b')
-        component.slot(:item, title: 'Page C', href: '/#page-c', active: true)
-      end
-    HEADER
-    %>
-
-
-    <%= render "example", title: 'Links', example: %{govuk_link_to('Home', '/')} %>
-    <%= render "example", title: 'Email links', example: %{govuk_mail_to('Home', 'test@test.org')} %>
-    <%= render "example", title: 'Button links', example: %{govuk_button_to('Home', '/')} %>
-
-    <%= render "example", title: 'Back to top link', example: %{govuk_back_to_top_link} %>
-
-    <%= render "example", title: 'Skip link', example: %{govuk_skip_link} %>
-
-    <%= render "example", title: 'Skip link with custom text', example: %{govuk_skip_link text: 'Skip to important information'} %>
-
-    <%= render "example", title: 'Skip link with custom href', example: %{govuk_skip_link href: '#skip-link-target'} %>
-
-    <%= render "example", title: 'Details - with text', example: %{render GovukComponent::Details.new(summary: 'The new Ribwich', text: 'Now without lettuce')} %>
-
-    <%= render "example", title: 'Details - with block', example: \
-%{render GovukComponent::Details.new(summary: 'The new Ribwich') do
-  tag.strong(%(You're way off. Think smaller, and more legs.))
-end} %>
-
-    <%= render "example", title: 'Warning', example: %{render GovukComponent::Warning.new(text: "Talkin' out of turn, that's a paddlin'")} %>
-
-    <%= render "example", title: 'Warning with custom classes', example: %{render GovukComponent::Warning.new(text: "Lookin' out the window, that's a paddlin'", classes: 'my-custom-class')} %>
-
-    <%= render "example", title: 'Warning with custom icon fallback text', example: %{render GovukComponent::Warning.new(text: "Starin' at my sandals, that's a paddlin'", icon_fallback_text: "Paddlin' warning")} %>
-
-    <%= render "example", title: 'Default footer', example: %{render GovukComponent::Footer.new} %>
-
-    <%= render "example", title: 'Footer with custom text', example: %{render GovukComponent::Footer.new(licence: 'Custom licence', copyright_text: 'Custom copyright', copyright_url: 'https://design-system.service.gov.uk/')} %>
-
-    <%= render "example", title: 'Footer with meta links', example: %{render GovukComponent::Footer.new(meta_links: { One: "/one", Two: "/two" }, meta_heading: 'Supporting links')} %>
-
-    <%= render "example", title: "Tabs", example: <<~TABS
-      render GovukComponent::Tabs.new(title: 'Days of the week') do |component|
-        component.slot(:tab, title: 'Monday') do
-          tag.p("Monday's child is fair of face", class: 'govuk-body')
-        end
-
-        component.slot(:tab, title: 'Tuesday') do
-          tag.p("Tuesday's child is full of grace", class: 'govuk-body')
-        end
-
-        component.slot(:tab, title: 'Wednesday') do
-          tag.p("Wednesday's child is full of woe", class: 'govuk-body')
-        end
-      end
-    TABS
-    %>
-
-    <%= render "example", title: "Accordion", example: <<~ACCORDION
-      render GovukComponent::Accordion.new(id: 'abc123') do |component|
-        component.slot(:section, title: 'Home electronics', summary: 'Entertainment, communication and recreation') do
-          tag.p("Lorem ipsum dolor sit amet, consectetur adipiscing elit.", class: 'govuk-body')
-        end
-
-        component.slot(:section, title: 'Appliances', summary: 'Laundry, cookers and vacuum cleaners') do
-          tag.p("Ut et elementum tortor. Donec a tellus sed sem euismod congue", class: 'govuk-body')
-        end
-
-        component.slot(:section, title: 'Toys') do
-          safe_join([
-            tag.p("In et nunc vitae tortor sollicitudin ultrices. Vivamus a purus justo.", class: 'govuk-body'),
-            tag.p("Duis a turpis non nunc pulvinar venenatis quis congue mauris. Nullam vel consequat diam, vel venenatis nulla.", class: 'govuk-body')
-          ])
-        end
-      end
-    ACCORDION
-    %>
   </div>
 </div>

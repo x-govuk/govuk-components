@@ -1,0 +1,43 @@
+<%= example_heading('Back links') %>
+
+<%= render "shared/example", title: 'Back link - default', example: <<~BACK_LINK
+  render GovukComponent::BackLink.new(
+    text: 'Department for Education',
+    href: 'https://www.gov.uk/government/organisations/department-for-education'
+  )
+  BACK_LINK
+%>
+
+<%= render "shared/example", title: 'Back link - with custom css classes', example: <<~BACK_LINK
+  render GovukComponent::BackLink.new(
+    text: 'Department for Education',
+    href: 'https://www.gov.uk/government/organisations/department-for-education',
+    classes: 'my-class'
+  )
+  BACK_LINK
+%>
+
+<%= render "shared/example", title: 'Back link - with custom HTML attributes', example: <<~BACK_LINK
+  render GovukComponent::BackLink.new(
+    text: 'Department for Education',
+    href: 'https://www.gov.uk/government/organisations/department-for-education',
+    attributes:{
+      id: "my-link"
+    }
+  )
+  BACK_LINK
+%>
+
+<%= render "shared/example", title: 'Back link - with custom css classes and HTML attributes', example: <<~BACK_LINK
+  render GovukComponent::BackLink.new(
+    text: 'Department for Education',
+    href: 'https://www.gov.uk/government/organisations/department-for-education',
+    classes: 'app-class',
+    attributes:{
+      data: {
+        qa: "my-qa-value"
+      }
+    }
+  )
+  BACK_LINK
+%>
