@@ -10688,7 +10688,6 @@ end
 </article>
 
 
-
       </section>
       <section class="component-example">
         <h2 class="govuk-heading-l">Details</h2>
@@ -11017,7 +11016,7 @@ end
   <h2 class="govuk-heading-s">Button links</h2>
   <section>
     <form class="button_to" method="post" action="/">
-<input class="govuk-button" type="submit" value="Home"><input type="hidden" name="authenticity_token" value="LPExlXcuYtyKC/5N6jOmSov7Ge0siP0r7yXHJ+Ad2uTFTHXdsefccXQTMWWV1CyPyfTAu+slZjO+SAtCyv5H3A==">
+<input class="govuk-button" type="submit" value="Home"><input type="hidden" name="authenticity_token" value="0JYZ2NW4ND8HA+vX6rJ/DiQ3bH8xa2hoa8QdI71KdhQ6KfKBa0VxwExjfCoXW9xzPuDsF6wN02mTBNPizrsYHw==">
 </form>
   </section>
   <section>
@@ -11161,6 +11160,83 @@ end
 </code></pre>
   </section>
 </article>
+
+
+      </section>
+      <section class="component-example">
+        <h2 class="govuk-heading-l">Summary list</h2>
+
+<article class="example govuk-!-margin-top-9" id="summary-list">
+  <h2 class="govuk-heading-s">Summary list</h2>
+  <section>
+    <dl class="govuk-summary-list">
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Aardvark
+      </dt>
+
+      <dd class="govuk-summary-list__value">
+        The aardvark is vaguely pig-like in appearance
+      </dd>
+
+        <dd class="govuk-summary-list__actions">
+          <a href="#aardvark">Change</a>
+        </dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Baboon
+      </dt>
+
+      <dd class="govuk-summary-list__value">
+        Monkeys of the genus Papio
+      </dd>
+
+        <dd class="govuk-summary-list__actions">
+          
+        </dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Chinchilla
+      </dt>
+
+      <dd class="govuk-summary-list__value">
+        Either of two species of crepuscular rodents
+      </dd>
+
+        <dd class="govuk-summary-list__actions">
+          <a href="#chinchilla">Change</a>
+        </dd>
+    </div>
+</dl>
+  </section>
+  <section>
+    <pre><code class="language-ruby">render GovukComponent::SummaryList.new do |component|
+  component.slot(
+    :row,
+    key: 'Aardvark',
+    value: 'The aardvark is vaguely pig-like in appearance',
+    action: link_to('Change', '#aardvark')
+  )
+
+  component.slot(
+    :row,
+    key: 'Baboon',
+    value: 'Monkeys of the genus Papio'
+  )
+
+  component.slot(
+    :row,
+    key: 'Chinchilla',
+    value: 'Either of two species of crepuscular rodents',
+    action: link_to('Change', '#chinchilla')
+  )
+end
+</code></pre>
+  </section>
+</article>
+
 
 
       </section>
