@@ -9,7 +9,7 @@
         <%= row.value %>
       </dd>
 
-      <% if row.action.present? %>
+      <% if any_row_has_actions? %>
         <dd class="govuk-summary-list__actions">
           <%= row.action %>
         </dd>

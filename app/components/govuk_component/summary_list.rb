@@ -3,6 +3,10 @@ class GovukComponent::SummaryList < GovukComponent::Base
 
   with_slot :row, collection: true, class_name: 'Row'
 
+  def any_row_has_actions?
+    rows.any? { |r| r.action.present? }
+  end
+
 private
 
   def default_classes

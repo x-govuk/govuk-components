@@ -41,20 +41,28 @@ RSpec.describe(GovukComponent::SummaryList, type: :component) do
   end
 
   describe 'actions' do
-    context 'when actions are absent' do
-      let(:rows_without_actions) { rows.select { |row| !row.has_key?(:action) } }
-
-      specify %(rows without actions should not have an action 'description details' tag) do
-        rows_without_actions.each do |row|
-          expect(page.find('div', text: /#{row[:key]}/)).not_to have_css('.govuk-summary-list__actions')
+    context 'when no actions are present' do
+      subject! do
+        render_inline(GovukComponent::SummaryList.new(**kwargs)) do |component|
+          rows
+            .reject { |row| row.has_key?(:action) }
+            .each { |row| component.slot(:row, **row) }
         end
+      end
+
+      specify %(there should be no actions column) do
+        expect(page).not_to have_css('.govuk-summary-list__actions')
       end
     end
 
     context 'when actions are present' do
       let(:rows_with_actions) { rows.select { |row| row.has_key?(:action) } }
 
-      specify %(rows with actions should have an action 'description details' tag with the correct content) do
+      specify 'all rows should have an actions column' do
+        expect(page).to have_css('.govuk-summary-list__actions', count: rows.size)
+      end
+
+      specify %(rows with actions should have an actions column with the supplied content) do
         rows_with_actions.each do |row|
           element = page.find('div', text: /#{row[:key]}/)
 
