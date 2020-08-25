@@ -1,0 +1,29 @@
+<%= example_heading('Summary list') %>
+
+<%= render "shared/example",
+  title: 'Summary list',
+  example: <<~SUMMARY_LIST
+    render GovukComponent::SummaryList.new do |component|
+      component.slot(
+        :row,
+        key: 'Aardvark',
+        value: 'The aardvark is vaguely pig-like in appearance',
+        action: link_to('Change', '#aardvark')
+      )
+
+      component.slot(
+        :row,
+        key: 'Baboon',
+        value: 'Monkeys of the genus Papio'
+      )
+
+      component.slot(
+        :row,
+        key: 'Chinchilla',
+        value: 'Either of two species of crepuscular rodents',
+        action: link_to('Change', '#chinchilla')
+      )
+    end
+  SUMMARY_LIST
+%>
+
