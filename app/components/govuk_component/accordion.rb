@@ -5,8 +5,8 @@ class GovukComponent::Accordion < GovukComponent::Base
 
   attr_accessor :id
 
-  def initialize(id: nil, classes: [])
-    super(classes: classes)
+  def initialize(id: nil, classes: [], html_attributes: {})
+    super(classes: classes, html_attributes: html_attributes)
 
     @id = id
   end

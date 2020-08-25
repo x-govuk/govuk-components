@@ -1,5 +1,5 @@
 shared_examples 'a component that accepts custom classes' do
-  subject! { render_inline(component_class.send(:new, **kwargs.merge(classes: custom_classes))) }
+  before { render_inline(described_class.send(:new, **kwargs.merge(classes: custom_classes))) }
 
   context 'when classes are supplied as a string' do
     let(:custom_classes) { 'purple-stripes' }

@@ -1,8 +1,8 @@
 class GovukComponent::Details < GovukComponent::Base
   attr_accessor :summary, :description
 
-  def initialize(summary:, description: nil, classes: [])
-    super(classes: classes)
+  def initialize(summary:, description: nil, classes: [], html_attributes: {})
+    super(classes: classes, html_attributes: html_attributes)
 
     @summary     = summary
     @description = description

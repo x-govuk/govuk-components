@@ -29,7 +29,6 @@ RSpec.describe(GovukComponent::Breadcrumbs, type: :component) do
     end
   end
 
-  it_behaves_like 'a component that accepts custom classes' do
-    let(:component_class) { described_class }
-  end
+  it_behaves_like 'a component that accepts custom classes'
+  it_behaves_like 'a component that accepts custom HTML attributes'
 end

@@ -1,4 +1,4 @@
-<%= tag.header(class: classes, role: 'banner', data: { module: 'govuk-header' }) do %>
+<%= tag.header(class: classes, role: 'banner', data: { module: 'govuk-header' }, **html_attributes) do %>
   <div class="govuk-header__container govuk-width-container">
     <div class="govuk-header__logo">
       <a href=<%= @logo_href %> class="govuk-header__link govuk-header__link--homepage">

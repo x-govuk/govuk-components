@@ -1,4 +1,4 @@
-<%= tag.dl(class: classes) do %>
+<%= tag.dl(class: classes, **html_attributes) do %>
   <% rows.each do |row| %>
     <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">

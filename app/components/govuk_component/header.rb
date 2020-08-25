@@ -5,8 +5,8 @@ class GovukComponent::Header < GovukComponent::Base
 
   with_slot :item, collection: true, class_name: 'Item'
 
-  def initialize(logo: 'GOV.UK', logo_href: '/', service_name: nil, service_name_href: '/', classes: [])
-    super(classes: classes)
+  def initialize(logo: 'GOV.UK', logo_href: '/', service_name: nil, service_name_href: '/', classes: [], html_attributes: {})
+    super(classes: classes, html_attributes: html_attributes)
 
     @logo              = logo
     @logo_href         = logo_href

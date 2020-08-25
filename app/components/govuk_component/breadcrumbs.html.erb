@@ -1,4 +1,4 @@
-<%= tag.div(class: classes) do %>
+<%= tag.div(class: classes, **html_attributes) do %>
   <ol class="govuk-breadcrumbs__list">
     <%- @breadcrumbs.each do |text, link| %>
 

@@ -36,4 +36,7 @@ RSpec.describe(GovukComponent::PhaseBanner, type: :component) do
       end
     end
   end
+
+  it_behaves_like 'a component that accepts custom classes'
+  it_behaves_like 'a component that accepts custom HTML attributes'
 end

@@ -1,6 +1,9 @@
 class GovukComponent::Base < ViewComponent::Base
-  def initialize(classes: [])
-    @classes = parse_classes(classes)
+  attr_reader :html_attributes
+
+  def initialize(classes: [], html_attributes: {})
+    @classes         = parse_classes(classes)
+    @html_attributes = html_attributes
   end
 
   def classes

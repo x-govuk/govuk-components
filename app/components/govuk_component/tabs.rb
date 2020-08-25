@@ -5,8 +5,8 @@ class GovukComponent::Tabs < GovukComponent::Base
 
   with_slot :tab, collection: true, class_name: 'Tab'
 
-  def initialize(title:, classes: [])
-    super(classes: classes)
+  def initialize(title:, classes: [], html_attributes: {})
+    super(classes: classes, html_attributes: html_attributes)
 
     self.title = title
   end
