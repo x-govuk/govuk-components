@@ -1,4 +1,4 @@
-class GovukComponent::Base < ViewComponent::Base
+class GovukComponent::Slot < ViewComponent::Slot
   include GovukComponent::Traits::CustomClasses
   include GovukComponent::Traits::CustomHtmlAttributes
 

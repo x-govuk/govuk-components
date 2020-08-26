@@ -1,6 +1,6 @@
 <%= tag.div(id: @id, class: classes, data: { module: 'govuk-accordion' }, **html_attributes) do %>
   <% sections.each do |section| %>
-    <%= tag.div(id: section.id(suffix: 'section'), class: "govuk-accordion__section") do %>
+    <%= tag.div(id: section.id(suffix: 'section'), class: section.classes, **section.html_attributes) do %>
       <div class="govuk-accordion__section-header">
         <h2 class="govuk-accordion__section-heading">
           <%= tag.span(section.title, id: section.id, class: "govuk-accordion__section-button") %>

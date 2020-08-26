@@ -20,10 +20,12 @@ private
     %w(govuk-header)
   end
 
-  class Item < ViewComponent::Slot
+  class Item < GovukComponent::Slot
     attr_accessor :title, :href, :active
 
-    def initialize(title:, href:, active: false)
+    def initialize(title:, href:, active: false, classes: [], html_attributes: {})
+      super(classes: classes, html_attributes: html_attributes)
+
       self.title  = title
       self.href   = href
       self.active = active
@@ -31,6 +33,16 @@ private
 
     def active?
       active
+    end
+
+    def active_class
+      %w(govuk-header__navigation-item--active) if active?
+    end
+
+  private
+
+    def default_classes
+      %w(govuk-header__navigation-item)
     end
   end
 end

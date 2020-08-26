@@ -1,6 +1,6 @@
 <%= tag.dl(class: classes, **html_attributes) do %>
   <% rows.each do |row| %>
-    <div class="govuk-summary-list__row">
+    <%= tag.div(class: row.classes, **row.html_attributes) do %>
       <dt class="govuk-summary-list__key">
         <%= row.key %>
       </dt>
@@ -14,6 +14,6 @@
           <%= row.action %>
         </dd>
       <% end %>
-    </div>
+    <% end %>
   <% end %>
 <% end %>

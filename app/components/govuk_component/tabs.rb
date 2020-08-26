@@ -17,15 +17,25 @@ private
     %w(govuk-tabs)
   end
 
-  class Tab < ViewComponent::Slot
+  class Tab < GovukComponent::Slot
     attr_accessor :title
 
-    def initialize(title:)
+    def initialize(title:, classes: [], html_attributes: {})
+      super(classes: classes, html_attributes: html_attributes)
+
       self.title = title
     end
 
     def id(prefix: nil)
       [prefix, title.parameterize].join
+    end
+
+    def default_classes
+      %w(govuk-tabs__panel)
+    end
+
+    def hidden_class(i = nil)
+      %(govuk-tabs__panel--hidden) unless i&.zero?
     end
   end
 end
