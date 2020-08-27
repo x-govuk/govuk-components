@@ -73,8 +73,16 @@ RSpec.describe(GovukComponent::SummaryList, type: :component) do
     end
   end
 
-  it_behaves_like 'a component that accepts custom classes' do
-    let(:component_class) { described_class }
+  it_behaves_like 'a component that accepts custom classes'
+  it_behaves_like 'a component that accepts custom HTML attributes'
+
+  context 'slot arguments' do
+    let(:slot) { :row }
+    let(:content) { nil }
+    let(:slot_kwargs) { { key: 'key', value: 'value' } }
+
+    it_behaves_like 'a component with a slot that accepts custom classes'
+    it_behaves_like 'a component with a slot that accepts custom html attributes'
   end
 end
 

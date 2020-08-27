@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe(GovukComponent::Accordion, type: :component) do
+  let(:id) { 'fancy-accordion' }
   let(:sections) do
     {
       'section 1' => 'first section content',
@@ -8,6 +9,8 @@ RSpec.describe(GovukComponent::Accordion, type: :component) do
       'section 3' => 'third section content'
     }
   end
+
+  let(:kwargs) { { id: id } }
 
   subject! do
     render_inline(GovukComponent::Accordion.new) do |component|
@@ -24,9 +27,8 @@ RSpec.describe(GovukComponent::Accordion, type: :component) do
   end
 
   context 'when an ID is set for the accordion' do
-    let(:id) { 'fancy-accordion' }
     subject! do
-      render_inline(GovukComponent::Accordion.new(id: id))
+      render_inline(GovukComponent::Accordion.new(**kwargs))
     end
 
     specify 'the id should be set correctly' do
@@ -72,5 +74,17 @@ RSpec.describe(GovukComponent::Accordion, type: :component) do
         expect(page).to have_css("##{title}-summary.govuk-accordion__section-summary", text: summary_content)
       end
     end
+  end
+
+  it_behaves_like 'a component that accepts custom classes'
+  it_behaves_like 'a component that accepts custom HTML attributes'
+
+  context 'slot arguments' do
+    let(:slot) { :section }
+    let(:content) { ->{ 'some swanky accordion content' } }
+    let(:slot_kwargs) { { title: 'A title', summary: 'A summary' } }
+
+    it_behaves_like 'a component with a slot that accepts custom classes'
+    it_behaves_like 'a component with a slot that accepts custom html attributes'
   end
 end

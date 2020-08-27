@@ -1,4 +1,4 @@
-<%= tag.header(class: classes, role: 'banner', data: { module: 'govuk-header' }) do %>
+<%= tag.header(class: classes, role: 'banner', data: { module: 'govuk-header' }, **html_attributes) do %>
   <div class="govuk-header__container govuk-width-container">
     <div class="govuk-header__logo">
       <a href=<%= @logo_href %> class="govuk-header__link govuk-header__link--homepage">
@@ -24,11 +24,11 @@
         <nav>
           <ul class="govuk-header__navigation " aria-label="Top Level Navigation">
             <% items.each do |item| %>
-              <li class="govuk-header__navigation-item <%= 'govuk-header__navigation-item--active' if item.active? %>">
+              <%= tag.li(class: item.classes.append(item.active_class), **item.html_attributes) do %>
                 <a class="govuk-header__link" href="<%= item.href %>">
                   <%= item.title %>
                 </a>
-              </li>
+              <% end %>
             <% end %>
           </ul>
         </nav>

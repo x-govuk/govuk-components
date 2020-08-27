@@ -1,8 +1,8 @@
 class GovukComponent::PhaseBanner < GovukComponent::Base
   attr_accessor :phase, :text
 
-  def initialize(phase:, text: nil, classes: [])
-    super(classes: classes)
+  def initialize(phase:, text: nil, classes: [], html_attributes: {})
+    super(classes: classes, html_attributes: html_attributes)
 
     @phase = phase
     @text  = text

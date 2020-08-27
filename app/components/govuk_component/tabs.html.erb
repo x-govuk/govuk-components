@@ -1,4 +1,4 @@
-<%= tag.div(class: classes, data: { module: 'govuk-tabs' }) do %>
+<%= tag.div(class: classes, data: { module: 'govuk-tabs' }, **html_attributes) do %>
   <h2 class="govuk-tabs__title">
     <%= title %>
   </h2>
@@ -12,8 +12,8 @@
     <% end %>
   </ul>
   <% tabs.each.with_index do |tab, i| %>
-    <div class="govuk-tabs__panel <%= 'govuk-tabs__panel--hidden' unless i.zero? %>" id="<%= tab.id %>">
+    <%= tag.div(class: tab.classes.append(tab.hidden_class(i)), id: tab.id, **tab.html_attributes) do %>
       <%= tab.content %>
-    </div>
+    <% end %>
   <% end %>
 <% end %>

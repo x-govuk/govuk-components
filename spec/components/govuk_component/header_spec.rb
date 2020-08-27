@@ -90,7 +90,15 @@ RSpec.describe(GovukComponent::Header, type: :component) do
     end
   end
 
-  it_behaves_like 'a component that accepts custom classes' do
-    let(:component_class) { described_class }
+  it_behaves_like 'a component that accepts custom classes'
+  it_behaves_like 'a component that accepts custom HTML attributes'
+
+  context 'slot arguments' do
+    let(:slot) { :item }
+    let(:content) { nil }
+    let(:slot_kwargs) { { title: 'title', href: '/one/two/three', active: true } }
+
+    it_behaves_like 'a component with a slot that accepts custom classes'
+    it_behaves_like 'a component with a slot that accepts custom html attributes'
   end
 end
