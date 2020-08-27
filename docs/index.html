@@ -10603,7 +10603,7 @@ end
     <pre><code class="language-ruby">render GovukComponent::BackLink.new(
   text: 'Department for Education',
   href: 'https://www.gov.uk/government/organisations/department-for-education',
-  attributes:{
+  html_attributes:{
     id: "my-link"
   }
 )
@@ -10623,7 +10623,7 @@ end
   text: 'Department for Education',
   href: 'https://www.gov.uk/government/organisations/department-for-education',
   classes: 'app-class',
-  attributes:{
+  html_attributes:{
     data: {
       qa: "my-qa-value"
     }
@@ -10746,7 +10746,7 @@ end
 <article class="example govuk-!-margin-top-9" id="default-footer">
   <h2 class="govuk-heading-s">Default footer</h2>
   <section>
-    <footer class="govuk-footer " role="contentinfo">
+    <footer class="govuk-footer" role="contentinfo">
   <div class="govuk-width-container ">
     <div class="govuk-footer__meta">
       <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
@@ -10763,7 +10763,6 @@ end
     </div>
   </div>
 </footer>
-
   </section>
   <section>
     <pre><code class="language-ruby">render GovukComponent::Footer.new
@@ -10775,7 +10774,7 @@ end
 <article class="example govuk-!-margin-top-9" id="footer-with-custom-text">
   <h2 class="govuk-heading-s">Footer with custom text</h2>
   <section>
-    <footer class="govuk-footer " role="contentinfo">
+    <footer class="govuk-footer" role="contentinfo">
   <div class="govuk-width-container ">
     <div class="govuk-footer__meta">
       <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
@@ -10792,7 +10791,6 @@ end
     </div>
   </div>
 </footer>
-
   </section>
   <section>
     <pre><code class="language-ruby">render GovukComponent::Footer.new(
@@ -10807,7 +10805,7 @@ end
 <article class="example govuk-!-margin-top-9" id="footer-with-meta-links">
   <h2 class="govuk-heading-s">Footer with meta links</h2>
   <section>
-    <footer class="govuk-footer " role="contentinfo">
+    <footer class="govuk-footer" role="contentinfo">
   <div class="govuk-width-container ">
     <div class="govuk-footer__meta">
       <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
@@ -10833,7 +10831,6 @@ end
     </div>
   </div>
 </footer>
-
   </section>
   <section>
     <pre><code class="language-ruby">render GovukComponent::Footer.new(
@@ -10945,18 +10942,15 @@ end
                 <a class="govuk-header__link" href="/#page-a">
                   Page A
                 </a>
-              </li>
-              <li class="govuk-header__navigation-item ">
+</li>              <li class="govuk-header__navigation-item ">
                 <a class="govuk-header__link" href="/#page-b">
                   Page B
                 </a>
-              </li>
-              <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+</li>              <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
                 <a class="govuk-header__link" href="/#page-c">
                   Page C
                 </a>
-              </li>
-          </ul>
+</li>          </ul>
         </nav>
     </div>
   </div>
@@ -11016,7 +11010,7 @@ end
   <h2 class="govuk-heading-s">Button links</h2>
   <section>
     <form class="button_to" method="post" action="/">
-<input class="govuk-button" type="submit" value="Home"><input type="hidden" name="authenticity_token" value="0JYZ2NW4ND8HA+vX6rJ/DiQ3bH8xa2hoa8QdI71KdhQ6KfKBa0VxwExjfCoXW9xzPuDsF6wN02mTBNPizrsYHw==">
+<input class="govuk-button" type="submit" value="Home"><input type="hidden" name="authenticity_token" value="icJeHvdFDyEi2WZjmoZ28I7v0/5KwgCyxMs0VWFIXNDWmgmfF42xfrDrU06RvZqH6ciO1vreK51WRY7RUyPrkQ==">
 </form>
   </section>
   <section>
@@ -11182,8 +11176,7 @@ end
         <dd class="govuk-summary-list__actions">
           <a href="#aardvark">Change</a>
         </dd>
-    </div>
-    <div class="govuk-summary-list__row">
+</div>    <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">
         Baboon
       </dt>
@@ -11195,8 +11188,7 @@ end
         <dd class="govuk-summary-list__actions">
           
         </dd>
-    </div>
-    <div class="govuk-summary-list__row">
+</div>    <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">
         Chinchilla
       </dt>
@@ -11208,7 +11200,7 @@ end
         <dd class="govuk-summary-list__actions">
           <a href="#chinchilla">Change</a>
         </dd>
-    </div>
+</div>
 </dl>
   </section>
   <section>
@@ -11269,13 +11261,11 @@ end
   </ul>
     <div class="govuk-tabs__panel " id="monday">
       <p class="govuk-body">Monday's child is fair of face</p>
-    </div>
-    <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="tuesday">
+</div>    <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="tuesday">
       <p class="govuk-body">Tuesday's child is full of grace</p>
-    </div>
-    <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="wednesday">
+</div>    <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="wednesday">
       <p class="govuk-body">Wednesday's child is full of woe</p>
-    </div>
+</div>
 </div>
   </section>
   <section>
