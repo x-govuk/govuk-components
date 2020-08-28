@@ -11011,7 +11011,7 @@ end
   <h2 class="govuk-heading-s">Button links</h2>
   <section>
     <form class="button_to" method="post" action="/">
-<input class="govuk-button" type="submit" value="Home"><input type="hidden" name="authenticity_token" value="UJamju9wNBYPMDPB8UDbdC6kc7W+8geKOmIhvkfU+/8c2uoQ/1AcgnYtKuhxQAXSYgm61UTFz7rPHwjSgc0qgg==">
+<input class="govuk-button" type="submit" value="Home"><input type="hidden" name="authenticity_token" value="0koT3++nNgwe2bw9Em9bdL1JUnyhBzaydAsX33NTJv0YNcFhzyKyfLMzWosu/TEQJ/IlEG0lXfSIEbGH8cQXbw==">
 </form>
   </section>
   <section>
@@ -11296,15 +11296,15 @@ end
   <h2 class="govuk-heading-s">Tag colour examples</h2>
   <section>
     <ul class="govuk-list">
-<li><strong class="govuk-tag govuk-tag--grey">Grey</strong></li>
-<li><strong class="govuk-tag govuk-tag--green">Green</strong></li>
-<li><strong class="govuk-tag govuk-tag--turquoise">Turquoise</strong></li>
-<li><strong class="govuk-tag govuk-tag--blue">Blue</strong></li>
-<li><strong class="govuk-tag govuk-tag--red">Red</strong></li>
-<li><strong class="govuk-tag govuk-tag--purple">Purple</strong></li>
-<li><strong class="govuk-tag govuk-tag--pink">Pink</strong></li>
-<li><strong class="govuk-tag govuk-tag--orange">Orange</strong></li>
-<li><strong class="govuk-tag govuk-tag--yellow">Yellow</strong></li>
+<li><strong class="govuk-tag govuk-tag--grey">grey</strong></li>
+<li><strong class="govuk-tag govuk-tag--green">green</strong></li>
+<li><strong class="govuk-tag govuk-tag--turquoise">turquoise</strong></li>
+<li><strong class="govuk-tag govuk-tag--blue">blue</strong></li>
+<li><strong class="govuk-tag govuk-tag--red">red</strong></li>
+<li><strong class="govuk-tag govuk-tag--purple">purple</strong></li>
+<li><strong class="govuk-tag govuk-tag--pink">pink</strong></li>
+<li><strong class="govuk-tag govuk-tag--orange">orange</strong></li>
+<li><strong class="govuk-tag govuk-tag--yellow">yellow</strong></li>
 </ul>
   </section>
   <section>
@@ -11313,7 +11313,7 @@ end
     %w(grey green turquoise blue red purple pink orange yellow)
       .map do |colour|
         tag.li do
-          render(GovukComponent::Tag.new(text: colour.capitalize, colour: colour))
+          render(GovukComponent::Tag.new(text: colour, colour: colour))
         end
       end
   )
