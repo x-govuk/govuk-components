@@ -10,6 +10,10 @@ class GovukComponent::Tag < GovukComponent::Base
     @colour = colour
   end
 
+  def call
+    tag.strong(@text, class: classes.append(colour_class), **html_attributes)
+  end
+
 private
 
   def default_classes
