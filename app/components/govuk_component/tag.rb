@@ -1,12 +1,26 @@
-class Tag::TagComponent < ViewComponent::Base
+class GovukComponent::Tag < GovukComponent::Base
   attr_reader :text
 
-  def initialize(text:, colour: nil)
-    @text = text
+  COLOURS = %w(grey green turquoise blue red purple pink orange yellow).freeze
+
+  def initialize(text:, colour: nil, classes: [], html_attributes: {})
+    super(classes: classes, html_attributes: html_attributes)
+
+    @text   = text
     @colour = colour
   end
 
-  def css_classes
-    @colour ? "govuk-tag--#{@colour}" : ''
+private
+
+  def default_classes
+    %w(govuk-tag)
+  end
+
+  def colour_class
+    return nil unless @colour.present?
+
+    fail("invalid tag colour #{@colour}, supported colours are #{COLOURS.to_sentence}") unless @colour.in?(COLOURS)
+
+    %(govuk-tag--#{@colour})
   end
 end
