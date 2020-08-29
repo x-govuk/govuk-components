@@ -7430,41 +7430,42 @@ pre[class*="language-"] {
 .language-css .token.string,
 .style .token.string {
   color: #9a6e3a;
+  /* This background color was intended by the author of this theme. */
   background: rgba(255, 255, 255, 0.5);
 }
 
-/* line 112, spec/dummy/node_modules/prismjs/themes/prism.css */
+/* line 113, spec/dummy/node_modules/prismjs/themes/prism.css */
 .token.atrule,
 .token.attr-value,
 .token.keyword {
   color: #07a;
 }
 
-/* line 118, spec/dummy/node_modules/prismjs/themes/prism.css */
+/* line 119, spec/dummy/node_modules/prismjs/themes/prism.css */
 .token.function,
 .token.class-name {
   color: #DD4A68;
 }
 
-/* line 123, spec/dummy/node_modules/prismjs/themes/prism.css */
+/* line 124, spec/dummy/node_modules/prismjs/themes/prism.css */
 .token.regex,
 .token.important,
 .token.variable {
   color: #e90;
 }
 
-/* line 129, spec/dummy/node_modules/prismjs/themes/prism.css */
+/* line 130, spec/dummy/node_modules/prismjs/themes/prism.css */
 .token.important,
 .token.bold {
   font-weight: bold;
 }
 
-/* line 133, spec/dummy/node_modules/prismjs/themes/prism.css */
+/* line 134, spec/dummy/node_modules/prismjs/themes/prism.css */
 .token.italic {
   font-style: italic;
 }
 
-/* line 137, spec/dummy/node_modules/prismjs/themes/prism.css */
+/* line 138, spec/dummy/node_modules/prismjs/themes/prism.css */
 .token.entity {
   cursor: help;
 }
@@ -10487,7 +10488,7 @@ Prism.languages.js = Prism.languages.javascript;
     <h1 class="govuk-heading-xl">GOV.UK Rails Components</h1>
 
       <section class="component-example">
-        <h2 class="govuk-heading-l">Accordion</h2>
+        <h2 class="govuk-heading-l" id="accordion">Accordion</h2>
 
 <article class="example govuk-!-margin-top-9" id="accordion">
   <h2 class="govuk-heading-s">Accordion</h2>
@@ -10558,7 +10559,7 @@ end
 
       </section>
       <section class="component-example">
-        <h2 class="govuk-heading-l">Back links</h2>
+        <h2 class="govuk-heading-l" id="back-links">Back links</h2>
 
 <article class="example govuk-!-margin-top-9" id="back-link---default">
   <h2 class="govuk-heading-s">Back link - default</h2>
@@ -10636,7 +10637,7 @@ end
 
       </section>
       <section class="component-example">
-        <h2 class="govuk-heading-l">Back to top link</h2>
+        <h2 class="govuk-heading-l" id="back-to-top-link">Back to top link</h2>
 
 <article class="example govuk-!-margin-top-9" id="back-to-top-link">
   <h2 class="govuk-heading-s">Back to top link</h2>
@@ -10652,7 +10653,7 @@ end
 
       </section>
       <section class="component-example">
-        <h2 class="govuk-heading-l">Breadcrumbs</h2>
+        <h2 class="govuk-heading-l" id="breadcrumbs">Breadcrumbs</h2>
 
 <article class="example govuk-!-margin-top-9" id="breadcrumbs">
   <h2 class="govuk-heading-s">Breadcrumbs</h2>
@@ -10690,7 +10691,7 @@ end
 
       </section>
       <section class="component-example">
-        <h2 class="govuk-heading-l">Details</h2>
+        <h2 class="govuk-heading-l" id="details">Details</h2>
 
 <article class="example govuk-!-margin-top-9" id="details---with-text">
   <h2 class="govuk-heading-s">Details - with text</h2>
@@ -10741,7 +10742,7 @@ end
 
       </section>
       <section class="component-example">
-        <h2 class="govuk-heading-l">Footer</h2>
+        <h2 class="govuk-heading-l" id="footer">Footer</h2>
 
 <article class="example govuk-!-margin-top-9" id="default-footer">
   <h2 class="govuk-heading-s">Default footer</h2>
@@ -10847,7 +10848,7 @@ end
       </section>
       <section class="component-example">
         
-<h2 class="govuk-heading-l">Header</h2>
+<h2 class="govuk-heading-l" id="header">Header</h2>
 
 <article class="example govuk-!-margin-top-9" id="header">
   <h2 class="govuk-heading-s">Header</h2>
@@ -10969,7 +10970,7 @@ end
 
       </section>
       <section class="component-example">
-        <h2 class="govuk-heading-l">Inset text</h2>
+        <h2 class="govuk-heading-l" id="inset-text">Inset text</h2>
 
 <article class="example govuk-!-margin-top-9" id="inset-text">
   <h2 class="govuk-heading-s">Inset text</h2>
@@ -10984,7 +10985,7 @@ end
 
       </section>
       <section class="component-example">
-        <h2 class="govuk-heading-l">Links and buttons</h2>
+        <h2 class="govuk-heading-l" id="links-and-buttons">Links and buttons</h2>
 
 <article class="example govuk-!-margin-top-9" id="links">
   <h2 class="govuk-heading-s">Links</h2>
@@ -11010,7 +11011,7 @@ end
   <h2 class="govuk-heading-s">Button links</h2>
   <section>
     <form class="button_to" method="post" action="/">
-<input class="govuk-button" type="submit" value="Home"><input type="hidden" name="authenticity_token" value="icJeHvdFDyEi2WZjmoZ28I7v0/5KwgCyxMs0VWFIXNDWmgmfF42xfrDrU06RvZqH6ciO1vreK51WRY7RUyPrkQ==">
+<input class="govuk-button" type="submit" value="Home"><input type="hidden" name="authenticity_token" value="0koT3++nNgwe2bw9Em9bdL1JUnyhBzaydAsX33NTJv0YNcFhzyKyfLMzWosu/TEQJ/IlEG0lXfSIEbGH8cQXbw==">
 </form>
   </section>
   <section>
@@ -11021,7 +11022,7 @@ end
 
       </section>
       <section class="component-example">
-        <h2 class="govuk-heading-l">Panel</h2>
+        <h2 class="govuk-heading-l" id="panel">Panel</h2>
 
 <article class="example govuk-!-margin-top-9" id="panel">
   <h2 class="govuk-heading-s">Panel</h2>
@@ -11048,7 +11049,7 @@ end
 
       </section>
       <section class="component-example">
-        <h2 class="govuk-heading-l">Phase banner</h2>
+        <h2 class="govuk-heading-l" id="phase-banner">Phase banner</h2>
 
 <article class="example govuk-!-margin-top-9" id="phase-banner---with-text">
   <h2 class="govuk-heading-s">Phase banner - with text</h2>
@@ -11098,7 +11099,7 @@ end
 
       </section>
       <section class="component-example">
-        <h2 class="govuk-heading-l">Skip link</h2>
+        <h2 class="govuk-heading-l" id="skip-link">Skip link</h2>
 
 <article class="example govuk-!-margin-top-9" id="skip-link">
   <h2 class="govuk-heading-s">Skip link</h2>
@@ -11135,7 +11136,7 @@ end
 
       </section>
       <section class="component-example">
-        <h2 class="govuk-heading-l">Start now button</h2>
+        <h2 class="govuk-heading-l" id="start-now-button">Start now button</h2>
 
 <article class="example govuk-!-margin-top-9" id="start-now-button">
   <h2 class="govuk-heading-s">Start now button</h2>
@@ -11158,7 +11159,7 @@ end
 
       </section>
       <section class="component-example">
-        <h2 class="govuk-heading-l">Summary list</h2>
+        <h2 class="govuk-heading-l" id="summary-list">Summary list</h2>
 
 <article class="example govuk-!-margin-top-9" id="summary-list">
   <h2 class="govuk-heading-s">Summary list</h2>
@@ -11233,7 +11234,7 @@ end
 
       </section>
       <section class="component-example">
-        <h2 class="govuk-heading-l">Tabs</h2>
+        <h2 class="govuk-heading-l" id="tabs">Tabs</h2>
 
 <article class="example govuk-!-margin-top-9" id="tabs">
   <h2 class="govuk-heading-s">Tabs</h2>
@@ -11289,7 +11290,42 @@ end
 
       </section>
       <section class="component-example">
-        <h2 class="govuk-heading-l">Warning</h2>
+        <h2 class="govuk-heading-l" id="tags">Tags</h2>
+
+<article class="example govuk-!-margin-top-9" id="tag-colour-examples">
+  <h2 class="govuk-heading-s">Tag colour examples</h2>
+  <section>
+    <ul class="govuk-list">
+<li><strong class="govuk-tag govuk-tag--grey">grey</strong></li>
+<li><strong class="govuk-tag govuk-tag--green">green</strong></li>
+<li><strong class="govuk-tag govuk-tag--turquoise">turquoise</strong></li>
+<li><strong class="govuk-tag govuk-tag--blue">blue</strong></li>
+<li><strong class="govuk-tag govuk-tag--red">red</strong></li>
+<li><strong class="govuk-tag govuk-tag--purple">purple</strong></li>
+<li><strong class="govuk-tag govuk-tag--pink">pink</strong></li>
+<li><strong class="govuk-tag govuk-tag--orange">orange</strong></li>
+<li><strong class="govuk-tag govuk-tag--yellow">yellow</strong></li>
+</ul>
+  </section>
+  <section>
+    <pre><code class="language-ruby">tag.ul(class: 'govuk-list') do
+  safe_join(
+    %w(grey green turquoise blue red purple pink orange yellow)
+      .map do |colour|
+        tag.li do
+          render(GovukComponent::Tag.new(text: colour, colour: colour))
+        end
+      end
+  )
+end
+</code></pre>
+  </section>
+</article>
+
+
+      </section>
+      <section class="component-example">
+        <h2 class="govuk-heading-l" id="warning">Warning</h2>
 
 <article class="example govuk-!-margin-top-9" id="warning">
   <h2 class="govuk-heading-s">Warning</h2>
