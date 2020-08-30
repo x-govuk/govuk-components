@@ -1,8 +1,8 @@
 > **Note!** This repository is very new and not yet fully built and documented. Breaking changes can happen at any time. Please check the [components tracker](https://github.com/DFE-Digital/govuk-components/issues/18) to see progress.
 
-> Development will resume once the `ViewComponent` library is in a more stable state and the Slot API is finalised. We are currently unable to write tests that make assertions on block content meaning slots and content areas are impossible to properly test in RSpec.
-
 # GOV.UK Components
+
+[![Build Status](https://travis-ci.com/DFE-Digital/govuk-components.svg?branch=master)](https://travis-ci.com/DFE-Digital/govuk-components)
 
 This gem provides a suite of reusable components for the [GOV.UK Design System](https://design-system.service.gov.uk/). It is intended to provide a lightweight alternative to the [GOV.UK Publishing Components](https://github.com/alphagov/govuk_publishing_components) library and is built with Github's [ViewComponent](https://github.com/github/view_component) framework.  ViewComponent is [supported natively in Rails 6.1](https://edgeguides.rubyonrails.org/layouts_and_rendering.html#rendering-objects).
 
