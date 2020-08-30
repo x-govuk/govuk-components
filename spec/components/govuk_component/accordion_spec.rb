@@ -87,4 +87,11 @@ RSpec.describe(GovukComponent::Accordion, type: :component) do
     it_behaves_like 'a component with a slot that accepts custom classes'
     it_behaves_like 'a component with a slot that accepts custom html attributes'
   end
+
+  it_behaves_like 'a component with a DSL wrapper' do
+    let(:helper_name) { 'govuk_accordion' }
+    let(:wrapped_slots) { %i(section) }
+
+    let(:expected_css) { '.govuk-accordion' }
+  end
 end

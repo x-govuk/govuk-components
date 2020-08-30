@@ -31,3 +31,24 @@
   end
   ACCORDION
 %>
+
+<%= render "shared/example", title: "Accordion (using the helper)", example: <<~ACCORDION
+  govuk_accordion(id: 'def234') do |accordion|
+    accordion.section(title: 'Section 1') do
+      tag.p(class: 'govuk-body') do
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      end
+    end
+    accordion.section(title: 'Section 2') do
+      tag.p(class: 'govuk-body') do
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      end
+    end
+    accordion.section(title: 'Section 3') do
+      tag.p(class: 'govuk-body') do
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      end
+    end
+  end
+  ACCORDION
+%>

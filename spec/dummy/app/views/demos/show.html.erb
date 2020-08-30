@@ -2,28 +2,14 @@
   <div class="govuk-grid-column-full">
     <h1 class="govuk-heading-xl">GOV.UK Rails Components</h1>
 
-    <%= govuk_tag(text: 'Hi') %>
-
-    <%= govuk_accordion do |component| %>
-      <%= component.slot(:section, title: 'Hello') do %>
-        <p>World</p>
-      <% end %>
-    <% end %>
-
-    <%= govuk_inset_text(text: 'Hi') %>
-
-    <%= govuk_panel(title: 'Hi', body: 'There') %>
-
-    <% if false %>
-      <% Dir
-          .glob(Rails.root.join('app', 'views', 'demos', 'examples', '*.html.erb'))
-          .map { |f| File.basename(f)[%r{_(?<partial>.*)\.html.erb}, %(partial)] }
-          .sort
-          .each do |p| %>
-        <section class="component-example">
-          <%= render %(demos/examples/#{p}) %>
-        </section>
-      <% end %>
+    <% Dir
+        .glob(Rails.root.join('app', 'views', 'demos', 'examples', '*.html.erb'))
+        .map { |f| File.basename(f)[%r{_(?<partial>.*)\.html.erb}, %(partial)] }
+        .sort
+        .each do |p| %>
+      <section class="component-example">
+        <%= render %(demos/examples/#{p}) %>
+      </section>
     <% end %>
 
   </div>
