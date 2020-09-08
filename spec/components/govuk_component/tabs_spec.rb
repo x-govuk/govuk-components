@@ -83,4 +83,11 @@ RSpec.describe(GovukComponent::Tabs, type: :component) do
     it_behaves_like 'a component with a slot that accepts custom classes'
     it_behaves_like 'a component with a slot that accepts custom html attributes'
   end
+
+  it_behaves_like 'a component with a DSL wrapper' do
+    let(:helper_name) { 'govuk_tabs' }
+    let(:wrapped_slots) { %i(tab) }
+
+    let(:expected_css) { '.govuk-tabs' }
+  end
 end

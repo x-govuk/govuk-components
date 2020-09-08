@@ -4,6 +4,7 @@ class GovukComponent::Tabs < GovukComponent::Base
   attr_accessor :title
 
   with_slot :tab, collection: true, class_name: 'Tab'
+  wrap_slot :tab
 
   def initialize(title:, classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)

@@ -101,4 +101,11 @@ RSpec.describe(GovukComponent::Header, type: :component) do
     it_behaves_like 'a component with a slot that accepts custom classes'
     it_behaves_like 'a component with a slot that accepts custom html attributes'
   end
+
+  it_behaves_like 'a component with a DSL wrapper' do
+    let(:helper_name) { 'govuk_header' }
+    let(:wrapped_slots) { %i(item) }
+
+    let(:expected_css) { '.govuk-header' }
+  end
 end

@@ -4,6 +4,7 @@ class GovukComponent::Header < GovukComponent::Base
   attr_accessor :logo, :logo_href, :service_name, :service_name_href
 
   with_slot :item, collection: true, class_name: 'Item'
+  wrap_slot :item
 
   def initialize(logo: 'GOV.UK', logo_href: '/', service_name: nil, service_name_href: '/', classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
