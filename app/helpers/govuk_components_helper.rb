@@ -3,6 +3,7 @@ module GovukComponentHelper
     govuk_accordion: 'GovukComponent::Accordion',
     govuk_back_link: 'GovukComponent::BackLink',
     govuk_breadcrumbs: 'GovukComponent::Breadcrumbs',
+    govuk_column: 'GovukComponent::Layout::Column',
     govuk_details: 'GovukComponent::Details',
     govuk_footer: 'GovukComponent::Footer',
     govuk_header: 'GovukComponent::Header',

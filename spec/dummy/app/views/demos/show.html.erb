@@ -1,5 +1,5 @@
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
+  <%= govuk_column(width: 'full') do %>
     <h1 class="govuk-heading-xl">GOV.UK Rails Components</h1>
 
     <% Dir
@@ -12,5 +12,5 @@
       </section>
     <% end %>
 
-  </div>
+  <% end %>
 </div>
