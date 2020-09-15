@@ -3,7 +3,6 @@ PATH
   specs:
     govuk-components (0.2.0)
       rails (~> 6.0.3, >= 6.0.3)
-      slim-rails (~> 3.2)
       view_component (~> 2.18.1)
 
 GEM
@@ -164,13 +163,6 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    slim (4.1.0)
-      temple (>= 0.7.6, < 0.9)
-      tilt (>= 2.0.6, < 2.1)
-    slim-rails (3.2.0)
-      actionpack (>= 3.1)
-      railties (>= 3.1)
-      slim (>= 3.0, < 5.0)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -179,7 +171,6 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
-    temple (0.8.2)
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
