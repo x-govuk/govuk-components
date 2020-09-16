@@ -1,4 +1,4 @@
-module GovukComponentHelper
+module GovukComponentsHelper
   {
     govuk_accordion: 'GovukComponent::Accordion',
     govuk_back_link: 'GovukComponent::BackLink',
@@ -25,4 +25,4 @@ module GovukComponentHelper
   end
 end
 
-ActiveSupport.on_load(:action_view) { include GovukComponentHelper }
+ActiveSupport.on_load(:action_view) { include GovukComponentsHelper }
