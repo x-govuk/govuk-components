@@ -39,13 +39,13 @@ This library allows components to be rendered with Rails' `render` method or via
 
 ```erb
 <%= govuk_accordion(id: 'def234') do |accordion| %>
-  <%= accordion.section(title: 'Section 1') do %>
+  <%= accordion.add_section(title: 'Section 1') do %>
     <p class="govuk-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
   <% end %>
-  <%= accordion.section(title: 'Section 2') do %>
+  <%= accordion.add_section(title: 'Section 2') do %>
     <p class="govuk-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
   <% end %>
-  <%= accordion.section(title: 'Section 3') do %>
+  <%= accordion.add_section(title: 'Section 3') do %>
     <p class="govuk-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
   <% end %>
 <% end %>
