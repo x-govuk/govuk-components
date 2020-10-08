@@ -2,6 +2,7 @@ require 'spec_helper'
 
 RSpec.describe(GovukLinkHelper, type: 'helper') do
   include ActionView::Helpers::UrlHelper
+  include ActionView::Context
 
   let(:text) { 'Menu' }
   subject { Capybara::Node::Simple.new(component) }
@@ -32,6 +33,16 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
         expect(subject).to(have_link(text, href: url, class: custom_class))
       end
     end
+
+    context 'when provided with a block' do
+      let(:link_text) { 'Onwards!' }
+      let(:link_html) { tag.span(link_text) }
+      let(:component) { govuk_link_to(url) { link_html } }
+
+      specify 'should render a link containing the block content' do
+        expect(subject).to have_css('a > span', text: link_text)
+      end
+    end
   end
 
   describe '#govuk_mail_to' do
@@ -59,6 +70,16 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
 
       specify 'has the custom classes' do
         expect(subject).to(have_link(text, href: target, class: custom_class))
+      end
+    end
+
+    context 'when provided with a block' do
+      let(:link_text) { 'Contact us!' }
+      let(:link_html) { tag.span(link_text) }
+      let(:component) { govuk_mail_to(email_address) { link_html } }
+
+      specify 'should render a link containing the block content' do
+        expect(subject).to have_css('a > span', text: link_text)
       end
     end
   end
