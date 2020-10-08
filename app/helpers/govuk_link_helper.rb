@@ -1,10 +1,10 @@
 module GovukLinkHelper
-  def govuk_link_to(*args, **kwargs)
-    link_to(*args, **{ class: 'govuk-link' }.deep_merge(kwargs))
+  def govuk_link_to(*args, **kwargs, &block)
+    link_to(*args, **{ class: 'govuk-link' }.deep_merge(kwargs), &block)
   end
 
-  def govuk_mail_to(*args, **kwargs)
-    mail_to(*args, **{ class: 'govuk-link' }.deep_merge(kwargs))
+  def govuk_mail_to(*args, **kwargs, &block)
+    mail_to(*args, **{ class: 'govuk-link' }.deep_merge(kwargs), &block)
   end
 
   def govuk_button_to(*args, **kwargs)
