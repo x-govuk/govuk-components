@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
   spec.version     = Govuk::Components::VERSION
   spec.authors     = ["DfE developers"]
   spec.email       = ["peter.yates@digital.education.gov.uk"]
-  spec.homepage    = "https://www.github.com/dfe-digital"
+  spec.homepage    = "https://github.com/DFE-Digital/govuk-components"
   spec.summary     = "Lightweight set of reusable GOV.UK Design System components"
   spec.description = "A collection of components intended to ease the building of GOV.UK Design System web applications"
   spec.license     = "MIT"
