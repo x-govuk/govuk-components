@@ -1,0 +1,20 @@
+<%= example_heading('Notification banner') %>
+
+<%= render "shared/example", title: 'Notification banner', example: <<~NOTIFICATION_BANNER
+  render GovukComponent::NotificationBanner.new(
+    title: 'Information',
+    heading: 'Very important information.',
+    link_text: "Find out more.",
+    link_target: "#")
+  NOTIFICATION_BANNER
+%>
+
+<%= render "shared/example", title: 'Notification banner with success', example: <<~NOTIFICATION_BANNER
+  render GovukComponent::NotificationBanner.new(
+    title: 'Success',
+    heading: 'Something great has happened',
+    success: true) do
+      tag.p("Some extra information can be added here if required.")
+    end
+  NOTIFICATION_BANNER
+%>

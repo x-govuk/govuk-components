@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "govuk-frontend": "^3.8.1",
+    "govuk-frontend": "^3.10.1",
     "prismjs": "1.21.0"
   }
 }
