@@ -42,6 +42,19 @@ RSpec.describe(GovukComponent::NotificationBanner, type: :component) do
       end
     end
 
+    describe "customising the title id" do
+      let(:custom_id) { 'my-id' }
+      let(:kwargs) { { title: title, title_id: custom_id } }
+
+      specify "the title has the specified id" do
+        expect(subject).to have_css("h2##{custom_id}", text: title)
+      end
+
+      specify "the notification banner is labelled by the title" do
+        expect(subject).to have_css(%(div.govuk-notification-banner[aria-labelledby="#{custom_id}"]))
+      end
+    end
+
     describe "headings" do
       let(:heading_one) { "Heading one" }
       let(:heading_two) { "Heading two" }

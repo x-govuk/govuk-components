@@ -1,6 +1,6 @@
-<%= tag.div(class: classes.append(success_class).compact, **html_attributes, role: "region", aria: { labelledby: "govuk-notification-banner-title" }, data: { module: "govuk-notification-banner" }) do %>
+<%= tag.div(class: classes.append(success_class).compact, **html_attributes, role: "region", aria: { labelledby: title_id }, data: { module: "govuk-notification-banner" }) do %>
   <div class="govuk-notification-banner__header">
-    <%= content_tag(title_tag, class: "govuk-notification-banner__title", id: "govuk-notification-banner-title") do %>
+    <%= content_tag(title_tag, class: "govuk-notification-banner__title", id: title_id) do %>
       <%= title %>
     <% end %>
   </div>

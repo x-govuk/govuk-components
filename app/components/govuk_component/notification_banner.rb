@@ -1,13 +1,14 @@
 class GovukComponent::NotificationBanner < GovukComponent::Base
-  attr_reader :title, :success, :title_heading_level
+  attr_reader :title, :title_id, :success, :title_heading_level
 
   include ViewComponent::Slotable
   with_slot :heading, collection: true, class_name: 'Heading'
 
-  def initialize(title:, success: false, title_heading_level: 2, classes: [], html_attributes: {})
+  def initialize(title:, success: false, title_heading_level: 2, title_id: "govuk-notification-banner-title", classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
     @title               = title
+    @title_id            = title_id
     @success             = success
     @title_heading_level = title_heading_level
   end
