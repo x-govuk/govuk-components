@@ -8,22 +8,23 @@ This gem provides a suite of reusable components for the [GOV.UK Design System](
 
 ## What's included
 
-| Component name                                                         | Helper                   |
-| --------------                                                         | ------                   |
-| [Accordion](app/components/govuk_component/accordion.rb)               | `govuk_accordion`        |
-| [Back link](app/components/govuk_component/back_link.rb)               | `govuk_back_link`        |
-| [Breadcrumbs](app/components/govuk_component/breadcrumbs.rb)           | `govuk_breadcrumbs`      |
-| [Details](app/components/govuk_component/details.rb)                   | `govuk_details`          |
-| [Footer](app/components/govuk_component/footer.rb)                     | `govuk_footer`           |
-| [Header](app/components/govuk_component/header.rb)                     | `govuk_header`           |
-| [Inset text](app/components/govuk_component/inset_text.rb)             | `govuk_inset_text`       |
-| [Panel](app/components/govuk_component/panel.rb)                       | `govuk_panel`            |
-| [Phase banner](app/components/govuk_component/phase_banner.rb)         | `govuk_phase_banner`     |
-| [Start now button](app/components/govuk_component/start_now_button.rb) | `govuk_start_now_button` |
-| [Summary list](app/components/govuk_component/summary_list.rb)         | `govuk_summary_list`     |
-| [Tabs](app/components/govuk_component/tabs.rb)                         | `govuk_tabs`             |
-| [Tag](app/components/govuk_component/tag.rb)                           | `govuk_tag`              |
-| [Warning text](app/components/govuk_component/warning.rb)              | `govuk_warning`          |
+| Component name                                                               | Helper                      |
+| --------------                                                               | ------                      |
+| [Accordion](app/components/govuk_component/accordion.rb)                     | `govuk_accordion`           |
+| [Back link](app/components/govuk_component/back_link.rb)                     | `govuk_back_link`           |
+| [Breadcrumbs](app/components/govuk_component/breadcrumbs.rb)                 | `govuk_breadcrumbs`         |
+| [Details](app/components/govuk_component/details.rb)                         | `govuk_details`             |
+| [Footer](app/components/govuk_component/footer.rb)                           | `govuk_footer`              |
+| [Header](app/components/govuk_component/header.rb)                           | `govuk_header`              |
+| [Inset text](app/components/govuk_component/inset_text.rb)                   | `govuk_inset_text`          |
+| [Notification banner](app/components/govuk_component/notification_banner.rb) | `govuk_notification_banner` |
+| [Panel](app/components/govuk_component/panel.rb)                             | `govuk_panel`               |
+| [Phase banner](app/components/govuk_component/phase_banner.rb)               | `govuk_phase_banner`        |
+| [Start now button](app/components/govuk_component/start_now_button.rb)       | `govuk_start_now_button`    |
+| [Summary list](app/components/govuk_component/summary_list.rb)               | `govuk_summary_list`        |
+| [Tabs](app/components/govuk_component/tabs.rb)                               | `govuk_tabs`                |
+| [Tag](app/components/govuk_component/tag.rb)                                 | `govuk_tag`                 |
+| [Warning text](app/components/govuk_component/warning.rb)                    | `govuk_warning`             |
 
 ### Helpers
 
