@@ -55,6 +55,15 @@ RSpec.describe(GovukComponent::NotificationBanner, type: :component) do
       end
     end
 
+    describe "when disable_auto_focus is true" do
+      let(:custom_id) { 'my-id' }
+      let(:kwargs) { { title: title, disable_auto_focus: true } }
+
+      specify "auto focus is disabled" do
+        expect(subject).to have_css(%(div.govuk-notification-banner[data-disable-auto-focus="true"]))
+      end
+    end
+
     describe "headings" do
       let(:heading_one) { "Heading one" }
       let(:heading_two) { "Heading two" }

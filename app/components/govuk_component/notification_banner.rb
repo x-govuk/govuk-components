@@ -1,16 +1,17 @@
 class GovukComponent::NotificationBanner < GovukComponent::Base
-  attr_reader :title, :title_id, :success, :title_heading_level
+  attr_reader :title, :title_id, :success, :title_heading_level, :disable_auto_focus
 
   include ViewComponent::Slotable
   with_slot :heading, collection: true, class_name: 'Heading'
 
-  def initialize(title:, success: false, title_heading_level: 2, title_id: "govuk-notification-banner-title", classes: [], html_attributes: {})
+  def initialize(title:, success: false, title_heading_level: 2, title_id: "govuk-notification-banner-title", disable_auto_focus: nil, classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
     @title               = title
     @title_id            = title_id
     @success             = success
     @title_heading_level = title_heading_level
+    @disable_auto_focus  = disable_auto_focus
   end
 
   def success_class
@@ -49,5 +50,9 @@ private
 
   def default_classes
     %w(govuk-notification-banner)
+  end
+
+  def data_params
+    { "module" => "govuk-notification-banner", "disable-auto-focus" => disable_auto_focus }.compact
   end
 end
