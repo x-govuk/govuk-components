@@ -33,6 +33,15 @@ RSpec.describe(GovukComponent::NotificationBanner, type: :component) do
       end
     end
 
+    describe "custom title heading levels" do
+      let(:custom_level) { 4 }
+      let(:kwargs) { { title: title, title_heading_level: custom_level } }
+
+      specify "the title has the specified heading level" do
+        expect(subject).to have_css("h#{custom_level}", text: title)
+      end
+    end
+
     describe "headings" do
       let(:heading_one) { "Heading one" }
       let(:heading_two) { "Heading two" }

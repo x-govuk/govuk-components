@@ -1,8 +1,8 @@
 <%= tag.div(class: classes.append(success_class).compact, **html_attributes, role: "region", aria: { labelledby: "govuk-notification-banner-title" }, data: { module: "govuk-notification-banner" }) do %>
   <div class="govuk-notification-banner__header">
-    <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+    <%= content_tag(title_tag, class: "govuk-notification-banner__title", id: "govuk-notification-banner-title") do %>
       <%= title %>
-    </h2>
+    <% end %>
   </div>
   <div class="govuk-notification-banner__content">
     <% headings.each do |heading| %>
