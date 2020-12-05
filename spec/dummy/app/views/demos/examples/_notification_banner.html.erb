@@ -1,7 +1,7 @@
 <%= example_heading('Notification banner') %>
 
 <%= render "shared/example", title: 'Notification banner', example: <<~NOTIFICATION_BANNER
-  render GovukComponent::NotificationBanner.new(title: 'Information') do |notification_banner|
+  render GovukComponent::NotificationBanner.new(title: 'Information', disable_auto_focus: true) do |notification_banner|
     notification_banner.slot(
       :heading,
       text: 'Very important information',
@@ -13,7 +13,7 @@
 %>
 
 <%= render "shared/example", title: 'Notification banner with success', example: <<~NOTIFICATION_BANNER
-  render GovukComponent::NotificationBanner.new(title: 'Success', success: true) do |notification_banner|
+  render GovukComponent::NotificationBanner.new(title: 'Success', success: true, title_heading_level: 3, title_id: "swanky-notifications") do |notification_banner|
     notification_banner.slot(:heading, text: 'Something excellent happened')
     notification_banner.slot(
       :heading,
