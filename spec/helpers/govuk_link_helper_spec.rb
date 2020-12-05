@@ -43,6 +43,14 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
         expect(subject).to have_css('a > span', text: link_text)
       end
     end
+
+    describe 'generating a button-style link' do
+      let(:component) { govuk_link_to(text, url, button: true) }
+
+      specify 'has the button class' do
+        expect(subject).to(have_link(text, href: url, class: 'govuk-button'))
+      end
+    end
   end
 
   describe '#govuk_mail_to' do
