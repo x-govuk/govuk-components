@@ -1,0 +1,20 @@
+<%= tag.div(class: classes.append(success_class).compact, **html_attributes, role: "region", aria: { labelledby: title_id }, data: data_params) do %>
+  <div class="govuk-notification-banner__header">
+    <%= content_tag(title_tag, class: "govuk-notification-banner__title", id: title_id) do %>
+      <%= title %>
+    <% end %>
+  </div>
+  <div class="govuk-notification-banner__content">
+    <% headings.each do |heading| %>
+      <p class="govuk-notification-banner__heading">
+
+        <%= heading.text %>.
+        <% if heading.link_target && heading.link_text %>
+          <%= link_to(heading.link_text, heading.link_target, class: "govuk-notification-banner__link") %>.
+        <% end %>
+      </p>
+    <% end %>
+
+    <%= content %>
+  </div>
+<% end %>
