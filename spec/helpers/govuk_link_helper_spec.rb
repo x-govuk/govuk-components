@@ -17,11 +17,7 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
       let(:component) { govuk_link_to(text, url, class: custom_class) }
 
       specify 'has the custom classes' do
-        expect(subject).to(have_link(text, href: url, class: [custom_class]))
-      end
-
-      specify 'does not have the default class' do
-        expect(subject).not_to(have_link(text, href: url, class: 'govuk-link'))
+        expect(subject).to(have_link(text, href: url, class: ['govuk-link', custom_class]))
       end
     end
 
@@ -30,7 +26,7 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
       let(:component) { govuk_link_to(text, url, class: custom_class) }
 
       specify 'has the custom classes' do
-        expect(subject).to(have_link(text, href: url, class: custom_class))
+        expect(subject).to(have_link(text, href: url, class: ['govuk-link', custom_class].flatten))
       end
     end
 
@@ -64,11 +60,7 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
       let(:component) { govuk_mail_to(email_address, text, class: custom_class) }
 
       specify 'has the custom classes' do
-        expect(subject).to(have_link(text, href: target, class: [custom_class]))
-      end
-
-      specify 'does not have the default class' do
-        expect(subject).not_to(have_link(text, href: target, class: 'govuk-link'))
+        expect(subject).to(have_link(text, href: target, class: ['govuk-link', custom_class]))
       end
     end
 
@@ -77,7 +69,7 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
       let(:component) { govuk_mail_to(email_address, text, class: custom_class) }
 
       specify 'has the custom classes' do
-        expect(subject).to(have_link(text, href: target, class: custom_class))
+        expect(subject).to(have_link(text, href: target, class: ['govuk-link', custom_class].flatten))
       end
     end
 
@@ -109,11 +101,11 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
       let(:component) { govuk_button_to(text, url, class: custom_class) }
 
       specify 'has the custom classes' do
-        expect(subject).to(have_button(text, class: [custom_class]))
+        expect(subject).to(have_button(text, class: ['govuk-button', custom_class].flatten))
       end
 
-      specify 'does not have the default class' do
-        expect(subject).not_to(have_button(text, class: 'govuk-button'))
+      specify 'has the default class' do
+        expect(subject).to(have_button(text, class: 'govuk-button'))
       end
     end
 
