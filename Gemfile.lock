@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    govuk-components (0.6.0)
+    govuk-components (0.7.0)
       rails (~> 6.0.3, >= 6.0.3)
       view_component (~> 2.22.1)
 
