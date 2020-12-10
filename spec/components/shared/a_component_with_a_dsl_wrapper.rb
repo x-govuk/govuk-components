@@ -3,7 +3,7 @@ shared_examples 'a component with a DSL wrapper' do
     let(:action_view_context) { ActionView::LookupContext.new(nil) }
     let(:helper) { ActionView::Base.new(action_view_context) }
 
-    let(:component) { helper.send(helper_name, **kwargs) }
+    let(:component) { helper.send(helper_name, **kwargs, &block) }
     subject { Capybara::Node::Simple.new(component) }
 
     specify 'renders the component' do
@@ -12,7 +12,7 @@ shared_examples 'a component with a DSL wrapper' do
   end
 
   describe 'wrapping slots' do
-    subject { described_class.new(**kwargs) }
+    subject { described_class.new(**kwargs, &block) }
 
     it { is_expected.to respond_to(:slot) }
 
