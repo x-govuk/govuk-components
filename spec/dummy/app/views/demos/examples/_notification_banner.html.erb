@@ -24,3 +24,10 @@
   end
   NOTIFICATION_BANNER
 %>
+
+<%= render "shared/example", title: 'Notification banner called via the helper', example: <<~NOTIFICATION_BANNER
+  govuk_notification_banner(title: "Warning") do |banner|
+    banner.add_heading(text: "Something's afoot")
+  end
+  NOTIFICATION_BANNER
+%>
