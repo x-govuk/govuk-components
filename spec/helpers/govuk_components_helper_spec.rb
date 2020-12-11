@@ -13,8 +13,7 @@ class HelperComponentMapping
 end
 
 RSpec.describe(GovukComponentsHelper, type: 'helper') do
-  let(:action_view_context) { ActionView::LookupContext.new(nil) }
-  let(:helper) { ActionView::Base.new(action_view_context) }
+  include_context 'helpers'
 
   [
     {
