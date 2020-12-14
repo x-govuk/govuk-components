@@ -1,8 +1,5 @@
 shared_examples 'a component with a DSL wrapper' do
   describe 'wrapping the component', type: 'helper' do
-    let(:action_view_context) { ActionView::LookupContext.new(nil) }
-    let(:helper) { ActionView::Base.new(action_view_context) }
-
     let(:component) { helper.send(helper_name, **kwargs, &block) }
     subject { Capybara::Node::Simple.new(component) }
 

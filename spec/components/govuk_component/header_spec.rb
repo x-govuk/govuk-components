@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 RSpec.describe(GovukComponent::Header, type: :component) do
+  include_context "helpers"
+
   let(:logo) { 'OMG.UK' }
   let(:logo_href) { 'https://omg.uk/bbq' }
   let(:service_name) { 'Amazing service 1' }
