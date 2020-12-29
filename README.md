@@ -1,5 +1,3 @@
-**This gem is under heavy development and the API is likely to change.**
-
 # GOV.UK Components
 
 [![Build Status](https://travis-ci.com/DFE-Digital/govuk-components.svg?branch=master)](https://travis-ci.com/DFE-Digital/govuk-components)
