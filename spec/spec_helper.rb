@@ -1,8 +1,14 @@
 require 'pry'
 require 'pry-byebug'
 require 'view_component/test_helpers'
+require 'simplecov'
 
 require File.expand_path("dummy/config/environment", __dir__)
+
+if ENV.fetch('SIMPLECOV') { '1' } == '1'
+  SimpleCov.add_filter('spec/dummy')
+  SimpleCov.start
+end
 
 include GovukLinkHelper
 include GovukBackToTopLinkHelper

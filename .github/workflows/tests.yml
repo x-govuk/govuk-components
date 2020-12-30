@@ -17,6 +17,12 @@ jobs:
         with:
           ruby-version: 2.7.2
 
+      - name: Download CodeClimate reporter
+        run: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+          ./cc-test-reporter before-build
+
       - name: Install gems
         run: |
           gem install bundler
@@ -26,4 +32,13 @@ jobs:
         run: bundle exec rubocop app lib config
 
       - name: Run RSpec
+        env:
+          SIMPLECOV: '1'
         run: bundle exec rspec
+
+      - name: Report coverage to CodeClimate
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+          GIT_BRANCH: ${{ steps.extract_branch.outputs.branch }}
+          GIT_COMMIT_SHA: ${{ github.sha }}
+        run: ./cc-test-reporter after-build -t simplecov
