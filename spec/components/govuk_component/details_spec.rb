@@ -21,7 +21,6 @@ RSpec.describe(GovukComponent::Details, type: :component) do
   end
 
   context 'when a block is supplied' do
-
     subject! do
       render_inline(GovukComponent::Details.new(**kwargs.except(:description))) { description }
     end

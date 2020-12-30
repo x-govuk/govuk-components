@@ -6,4 +6,4 @@ module Govuk
   end
 end
 
-Dir[Govuk::Components::Engine.root.join(*%w(app helpers *.rb))].each { |f| require f }
+Dir[Govuk::Components::Engine.root.join("app", "helpers", "*.rb")].sort.each { |f| require f }

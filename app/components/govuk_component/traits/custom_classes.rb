@@ -1,7 +1,6 @@
 module GovukComponent
   module Traits
     module CustomClasses
-
       def classes
         default_classes.concat(Array.wrap(@classes))
       end
@@ -15,7 +14,7 @@ module GovukComponent
     private
 
       def parse_classes(classes)
-        return [] unless classes.present?
+        return [] if classes.blank?
 
         case classes
         when Array
