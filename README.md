@@ -1,6 +1,11 @@
 # GOV.UK Components
 
-[![Build Status](https://travis-ci.com/DFE-Digital/govuk-components.svg?branch=master)](https://travis-ci.com/DFE-Digital/govuk-components)
+[![Tests](https://github.com/DFE-Digital/govuk-components/workflows/Tests/badge.svg)](https://github.com/DFE-Digital/govuk-components/actions?query=workflow%3ATests)
+[![Maintainability](https://api.codeclimate.com/v1/badges/cbcbc140f300b920d833/maintainability)](https://codeclimate.com/github/DFE-Digital/govuk-components/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/cbcbc140f300b920d833/test_coverage)](https://codeclimate.com/github/DFE-Digital/govuk-components/test_coverage)
+[![GitHub license](https://img.shields.io/github/license/DFE-Digital/govuk-components)](https://github.com/DFE-Digital/govuk-components/blob/master/LICENSE)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=DFE-Digital/govuk-components)](https://dependabot.com)
+[![GOV.UK Design System Version](https://img.shields.io/badge/GOV.UK%20Design%20System-3.10.2-brightgreen)](https://design-system.service.gov.uk)
 
 This gem provides a suite of reusable components for the [GOV.UK Design System](https://design-system.service.gov.uk/). It is intended to provide a lightweight alternative to the [GOV.UK Publishing Components](https://github.com/alphagov/govuk_publishing_components) library and is built with Github's [ViewComponent](https://github.com/github/view_component) framework.  ViewComponent will be [supported natively in Rails 6.1](https://edgeguides.rubyonrails.org/layouts_and_rendering.html#rendering-objects).
 

@@ -16,10 +16,7 @@ RSpec.describe GovukComponent::Tag, type: :component do
     context 'valid colours' do
       subject! { render_inline(GovukComponent::Tag.new(**kwargs)) }
 
-      %w(
-        grey green turquoise blue red
-        purple pink orange yellow
-      ).each do |colour|
+      %w(grey green turquoise blue red purple pink orange yellow).each do |colour|
         context colour do
           let(:kwargs) { { text: text, colour: colour } }
 
@@ -43,5 +40,4 @@ RSpec.describe GovukComponent::Tag, type: :component do
 
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
-
 end

@@ -21,7 +21,7 @@ private
   end
 
   def colour_class
-    return nil unless @colour.present?
+    return nil if @colour.blank?
 
     fail("invalid tag colour #{@colour}, supported colours are #{COLOURS.to_sentence}") unless @colour.in?(COLOURS)
 

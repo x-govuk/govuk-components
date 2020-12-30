@@ -1,4 +1,4 @@
-$:.push File.expand_path("lib", __dir__)
+$LOAD_PATH.push File.expand_path("lib", __dir__)
 
 # Maintain your gem's version:
 require "govuk/components/version"
@@ -10,7 +10,6 @@ METADATA = {
   "homepage_uri"      => "https://github.com/DFE-Digital/govuk-components",
   "source_code_uri"   => "https://github.com/DFE-Digital/govuk-components"
 }.freeze
-
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |spec|
@@ -28,9 +27,11 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rails", ">= 6.0"
   spec.add_dependency "view_component", "~> 2.22.1"
 
-  spec.add_development_dependency "sqlite3"
   spec.add_development_dependency "capybara"
-  spec.add_development_dependency "rspec-rails"
   spec.add_development_dependency "pry-byebug"
+  spec.add_development_dependency "rspec-rails"
+  spec.add_development_dependency "rubocop-govuk"
   spec.add_development_dependency "sassc-rails"
+  spec.add_development_dependency("simplecov", "~> 0.17.1")
+  spec.add_development_dependency "sqlite3"
 end

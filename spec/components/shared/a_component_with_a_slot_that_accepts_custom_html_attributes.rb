@@ -8,6 +8,6 @@ shared_examples 'a component with a slot that accepts custom html attributes' do
   end
 
   specify 'the rendered slot should have the HTML attributes' do
-    expect(page).to have_css(custom_attributes.map { |k,v| %([#{k}='#{v}']) }.join)
+    expect(page).to have_css(custom_attributes.map { |k, v| %([#{k}='#{v}']) }.join)
   end
 end

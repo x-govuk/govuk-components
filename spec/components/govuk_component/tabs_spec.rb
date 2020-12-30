@@ -79,7 +79,7 @@ RSpec.describe(GovukComponent::Tabs, type: :component) do
 
   context 'slot arguments' do
     let(:slot) { :tab }
-    let(:content) { ->{ 'some swanky tab content' } }
+    let(:content) { -> { 'some swanky tab content' } }
     let(:slot_kwargs) { { title: title } }
 
     it_behaves_like 'a component with a slot that accepts custom classes'

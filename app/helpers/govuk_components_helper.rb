@@ -19,7 +19,7 @@ module GovukComponentsHelper
     define_method(name) do |*args, **kwargs, &block|
       capture do
         render(klass.constantize.new(*args, **kwargs)) do |com|
-          block.call(com) unless block.blank?
+          block.call(com) if block.present?
         end
       end
     end

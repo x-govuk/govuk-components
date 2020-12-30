@@ -49,7 +49,7 @@ RSpec.describe(GovukComponent::Accordion, type: :component) do
 
   specify 'the section ids should match content aria-labelledby' do
     sections.each do |title, _|
-      id = "#{title.parameterize}"
+      id = title.parameterize
 
       expect(page).to have_css('#' + id)
       expect(page).to have_css(%(div[aria-labelledby='#{id}']))
@@ -83,7 +83,7 @@ RSpec.describe(GovukComponent::Accordion, type: :component) do
 
   context 'slot arguments' do
     let(:slot) { :section }
-    let(:content) { ->{ 'some swanky accordion content' } }
+    let(:content) { -> { 'some swanky accordion content' } }
     let(:slot_kwargs) { { title: 'A title', summary: 'A summary' } }
 
     it_behaves_like 'a component with a slot that accepts custom classes'

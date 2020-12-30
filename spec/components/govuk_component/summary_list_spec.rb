@@ -34,8 +34,8 @@ RSpec.describe(GovukComponent::SummaryList, type: :component) do
   specify 'the entries should contain the correct content' do
     expect(page).to have_css('dl.govuk-summary-list') do |dl|
       rows.each do |row|
-        expect(page).to have_css('.govuk-summary-list__row > dt.govuk-summary-list__key', text: row[:key])
-        expect(page).to have_css('.govuk-summary-list__row > dd.govuk-summary-list__value', text: row[:value])
+        expect(dl).to have_css('.govuk-summary-list__row > dt.govuk-summary-list__key', text: row[:key])
+        expect(dl).to have_css('.govuk-summary-list__row > dd.govuk-summary-list__value', text: row[:value])
       end
     end
   end
@@ -45,7 +45,7 @@ RSpec.describe(GovukComponent::SummaryList, type: :component) do
       subject! do
         render_inline(GovukComponent::SummaryList.new(**kwargs)) do |component|
           rows
-            .reject { |row| row.has_key?(:action) }
+            .reject { |row| row.key?(:action) }
             .each { |row| component.slot(:row, **row) }
         end
       end
@@ -56,7 +56,7 @@ RSpec.describe(GovukComponent::SummaryList, type: :component) do
     end
 
     context 'when actions are present' do
-      let(:rows_with_actions) { rows.select { |row| row.has_key?(:action) } }
+      let(:rows_with_actions) { rows.select { |row| row.key?(:action) } }
 
       specify 'all rows should have an actions column' do
         expect(page).to have_css('.govuk-summary-list__actions', count: rows.size)

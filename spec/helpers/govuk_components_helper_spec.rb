@@ -27,7 +27,7 @@ RSpec.describe(GovukComponentsHelper, type: 'helper') do
       helper_method: :govuk_back_link,
       klass: GovukComponent::BackLink,
       args: [],
-      kwargs: { text: 'Back', href: '/right-to-the-start'},
+      kwargs: { text: 'Back', href: '/right-to-the-start' },
       css_matcher: %(.govuk-back-link)
     },
     {

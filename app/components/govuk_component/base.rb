@@ -11,7 +11,7 @@ class GovukComponent::Base < ViewComponent::Base
   # with slots feel more DSL-like
   def self.wrap_slot(name)
     define_method(%(add_#{name})) do |*args, **kwargs, &block|
-      self.slot(name, *args, **kwargs, &block)
+      slot(name, *args, **kwargs, &block)
     end
   end
 end

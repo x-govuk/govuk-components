@@ -117,7 +117,6 @@ RSpec.describe(GovukComponent::NotificationBanner, type: :component) do
       end
     end
 
-
     # this is duplicated from the shared 'a component that accepts custom classes' because we
     # need a heading to be present for anything to render
     describe "custom classes and attributes" do

@@ -25,7 +25,7 @@ RSpec.describe(GovukComponent::Footer, type: :component) do
       expect(page).to have_css('footer.govuk-footer .govuk-footer__meta') do |footer|
         expect(footer).to have_css('.govuk-footer__licence-description') do |description|
           expect(description).to have_content(/All content is available under/)
-          expect(description).to have_link("Open Government Licence v3.0", {href: "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/", class: "govuk-footer__link"})
+          expect(description).to have_link("Open Government Licence v3.0", { href: "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/", class: "govuk-footer__link" })
         end
       end
     end
