@@ -36,9 +36,9 @@ class GovukComponent::NotificationBanner < GovukComponent::Base
   class Heading < ViewComponent::Slot
     attr_accessor :text, :link_target, :link_text
 
-    def initialize(text:, link_text: nil, link_target: nil)
-      @text = text
-      @link_text = link_text
+    def initialize(text: nil, link_text: nil, link_target: nil)
+      @text        = text
+      @link_text   = link_text
       @link_target = link_target
     end
 

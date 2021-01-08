@@ -4,10 +4,13 @@
   render GovukComponent::NotificationBanner.new(title: 'Information', disable_auto_focus: true) do |notification_banner|
     notification_banner.slot(
       :heading,
-      text: 'Very important information',
+      text: 'Very important information.',
       link_text: "Find out more",
       link_target: "#"
     )
+    notification_banner.slot(:heading) do
+      ["Any content can", tag.em("be passed in"), "via a block" ].join(" ").html_safe
+    end
   end
   NOTIFICATION_BANNER
 %>
@@ -17,7 +20,7 @@
     notification_banner.slot(:heading, text: 'Something excellent happened')
     notification_banner.slot(
       :heading,
-      text: 'Many excellent things happened',
+      text: 'Many excellent things happened.',
       link_text: "See them all",
       link_target: "#"
     )
