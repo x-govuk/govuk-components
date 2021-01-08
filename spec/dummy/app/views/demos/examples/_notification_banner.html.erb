@@ -8,6 +8,9 @@
       link_text: "Find out more",
       link_target: "#"
     )
+    notification_banner.slot(:heading) do
+      ["Any content can", tag.em("be passed in"), "via a block" ].join(" ").html_safe
+    end
   end
   NOTIFICATION_BANNER
 %>

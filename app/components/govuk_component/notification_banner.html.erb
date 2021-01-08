@@ -7,9 +7,13 @@
   <div class="govuk-notification-banner__content">
     <% headings.each do |heading| %>
       <p class="govuk-notification-banner__heading">
-        <%= heading.text %>
-        <% if heading.link_target && heading.link_text %>
-          <%= link_to(heading.link_text, heading.link_target, class: "govuk-notification-banner__link") %>.
+        <% if heading.text.present? %>
+          <%= heading.text %>
+          <% if heading.link_target && heading.link_text %>
+            <%= link_to(heading.link_text, heading.link_target, class: "govuk-notification-banner__link") %>.
+          <% end %>
+        <% else %>
+          <%= heading.content %>
         <% end %>
       </p>
     <% end %>

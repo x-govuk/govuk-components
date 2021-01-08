@@ -55,6 +55,33 @@ RSpec.describe(GovukComponent::NotificationBanner, type: :component) do
       end
     end
 
+    describe "custom HTML heading content" do
+      let(:heading_text) { "What a nice heading" }
+      before do
+        render_inline(GovukComponent::NotificationBanner.new(**kwargs)) do |nb|
+          nb.slot(:heading) { heading_text }
+        end
+      end
+
+      specify "the title has the custom content" do
+        expect(subject).to have_css("p", text: heading_text)
+      end
+
+      context "when custom HTML and heading text is provided" do
+        let(:block_content) { "should not be rendered" }
+        before do
+          render_inline(GovukComponent::NotificationBanner.new(**kwargs)) do |nb|
+            nb.slot(:heading, text: heading_text) { block_content }
+          end
+        end
+
+        specify "the text should take precedence over the block" do
+          expect(subject).to have_css("p", text: heading_text)
+          expect(subject).not_to have_content(block_content)
+        end
+      end
+    end
+
     describe "when disable_auto_focus is true" do
       let(:custom_id) { 'my-id' }
       let(:kwargs) { { title: title, disable_auto_focus: true } }
