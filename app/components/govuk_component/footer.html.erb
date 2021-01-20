@@ -4,6 +4,10 @@
       <%= content %>
     <% end %>
     <div class="govuk-footer__meta">
+      <% if meta_content %>
+        <%= meta_content.content %>
+      <% end %>
+
       <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
         <% if @meta_links.any? %>
           <%= @meta_heading %>

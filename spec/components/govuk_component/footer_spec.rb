@@ -78,6 +78,25 @@ RSpec.describe(GovukComponent::Footer, type: :component) do
     end
   end
 
+  context 'when custom meta content is passed in' do
+    let(:meta_text) { 'Meta content goes here' }
+    let(:content) do
+      helper.tag.nav { helper.tag.h3(meta_text) }
+    end
+
+    subject! do
+      render_inline(GovukComponent::Footer.new(**kwargs)) do |component|
+        component.slot(:meta_content) { content }
+      end
+    end
+
+    specify 'the content should be rendered' do
+      expect(page).to have_css('footer.govuk-footer') do |footer|
+        expect(footer).to have_content(meta_text)
+      end
+    end
+  end
+
   describe 'meta links' do
     subject! { render_inline(GovukComponent::Footer.new(meta_links: links, meta_heading: heading)) }
 
@@ -120,4 +139,10 @@ RSpec.describe(GovukComponent::Footer, type: :component) do
 
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
+  it_behaves_like 'a component with a DSL wrapper' do
+    let(:helper_name) { :govuk_footer }
+    let(:wrapped_slots) { %i(meta_content) }
+    let(:block) { nil }
+    let(:expected_css) { ".govuk-footer" }
+  end
 end

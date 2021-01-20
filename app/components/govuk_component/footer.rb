@@ -1,4 +1,9 @@
 class GovukComponent::Footer < GovukComponent::Base
+  include ViewComponent::Slotable
+
+  with_slot :meta_content, class_name: "MetaContent"
+  wrap_slot :meta_content
+
   attr_accessor :meta, :licence, :copyright, :show_licence
 
   def initialize(meta_links: nil, meta_heading: default_meta_heading, licence: nil, copyright_text: default_copright_text, copyright_url: default_copyright_url, classes: [], html_attributes: {}, show_licence: true)
@@ -50,4 +55,6 @@ private
   def default_copyright_url
     "https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
   end
+
+  class MetaContent < ViewComponent::Slot; end
 end
