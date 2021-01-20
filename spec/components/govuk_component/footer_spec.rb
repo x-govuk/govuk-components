@@ -111,6 +111,13 @@ RSpec.describe(GovukComponent::Footer, type: :component) do
     end
   end
 
+  context 'when the licence is suppressed' do
+    let(:kwargs) { { show_licence: false } }
+
+    specify { expect(page).not_to have_css("govuk-footer__licence-logo") }
+    specify { expect(page).not_to have_css("govuk-footer__licence-description") }
+  end
+
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 end

@@ -1,13 +1,18 @@
 class GovukComponent::Footer < GovukComponent::Base
-  attr_accessor :meta, :licence, :copyright
+  attr_accessor :meta, :licence, :copyright, :show_licence
 
-  def initialize(meta_links: nil, meta_heading: default_meta_heading, licence: nil, copyright_text: default_copright_text, copyright_url: default_copyright_url, classes: [], html_attributes: {})
+  def initialize(meta_links: nil, meta_heading: default_meta_heading, licence: nil, copyright_text: default_copright_text, copyright_url: default_copyright_url, classes: [], html_attributes: {}, show_licence: true)
     super(classes: classes, html_attributes: html_attributes)
 
     @meta_links   = build_meta_links(meta_links)
     @meta_heading = raw(tag.h2(meta_heading, class: 'govuk-visually-hidden'))
     @licence      = raw(licence).presence || default_licence
     @copyright    = build_copyright(copyright_text, copyright_url)
+    @show_licence = show_licence
+  end
+
+  def show_licence?
+    show_licence
   end
 
 private
