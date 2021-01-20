@@ -4,7 +4,7 @@ class GovukComponent::Footer < GovukComponent::Base
   with_slot :meta_content, class_name: "MetaContent"
   wrap_slot :meta_content
 
-  attr_accessor :meta, :licence, :copyright, :show_licence
+  attr_accessor :meta, :licence, :copyright, :show_licence, :meta_links, :meta_heading
 
   def initialize(meta_links: nil, meta_heading: default_meta_heading, licence: nil, copyright_text: default_copright_text, copyright_url: default_copyright_url, classes: [], html_attributes: {}, show_licence: true)
     super(classes: classes, html_attributes: html_attributes)

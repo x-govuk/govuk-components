@@ -133,8 +133,16 @@ RSpec.describe(GovukComponent::Footer, type: :component) do
   context 'when the licence is suppressed' do
     let(:kwargs) { { show_licence: false } }
 
-    specify { expect(page).not_to have_css("govuk-footer__licence-logo") }
-    specify { expect(page).not_to have_css("govuk-footer__licence-description") }
+    specify { expect(page).not_to have_css(".govuk-footer__licence-logo") }
+    specify { expect(page).not_to have_css(".govuk-footer__licence-description") }
+
+    context 'when there are no meta_links either' do
+      let(:kwargs) { { meta_links: [], show_licence: false } }
+
+      specify "the copyright information is the only meta item rendered" do
+        expect(page).to have_css(".govuk-footer__meta-item", count: 1)
+      end
+    end
   end
 
   it_behaves_like 'a component that accepts custom classes'
