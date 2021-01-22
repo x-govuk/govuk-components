@@ -1,13 +1,21 @@
 class GovukComponent::Footer < GovukComponent::Base
-  attr_accessor :meta, :licence, :copyright
+  include ViewComponent::Slotable
 
-  def initialize(meta_links: nil, meta_heading: default_meta_heading, licence: nil, copyright_text: default_copright_text, copyright_url: default_copyright_url, classes: [], html_attributes: {})
+  with_slot :meta_content
+  wrap_slot :meta_content
+
+  with_slot :meta
+  wrap_slot :meta
+
+  attr_accessor :meta_items, :meta_items_title, :meta_licence, :copyright
+
+  def initialize(meta_items: {}, meta_items_title: "Support links", meta_licence: nil, classes: [], html_attributes: {}, copyright_text: default_copright_text, copyright_url: default_copyright_url)
     super(classes: classes, html_attributes: html_attributes)
 
-    @meta_links   = build_meta_links(meta_links)
-    @meta_heading = raw(tag.h2(meta_heading, class: 'govuk-visually-hidden'))
-    @licence      = raw(licence).presence || default_licence
-    @copyright    = build_copyright(copyright_text, copyright_url)
+    @meta_items       = build_meta_links(meta_items)
+    @meta_items_title = meta_items_title
+    @meta_licence     = meta_licence
+    @copyright        = build_copyright(copyright_text, copyright_url)
   end
 
 private
@@ -22,10 +30,6 @@ private
     fail(ArgumentError, 'meta links must be a hash') unless links.is_a?(Hash)
 
     links.map { |text, href| raw(link_to(text, href, class: %w(govuk-footer__link))) }
-  end
-
-  def default_meta_heading
-    'Supporting links'
   end
 
   def default_licence
