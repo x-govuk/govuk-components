@@ -29,6 +29,8 @@ Layout/HashAlignment:
   Enabled: false
 Style/SignalException:
   Enabled: false
+Style/Proc:
+  Enabled: false
 Style/AsciiComments:
   Enabled: false
 Style/FormatString:

@@ -1,14 +1,15 @@
 require 'spec_helper'
 
 class HelperComponentMapping
-  attr_reader :helper_method, :klass, :args, :kwargs, :css_matcher
+  attr_reader :helper_method, :klass, :args, :kwargs, :css_matcher, :block
 
-  def initialize(helper_method:, klass:, args:, kwargs:, css_matcher:)
+  def initialize(helper_method:, klass:, args:, kwargs:, css_matcher:, block: nil)
     @helper_method = helper_method
     @klass         = klass
     @args          = args
     @kwargs        = kwargs
     @css_matcher   = css_matcher
+    @block         = block
   end
 end
 
@@ -66,6 +67,14 @@ RSpec.describe(GovukComponentsHelper, type: 'helper') do
       css_matcher: %(.govuk-inset-text)
     },
     {
+      helper_method: :govuk_notification_banner,
+      klass: GovukComponent::NotificationBanner,
+      args: [],
+      kwargs: { title: 'Notification banner' },
+      css_matcher: %(.govuk-notification-banner),
+      block: Proc.new { |nb| nb.add_heading(text: "heading 1", link_text: "link 1", link_target: "/link-1") },
+    },
+    {
       helper_method: :govuk_panel,
       klass: GovukComponent::Panel,
       args: [],
@@ -119,7 +128,7 @@ RSpec.describe(GovukComponentsHelper, type: 'helper') do
     .each do |hcm|
       describe hcm.helper_method do
         subject do
-          Capybara::Node::Simple.new(helper.send(hcm.helper_method, *hcm.args, **hcm.kwargs))
+          Capybara::Node::Simple.new(helper.send(hcm.helper_method, *hcm.args, **hcm.kwargs, &hcm.block))
         end
         specify %(should render the component #{hcm.klass}) do
           expect(subject).to have_css(hcm.css_matcher)
