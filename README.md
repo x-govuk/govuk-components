@@ -16,6 +16,7 @@ This gem provides a suite of reusable components for the [GOV.UK Design System](
 | [Accordion](app/components/govuk_component/accordion.rb)                     | `govuk_accordion`           |
 | [Back link](app/components/govuk_component/back_link.rb)                     | `govuk_back_link`           |
 | [Breadcrumbs](app/components/govuk_component/breadcrumbs.rb)                 | `govuk_breadcrumbs`         |
+| [Cookie banner](app/components/govuk_component/cookie_banner.rb)             | `govuk_cookie_banner`       |
 | [Details](app/components/govuk_component/details.rb)                         | `govuk_details`             |
 | [Footer](app/components/govuk_component/footer.rb)                           | `govuk_footer`              |
 | [Header](app/components/govuk_component/header.rb)                           | `govuk_header`              |

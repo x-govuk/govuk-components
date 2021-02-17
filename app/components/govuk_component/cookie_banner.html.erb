@@ -1,0 +1,21 @@
+<%= tag.div(class: classes, role: "region", aria: { label: aria_label }, **html_attributes) do %>
+  <div class="govuk-cookie-banner__message govuk-width-container">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <% if title.present? %>
+          <h2 class="govuk-cookie-banner__heading govuk-heading-m">
+            <%= title %>
+          </h2>
+        <% end %>
+
+        <div class="govuk-cookie-banner__content">
+          <%= body %>
+        </div>
+      </div>
+    </div>
+
+    <div class="govuk-button-group">
+      <%= actions %>
+    </div>
+  </div>
+<% end %>
