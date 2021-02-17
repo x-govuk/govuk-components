@@ -10,3 +10,4 @@ spec/dummy/tmp/
 spec/dummy/node_modules/
 coverage
 *.gem
+.tool-versions
