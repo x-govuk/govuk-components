@@ -42,6 +42,15 @@ RSpec.describe(GovukComponent::CookieBanner, type: :component) do
     end
   end
 
+  context "custom aria labels" do
+    let(:aria_label) { "Cookie section" }
+    let(:kwargs) { { aria_label: aria_label } }
+
+    specify "sets the aria-label correctly" do
+      expect(page).to have_css(%(div.govuk-cookie-banner[aria-label="#{aria_label}"]))
+    end
+  end
+
   context "when there is no title" do
     let(:kwargs) { {} }
 
