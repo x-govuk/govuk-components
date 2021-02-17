@@ -42,6 +42,15 @@ RSpec.describe(GovukComponent::CookieBanner, type: :component) do
     end
   end
 
+  context "when there is no title" do
+    let(:kwargs) { {} }
+
+    specify "renders the cookie banner without a title" do
+      expect(page).to have_css("div", class: %w(govuk-cookie-banner))
+      expect(page).not_to have_css(".govuk-cookie-banner__heading")
+    end
+  end
+
   it_behaves_like "a component that accepts custom classes"
   it_behaves_like "a component that accepts custom HTML attributes"
 end

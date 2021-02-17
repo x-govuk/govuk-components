@@ -3,7 +3,7 @@ class GovukComponent::CookieBanner < GovukComponent::Base
 
   attr_accessor :title
 
-  def initialize(title:, classes: [], html_attributes: {})
+  def initialize(title: nil, classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
     @title = title
