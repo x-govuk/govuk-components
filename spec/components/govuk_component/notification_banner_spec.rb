@@ -170,6 +170,23 @@ RSpec.describe(GovukComponent::NotificationBanner, type: :component) do
       end
     end
 
+    describe "custom html attributes" do
+      before do
+        render_inline(described_class.send(:new, **kwargs)) do |nb|
+          nb.slot(:heading, text: "A title")
+        end
+      end
+
+      describe "overriding the role" do
+        let(:custom_role) { "alert" }
+        let(:kwargs) { { title: title, html_attributes: { role: custom_role } } }
+
+        specify 'does the thing' do
+          expect(page).to have_css("div.govuk-notification-banner[role='#{custom_role}']")
+        end
+      end
+    end
+
     it_behaves_like 'a component with a DSL wrapper' do
       let(:helper_name) { 'govuk_notification_banner' }
       let(:wrapped_slots) { %i(heading) }
