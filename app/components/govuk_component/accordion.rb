@@ -19,17 +19,24 @@ private
   end
 
   class Section < GovukComponent::Slot
-    attr_accessor :title, :summary
+    attr_accessor :title, :summary, :expanded
 
-    def initialize(title:, summary: nil, classes: [], html_attributes: {})
+    alias_method :expanded?, :expanded
+
+    def initialize(title:, summary: nil, expanded: false, classes: [], html_attributes: {})
       super(classes: classes, html_attributes: html_attributes)
 
       self.title   = title
       self.summary = summary
+      self.expanded = expanded
     end
 
     def id(suffix: nil)
       [title.parameterize, suffix].compact.join('-')
+    end
+
+    def classes
+      super + (expanded? ? %w(govuk-accordion__section--expanded) : [])
     end
 
   private

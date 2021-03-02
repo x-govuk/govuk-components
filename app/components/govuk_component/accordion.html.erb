@@ -3,7 +3,7 @@
     <%= tag.div(id: section.id(suffix: 'section'), class: section.classes, **section.html_attributes) do %>
       <div class="govuk-accordion__section-header">
         <h2 class="govuk-accordion__section-heading">
-          <%= tag.span(section.title, id: section.id, class: "govuk-accordion__section-button") %>
+          <%= tag.span(section.title, id: section.id, class: "govuk-accordion__section-button", aria: { expanded: section.expanded? }) %>
         </h2>
         <% if section.summary.present? %>
           <%= tag.div(section.summary, id: section.id(suffix: 'summary'), class: %w(govuk-accordion__section-summary govuk-body)) %>
