@@ -88,6 +88,18 @@ RSpec.describe(GovukComponent::Accordion, type: :component) do
 
     it_behaves_like 'a component with a slot that accepts custom classes'
     it_behaves_like 'a component with a slot that accepts custom html attributes'
+
+    it 'sections should have correct expanded state' do
+      render_inline(GovukComponent::Accordion.new) do |component|
+        component.slot(:section, expanded: true, title: 'section 1', html_attributes: { id: 'section_1' }) { 'abc' }
+        component.slot(:section, title: 'section 2', html_attributes: { id: 'section_2' }) { 'def' }
+      end
+      expect(page).to have_css('#section_1.govuk-accordion__section.govuk-accordion__section--expanded')
+      expect(page).to have_css('#section_2.govuk-accordion__section')
+      expect(page).not_to have_css('#section_2.govuk-accordion__section.govuk-accordion__section--expanded')
+      expect(page).to have_css('span#section-1[aria-expanded="true"]')
+      expect(page).to have_css('span#section-2[aria-expanded="false"]')
+    end
   end
 
   it_behaves_like 'a component with a DSL wrapper' do

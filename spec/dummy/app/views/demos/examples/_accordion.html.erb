@@ -4,7 +4,8 @@
   render GovukComponent::Accordion.new(id: 'abc123') do |component|
     component.slot(:section,
       title: 'Home electronics',
-      summary: 'Entertainment, communication and recreation') do
+      summary: 'Entertainment, communication and recreation',
+      expanded: true) do
         tag.p(class: 'govuk-body') do
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
         end
@@ -39,7 +40,7 @@
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       end
     end
-    accordion.add_section(title: 'Section 2') do
+    accordion.add_section(title: 'Section 2', expanded: true) do
       tag.p(class: 'govuk-body') do
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       end
