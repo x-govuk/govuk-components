@@ -15,7 +15,7 @@ RSpec.describe(GovukComponent::NotificationBanner, type: :component) do
 
   let(:kwargs) { { title: title } }
 
-  describe "rendering a notification banner" do
+  describe "rendering a notification banner with headings" do
     before do
       render_inline(GovukComponent::NotificationBanner.new(**kwargs)) do |nb|
         nb.slot(:heading, text: "omg")
@@ -194,6 +194,21 @@ RSpec.describe(GovukComponent::NotificationBanner, type: :component) do
       let(:expected_css) { '.govuk-notification-banner' }
 
       let(:block) { ->(banner) { banner.add_heading(text: "What a nice heading!") } }
+    end
+  end
+
+  describe "rendering a notification banner with arbitrary content" do
+    before do
+      render_inline(GovukComponent::NotificationBanner.new(**kwargs)) { additional_content }
+    end
+
+    let(:subject) { page }
+
+    specify "the extra banner with extra content is rendered" do
+      expect(subject).to have_css(".govuk-notification-banner > .govuk-notification-banner__content") do |content|
+        expect(content).to have_css("p", text: "The quick brown fox")
+        expect(content).to have_css("blockquote", text: "Jumped over the lazy dog")
+      end
     end
   end
 end
