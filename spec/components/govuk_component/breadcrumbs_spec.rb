@@ -29,6 +29,18 @@ RSpec.describe(GovukComponent::Breadcrumbs, type: :component) do
     end
   end
 
+  describe "hiding breadcrumbs when printing" do
+    let(:kwargs) { { breadcrumbs: breadcrumbs, hide_in_print: true } }
+
+    specify { expect(page).to have_css('div.govuk-breadcrumbs.govuk-\!-display-none-print') }
+  end
+
+  describe "making breadcrumbs collapse on mobile" do
+    let(:kwargs) { { breadcrumbs: breadcrumbs, collapse_on_mobile: true } }
+
+    specify { expect(page).to have_css('div.govuk-breadcrumbs.govuk-breadcrumbs--collapse-on-mobile') }
+  end
+
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 end
