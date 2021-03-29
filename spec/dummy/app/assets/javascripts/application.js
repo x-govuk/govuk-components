@@ -11,7 +11,6 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require activestorage
 //= require prismjs
 //= require prismjs/components/prism-ruby
 //= require_tree .
