@@ -1,9 +1,13 @@
 <%= tag.div(class: classes, **html_attributes) do %>
-  <h1 class="govuk-panel__title">
-    <%= @title %>
-  </h1>
+  <% if display_title? %>
+    <h1 class="govuk-panel__title">
+      <%= @title %>
+    </h1>
+  <% end %>
 
-  <div class="govuk-panel__body">
-    <%= @body %>
-  </div>
+  <% if display_body? %>
+    <div class="govuk-panel__body">
+      <%= @body || content %>
+    </div>
+  <% end %>
 <% end %>
