@@ -67,6 +67,13 @@ RSpec.describe(GovukComponentsHelper, type: 'helper') do
       css_matcher: %(.govuk-inset-text)
     },
     {
+      helper_method: :govuk_cookie_banner,
+      klass: GovukComponent::CookieBanner,
+      args: [],
+      kwargs: {},
+      css_matcher: %(.govuk-cookie-banner)
+    },
+    {
       helper_method: :govuk_notification_banner,
       klass: GovukComponent::NotificationBanner,
       args: [],
