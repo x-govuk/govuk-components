@@ -2,7 +2,7 @@
 
 <%= render "shared/example", title: 'Phase banner - with text', example: <<~PHASE_BANNER
   render GovukComponent::PhaseBanner.new(
-    phase: 'Gamma',
+    phase_tag: { text: 'Gamma' },
     text: 'This is an experimental service – be cautious')
   PHASE_BANNER
 %>

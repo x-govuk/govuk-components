@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe(GovukComponent::PhaseBanner, type: :component) do
   let(:phase) { 'Gamma' }
   let(:text) { 'This is an experimental service – be cautious' }
-  let(:kwargs) { { phase: phase, text: text } }
+  let(:kwargs) { { phase_tag: { text: phase }, text: text } }
 
   subject! { render_inline(GovukComponent::PhaseBanner.new(**kwargs)) }
 
@@ -34,6 +34,14 @@ RSpec.describe(GovukComponent::PhaseBanner, type: :component) do
           end
         end
       end
+    end
+  end
+
+  context 'customising the tag colour' do
+    let(:kwargs) { { phase_tag: { text: phase, colour: 'orange' }, text: text } }
+
+    specify 'the tag should have the custom colour class' do
+      expect(page).to have_css('strong', class: %w(govuk-tag--orange), text: phase)
     end
   end
 
