@@ -19,7 +19,7 @@ private
   end
 
   def display_body?
-    (@body || content).present?
+    [@body, content].any?(&:present?)
   end
 
   def render?

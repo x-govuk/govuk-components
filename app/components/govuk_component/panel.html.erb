@@ -7,7 +7,7 @@
 
   <% if display_body? %>
     <div class="govuk-panel__body">
-      <%= @body || content %>
+      <%= content.presence || @body %>
     </div>
   <% end %>
 <% end %>

@@ -8,7 +8,7 @@ class GovukComponent::InsetText < GovukComponent::Base
   end
 
   def call
-    tag.div(class: classes, **html_attributes) { @text || content }
+    tag.div(class: classes, **html_attributes) { content.presence || @text }
   end
 
   def render?
