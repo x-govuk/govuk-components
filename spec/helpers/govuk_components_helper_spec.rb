@@ -67,6 +67,13 @@ RSpec.describe(GovukComponentsHelper, type: 'helper') do
       css_matcher: %(.govuk-inset-text)
     },
     {
+      helper_method: :govuk_cookie_banner,
+      klass: GovukComponent::CookieBanner,
+      args: [],
+      kwargs: {},
+      css_matcher: %(.govuk-cookie-banner)
+    },
+    {
       helper_method: :govuk_notification_banner,
       klass: GovukComponent::NotificationBanner,
       args: [],
@@ -85,7 +92,7 @@ RSpec.describe(GovukComponentsHelper, type: 'helper') do
       helper_method: :govuk_phase_banner,
       klass: GovukComponent::PhaseBanner,
       args: [],
-      kwargs: { phase: 'Phase Test' },
+      kwargs: { phase_tag: { text: 'Phase Test' } },
       css_matcher: %(.govuk-phase-banner)
     },
     {

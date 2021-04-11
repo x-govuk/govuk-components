@@ -6,13 +6,15 @@ RSpec.describe(GovukComponent::Header, type: :component) do
   let(:logo) { 'OMG.UK' }
   let(:logo_href) { 'https://omg.uk/bbq' }
   let(:service_name) { 'Amazing service 1' }
+  let(:product_name) { 'Order an amazing ID' }
   let(:service_name_href) { 'https://omg.uk/bbq/amazing-service-1/home' }
   let(:kwargs) do
     {
       logo: logo,
       logo_href: logo_href,
       service_name: service_name,
-      service_name_href: service_name_href
+      service_name_href: service_name_href,
+      product_name: product_name,
     }
   end
 
@@ -35,6 +37,35 @@ RSpec.describe(GovukComponent::Header, type: :component) do
       specify 'no service name related markup should be present' do
         expect(page).not_to have_css('.govuk-header__link--service-name')
       end
+    end
+  end
+
+  describe 'product name' do
+    context 'when a product name is provided' do
+      specify "the product name should be present" do
+        expect(page).to have_css('.govuk-header__product-name', text: product_name)
+      end
+    end
+
+    context 'when no product name is provided' do
+      let(:component) { GovukComponent::Header.new(**kwargs.except(:product_name)) }
+
+      specify 'no product name container should be rendered' do
+        expect(page).not_to have_css('.govuk-header__product-name')
+      end
+    end
+  end
+
+  describe 'product description' do
+    let(:product_description_content) { "No seriously, it's amazing" }
+    subject! do
+      render_inline(GovukComponent::Header.new(**kwargs)) do |component|
+        component.slot(:product_description) { product_description_content }
+      end
+    end
+
+    specify 'when a product description block is provided' do
+      expect(page).to have_css('.govuk-header__logo', text: Regexp.new(product_description_content))
     end
   end
 

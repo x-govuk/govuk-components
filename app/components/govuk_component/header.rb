@@ -1,18 +1,22 @@
 class GovukComponent::Header < GovukComponent::Base
   include ViewComponent::Slotable
 
-  attr_accessor :logo, :logo_href, :service_name, :service_name_href
+  attr_accessor :logo, :logo_href, :service_name, :service_name_href, :product_name
 
   with_slot :item, collection: true, class_name: 'Item'
   wrap_slot :item
 
-  def initialize(logo: 'GOV.UK', logo_href: '/', service_name: nil, service_name_href: '/', classes: [], html_attributes: {})
+  with_slot :product_description
+  wrap_slot :product_description
+
+  def initialize(logo: 'GOV.UK', logo_href: '/', service_name: nil, service_name_href: '/', product_name: nil, classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
     @logo              = logo
     @logo_href         = logo_href
     @service_name      = service_name
     @service_name_href = service_name_href
+    @product_name      = product_name
   end
 
 private

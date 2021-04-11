@@ -11,6 +11,13 @@
 
 <%= render "shared/example", title: 'Header without service name', example: %{render GovukComponent::Header.new(logo: 'Custom')} %>
 
+<%= render "shared/example", title: 'Header with a product name and custom description', example: <<~HEADER
+  render GovukComponent::Header.new(logo: 'GOV.UK', product_name: "Custom product name") do |component|
+    component.slot(:product_description) { render(GovukComponent::Tag.new(text: 'Coming soon!', colour: 'yellow')) }
+  end
+HEADER
+%>
+
 <%= render "shared/example", title: 'Header with navigation', example: <<~HEADER
   render GovukComponent::Header.new(logo: 'Some service') do |component|
     component.slot(:item, title: 'Page A', href: '/#page-a')
