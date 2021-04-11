@@ -8,7 +8,7 @@
 %>
 
 <%= render "shared/example", title: 'Phase banner - with block', example: <<~PHASE_BANNER
-  render GovukComponent::PhaseBanner.new(phase: 'Alpha') do
+  render GovukComponent::PhaseBanner.new(phase_tag: { text: 'Alpha' }) do
     tag.strong('This is an Alpha project, ignore everything')
   end
   PHASE_BANNER

@@ -12,6 +12,15 @@
           </span>
         </span>
       </a>
+      <% if @product_name.present? %>
+        <span class="govuk-header__product-name">
+          <%= @product_name %>
+        </span>
+      <% end %>
+
+      <% if product_description.present? %>
+        <%= product_description.content %>
+      <% end %>
     </div>
     <div class="govuk-header__content">
       <% if @service_name.present? %>
