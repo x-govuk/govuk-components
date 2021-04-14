@@ -95,6 +95,24 @@ RSpec.describe(GovukComponent::Header, type: :component) do
         end
       end
 
+      specify 'a button to expand the menu on mobile is added' do
+        expect(page).to have_css('.govuk-header__content button.govuk-header__menu-button', text: 'Menu')
+      end
+
+      context 'when the button label is overriden' do
+        let(:custom_label) { 'More stuff' }
+
+        subject! do
+          render_inline(GovukComponent::Header.new(**kwargs.merge(menu_button_label: custom_label))) do |component|
+            items.each { |item| component.slot(:item, **item) }
+          end
+        end
+
+        specify 'the button contains the custom text' do
+          expect(page).to have_css('.govuk-header__content button.govuk-header__menu-button', text: custom_label)
+        end
+      end
+
       specify 'the navigation block should be present in the output' do
         expect(page).to have_css('nav')
       end
