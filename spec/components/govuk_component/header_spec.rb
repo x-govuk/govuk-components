@@ -51,7 +51,9 @@ RSpec.describe(GovukComponent::Header, type: :component) do
       let(:component) { GovukComponent::Header.new(**kwargs.except(:product_name)) }
 
       specify 'no product name container should be rendered' do
-        expect(page).not_to have_css('.govuk-header__product-name')
+        expect(page).to have_css('.govuk-header__logo .govuk-header__link') do |link|
+          expect(link).not_to have_css('.govuk-header__product-name')
+        end
       end
     end
   end
@@ -65,7 +67,9 @@ RSpec.describe(GovukComponent::Header, type: :component) do
     end
 
     specify 'when a product description block is provided' do
-      expect(page).to have_css('.govuk-header__logo', text: Regexp.new(product_description_content))
+      expect(page).to have_css('.govuk-header__logo') do |logo|
+        expect(logo).to have_css('.govuk-header__link', text: Regexp.new(product_description_content))
+      end
     end
   end
 
