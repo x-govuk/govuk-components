@@ -81,6 +81,7 @@ RSpec.describe(GovukComponent::Header, type: :component) do
     end
 
     context 'when navigation items are supplied' do
+      let(:custom_classes) { %w(blue shiny) }
       let(:items) do
         [
           { title: 'Item 1', href: '/item-1' },
@@ -90,7 +91,7 @@ RSpec.describe(GovukComponent::Header, type: :component) do
       end
 
       subject! do
-        render_inline(GovukComponent::Header.new(**kwargs)) do |component|
+        render_inline(GovukComponent::Header.new(**kwargs.merge(navigation_classes: custom_classes))) do |component|
           items.each { |item| component.slot(:item, **item) }
         end
       end
@@ -121,6 +122,10 @@ RSpec.describe(GovukComponent::Header, type: :component) do
         page.find('nav') do |nav|
           expect(nav).to have_css('.govuk-header__link', count: items.size)
         end
+      end
+
+      specify 'the class names in navigation_classes should be applied' do
+        expect(page).to have_css(%(.govuk-header__navigation.#{custom_classes.join('.')}))
       end
 
       specify 'the navigation menu markup should be correct' do
