@@ -36,7 +36,7 @@ private
   class Item < GovukComponent::Slot
     attr_accessor :title, :href, :active
 
-    def initialize(title:, href:, active: false, classes: [], html_attributes: {})
+    def initialize(title:, href: nil, active: false, classes: [], html_attributes: {})
       super(classes: classes, html_attributes: html_attributes)
 
       self.title  = title
@@ -50,6 +50,10 @@ private
 
     def active_class
       %w(govuk-header__navigation-item--active) if active?
+    end
+
+    def link?
+      href.present?
     end
 
   private

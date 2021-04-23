@@ -148,6 +148,39 @@ RSpec.describe(GovukComponent::Header, type: :component) do
         end
       end
     end
+
+    context 'when navigation items do not contain links' do
+      let(:custom_classes) { %w(blue shiny) }
+      let(:items) do
+        [
+          { title: 'Item 1' },
+          { title: 'Item 2', active: true },
+          { title: 'Item 3' }
+        ]
+      end
+
+      subject! do
+        render_inline(GovukComponent::Header.new(**kwargs.merge(navigation_classes: custom_classes))) do |component|
+          items.each { |item| component.slot(:item, **item) }
+        end
+      end
+
+      specify 'the correct number of navigation items should be present' do
+        page.find('nav') do |nav|
+          expect(nav).to have_css('.govuk-header__navigation-item', count: items.size)
+        end
+      end
+
+      specify 'the item titles and hrefs should be correct' do
+        page.find('nav') do |nav|
+          items.each { |link| expect(nav).to have_content(link[:title]) }
+        end
+      end
+
+      specify 'no links should be present within navigation items' do
+        expect(page).not_to have_css('.govuk-header__navigation-item a')
+      end
+    end
   end
 
   it_behaves_like 'a component that accepts custom classes'
