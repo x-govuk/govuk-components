@@ -51,7 +51,9 @@ RSpec.describe(GovukComponent::Header, type: :component) do
       let(:component) { GovukComponent::Header.new(**kwargs.except(:product_name)) }
 
       specify 'no product name container should be rendered' do
-        expect(page).not_to have_css('.govuk-header__product-name')
+        expect(page).to have_css('.govuk-header__logo .govuk-header__link') do |link|
+          expect(link).not_to have_css('.govuk-header__product-name')
+        end
       end
     end
   end
@@ -65,7 +67,9 @@ RSpec.describe(GovukComponent::Header, type: :component) do
     end
 
     specify 'when a product description block is provided' do
-      expect(page).to have_css('.govuk-header__logo', text: Regexp.new(product_description_content))
+      expect(page).to have_css('.govuk-header__logo') do |logo|
+        expect(logo).to have_css('.govuk-header__link', text: Regexp.new(product_description_content))
+      end
     end
   end
 
@@ -77,6 +81,7 @@ RSpec.describe(GovukComponent::Header, type: :component) do
     end
 
     context 'when navigation items are supplied' do
+      let(:custom_classes) { %w(blue shiny) }
       let(:items) do
         [
           { title: 'Item 1', href: '/item-1' },
@@ -86,8 +91,26 @@ RSpec.describe(GovukComponent::Header, type: :component) do
       end
 
       subject! do
-        render_inline(GovukComponent::Header.new(**kwargs)) do |component|
+        render_inline(GovukComponent::Header.new(**kwargs.merge(navigation_classes: custom_classes))) do |component|
           items.each { |item| component.slot(:item, **item) }
+        end
+      end
+
+      specify 'a button to expand the menu on mobile is added' do
+        expect(page).to have_css('.govuk-header__content button.govuk-header__menu-button', text: 'Menu')
+      end
+
+      context 'when the button label is overriden' do
+        let(:custom_label) { 'More stuff' }
+
+        subject! do
+          render_inline(GovukComponent::Header.new(**kwargs.merge(menu_button_label: custom_label))) do |component|
+            items.each { |item| component.slot(:item, **item) }
+          end
+        end
+
+        specify 'the button contains the custom text' do
+          expect(page).to have_css('.govuk-header__content button.govuk-header__menu-button', text: custom_label)
         end
       end
 
@@ -99,6 +122,10 @@ RSpec.describe(GovukComponent::Header, type: :component) do
         page.find('nav') do |nav|
           expect(nav).to have_css('.govuk-header__link', count: items.size)
         end
+      end
+
+      specify 'the class names in navigation_classes should be applied' do
+        expect(page).to have_css(%(.govuk-header__navigation.#{custom_classes.join('.')}))
       end
 
       specify 'the navigation menu markup should be correct' do
@@ -119,6 +146,39 @@ RSpec.describe(GovukComponent::Header, type: :component) do
         page.find('nav') do |nav|
           expect(nav).to have_css('li', text: active_link[:title], class: 'govuk-header__navigation-item--active', count: 1)
         end
+      end
+    end
+
+    context 'when navigation items do not contain links' do
+      let(:custom_classes) { %w(blue shiny) }
+      let(:items) do
+        [
+          { title: 'Item 1' },
+          { title: 'Item 2', active: true },
+          { title: 'Item 3' }
+        ]
+      end
+
+      subject! do
+        render_inline(GovukComponent::Header.new(**kwargs.merge(navigation_classes: custom_classes))) do |component|
+          items.each { |item| component.slot(:item, **item) }
+        end
+      end
+
+      specify 'the correct number of navigation items should be present' do
+        page.find('nav') do |nav|
+          expect(nav).to have_css('.govuk-header__navigation-item', count: items.size)
+        end
+      end
+
+      specify 'the item titles and hrefs should be correct' do
+        page.find('nav') do |nav|
+          items.each { |link| expect(nav).to have_content(link[:title]) }
+        end
+      end
+
+      specify 'no links should be present within navigation items' do
+        expect(page).not_to have_css('.govuk-header__navigation-item a')
       end
     end
   end
