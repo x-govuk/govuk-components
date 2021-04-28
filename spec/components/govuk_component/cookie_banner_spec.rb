@@ -25,20 +25,24 @@ RSpec.describe(GovukComponent::CookieBanner, type: :component) do
 
   subject! do
     render_inline(described_class.new(**kwargs)) do |component|
-      component.with(:body) { body }
-      component.with(:actions) { actions }
+      component.body { body }
+      component.actions { actions }
     end
   end
 
   specify "contains a cookies banner with the correct title, body text and actions" do
-    expect(page).to have_css("div", class: %w(govuk-cookie-banner)) do |banner|
-      expect(banner).to have_css("h2", class: %w(govuk-cookie-banner__heading), text: title)
-      within "div.govuk-cookie-banner__content" do
-        expect(banner).to have_content(body)
-      end
-      within "div.govuk-button-group" do
-        expect(banner).to have_content(actions)
-      end
+    expect(page).to have_css("h2", class: %w(govuk-cookie-banner__heading), text: title)
+
+    expect(page).to have_css('.govuk-cookie-banner__content') do |body|
+      expect(body).to have_content('An introductory paragraph.')
+      expect(body).to have_content('A second paragraph.')
+    end
+
+    expect(page).to have_css('.govuk-button-group') do |actions|
+      expect(actions).to have_button(value: 'Accept')
+      expect(actions).to have_button(value: 'Reject')
+
+      expect(actions).to have_link(text: 'View', href: '/view-path')
     end
   end
 
