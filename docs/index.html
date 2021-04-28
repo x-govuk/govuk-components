@@ -11085,13 +11085,13 @@ end
   </section>
   <section>
     <pre><code class="language-ruby">render GovukComponent::CookieBanner.new(title: "Cookies on a service") do |component|
-  component.with(:body) do
+  component.body do
     safe_join([
       tag.p("A paragraph.", class: "govuk-body"),
       tag.p("A second, smaller paragraph.", class: "govuk-body-s"),
     ])
   end
-  component.with(:actions) do
+  component.actions do
     safe_join([
       govuk_link_to("Accept cookies", "#accept", button: true),
       govuk_link_to("Reject cookies", "#reject", button: true),
@@ -11288,8 +11288,8 @@ end
             GOV.UK
           </span>
         </span>
-      </a>
 
+      </a>
     </div>
     <div class="govuk-header__content">
         <a href="/amazing-service/home" class="govuk-header__link govuk-header__link--service-name">
@@ -11326,8 +11326,8 @@ end
             Custom
           </span>
         </span>
-      </a>
 
+      </a>
     </div>
     <div class="govuk-header__content">
 
@@ -11357,12 +11357,12 @@ end
             GOV.UK
           </span>
         </span>
-      </a>
-        <span class="govuk-header__product-name">
-          Custom product name
-        </span>
+          <span class="govuk-header__product-name">
+            Custom product name
+          </span>
 
-        <strong class="govuk-tag govuk-tag--yellow">Coming soon!</strong>
+          <strong class="govuk-tag govuk-tag--yellow">Coming soon!</strong>
+      </a>
     </div>
     <div class="govuk-header__content">
 
@@ -11395,27 +11395,24 @@ end
             Some service
           </span>
         </span>
-      </a>
 
+      </a>
     </div>
     <div class="govuk-header__content">
 
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide navigation menu">
+          Menu
+        </button>
         <nav>
-          <ul class="govuk-header__navigation " aria-label="Top Level Navigation">
+          <ul class="govuk-header__navigation" aria-label="Top Level Navigation">
               <li class="govuk-header__navigation-item">
-                <a class="govuk-header__link" href="/#page-a">
-                  Page A
-                </a>
+                  <a class="govuk-header__link" href="/#page-a">Page A</a>
 </li>              <li class="govuk-header__navigation-item">
-                <a class="govuk-header__link" href="/#page-b">
-                  Page B
-                </a>
+                  <a class="govuk-header__link" href="/#page-b">Page B</a>
 </li>              <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
-                <a class="govuk-header__link" href="/#page-c">
-                  Page C
-                </a>
-</li>          </ul>
-        </nav>
+                  <a class="govuk-header__link" href="/#page-c">Page C</a>
+</li>
+</ul>        </nav>
     </div>
   </div>
 </header>
@@ -11484,7 +11481,7 @@ end
   <h2 class="govuk-heading-s">Button links (this will render a form that POSTs)</h2>
   <section>
     <form class="button_to" method="post" action="/">
-<input class="govuk-button" type="submit" value="Home"><input type="hidden" name="authenticity_token" value="gO2ZB6aa0zCbJlvAjS2+RQbeaQE1nGsltsa9kRiMrmX3wL2VQ2SYNwhKb9yTn5mpxDcLp0UAlfulvtISujqEIQ==">
+<input class="govuk-button" type="submit" value="Home"><input type="hidden" name="authenticity_token" value="SkbREYgXhlkTsFBvzFBNmryjTerr8tpurNPWsCgdll+4Czfs8jCWNmRBUQ7+QrUnVMsyGCl03UHn3vqajQS08Q==">
 </form>
   </section>
   <section>
