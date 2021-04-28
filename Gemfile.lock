@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    govuk-components (1.1.8)
+    govuk-components (1.1.9)
       activemodel (>= 6.0)
       railties (>= 6.0)
       view_component (~> 2.20)
@@ -161,7 +161,7 @@ GEM
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (1.7.0)
-    view_component (2.30.0)
+    view_component (2.31.1)
       activesupport (>= 5.0.0, < 7.0)
     xpath (3.2.0)
       nokogiri (~> 1.8)
