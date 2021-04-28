@@ -1,5 +1,6 @@
 class GovukComponent::CookieBanner < GovukComponent::Base
-  with_content_areas :body, :actions
+  renders_one :body
+  renders_one :actions
 
   attr_accessor :title, :aria_label
 
