@@ -114,6 +114,20 @@ RSpec.describe(GovukComponent::Header, type: :component) do
         end
       end
 
+      context 'when the navigation label is overriden' do
+        let(:custom_label) { 'Top level navigation' }
+
+        subject! do
+          render_inline(GovukComponent::Header.new(**kwargs.merge(navigation_label: custom_label))) do |component|
+            items.each { |item| component.slot(:item, **item) }
+          end
+        end
+
+        specify 'the navigation label contains the custom text' do
+          expect(page).to have_css(%(.govuk-header__navigation[aria-label='#{custom_label}']))
+        end
+      end
+
       specify 'the navigation block should be present in the output' do
         expect(page).to have_css('nav')
       end

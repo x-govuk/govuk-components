@@ -1,7 +1,7 @@
 class GovukComponent::Header < GovukComponent::Base
   include ViewComponent::Slotable
 
-  attr_accessor :logo, :logo_href, :service_name, :service_name_href, :product_name, :menu_button_label
+  attr_accessor :logo, :logo_href, :service_name, :service_name_href, :product_name, :menu_button_label, :navigation_label
 
   with_slot :item, collection: true, class_name: 'Item'
   wrap_slot :item
@@ -9,7 +9,7 @@ class GovukComponent::Header < GovukComponent::Base
   with_slot :product_description
   wrap_slot :product_description
 
-  def initialize(logo: 'GOV.UK', logo_href: '/', service_name: nil, service_name_href: '/', product_name: nil, menu_button_label: 'Menu', classes: [], navigation_classes: [], html_attributes: {})
+  def initialize(logo: 'GOV.UK', logo_href: '/', service_name: nil, service_name_href: '/', product_name: nil, menu_button_label: 'Menu', classes: [], navigation_classes: [], navigation_label: 'Navigation menu', html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
     @logo               = logo
@@ -19,6 +19,7 @@ class GovukComponent::Header < GovukComponent::Base
     @product_name       = product_name
     @menu_button_label  = menu_button_label
     @navigation_classes = navigation_classes
+    @navigation_label   = navigation_label
   end
 
 private
