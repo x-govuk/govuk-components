@@ -30,9 +30,7 @@
       <% end %>
 
       <% if items.any? %>
-        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide navigation menu">
-          <%= menu_button_label %>
-        </button>
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide navigation menu"><%= menu_button_label %></button>
         <nav>
           <%= tag.ul(class: navigation_classes, aria: { label: "Top Level Navigation" }) do %>
             <% items.each do |item| %>
