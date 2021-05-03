@@ -99,7 +99,11 @@ To setup the dummy app:
 `bin/rails db:migrate`
 `bin/rails s`
 
-After adding a new component update the examples page by cd-ing into the dummy app `cd spec/dummy` and running the rake task `bin/rake generate_examples_page`.
+After adding a new component:
+
+* add or update the corresponding specs, and check they pass by running `bundle exec rspec`.
+
+* update the examples page by cd-ing into the dummy app `cd spec/dummy` and running the rake task `bin/rake generate_examples_page`.
 
 ## License
 
