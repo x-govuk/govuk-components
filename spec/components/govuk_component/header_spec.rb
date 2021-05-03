@@ -109,8 +109,8 @@ RSpec.describe(GovukComponent::Header, type: :component) do
           end
         end
 
-        specify 'the button contains the custom text' do
-          expect(page).to have_css('.govuk-header__content button.govuk-header__menu-button', text: custom_label)
+        specify 'the button label contains the custom text' do
+          expect(page).to have_css(%(.govuk-header__menu-button[aria-label='#{custom_label}']))
         end
       end
 
