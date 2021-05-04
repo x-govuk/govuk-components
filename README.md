@@ -99,7 +99,7 @@ To setup the dummy app:
 `bin/rails db:migrate`
 `bin/rails s`
 
-After adding a new component:
+After changing a component or adding a new one:
 
 * add or update the corresponding specs, and check they pass by running `bundle exec rspec`.
 
