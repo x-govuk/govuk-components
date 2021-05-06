@@ -56,6 +56,15 @@ RSpec.describe(GovukComponent::Accordion, type: :component) do
     end
   end
 
+  specify 'the section ids should match button aria-controls' do
+    sections.each do |title, _|
+      id = title.parameterize
+
+      expect(page).to have_css('#' + id)
+      expect(page).to have_css(%(span[aria-controls='#{id}-content']))
+    end
+  end
+
   describe 'summaries' do
     context 'when no summary is present' do
       specify 'no summary should be present' do
