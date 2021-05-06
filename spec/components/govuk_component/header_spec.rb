@@ -109,8 +109,22 @@ RSpec.describe(GovukComponent::Header, type: :component) do
           end
         end
 
-        specify 'the button contains the custom text' do
-          expect(page).to have_css('.govuk-header__content button.govuk-header__menu-button', text: custom_label)
+        specify 'the button label contains the custom text' do
+          expect(page).to have_css(%(.govuk-header__menu-button[aria-label='#{custom_label}']))
+        end
+      end
+
+      context 'when the navigation label is overriden' do
+        let(:custom_label) { 'Top level navigation' }
+
+        subject! do
+          render_inline(GovukComponent::Header.new(**kwargs.merge(navigation_label: custom_label))) do |component|
+            items.each { |item| component.slot(:item, **item) }
+          end
+        end
+
+        specify 'the navigation label contains the custom text' do
+          expect(page).to have_css(%(.govuk-header__navigation[aria-label='#{custom_label}']))
         end
       end
 
