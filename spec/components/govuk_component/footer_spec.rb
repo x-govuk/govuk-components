@@ -102,7 +102,7 @@ RSpec.describe(GovukComponent::Footer, type: :component) do
 
       subject! do
         render_inline(GovukComponent::Footer.new(**kwargs)) do |footer|
-          footer.slot(:meta_content) { custom_content }
+          footer.meta_content { custom_content }
         end
       end
 
@@ -123,7 +123,7 @@ RSpec.describe(GovukComponent::Footer, type: :component) do
 
     subject! do
       render_inline(GovukComponent::Footer.new(**kwargs)) do |footer|
-        footer.slot(:meta) { custom_content }
+        footer.meta { custom_content }
       end
     end
 

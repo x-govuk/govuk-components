@@ -62,7 +62,7 @@ RSpec.describe(GovukComponent::Header, type: :component) do
     let(:product_description_content) { "No seriously, it's amazing" }
     subject! do
       render_inline(GovukComponent::Header.new(**kwargs)) do |component|
-        component.slot(:product_description) { product_description_content }
+        component.product_description { product_description_content }
       end
     end
 
@@ -92,7 +92,7 @@ RSpec.describe(GovukComponent::Header, type: :component) do
 
       subject! do
         render_inline(GovukComponent::Header.new(**kwargs.merge(navigation_classes: custom_classes))) do |component|
-          items.each { |item| component.slot(:item, **item) }
+          items.each { |item| component.item(**item) }
         end
       end
 
@@ -105,7 +105,7 @@ RSpec.describe(GovukComponent::Header, type: :component) do
 
         subject! do
           render_inline(GovukComponent::Header.new(**kwargs.merge(menu_button_label: custom_label))) do |component|
-            items.each { |item| component.slot(:item, **item) }
+            items.each { |item| component.item(**item) }
           end
         end
 
@@ -119,7 +119,7 @@ RSpec.describe(GovukComponent::Header, type: :component) do
 
         subject! do
           render_inline(GovukComponent::Header.new(**kwargs.merge(navigation_label: custom_label))) do |component|
-            items.each { |item| component.slot(:item, **item) }
+            items.each { |item| component.item(**item) }
           end
         end
 
@@ -175,7 +175,7 @@ RSpec.describe(GovukComponent::Header, type: :component) do
 
       subject! do
         render_inline(GovukComponent::Header.new(**kwargs.merge(navigation_classes: custom_classes))) do |component|
-          items.each { |item| component.slot(:item, **item) }
+          items.each { |item| component.item(**item) }
         end
       end
 

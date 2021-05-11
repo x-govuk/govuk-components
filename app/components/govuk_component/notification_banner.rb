@@ -1,9 +1,8 @@
 class GovukComponent::NotificationBanner < GovukComponent::Base
   attr_reader :title, :title_id, :success, :title_heading_level, :disable_auto_focus
 
-  include ViewComponent::Slotable
-  with_slot :heading, collection: true, class_name: 'Heading'
-  wrap_slot(:heading)
+  renders_many :headings, "Heading"
+  wrap_slot :heading
 
   def initialize(title:, success: false, title_heading_level: 2, title_id: "govuk-notification-banner-title", disable_auto_focus: nil, classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
@@ -33,13 +32,19 @@ class GovukComponent::NotificationBanner < GovukComponent::Base
     "h#{title_heading_level}"
   end
 
-  class Heading < ViewComponent::Slot
+  class Heading < GovukComponent::Base
     attr_accessor :text, :link_target, :link_text
 
-    def initialize(text: nil, link_text: nil, link_target: nil)
+    def initialize(text: nil, link_text: nil, link_target: nil, classes: [], html_attributes: {})
+      super(classes: classes, html_attributes: html_attributes)
+
       @text        = text
       @link_text   = link_text
       @link_target = link_target
+    end
+
+    def call
+      content
     end
 
     def default_classes

@@ -1,7 +1,5 @@
 class GovukComponent::SummaryList < GovukComponent::Base
-  include ViewComponent::Slotable
-
-  with_slot :row, collection: true, class_name: 'Row'
+  renders_many :rows, "Row"
   wrap_slot :row
 
   def any_row_has_actions?
@@ -14,7 +12,7 @@ private
     %w(govuk-summary-list)
   end
 
-  class Row < GovukComponent::Slot
+  class Row < GovukComponent::Base
     attr_accessor :key, :value, :action
 
     def initialize(key:, value:, action: nil, classes: [], html_attributes: {})

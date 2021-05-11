@@ -13,7 +13,7 @@
   </ul>
   <% tabs.each.with_index do |tab, i| %>
     <%= tag.div(class: tab.classes.append(tab.hidden_class(i)), id: tab.id, **tab.html_attributes) do %>
-      <%= tab.content %>
+      <%= tab %>
     <% end %>
   <% end %>
 <% end %>

@@ -1,10 +1,8 @@
 class GovukComponent::Footer < GovukComponent::Base
-  include ViewComponent::Slotable
-
-  with_slot :meta_content
+  renders_one :meta_content
   wrap_slot :meta_content
 
-  with_slot :meta
+  renders_one :meta
   wrap_slot :meta
 
   attr_accessor :meta_items, :meta_items_title, :meta_licence, :copyright

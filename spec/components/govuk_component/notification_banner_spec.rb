@@ -18,7 +18,7 @@ RSpec.describe(GovukComponent::NotificationBanner, type: :component) do
   describe "rendering a notification banner with headings" do
     before do
       render_inline(GovukComponent::NotificationBanner.new(**kwargs)) do |nb|
-        nb.slot(:heading, text: "omg")
+        nb.heading(text: "omg")
         additional_content
       end
     end
@@ -59,7 +59,7 @@ RSpec.describe(GovukComponent::NotificationBanner, type: :component) do
       let(:heading_text) { "What a nice heading" }
       before do
         render_inline(GovukComponent::NotificationBanner.new(**kwargs)) do |nb|
-          nb.slot(:heading) { heading_text }
+          nb.heading { heading_text }
         end
       end
 
@@ -71,7 +71,7 @@ RSpec.describe(GovukComponent::NotificationBanner, type: :component) do
         let(:block_content) { "should not be rendered" }
         before do
           render_inline(GovukComponent::NotificationBanner.new(**kwargs)) do |nb|
-            nb.slot(:heading, text: heading_text) { block_content }
+            nb.heading(text: heading_text) { block_content }
           end
         end
 
@@ -96,8 +96,8 @@ RSpec.describe(GovukComponent::NotificationBanner, type: :component) do
       let(:heading_two) { "Heading two" }
       before do
         render_inline(described_class.send(:new, **kwargs)) do |nb|
-          nb.slot(:heading, text: heading_one)
-          nb.slot(:heading, text: heading_two)
+          nb.heading(text: heading_one)
+          nb.heading(text: heading_two)
         end
       end
 
@@ -116,7 +116,7 @@ RSpec.describe(GovukComponent::NotificationBanner, type: :component) do
 
       before do
         render_inline(described_class.send(:new, **kwargs)) do |nb|
-          nb.slot(:heading, text: heading, link_text: link_text, link_target: link_target)
+          nb.heading(text: heading, link_text: link_text, link_target: link_target)
         end
       end
 
@@ -149,7 +149,7 @@ RSpec.describe(GovukComponent::NotificationBanner, type: :component) do
     describe "custom classes and attributes" do
       before do
         render_inline(described_class.send(:new, **kwargs.merge(classes: custom_classes))) do |nb|
-          nb.slot(:heading, text: "A title")
+          nb.heading(text: "A title")
         end
       end
 
@@ -173,7 +173,7 @@ RSpec.describe(GovukComponent::NotificationBanner, type: :component) do
     describe "custom html attributes" do
       before do
         render_inline(described_class.send(:new, **kwargs)) do |nb|
-          nb.slot(:heading, text: "A title")
+          nb.heading(text: "A title")
         end
       end
 
@@ -185,6 +185,15 @@ RSpec.describe(GovukComponent::NotificationBanner, type: :component) do
           expect(page).to have_css("div.govuk-notification-banner[role='#{custom_role}']")
         end
       end
+    end
+
+    context 'slot arguments' do
+      let(:slot) { :heading }
+      let(:content) { -> { "some swanky heading content" } }
+      let(:slot_kwargs) { { text: "some heading text" } }
+
+      it_behaves_like 'a component with a slot that accepts custom classes'
+      it_behaves_like 'a component with a slot that accepts custom html attributes'
     end
 
     it_behaves_like 'a component with a DSL wrapper' do

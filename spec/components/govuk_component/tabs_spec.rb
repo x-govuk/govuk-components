@@ -18,7 +18,7 @@ RSpec.describe(GovukComponent::Tabs, type: :component) do
   subject! do
     render_inline(GovukComponent::Tabs.new(**kwargs)) do |component|
       tabs.each do |title, content|
-        component.slot(:tab, title: title) { content }
+        component.tab(title: title) { content }
       end
     end
   end

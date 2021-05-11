@@ -17,7 +17,7 @@ RSpec.describe(GovukComponent::Accordion, type: :component) do
   subject! do
     render_inline(GovukComponent::Accordion.new) do |component|
       sections.each do |title, content|
-        component.slot(:section, title: title) { content }
+        component.section(title: title) { content }
       end
     end
   end
@@ -77,7 +77,7 @@ RSpec.describe(GovukComponent::Accordion, type: :component) do
       let(:summary_content) { 'summary content' }
       subject! do
         render_inline(GovukComponent::Accordion.new) do |component|
-          component.slot(:section, title: title, summary: summary_content) { 'abc' }
+          component.section(title: title, summary: summary_content) { 'abc' }
         end
       end
 
@@ -100,8 +100,8 @@ RSpec.describe(GovukComponent::Accordion, type: :component) do
 
     it 'sections should have correct expanded state' do
       render_inline(GovukComponent::Accordion.new) do |component|
-        component.slot(:section, expanded: true, title: 'section 1', html_attributes: { id: 'section_1' }) { 'abc' }
-        component.slot(:section, title: 'section 2', html_attributes: { id: 'section_2' }) { 'def' }
+        component.section(expanded: true, title: 'section 1', html_attributes: { id: 'section_1' }) { 'abc' }
+        component.section(title: 'section 2', html_attributes: { id: 'section_2' }) { 'def' }
       end
       expect(page).to have_css('#section_1.govuk-accordion__section.govuk-accordion__section--expanded')
       expect(page).to have_css('#section_2.govuk-accordion__section')

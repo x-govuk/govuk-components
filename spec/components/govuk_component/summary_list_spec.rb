@@ -19,7 +19,7 @@ RSpec.describe(GovukComponent::SummaryList, type: :component) do
 
   subject! do
     render_inline(GovukComponent::SummaryList.new(**kwargs)) do |component|
-      rows.each { |row| component.slot(:row, **row) }
+      rows.each { |row| component.row(**row) }
     end
   end
 
@@ -46,7 +46,7 @@ RSpec.describe(GovukComponent::SummaryList, type: :component) do
         render_inline(GovukComponent::SummaryList.new(**kwargs)) do |component|
           rows
             .reject { |row| row.key?(:action) }
-            .each { |row| component.slot(:row, **row) }
+            .each { |row| component.row(**row) }
         end
       end
 

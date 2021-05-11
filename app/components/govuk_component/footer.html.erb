@@ -2,7 +2,7 @@
   <div class="govuk-width-container ">
     <div class="govuk-footer__meta">
       <% if meta.present? %>
-        <%= meta.content %>
+        <%= meta %>
       <% else %>
         <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
           <% if meta_items.any? %>
@@ -28,7 +28,7 @@
           <% end %>
 
           <% if meta_content.present? %>
-            <%= meta_content.content %>
+            <%= meta_content %>
           <% end %>
         </div>
         <div class="govuk-footer__meta">

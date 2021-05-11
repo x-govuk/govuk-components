@@ -6,16 +6,16 @@
   </div>
   <div class="govuk-notification-banner__content">
     <% headings.each do |heading| %>
-      <p class="govuk-notification-banner__heading">
+      <%= tag.p(class: heading.classes, **heading.html_attributes) do %>
         <% if heading.text.present? %>
           <%= heading.text %>
           <% if heading.link_target && heading.link_text %>
             <%= link_to(heading.link_text, heading.link_target, class: "govuk-notification-banner__link") %>.
           <% end %>
         <% else %>
-          <%= heading.content %>
+          <%= heading %>
         <% end %>
-      </p>
+      <% end %>
     <% end %>
 
     <%= content %>

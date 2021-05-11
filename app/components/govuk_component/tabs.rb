@@ -1,9 +1,7 @@
 class GovukComponent::Tabs < GovukComponent::Base
-  include ViewComponent::Slotable
-
   attr_accessor :title
 
-  with_slot :tab, collection: true, class_name: 'Tab'
+  renders_many :tabs, "Tab"
   wrap_slot :tab
 
   def initialize(title:, classes: [], html_attributes: {})
@@ -18,13 +16,17 @@ private
     %w(govuk-tabs)
   end
 
-  class Tab < GovukComponent::Slot
+  class Tab < GovukComponent::Base
     attr_accessor :title
 
     def initialize(title:, classes: [], html_attributes: {})
       super(classes: classes, html_attributes: html_attributes)
 
       self.title = title
+    end
+
+    def call
+      content
     end
 
     def id(prefix: nil)
