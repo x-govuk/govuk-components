@@ -39,3 +39,8 @@ Style/AsciiComments:
   Enabled: false
 Style/FormatString:
   EnforcedStyle: format
+Gemspec/RequiredRubyVersion:
+  Enabled: false
+Style/MixinUsage:
+  Exclude:
+    - spec/spec_helper.rb
