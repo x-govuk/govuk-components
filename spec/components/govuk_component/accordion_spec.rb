@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe(GovukComponent::Accordion, type: :component) do
+RSpec.describe(GovukComponent::Accordion, type: :component, version: 1) do
   include_context "helpers"
 
   let(:id) { 'fancy-accordion' }

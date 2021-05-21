@@ -13,7 +13,7 @@ class HelperComponentMapping
   end
 end
 
-RSpec.describe(GovukComponentsHelper, type: 'helper') do
+RSpec.describe(GovukComponentsHelper, type: 'helper', version: 1) do
   include_context 'helpers'
 
   [
@@ -111,7 +111,7 @@ RSpec.describe(GovukComponentsHelper, type: 'helper') do
     },
     {
       helper_method: :govuk_tabs,
-      klass: GovukComponent::Tabs,
+      klass: GovukComponent::TabComponent,
       args: [],
       kwargs: { title: 'Tabs' },
       css_matcher: %(.govuk-tabs)

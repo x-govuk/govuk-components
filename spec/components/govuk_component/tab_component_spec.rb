@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe(GovukComponent::TabComponent, type: :component) do
+RSpec.describe(GovukComponent::TabComponent, type: :component, version: 2) do
   include_context 'helpers'
 
   let(:title) { 'My favourite tabs' }

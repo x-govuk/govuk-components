@@ -4,10 +4,10 @@ class GovukComponent::Header < GovukComponent::Base
   attr_accessor :logo, :logo_href, :service_name, :service_name_href, :product_name, :menu_button_label, :navigation_label
 
   with_slot :item, collection: true, class_name: 'Item'
-  wrap_slot :item
+  # wrap_slot :item
 
   with_slot :product_description
-  wrap_slot :product_description
+  # wrap_slot :product_description
 
   def initialize(logo: 'GOV.UK', logo_href: '/', service_name: nil, service_name_href: '/', product_name: nil, menu_button_label: 'Show or hide navigation menu', classes: [], navigation_classes: [], navigation_label: 'Navigation menu', html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)

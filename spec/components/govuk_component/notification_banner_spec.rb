@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe(GovukComponent::NotificationBanner, type: :component) do
+RSpec.describe(GovukComponent::NotificationBanner, type: :component, version: 1) do
   include_context 'helpers'
 
   let(:title) { "A notification banner" }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe(GovukComponent::SummaryList, type: :component) do
+RSpec.describe(GovukComponent::SummaryList, type: :component, version: 1) do
   include_context 'helpers'
 
   let(:action_link_text) { 'Something' }
