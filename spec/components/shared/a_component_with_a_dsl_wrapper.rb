@@ -11,11 +11,9 @@ shared_examples 'a component with a DSL wrapper' do
   describe 'wrapping slots' do
     subject { described_class.new(**kwargs, &block) }
 
-    it { is_expected.to respond_to(:slot) }
-
     specify 'wraps all specified slots' do
       wrapped_slots.each do |wrapped_slot|
-        is_expected.to respond_to(%(add_#{wrapped_slot}))
+        is_expected.to respond_to(wrapped_slot)
       end
     end
   end
