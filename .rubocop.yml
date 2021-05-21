@@ -9,6 +9,8 @@ AllCops:
   Exclude:
     - govuk_design_system_formbuilder.gemspec
     - spec/dummy/**/*
+Lint/MissingSuper:
+  Enabled: false
 Rails/Date:
   Enabled: false
 Rails/ActiveSupportAliases:
@@ -18,6 +20,8 @@ Style/StringLiterals:
 Style/TrailingCommaInArguments:
   Enabled: false
 Style/TrailingCommaInHashLiteral:
+  Enabled: false
+Style/StringConcatenation:
   Enabled: false
 Style/TrailingCommaInArrayLiteral:
   Enabled: false

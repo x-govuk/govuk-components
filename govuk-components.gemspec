@@ -24,12 +24,13 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  spec.add_dependency "railties", ">= 6.0"
   spec.add_dependency "activemodel", ">= 6.0"
-  spec.add_dependency "view_component", "~> 2.20"
+  spec.add_dependency "railties", ">= 6.0"
+  spec.add_dependency "view_component", "~> 2.31.1"
 
   spec.add_development_dependency "capybara"
   spec.add_development_dependency "pry-byebug"
+  spec.add_development_dependency "rspec-html-matchers", "~> 0.9"
   spec.add_development_dependency "rspec-rails"
   spec.add_development_dependency "rubocop-govuk"
   spec.add_development_dependency "sassc-rails"
