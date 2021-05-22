@@ -118,7 +118,7 @@ RSpec.describe(GovukComponentsHelper, type: 'helper', version: 1) do
     },
     {
       helper_method: :govuk_tag,
-      klass: GovukComponent::Tag,
+      klass: GovukComponent::TagComponent,
       args: [],
       kwargs: { text: 'Tag' },
       css_matcher: %(.govuk-tag)

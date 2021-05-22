@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 RSpec.describe(GovukComponent::TabComponent, type: :component, version: 2) do
+  include_context 'setup'
   include_context 'helpers'
 
   let(:title) { 'My favourite tabs' }
-  let(:component_css_class) { '.govuk-tabs' }
+  let(:component_css_class) { 'govuk-tabs' }
 
   let(:tabs) do
     {
@@ -27,8 +28,8 @@ RSpec.describe(GovukComponent::TabComponent, type: :component, version: 2) do
 
   let(:html) { Nokogiri.parse(rendered_component) }
 
-  specify 'title is set correctly' do
-    expect(rendered_component).to have_tag(component_css_class) do
+  specify 'renders h2 element with right class and title' do
+    expect(rendered_component).to have_tag(component_css_class_matcher) do
       with_tag('h2', with: { class: 'govuk-tabs__title' }, text: title_matcher)
     end
   end

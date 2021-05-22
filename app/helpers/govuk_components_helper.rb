@@ -14,7 +14,7 @@ module GovukComponentsHelper
     govuk_start_now_button: 'GovukComponent::StartNowButton',
     govuk_summary_list: 'GovukComponent::SummaryList',
     govuk_tabs: 'GovukComponent::TabComponent',
-    govuk_tag: 'GovukComponent::Tag',
+    govuk_tag: 'GovukComponent::TagComponent',
     govuk_warning: 'GovukComponent::Warning',
   }.each do |name, klass|
     define_method(name) do |*args, **kwargs, &block|
