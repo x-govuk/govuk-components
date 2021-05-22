@@ -124,8 +124,8 @@ RSpec.describe(GovukComponentsHelper, type: 'helper', version: 1) do
       css_matcher: %(.govuk-tag)
     },
     {
-      helper_method: :govuk_warning,
-      klass: GovukComponent::Warning,
+      helper_method: :govuk_warning_text,
+      klass: GovukComponent::WarningTextComponent,
       args: [],
       kwargs: { text: 'Warning' },
       css_matcher: %(.govuk-warning-text)
