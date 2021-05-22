@@ -84,12 +84,4 @@ RSpec.describe(GovukComponent::SummaryList, type: :component, version: 1) do
     it_behaves_like 'a component with a slot that accepts custom classes'
     it_behaves_like 'a component with a slot that accepts custom html attributes'
   end
-
-  it_behaves_like 'a component with a DSL wrapper' do
-    let(:helper_name) { 'govuk_summary_list' }
-    let(:wrapped_slots) { %i(row) }
-    let(:block) { nil }
-
-    let(:expected_css) { '.govuk-summary-list' }
-  end
 end
