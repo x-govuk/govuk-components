@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe(GovukComponent::Header, type: :component) do
+RSpec.describe(GovukComponent::Header, type: :component, version: 1) do
   include_context "helpers"
 
   let(:logo) { 'OMG.UK' }

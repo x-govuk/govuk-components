@@ -2,7 +2,7 @@ class GovukComponent::SummaryList < GovukComponent::Base
   include ViewComponent::Slotable
 
   with_slot :row, collection: true, class_name: 'Row'
-  wrap_slot :row
+  # wrap_slot :row
 
   def any_row_has_actions?
     rows.any? { |r| r.action.present? }

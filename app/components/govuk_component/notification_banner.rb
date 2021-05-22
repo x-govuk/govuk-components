@@ -3,7 +3,7 @@ class GovukComponent::NotificationBanner < GovukComponent::Base
 
   include ViewComponent::Slotable
   with_slot :heading, collection: true, class_name: 'Heading'
-  wrap_slot(:heading)
+  # wrap_slot(:heading)
 
   def initialize(title:, success: false, title_heading_level: 2, title_id: "govuk-notification-banner-title", disable_auto_focus: nil, classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)

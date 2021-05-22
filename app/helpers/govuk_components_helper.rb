@@ -13,7 +13,7 @@ module GovukComponentsHelper
     govuk_phase_banner: 'GovukComponent::PhaseBanner',
     govuk_start_now_button: 'GovukComponent::StartNowButton',
     govuk_summary_list: 'GovukComponent::SummaryList',
-    govuk_tabs: 'GovukComponent::Tabs',
+    govuk_tabs: 'GovukComponent::TabComponent',
     govuk_tag: 'GovukComponent::Tag',
     govuk_warning: 'GovukComponent::Warning',
   }.each do |name, klass|

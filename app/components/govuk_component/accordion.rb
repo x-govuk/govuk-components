@@ -2,7 +2,7 @@ class GovukComponent::Accordion < GovukComponent::Base
   include ViewComponent::Slotable
 
   with_slot :section, collection: true, class_name: 'Section'
-  wrap_slot :section
+  # wrap_slot :section
 
   attr_accessor :id
 

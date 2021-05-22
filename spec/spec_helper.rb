@@ -64,6 +64,7 @@ RSpec.configure do |config|
 
   # Allow ViewComponents to be tested
   config.include ViewComponent::TestHelpers, type: :component
+  config.include RSpecHtmlMatchers
 end
 
 Capybara.configure do |config|
