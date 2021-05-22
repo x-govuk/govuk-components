@@ -186,15 +186,6 @@ RSpec.describe(GovukComponent::NotificationBanner, type: :component, version: 1)
         end
       end
     end
-
-    it_behaves_like 'a component with a DSL wrapper' do
-      let(:helper_name) { 'govuk_notification_banner' }
-      let(:wrapped_slots) { %i(heading) }
-
-      let(:expected_css) { '.govuk-notification-banner' }
-
-      let(:block) { ->(banner) { banner.add_heading(text: "What a nice heading!") } }
-    end
   end
 
   describe "rendering a notification banner with arbitrary content" do
