@@ -4,7 +4,7 @@ shared_examples 'a component with a DSL wrapper' do
     subject { Capybara::Node::Simple.new(component) }
 
     specify 'renders the component' do
-      expect(subject).to have_css(expected_css)
+      expect(subject).to have_css(component_css_class)
     end
   end
 

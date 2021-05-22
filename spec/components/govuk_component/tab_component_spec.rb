@@ -4,6 +4,7 @@ RSpec.describe(GovukComponent::TabComponent, type: :component, version: 2) do
   include_context 'helpers'
 
   let(:title) { 'My favourite tabs' }
+  let(:component_css_class) { '.govuk-tabs' }
 
   let(:tabs) do
     {
@@ -26,17 +27,17 @@ RSpec.describe(GovukComponent::TabComponent, type: :component, version: 2) do
 
   let(:html) { Nokogiri.parse(rendered_component) }
 
-  specify 'the tabs list should have the correct title' do
-    expect(rendered_component).to have_tag('.govuk-tabs') do
+  specify 'title is set correctly' do
+    expect(rendered_component).to have_tag(component_css_class) do
       with_tag('h2', with: { class: 'govuk-tabs__title' }, text: title_matcher)
     end
   end
 
-  specify 'there should be the correct number of tabs' do
+  specify 'the right number of tabs are rendered' do
     expect(rendered_component).to have_tag('li', with: { class: 'govuk-tabs__list-item' }, count: tabs.size)
   end
 
-  specify 'the tabs should have the correct titles and hrefs' do
+  specify 'the tabs have the correct titles and hrefs' do
     tabs.each_key do |tab_title|
       expect(rendered_component).to(
         have_tag('a', with: { href: '#' + tab_title.parameterize }, text: tab_title)
@@ -50,11 +51,11 @@ RSpec.describe(GovukComponent::TabComponent, type: :component, version: 2) do
     expect(rendered_component).to have_tag('li', with: { class: selected_tab_classes }, count: 1)
   end
 
-  specify 'there should be one panel per tab' do
+  specify 'there is one panel per tab' do
     expect(rendered_component).to have_tag('div', with: { class: 'govuk-tabs__panel' }, count: tabs.size)
   end
 
-  specify 'each panel should contain the correct content' do
+  specify 'each panel contains the right content' do
     tabs.each do |title, content|
       expect(rendered_component).to have_tag('div', with: { id: title.parameterize, class: 'govuk-tabs__panel' }) do
         with_text(content)
@@ -62,7 +63,7 @@ RSpec.describe(GovukComponent::TabComponent, type: :component, version: 2) do
     end
   end
 
-  specify 'all panels except the first should be hidden' do
+  specify 'first panel is shown, the rest are hidden' do
     visible_panel_id = tabs.keys.first.parameterize
     hidden_panel_ids = tabs.keys[1..].map(&:parameterize)
 
@@ -73,7 +74,7 @@ RSpec.describe(GovukComponent::TabComponent, type: :component, version: 2) do
     end
   end
 
-  specify 'tab link references and panel ids should correspond' do
+  specify 'tabs are associated with the right panels' do
     tab_link_hrefs = html.css('a.govuk-tabs__tab').map { |tab| tab[:href].tr('#', '') }
     panel_ids = html.css('div.govuk-tabs__panel').map { |panel| panel[:id] }
 
@@ -96,7 +97,5 @@ RSpec.describe(GovukComponent::TabComponent, type: :component, version: 2) do
     let(:helper_name) { 'govuk_tabs' }
     let(:wrapped_slots) { %i(tab) }
     let(:block) { nil }
-
-    let(:expected_css) { '.govuk-tabs' }
   end
 end
