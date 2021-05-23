@@ -1,8 +1,5 @@
-class GovukComponent::Accordion < GovukComponent::Base
-  include ViewComponent::Slotable
-
-  with_slot :section, collection: true, class_name: 'Section'
-  # wrap_slot :section
+class GovukComponent::AccordionComponent < GovukComponent::Base
+  renders_many :sections, "Section"
 
   attr_accessor :id
 
@@ -18,7 +15,7 @@ private
     %w(govuk-accordion)
   end
 
-  class Section < GovukComponent::Slot
+  class Section < GovukComponent::Base
     attr_accessor :title, :summary, :expanded
 
     alias_method :expanded?, :expanded
@@ -37,6 +34,10 @@ private
 
     def classes
       super + (expanded? ? %w(govuk-accordion__section--expanded) : [])
+    end
+
+    def call
+      tag.div(content, id: id(suffix: 'content'), class: %w(govuk-accordion__section-content), aria: { labelledby: id })
     end
 
   private

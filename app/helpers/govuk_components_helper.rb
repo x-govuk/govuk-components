@@ -1,6 +1,6 @@
 module GovukComponentsHelper
   {
-    govuk_accordion: 'GovukComponent::Accordion',
+    govuk_accordion: 'GovukComponent::AccordionComponent',
     govuk_back_link: 'GovukComponent::BackLink',
     govuk_breadcrumbs: 'GovukComponent::Breadcrumbs',
     govuk_cookie_banner: 'GovukComponent::CookieBanner',
