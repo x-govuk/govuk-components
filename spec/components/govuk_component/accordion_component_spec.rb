@@ -51,7 +51,7 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component, version: 2)
       end
     end
 
-    specify 'the section ID matches the content aria-labelledby' do
+    specify 'each section ID matches the content aria-labelledby' do
       sections.each_key do |title|
         id = title.parameterize
 
@@ -60,11 +60,11 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component, version: 2)
       end
     end
 
-    specify 'the section IDs match the button aria-controls' do
+    specify 'each section ID matches the button aria-controls' do
       sections.each_key do |title|
         id = title.parameterize
 
-        expect(rendered_component).to have_tag('span', with: { id: id, class: 'govuk-accordion__section-button' })
+        expect(rendered_component).to have_tag('div', with: { id: %(#{id}-content) })
         expect(rendered_component).to have_tag('span', with: { 'aria-controls' => %(#{id}-content) })
       end
     end
