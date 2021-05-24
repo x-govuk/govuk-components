@@ -9,7 +9,7 @@
           <%= tag.div(section.summary, id: section.id(suffix: 'summary'), class: %w(govuk-accordion__section-summary govuk-body)) %>
         <% end %>
       </div>
-      <%= tag.div(section.content, id: section.id(suffix: 'content'), class: %w(govuk-accordion__section-content), aria: { labelledby: section.id }) %>
+      <%= section %>
     <% end %>
   <% end %>
 <% end %>

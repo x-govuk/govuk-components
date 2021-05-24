@@ -19,7 +19,7 @@ RSpec.describe(GovukComponentsHelper, type: 'helper', version: 1) do
   [
     {
       helper_method: :govuk_accordion,
-      klass: GovukComponent::Accordion,
+      klass: GovukComponent::AccordionComponent,
       args: [],
       kwargs: {},
       css_matcher: %(.govuk-accordion)
