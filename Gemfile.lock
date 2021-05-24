@@ -161,7 +161,7 @@ GEM
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (1.7.0)
-    view_component (2.31.1)
+    view_component (2.32.0)
       activesupport (>= 5.0.0, < 7.0)
     xpath (3.2.0)
       nokogiri (~> 1.8)
