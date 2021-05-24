@@ -1,8 +1,8 @@
 module GovukComponentsHelper
   {
     govuk_accordion: 'GovukComponent::AccordionComponent',
-    govuk_back_link: 'GovukComponent::BackLink',
-    govuk_breadcrumbs: 'GovukComponent::Breadcrumbs',
+    govuk_back_link: 'GovukComponent::BackLinkComponent',
+    govuk_breadcrumbs: 'GovukComponent::BreadcrumbsComponent',
     govuk_cookie_banner: 'GovukComponent::CookieBanner',
     govuk_details: 'GovukComponent::Details',
     govuk_footer: 'GovukComponent::Footer',
