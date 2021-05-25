@@ -11,7 +11,7 @@ RSpec.describe(GovukComponent::BackLinkComponent, type: :component, version: 2) 
   subject! { render_inline(GovukComponent::BackLinkComponent.new(**kwargs)) }
 
   specify 'renders a link with the right href and text' do
-    expect(page).to have_css('a', text: text, class: component_css_class)
+    expect(rendered_component).to have_tag('a', text: text, with: { href: href, class: component_css_class })
   end
 
   it_behaves_like 'a component that accepts custom classes'
