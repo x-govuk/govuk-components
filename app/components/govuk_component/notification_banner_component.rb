@@ -1,9 +1,7 @@
-class GovukComponent::NotificationBanner < GovukComponent::Base
+class GovukComponent::NotificationBannerComponent < GovukComponent::Base
   attr_reader :title, :title_id, :success, :title_heading_level, :disable_auto_focus
 
-  include ViewComponent::Slotable
-  with_slot :heading, collection: true, class_name: 'Heading'
-  # wrap_slot(:heading)
+  renders_many :headings, "Heading"
 
   def initialize(title:, success: false, title_heading_level: 2, title_id: "govuk-notification-banner-title", disable_auto_focus: nil, classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
@@ -15,16 +13,16 @@ class GovukComponent::NotificationBanner < GovukComponent::Base
     @disable_auto_focus  = disable_auto_focus
   end
 
-  def success_class
-    %(govuk-notification-banner--success) if success?
-  end
-
-  def success?
-    @success
-  end
-
   def render?
     headings.any? || content.present?
+  end
+
+  def classes
+    super.append(success_class).compact
+  end
+
+  def success_class
+    %(govuk-notification-banner--success) if success
   end
 
   def title_tag
@@ -33,13 +31,29 @@ class GovukComponent::NotificationBanner < GovukComponent::Base
     "h#{title_heading_level}"
   end
 
-  class Heading < ViewComponent::Slot
-    attr_accessor :text, :link_target, :link_text
+  class Heading < GovukComponent::Base
+    attr_accessor :text, :link_href, :link_text
 
-    def initialize(text: nil, link_text: nil, link_target: nil)
+    def initialize(text: nil, link_text: nil, link_href: nil, classes: [], html_attributes: {})
+      super(classes: classes, html_attributes: html_attributes)
+
       @text        = text
       @link_text   = link_text
-      @link_target = link_target
+      @link_href   = link_href
+    end
+
+    def call
+      tag.div(class: classes, **html_attributes) do
+        if text.present?
+          safe_join([text, link].compact)
+        else
+          content
+        end
+      end
+    end
+
+    def link
+      link_to(link_text, link_href, class: 'govuk-notification-banner__link') if link_text.present? && link_href.present?
     end
 
     def default_classes
