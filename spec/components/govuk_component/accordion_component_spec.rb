@@ -111,12 +111,12 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component, version: 2)
         component.section(title: 'section 2', html_attributes: { id: 'section_2' }) { 'def' }
       end
 
-      expect(rendered_component).to have_tag('#section_1.govuk-accordion__section.govuk-accordion__section--expanded')
-      expect(rendered_component).to have_tag('#section_2.govuk-accordion__section')
-      expect(rendered_component).to have_tag('span#section-1[aria-expanded="true"]')
-      expect(rendered_component).to have_tag('span#section-2[aria-expanded="false"]')
+      expect(rendered_component).to have_tag('div', with: { id: 'section_1', class: %w(govuk-accordion__section govuk-accordion__section--expanded) })
+      expect(rendered_component).to have_tag('div', with: { id: 'section_2', class: %w(govuk-accordion__section) })
+      expect(rendered_component).to have_tag('span', with: { id: 'section-1', 'aria-expanded' => 'true' })
+      expect(rendered_component).to have_tag('span', with: { id: 'section-2', 'aria-expanded' => 'false' })
 
-      expect(rendered_component).not_to have_tag('#section_2.govuk-accordion__section.govuk-accordion__section--expanded')
+      expect(rendered_component).not_to have_tag('#section_2', with: { class: 'govuk-accordion__section--expanded' })
     end
   end
 end
