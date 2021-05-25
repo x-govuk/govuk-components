@@ -75,11 +75,11 @@ RSpec.describe(GovukComponentsHelper, type: 'helper', version: 1) do
     },
     {
       helper_method: :govuk_notification_banner,
-      klass: GovukComponent::NotificationBanner,
+      klass: GovukComponent::NotificationBannerComponent,
       args: [],
       kwargs: { title: 'Notification banner' },
       css_matcher: %(.govuk-notification-banner),
-      block: Proc.new { |nb| nb.add_heading(text: "heading 1", link_text: "link 1", link_target: "/link-1") },
+      block: Proc.new { |nb| nb.add_heading(text: "heading 1", link_text: "link 1", link_href: "/link-1") },
     },
     {
       helper_method: :govuk_panel,
