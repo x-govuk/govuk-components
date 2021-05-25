@@ -1,4 +1,4 @@
-class GovukComponent::Breadcrumbs < GovukComponent::Base
+class GovukComponent::BreadcrumbsComponent < GovukComponent::Base
   attr_accessor :breadcrumbs
 
   def initialize(breadcrumbs:, hide_in_print: false, collapse_on_mobile: false, classes: [], html_attributes: {})

@@ -26,14 +26,14 @@ RSpec.describe(GovukComponentsHelper, type: 'helper', version: 1) do
     },
     {
       helper_method: :govuk_back_link,
-      klass: GovukComponent::BackLink,
+      klass: GovukComponent::BackLinkComponent,
       args: [],
       kwargs: { text: 'Back', href: '/right-to-the-start' },
       css_matcher: %(.govuk-back-link)
     },
     {
       helper_method: :govuk_breadcrumbs,
-      klass: GovukComponent::Breadcrumbs,
+      klass: GovukComponent::BreadcrumbsComponent,
       args: [],
       kwargs: { breadcrumbs: { one: 'One' } },
       css_matcher: %(.govuk-breadcrumbs)
