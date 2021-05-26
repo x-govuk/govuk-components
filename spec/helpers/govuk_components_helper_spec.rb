@@ -104,7 +104,7 @@ RSpec.describe(GovukComponentsHelper, type: 'helper', version: 1) do
     },
     {
       helper_method: :govuk_summary_list,
-      klass: GovukComponent::SummaryList,
+      klass: GovukComponent::SummaryListComponent,
       args: [],
       kwargs: {},
       css_matcher: %(.govuk-summary-list)
