@@ -1,4 +1,4 @@
-class GovukComponent::CookieBanner < GovukComponent::Base
+class GovukComponent::CookieBannerComponent < GovukComponent::Base
   renders_one :body
   renders_one :actions
 

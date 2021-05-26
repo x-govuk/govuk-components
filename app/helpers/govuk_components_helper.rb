@@ -3,7 +3,7 @@ module GovukComponentsHelper
     govuk_accordion: 'GovukComponent::AccordionComponent',
     govuk_back_link: 'GovukComponent::BackLinkComponent',
     govuk_breadcrumbs: 'GovukComponent::BreadcrumbsComponent',
-    govuk_cookie_banner: 'GovukComponent::CookieBanner',
+    govuk_cookie_banner: 'GovukComponent::CookieBannerComponent',
     govuk_details: 'GovukComponent::DetailsComponent',
     govuk_footer: 'GovukComponent::Footer',
     govuk_header: 'GovukComponent::Header',
