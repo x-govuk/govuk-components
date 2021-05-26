@@ -1,0 +1,11 @@
+<%= tag.dl(class: classes, **html_attributes) do %>
+  <% rows.each do |row| %>
+    <%= tag.div(class: row.classes, **row.html_attributes) do %>
+      <%= tag.dt(row.key, class: "govuk-summary-list__key") %>
+      <%= tag.dd(row.value, class: "govuk-summary-list__value") %>
+      <% if any_row_has_actions? %>
+        <%= row.action %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
