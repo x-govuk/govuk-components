@@ -1,4 +1,4 @@
-class GovukComponent::InsetText < GovukComponent::Base
+class GovukComponent::InsetTextComponent < GovukComponent::Base
   attr_accessor :text
 
   def initialize(text: nil, classes: [], html_attributes: {})
@@ -8,11 +8,11 @@ class GovukComponent::InsetText < GovukComponent::Base
   end
 
   def call
-    tag.div(class: classes, **html_attributes) { content.presence || @text }
+    tag.div(class: classes, **html_attributes) { content.presence || text }
   end
 
   def render?
-    @text.present? || content.present?
+    text.present? || content.present?
   end
 
 private

@@ -7,7 +7,7 @@ module GovukComponentsHelper
     govuk_details: 'GovukComponent::Details',
     govuk_footer: 'GovukComponent::Footer',
     govuk_header: 'GovukComponent::Header',
-    govuk_inset_text: 'GovukComponent::InsetText',
+    govuk_inset_text: 'GovukComponent::InsetTextComponent',
     govuk_notification_banner: 'GovukComponent::NotificationBanner',
     govuk_panel: 'GovukComponent::Panel',
     govuk_phase_banner: 'GovukComponent::PhaseBanner',
