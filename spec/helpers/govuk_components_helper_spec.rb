@@ -83,7 +83,7 @@ RSpec.describe(GovukComponentsHelper, type: 'helper', version: 1) do
     },
     {
       helper_method: :govuk_panel,
-      klass: GovukComponent::Panel,
+      klass: GovukComponent::PanelComponent,
       args: [],
       kwargs: { title: 'Panel title', body: 'Panel body' },
       css_matcher: %(.govuk-panel)
