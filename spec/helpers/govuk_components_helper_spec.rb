@@ -61,7 +61,7 @@ RSpec.describe(GovukComponentsHelper, type: 'helper', version: 1) do
     },
     {
       helper_method: :govuk_inset_text,
-      klass: GovukComponent::InsetText,
+      klass: GovukComponent::InsetTextComponent,
       args: [],
       kwargs: { text: 'Inset text' },
       css_matcher: %(.govuk-inset-text)
