@@ -40,7 +40,7 @@ RSpec.describe(GovukComponentsHelper, type: 'helper', version: 1) do
     },
     {
       helper_method: :govuk_details,
-      klass: GovukComponent::Details,
+      klass: GovukComponent::DetailsComponent,
       args: [],
       kwargs: { summary: 'Summary' },
       css_matcher: %(.govuk-details)
