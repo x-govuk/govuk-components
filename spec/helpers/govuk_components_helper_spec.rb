@@ -68,7 +68,7 @@ RSpec.describe(GovukComponentsHelper, type: 'helper', version: 1) do
     },
     {
       helper_method: :govuk_cookie_banner,
-      klass: GovukComponent::CookieBanner,
+      klass: GovukComponent::CookieBannerComponent,
       args: [],
       kwargs: {},
       css_matcher: %(.govuk-cookie-banner)
