@@ -97,7 +97,7 @@ RSpec.describe(GovukComponentsHelper, type: 'helper', version: 1) do
     },
     {
       helper_method: :govuk_start_now_button,
-      klass: GovukComponent::StartNowButton,
+      klass: GovukComponent::StartButtonComponent,
       args: [],
       kwargs: { text: 'Start now text', href: '/start-now-href' },
       css_matcher: %(.govuk-button)
