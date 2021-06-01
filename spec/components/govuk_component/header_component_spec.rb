@@ -37,6 +37,15 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component, version: 2) do
     end
   end
 
+  context 'customising the container classes' do
+    let(:custom_classes) { %w(purple-zig-zags) }
+    let(:kwargs) { { container_classes: custom_classes } }
+
+    specify 'adds the custom classes to the header container' do
+      expect(rendered_component).to have_tag('.govuk-header__container', with: { class: custom_classes })
+    end
+  end
+
   context 'when custom logo text and service name are provided' do
     let(:expected_service_name_classes) { %w(govuk-header__link govuk-header__link--service-name) }
 

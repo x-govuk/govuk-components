@@ -13,7 +13,8 @@ class GovukComponent::HeaderComponent < GovukComponent::Base
                  navigation_label: 'Navigation menu',
                  product_name: nil,
                  service_name: nil,
-                 service_name_href: '/')
+                 service_name_href: '/',
+                 container_classes: nil)
 
     super(classes: classes, html_attributes: html_attributes)
 
@@ -25,6 +26,7 @@ class GovukComponent::HeaderComponent < GovukComponent::Base
     @menu_button_label  = menu_button_label
     @navigation_classes = navigation_classes
     @navigation_label   = navigation_label
+    @container_classes  = container_classes
   end
 
 private
@@ -34,9 +36,11 @@ private
   end
 
   def navigation_classes
-    %w(govuk-header__navigation).tap { |nc|
-      nc.concat(@navigation_classes.is_a?(String) ? @navigation_classes.split : @navigation_classes)
-    }.uniq
+    combine_classes(%w(govuk-header__navigation), @navigation_classes)
+  end
+
+  def container_classes
+    combine_classes(%w(govuk-header__container govuk-width-container), @container_classes)
   end
 
   class Item < GovukComponent::Slot

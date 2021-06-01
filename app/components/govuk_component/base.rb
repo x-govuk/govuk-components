@@ -1,4 +1,6 @@
 class GovukComponent::Base < ViewComponent::Base
+  include Govuk::Components::Helpers::CssUtilities
+
   include GovukComponent::Traits::CustomClasses
   include GovukComponent::Traits::CustomHtmlAttributes
 
