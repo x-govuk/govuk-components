@@ -1,12 +1,21 @@
 class GovukComponent::HeaderComponent < GovukComponent::Base
   renders_many :items, "Item"
+  renders_one :custom_logo
   renders_one :product_description
 
-  attr_accessor :logo, :homepage_url, :service_name, :service_name_href, :product_name, :menu_button_label, :navigation_label
+  attr_accessor :logotype,
+                :crown,
+                :homepage_url,
+                :service_name,
+                :service_name_href,
+                :product_name,
+                :menu_button_label,
+                :navigation_label
 
   def initialize(classes: [],
                  html_attributes: {},
-                 logo: 'GOV.UK',
+                 logotype: 'GOV.UK',
+                 crown: true,
                  homepage_url: '/',
                  menu_button_label: 'Show or hide navigation menu',
                  navigation_classes: [],
@@ -18,7 +27,8 @@ class GovukComponent::HeaderComponent < GovukComponent::Base
 
     super(classes: classes, html_attributes: html_attributes)
 
-    @logo               = logo
+    @logotype           = logotype
+    @crown              = crown
     @homepage_url       = homepage_url
     @service_name       = service_name
     @service_name_href  = service_name_href

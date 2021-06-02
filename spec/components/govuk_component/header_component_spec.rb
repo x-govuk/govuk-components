@@ -6,7 +6,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component, version: 2) do
 
   let(:component_css_class) { 'govuk-header' }
 
-  let(:logo) { 'OMG.UK' }
+  let(:logotype) { 'OMG.UK' }
   let(:homepage_url) { 'https://omg.uk/bbq' }
   let(:service_name) { 'Amazing service 1' }
   let(:product_name) { 'Order an amazing ID' }
@@ -14,7 +14,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component, version: 2) do
 
   let(:all_kwargs) do
     {
-      logo: logo,
+      logotype: logotype,
       homepage_url: homepage_url,
       service_name: service_name,
       service_name_href: service_name_href,
@@ -37,6 +37,18 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component, version: 2) do
     end
   end
 
+  context 'when the crown is disabled' do
+    let(:kwargs) { { crown: false } }
+
+    specify "doesn't render the crown" do
+      expect(rendered_component).not_to have_tag("svg")
+    end
+
+    specify "renders the default logotype" do
+      expect(rendered_component).to have_tag("span", text: /GOV.UK/)
+    end
+  end
+
   context 'customising the container classes' do
     let(:custom_classes) { %w(purple-zig-zags) }
     let(:kwargs) { { container_classes: custom_classes } }
@@ -46,17 +58,42 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component, version: 2) do
     end
   end
 
-  context 'when custom logo text and service name are provided' do
+  context 'when custom logotype and service name are provided' do
     let(:expected_service_name_classes) { %w(govuk-header__link govuk-header__link--service-name) }
 
-    specify 'renders header with right logo text and provided service name' do
+    specify 'renders header with right logotype and provided service name' do
       expect(rendered_component).to have_tag('header', with: { class: component_css_class }) do
-        with_tag('span', with: { class: 'govuk-header__logotype-text' }, text: logo)
+        with_tag('span', with: { class: 'govuk-header__logotype-text' }, text: logotype)
 
         with_tag('div', class: 'govuk-header__content') do
           with_tag('a', text: service_name, with: { href: service_name_href, class: expected_service_name_classes })
         end
       end
+    end
+  end
+
+  context 'when the logo is overwritten' do
+    let(:custom_logo_content) { "👑 Narnia" }
+    let(:custom_logo) do
+      helper.tag.h1(custom_logo_content)
+    end
+
+    subject! do
+      render_inline(GovukComponent::HeaderComponent.new) do |component|
+        component.custom_logo { custom_logo }
+      end
+    end
+
+    specify "renders the custom logo" do
+      expect(rendered_component).to have_tag("h1", text: custom_logo_content)
+    end
+
+    specify "doesn't render the crown" do
+      expect(rendered_component).not_to have_tag("svg")
+    end
+
+    specify "doesn't render the default logotype" do
+      expect(rendered_component).not_to have_tag("span", text: /GOV.UK/)
     end
   end
 
@@ -97,6 +134,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component, version: 2) do
         end
       end
     end
+  end
 
     describe 'navigation menus' do
       context 'when no navigation items are supplied' do
