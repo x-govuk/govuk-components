@@ -136,108 +136,107 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component, version: 2) do
     end
   end
 
-    describe 'navigation menus' do
-      context 'when no navigation items are supplied' do
-        specify 'navigation block is not rendered' do
-          expect(rendered_component).not_to have_tag('nav')
+  describe 'navigation menus' do
+    context 'when no navigation items are supplied' do
+      specify 'navigation block is not rendered' do
+        expect(rendered_component).not_to have_tag('nav')
+      end
+    end
+
+    context 'when navigation items are supplied' do
+      let(:custom_classes) { %w(blue shiny) }
+      let(:items) do
+        [
+          { title: 'Item 1', href: '/item-1' },
+          { title: 'Item 2', href: '/item-2', active: true },
+          { title: 'Item 3', href: '/item-3' }
+        ]
+      end
+
+      specify 'nav element is rendered' do
+        expect(rendered_component).to have_tag('nav')
+      end
+
+      specify 'nav contains the right number of items' do
+        expect(rendered_component).to have_tag('nav') do
+          with_tag('a', with: { class: 'govuk-header__link' }, count: items.size)
         end
       end
 
-      context 'when navigation items are supplied' do
-        let(:custom_classes) { %w(blue shiny) }
-        let(:items) do
-          [
-            { title: 'Item 1', href: '/item-1' },
-            { title: 'Item 2', href: '/item-2', active: true },
-            { title: 'Item 3', href: '/item-3' }
-          ]
-        end
+      specify 'custom classes provided via navigation_classes are present' do
+        expect(rendered_component).to have_tag('ul', with: { class: custom_classes.append('govuk-header__navigation') })
+      end
 
-        specify 'nav element is rendered' do
-          expect(rendered_component).to have_tag('nav')
-        end
-
-        specify 'nav contains the right number of items' do
-          expect(rendered_component).to have_tag('nav') do
-            with_tag('a', with: { class: 'govuk-header__link' }, count: items.size)
-          end
-        end
-
-        specify 'custom classes provided via navigation_classes are present' do
-          expect(rendered_component).to have_tag('ul', with: { class: custom_classes.append('govuk-header__navigation') })
-        end
-
-        specify 'nav items are rendered in the right structure' do
-          expect(rendered_component).to have_tag('nav') do
-            with_tag('ul', with: { class: 'govuk-header__navigation' }) do
-              with_tag('li', with: { class: 'govuk-header__navigation-item' }) do
-                with_tag('a', with: { class: 'govuk-header__link' })
-              end
+      specify 'nav items are rendered in the right structure' do
+        expect(rendered_component).to have_tag('nav') do
+          with_tag('ul', with: { class: 'govuk-header__navigation' }) do
+            with_tag('li', with: { class: 'govuk-header__navigation-item' }) do
+              with_tag('a', with: { class: 'govuk-header__link' })
             end
           end
         end
+      end
 
-        specify 'nav items have the right titles and links' do
-          expect(rendered_component).to have_tag('nav') do
-            items.each { |link| with_tag('a', with: { href: link.fetch(:href) }, text: link.fetch(:title)) }
+      specify 'nav items have the right titles and links' do
+        expect(rendered_component).to have_tag('nav') do
+          items.each { |link| with_tag('a', with: { href: link.fetch(:href) }, text: link.fetch(:title)) }
+        end
+      end
+
+      specify 'active nav item has active class' do
+        active_link = items.detect { |item| item[:active] }
+
+        expect(rendered_component).to have_tag('nav') do
+          with_tag('li', text: active_link.fetch(:title), with: { class: 'govuk-header__navigation-item--active' }, count: 1)
+        end
+      end
+
+      subject! do
+        header_kwargs = kwargs.merge(navigation_classes: custom_classes)
+        render_inline(GovukComponent::HeaderComponent.new(**header_kwargs)) do |component|
+          items.each { |item| component.item(**item) }
+        end
+      end
+
+      describe 'menu button (for mobile)' do
+        let(:button_text) { 'Menu' }
+        let(:button_classes) { %w(govuk-header__menu-button govuk-js-header-toggle) }
+        let(:button_aria_label) { 'Show or hide navigation menu' }
+
+        specify 'the button is rendered' do
+          expect(rendered_component).to have_tag('div', with: { class: 'govuk-header__content' }) do
+            with_tag('button', with: { class: button_classes, 'aria-label' => button_aria_label }, text: button_text)
           end
         end
 
-        specify 'active nav item has active class' do
-          active_link = items.detect { |item| item[:active] }
-
-          expect(rendered_component).to have_tag('nav') do
-            with_tag('li', text: active_link.fetch(:title), with: { class: 'govuk-header__navigation-item--active' }, count: 1)
-          end
-        end
-
-        subject! do
-          header_kwargs = kwargs.merge(navigation_classes: custom_classes)
-          render_inline(GovukComponent::HeaderComponent.new(**header_kwargs)) do |component|
-            items.each { |item| component.item(**item) }
-          end
-        end
-
-        describe 'menu button (for mobile)' do
-          let(:button_text) { 'Menu' }
-          let(:button_classes) { %w(govuk-header__menu-button govuk-js-header-toggle) }
-          let(:button_aria_label) { 'Show or hide navigation menu' }
-
-          specify 'the button is rendered' do
-            expect(rendered_component).to have_tag('div', with: { class: 'govuk-header__content' }) do
-              with_tag('button', with: { class: button_classes, 'aria-label' => button_aria_label }, text: button_text)
-            end
-          end
-
-          context 'when the menu button label is overriden' do
-            let(:custom_label) { 'More stuff' }
-
-            subject! do
-              render_inline(GovukComponent::HeaderComponent.new(**kwargs.merge(menu_button_label: custom_label))) do |component|
-                items.each { |item| component.item(**item) }
-              end
-            end
-
-            specify 'the button is rendered with the provided aria-label' do
-              expect(rendered_component).to have_tag('div', with: { class: 'govuk-header__content' }) do
-                with_tag('button', with: { class: button_classes, 'aria-label' => custom_label }, text: button_text)
-              end
-            end
-          end
-        end
-
-        context 'when the navigation label is overriden' do
-          let(:custom_label) { 'Top level navigation' }
+        context 'when the menu button label is overriden' do
+          let(:custom_label) { 'More stuff' }
 
           subject! do
-            render_inline(GovukComponent::HeaderComponent.new(**kwargs.merge(navigation_label: custom_label))) do |component|
+            render_inline(GovukComponent::HeaderComponent.new(**kwargs.merge(menu_button_label: custom_label))) do |component|
               items.each { |item| component.item(**item) }
             end
           end
 
-          specify 'the navigation label contains the custom text' do
-            expect(rendered_component).to have_tag('ul', with: { class: 'govuk-header__navigation', 'aria-label' => custom_label })
+          specify 'the button is rendered with the provided aria-label' do
+            expect(rendered_component).to have_tag('div', with: { class: 'govuk-header__content' }) do
+              with_tag('button', with: { class: button_classes, 'aria-label' => custom_label }, text: button_text)
+            end
           end
+        end
+      end
+
+      context 'when the navigation label is overriden' do
+        let(:custom_label) { 'Top level navigation' }
+
+        subject! do
+          render_inline(GovukComponent::HeaderComponent.new(**kwargs.merge(navigation_label: custom_label))) do |component|
+            items.each { |item| component.item(**item) }
+          end
+        end
+
+        specify 'the navigation label contains the custom text' do
+          expect(rendered_component).to have_tag('ul', with: { class: 'govuk-header__navigation', 'aria-label' => custom_label })
         end
       end
     end
