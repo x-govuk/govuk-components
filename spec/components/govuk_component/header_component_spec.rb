@@ -7,7 +7,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component, version: 2) do
   let(:component_css_class) { 'govuk-header' }
 
   let(:logo) { 'OMG.UK' }
-  let(:logo_href) { 'https://omg.uk/bbq' }
+  let(:homepage_url) { 'https://omg.uk/bbq' }
   let(:service_name) { 'Amazing service 1' }
   let(:product_name) { 'Order an amazing ID' }
   let(:service_name_href) { 'https://omg.uk/bbq/amazing-service-1/home' }
@@ -15,7 +15,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component, version: 2) do
   let(:all_kwargs) do
     {
       logo: logo,
-      logo_href: logo_href,
+      homepage_url: homepage_url,
       service_name: service_name,
       service_name_href: service_name_href,
       product_name: product_name,
