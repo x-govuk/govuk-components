@@ -15,11 +15,9 @@
             <%= tag.span(logotype, class: "govuk-header__logotype-text") %>
           <% end %>
         </span>
-        <% if @product_name.present? %>
-          <%= tag.span(@product_name, class: %w(govuk-header__product-name)) %>
+        <% if product_name.present? %>
+          <%= product_name %>
         <% end %>
-
-        <%= product_description %>
       <% end %>
     </div>
 

@@ -6,10 +6,11 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component, version: 2) do
 
   let(:component_css_class) { 'govuk-header' }
 
+  let(:product_name) { 'Order an amazing ID' }
+
   let(:logotype) { 'OMG.UK' }
   let(:homepage_url) { 'https://omg.uk/bbq' }
   let(:service_name) { 'Amazing service 1' }
-  let(:product_name) { 'Order an amazing ID' }
   let(:service_url) { 'https://omg.uk/bbq/amazing-service-1/home' }
 
   let(:all_kwargs) do
@@ -17,8 +18,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component, version: 2) do
       logotype: logotype,
       homepage_url: homepage_url,
       service_name: service_name,
-      service_url: service_url,
-      product_name: product_name,
+      service_url: service_url
     }
   end
   let(:kwargs) { all_kwargs }
@@ -98,11 +98,37 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component, version: 2) do
   end
 
   describe 'product name' do
-    context 'when a product name is provided' do
+    context 'when a product name is provided with an argument' do
+      let(:custom_name) { "The fantastic product" }
+
+      subject! do
+        render_inline(GovukComponent::HeaderComponent.new) do |component|
+          component.product_name(name: custom_name)
+        end
+      end
+
       specify 'the product name should be present' do
         expect(rendered_component).to have_tag('div', with: { class: %w(govuk-header__logo) }) do
           with_tag('a', with: { class: 'govuk-header__link' }) do
-            with_tag('span', with: { class: 'govuk-header__product-name' }, text: product_name)
+            with_tag('span', with: { class: 'govuk-header__product-name' }, text: custom_name)
+          end
+        end
+      end
+    end
+
+    context 'when a product name is provided with a block' do
+      let(:custom_name) { "The amazing product" }
+
+      subject! do
+        render_inline(GovukComponent::HeaderComponent.new) do |component|
+          component.product_name { custom_name }
+        end
+      end
+
+      specify 'the product name should be present' do
+        expect(rendered_component).to have_tag('div', with: { class: %w(govuk-header__logo) }) do
+          with_tag('a', with: { class: 'govuk-header__link' }) do
+            with_tag('div', with: { class: 'govuk-header__product-name' }, text: custom_name)
           end
         end
       end
@@ -116,21 +142,6 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component, version: 2) do
           with_tag('a', with: { class: 'govuk-header__link' }) do
             without_tag('.govuk-header__product-name')
           end
-        end
-      end
-    end
-
-    describe 'product description' do
-      let(:product_description_content) { "No seriously, it's amazing" }
-      subject! do
-        render_inline(GovukComponent::HeaderComponent.new(**kwargs)) do |component|
-          component.product_description { product_description_content }
-        end
-      end
-
-      specify 'when a product description block is provided' do
-        expect(rendered_component).to have_tag('div', with: { class: 'govuk-header__logo' }) do
-          with_tag('a', with: { class: 'govuk-header__link' }, text: Regexp.new(product_description_content))
         end
       end
     end
