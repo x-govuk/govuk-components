@@ -26,7 +26,7 @@
     <% if @service_name.present? || @items.present? %>
       <div class="govuk-header__content">
         <% if @service_name.present? %>
-          <%= link_to(@service_name, @service_name_href, class: %w(govuk-header__link govuk-header__link--service-name)) %>
+          <%= link_to(@service_name, @service_url, class: %w(govuk-header__link govuk-header__link--service-name)) %>
         <% end %>
 
         <% if items.any? %>

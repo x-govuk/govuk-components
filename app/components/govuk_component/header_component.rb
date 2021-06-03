@@ -7,7 +7,7 @@ class GovukComponent::HeaderComponent < GovukComponent::Base
                 :crown,
                 :homepage_url,
                 :service_name,
-                :service_name_href,
+                :service_url,
                 :product_name,
                 :menu_button_label,
                 :navigation_label
@@ -22,7 +22,7 @@ class GovukComponent::HeaderComponent < GovukComponent::Base
                  navigation_label: 'Navigation menu',
                  product_name: nil,
                  service_name: nil,
-                 service_name_href: '/',
+                 service_url: '/',
                  container_classes: nil)
 
     super(classes: classes, html_attributes: html_attributes)
@@ -31,7 +31,7 @@ class GovukComponent::HeaderComponent < GovukComponent::Base
     @crown              = crown
     @homepage_url       = homepage_url
     @service_name       = service_name
-    @service_name_href  = service_name_href
+    @service_url        = service_url
     @product_name       = product_name
     @menu_button_label  = menu_button_label
     @navigation_classes = navigation_classes

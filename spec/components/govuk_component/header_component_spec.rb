@@ -10,14 +10,14 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component, version: 2) do
   let(:homepage_url) { 'https://omg.uk/bbq' }
   let(:service_name) { 'Amazing service 1' }
   let(:product_name) { 'Order an amazing ID' }
-  let(:service_name_href) { 'https://omg.uk/bbq/amazing-service-1/home' }
+  let(:service_url) { 'https://omg.uk/bbq/amazing-service-1/home' }
 
   let(:all_kwargs) do
     {
       logotype: logotype,
       homepage_url: homepage_url,
       service_name: service_name,
-      service_name_href: service_name_href,
+      service_url: service_url,
       product_name: product_name,
     }
   end
@@ -66,7 +66,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component, version: 2) do
         with_tag('span', with: { class: 'govuk-header__logotype-text' }, text: logotype)
 
         with_tag('div', class: 'govuk-header__content') do
-          with_tag('a', text: service_name, with: { href: service_name_href, class: expected_service_name_classes })
+          with_tag('a', text: service_name, with: { href: service_url, class: expected_service_name_classes })
         end
       end
     end
