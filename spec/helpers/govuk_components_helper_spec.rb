@@ -54,7 +54,7 @@ RSpec.describe(GovukComponentsHelper, type: 'helper', version: 1) do
     },
     {
       helper_method: :govuk_header,
-      klass: GovukComponent::Header,
+      klass: GovukComponent::HeaderComponent,
       args: [],
       kwargs: {},
       css_matcher: %(.govuk-header)
