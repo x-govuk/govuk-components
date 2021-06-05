@@ -90,7 +90,7 @@ RSpec.describe(GovukComponentsHelper, type: 'helper', version: 1) do
     },
     {
       helper_method: :govuk_phase_banner,
-      klass: GovukComponent::PhaseBanner,
+      klass: GovukComponent::PhaseBannerComponent,
       args: [],
       kwargs: { phase_tag: { text: 'Phase Test' } },
       css_matcher: %(.govuk-phase-banner)
