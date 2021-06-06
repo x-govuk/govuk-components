@@ -13,7 +13,7 @@ class HelperComponentMapping
   end
 end
 
-RSpec.describe(GovukComponentsHelper, type: 'helper', version: 1) do
+RSpec.describe(GovukComponentsHelper, type: 'helper', version: 2) do
   include_context 'helpers'
 
   [
@@ -42,7 +42,7 @@ RSpec.describe(GovukComponentsHelper, type: 'helper', version: 1) do
       helper_method: :govuk_details,
       klass: GovukComponent::DetailsComponent,
       args: [],
-      kwargs: { summary: 'Summary' },
+      kwargs: { summary_text: 'Summary' },
       css_matcher: %(.govuk-details)
     },
     {
@@ -79,7 +79,7 @@ RSpec.describe(GovukComponentsHelper, type: 'helper', version: 1) do
       args: [],
       kwargs: { title: 'Notification banner' },
       css_matcher: %(.govuk-notification-banner),
-      block: Proc.new { |nb| nb.add_heading(text: "heading 1", link_text: "link 1", link_href: "/link-1") },
+      block: Proc.new { |nb| nb.heading(text: "heading 1", link_text: "link 1", link_href: "/link-1") },
     },
     {
       helper_method: :govuk_panel,
@@ -137,6 +137,7 @@ RSpec.describe(GovukComponentsHelper, type: 'helper', version: 1) do
         subject do
           Capybara::Node::Simple.new(helper.send(hcm.helper_method, *hcm.args, **hcm.kwargs, &hcm.block))
         end
+
         specify %(should render the component #{hcm.klass}) do
           expect(subject).to have_css(hcm.css_matcher)
         end
