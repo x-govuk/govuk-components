@@ -13,7 +13,7 @@ class HelperComponentMapping
   end
 end
 
-RSpec.describe(GovukComponentsHelper, type: 'helper', version: 2) do
+RSpec.describe(GovukComponentsHelper, type: 'helper') do
   include_context 'helpers'
 
   [
