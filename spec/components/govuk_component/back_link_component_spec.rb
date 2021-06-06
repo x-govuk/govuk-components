@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe(GovukComponent::BackLinkComponent, type: :component, version: 2) do
+RSpec.describe(GovukComponent::BackLinkComponent, type: :component) do
   include_context 'setup'
 
   let(:text) { 'Department for Education' }

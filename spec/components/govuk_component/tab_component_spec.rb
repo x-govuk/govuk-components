@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe(GovukComponent::TabComponent, type: :component, version: 2) do
+RSpec.describe(GovukComponent::TabComponent, type: :component) do
   include_context 'setup'
   include_context 'helpers'
 

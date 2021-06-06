@@ -1,6 +1,6 @@
 require "spec_helper"
 
-RSpec.describe(GovukComponent::CookieBannerComponent, type: :component, version: 2) do
+RSpec.describe(GovukComponent::CookieBannerComponent, type: :component) do
   include_context 'setup'
   include_context 'helpers'
 

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe(GovukComponent::PanelComponent, type: :component, version: 2) do
+RSpec.describe(GovukComponent::PanelComponent, type: :component) do
   include_context 'helpers'
   include_context 'setup'
 

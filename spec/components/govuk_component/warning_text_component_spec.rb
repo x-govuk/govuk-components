@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe(GovukComponent::WarningTextComponent, type: :component, version: 2) do
+RSpec.describe(GovukComponent::WarningTextComponent, type: :component) do
   include_context 'setup'
 
   let(:component_css_class) { 'govuk-warning-text' }
