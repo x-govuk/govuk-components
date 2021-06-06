@@ -5,7 +5,7 @@ module GovukComponentsHelper
     govuk_breadcrumbs: 'GovukComponent::BreadcrumbsComponent',
     govuk_cookie_banner: 'GovukComponent::CookieBannerComponent',
     govuk_details: 'GovukComponent::DetailsComponent',
-    govuk_footer: 'GovukComponent::Footer',
+    govuk_footer: 'GovukComponent::FooterComponent',
     govuk_header: 'GovukComponent::HeaderComponent',
     govuk_inset_text: 'GovukComponent::InsetTextComponent',
     govuk_notification_banner: 'GovukComponent::NotificationBannerComponent',
