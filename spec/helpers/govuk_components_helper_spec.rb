@@ -47,7 +47,7 @@ RSpec.describe(GovukComponentsHelper, type: 'helper', version: 1) do
     },
     {
       helper_method: :govuk_footer,
-      klass: GovukComponent::Footer,
+      klass: GovukComponent::FooterComponent,
       args: [],
       kwargs: {},
       css_matcher: %(.govuk-footer)
