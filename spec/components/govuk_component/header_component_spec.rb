@@ -158,9 +158,9 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
       let(:custom_classes) { %w(blue shiny) }
       let(:items) do
         [
-          { title: 'Item 1', href: '/item-1' },
-          { title: 'Item 2', href: '/item-2', active: true },
-          { title: 'Item 3', href: '/item-3' }
+          { text: 'Item 1', href: '/item-1' },
+          { text: 'Item 2', href: '/item-2', active: true },
+          { text: 'Item 3', href: '/item-3' }
         ]
       end
 
@@ -188,9 +188,9 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
         end
       end
 
-      specify 'nav items have the right titles and links' do
+      specify 'nav items have the right text and links' do
         expect(rendered_component).to have_tag('nav') do
-          items.each { |link| with_tag('a', with: { href: link.fetch(:href) }, text: link.fetch(:title)) }
+          items.each { |link| with_tag('a', with: { href: link.fetch(:href) }, text: link.fetch(:text)) }
         end
       end
 
@@ -198,7 +198,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
         active_link = items.detect { |item| item[:active] }
 
         expect(rendered_component).to have_tag('nav') do
-          with_tag('li', text: active_link.fetch(:title), with: { class: 'govuk-header__navigation-item--active' }, count: 1)
+          with_tag('li', text: active_link.fetch(:text), with: { class: 'govuk-header__navigation-item--active' }, count: 1)
         end
       end
 
@@ -259,7 +259,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
   context 'slot arguments' do
     let(:slot) { :item }
     let(:content) { nil }
-    let(:slot_kwargs) { { title: 'title', href: '/one/two/three', active: true } }
+    let(:slot_kwargs) { { text: 'text', href: '/one/two/three', active: true } }
 
     it_behaves_like 'a component with a slot that accepts custom classes'
     it_behaves_like 'a component with a slot that accepts custom html attributes'
