@@ -26,6 +26,24 @@ RSpec.describe(GovukComponent::DetailsComponent, type: :component) do
     end
   end
 
+  context 'providing summary HTML' do
+    let(:summary_tag) { "em" }
+    let(:summary_text) { "Fancy summary" }
+    let(:summary_html) { helper.content_tag(summary_tag, summary_text) }
+
+    before do
+      render_inline(described_class.new(**kwargs)) do |component|
+        component.summary_html { summary_html }
+      end
+    end
+
+    specify 'renders the HTML correctly' do
+      expect(rendered_component).to have_tag("span", with: { class: "govuk-details__summary-text" }) do
+        with_tag(summary_tag, text: summary_text)
+      end
+    end
+  end
+
   context 'when a block is supplied' do
     before do
       render_inline(described_class.new(**kwargs.except(:text))) do

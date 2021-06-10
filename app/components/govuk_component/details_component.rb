@@ -1,6 +1,8 @@
 class GovukComponent::DetailsComponent < GovukComponent::Base
   attr_accessor :summary_text, :text
 
+  renders_one :summary_html
+
   def initialize(summary_text:, text: nil, classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
@@ -18,8 +20,12 @@ private
 
   def summary
     tag.summary(class: "govuk-details__summary") do
-      tag.span(summary_text, class: "govuk-details__summary-text")
+      tag.span(summary_content, class: "govuk-details__summary-text")
     end
+  end
+
+  def summary_content
+    summary_html || summary_text
   end
 
   def description
