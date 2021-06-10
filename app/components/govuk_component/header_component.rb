@@ -51,12 +51,12 @@ private
   end
 
   class Item < GovukComponent::Base
-    attr_accessor :title, :href, :active
+    attr_accessor :text, :href, :active
 
-    def initialize(title:, href: nil, active: false, classes: [], html_attributes: {})
+    def initialize(text:, href: nil, active: false, classes: [], html_attributes: {})
       super(classes: classes, html_attributes: html_attributes)
 
-      self.title  = title
+      self.text   = text
       self.href   = href
       self.active = active
     end
