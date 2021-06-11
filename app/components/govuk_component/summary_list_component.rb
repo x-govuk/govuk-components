@@ -35,11 +35,14 @@ private
 
       @key                  = key
       @value                = value
-      @href                 = action[:href]
-      @text                 = action[:text] || "Change"
-      @visually_hidden_text = " #{action[:visually_hidden_text] || key.downcase}"
-      @action_classes       = action[:classes] || []
-      @action_attributes    = action[:html_attributes] || {}
+
+      if action.present?
+        @href                 = action[:href]
+        @text                 = action[:text] || "Change"
+        @visually_hidden_text = " #{action[:visually_hidden_text] || key.downcase}"
+        @action_classes       = action[:classes] || []
+        @action_attributes    = action[:html_attributes] || {}
+      end
     end
 
     def action
