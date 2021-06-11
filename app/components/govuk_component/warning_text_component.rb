@@ -6,13 +6,13 @@ class GovukComponent::WarningTextComponent < GovukComponent::Base
   def initialize(text:, assistive_text: 'Warning', classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
-    @text           = text
+    @text = text
     @assistive_text = assistive_text
   end
 
   def call
     tag.div(class: classes, **html_attributes) do
-      safe_join([icon, strong])
+      safe_join([icon, (content || strong)])
     end
   end
 

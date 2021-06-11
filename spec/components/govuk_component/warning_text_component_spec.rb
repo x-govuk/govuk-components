@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe(GovukComponent::WarningTextComponent, type: :component) do
+  include_context 'helpers'
   include_context 'setup'
 
   let(:component_css_class) { 'govuk-warning-text' }
@@ -43,6 +44,24 @@ RSpec.describe(GovukComponent::WarningTextComponent, type: :component) do
   specify 'the warning text is included' do
     expect(rendered_component).to have_tag(component_css_class_matcher) do
       with_tag('strong', text: Regexp.new(text), with: { class: 'govuk-warning-text__text' })
+    end
+  end
+
+  context 'overriding the text with a custom HTML block' do
+    let(:custom_tag) { "marquee" }
+    let(:custom_text) { "Fancy HTML" }
+    let(:custom_html) { helper.content_tag(custom_tag, custom_text) }
+
+    subject! do
+      render_inline(GovukComponent::WarningTextComponent.new(**kwargs)) { custom_html }
+    end
+
+    specify "renders the custom html" do
+      expect(rendered_component).to have_tag(custom_tag, text: custom_text)
+    end
+
+    specify "doesn't render any provided text" do
+      expect(rendered_component).not_to match(text)
     end
   end
 
