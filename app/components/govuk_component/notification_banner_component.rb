@@ -32,14 +32,14 @@ class GovukComponent::NotificationBannerComponent < GovukComponent::Base
   end
 
   class Heading < GovukComponent::Base
-    attr_accessor :text, :link_href, :link_text
+    attr_reader :text, :link_href, :link_text
 
     def initialize(text: nil, link_text: nil, link_href: nil, classes: [], html_attributes: {})
       super(classes: classes, html_attributes: html_attributes)
 
-      @text        = text
-      @link_text   = link_text
-      @link_href   = link_href
+      @text      = text
+      @link_text = link_text
+      @link_href = link_href
     end
 
     def call

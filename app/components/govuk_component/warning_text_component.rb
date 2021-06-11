@@ -6,7 +6,7 @@ class GovukComponent::WarningTextComponent < GovukComponent::Base
   def initialize(text:, assistive_text: 'Warning', classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
-    @text = text
+    @text           = text
     @assistive_text = assistive_text
   end
 

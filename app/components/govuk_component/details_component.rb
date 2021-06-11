@@ -1,5 +1,5 @@
 class GovukComponent::DetailsComponent < GovukComponent::Base
-  attr_accessor :summary_text, :text
+  attr_reader :summary_text, :text
 
   renders_one :summary_html
 
