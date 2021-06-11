@@ -1,7 +1,7 @@
 class GovukComponent::AccordionComponent < GovukComponent::Base
   renders_many :sections, "Section"
 
-  attr_accessor :id
+  attr_reader :id
 
   def initialize(id: nil, classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
@@ -16,24 +16,20 @@ private
   end
 
   class Section < GovukComponent::Base
-    attr_accessor :title, :summary, :expanded
+    attr_reader :title, :summary, :expanded
 
     alias_method :expanded?, :expanded
 
     def initialize(title:, summary: nil, expanded: false, classes: [], html_attributes: {})
       super(classes: classes, html_attributes: html_attributes)
 
-      self.title   = title
-      self.summary = summary
-      self.expanded = expanded
+      @title    = title
+      @summary  = summary
+      @expanded = expanded
     end
 
     def id(suffix: nil)
       [title.parameterize, suffix].compact.join('-')
-    end
-
-    def classes
-      super + (expanded? ? %w(govuk-accordion__section--expanded) : [])
     end
 
     def call
@@ -43,7 +39,9 @@ private
   private
 
     def default_classes
-      %w(govuk-accordion__section)
+      %w(govuk-accordion__section).tap do |classes|
+        classes.append("govuk-accordion__section--expanded") if expanded?
+      end
     end
   end
 end

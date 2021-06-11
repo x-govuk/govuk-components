@@ -1,5 +1,5 @@
 class GovukComponent::StartButtonComponent < GovukComponent::Base
-  attr_accessor :text, :href
+  attr_reader :text, :href
 
   def initialize(text:, href:, classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
@@ -9,8 +9,8 @@ class GovukComponent::StartButtonComponent < GovukComponent::Base
   end
 
   def call
-    link_to(@href, **default_attributes, **html_attributes) do
-      safe_join([@text, icon])
+    link_to(href, **default_attributes, **html_attributes) do
+      safe_join([text, icon])
     end
   end
 

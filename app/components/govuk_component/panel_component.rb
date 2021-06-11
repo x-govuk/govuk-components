@@ -1,5 +1,5 @@
 class GovukComponent::PanelComponent < GovukComponent::Base
-  attr_accessor :title, :body
+  attr_reader :title, :body
 
   def initialize(title: nil, body: nil, classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
@@ -35,7 +35,7 @@ private
   def panel_body
     if display_body?
       tag.div(class: "govuk-panel__body") do
-        content.presence || @body
+        content.presence || body
       end
     end
   end

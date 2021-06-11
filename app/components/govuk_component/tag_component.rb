@@ -1,5 +1,5 @@
 class GovukComponent::TagComponent < GovukComponent::Base
-  attr_reader :text
+  attr_reader :text, :colour
 
   COLOURS = %w(
     grey
@@ -31,11 +31,11 @@ private
   end
 
   def colour_class
-    return nil if @colour.blank?
+    return nil if colour.blank?
 
     fail(ArgumentError, colour_error_message) unless valid_colour?
 
-    %(govuk-tag--#{@colour})
+    %(govuk-tag--#{colour})
   end
 
   def valid_colour?
@@ -43,6 +43,6 @@ private
   end
 
   def colour_error_message
-    "invalid tag colour #{@colour}, supported colours are #{COLOURS.to_sentence}"
+    "invalid tag colour #{colour}, supported colours are #{COLOURS.to_sentence}"
   end
 end

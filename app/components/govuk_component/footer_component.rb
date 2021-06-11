@@ -2,7 +2,7 @@ class GovukComponent::FooterComponent < GovukComponent::Base
   renders_one :meta_content
   renders_one :meta
 
-  attr_accessor :meta_items, :meta_items_title, :meta_licence, :copyright
+  attr_reader :meta_items, :meta_items_title, :meta_licence, :copyright
 
   def initialize(meta_items: {}, meta_items_title: "Support links", meta_licence: nil, classes: [], html_attributes: {}, copyright_text: default_copright_text, copyright_url: default_copyright_url)
     super(classes: classes, html_attributes: html_attributes)

@@ -12,7 +12,7 @@ class GovukComponent::WarningTextComponent < GovukComponent::Base
 
   def call
     tag.div(class: classes, **html_attributes) do
-      safe_join([icon, strong])
+      safe_join([icon, (content || strong)])
     end
   end
 

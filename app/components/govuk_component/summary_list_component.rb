@@ -33,8 +33,8 @@ private
     def initialize(key:, value:, action: {}, classes: [], html_attributes: {})
       super(classes: classes, html_attributes: html_attributes)
 
-      @key                  = key
-      @value                = value
+      @key   = key
+      @value = value
 
       if action.present?
         @href                 = action[:href]
