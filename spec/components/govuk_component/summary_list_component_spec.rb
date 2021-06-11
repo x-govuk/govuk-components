@@ -123,4 +123,24 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
       expect(rendered_component).not_to have_tag('dd', with: { class: 'govuk-summary-list__actions' })
     end
   end
+
+  context 'when an action is nil' do
+    let(:rows) do
+      [
+        { key: 'One', value: 'First' },
+        { key: 'Two', value: 'Second', action: nil }
+      ]
+    end
+
+    before do
+      render_inline(described_class.new(**kwargs)) do |component|
+        rows.each { |row| component.row(**row) }
+      end
+    end
+
+    specify 'renders the summary list without an actions column' do
+      expect(rendered_component).to have_tag('dl', with: { class: 'govuk-summary-list' })
+      expect(rendered_component).not_to have_tag('dd', with: { class: 'govuk-summary-list__actions' })
+    end
+  end
 end
