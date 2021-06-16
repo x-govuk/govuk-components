@@ -47,6 +47,46 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
         expect(subject).to(have_link(text, href: url, class: 'govuk-button'))
       end
     end
+
+    describe 'generating a no_visited_state link' do
+      let(:component) { govuk_link_to(text, url, no_visited_state: true) }
+
+      specify 'has the no-visted-state class' do
+        expect(subject).to(have_link(text, href: url, class: 'govuk-link govuk-link--no-visited-state'))
+      end
+    end
+
+    describe 'generating a muted link' do
+      let(:component) { govuk_link_to(text, url, muted: true) }
+
+      specify 'has the muted class' do
+        expect(subject).to(have_link(text, href: url, class: 'govuk-link govuk-link--muted'))
+      end
+    end
+
+    describe 'generating a coloured link' do
+      let(:component) { govuk_link_to(text, url, colour: true) }
+
+      specify 'has the coloured class' do
+        expect(subject).to(have_link(text, href: url, class: 'govuk-link govuk-link--colour'))
+      end
+    end
+
+    describe 'generating a inverse link' do
+      let(:component) { govuk_link_to(text, url, inverse: true) }
+
+      specify 'has the inverse class' do
+        expect(subject).to(have_link(text, href: url, class: 'govuk-link govuk-link--inverse'))
+      end
+    end
+
+    describe 'generating a no-underline link' do
+      let(:component) { govuk_link_to(text, url, no_underline: true) }
+
+      specify 'has the no-underline class' do
+        expect(subject).to(have_link(text, href: url, class: 'govuk-link govuk-link--no-underline'))
+      end
+    end
   end
 
   describe '#govuk_mail_to' do
@@ -80,6 +120,54 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
 
       specify 'should render a link containing the block content' do
         expect(subject).to have_css('a > span', text: link_text)
+      end
+    end
+
+    describe 'generating a button-style link' do
+      let(:component) { govuk_link_to(text, email_address, button: true) }
+
+      specify 'has the button class' do
+        expect(subject).to(have_link(text, class: 'govuk-button'))
+      end
+    end
+
+    describe 'generating a no_visited_state link' do
+      let(:component) { govuk_link_to(text, email_address, no_visited_state: true) }
+
+      specify 'has the no-visted-state class' do
+        expect(subject).to(have_link(text, class: 'govuk-link govuk-link--no-visited-state'))
+      end
+    end
+
+    describe 'generating a muted link' do
+      let(:component) { govuk_link_to(text, email_address, muted: true) }
+
+      specify 'has the muted class' do
+        expect(subject).to(have_link(text, class: 'govuk-link govuk-link--muted'))
+      end
+    end
+
+    describe 'generating a coloured link' do
+      let(:component) { govuk_link_to(text, email_address, colour: true) }
+
+      specify 'has the coloured class' do
+        expect(subject).to(have_link(text, class: 'govuk-link govuk-link--colour'))
+      end
+    end
+
+    describe 'generating a inverse link' do
+      let(:component) { govuk_link_to(text, email_address, inverse: true) }
+
+      specify 'has the inverse class' do
+        expect(subject).to(have_link(text, class: 'govuk-link govuk-link--inverse'))
+      end
+    end
+
+    describe 'generating a no-underline link' do
+      let(:component) { govuk_link_to(text, email_address, no_underline: true) }
+
+      specify 'has the inverse class' do
+        expect(subject).to(have_link(text, class: 'govuk-link govuk-link--no-underline'))
       end
     end
   end
