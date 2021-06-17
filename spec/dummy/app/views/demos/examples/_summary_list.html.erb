@@ -3,25 +3,31 @@
 <%= render "shared/example",
   title: 'Summary list',
   example: <<~SUMMARY_LIST
-    render GovukComponent::SummaryList.new do |component|
-      component.slot(
-        :row,
+    render GovukComponent::SummaryListComponent.new do |component|
+      component.row(
         key: 'Aardvark',
         value: 'The aardvark is vaguely pig-like in appearance',
-        action: link_to('Change', '#aardvark')
+        action: {
+          text: "Change",
+          href: '#aardvark',
+          classes: 'tubulidentata'
+        }
       )
 
-      component.slot(
-        :row,
+      component.row(
         key: 'Baboon',
         value: 'Monkeys of the genus Papio'
       )
 
-      component.slot(
-        :row,
+      component.row(
         key: 'Chinchilla',
         value: 'Either of two species of crepuscular rodents',
-        action: link_to('Change', '#chinchilla')
+        action: {
+          text: 'Change',
+          visually_hidden_text: 'this rodent for a different kind',
+          href: '#chinchilla',
+          classes: 'caviomorpha'
+        }
       )
     end
   SUMMARY_LIST

@@ -1,12 +1,12 @@
 module GovukLinkHelper
-  def govuk_link_to(*args, button: false, no_visited_state: false, muted: false, colour: false, inverse: false, no_underline: false, **kwargs, &block)
-    classes = build_classes(button, no_visited_state, muted, colour, inverse, no_underline)
+  def govuk_link_to(*args, button: false, no_visited_state: false, muted: false, text_colour: false, inverse: false, no_underline: false, **kwargs, &block)
+    classes = build_classes(button, no_visited_state, muted, text_colour, inverse, no_underline)
 
     link_to(*args, **inject_class(kwargs, class_name: classes), &block)
   end
 
-  def govuk_mail_to(*args, button: false, no_visited_state: false, muted: false, colour: false, inverse: false, no_underline: false, **kwargs, &block)
-    classes = build_classes(button, no_visited_state, muted, colour, inverse, no_underline)
+  def govuk_mail_to(*args, button: false, no_visited_state: false, muted: false, text_colour: false, inverse: false, no_underline: false, **kwargs, &block)
+    classes = build_classes(button, no_visited_state, muted, text_colour, inverse, no_underline)
 
     mail_to(*args, **inject_class(kwargs, class_name: classes), &block)
   end
@@ -17,12 +17,12 @@ module GovukLinkHelper
 
 private
 
-  def build_classes(button, no_visited_state, muted, colour, inverse, no_underline)
+  def build_classes(button, no_visited_state, muted, text_colour, inverse, no_underline)
     [
       link_class(button),
       no_visited_state_class(no_visited_state),
       muted_class(muted),
-      colour_class(colour),
+      text_colour_class(text_colour),
       inverse_class(inverse),
       no_underline_class(no_underline),
     ]
@@ -46,8 +46,8 @@ private
     'govuk-link--muted' if muted
   end
 
-  def colour_class(colour)
-    'govuk-link--colour' if colour
+  def text_colour_class(colour)
+    'govuk-link--text-colour' if colour
   end
 
   def inverse_class(inverse)

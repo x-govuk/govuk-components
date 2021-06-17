@@ -1,7 +1,7 @@
 <%= example_heading('Back links') %>
 
 <%= render "shared/example", title: 'Back link - default', example: <<~BACK_LINK
-  render GovukComponent::BackLink.new(
+  render GovukComponent::BackLinkComponent.new(
     text: 'Department for Education',
     href: 'https://www.gov.uk/government/organisations/department-for-education'
   )
@@ -9,7 +9,7 @@
 %>
 
 <%= render "shared/example", title: 'Back link - with custom css classes', example: <<~BACK_LINK
-  render GovukComponent::BackLink.new(
+  render GovukComponent::BackLinkComponent.new(
     text: 'Department for Education',
     href: 'https://www.gov.uk/government/organisations/department-for-education',
     classes: 'my-class'
@@ -18,7 +18,7 @@
 %>
 
 <%= render "shared/example", title: 'Back link - with custom HTML attributes', example: <<~BACK_LINK
-  render GovukComponent::BackLink.new(
+  render GovukComponent::BackLinkComponent.new(
     text: 'Department for Education',
     href: 'https://www.gov.uk/government/organisations/department-for-education',
     html_attributes:{
@@ -28,8 +28,8 @@
   BACK_LINK
 %>
 
-<%= render "shared/example", title: 'Back link - with custom css classes and HTML attributes', example: <<~BACK_LINK
-  render GovukComponent::BackLink.new(
+<%= render "shared/example", title: 'Back link - with custom css classes and HTML attributes (via helper)', example: <<~BACK_LINK
+  govuk_back_link(
     text: 'Department for Education',
     href: 'https://www.gov.uk/government/organisations/department-for-education',
     classes: 'app-class',

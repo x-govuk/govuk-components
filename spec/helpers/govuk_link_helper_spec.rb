@@ -49,7 +49,7 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
       button: %w(govuk-button),
       no_visited_state: %w(govuk-link govuk-link--no-visited-state),
       muted: %w(govuk-link govuk-link--muted),
-      colour: %w(govuk-link govuk-link--colour),
+      text_colour: %w(govuk-link govuk-link--text-colour),
       inverse: %w(govuk-link govuk-link--inverse),
       no_underline: %w(govuk-link govuk-link--no-underline),
     }.each do |style, css_class|
@@ -107,7 +107,7 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
       button: %w(govuk-button),
       no_visited_state: %w(govuk-link govuk-link--no-visited-state),
       muted: %w(govuk-link govuk-link--muted),
-      colour: %w(govuk-link govuk-link--colour),
+      text_colour: %w(govuk-link govuk-link--text-colour),
       inverse: %w(govuk-link govuk-link--inverse),
       no_underline: %w(govuk-link govuk-link--no-underline),
     }.each do |style, css_class|

@@ -2,27 +2,27 @@
 <%= example_heading('Header') %>
 
 <%= render "shared/example", title: 'Header', example: <<~HEADER
-  render GovukComponent::Header.new(
-    logo: 'GOV.UK',
+  render GovukComponent::HeaderComponent.new(
+    logotype: 'GOV.UK',
     service_name: 'Amazing service',
-    service_name_href: '/amazing-service/home')
+    service_url: '/amazing-service/home')
   HEADER
 %>
 
-<%= render "shared/example", title: 'Header without service name', example: %{render GovukComponent::Header.new(logo: 'Custom')} %>
+<%= render "shared/example", title: 'Header without service name', example: %{render GovukComponent::HeaderComponent.new(logotype: 'Custom')} %>
 
 <%= render "shared/example", title: 'Header with a product name and custom description', example: <<~HEADER
-  render GovukComponent::Header.new(logo: 'GOV.UK', product_name: "Custom product name") do |component|
-    component.slot(:product_description) { render(GovukComponent::Tag.new(text: 'Coming soon!', colour: 'yellow')) }
+  render GovukComponent::HeaderComponent.new(logotype: 'GOV.UK') do |component|
+    component.product_name { "Name" }
   end
 HEADER
 %>
 
 <%= render "shared/example", title: 'Header with navigation', example: <<~HEADER
-  render GovukComponent::Header.new(logo: 'Some service') do |component|
-    component.slot(:item, title: 'Page A', href: '/#page-a')
-    component.slot(:item, title: 'Page B', href: '/#page-b')
-    component.slot(:item, title: 'Page C', href: '/#page-c', active: true)
+  render GovukComponent::HeaderComponent.new(logotype: 'A new service', service_name: "It's very good") do |component|
+    component.item(text: 'Page A', href: '/#page-a')
+    component.item(text: 'Page B', href: '/#page-b')
+    component.item(text: 'Page C', href: '/#page-c', active: true)
   end
 HEADER
 %>

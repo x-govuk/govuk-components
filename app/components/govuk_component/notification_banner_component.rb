@@ -45,7 +45,7 @@ class GovukComponent::NotificationBannerComponent < GovukComponent::Base
     def call
       tag.div(class: classes, **html_attributes) do
         if text.present?
-          safe_join([text, link].compact)
+          safe_join([text, link].compact, " ")
         else
           content
         end
