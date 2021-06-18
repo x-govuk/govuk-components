@@ -126,10 +126,6 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
     let(:url) { '/stuff/menu/' }
 
     specify 'has form with correct url containing submit input with supplied text' do
-      # expect(subject).to have_css(%(form)) do |form|
-      #   expect(form['action']).to eql(url)
-      #   expect(form).to have_button(text, class: 'govuk-button')
-      # end
       expect(subject).to have_tag('form', with: { action: url }) do
         with_tag('input', with: { class: 'govuk-button', value: text })
       end
@@ -158,27 +154,5 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
         end
       end
     end
-
-    # context 'when additional classes are passed in' do
-    #   let(:custom_class) { 'yellow' }
-    #   let(:component) { govuk_button_to(text, url, class: custom_class) }
-
-    #   specify 'has the custom classes' do
-    #     expect(subject).to(have_button(text, class: ['govuk-button', custom_class].flatten))
-    #   end
-
-    #   specify 'has the default class' do
-    #     expect(subject).to(have_button(text, class: 'govuk-button'))
-    #   end
-    # end
-
-    # context 'when additional classes are passed in as arrays' do
-    #   let(:custom_class) { %w(yellow) }
-    #   let(:component) { govuk_button_to(text, url, class: custom_class) }
-
-    #   specify 'has the custom classes' do
-    #     expect(subject).to(have_button(text, class: custom_class))
-    #   end
-    # end
   end
 end
