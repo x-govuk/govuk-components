@@ -8,6 +8,6 @@ shared_examples 'a component with a slot that accepts custom classes' do
   end
 
   specify 'the rendered slot should have the custom class' do
-    expect(rendered_component).to have_tag('.' + custom_class)
+    expect(rendered_component).to have_tag('*', with: { class: custom_class })
   end
 end
