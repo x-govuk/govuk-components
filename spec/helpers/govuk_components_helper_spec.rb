@@ -135,11 +135,11 @@ RSpec.describe(GovukComponentsHelper, type: 'helper') do
     .each do |hcm|
       describe hcm.helper_method do
         subject do
-          Capybara::Node::Simple.new(helper.send(hcm.helper_method, *hcm.args, **hcm.kwargs, &hcm.block))
+          helper.send(hcm.helper_method, *hcm.args, **hcm.kwargs, &hcm.block)
         end
 
         specify %(should render the component #{hcm.klass}) do
-          expect(subject).to have_css(hcm.css_matcher)
+          expect(subject).to have_tag(hcm.css_matcher)
         end
       end
     end

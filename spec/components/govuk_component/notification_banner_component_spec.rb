@@ -53,7 +53,7 @@ RSpec.describe(GovukComponent::NotificationBannerComponent, type: :component) do
       let(:custom_classes) { 'purple-stripes' }
 
       context 'the custom classes should be set' do
-        specify { expect(page).to have_css(".#{custom_classes}") }
+        specify { expect(rendered_component).to have_tag("div", with: { class: custom_classes }) }
       end
     end
 
@@ -61,7 +61,7 @@ RSpec.describe(GovukComponent::NotificationBannerComponent, type: :component) do
       let(:custom_classes) { %w(purple-stripes yellow-background) }
 
       context 'the custom classes should be set' do
-        specify { expect(page).to have_css(".#{custom_classes.join('.')}") }
+        specify { expect(rendered_component).to have_tag("div", with: { class: custom_classes }) }
       end
     end
   end
@@ -77,8 +77,8 @@ RSpec.describe(GovukComponent::NotificationBannerComponent, type: :component) do
       let(:custom_role) { 'alert' }
       let(:kwargs) { { title: title, html_attributes: { role: custom_role } } }
 
-      specify 'does the thing' do
-        expect(page).to have_css("div.govuk-notification-banner[role='#{custom_role}']")
+      specify 'replaces the default role with the provided one' do
+        expect(rendered_component).to have_tag('div', with: { class: 'govuk-notification-banner', role: custom_role })
       end
     end
   end
