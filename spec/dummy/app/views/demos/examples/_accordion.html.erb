@@ -1,8 +1,8 @@
 <%= example_heading('Accordion') %>
 
 <%= render "shared/example", title: "Accordion", example: <<~ACCORDION
-  render GovukComponent::Accordion.new(id: 'abc123') do |component|
-    component.slot(:section,
+  render GovukComponent::AccordionComponent.new(id: 'abc123') do |component|
+    component.section(
       title: 'Home electronics',
       summary: 'Entertainment, communication and recreation',
       expanded: true) do
@@ -11,14 +11,13 @@
         end
       end
 
-    component.slot(:section,
-      title: 'Appliances', summary: 'Laundry, cookers and vacuum cleaners') do
-        tag.p(class: 'govuk-body') do
-          "Ut et elementum tortor. Donec a tellus sed sem euismod congue"
-        end
+    component.section(title: 'Appliances', summary: 'Laundry, cookers and vacuum cleaners') do
+      tag.p(class: 'govuk-body') do
+        "Ut et elementum tortor. Donec a tellus sed sem euismod congue"
+      end
     end
 
-    component.slot(:section, title: 'Toys') do
+    component.section(title: 'Toys') do
       safe_join([
         tag.p(class: 'govuk-body') do
           "In et nunc vitae tortor sollicitudin ultrices. Vivamus a purus justo."
@@ -35,17 +34,17 @@
 
 <%= render "shared/example", title: "Accordion (using the helper)", example: <<~ACCORDION
   govuk_accordion(id: 'def234') do |accordion|
-    accordion.add_section(title: 'Section 1') do
+    accordion.section(title: 'Section 1') do
       tag.p(class: 'govuk-body') do
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       end
     end
-    accordion.add_section(title: 'Section 2', expanded: true) do
+    accordion.section(title: 'Section 2', expanded: true) do
       tag.p(class: 'govuk-body') do
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       end
     end
-    accordion.add_section(title: 'Section 3') do
+    accordion.section(title: 'Section 3') do
       tag.p(class: 'govuk-body') do
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       end

@@ -1,6 +1,15 @@
 <%= example_heading('Inset text') %>
 
 <%= render "shared/example",
-  title: 'Inset text',
-  example: %{render GovukComponent::InsetText.new(text: 'Bake him away, toys.')}
+  title: 'Inset text with text param',
+  example: %{render GovukComponent::InsetTextComponent.new(text: 'Bake him away, toys.')}
+%>
+
+<%= render "shared/example",
+  title: 'Inset text with text block',
+  example: <<~INSET_TEXT
+    render GovukComponent::InsetTextComponent.new do
+      "Subject is hatless. Repeat, hatless."
+    end
+  INSET_TEXT
 %>

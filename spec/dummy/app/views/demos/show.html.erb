@@ -7,10 +7,10 @@
         .map { |f| File.basename(f)[%r{_(?<partial>.*)\.html.erb}, %(partial)] }
         .sort
         .each do |p| %>
-      <section class="component-example">
-        <%= render %(demos/examples/#{p}) %>
-      </section>
-    <% end %>
+          <section class="component-example">
+            <%= render %(demos/examples/#{p}) %>
+          </section>
+        <% end %>
 
   </div>
 </div>

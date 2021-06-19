@@ -4,3 +4,8 @@
 <%= render "shared/example", title: 'Links styled like buttons', example: %{govuk_link_to('Continue', '/', button: true)} %>
 <%= render "shared/example", title: 'Email links', example: %{govuk_mail_to('Home', 'test@test.org')} %>
 <%= render "shared/example", title: 'Button links (this will render a form that POSTs)', example: %{govuk_button_to('Home', '/')} %>
+<%= render "shared/example", title: 'Text-coloured links', example: %{govuk_link_to('Continue', '/', text_colour: true)} %>
+<%= render "shared/example", title: 'No-visited state links', example: %{govuk_link_to('Continue', '/', no_visited_state: true)} %>
+<%= render "shared/example", title: 'Inverse links', example: %{govuk_link_to('Continue', '/', inverse: true)} %>
+<%= render "shared/example", title: 'No-underline links', example: %{govuk_link_to('Continue', '/', no_underline: true)} %>
+<%= render "shared/example", title: 'Muted links', example: %{govuk_link_to('Continue', '/', muted: true)} %>
