@@ -11,7 +11,7 @@ module GovukComponentsHelper
     govuk_notification_banner: 'GovukComponent::NotificationBannerComponent',
     govuk_panel: 'GovukComponent::PanelComponent',
     govuk_phase_banner: 'GovukComponent::PhaseBannerComponent',
-    govuk_start_now_button: 'GovukComponent::StartButtonComponent',
+    govuk_start_button: 'GovukComponent::StartButtonComponent',
     govuk_summary_list: 'GovukComponent::SummaryListComponent',
     govuk_tabs: 'GovukComponent::TabComponent',
     govuk_tag: 'GovukComponent::TagComponent',
