@@ -18,9 +18,9 @@ RSpec.describe(GovukComponent::CookieBannerComponent, type: :component) do
   let(:actions) do
     helper.safe_join(
       [
-        helper.govuk_button_to("Accept", "/accept-path"),
-        helper.govuk_button_to("Reject", "/reject-path"),
-        helper.govuk_link_to("View", "/view-path"),
+        helper.button_to("Accept", "/accept-path"),
+        helper.button_to("Reject", "/reject-path"),
+        helper.link_to("View", "/view-path"),
       ]
     )
   end
