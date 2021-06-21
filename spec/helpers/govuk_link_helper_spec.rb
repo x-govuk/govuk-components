@@ -61,6 +61,35 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
         end
       end
     end
+
+    context "when provided with link text and url params" do
+      let(:link_text) { 'Onwards!' }
+      let(:link_params) { { controller: :some_controller, action: :some_action } }
+      let(:link_url) { '/some/link' }
+
+      subject { govuk_link_to link_text, link_params }
+
+      before do
+        allow(self).to receive(:url_for).with(link_params).and_return link_url
+      end
+
+      it { is_expected.to have_tag('a', text: link_text, with: { href: link_url, class: 'govuk-link' }) }
+    end
+
+    context "when provided with url params and the block" do
+      let(:link_text) { 'Onwards!' }
+      let(:link_html) { tag.span(link_text) }
+      let(:link_params) { { controller: :some_controller, action: :some_action } }
+      let(:link_url) { '/some/link' }
+
+      subject { govuk_link_to(link_params) { link_html } }
+
+      before do
+        allow(self).to receive(:url_for).with(link_params).and_return link_url
+      end
+
+      it { is_expected.to have_tag('a', with: { href: link_url }) { with_tag(:span, text: link_text)} }
+    end
   end
 
   describe '#govuk_mail_to' do

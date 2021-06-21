@@ -1,8 +1,27 @@
 module GovukLinkHelper
-  def govuk_link_to(*args, button: false, no_visited_state: false, muted: false, text_colour: false, inverse: false, no_underline: false, **kwargs, &block)
-    classes = build_classes(button, no_visited_state, muted, text_colour, inverse, no_underline)
+  EXTRA_OPTIONS = {
+    button: false,
+    no_visited_state: false,
+    muted: false,
+    text_colour: false,
+    inverse: false,
+    no_underline: false
+  }.freeze
 
-    link_to(*args, **inject_class(kwargs, class_name: classes), &block)
+  def govuk_link_to(name = nil, options = nil, extra_options = {}, &block)
+    extra_options = options if block_given?
+
+    html_options = extra_options&.slice!(*EXTRA_OPTIONS.keys) || {}
+    extra_options = EXTRA_OPTIONS.merge(extra_options || {})
+
+    classes = build_classes(*extra_options.values_at(*EXTRA_OPTIONS.keys))
+    html_options = inject_class(html_options, class_name: classes)
+
+    if block_given?
+      link_to(name, html_options, &block)
+    else
+      link_to(name, options, html_options)
+    end
   end
 
   def govuk_mail_to(*args, button: false, no_visited_state: false, muted: false, text_colour: false, inverse: false, no_underline: false, **kwargs, &block)
@@ -25,7 +44,7 @@ private
       text_colour_class(text_colour),
       inverse_class(inverse),
       no_underline_class(no_underline),
-    ]
+    ].compact.join(" ")
   end
 
   def inject_class(attributes, class_name:)
