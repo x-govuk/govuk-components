@@ -1,5 +1,5 @@
 class GovukComponent::BackLinkComponent < GovukComponent::Base
-  attr_reader :text, :href, :options
+  attr_reader :text, :href
 
   def initialize(text:, href:, classes: nil, html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
