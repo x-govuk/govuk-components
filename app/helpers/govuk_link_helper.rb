@@ -1,32 +1,18 @@
 module GovukLinkHelper
-  def govuk_link_classes(no_visited_state: false, muted: false, text_colour: false, inverse: false, no_underline: false)
-    [
-      'govuk-link',
-      no_visited_state_class(no_visited_state),
-      muted_class(muted),
-      text_colour_class(text_colour),
-      inverse_class(inverse),
-      no_underline_class(no_underline),
-    ].compact
-  end
-
-  EXTRA_OPTIONS = {
-    button: false,
-    no_visited_state: false,
-    muted: false,
-    text_colour: false,
-    inverse: false,
-    no_underline: false
+  LINK_STYLES = {
+    muted: "govuk-link--muted",
+    no_visited_state: "govuk-link--no-visited-state",
+    text_colour: "govuk-link--text-colour",
+    inverse: "govuk-link--inverse",
+    no_underline: "govuk-link--no-underline",
   }.freeze
 
-  def govuk_link_to(name = nil, options = nil, extra_options = {}, &block)
+  def govuk_link_to(name = nil, options = nil, extra_options = [], &block)
     extra_options = options if block_given?
 
-    html_options = extra_options&.slice!(*EXTRA_OPTIONS.keys) || {}
-    extra_options = EXTRA_OPTIONS.merge(extra_options || {})
-
-    classes = build_classes(*extra_options.values_at(*EXTRA_OPTIONS.keys))
-    html_options = inject_class(html_options, class_name: classes)
+    html_options = if (style_classes = govuk_link_classes(*extra_options))
+                     inject_class(html_options, class_name: style_classes)
+                   end
 
     if block_given?
       link_to(name, html_options, &block)
@@ -45,20 +31,19 @@ module GovukLinkHelper
     button_to(*args, **inject_class(kwargs, class_name: 'govuk-button'))
   end
 
-private
+  def govuk_link_classes(*styles, default_class: 'govuk-link')
+    if (invalid_styles = (styles - LINK_STYLES.keys)) && invalid_styles.any?
+      fail(ArgumentError, "invalid styles #{invalid_styles.to_sentence}. Valid styles are #{LINK_STYLES.keys.to_sentence}")
+    end
 
-  def build_classes(button, no_visited_state, muted, text_colour, inverse, no_underline)
-    [
-      link_class(button),
-      no_visited_state_class(no_visited_state),
-      muted_class(muted),
-      text_colour_class(text_colour),
-      inverse_class(inverse),
-      no_underline_class(no_underline),
-    ].compact.join(" ")
+    [default_class] + LINK_STYLES.values_at(*styles).compact
   end
 
+private
+
   def inject_class(attributes, class_name:)
+    attributes ||= {}
+
     attributes.with_indifferent_access.tap do |attrs|
       attrs[:class] = Array.wrap(attrs[:class]).prepend(class_name)
     end

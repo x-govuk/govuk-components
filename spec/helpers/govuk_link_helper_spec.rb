@@ -10,10 +10,10 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
   let(:kwargs) { {} }
 
   describe '#govuk_link_classes' do
-    subject { govuk_link_classes(**kwargs) }
+    subject { govuk_link_classes(*args) }
 
     describe "by default" do
-      let(:kwargs) { {} }
+      let(:args) { [] }
 
       specify "contains only 'govuk-link'" do
         expect(subject).to eql(%w(govuk-link))
@@ -28,14 +28,16 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
       no_underline:     'govuk-link--no-underline',
     }.each do |style, css_class|
       describe "generating a #{style}-style link with '#{style}: true'" do
-        let(:kwargs) { { style => true } }
+        let(:args) { [style] }
 
         specify %(contains 'govuk-link' and '#{css_class}') do
           expect(subject).to match_array(['govuk-link', css_class])
         end
       end
     end
+  end
 
+  describe "#govuk_link_to" do
     context "when provided with link text and url params" do
       let(:link_text) { 'Onwards!' }
       let(:link_params) { { controller: :some_controller, action: :some_action } }
@@ -62,7 +64,7 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
         allow(self).to receive(:url_for).with(link_params).and_return link_url
       end
 
-      it { is_expected.to have_tag('a', with: { href: link_url }) { with_tag(:span, text: link_text)} }
+      it { is_expected.to have_tag('a', with: { href: link_url }) { with_tag(:span, text: link_text) } }
     end
   end
 
