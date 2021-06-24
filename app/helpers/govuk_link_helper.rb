@@ -7,11 +7,15 @@ module GovukLinkHelper
     no_underline: "govuk-link--no-underline",
   }.freeze
 
-  def govuk_link_to(name = nil, options = nil, extra_options = [], &block)
+  def govuk_link_to(name = nil, options = nil, extra_options = {}, &block)
     extra_options = options if block_given?
 
-    html_options = if (style_classes = govuk_link_classes(*extra_options))
-                     inject_class(html_options, class_name: style_classes)
+    govuk_link_style_options = extra_options&.slice(*LINK_STYLES.keys) || {}
+
+    html_options = if (style_classes = govuk_link_classes(*govuk_link_style_options.keys))
+                     inject_class(extra_options, class_name: style_classes)
+                   else
+                     {}
                    end
 
     if block_given?
@@ -45,7 +49,7 @@ private
     attributes ||= {}
 
     attributes.with_indifferent_access.tap do |attrs|
-      attrs[:class] = Array.wrap(attrs[:class]).prepend(class_name)
+      attrs[:class] = Array.wrap(attrs[:class]).prepend(class_name).flatten
     end
   end
 

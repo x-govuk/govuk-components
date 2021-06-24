@@ -38,33 +38,46 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
   end
 
   describe "#govuk_link_to" do
+    let(:link_text) { 'Onwards!' }
+    let(:link_url) { '/some/link' }
+
+    before do
+      allow(self).to receive(:url_for).with(link_params).and_return(link_url)
+    end
+
     context "when provided with link text and url params" do
-      let(:link_text) { 'Onwards!' }
       let(:link_params) { { controller: :some_controller, action: :some_action } }
-      let(:link_url) { '/some/link' }
 
       subject { govuk_link_to link_text, link_params }
-
-      before do
-        allow(self).to receive(:url_for).with(link_params).and_return link_url
-      end
 
       it { is_expected.to have_tag('a', text: link_text, with: { href: link_url, class: 'govuk-link' }) }
     end
 
     context "when provided with url params and the block" do
-      let(:link_text) { 'Onwards!' }
       let(:link_html) { tag.span(link_text) }
       let(:link_params) { { controller: :some_controller, action: :some_action } }
-      let(:link_url) { '/some/link' }
 
       subject { govuk_link_to(link_params) { link_html } }
 
-      before do
-        allow(self).to receive(:url_for).with(link_params).and_return link_url
-      end
-
       it { is_expected.to have_tag('a', with: { href: link_url }) { with_tag(:span, text: link_text) } }
+    end
+
+    context "customising the GOV.UK link style" do
+      let(:link_params) { { controller: :some_controller, action: :some_action } }
+      let(:custom_html_options) { { inverse: true } }
+
+      subject { govuk_link_to(link_text, link_params, custom_html_options) }
+
+      it { is_expected.to have_tag('a', with: { href: link_url, class: "govuk-link--inverse" }, text: link_text) }
+    end
+
+    context "adding custom classes" do
+      let(:link_params) { { controller: :some_controller, action: :some_action } }
+      let(:custom_class) { { class: "green" } }
+
+      subject { govuk_link_to(link_text, link_params, { class: "green" }) }
+
+      it { is_expected.to have_tag('a', with: { href: link_url, class: "green" }, text: link_text) }
     end
   end
 
