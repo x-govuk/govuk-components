@@ -10,9 +10,9 @@
     end
     component.actions do
       safe_join([
-        govuk_link_to("Accept cookies", "#accept", button: true),
-        govuk_link_to("Reject cookies", "#reject", button: true),
-        govuk_link_to("View cookies", "#view"),
+        link_to("Accept cookies", "#accept", { class: govuk_button_classes }),
+        link_to("Reject cookies", "#reject", { class: govuk_button_classes(warning: true) }),
+        link_to("View cookies", "#view", { class: govuk_link_classes }),
       ])
     end
   end

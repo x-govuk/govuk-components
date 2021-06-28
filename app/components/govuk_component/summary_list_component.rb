@@ -46,9 +46,11 @@ private
     end
 
     def action
+      link_classes = govuk_link_classes.append(action_classes).flatten
+
       tag.dd(class: "govuk-summary-list__actions") do
         if href.present?
-          govuk_link_to(href, class: action_classes, **action_attributes) do
+          link_to(href, class: link_classes, **action_attributes) do
             safe_join([text, tag.span(visually_hidden_text, class: "govuk-visually-hidden")])
           end
         end

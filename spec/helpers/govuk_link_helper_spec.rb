@@ -9,148 +9,196 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
   let(:args) { [text, url] }
   let(:kwargs) { {} }
 
-  describe '#govuk_link_to' do
-    subject { govuk_link_to(*args, **kwargs) }
-    it { is_expected.to have_tag("a", with: { href: url, class: 'govuk-link' }) }
+  describe '#govuk_link_classes' do
+    subject { govuk_link_classes(*args) }
 
-    describe "custom classes" do
-      context 'when additional classes are passed in as strings' do
-        let(:custom_class) { 'yellow' }
-        let(:kwargs) { { class: custom_class } }
+    describe "by default" do
+      let(:args) { [] }
 
-        specify 'has the custom classes' do
-          expect(subject).to have_tag("a", with: { href: url, class: ['govuk-link', custom_class] })
-        end
-      end
-
-      context 'when additional classes are passed in as arrays' do
-        let(:custom_class) { %w(yellow) }
-        let(:kwargs) { { class: custom_class } }
-
-        specify 'has the custom classes' do
-          expect(subject).to have_tag("a", with: { href: url, class: custom_class.append("govuk-link") })
-        end
-      end
-    end
-
-    context 'when provided with a block' do
-      let(:link_text) { 'Onwards!' }
-      let(:link_html) { tag.span(link_text) }
-      subject { govuk_link_to(url) { link_html } }
-
-      specify 'renders a link containing the block content' do
-        expect(subject).to have_tag('a') do
-          with_tag('span', text: link_text)
-        end
+      specify "contains only 'govuk-link'" do
+        expect(subject).to eql(%w(govuk-link))
       end
     end
 
     {
-      button: %w(govuk-button),
-      no_visited_state: %w(govuk-link govuk-link--no-visited-state),
-      muted: %w(govuk-link govuk-link--muted),
-      text_colour: %w(govuk-link govuk-link--text-colour),
-      inverse: %w(govuk-link govuk-link--inverse),
-      no_underline: %w(govuk-link govuk-link--no-underline),
+      no_visited_state: 'govuk-link--no-visited-state',
+      muted:            'govuk-link--muted',
+      text_colour:      'govuk-link--text-colour',
+      inverse:          'govuk-link--inverse',
+      no_underline:     'govuk-link--no-underline',
     }.each do |style, css_class|
       describe "generating a #{style}-style link with '#{style}: true'" do
-        let(:kwargs) { { style => true } }
+        let(:args) { [style] }
 
-        specify "link has the class: #{css_class}" do
-          expect(subject).to have_tag('a', text: text, with: { href: url, class: css_class })
+        specify %(contains 'govuk-link' and '#{css_class}') do
+          expect(subject).to match_array(['govuk-link', css_class])
         end
       end
     end
   end
 
-  describe '#govuk_mail_to' do
-    let(:email_address) { %(test@something.org) }
-    let(:email_address_with_mailto_prefix) { %(mailto:) + email_address }
-    let(:args) { [email_address, text] }
-    subject { govuk_mail_to(*args, **kwargs) }
+  describe '#govuk_button_classes' do
+    subject { govuk_button_classes(*args) }
 
-    it { is_expected.to have_tag("a", with: { href: email_address_with_mailto_prefix, class: 'govuk-link' }) }
+    describe "by default" do
+      let(:args) { [] }
 
-    describe "custom classes" do
-      context 'when additional classes are passed in as strings' do
-        let(:custom_class) { 'yellow' }
-        let(:kwargs) { { class: custom_class } }
-
-        specify 'has the custom classes' do
-          expect(subject).to have_tag("a", with: { href: email_address_with_mailto_prefix, class: ['govuk-link', custom_class] })
-        end
-      end
-
-      context 'when additional classes are passed in as arrays' do
-        let(:custom_class) { %w(yellow) }
-        let(:kwargs) { { class: custom_class } }
-
-        specify 'has the custom classes' do
-          expect(subject).to have_tag("a", with: { href: email_address_with_mailto_prefix, class: custom_class.append("govuk-link") })
-        end
-      end
-    end
-
-    context 'when provided with a block' do
-      let(:link_text) { 'Onwards!' }
-      let(:link_html) { tag.span(link_text) }
-      subject { govuk_link_to(url) { link_html } }
-
-      specify 'renders a link containing the block content' do
-        expect(subject).to have_tag('a') do
-          with_tag('span', text: link_text)
-        end
+      specify "contains only 'govuk-button'" do
+        expect(subject).to eql(%w(govuk-button))
       end
     end
 
     {
-      button: %w(govuk-button),
-      no_visited_state: %w(govuk-link govuk-link--no-visited-state),
-      muted: %w(govuk-link govuk-link--muted),
-      text_colour: %w(govuk-link govuk-link--text-colour),
-      inverse: %w(govuk-link govuk-link--inverse),
-      no_underline: %w(govuk-link govuk-link--no-underline),
+      secondary: 'govuk-button--secondary',
+      warning:   'govuk-button--warning',
+      disabled:  'govuk-button--disabled',
     }.each do |style, css_class|
-      describe "generating a #{style}-style link with '#{style}: true'" do
-        let(:kwargs) { { style => true } }
+      describe "generating a #{style}-style button with '#{style}: true'" do
+        let(:args) { [style] }
 
-        specify "link has the class: #{css_class}" do
-          expect(subject).to have_tag('a', text: text, with: { href: email_address_with_mailto_prefix, class: css_class })
+        specify %(contains 'govuk-button' and '#{css_class}') do
+          expect(subject).to match_array(['govuk-button', css_class])
         end
       end
     end
   end
 
-  describe '#govuk_button_to' do
-    subject { govuk_button_to(*args, **kwargs) }
-    let(:url) { '/stuff/menu/' }
+  describe "#govuk_link_to" do
+    let(:link_text) { 'Onwards!' }
+    let(:link_url) { '/some/link' }
 
-    specify 'has form with correct url containing submit input with supplied text' do
-      expect(subject).to have_tag('form', with: { action: url }) do
-        with_tag('input', with: { class: 'govuk-button', value: text })
+    before do
+      allow(self).to receive(:url_for).with(link_params).and_return(link_url)
+    end
+
+    context "when provided with link text and url params" do
+      let(:link_params) { { controller: :some_controller, action: :some_action } }
+
+      subject { govuk_link_to link_text, link_params }
+
+      it { is_expected.to have_tag('a', text: link_text, with: { href: link_url, class: 'govuk-link' }) }
+    end
+
+    context "when provided with url params and the block" do
+      let(:link_html) { tag.span(link_text) }
+      let(:link_params) { { controller: :some_controller, action: :some_action } }
+
+      subject { govuk_link_to(link_params) { link_html } }
+
+      it { is_expected.to have_tag('a', with: { href: link_url }) { with_tag(:span, text: link_text) } }
+    end
+
+    context "customising the GOV.UK link style" do
+      let(:link_params) { { controller: :some_controller, action: :some_action } }
+      let(:custom_html_options) { { inverse: true } }
+
+      subject { govuk_link_to(link_text, link_params, custom_html_options) }
+
+      it { is_expected.to have_tag('a', with: { href: link_url, class: "govuk-link--inverse" }, text: link_text) }
+    end
+
+    context "adding custom classes" do
+      let(:link_params) { { controller: :some_controller, action: :some_action } }
+      let(:custom_class) { { class: "green" } }
+
+      subject { govuk_link_to(link_text, link_params, { class: "green", no_underline: true }) }
+
+      it { is_expected.to have_tag('a', with: { href: link_url, class: %w(green govuk-link--no-underline) }, text: link_text) }
+    end
+  end
+
+  describe "#govuk_mail_to" do
+    let(:link_text) { 'Send a message' }
+    let(:link_html) { tag.span(link_text) }
+    let(:email_address) { 'barney@gumble.net' }
+    let(:mailto_address) { "mailto:" + email_address }
+
+    context "when email address and link text are provided via args" do
+      subject { govuk_mail_to(email_address, link_text) }
+
+      it { is_expected.to have_tag('a', text: link_text, with: { href: mailto_address, class: 'govuk-link' }) }
+
+      context "customising the GOV.UK link style" do
+        let(:custom_html_options) { { no_underline: true } }
+
+        subject { govuk_mail_to(email_address, link_text, custom_html_options) }
+
+        it { is_expected.to have_tag('a', with: { href: mailto_address, class: "govuk-link--no-underline" }, text: link_text) }
       end
     end
 
-    describe "custom classes" do
-      context 'when additional classes are passed in as strings' do
-        let(:custom_class) { 'yellow' }
-        let(:kwargs) { { class: custom_class } }
+    context "when the link text is provided via an block" do
+      subject { govuk_mail_to(email_address) { link_html } }
 
-        specify 'has the custom classes' do
-          expect(subject).to have_tag('form', with: { action: url }) do
-            with_tag("input", with: { class: ['govuk-button', custom_class] })
-          end
+      it { is_expected.to have_tag('a', with: { href: mailto_address }) { with_tag(:span, text: link_text) } }
+
+      context "customising the GOV.UK link style" do
+        let(:custom_html_options) { { text_colour: true } }
+
+        subject { govuk_mail_to(email_address, custom_html_options) { link_html } }
+
+        it { is_expected.to have_tag('a', with: { href: mailto_address, class: "govuk-link--text-colour" }) { with_tag(:span, text: link_text) } }
+      end
+    end
+
+    context "adding custom classes" do
+      let(:custom_class) { { class: "green" } }
+
+      subject { govuk_mail_to(email_address, link_text, { class: "green", no_underline: true }) }
+
+      it { is_expected.to have_tag('a', with: { href: mailto_address, class: %w(green govuk-link--no-underline) }, text: link_text) }
+    end
+  end
+
+  describe "#govuk_button_to" do
+    let(:button_text) { 'Do something' }
+    let(:button_url) { '/some/action' }
+    let(:button_params) { { controller: :some_controller, action: :some_action } }
+
+    before do
+      allow(self).to receive(:url_for).with(button_params).and_return(button_url)
+    end
+
+    context "when provided with button text and url params" do
+      subject { govuk_button_to(button_text, button_params) }
+
+      specify "renders a form with an input of type submit and the correct attributes" do
+        expect(subject).to have_tag("form", with: { class: "button_to", action: button_url }) do
+          with_tag("input", with: { type: "submit", class: "govuk-button" })
         end
       end
+    end
 
-      context 'when additional classes are passed in as arrays' do
-        let(:custom_class) { %w(yellow) }
-        let(:kwargs) { { class: custom_class } }
+    context "when provided with url params and a block" do
+      let(:button_html) { tag.span(button_text) }
 
-        specify 'has the custom classes' do
-          expect(subject).to have_tag('form', with: { action: url }) do
-            with_tag("input", with: { class: ['govuk-button', custom_class] })
-          end
+      subject { govuk_button_to(button_params) { button_html } }
+
+      specify "renders a form with an button of type submit and the correct attributes" do
+        expect(subject).to have_tag("form", with: { class: "button_to", action: button_url }) do
+          with_tag("button", with: { type: "submit", class: "govuk-button" })
+        end
+      end
+    end
+
+    context "customising the GOV.UK button style" do
+      let(:custom_button_options) { { secondary: true } }
+
+      subject { govuk_button_to(button_text, button_params, custom_button_options) }
+
+      specify "renders a form with an button that has the GOV.UK modifier classes" do
+        expect(subject).to have_tag("form", with: { class: "button_to", action: button_url }) do
+          with_tag("input", with: { type: "submit", class: %w(govuk-button govuk-button--secondary) })
+        end
+      end
+    end
+
+    context "adding custom classes" do
+      subject { govuk_button_to(button_text, button_params, { class: "yellow", disabled: true }) }
+
+      specify "renders a form with an button that has the custom classes" do
+        expect(subject).to have_tag("form", with: { class: "button_to", action: button_url }) do
+          with_tag("input", with: { type: "submit", class: %w(govuk-button yellow govuk-button--disabled) })
         end
       end
     end
