@@ -25,7 +25,7 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
     end
   end
 
-  specify 'renders an container div with the right class' do
+  specify 'renders a container div with the right class' do
     expect(rendered_component).to have_tag('div', with: { class: component_css_class }) do
       with_tag('div', with: { class: 'govuk-accordion__section' })
     end
