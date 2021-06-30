@@ -45,8 +45,8 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
     specify 'the title and content is present' do
       sections.each do |title, content|
         expect(rendered_component).to have_tag('div', with: { class: 'govuk-accordion__section', id: %(#{title.parameterize}-section) }) do
-          with_tag('span', with: { id: title.parameterize, class: 'govuk-accordion__section-button' })
-          with_text(content)
+          with_tag('span', text: title, with: { id: title.parameterize, class: 'govuk-accordion__section-button' })
+          with_tag('div', with: { id: %(#{title.parameterize}-content), class: 'govuk-accordion__section-content' }, text: content)
         end
       end
     end
