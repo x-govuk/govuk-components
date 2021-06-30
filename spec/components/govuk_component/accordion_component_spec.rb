@@ -18,7 +18,7 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
   let(:kwargs) { { id: id } }
 
   subject! do
-    render_inline(GovukComponent::AccordionComponent.new) do |component|
+    render_inline(GovukComponent::AccordionComponent.new(**kwargs)) do |component|
       sections.each do |title, content|
         component.section(title: title) { content }
       end
@@ -45,7 +45,10 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
     specify 'the title and content is present' do
       sections.each do |title, content|
         expect(rendered_component).to have_tag('div', with: { class: 'govuk-accordion__section', id: %(#{title.parameterize}-section) }) do
-          with_tag('span', text: title, with: { id: title.parameterize, class: 'govuk-accordion__section-button' })
+          with_tag('h2', class: 'govuk-accordion__section-heading') do
+            with_tag('span', text: title, with: { id: title.parameterize, class: 'govuk-accordion__section-button' })
+          end
+
           with_tag('div', with: { id: %(#{title.parameterize}-content), class: 'govuk-accordion__section-content' }, text: content)
         end
       end
@@ -66,6 +69,22 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
 
         expect(rendered_component).to have_tag('div', with: { id: %(#{id}-content) })
         expect(rendered_component).to have_tag('span', with: { 'aria-controls' => %(#{id}-content) })
+      end
+    end
+  end
+
+  describe 'overriding the section heading' do
+    let(:kwargs) { { heading_level: 3 } }
+
+    specify 'has the overriden level' do
+      expect(rendered_component).to have_tag('h3', with: { class: 'govuk-accordion__section-heading' })
+    end
+
+    context 'when the heading level is invalid' do
+      specify 'has the overriden level' do
+        expected_message = "heading_level must be 1-6"
+
+        expect { GovukComponent::AccordionComponent.new(heading_level: 8) }.to raise_error(ArgumentError, expected_message)
       end
     end
   end
