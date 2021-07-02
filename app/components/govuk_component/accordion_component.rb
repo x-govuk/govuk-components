@@ -25,6 +25,8 @@ private
   class Section < GovukComponent::Base
     attr_reader :title, :summary, :expanded
 
+    renders_one :heading_html
+
     alias_method :expanded?, :expanded
 
     def initialize(title:, summary: nil, expanded: false, classes: [], html_attributes: {})
