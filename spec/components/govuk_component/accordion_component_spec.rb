@@ -19,9 +19,11 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
 
   subject! do
     render_inline(GovukComponent::AccordionComponent.new(**kwargs)) do |component|
-      sections.each do |title, content|
-        component.section(title: title) { content }
-      end
+      helper.safe_join(
+        sections.map do |heading_text, content|
+          component.section(heading_text: heading_text) { content }
+        end
+      )
     end
   end
 
@@ -42,21 +44,21 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
   end
 
   describe 'for each section' do
-    specify 'the title and content is present' do
-      sections.each do |title, content|
-        expect(rendered_component).to have_tag('div', with: { class: 'govuk-accordion__section', id: %(#{title.parameterize}-section) }) do
+    specify 'the heading text and content is present' do
+      sections.each do |heading_text, content|
+        expect(rendered_component).to have_tag('div', with: { class: 'govuk-accordion__section', id: %(#{heading_text.parameterize}-section) }) do
           with_tag('h2', class: 'govuk-accordion__section-heading') do
-            with_tag('span', text: title, with: { id: title.parameterize, class: 'govuk-accordion__section-button' })
+            with_tag('span', text: heading_text, with: { id: heading_text.parameterize, class: 'govuk-accordion__section-button' })
           end
 
-          with_tag('div', with: { id: %(#{title.parameterize}-content), class: 'govuk-accordion__section-content' }, text: content)
+          with_tag('div', with: { id: %(#{heading_text.parameterize}-content), class: 'govuk-accordion__section-content' }, text: content)
         end
       end
     end
 
     specify 'each section ID matches the content aria-labelledby' do
-      sections.each_key do |title|
-        id = title.parameterize
+      sections.each_key do |heading_text|
+        id = heading_text.parameterize
 
         expect(rendered_component).to have_tag('span', with: { id: id, class: 'govuk-accordion__section-button' })
         expect(rendered_component).to have_tag('div', with: { 'aria-labelledby' => id })
@@ -64,8 +66,8 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
     end
 
     specify 'each section ID matches the button aria-controls' do
-      sections.each_key do |title|
-        id = title.parameterize
+      sections.each_key do |heading_text|
+        id = heading_text.parameterize
 
         expect(rendered_component).to have_tag('div', with: { id: %(#{id}-content) })
         expect(rendered_component).to have_tag('span', with: { 'aria-controls' => %(#{id}-content) })
@@ -73,7 +75,7 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
     end
   end
 
-  describe 'overriding the section heading' do
+  describe 'overriding the section heading level' do
     let(:kwargs) { { heading_level: 3 } }
 
     specify 'has the overriden level' do
@@ -89,25 +91,72 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
     end
   end
 
+  describe 'overriding the section heading with HTML' do
+    let(:custom_tag) { :marquee }
+    let(:custom_text) { "Fanciest accordion heading" }
+    let(:custom_class) { "purple" }
+    let(:custom_content) { "What a nice accordion!" }
+
+    subject! do
+      render_inline(GovukComponent::AccordionComponent.new(**kwargs)) do |component|
+        component.section do |section|
+          section.heading_html do
+            helper.content_tag(custom_tag, custom_text, class: custom_class)
+          end
+
+          custom_content
+        end
+      end
+    end
+
+    specify "renders the custom heading content" do
+      expect(rendered_component).to have_tag("h2", with: { class: "govuk-accordion__section-heading" }) do
+        with_tag(custom_tag, text: custom_text, with: { class: custom_class })
+      end
+    end
+
+    specify "renders the custom content" do
+      expect(rendered_component).to have_tag("div", with: { class: "govuk-accordion__section-content" }, text: custom_content)
+    end
+
+    specify "uses a random string as an identifier to link the heading and content together" do
+      button_identifier = html.at_css('span.govuk-accordion__section-button').attribute('id').value
+      content_identifier = %(#{button_identifier}-content)
+
+      expect(rendered_component).to have_tag('span', with: { id: button_identifier, 'aria-controls' => content_identifier })
+      expect(rendered_component).to have_tag('div', with: { id: content_identifier, 'aria-labelledby' => button_identifier })
+    end
+  end
+
+  describe 'when no heading text or HTML is supplied' do
+    specify "raises an appropriate error" do
+      expect {
+        render_inline(GovukComponent::AccordionComponent.new(**kwargs)) do |component|
+          component.section(summary: "A summary")
+        end
+      }.to raise_error(ArgumentError, /no heading_text or heading_html/)
+    end
+  end
+
   describe 'summaries' do
     specify 'no summary by default' do
       expect(rendered_component).not_to have_tag('.govuk-accordion__section-summary')
     end
 
     context 'when a summary text is provided' do
-      let(:title) { 'a thing' }
+      let(:heading_text) { 'a thing' }
       let(:summary_content) { 'some summary content' }
       let(:expected_classes) { %w(govuk-accordion__section-summary govuk-body) }
 
       subject! do
         render_inline(GovukComponent::AccordionComponent.new) do |component|
-          component.section(title: title, summary: summary_content) { 'abc' }
+          component.section(heading_text: heading_text, summary: summary_content) { 'abc' }
         end
       end
 
       specify 'the summary is rendered with the right id, class and text' do
         expect(rendered_component).to have_tag('.govuk-accordion__section-header') do
-          with_tag('div', with: { id: %(#{title.parameterize}-summary), class: expected_classes }, text: summary_content)
+          with_tag('div', with: { id: %(#{heading_text.parameterize}-summary), class: expected_classes }, text: summary_content)
         end
       end
     end
@@ -119,15 +168,15 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
   context 'slot arguments' do
     let(:slot) { :section }
     let(:content) { -> { 'some swanky accordion content' } }
-    let(:slot_kwargs) { { title: 'A title', summary: 'A summary' } }
+    let(:slot_kwargs) { { heading_text: 'A heading_text', summary: 'A summary' } }
 
     it_behaves_like 'a component with a slot that accepts custom classes'
     it_behaves_like 'a component with a slot that accepts custom html attributes'
 
     specify 'sections have the correct expanded states' do
       render_inline(GovukComponent::AccordionComponent.new) do |component|
-        component.section(expanded: true, title: 'section 1', html_attributes: { id: 'section_1' }) { 'abc' }
-        component.section(title: 'section 2', html_attributes: { id: 'section_2' }) { 'def' }
+        component.section(expanded: true, heading_text: 'section 1', html_attributes: { id: 'section_1' }) { 'abc' }
+        component.section(heading_text: 'section 2', html_attributes: { id: 'section_2' }) { 'def' }
       end
 
       expect(rendered_component).to have_tag('div', with: { id: 'section_1', class: %w(govuk-accordion__section govuk-accordion__section--expanded) })

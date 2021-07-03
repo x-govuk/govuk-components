@@ -1,12 +1,22 @@
 class GovukComponent::AccordionComponent < GovukComponent::Base
-  renders_many :sections, "Section"
+  renders_many :sections, ->(heading_text: nil, summary: nil, expanded: false, classes: [], html_attributes: {}, &block) do
+    GovukComponent::AccordionComponent::SectionComponent.new(
+      classes: classes,
+      expanded: expanded,
+      heading_level: heading_level,      # set once at parent level, passed to all children
+      html_attributes: html_attributes,
+      summary: summary,
+      heading_text: heading_text,
+      &block
+    )
+  end
 
   attr_reader :id, :heading_level
 
   def initialize(id: nil, heading_level: 2, classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
-    @id = id
+    @id            = id
     @heading_level = heading_tag(heading_level)
   end
 
@@ -20,37 +30,5 @@ private
     fail(ArgumentError, "heading_level must be 1-6") unless level.in?(1..6)
 
     %(h#{level})
-  end
-
-  class Section < GovukComponent::Base
-    attr_reader :title, :summary, :expanded
-
-    renders_one :heading_html
-
-    alias_method :expanded?, :expanded
-
-    def initialize(title:, summary: nil, expanded: false, classes: [], html_attributes: {})
-      super(classes: classes, html_attributes: html_attributes)
-
-      @title    = title
-      @summary  = summary
-      @expanded = expanded
-    end
-
-    def id(suffix: nil)
-      [title.parameterize, suffix].compact.join('-')
-    end
-
-    def call
-      tag.div(content, id: id(suffix: 'content'), class: %w(govuk-accordion__section-content), aria: { labelledby: id })
-    end
-
-  private
-
-    def default_classes
-      %w(govuk-accordion__section).tap do |classes|
-        classes.append("govuk-accordion__section--expanded") if expanded?
-      end
-    end
   end
 end
