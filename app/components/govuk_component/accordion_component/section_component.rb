@@ -1,15 +1,16 @@
 class GovukComponent::AccordionComponent::SectionComponent < GovukComponent::Base
-  attr_reader :heading_text, :summary, :expanded, :heading_level
+  attr_reader :heading_text, :summary_text, :expanded, :heading_level
 
   renders_one :heading_html
+  renders_one :summary_html
 
   alias_method :expanded?, :expanded
 
-  def initialize(heading_text:, summary:, expanded:, heading_level:, classes: [], html_attributes: {})
+  def initialize(heading_text:, summary_text:, expanded:, heading_level:, classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
     @heading_text  = heading_text
-    @summary       = summary
+    @summary_text  = summary_text
     @expanded      = expanded
     @heading_level = heading_level
   end
@@ -24,6 +25,10 @@ class GovukComponent::AccordionComponent::SectionComponent < GovukComponent::Bas
 
   def heading_content
     heading_html || heading_text || fail(ArgumentError, "no heading_text or heading_html")
+  end
+
+  def summary_content
+    summary_html || summary_text
   end
 
 private

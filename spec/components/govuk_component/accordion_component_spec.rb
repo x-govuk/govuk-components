@@ -132,7 +132,7 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
     specify "raises an appropriate error" do
       expect {
         render_inline(GovukComponent::AccordionComponent.new(**kwargs)) do |component|
-          component.section(summary: "A summary")
+          component.section(summary_text: "A summary")
         end
       }.to raise_error(ArgumentError, /no heading_text or heading_html/)
     end
@@ -145,19 +145,51 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
 
     context 'when a summary text is provided' do
       let(:heading_text) { 'a thing' }
-      let(:summary_content) { 'some summary content' }
+      let(:summary_text) { 'some summary content' }
       let(:expected_classes) { %w(govuk-accordion__section-summary govuk-body) }
 
       subject! do
         render_inline(GovukComponent::AccordionComponent.new) do |component|
-          component.section(heading_text: heading_text, summary: summary_content) { 'abc' }
+          component.section(heading_text: heading_text, summary_text: summary_text) { 'abc' }
         end
       end
 
       specify 'the summary is rendered with the right id, class and text' do
         expect(rendered_component).to have_tag('.govuk-accordion__section-header') do
-          with_tag('div', with: { id: %(#{heading_text.parameterize}-summary), class: expected_classes }, text: summary_content)
+          with_tag('div', with: { id: %(#{heading_text.parameterize}-summary), class: expected_classes }, text: summary_text)
         end
+      end
+    end
+
+    describe 'overriding the section heading with HTML' do
+      let(:custom_tag) { :strong }
+      let(:custom_text) { "This is a summary" }
+      let(:custom_class) { "special" }
+      let(:custom_content) { "What a nice summary!" }
+      let(:heading_text) { "some heading" }
+
+      subject! do
+        render_inline(GovukComponent::AccordionComponent.new(**kwargs)) do |component|
+          component.section(heading_text: heading_text) do |section|
+            section.summary_html do
+              helper.content_tag(custom_tag, custom_text, class: custom_class)
+            end
+
+            custom_content
+          end
+        end
+      end
+
+      specify "renders the custom summary content" do
+        expect(rendered_component).to have_tag("div", with: { class: "govuk-accordion__section-header" }) do
+          with_tag("div", with: { class: "govuk-accordion__section-summary" }) do
+            with_tag(custom_tag, text: custom_text, with: { class: custom_class })
+          end
+        end
+      end
+
+      specify "renders the custom content" do
+        expect(rendered_component).to have_tag("div", with: { class: "govuk-accordion__section-content" }, text: custom_content)
       end
     end
   end
@@ -168,7 +200,7 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
   context 'slot arguments' do
     let(:slot) { :section }
     let(:content) { -> { 'some swanky accordion content' } }
-    let(:slot_kwargs) { { heading_text: 'A heading_text', summary: 'A summary' } }
+    let(:slot_kwargs) { { heading_text: 'A heading_text', summary_text: 'A summary' } }
 
     it_behaves_like 'a component with a slot that accepts custom classes'
     it_behaves_like 'a component with a slot that accepts custom html attributes'
