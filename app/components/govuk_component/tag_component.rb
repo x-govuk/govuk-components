@@ -1,17 +1,7 @@
 class GovukComponent::TagComponent < GovukComponent::Base
   attr_reader :text, :colour
 
-  COLOURS = %w(
-    grey
-    green
-    turquoise
-    blue
-    red
-    purple
-    pink
-    orange
-    yellow
-  ).freeze
+  COLOURS = %w(grey green turquoise blue red purple pink orange yellow).freeze
 
   def initialize(text:, colour: nil, classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
