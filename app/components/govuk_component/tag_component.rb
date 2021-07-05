@@ -1,19 +1,9 @@
 class GovukComponent::TagComponent < GovukComponent::Base
   attr_reader :text, :colour
 
-  COLOURS = %w(
-    grey
-    green
-    turquoise
-    blue
-    red
-    purple
-    pink
-    orange
-    yellow
-  ).freeze
+  COLOURS = %w(grey green turquoise blue red purple pink orange yellow).freeze
 
-  def initialize(text:, colour: nil, classes: [], html_attributes: {})
+  def initialize(text: nil, colour: nil, classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
     @text   = text
@@ -21,10 +11,14 @@ class GovukComponent::TagComponent < GovukComponent::Base
   end
 
   def call
-    tag.strong(@text, class: classes.append(colour_class), **html_attributes)
+    tag.strong(tag_content, class: classes.append(colour_class), **html_attributes)
   end
 
 private
+
+  def tag_content
+    @text || content || fail(ArgumentError, "no text or content")
+  end
 
   def default_classes
     %w(govuk-tag)
