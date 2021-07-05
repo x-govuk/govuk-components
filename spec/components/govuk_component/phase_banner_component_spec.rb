@@ -7,7 +7,7 @@ RSpec.describe(GovukComponent::PhaseBannerComponent, type: :component) do
 
   let(:phase) { 'Gamma' }
   let(:text) { 'This is an experimental service – be cautious' }
-  let(:kwargs) { { phase_tag: { text: phase }, text: text } }
+  let(:kwargs) { { tag: { text: phase }, text: text } }
 
   subject! { render_inline(GovukComponent::PhaseBannerComponent.new(**kwargs)) }
 
@@ -38,7 +38,7 @@ RSpec.describe(GovukComponent::PhaseBannerComponent, type: :component) do
   end
 
   context "when a custom phase tag colour is provided" do
-    let(:kwargs) { { phase_tag: { text: phase, colour: 'orange' }, text: text } }
+    let(:kwargs) { { tag: { text: phase, colour: 'orange' }, text: text } }
 
     specify "the phase tag has the right colour class" do
       expect(rendered_component).to have_tag("strong", with: { class: "govuk-tag--orange" }, text: phase)
