@@ -35,4 +35,13 @@ RSpec.describe(GovukComponent::InsetTextComponent, type: :component) do
       expect(rendered_component).to be_blank
     end
   end
+
+  context 'when a custom id is supplied' do
+    let(:custom_id) { 'abc123' }
+    before { render_inline(described_class.new(**kwargs.merge(id: custom_id))) }
+
+    specify 'the text is rendered with the custom id' do
+      expect(rendered_component).to have_tag('div', with: { id: custom_id, class: component_css_class }, text: text)
+    end
+  end
 end
