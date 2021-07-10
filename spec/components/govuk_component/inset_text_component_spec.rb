@@ -16,7 +16,7 @@ RSpec.describe(GovukComponent::InsetTextComponent, type: :component) do
     before { render_inline(described_class.new(**kwargs)) }
 
     specify 'the text is rendered' do
-      expect(rendered_component).to have_tag('div', with: { class: 'govuk-inset-text' }, text: text)
+      expect(rendered_component).to have_tag('div', with: { class: component_css_class }, text: text)
     end
   end
 
@@ -24,7 +24,7 @@ RSpec.describe(GovukComponent::InsetTextComponent, type: :component) do
     before { render_inline(described_class.new(**kwargs)) { 'Something in a block' } }
 
     specify 'the block is rendered' do
-      expect(rendered_component).to have_tag('div', with: { class: 'govuk-inset-text' }, text: 'Something in a block')
+      expect(rendered_component).to have_tag('div', with: { class: component_css_class }, text: 'Something in a block')
     end
   end
 
