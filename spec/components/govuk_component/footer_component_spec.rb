@@ -88,7 +88,7 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
       end
     end
 
-    describe "when custom meta_licence text is provided" do
+    describe "custom meta_licence text" do
       let(:licence_text) { "Permission is hereby granted, free of charge, to any person obtaining a copy of this software" }
       let(:kwargs) { { meta_licence: licence_text } }
       let(:licence_selector) { [selector, ".govuk-footer__licence-description"].join(" ") }
@@ -103,6 +103,15 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
             without_tag("svg")
           end
         end
+      end
+    end
+
+    describe "custom container classes" do
+      let(:custom_container_classes) { %w(polka dots) }
+      let(:kwargs) { { container_classes: custom_container_classes } }
+
+      specify "should set the custom container classes" do
+        expect(rendered_component).to have_tag("div", with: { class: custom_container_classes.append('govuk-width-container') })
       end
     end
 

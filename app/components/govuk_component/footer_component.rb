@@ -2,21 +2,26 @@ class GovukComponent::FooterComponent < GovukComponent::Base
   renders_one :meta_content
   renders_one :meta
 
-  attr_reader :meta_items, :meta_items_title, :meta_licence, :copyright
+  attr_reader :meta_items, :meta_items_title, :meta_licence, :copyright, :custom_container_classes
 
-  def initialize(meta_items: {}, meta_items_title: "Support links", meta_licence: nil, classes: [], html_attributes: {}, copyright_text: default_copright_text, copyright_url: default_copyright_url)
+  def initialize(meta_items: {}, meta_items_title: "Support links", meta_licence: nil, classes: [], container_classes: [], html_attributes: {}, copyright_text: default_copright_text, copyright_url: default_copyright_url)
     super(classes: classes, html_attributes: html_attributes)
 
-    @meta_items       = build_meta_links(meta_items)
-    @meta_items_title = meta_items_title
-    @meta_licence     = meta_licence
-    @copyright        = build_copyright(copyright_text, copyright_url)
+    @meta_items               = build_meta_links(meta_items)
+    @meta_items_title         = meta_items_title
+    @meta_licence             = meta_licence
+    @copyright                = build_copyright(copyright_text, copyright_url)
+    @custom_container_classes = container_classes
   end
 
 private
 
   def default_classes
     %w(govuk-footer)
+  end
+
+  def container_classes
+    combine_classes(%w(govuk-width-container), custom_container_classes)
   end
 
   def build_meta_links(links)
