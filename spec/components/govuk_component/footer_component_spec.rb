@@ -115,6 +115,16 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
       end
     end
 
+    describe "custom container HTML attributes" do
+      let(:custom_id) { "abc123" }
+      let(:custom_container_html_attributes) { { id: custom_id } }
+      let(:kwargs) { { container_html_attributes: custom_container_html_attributes } }
+
+      specify "should set the custom container classes" do
+        expect(rendered_component).to have_tag("div", with: { id: custom_id, class: "govuk-width-container" })
+      end
+    end
+
     describe "when custom meta_licence text is disabled" do
       let(:kwargs) { { meta_licence: false } }
       let(:licence_selector) { [selector, ".govuk-footer__licence-description"].join(" ") }
@@ -129,7 +139,7 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
 
       subject! do
         render_inline(GovukComponent::FooterComponent.new(**kwargs)) do |footer|
-          footer.meta_content { custom_content }
+          footer.meta_html { custom_content }
         end
       end
 
@@ -145,9 +155,41 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
         end
       end
     end
+
+    describe "custom meta contents" do
+      describe "meta_text" do
+        let(:custom_text) { "Some meta text" }
+
+        subject! { render_inline(GovukComponent::FooterComponent.new(meta_text: custom_text, **kwargs)) }
+
+        specify "custom text is rendered" do
+          expect(rendered_component).to have_tag("div", with: { class: "govuk-footer__meta-item" }) do
+            with_text(Regexp.new(custom_text))
+          end
+        end
+      end
+
+      describe "meta_html" do
+        let(:custom_text) { "Some meta html" }
+        let(:custom_tag) { "span" }
+        let(:custom_html) { helper.content_tag(custom_tag, custom_text) }
+
+        subject! do
+          render_inline(GovukComponent::FooterComponent.new(**kwargs)) do |component|
+            component.meta_html { custom_html }
+          end
+        end
+
+        specify "custom HTML is rendered" do
+          expect(rendered_component).to have_tag("div", with: { class: "govuk-footer__meta-item" }) do
+            with_tag(custom_tag, text: Regexp.new(custom_text))
+          end
+        end
+      end
+    end
   end
 
-  describe "overwriting all meta information with custom content" do
+  describe "overwriting all meta information entirely with custom content" do
     let(:kwargs) { { meta_items_title: heading_text, meta_items: meta_items } }
 
     subject! do

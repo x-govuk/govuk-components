@@ -1,17 +1,34 @@
 class GovukComponent::FooterComponent < GovukComponent::Base
-  renders_one :meta_content
+  renders_one :meta_html
   renders_one :meta
 
-  attr_reader :meta_items, :meta_items_title, :meta_licence, :copyright, :custom_container_classes
+  attr_reader :meta_items, :meta_text, :meta_items_title, :meta_licence, :copyright, :custom_container_classes
 
-  def initialize(meta_items: {}, meta_items_title: "Support links", meta_licence: nil, classes: [], container_classes: [], html_attributes: {}, copyright_text: default_copright_text, copyright_url: default_copyright_url)
+  def initialize(
+    classes: [],
+    container_classes: [],
+    container_html_attributes: {},
+    copyright_text: default_copright_text,
+    copyright_url: default_copyright_url,
+    html_attributes: {},
+    meta_items: {},
+    meta_items_title: "Support links",
+    meta_licence: nil,
+    meta_text: nil,
+    meta_classes: [],
+    meta_html_attributes: {}
+  )
     super(classes: classes, html_attributes: html_attributes)
 
-    @meta_items               = build_meta_links(meta_items)
-    @meta_items_title         = meta_items_title
-    @meta_licence             = meta_licence
-    @copyright                = build_copyright(copyright_text, copyright_url)
-    @custom_container_classes = container_classes
+    @meta_text                        = meta_text
+    @meta_items                       = build_meta_links(meta_items)
+    @meta_items_title                 = meta_items_title
+    @meta_licence                     = meta_licence
+    @custom_meta_classes              = meta_classes
+    @custom_meta_html_attributes      = meta_html_attributes
+    @copyright                        = build_copyright(copyright_text, copyright_url)
+    @custom_container_classes         = container_classes
+    @custom_container_html_attributes = container_html_attributes
   end
 
 private
@@ -22,6 +39,22 @@ private
 
   def container_classes
     combine_classes(%w(govuk-width-container), custom_container_classes)
+  end
+
+  def meta_content
+    meta_html || meta_text
+  end
+
+  def meta_classes
+    %w(govuk-footer__meta).append(@custom_meta_classes)
+  end
+
+  def meta_html_attributes
+    @custom_meta_html_attributes
+  end
+
+  def container_html_attributes
+    @custom_container_html_attributes
   end
 
   def build_meta_links(links)

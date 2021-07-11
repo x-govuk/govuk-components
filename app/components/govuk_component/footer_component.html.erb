@@ -1,6 +1,6 @@
 <%= tag.footer(class: classes, role: 'contentinfo', **html_attributes) do %>
-  <%= tag.div(class: container_classes) do %>
-    <div class="govuk-footer__meta">
+  <%= tag.div(class: container_classes, **container_html_attributes) do %>
+    <%= tag.div(class: meta_classes, **meta_html_attributes) do %>
       <% if meta.present? %>
         <%= meta %>
       <% else %>
@@ -35,6 +35,6 @@
           <%= tag.div(copyright, class: "govuk-footer__meta-item") %>
         </div>
       <% end %>
-    </div>
+    <% end %>
   <% end %>
 <% end %>
