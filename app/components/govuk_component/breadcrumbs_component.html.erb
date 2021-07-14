@@ -1,14 +1,7 @@
 <%= tag.div(class: classes, **html_attributes) do %>
   <ol class="govuk-breadcrumbs__list">
-    <% @breadcrumbs.each do |text, link| %>
-
-      <% if link.present? %>
-        <li class="govuk-breadcrumbs__list-item">
-          <%= link_to(text, link, class: "govuk-breadcrumbs__link") %>
-        </li>
-      <% else %>
-        <%= tag.li(text, class: "govuk-breadcrumbs__list-item", aria: { current: "page" }) %>
-      <% end %>
+    <% @breadcrumbs.each do |link| %>
+      <%= link %>
     <% end %>
   </ol>
 <% end %>
