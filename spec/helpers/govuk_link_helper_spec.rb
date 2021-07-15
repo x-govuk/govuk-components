@@ -203,4 +203,39 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
       end
     end
   end
+
+  describe "#govuk_breadcrumb_link_to" do
+    let(:breadcrumb_text) { 'Grandparent' }
+    let(:breadcrumb_url) { '/several/levels/up' }
+
+    before do
+      allow(self).to receive(:url_for).with(breadcrumb_params).and_return(breadcrumb_url)
+    end
+
+    context "when provided with text and url params" do
+      let(:breadcrumb_params) { { controller: :some_controller, action: :some_action } }
+
+      subject { govuk_breadcrumb_link_to(breadcrumb_text, breadcrumb_params) }
+
+      it { is_expected.to have_tag('a', text: breadcrumb_text, with: { href: breadcrumb_url, class: 'govuk-breadcrumbs__link' }) }
+    end
+
+    context "when provided with url params and the block" do
+      let(:breadcrumb_html) { tag.span(breadcrumb_text) }
+      let(:breadcrumb_params) { { controller: :some_controller, action: :some_action } }
+
+      subject { govuk_breadcrumb_link_to(breadcrumb_params) { breadcrumb_html } }
+
+      it { is_expected.to have_tag('a', with: { href: breadcrumb_url }) { with_tag(:span, text: breadcrumb_text) } }
+    end
+
+    context "adding custom classes" do
+      let(:breadcrumb_params) { { controller: :some_controller, action: :some_action } }
+      let(:custom_class) { "emphatic" }
+
+      subject { govuk_breadcrumb_link_to(breadcrumb_text, breadcrumb_params, { class: custom_class }) }
+
+      it { is_expected.to have_tag('a', with: { href: breadcrumb_url, class: ['govuk-breadcrumbs__link', custom_class] }, text: breadcrumb_text) }
+    end
+  end
 end

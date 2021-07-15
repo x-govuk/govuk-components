@@ -53,7 +53,7 @@ module GovukLinkHelper
 
   def govuk_button_to(name = nil, options = nil, extra_options = {}, &block)
     extra_options = options if block_given?
-    html_options = build_html_options(extra_options, button: true)
+    html_options = build_html_options(extra_options, style: :button)
 
     if block_given?
       button_to(name, html_options, &block)
@@ -62,21 +62,41 @@ module GovukLinkHelper
     end
   end
 
+  def govuk_breadcrumb_link_to(name = nil, options = nil, extra_options = {}, &block)
+    extra_options = options if block_given?
+    html_options = build_html_options(extra_options, style: :breadcrumb)
+
+    if block_given?
+      link_to(name, html_options, &block)
+    else
+      link_to(name, options, html_options)
+    end
+  end
+
 private
 
-  def build_html_options(provided_options, button: false)
-    styles = (button ? BUTTON_STYLES : LINK_STYLES)
+  def build_html_options(provided_options, style: :link)
+    styles = case style
+             when :link       then LINK_STYLES
+             when :button     then BUTTON_STYLES
+             else {}
+             end
 
     remaining_options = provided_options&.slice!(*styles.keys)
 
-    return {} unless (style_classes = build_style_classes(button, provided_options))
+    return {} unless (style_classes = build_style_classes(style, provided_options))
 
     inject_class(remaining_options, class_name: style_classes)
   end
 
-  def build_style_classes(button, provided_options)
+  def build_style_classes(style, provided_options)
     keys = *provided_options&.keys
-    button ? govuk_button_classes(*keys) : govuk_link_classes(*keys)
+
+    case style
+    when :link then govuk_link_classes(*keys)
+    when :button then govuk_button_classes(*keys)
+    when :breadcrumb then %w(govuk-breadcrumbs__link)
+    end
   end
 
   def inject_class(attributes, class_name:)

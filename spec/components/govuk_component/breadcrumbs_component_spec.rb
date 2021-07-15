@@ -26,6 +26,22 @@ RSpec.describe(GovukComponent::BreadcrumbsComponent, type: :component) do
     end
   end
 
+  context 'when an array is provided instead of a hash' do
+    let(:breadcrumbs) { %w(one two three four five) }
+
+    specify 'renders the array items in the breadcrumbs list' do
+      expect(rendered_component).to have_tag('div', with: { class: component_css_class }) do
+        with_tag('ol', with: { class: 'govuk-breadcrumbs__list' }) do
+          with_tag('li', with: { class: 'govuk-breadcrumbs__list-item' }, count: breadcrumbs.size)
+
+          breadcrumbs.each do |bc|
+            with_tag('li', with: { class: 'govuk-breadcrumbs__list-item' }, text: bc)
+          end
+        end
+      end
+    end
+  end
+
   specify 'breadcrumbs links are correct' do
     breadcrumbs.reject { |_, path| path.nil? }.each do |name, path|
       expect(rendered_component).to have_tag('li > a', with: { class: 'govuk-breadcrumbs__link', href: path }, text: name)
