@@ -1,5 +1,5 @@
 class GovukComponent::HeaderComponent < GovukComponent::Base
-  renders_many :items, "Item"
+  renders_many :navigation_items, "NavigationItem"
   renders_one :custom_logo
   renders_one :product_name, "ProductName"
 
@@ -52,7 +52,7 @@ private
     combine_classes(%w(govuk-header__container govuk-width-container), custom_container_classes)
   end
 
-  class Item < GovukComponent::Base
+  class NavigationItem < GovukComponent::Base
     attr_reader :text, :href, :active
 
     def initialize(text:, href: nil, active: false, classes: [], html_attributes: {})

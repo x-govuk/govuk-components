@@ -156,12 +156,19 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
 
     context 'when navigation items are supplied' do
       let(:custom_classes) { %w(blue shiny) }
-      let(:items) do
+      let(:navigation_items) do
         [
           { text: 'Item 1', href: '/item-1' },
           { text: 'Item 2', href: '/item-2', active: true },
           { text: 'Item 3', href: '/item-3' }
         ]
+      end
+
+      subject! do
+        header_kwargs = kwargs.merge(navigation_classes: custom_classes)
+        render_inline(GovukComponent::HeaderComponent.new(**header_kwargs)) do |component|
+          navigation_items.each { |navigation_item| component.navigation_item(**navigation_item) }
+        end
       end
 
       specify 'nav element is rendered' do
@@ -170,7 +177,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
 
       specify 'nav contains the right number of items' do
         expect(rendered_component).to have_tag('nav') do
-          with_tag('a', with: { class: 'govuk-header__link' }, count: items.size)
+          with_tag('a', with: { class: 'govuk-header__link' }, count: navigation_items.size)
         end
       end
 
@@ -190,22 +197,15 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
 
       specify 'nav items have the right text and links' do
         expect(rendered_component).to have_tag('nav') do
-          items.each { |link| with_tag('a', with: { href: link.fetch(:href) }, text: link.fetch(:text)) }
+          navigation_items.each { |link| with_tag('a', with: { href: link.fetch(:href) }, text: link.fetch(:text)) }
         end
       end
 
       specify 'active nav item has active class' do
-        active_link = items.detect { |item| item[:active] }
+        active_link = navigation_items.detect { |item| item[:active] }
 
         expect(rendered_component).to have_tag('nav') do
           with_tag('li', text: active_link.fetch(:text), with: { class: 'govuk-header__navigation-item--active' }, count: 1)
-        end
-      end
-
-      subject! do
-        header_kwargs = kwargs.merge(navigation_classes: custom_classes)
-        render_inline(GovukComponent::HeaderComponent.new(**header_kwargs)) do |component|
-          items.each { |item| component.item(**item) }
         end
       end
 
@@ -225,7 +225,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
 
           subject! do
             render_inline(GovukComponent::HeaderComponent.new(**kwargs.merge(menu_button_label: custom_label))) do |component|
-              items.each { |item| component.item(**item) }
+              navigation_items.each { |item| component.navigation_item(**item) }
             end
           end
 
@@ -242,7 +242,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
 
         subject! do
           render_inline(GovukComponent::HeaderComponent.new(**kwargs.merge(navigation_label: custom_label))) do |component|
-            items.each { |item| component.item(**item) }
+            navigation_items.each { |item| component.navigation_item(**item) }
           end
         end
 
@@ -257,7 +257,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
   it_behaves_like 'a component that accepts custom HTML attributes'
 
   context 'slot arguments' do
-    let(:slot) { :item }
+    let(:slot) { :navigation_item }
     let(:content) { nil }
     let(:slot_kwargs) { { text: 'text', href: '/one/two/three', active: true } }
 
