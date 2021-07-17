@@ -17,25 +17,40 @@ RSpec.describe(GovukComponent::NotificationBannerComponent, type: :component) do
     it_behaves_like 'a component with a slot that accepts custom classes'
     it_behaves_like 'a component with a slot that accepts custom html attributes'
 
-    specify 'headings are rendered with text or content' do
-      render_inline(described_class.new(**kwargs)) do |component|
-        component.heading(**slot_kwargs)
-        component.heading(text: 'More text here')
-        component.heading do
-          helper.tag.p('some special content')
+    context "when supplied with a block" do
+      subject! do
+        render_inline(described_class.new(**kwargs)) do |component|
+          component.heading(**slot_kwargs)
+          component.heading(text: 'More text here')
+          component.heading do
+            helper.tag.p('some special content')
+          end
         end
       end
 
-      expect(rendered_component).to have_tag('div', with: { class: 'govuk-notification-banner__content' }) do
-        with_tag('div', with: { class: 'govuk-notification-banner__heading' }, text: /some text/) do
-          with_tag('a', with: { class: 'govuk-notification-banner__link', href: '#look-at-me' }, text: 'With a link')
-        end
+      specify 'headings are rendered with content' do
+        expect(rendered_component).to have_tag('div', with: { class: 'govuk-notification-banner__content' }) do
+          with_tag('div', with: { class: 'govuk-notification-banner__heading' }, text: /some text/) do
+            with_tag('a', with: { class: 'govuk-notification-banner__link', href: '#look-at-me' }, text: 'With a link')
+          end
 
-        with_tag('div', with: { class: 'govuk-notification-banner__heading' }, text: 'More text here')
+          with_tag('div', with: { class: 'govuk-notification-banner__heading' }, text: 'More text here')
 
-        with_tag('div', with: { class: 'govuk-notification-banner__heading' }) do
-          with_tag('p', text: 'some special content')
+          with_tag('div', with: { class: 'govuk-notification-banner__heading' }) do
+            with_tag('p', text: 'some special content')
+          end
         end
+      end
+    end
+
+    context "when supplied with some text" do
+      let(:text) { "Some custom text" }
+      let(:kwargs) { { title: title, text: text } }
+
+      subject! { render_inline(described_class.new(**kwargs)) }
+
+      specify 'headings are rendered with text' do
+        expect(rendered_component).to have_tag('div', text: Regexp.new(text), with: { class: 'govuk-notification-banner__content' })
       end
     end
   end
