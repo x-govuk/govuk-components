@@ -7,7 +7,7 @@ RSpec.describe(GovukComponent::NotificationBannerComponent, type: :component) do
   let(:component_css_class) { 'govuk-notification-banner' }
   let(:title) { 'A notification banner' }
 
-  let(:kwargs) { { title: title } }
+  let(:kwargs) { { title_text: title } }
 
   describe 'slot arguments' do
     let(:slot) { :heading }
@@ -45,12 +45,30 @@ RSpec.describe(GovukComponent::NotificationBannerComponent, type: :component) do
 
     context "when supplied with some text" do
       let(:text) { "Some custom text" }
-      let(:kwargs) { { title: title, text: text } }
+      let(:kwargs) { { title_text: title, text: text } }
 
       subject! { render_inline(described_class.new(**kwargs)) }
 
       specify 'headings are rendered with text' do
         expect(rendered_component).to have_tag('div', text: Regexp.new(text), with: { class: 'govuk-notification-banner__content' })
+      end
+    end
+
+    describe 'generating a title with custom HTML' do
+      let(:custom_text) { "Fancy title" }
+      let(:custom_tag) { "span" }
+      let(:custom_html) { helper.content_tag(custom_tag, custom_text) }
+
+      subject! do
+        render_inline(described_class.new(text: "Something")) do |component|
+          component.title_html { custom_html }
+        end
+      end
+
+      specify "the custom HTML is rendered in the title" do
+        expect(rendered_component).to have_tag("h2", with: { class: "govuk-notification-banner__title" }) do
+          with_tag(custom_tag, text: custom_text)
+        end
       end
     end
   end
@@ -90,7 +108,7 @@ RSpec.describe(GovukComponent::NotificationBannerComponent, type: :component) do
 
     describe 'overriding the role' do
       let(:custom_role) { 'alert' }
-      let(:kwargs) { { title: title, html_attributes: { role: custom_role } } }
+      let(:kwargs) { { title_text: title, html_attributes: { role: custom_role } } }
 
       specify 'replaces the default role with the provided one' do
         expect(rendered_component).to have_tag('div', with: { class: 'govuk-notification-banner', role: custom_role })
@@ -116,7 +134,7 @@ RSpec.describe(GovukComponent::NotificationBannerComponent, type: :component) do
     end
 
     describe 'custom title heading levels' do
-      let(:kwargs) { { title: title, title_heading_level: 4 } }
+      let(:kwargs) { { title_text: title, title_heading_level: 4 } }
 
       specify 'the title has the specified heading level' do
         expect(rendered_component).to have_tag('div', with: { class: 'govuk-notification-banner__header' }) do
@@ -126,7 +144,7 @@ RSpec.describe(GovukComponent::NotificationBannerComponent, type: :component) do
     end
 
     describe 'custom title id' do
-      let(:kwargs) { { title: title, title_id: 'custom-id' } }
+      let(:kwargs) { { title_text: title, title_id: 'custom-id' } }
 
       specify 'the title has the specified id' do
         expect(rendered_component).to have_tag('div', with: { class: 'govuk-notification-banner__header' }) do
@@ -167,7 +185,7 @@ RSpec.describe(GovukComponent::NotificationBannerComponent, type: :component) do
     end
 
     context 'when disable_auto_focus is true' do
-      let(:kwargs) { { title: title, disable_auto_focus: true } }
+      let(:kwargs) { { title_text: title, disable_auto_focus: true } }
 
       specify 'auto focus is disabled' do
         expect(rendered_component).to have_tag('div', with: { class: 'govuk-notification-banner', 'data-disable-auto-focus' => 'true' })
@@ -175,7 +193,7 @@ RSpec.describe(GovukComponent::NotificationBannerComponent, type: :component) do
     end
 
     context 'when success is true' do
-      let(:kwargs) { { title: title, success: true } }
+      let(:kwargs) { { title_text: title, success: true } }
 
       specify 'success class is appended' do
         expect(rendered_component).to have_tag('div', with: { class: %w(govuk-notification-banner govuk-notification-banner--success) })
