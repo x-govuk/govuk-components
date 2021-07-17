@@ -7,7 +7,7 @@ RSpec.describe(GovukComponent::NotificationBannerComponent, type: :component) do
   let(:component_css_class) { 'govuk-notification-banner' }
   let(:title) { 'A notification banner' }
 
-  let(:kwargs) { { title_text: title } }
+  let(:kwargs) { { title_text: title, text: "something" } }
 
   describe 'slot arguments' do
     let(:slot) { :heading }
@@ -70,6 +70,18 @@ RSpec.describe(GovukComponent::NotificationBannerComponent, type: :component) do
           with_tag(custom_tag, text: custom_text)
         end
       end
+    end
+  end
+
+  describe 'custom role' do
+    let(:custom_role) { "feed" }
+
+    subject! do
+      render_inline(described_class.new(**kwargs.merge(role: custom_role, text: "unnecessary")))
+    end
+
+    specify "renders a notification banner with the custom role" do
+      expect(rendered_component).to have_tag("div", with: { role: custom_role, class: component_css_class })
     end
   end
 
