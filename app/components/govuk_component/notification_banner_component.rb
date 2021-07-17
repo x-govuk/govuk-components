@@ -1,20 +1,23 @@
 class GovukComponent::NotificationBannerComponent < GovukComponent::Base
-  attr_reader :title, :title_id, :success, :title_heading_level, :disable_auto_focus
+  attr_reader :title_text, :title_id, :text, :success, :title_heading_level, :disable_auto_focus, :role
 
+  renders_one :title_html
   renders_many :headings, "Heading"
 
-  def initialize(title:, success: false, title_heading_level: 2, title_id: "govuk-notification-banner-title", disable_auto_focus: nil, classes: [], html_attributes: {})
+  def initialize(title_text: nil, text: nil, role: "region", success: false, title_heading_level: 2, title_id: "govuk-notification-banner-title", disable_auto_focus: nil, classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
-    @title               = title
+    @title_text          = title_text
     @title_id            = title_id
+    @text                = text
+    @role                = role
     @success             = success
     @title_heading_level = title_heading_level
     @disable_auto_focus  = disable_auto_focus
   end
 
   def render?
-    headings.any? || content.present?
+    headings.any? || text.present? || content.present?
   end
 
   def classes
@@ -23,6 +26,10 @@ class GovukComponent::NotificationBannerComponent < GovukComponent::Base
 
   def success_class
     %(govuk-notification-banner--success) if success
+  end
+
+  def title_content
+    title_html || title_text
   end
 
   def title_tag

@@ -1,7 +1,7 @@
-<%= tag.div(class: classes, role: "region", aria: { labelledby: title_id }, data: data_params, **html_attributes) do %>
+<%= tag.div(class: classes, role: role, aria: { labelledby: title_id }, data: data_params, **html_attributes) do %>
   <div class="govuk-notification-banner__header">
     <%= content_tag(title_tag, class: "govuk-notification-banner__title", id: title_id) do %>
-      <%= title %>
+      <%= title_content %>
     <% end %>
   </div>
   <div class="govuk-notification-banner__content">
@@ -9,6 +9,6 @@
       <%= heading %>
     <% end %>
 
-    <%= content %>
+    <%= content || text %>
   </div>
 <% end %>

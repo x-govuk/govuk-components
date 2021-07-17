@@ -77,7 +77,7 @@ RSpec.describe(GovukComponentsHelper, type: 'helper') do
       helper_method: :govuk_notification_banner,
       klass: GovukComponent::NotificationBannerComponent,
       args: [],
-      kwargs: { title: 'Notification banner' },
+      kwargs: { title_text: 'Notification banner' },
       css_matcher: %(.govuk-notification-banner),
       block: Proc.new { |nb| nb.heading(text: "heading 1", link_text: "link 1", link_href: "/link-1") },
     },
