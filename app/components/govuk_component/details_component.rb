@@ -1,17 +1,19 @@
 class GovukComponent::DetailsComponent < GovukComponent::Base
-  attr_reader :summary_text, :text
+  attr_reader :summary_text, :text, :id, :open
 
   renders_one :summary_html
 
-  def initialize(summary_text:, text: nil, classes: [], html_attributes: {})
+  def initialize(summary_text:, text: nil, classes: [], id: nil, open: nil, html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
     @summary_text = summary_text
     @text         = text
+    @id           = id
+    @open         = open
   end
 
   def call
-    tag.details(class: classes, data: { module: "govuk-details" }, **html_attributes) do
+    tag.details(class: classes, data: { module: "govuk-details" }, id: id, open: open, **html_attributes) do
       safe_join([summary, description])
     end
   end
