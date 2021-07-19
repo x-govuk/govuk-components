@@ -32,9 +32,19 @@ RSpec.describe(GovukComponent::PanelComponent, type: :component) do
     end
 
     specify "the custom HTMl is rendered" do
-      expect(rendered_component).to have_tag("div", with: { class: "govuk-panel" }) do
+      expect(rendered_component).to have_tag("div", with: { class: component_css_class }) do
         with_tag(custom_tag, text: custom_title_text)
       end
+    end
+  end
+
+  context 'when a custom id is supplied' do
+    let(:custom_id) { "fancy-id" }
+
+    before { render_inline(described_class.new(**kwargs.merge(id: custom_id))) }
+
+    specify 'renders the panel with the custom id' do
+      expect(rendered_component).to have_tag('div', with: { id: custom_id, class: component_css_class })
     end
   end
 

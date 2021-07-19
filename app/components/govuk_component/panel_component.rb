@@ -1,18 +1,19 @@
 class GovukComponent::PanelComponent < GovukComponent::Base
-  attr_reader :title_text, :text, :heading_level
+  attr_reader :id, :title_text, :text, :heading_level
 
   renders_one :title_html
 
-  def initialize(title_text: nil, text: nil, heading_level: 1, classes: [], html_attributes: {})
+  def initialize(title_text: nil, text: nil, heading_level: 1, id: nil, classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
     @heading_level = heading_level
     @title_text    = title_text
     @text          = text
+    @id            = id
   end
 
   def call
-    tag.div(class: classes, **html_attributes) do
+    tag.div(id: id, class: classes, **html_attributes) do
       safe_join([panel_title, panel_body].compact)
     end
   end
