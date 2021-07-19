@@ -1,11 +1,13 @@
 class GovukComponent::PanelComponent < GovukComponent::Base
-  attr_reader :title, :text, :heading_level
+  attr_reader :title_text, :text, :heading_level
 
-  def initialize(title: nil, text: nil, heading_level: 1, classes: [], html_attributes: {})
+  renders_one :title_html
+
+  def initialize(title_text: nil, text: nil, heading_level: 1, classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
     @heading_level = heading_level
-    @title         = title
+    @title_text    = title_text
     @text          = text
   end
 
@@ -27,6 +29,10 @@ private
 
   def panel_content
     content || text
+  end
+
+  def title
+    title_html || title_text
   end
 
   def panel_title
