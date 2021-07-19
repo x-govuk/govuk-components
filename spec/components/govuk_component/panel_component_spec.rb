@@ -33,6 +33,15 @@ RSpec.describe(GovukComponent::PanelComponent, type: :component) do
     end
   end
 
+  context 'with a custom heading level' do
+    let(:custom_heading_level) { 3 }
+    before { render_inline(described_class.new(**kwargs.merge(heading_level: custom_heading_level))) }
+
+    specify 'contains a panel with the title and no body' do
+      expect(rendered_component).to have_tag(%(h#{custom_heading_level}), with: { class: 'govuk-panel__title' }, text: title)
+    end
+  end
+
   context 'when no body is supplied' do
     before { render_inline(described_class.new(**kwargs.except(:body))) }
 

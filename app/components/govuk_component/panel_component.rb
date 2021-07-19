@@ -1,11 +1,12 @@
 class GovukComponent::PanelComponent < GovukComponent::Base
-  attr_reader :title, :body
+  attr_reader :title, :body, :heading_level
 
-  def initialize(title: nil, body: nil, classes: [], html_attributes: {})
+  def initialize(title: nil, body: nil, heading_level: 1, classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
-    @title = title
-    @body  = body
+    @heading_level = heading_level
+    @title         = title
+    @body          = body
   end
 
   def call
@@ -29,7 +30,11 @@ private
   end
 
   def panel_title
-    tag.h1(title, class: "govuk-panel__title") if display_title?
+    content_tag(heading_tag, title, class: "govuk-panel__title") if display_title?
+  end
+
+  def heading_tag
+    "h#{heading_level}"
   end
 
   def panel_body
