@@ -62,6 +62,17 @@ module GovukLinkHelper
     end
   end
 
+  def govuk_button_link_to(name = nil, options = nil, extra_options = {}, &block)
+    extra_options = options if block_given?
+    html_options = build_html_options(extra_options, style: :button)
+
+    if block_given?
+      link_to(name, html_options, &block)
+    else
+      link_to(name, options, html_options)
+    end
+  end
+
   def govuk_breadcrumb_link_to(name = nil, options = nil, extra_options = {}, &block)
     extra_options = options if block_given?
     html_options = build_html_options(extra_options, style: :breadcrumb)
