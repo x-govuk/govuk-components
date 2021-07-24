@@ -20,24 +20,6 @@ class GovukComponent::NotificationBannerComponent < GovukComponent::Base
     headings.any? || text.present? || content.present?
   end
 
-  def classes
-    super.append(success_class).compact
-  end
-
-  def success_class
-    %(govuk-notification-banner--success) if success
-  end
-
-  def title_content
-    title_html || title_text
-  end
-
-  def title_tag
-    fail "title_heading_level must be a number between 1 and 6" unless title_heading_level.is_a?(Integer) && title_heading_level.in?(1..6)
-
-    "h#{title_heading_level}"
-  end
-
   class Heading < GovukComponent::Base
     attr_reader :text, :link_href, :link_text
 
@@ -76,6 +58,24 @@ private
 
   def data_params
     { "module" => "govuk-notification-banner", "disable-auto-focus" => disable_auto_focus }.compact
+  end
+
+  def classes
+    super.append(success_class).compact
+  end
+
+  def success_class
+    %(govuk-notification-banner--success) if success
+  end
+
+  def title_content
+    title_html || title_text
+  end
+
+  def title_tag
+    fail "title_heading_level must be a number between 1 and 6" unless title_heading_level.is_a?(Integer) && title_heading_level.in?(1..6)
+
+    "h#{title_heading_level}"
   end
 
   def default_role
