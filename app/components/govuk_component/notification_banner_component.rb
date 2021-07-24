@@ -4,38 +4,20 @@ class GovukComponent::NotificationBannerComponent < GovukComponent::Base
   renders_one :title_html
   renders_many :headings, "Heading"
 
-  def initialize(title_text: nil, text: nil, role: "region", success: false, title_heading_level: 2, title_id: "govuk-notification-banner-title", disable_auto_focus: nil, classes: [], html_attributes: {})
+  def initialize(title_text: nil, text: nil, role: nil, success: false, title_heading_level: 2, title_id: "govuk-notification-banner-title", disable_auto_focus: nil, classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
     @title_text          = title_text
     @title_id            = title_id
     @text                = text
-    @role                = role
     @success             = success
+    @role                = role || default_role
     @title_heading_level = title_heading_level
     @disable_auto_focus  = disable_auto_focus
   end
 
   def render?
     headings.any? || text.present? || content.present?
-  end
-
-  def classes
-    super.append(success_class).compact
-  end
-
-  def success_class
-    %(govuk-notification-banner--success) if success
-  end
-
-  def title_content
-    title_html || title_text
-  end
-
-  def title_tag
-    fail "title_heading_level must be a number between 1 and 6" unless title_heading_level.is_a?(Integer) && title_heading_level.in?(1..6)
-
-    "h#{title_heading_level}"
   end
 
   class Heading < GovukComponent::Base
@@ -76,5 +58,27 @@ private
 
   def data_params
     { "module" => "govuk-notification-banner", "disable-auto-focus" => disable_auto_focus }.compact
+  end
+
+  def classes
+    super.append(success_class).compact
+  end
+
+  def success_class
+    %(govuk-notification-banner--success) if success
+  end
+
+  def title_content
+    title_html || title_text
+  end
+
+  def title_tag
+    fail "title_heading_level must be a number between 1 and 6" unless title_heading_level.is_a?(Integer) && title_heading_level.in?(1..6)
+
+    "h#{title_heading_level}"
+  end
+
+  def default_role
+    success ? "alert" : "region"
   end
 end
