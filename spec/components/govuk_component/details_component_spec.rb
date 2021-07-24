@@ -67,4 +67,25 @@ RSpec.describe(GovukComponent::DetailsComponent, type: :component) do
       end
     end
   end
+
+  context 'setting the id' do
+    let(:custom_id) { 'abc123' }
+    before do
+      render_inline(described_class.new(**kwargs.merge(id: custom_id))) {}
+    end
+
+    specify 'rendered details element has the custom id' do
+      expect(rendered_component).to have_tag('details', with: { id: custom_id, class: component_css_class })
+    end
+  end
+
+  context 'overriding the open status' do
+    before do
+      render_inline(described_class.new(**kwargs.merge(open: true))) {}
+    end
+
+    specify 'rendered details element has the custom id' do
+      expect(rendered_component).to have_tag('details', with: { open: 'open', class: component_css_class })
+    end
+  end
 end
