@@ -1,15 +1,19 @@
 class GovukComponent::PanelComponent < GovukComponent::Base
-  attr_reader :title, :body
+  attr_reader :id, :title_text, :text, :heading_level
 
-  def initialize(title: nil, body: nil, classes: [], html_attributes: {})
+  renders_one :title_html
+
+  def initialize(title_text: nil, text: nil, heading_level: 1, id: nil, classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
-    @title = title
-    @body  = body
+    @heading_level = heading_level
+    @title_text    = title_text
+    @text          = text
+    @id            = id
   end
 
   def call
-    tag.div(class: classes, **html_attributes) do
+    tag.div(id: id, class: classes, **html_attributes) do
       safe_join([panel_title, panel_body].compact)
     end
   end
@@ -20,27 +24,33 @@ private
     %w(govuk-panel govuk-panel--confirmation)
   end
 
-  def display_title?
-    title.present?
+  def heading_tag
+    "h#{heading_level}"
   end
 
-  def display_body?
-    body.present? || content.present?
+  def panel_content
+    content || text
+  end
+
+  def title
+    title_html || title_text
   end
 
   def panel_title
-    tag.h1(title, class: "govuk-panel__title") if display_title?
+    return if title.blank?
+
+    content_tag(heading_tag, title, class: "govuk-panel__title")
   end
 
   def panel_body
-    if display_body?
-      tag.div(class: "govuk-panel__body") do
-        content.presence || body
-      end
+    return if panel_content.blank?
+
+    tag.div(class: "govuk-panel__body") do
+      panel_content
     end
   end
 
   def render?
-    display_title? || display_body?
+    title.present? || panel_content.present?
   end
 end
