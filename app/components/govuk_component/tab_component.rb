@@ -17,12 +17,13 @@ private
   end
 
   class Tab < GovukComponent::Base
-    attr_reader :label
+    attr_reader :label, :text
 
-    def initialize(label:, classes: [], html_attributes: {})
+    def initialize(label:, text: nil, classes: [], html_attributes: {})
       super(classes: classes, html_attributes: html_attributes)
 
       @label = label
+      @text  = text
     end
 
     def id(prefix: nil)
@@ -48,7 +49,7 @@ private
     end
 
     def call
-      content
+      content || text || fail(ArgumentError, "no text or content")
     end
   end
 end

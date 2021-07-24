@@ -91,6 +91,24 @@ RSpec.describe(GovukComponent::TabComponent, type: :component) do
     end
   end
 
+  context 'when text is passed to a tab instead of a block' do
+    subject! do
+      render_inline(GovukComponent::TabComponent.new(**kwargs)) do |component|
+        tabs.each do |label, content|
+          component.tab(label: label, text: content)
+        end
+      end
+    end
+
+    specify 'each panel contains the right content' do
+      tabs.each do |title, content|
+        expect(rendered_component).to have_tag('div', with: { id: title.parameterize, class: 'govuk-tabs__panel' }) do
+          with_text(content)
+        end
+      end
+    end
+  end
+
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 
