@@ -73,15 +73,33 @@ RSpec.describe(GovukComponent::NotificationBannerComponent, type: :component) do
     end
   end
 
-  describe 'custom role' do
-    let(:custom_role) { "feed" }
+  describe 'roles' do
+    context 'when default' do
+      subject! { render_inline(described_class.new(**kwargs)) }
 
-    subject! do
-      render_inline(described_class.new(**kwargs.merge(role: custom_role, text: "unnecessary")))
+      specify %(renders a notification banner with the default role 'region') do
+        expect(rendered_component).to have_tag("div", with: { role: 'region', class: component_css_class })
+      end
     end
 
-    specify "renders a notification banner with the custom role" do
-      expect(rendered_component).to have_tag("div", with: { role: custom_role, class: component_css_class })
+    context 'when succesful' do
+      subject! { render_inline(described_class.new(**kwargs.merge(success: true))) }
+
+      specify %(renders a notification banner with the default role 'alert') do
+        expect(rendered_component).to have_tag("div", with: { role: 'alert', class: component_css_class })
+      end
+    end
+
+    context 'when the role is overridden' do
+      let(:custom_role) { "feed" }
+
+      subject! do
+        render_inline(described_class.new(**kwargs.merge(role: custom_role, text: "unnecessary")))
+      end
+
+      specify "renders a notification banner with the custom role" do
+        expect(rendered_component).to have_tag("div", with: { role: custom_role, class: component_css_class })
+      end
     end
   end
 

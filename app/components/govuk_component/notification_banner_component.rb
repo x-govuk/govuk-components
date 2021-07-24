@@ -4,14 +4,14 @@ class GovukComponent::NotificationBannerComponent < GovukComponent::Base
   renders_one :title_html
   renders_many :headings, "Heading"
 
-  def initialize(title_text: nil, text: nil, role: "region", success: false, title_heading_level: 2, title_id: "govuk-notification-banner-title", disable_auto_focus: nil, classes: [], html_attributes: {})
+  def initialize(title_text: nil, text: nil, role: nil, success: false, title_heading_level: 2, title_id: "govuk-notification-banner-title", disable_auto_focus: nil, classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
     @title_text          = title_text
     @title_id            = title_id
     @text                = text
-    @role                = role
     @success             = success
+    @role                = role || default_role
     @title_heading_level = title_heading_level
     @disable_auto_focus  = disable_auto_focus
   end
@@ -76,5 +76,9 @@ private
 
   def data_params
     { "module" => "govuk-notification-banner", "disable-auto-focus" => disable_auto_focus }.compact
+  end
+
+  def default_role
+    success ? "alert" : "region"
   end
 end
