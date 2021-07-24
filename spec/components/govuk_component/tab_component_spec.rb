@@ -5,6 +5,7 @@ RSpec.describe(GovukComponent::TabComponent, type: :component) do
   include_context 'helpers'
 
   let(:title) { 'My favourite tabs' }
+  let(:label) { 'A tab' }
   let(:component_css_class) { 'govuk-tabs' }
 
   let(:tabs) do
@@ -19,8 +20,8 @@ RSpec.describe(GovukComponent::TabComponent, type: :component) do
 
   subject! do
     render_inline(GovukComponent::TabComponent.new(**kwargs)) do |component|
-      tabs.each do |title, content|
-        component.tab(title: title) { content }
+      tabs.each do |label, content|
+        component.tab(label: label) { content }
       end
     end
   end
@@ -96,7 +97,7 @@ RSpec.describe(GovukComponent::TabComponent, type: :component) do
   context 'slot arguments' do
     let(:slot) { :tab }
     let(:content) { -> { 'some swanky tab content' } }
-    let(:slot_kwargs) { { title: title } }
+    let(:slot_kwargs) { { label: label } }
 
     it_behaves_like 'a component with a slot that accepts custom classes'
     it_behaves_like 'a component with a slot that accepts custom html attributes'
