@@ -81,6 +81,15 @@ RSpec.describe(GovukComponent::TabComponent, type: :component) do
     expect(tab_link_hrefs).to eql(panel_ids)
   end
 
+  context 'when a custom id is provided' do
+    let(:custom_id) { 'abc-123' }
+    let(:kwargs) { { title: "Some tabs", id: custom_id } }
+
+    specify 'the tabs container has the specified id' do
+      expect(rendered_component).to have_tag('div', with: { id: custom_id, class: component_css_class })
+    end
+  end
+
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 

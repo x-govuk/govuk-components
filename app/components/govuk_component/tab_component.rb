@@ -1,12 +1,13 @@
 class GovukComponent::TabComponent < GovukComponent::Base
   renders_many :tabs, "Tab"
 
-  attr_reader :title
+  attr_reader :title, :id
 
-  def initialize(title:, classes: [], html_attributes: {})
+  def initialize(title:, id: nil, classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
     @title = title
+    @id    = id
   end
 
 private
