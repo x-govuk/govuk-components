@@ -16,7 +16,6 @@ RSpec.describe(GovukComponent::TabComponent, type: :component) do
   end
 
   let(:kwargs) { { title: title } }
-  let(:title_matcher) { Regexp.new(title) }
 
   subject! do
     render_inline(GovukComponent::TabComponent.new(**kwargs)) do |component|
@@ -30,7 +29,7 @@ RSpec.describe(GovukComponent::TabComponent, type: :component) do
 
   specify 'renders h2 element with right class and title' do
     expect(rendered_component).to have_tag(component_css_class_matcher) do
-      with_tag('h2', with: { class: 'govuk-tabs__title' }, text: title_matcher)
+      with_tag('h2', with: { class: 'govuk-tabs__title' }, text: title)
     end
   end
 
