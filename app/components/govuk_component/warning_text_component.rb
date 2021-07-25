@@ -1,13 +1,13 @@
 class GovukComponent::WarningTextComponent < GovukComponent::Base
-  attr_reader :text, :assistive_text
+  attr_reader :text, :icon_fallback_text
 
   ICON = '!'.freeze
 
-  def initialize(text:, assistive_text: 'Warning', classes: [], html_attributes: {})
+  def initialize(text:, icon_fallback_text: 'Warning', classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
     @text = text
-    @assistive_text = assistive_text
+    @icon_fallback_text = icon_fallback_text
   end
 
   def call
@@ -29,7 +29,7 @@ private
   end
 
   def assistive
-    tag.span(assistive_text, class: 'govuk-warning-text__assistive')
+    tag.span(icon_fallback_text, class: 'govuk-warning-text__assistive')
   end
 
   def default_classes
