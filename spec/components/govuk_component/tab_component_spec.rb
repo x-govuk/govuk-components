@@ -5,6 +5,7 @@ RSpec.describe(GovukComponent::TabComponent, type: :component) do
   include_context 'helpers'
 
   let(:title) { 'My favourite tabs' }
+  let(:label) { 'A tab' }
   let(:component_css_class) { 'govuk-tabs' }
 
   let(:tabs) do
@@ -16,12 +17,11 @@ RSpec.describe(GovukComponent::TabComponent, type: :component) do
   end
 
   let(:kwargs) { { title: title } }
-  let(:title_matcher) { Regexp.new(title) }
 
   subject! do
     render_inline(GovukComponent::TabComponent.new(**kwargs)) do |component|
-      tabs.each do |title, content|
-        component.tab(title: title) { content }
+      tabs.each do |label, content|
+        component.tab(label: label) { content }
       end
     end
   end
@@ -30,7 +30,7 @@ RSpec.describe(GovukComponent::TabComponent, type: :component) do
 
   specify 'renders h2 element with right class and title' do
     expect(rendered_component).to have_tag(component_css_class_matcher) do
-      with_tag('h2', with: { class: 'govuk-tabs__title' }, text: title_matcher)
+      with_tag('h2', with: { class: 'govuk-tabs__title' }, text: title)
     end
   end
 
@@ -82,13 +82,40 @@ RSpec.describe(GovukComponent::TabComponent, type: :component) do
     expect(tab_link_hrefs).to eql(panel_ids)
   end
 
+  context 'when a custom id is provided' do
+    let(:custom_id) { 'abc-123' }
+    let(:kwargs) { { title: "Some tabs", id: custom_id } }
+
+    specify 'the tabs container has the specified id' do
+      expect(rendered_component).to have_tag('div', with: { id: custom_id, class: component_css_class })
+    end
+  end
+
+  context 'when text is passed to a tab instead of a block' do
+    subject! do
+      render_inline(GovukComponent::TabComponent.new(**kwargs)) do |component|
+        tabs.each do |label, content|
+          component.tab(label: label, text: content)
+        end
+      end
+    end
+
+    specify 'each panel contains the right content' do
+      tabs.each do |title, content|
+        expect(rendered_component).to have_tag('div', with: { id: title.parameterize, class: 'govuk-tabs__panel' }) do
+          with_text(content)
+        end
+      end
+    end
+  end
+
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 
   context 'slot arguments' do
     let(:slot) { :tab }
     let(:content) { -> { 'some swanky tab content' } }
-    let(:slot_kwargs) { { title: title } }
+    let(:slot_kwargs) { { label: label } }
 
     it_behaves_like 'a component with a slot that accepts custom classes'
     it_behaves_like 'a component with a slot that accepts custom html attributes'
