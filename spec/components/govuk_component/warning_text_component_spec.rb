@@ -5,7 +5,7 @@ RSpec.describe(GovukComponent::WarningTextComponent, type: :component) do
   include_context 'setup'
 
   let(:component_css_class) { 'govuk-warning-text' }
-  let(:custom_assistive_text) { 'Informative text goes here' }
+  let(:custom_icon_fallback_text) { 'Informative text goes here' }
   let(:kwargs) { { text: text } }
   let(:text) { 'Some fancy warning' }
 
@@ -30,12 +30,12 @@ RSpec.describe(GovukComponent::WarningTextComponent, type: :component) do
   end
 
   context 'when assistive text is overriden' do
-    subject! { render_inline(GovukComponent::WarningTextComponent.new(**kwargs.merge(assistive_text: custom_assistive_text))) }
+    subject! { render_inline(GovukComponent::WarningTextComponent.new(**kwargs.merge(icon_fallback_text: custom_icon_fallback_text))) }
 
     specify 'the custom assistive text is included' do
       expect(rendered_component).to have_tag('div', class: component_css_class) do
         with_tag('strong', with: { class: 'govuk-warning-text__text' }) do
-          with_tag('span', text: custom_assistive_text, with: { class: 'govuk-warning-text__assistive' })
+          with_tag('span', text: custom_icon_fallback_text, with: { class: 'govuk-warning-text__assistive' })
         end
       end
     end
