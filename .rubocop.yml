@@ -27,6 +27,10 @@ Style/StringConcatenation:
   Enabled: false
 Style/TrailingCommaInArrayLiteral:
   Enabled: false
+Style/TernaryParentheses:
+  Enabled: false
+Style/RedundantParentheses:
+  Enabled: false
 Naming/MethodParameterName:
   Enabled: false
 Style/PercentLiteralDelimiters:
