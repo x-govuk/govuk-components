@@ -147,3 +147,116 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
     end
   end
 end
+
+RSpec.describe(GovukComponent::SummaryListComponent::RowComponent, type: :component) do
+  include_context 'setup'
+
+  let(:component_css_class) { 'govuk-summary-list__row' }
+  let(:kwargs) { {} }
+
+  it_behaves_like 'a component that accepts custom classes'
+  it_behaves_like 'a component that accepts custom HTML attributes'
+end
+
+RSpec.describe(GovukComponent::SummaryListComponent::KeyComponent, type: :component) do
+  include_context 'helpers'
+  include_context 'setup'
+
+  let(:component_css_class) { 'govuk-summary-list__key' }
+  let(:kwargs) { { text: "Some key" } }
+
+  it_behaves_like 'a component that accepts custom classes'
+  it_behaves_like 'a component that accepts custom HTML attributes'
+
+  context "when there is no text or block" do
+    specify "raises an appropriate error" do
+      expect { render_inline(described_class.new) }.to raise_error(ArgumentError, "no text or content")
+    end
+  end
+
+  context "when there is a block of HTML" do
+    let(:custom_tag) { "h2" }
+    let(:custom_text) { "Fancy heading" }
+
+    subject! do
+      render_inline(described_class.new) do
+        helper.content_tag(custom_tag, custom_text)
+      end
+    end
+
+    specify "the custom HTML is rendered" do
+      expect(rendered_component).to have_tag("dt", with: { class: component_css_class }) do
+        with_tag(custom_tag, text: custom_text)
+      end
+    end
+  end
+end
+
+RSpec.describe(GovukComponent::SummaryListComponent::ValueComponent, type: :component) do
+  include_context 'setup'
+  include_context 'helpers'
+
+  let(:component_css_class) { 'govuk-summary-list__value' }
+  let(:kwargs) { { text: "Some value" } }
+
+  it_behaves_like 'a component that accepts custom classes'
+  it_behaves_like 'a component that accepts custom HTML attributes'
+
+  context "when there is no text or block" do
+    specify "raises an appropriate error" do
+      expect { render_inline(described_class.new) }.to raise_error(ArgumentError, "no text or content")
+    end
+  end
+
+  context "when there is a block of HTML" do
+    let(:custom_tag) { "h3" }
+    let(:custom_text) { "Fancier heading" }
+
+    subject! do
+      render_inline(described_class.new) do
+        helper.content_tag(custom_tag, custom_text)
+      end
+    end
+
+    specify "the custom HTML is rendered" do
+      expect(rendered_component).to have_tag("dd", with: { class: component_css_class }) do
+        with_tag(custom_tag, text: custom_text)
+      end
+    end
+  end
+end
+
+RSpec.describe(GovukComponent::SummaryListComponent::ActionComponent, type: :component) do
+  include_context 'setup'
+  include_context 'helpers'
+
+  let(:custom_path) { "/some/endpoint" }
+  let(:component_css_class) { 'govuk-link' }
+  let(:kwargs) { { href: custom_path, text: "Some value" } }
+
+  it_behaves_like 'a component that accepts custom classes'
+  it_behaves_like 'a component that accepts custom HTML attributes'
+
+  context "when there is no text or block" do
+    specify "raises an appropriate error" do
+      expect { render_inline(described_class.new(**kwargs.except(:text))) }.to raise_error(ArgumentError, "no text or content")
+    end
+  end
+
+  context "when there is a block of HTML" do
+    let(:custom_tag) { "span" }
+    let(:custom_text) { "Do a thing, now" }
+
+    subject! do
+      render_inline(described_class.new(href: custom_path)) do
+        helper.content_tag(custom_tag, custom_text)
+      end
+    end
+
+    specify "the custom HTML is rendered" do
+      expect(rendered_component).to have_tag("a", with: { class: component_css_class }) do
+        with_tag(custom_tag, text: custom_text)
+      end
+    end
+  end
+end

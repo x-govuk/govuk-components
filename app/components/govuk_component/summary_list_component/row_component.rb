@@ -1,5 +1,5 @@
 class GovukComponent::SummaryListComponent::RowComponent < GovukComponent::Base
-  attr_reader :href, :text, :visually_hidden_text, :actions_classes, :actions_attributes
+  attr_reader :href, :text, :visually_hidden_text
 
   renders_one :key, GovukComponent::SummaryListComponent::KeyComponent
   renders_one :value, GovukComponent::SummaryListComponent::ValueComponent
@@ -10,7 +10,7 @@ class GovukComponent::SummaryListComponent::RowComponent < GovukComponent::Base
   end
 
   def call
-    tag.div(class: classes) do
+    tag.div(class: classes, **html_attributes) do
       safe_join([key, value, actions_content])
     end
   end

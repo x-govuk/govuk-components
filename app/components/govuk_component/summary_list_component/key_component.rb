@@ -8,10 +8,14 @@ class GovukComponent::SummaryListComponent::KeyComponent < GovukComponent::Base
   end
 
   def call
-    tag.dt(text, class: "govuk-summary-list__key")
+    tag.dt(key_content, class: classes, **html_attributes)
   end
 
 private
+
+  def default_classes
+    %w(govuk-summary-list__key)
+  end
 
   def key_content
     content || text || fail(ArgumentError, "no text or content")
