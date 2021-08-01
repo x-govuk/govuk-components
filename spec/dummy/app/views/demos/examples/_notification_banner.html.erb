@@ -1,7 +1,7 @@
 <%= example_heading('Notification banner') %>
 
 <%= render "shared/example", title: 'Notification banner', example: <<~NOTIFICATION_BANNER
-  render GovukComponent::NotificationBannerComponent.new(title: 'Information', disable_auto_focus: true) do |notification_banner|
+  render GovukComponent::NotificationBannerComponent.new(title_text: 'Information', disable_auto_focus: true) do |notification_banner|
     notification_banner.heading(
       text: 'Very important information.',
       link_text: "Find out more",
@@ -15,7 +15,7 @@
 %>
 
 <%= render "shared/example", title: 'Notification banner with success', example: <<~NOTIFICATION_BANNER
-  render GovukComponent::NotificationBannerComponent.new(title: 'Success', success: true, title_heading_level: 3, title_id: "swanky-notifications") do |notification_banner|
+  render GovukComponent::NotificationBannerComponent.new(title_text: 'Success', success: true, title_heading_level: 3, title_id: "swanky-notifications") do |notification_banner|
     notification_banner.heading(text: 'Something excellent happened')
     notification_banner.heading(
       text: 'Many excellent things happened.',
@@ -27,7 +27,7 @@
 %>
 
 <%= render "shared/example", title: 'Notification banner called via the helper', example: <<~NOTIFICATION_BANNER
-  govuk_notification_banner(title: "Warning") do |banner|
+  govuk_notification_banner(title_text: "Warning") do |banner|
     banner.heading(text: "Something's afoot")
   end
   NOTIFICATION_BANNER

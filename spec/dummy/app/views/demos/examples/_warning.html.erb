@@ -16,6 +16,6 @@
 <%= render "shared/example", title: 'Warning with custom assistive text', example: <<~WARNING
   render GovukComponent::WarningTextComponent.new(
     text: "Starin' at my sandals, that's a paddlin'",
-    assistive_text: "Paddlin' warning")
+    icon_fallback_text: "Paddlin' warning")
   WARNING
 %>

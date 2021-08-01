@@ -1,19 +1,10 @@
 <%= example_heading("Cookie banner") %>
 
 <%= render "shared/example", title: "Cookie banner", example: <<~COOKIE_BANNER
-  render GovukComponent::CookieBannerComponent.new(title: "Cookies on a service") do |component|
-    component.body do
-      safe_join([
-        tag.p("A paragraph.", class: "govuk-body"),
-        tag.p("A second, smaller paragraph.", class: "govuk-body-s"),
-      ])
-    end
-    component.actions do
-      safe_join([
-        link_to("Accept cookies", "#accept", { class: govuk_button_classes }),
-        link_to("Reject cookies", "#reject", { class: govuk_button_classes(warning: true) }),
-        link_to("View cookies", "#view", { class: govuk_link_classes }),
-      ])
+  render GovukComponent::CookieBannerComponent.new do |cookie_banner|
+    cookie_banner.message(heading_text: "Warning", text: "We have lots of nice cookies") do |message|
+      message.action { govuk_button_link_to("Accept", "#") }
+      message.action { govuk_button_link_to("Reject", "#", warning: true) }
     end
   end
   COOKIE_BANNER

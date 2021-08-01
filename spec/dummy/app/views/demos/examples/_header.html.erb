@@ -1,4 +1,3 @@
-
 <%= example_heading('Header') %>
 
 <%= render "shared/example", title: 'Header', example: <<~HEADER
@@ -20,9 +19,9 @@ HEADER
 
 <%= render "shared/example", title: 'Header with navigation', example: <<~HEADER
   render GovukComponent::HeaderComponent.new(logotype: 'A new service', service_name: "It's very good") do |component|
-    component.item(text: 'Page A', href: '/#page-a')
-    component.item(text: 'Page B', href: '/#page-b')
-    component.item(text: 'Page C', href: '/#page-c', active: true)
+    component.navigation_item(text: 'Page A', href: '/#page-a')
+    component.navigation_item(text: 'Page B', href: '/#page-b')
+    component.navigation_item(text: 'Page C', href: '/#page-c', active: true)
   end
 HEADER
 %>
