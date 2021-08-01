@@ -1,14 +1,19 @@
 class GovukComponent::CookieBannerComponent < GovukComponent::Base
-  renders_one :body
-  renders_one :actions
+  renders_many :messages, GovukComponent::CookieBannerComponent::MessageComponent
 
-  attr_accessor :title, :aria_label
+  attr_accessor :aria_label, :hidden
 
-  def initialize(title: nil, aria_label: "Cookie banner", classes: [], html_attributes: {})
+  def initialize(aria_label: "Cookie banner", hidden: false, classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
-    @title      = title
     @aria_label = aria_label
+    @hidden     = hidden
+  end
+
+  def call
+    tag.div(class: classes, role: "region", aria: { label: aria_label }, hidden: hidden, **html_attributes) do
+      safe_join(messages)
+    end
   end
 
 private
