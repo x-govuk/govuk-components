@@ -1,7 +1,7 @@
 class GovukComponent::SummaryListComponent::ActionComponent < GovukComponent::Base
   attr_reader :href, :text, :visually_hidden_text, :attributes, :classes
 
-  def initialize(href:, text: nil, visually_hidden_text: nil, classes: [], html_attributes: {})
+  def initialize(href:, text: 'Change', visually_hidden_text: nil, classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
     @href                 = href
