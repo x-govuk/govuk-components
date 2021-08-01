@@ -1,7 +1,7 @@
 class GovukComponent::SummaryListComponent::ActionComponent < GovukComponent::Base
   attr_reader :href, :text, :visually_hidden_text, :attributes, :classes
 
-  def initialize(href:, text: 'Change', visually_hidden_text: nil, classes: [], html_attributes: {})
+  def initialize(href: nil, text: 'Change', visually_hidden_text: nil, classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
     @href                 = href
@@ -10,6 +10,11 @@ class GovukComponent::SummaryListComponent::ActionComponent < GovukComponent::Ba
   end
 
   def call
+    # when no href is provided return an empty string so the dd container
+    # will render, it's useful in lists where some rows have actions
+    # and others don't
+    return "" if href.blank?
+
     link_classes = govuk_link_classes.append(classes).flatten
 
     link_to(href, class: link_classes, **html_attributes) do

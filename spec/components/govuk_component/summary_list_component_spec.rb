@@ -91,6 +91,12 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
             [row.key(text: "Key"), row.value(text: "Value")]
           )
         end
+
+        component.row(classes: "with-empty-action") do |row|
+          helper.safe_join(
+            [row.key(text: "Key"), row.value(text: "Value"), row.action(href: nil)]
+          )
+        end
       end
     end
 
@@ -106,6 +112,14 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
       expect(rendered_component).to have_tag("dl", with: { class: component_css_class }) do
         with_tag("div", with: { class: %(without-actions govuk-summary-list__row) }) do
           without_tag("dd", with: { class: "govuk-summary-list__actions" })
+        end
+      end
+    end
+
+    specify "renders an empty actions container when an action with a single href is called" do
+      expect(rendered_component).to have_tag("dl", with: { class: component_css_class }) do
+        with_tag("div", with: { class: %(with-empty-action govuk-summary-list__row) }) do
+          with_tag("dd", with: { class: "govuk-summary-list__actions" }, text: "")
         end
       end
     end
