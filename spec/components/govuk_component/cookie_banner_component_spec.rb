@@ -66,7 +66,9 @@ RSpec.describe(GovukComponent::CookieBannerComponent, type: :component) do
 
     specify "renders the message text" do
       expect(rendered_component).to have_tag(message_selector) do
-        with_tag("div", text: custom_message_text, with: { class: "govuk-cookie-banner__content" })
+        with_tag("div", with: { class: "govuk-cookie-banner__content" }) do
+          with_tag("p", text: custom_message_text)
+        end
       end
     end
 
@@ -115,7 +117,6 @@ RSpec.describe(GovukComponent::CookieBannerComponent::MessageComponent, type: :c
       expect(rendered_component).to have_tag("div", with: { class: component_css_class, hidden: "hidden" })
     end
   end
-
 
   context "when there are blocks of HTML" do
     let(:custom_role) { "spam" }

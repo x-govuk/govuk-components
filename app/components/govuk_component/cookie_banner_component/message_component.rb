@@ -42,7 +42,13 @@ private
   end
 
   def message_content
-    content || text || fail(ArgumentError, "no text or content")
+    content || wrap_in_p(text) || fail(ArgumentError, "no text or content")
+  end
+
+  def wrap_in_p(message_text)
+    return if message_text.blank?
+
+    tag.p(message_text)
   end
 
   def actions_element

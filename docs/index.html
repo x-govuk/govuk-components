@@ -11004,28 +11004,27 @@ Prism.languages.js = Prism.languages.javascript;
   <section>
     <div id="abc123" class="govuk-accordion" data-module="govuk-accordion">
     <div id="home-electronics-section" class="govuk-accordion__section govuk-accordion__section--expanded">
-      <div class="govuk-accordion__section-header">
-        <h2 class="govuk-accordion__section-heading">
-          <span id="home-electronics" class="govuk-accordion__section-button" aria-expanded="true" aria-controls="home-electronics-content">Home electronics</span>
-        </h2>
-          <div id="home-electronics-summary" class="govuk-accordion__section-summary govuk-body">Entertainment, communication and recreation</div>
-      </div>
-      <div id="home-electronics-content" class="govuk-accordion__section-content" aria-labelledby="home-electronics"><p class="govuk-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></div>
-</div>    <div id="appliances-section" class="govuk-accordion__section">
-      <div class="govuk-accordion__section-header">
-        <h2 class="govuk-accordion__section-heading">
-          <span id="appliances" class="govuk-accordion__section-button" aria-expanded="false" aria-controls="appliances-content">Appliances</span>
-        </h2>
-          <div id="appliances-summary" class="govuk-accordion__section-summary govuk-body">Laundry, cookers and vacuum cleaners</div>
-      </div>
-      <div id="appliances-content" class="govuk-accordion__section-content" aria-labelledby="appliances"><p class="govuk-body">Ut et elementum tortor. Donec a tellus sed sem euismod congue</p></div>
-</div>    <div id="toys-section" class="govuk-accordion__section">
-      <div class="govuk-accordion__section-header">
-        <h2 class="govuk-accordion__section-heading">
-          <span id="toys" class="govuk-accordion__section-button" aria-expanded="false" aria-controls="toys-content">Toys</span>
-        </h2>
-      </div>
-      <div id="toys-content" class="govuk-accordion__section-content" aria-labelledby="toys">
+  <div class="govuk-accordion__section-header">
+    <h2 class="govuk-accordion__section-heading">
+      <span id="home-electronics" class="govuk-accordion__section-button" aria-expanded="true" aria-controls="home-electronics-content">Home electronics</span>
+</h2>      <div id="home-electronics-summary" class="govuk-accordion__section-summary govuk-body">Entertainment, communication and recreation</div>
+  </div>
+  <div id="home-electronics-content" class="govuk-accordion__section-content" aria-labelledby="home-electronics"><p class="govuk-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></div>
+</div>
+    <div id="appliances-section" class="govuk-accordion__section">
+  <div class="govuk-accordion__section-header">
+    <h2 class="govuk-accordion__section-heading">
+      <span id="appliances" class="govuk-accordion__section-button" aria-expanded="false" aria-controls="appliances-content">Appliances</span>
+</h2>      <div id="appliances-summary" class="govuk-accordion__section-summary govuk-body">Laundry, cookers and vacuum cleaners</div>
+  </div>
+  <div id="appliances-content" class="govuk-accordion__section-content" aria-labelledby="appliances"><p class="govuk-body">Ut et elementum tortor. Donec a tellus sed sem euismod congue</p></div>
+</div>
+    <div id="toys-section" class="govuk-accordion__section">
+  <div class="govuk-accordion__section-header">
+    <h2 class="govuk-accordion__section-heading">
+      <span id="toys" class="govuk-accordion__section-button" aria-expanded="false" aria-controls="toys-content">Toys</span>
+</h2>  </div>
+  <div id="toys-content" class="govuk-accordion__section-content" aria-labelledby="toys">
 <p class="govuk-body">In et nunc vitae tortor sollicitudin ultrices. Vivamus a purus justo.</p>
 <p class="govuk-body">Duis a turpis non nunc pulvinar venenatis quis congue mauris</p>
 </div>
@@ -11035,21 +11034,21 @@ Prism.languages.js = Prism.languages.javascript;
   <section>
     <pre><code class="language-ruby">render GovukComponent::AccordionComponent.new(id: 'abc123') do |component|
   component.section(
-    title: 'Home electronics',
-    summary: 'Entertainment, communication and recreation',
+    heading_text: 'Home electronics',
+    summary_text: 'Entertainment, communication and recreation',
     expanded: true) do
       tag.p(class: 'govuk-body') do
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       end
     end
 
-  component.section(title: 'Appliances', summary: 'Laundry, cookers and vacuum cleaners') do
+  component.section(heading_text: 'Appliances', summary_text: 'Laundry, cookers and vacuum cleaners') do
     tag.p(class: 'govuk-body') do
       "Ut et elementum tortor. Donec a tellus sed sem euismod congue"
     end
   end
 
-  component.section(title: 'Toys') do
+  component.section(heading_text: 'Toys') do
     safe_join([
       tag.p(class: 'govuk-body') do
         "In et nunc vitae tortor sollicitudin ultrices. Vivamus a purus justo."
@@ -11071,42 +11070,41 @@ end
   <section>
     <div id="def234" class="govuk-accordion" data-module="govuk-accordion">
     <div id="section-1-section" class="govuk-accordion__section">
-      <div class="govuk-accordion__section-header">
-        <h2 class="govuk-accordion__section-heading">
-          <span id="section-1" class="govuk-accordion__section-button" aria-expanded="false" aria-controls="section-1-content">Section 1</span>
-        </h2>
-      </div>
-      <div id="section-1-content" class="govuk-accordion__section-content" aria-labelledby="section-1"><p class="govuk-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></div>
-</div>    <div id="section-2-section" class="govuk-accordion__section govuk-accordion__section--expanded">
-      <div class="govuk-accordion__section-header">
-        <h2 class="govuk-accordion__section-heading">
-          <span id="section-2" class="govuk-accordion__section-button" aria-expanded="true" aria-controls="section-2-content">Section 2</span>
-        </h2>
-      </div>
-      <div id="section-2-content" class="govuk-accordion__section-content" aria-labelledby="section-2"><p class="govuk-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></div>
-</div>    <div id="section-3-section" class="govuk-accordion__section">
-      <div class="govuk-accordion__section-header">
-        <h2 class="govuk-accordion__section-heading">
-          <span id="section-3" class="govuk-accordion__section-button" aria-expanded="false" aria-controls="section-3-content">Section 3</span>
-        </h2>
-      </div>
-      <div id="section-3-content" class="govuk-accordion__section-content" aria-labelledby="section-3"><p class="govuk-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></div>
+  <div class="govuk-accordion__section-header">
+    <h2 class="govuk-accordion__section-heading">
+      <span id="section-1" class="govuk-accordion__section-button" aria-expanded="false" aria-controls="section-1-content">Section 1</span>
+</h2>  </div>
+  <div id="section-1-content" class="govuk-accordion__section-content" aria-labelledby="section-1"><p class="govuk-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></div>
+</div>
+    <div id="section-2-section" class="govuk-accordion__section govuk-accordion__section--expanded">
+  <div class="govuk-accordion__section-header">
+    <h2 class="govuk-accordion__section-heading">
+      <span id="section-2" class="govuk-accordion__section-button" aria-expanded="true" aria-controls="section-2-content">Section 2</span>
+</h2>  </div>
+  <div id="section-2-content" class="govuk-accordion__section-content" aria-labelledby="section-2"><p class="govuk-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></div>
+</div>
+    <div id="section-3-section" class="govuk-accordion__section">
+  <div class="govuk-accordion__section-header">
+    <h2 class="govuk-accordion__section-heading">
+      <span id="section-3" class="govuk-accordion__section-button" aria-expanded="false" aria-controls="section-3-content">Section 3</span>
+</h2>  </div>
+  <div id="section-3-content" class="govuk-accordion__section-content" aria-labelledby="section-3"><p class="govuk-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></div>
 </div>
 </div>
   </section>
   <section>
     <pre><code class="language-ruby">govuk_accordion(id: 'def234') do |accordion|
-  accordion.section(title: 'Section 1') do
+  accordion.section(heading_text: 'Section 1') do
     tag.p(class: 'govuk-body') do
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     end
   end
-  accordion.section(title: 'Section 2', expanded: true) do
+  accordion.section(heading_text: 'Section 2', expanded: true) do
     tag.p(class: 'govuk-body') do
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     end
   end
-  accordion.section(title: 'Section 3') do
+  accordion.section(heading_text: 'Section 3') do
     tag.p(class: 'govuk-body') do
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     end
@@ -11206,7 +11204,6 @@ end
 </article>
 
 
-
           </section>
           <section class="component-example">
             <h2 class="govuk-heading-l" id="breadcrumbs">Breadcrumbs</h2>
@@ -11216,18 +11213,9 @@ end
   <section>
     <div class="govuk-breadcrumbs">
   <ol class="govuk-breadcrumbs__list">
-
-        <li class="govuk-breadcrumbs__list-item">
-          <a class="govuk-breadcrumbs__link" href="/level-one/">Level one</a>
-        </li>
-
-        <li class="govuk-breadcrumbs__list-item">
-          <a class="govuk-breadcrumbs__link" href="/level-one/level-two/">Level two</a>
-        </li>
-
-        <li class="govuk-breadcrumbs__list-item">
-          <a class="govuk-breadcrumbs__link" href="/level-one/level-two/level-three">Level three</a>
-        </li>
+      <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="/level-one/">Level one</a></li>
+      <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="/level-one/level-two/">Level two</a></li>
+      <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="/level-one/level-two/level-three">Level three</a></li>
   </ol>
 </div>
   </section>
@@ -11249,39 +11237,19 @@ end
 <article class="example govuk-!-margin-top-9" id="cookie-banner">
   <h2 class="govuk-heading-s">Cookie banner</h2>
   <section>
-    <div class="govuk-cookie-banner" role="region" aria-label="Cookie banner">
-  <div class="govuk-cookie-banner__message govuk-width-container">
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-          <h2 class="govuk-cookie-banner__heading govuk-heading-m">Cookies on a service</h2>
-
-        <div class="govuk-cookie-banner__content">
-<p class="govuk-body">A paragraph.</p>
-<p class="govuk-body-s">A second, smaller paragraph.</p>
+    <div class="govuk-cookie-banner" role="region" aria-label="Cookie banner"><div class="govuk-cookie-banner__message govuk-width-container"><div class="govuk-grid-row"><div class="govuk-grid-column-two-thirds">
+<h2 class="govuk-cookie-banner__heading">Warning</h2>
+<div class="govuk-cookie-banner__content"><p>We have lots of nice cookies</p></div>
+<div class="govuk-button-group">
+<a class="govuk-button" href="#">Accept</a><a class="govuk-button govuk-button--warning" href="#">Reject</a>
 </div>
-      </div>
-    </div>
-
-    <div class="govuk-button-group">
-      <a class="govuk-button" href="#accept">Accept cookies</a><a class="govuk-button" href="#reject">Reject cookies</a><a class="govuk-link" href="#view">View cookies</a>
-    </div>
-  </div>
-</div>
+</div></div></div></div>
   </section>
   <section>
-    <pre><code class="language-ruby">render GovukComponent::CookieBannerComponent.new(title: "Cookies on a service") do |component|
-  component.body do
-    safe_join([
-      tag.p("A paragraph.", class: "govuk-body"),
-      tag.p("A second, smaller paragraph.", class: "govuk-body-s"),
-    ])
-  end
-  component.actions do
-    safe_join([
-      govuk_link_to("Accept cookies", "#accept", button: true),
-      govuk_link_to("Reject cookies", "#reject", button: true),
-      govuk_link_to("View cookies", "#view"),
-    ])
+    <pre><code class="language-ruby">render GovukComponent::CookieBannerComponent.new do |cookie_banner|
+  cookie_banner.message(heading_text: "Warning", text: "We have lots of nice cookies") do |message|
+    message.action { govuk_button_link_to("Accept", "#") }
+    message.action { govuk_button_link_to("Reject", "#", warning: true) }
   end
 end
 </code></pre>
@@ -11331,7 +11299,7 @@ end
   <h2 class="govuk-heading-s">Default footer</h2>
   <section>
     <footer class="govuk-footer" role="contentinfo">
-  <div class="govuk-width-container ">
+  <div class="govuk-width-container">
     <div class="govuk-footer__meta">
         <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
 
@@ -11345,9 +11313,8 @@ end
         <div class="govuk-footer__meta">
           <div class="govuk-footer__meta-item"><a class="govuk-footer__link govuk-footer__copyright-logo" href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/">&amp;copy Crown copyright</a></div>
         </div>
-    </div>
-  </div>
-</footer>
+</div>
+</div></footer>
   </section>
   <section>
     <pre><code class="language-ruby">render GovukComponent::FooterComponent.new
@@ -11360,7 +11327,7 @@ end
   <h2 class="govuk-heading-s">Footer with licence, copyright text and URL</h2>
   <section>
     <footer class="govuk-footer" role="contentinfo">
-  <div class="govuk-width-container ">
+  <div class="govuk-width-container">
     <div class="govuk-footer__meta">
         <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
 
@@ -11370,9 +11337,8 @@ end
         <div class="govuk-footer__meta">
           <div class="govuk-footer__meta-item"><a class="govuk-footer__link govuk-footer__copyright-logo" href="https://design-system.service.gov.uk/">Custom copyright</a></div>
         </div>
-    </div>
-  </div>
-</footer>
+</div>
+</div></footer>
   </section>
   <section>
     <pre><code class="language-ruby">render GovukComponent::FooterComponent.new(
@@ -11388,7 +11354,7 @@ end
   <h2 class="govuk-heading-s">Footer with no licence and some alternative content</h2>
   <section>
     <footer class="govuk-footer" role="contentinfo">
-  <div class="govuk-width-container ">
+  <div class="govuk-width-container">
     <div class="govuk-footer__meta">
         <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
             <h2 class="govuk-visually-hidden">Supporting links</h2>
@@ -11403,14 +11369,12 @@ end
             </ul>
 
 
-            The quick brown fox jumped over the lazy dog
         </div>
         <div class="govuk-footer__meta">
           <div class="govuk-footer__meta-item"><a class="govuk-footer__link govuk-footer__copyright-logo" href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/">&amp;copy Crown copyright</a></div>
         </div>
-    </div>
-  </div>
-</footer>
+</div>
+</div></footer>
   </section>
   <section>
     <pre><code class="language-ruby">render GovukComponent::FooterComponent.new(
@@ -11420,7 +11384,7 @@ end
   },
   meta_licence: false,
   meta_items_title: 'Supporting links') do |footer|
-    footer.meta_content { "The quick brown fox jumped over the lazy dog" }
+    footer.meta_text { "The quick brown fox jumped over the lazy dog" }
   end
 </code></pre>
   </section>
@@ -11429,8 +11393,7 @@ end
 
           </section>
           <section class="component-example">
-            
-<h2 class="govuk-heading-l" id="header">Header</h2>
+            <h2 class="govuk-heading-l" id="header">Header</h2>
 
 <article class="example govuk-!-margin-top-9" id="header">
   <h2 class="govuk-heading-s">Header</h2>
@@ -11551,9 +11514,9 @@ end
   </section>
   <section>
     <pre><code class="language-ruby">render GovukComponent::HeaderComponent.new(logotype: 'A new service', service_name: "It's very good") do |component|
-  component.item(text: 'Page A', href: '/#page-a')
-  component.item(text: 'Page B', href: '/#page-b')
-  component.item(text: 'Page C', href: '/#page-c', active: true)
+  component.navigation_item(text: 'Page A', href: '/#page-a')
+  component.navigation_item(text: 'Page B', href: '/#page-b')
+  component.navigation_item(text: 'Page C', href: '/#page-c', active: true)
 end
 </code></pre>
   </section>
@@ -11596,92 +11559,130 @@ end
 <article class="example govuk-!-margin-top-9" id="links">
   <h2 class="govuk-heading-s">Links</h2>
   <section>
-    <a class="govuk-link" href="/">Home</a>
+    <a class="govuk-link" href="#">Home</a>
   </section>
   <section>
-    <pre><code class="language-ruby">govuk_link_to('Home', '/')</code></pre>
-  </section>
-</article>
-
-<article class="example govuk-!-margin-top-9" id="links-styled-like-buttons">
-  <h2 class="govuk-heading-s">Links styled like buttons</h2>
-  <section>
-    <a class="govuk-button" href="/">Continue</a>
-  </section>
-  <section>
-    <pre><code class="language-ruby">govuk_link_to('Continue', '/', button: true)</code></pre>
+    <pre><code class="language-ruby">govuk_link_to('Home', '#')</code></pre>
   </section>
 </article>
 
 <article class="example govuk-!-margin-top-9" id="email-links">
   <h2 class="govuk-heading-s">Email links</h2>
   <section>
-    <a class="govuk-link" href="mailto:Home">test@test.org</a>
+    <a class="govuk-link" href="mailto:text@text.org">text@text.org</a>
   </section>
   <section>
-    <pre><code class="language-ruby">govuk_mail_to('Home', 'test@test.org')</code></pre>
-  </section>
-</article>
-
-<article class="example govuk-!-margin-top-9" id="button-links-(this-will-render-a-form-that-posts)">
-  <h2 class="govuk-heading-s">Button links (this will render a form that POSTs)</h2>
-  <section>
-    <form class="button_to" method="post" action="/">
-<input class="govuk-button" type="submit" value="Home"><input type="hidden" name="authenticity_token" value="O4UbJz6eJDVH4OjY+LXfaAD1+Jlb7hr5GgtDsP6hMpolhsszWKjYiGjDO9Mmkgueie+VL03kTspuWesY7KbzZA==">
-</form>
-  </section>
-  <section>
-    <pre><code class="language-ruby">govuk_button_to('Home', '/')</code></pre>
+    <pre><code class="language-ruby">govuk_mail_to('text@text.org')</code></pre>
   </section>
 </article>
 
 <article class="example govuk-!-margin-top-9" id="text-coloured-links">
   <h2 class="govuk-heading-s">Text-coloured links</h2>
   <section>
-    <a class="govuk-link govuk-link--text-colour" href="/">Continue</a>
+    <a class="govuk-link govuk-link--text-colour" href="#">Continue</a>
   </section>
   <section>
-    <pre><code class="language-ruby">govuk_link_to('Continue', '/', text_colour: true)</code></pre>
-  </section>
-</article>
-
-<article class="example govuk-!-margin-top-9" id="no-visited-state-links">
-  <h2 class="govuk-heading-s">No-visited state links</h2>
-  <section>
-    <a class="govuk-link govuk-link--no-visited-state" href="/">Continue</a>
-  </section>
-  <section>
-    <pre><code class="language-ruby">govuk_link_to('Continue', '/', no_visited_state: true)</code></pre>
+    <pre><code class="language-ruby">govuk_link_to('Continue', '#', { text_colour: true })</code></pre>
   </section>
 </article>
 
-<article class="example govuk-!-margin-top-9" id="inverse-links">
-  <h2 class="govuk-heading-s">Inverse links</h2>
+<article class="example govuk-!-margin-top-9" id="no-visited-state">
+  <h2 class="govuk-heading-s">No-visited state</h2>
   <section>
-    <a class="govuk-link govuk-link--inverse" href="/">Continue</a>
+    <a class="govuk-link govuk-link--no-visited-state" href="#">Continue</a>
   </section>
   <section>
-    <pre><code class="language-ruby">govuk_link_to('Continue', '/', inverse: true)</code></pre>
-  </section>
-</article>
-
-<article class="example govuk-!-margin-top-9" id="no-underline-links">
-  <h2 class="govuk-heading-s">No-underline links</h2>
-  <section>
-    <a class="govuk-link govuk-link--no-underline" href="/">Continue</a>
-  </section>
-  <section>
-    <pre><code class="language-ruby">govuk_link_to('Continue', '/', no_underline: true)</code></pre>
+    <pre><code class="language-ruby">govuk_link_to('Continue', '#', { no_visited_state: true })</code></pre>
   </section>
 </article>
 
-<article class="example govuk-!-margin-top-9" id="muted-links">
-  <h2 class="govuk-heading-s">Muted links</h2>
+<article class="example govuk-!-margin-top-9" id="inverse">
+  <h2 class="govuk-heading-s">Inverse</h2>
   <section>
-    <a class="govuk-link govuk-link--muted" href="/">Continue</a>
+    <a class="govuk-link govuk-link--inverse" href="#">Continue</a>
   </section>
   <section>
-    <pre><code class="language-ruby">govuk_link_to('Continue', '/', muted: true)</code></pre>
+    <pre><code class="language-ruby">govuk_link_to('Continue', '#', { inverse: true })</code></pre>
+  </section>
+</article>
+
+<article class="example govuk-!-margin-top-9" id="no-underline">
+  <h2 class="govuk-heading-s">No underline</h2>
+  <section>
+    <a class="govuk-link govuk-link--no-underline" href="#">Continue</a>
+  </section>
+  <section>
+    <pre><code class="language-ruby">govuk_link_to('Continue', '#', { no_underline: true })</code></pre>
+  </section>
+</article>
+
+<article class="example govuk-!-margin-top-9" id="muted">
+  <h2 class="govuk-heading-s">Muted</h2>
+  <section>
+    <a class="govuk-link govuk-link--muted" href="#">Continue</a>
+  </section>
+  <section>
+    <pre><code class="language-ruby">govuk_link_to('Continue', '#', { muted: true })</code></pre>
+  </section>
+</article>
+
+
+<article class="example govuk-!-margin-top-9" id="link-styled-as-button">
+  <h2 class="govuk-heading-s">Link styled as button</h2>
+  <section>
+    <a class="govuk-button" href="#">Continue</a>
+  </section>
+  <section>
+    <pre><code class="language-ruby">govuk_button_link_to('Continue', '#')</code></pre>
+  </section>
+</article>
+
+
+<article class="example govuk-!-margin-top-9" id="button-(this-will-render-a-form-that-posts)">
+  <h2 class="govuk-heading-s">Button (this will render a form that POSTs)</h2>
+  <section>
+    <form class="button_to" method="post" action="/">
+<button class="govuk-button" type="submit">Home</button><input type="hidden" name="authenticity_token" value="hqADKF0VTD/z6k6mm0h/3n8mqyojTpGLckoSi5T17RkSk5KtgG47cNspJezrYyDJakhO6ZdTOb4Ko/g9GzJ/1Q==">
+</form>
+  </section>
+  <section>
+    <pre><code class="language-ruby">govuk_button_to('/') { 'Home' }</code></pre>
+  </section>
+</article>
+
+<article class="example govuk-!-margin-top-9" id="warning-button">
+  <h2 class="govuk-heading-s">Warning button</h2>
+  <section>
+    <form class="button_to" method="post" action="/">
+<button class="govuk-button govuk-button--warning" type="submit">Delete</button><input type="hidden" name="authenticity_token" value="ihKdX2eu5Yu6u1TaSouaA/WLaiewuS8JMsuYLHgk8koeIQzautWSxJJ4P5A6oMUU4OWP5ASkhzxKInKa9+Nghg==">
+</form>
+  </section>
+  <section>
+    <pre><code class="language-ruby">govuk_button_to('/', { warning: true }) { 'Delete' }</code></pre>
+  </section>
+</article>
+
+<article class="example govuk-!-margin-top-9" id="secondary-button">
+  <h2 class="govuk-heading-s">Secondary button</h2>
+  <section>
+    <form class="button_to" method="post" action="/">
+<button class="govuk-button govuk-button--secondary" type="submit">Go back</button><input type="hidden" name="authenticity_token" value="0bB5B3V4AF2Li9kvrwqtd7ZAqHKQzw281ytgMcL+R7pFg+iCqAN3EqNIsmXfIfJgoy5NsSTSpYmvwoqHTTnVdg==">
+</form>
+  </section>
+  <section>
+    <pre><code class="language-ruby">govuk_button_to('/', { secondary: true }) { 'Go back' }</code></pre>
+  </section>
+</article>
+
+<article class="example govuk-!-margin-top-9" id="disabled-button">
+  <h2 class="govuk-heading-s">Disabled button</h2>
+  <section>
+    <form class="button_to" method="post" action="/">
+<button class="govuk-button govuk-button--disabled" type="submit">Create</button><input type="hidden" name="authenticity_token" value="ly62F54WDZ2WEIVejRE/oYsgTXrnTqJtkDTqFaQA8ZsDHSeSQ2160r7T7hT9OmC2nk6ouVNTCljo3QCjK8djVw==">
+</form>
+  </section>
+  <section>
+    <pre><code class="language-ruby">govuk_button_to('/', { disabled: true }) { 'Create' }</code></pre>
   </section>
 </article>
 
@@ -11708,7 +11709,7 @@ end
 </div>
   </section>
   <section>
-    <pre><code class="language-ruby">render GovukComponent::NotificationBannerComponent.new(title: 'Information', disable_auto_focus: true) do |notification_banner|
+    <pre><code class="language-ruby">render GovukComponent::NotificationBannerComponent.new(title_text: 'Information', disable_auto_focus: true) do |notification_banner|
   notification_banner.heading(
     text: 'Very important information.',
     link_text: "Find out more",
@@ -11726,7 +11727,7 @@ end
 <article class="example govuk-!-margin-top-9" id="notification-banner-with-success">
   <h2 class="govuk-heading-s">Notification banner with success</h2>
   <section>
-    <div class="govuk-notification-banner govuk-notification-banner--success" role="region" aria-labelledby="swanky-notifications" data-module="govuk-notification-banner">
+    <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="swanky-notifications" data-module="govuk-notification-banner">
   <div class="govuk-notification-banner__header">
     <h3 class="govuk-notification-banner__title" id="swanky-notifications">
       Success
@@ -11741,7 +11742,7 @@ end
 </div>
   </section>
   <section>
-    <pre><code class="language-ruby">render GovukComponent::NotificationBannerComponent.new(title: 'Success', success: true, title_heading_level: 3, title_id: "swanky-notifications") do |notification_banner|
+    <pre><code class="language-ruby">render GovukComponent::NotificationBannerComponent.new(title_text: 'Success', success: true, title_heading_level: 3, title_id: "swanky-notifications") do |notification_banner|
   notification_banner.heading(text: 'Something excellent happened')
   notification_banner.heading(
     text: 'Many excellent things happened.',
@@ -11770,7 +11771,7 @@ end
 </div>
   </section>
   <section>
-    <pre><code class="language-ruby">govuk_notification_banner(title: "Warning") do |banner|
+    <pre><code class="language-ruby">govuk_notification_banner(title_text: "Warning") do |banner|
   banner.heading(text: "Something's afoot")
 end
 </code></pre>
@@ -11792,8 +11793,8 @@ end
   </section>
   <section>
     <pre><code class="language-ruby">render GovukComponent::PanelComponent.new(
-  title: 'Springfield',
-  body: 'A noble spirit embiggens the smallest man')
+  title_text: 'Springfield',
+  text: 'A noble spirit embiggens the smallest man')
 </code></pre>
   </section>
 </article>
@@ -11816,7 +11817,7 @@ end
   </section>
   <section>
     <pre><code class="language-ruby">render GovukComponent::PhaseBannerComponent.new(
-  phase_tag: { text: 'Gamma' },
+  tag: { text: 'Gamma' },
   text: 'This is an experimental service – be cautious')
 </code></pre>
   </section>
@@ -11834,7 +11835,7 @@ end
 </div>
   </section>
   <section>
-    <pre><code class="language-ruby">render GovukComponent::PhaseBannerComponent.new(phase_tag: { text: 'Alpha' }) do
+    <pre><code class="language-ruby">render GovukComponent::PhaseBannerComponent.new(tag: { text: 'Alpha' }) do
   tag.strong('This is an Alpha project, ignore everything')
 end
 </code></pre>
@@ -11863,7 +11864,7 @@ end
     <a class="govuk-skip-link" href="#main-content">Skip to important information</a>
   </section>
   <section>
-    <pre><code class="language-ruby">govuk_skip_link text: 'Skip to important information'</code></pre>
+    <pre><code class="language-ruby">govuk_skip_link(text: 'Skip to important information')</code></pre>
   </section>
 </article>
 
@@ -11874,7 +11875,7 @@ end
     <a class="govuk-skip-link" href="#skip-link-target">Skip to main content</a>
   </section>
   <section>
-    <pre><code class="language-ruby">govuk_skip_link href: '#skip-link-target'</code></pre>
+    <pre><code class="language-ruby">govuk_skip_link(href: '#skip-link-target')</code></pre>
   </section>
 </article>
 
@@ -11906,47 +11907,46 @@ end
   <section>
     <dl class="govuk-summary-list">
     <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">Aardvark</dt>
-      <dd class="govuk-summary-list__value">The aardvark is vaguely pig-like in appearance</dd>
-        <dd class="govuk-summary-list__actions"><a class="govuk-link tubulidentata" href="#aardvark">Change<span class="govuk-visually-hidden"> aardvark</span></a></dd>
-</div>    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">Baboon</dt>
-      <dd class="govuk-summary-list__value">Monkeys of the genus Papio</dd>
-        <dd class="govuk-summary-list__actions"></dd>
-</div>    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">Chinchilla</dt>
-      <dd class="govuk-summary-list__value">Either of two species of crepuscular rodents</dd>
-        <dd class="govuk-summary-list__actions"><a class="govuk-link caviomorpha" href="#chinchilla">Change<span class="govuk-visually-hidden"> this rodent for a different kind</span></a></dd>
+<dt class="govuk-summary-list__key">Aardvark</dt>
+<dd class="govuk-summary-list__value">The aardvark is vaguely pig-like in appearance</dd>
+<dd class="govuk-summary-list__actions"><a class="govuk-link tubulidentata" href="#aardvark">Change</a></dd>
+</div>
+    <div class="govuk-summary-list__row">
+<dt class="govuk-summary-list__key">Baboon</dt>
+<dd class="govuk-summary-list__value">Monkeys of the genus Papio</dd>
+<dd class="govuk-summary-list__actions"></dd>
+</div>
+    <div class="govuk-summary-list__row">
+<dt class="govuk-summary-list__key">Chinchilla</dt>
+<dd class="govuk-summary-list__value">Either of two species of crepuscular rodents</dd>
+<dd class="govuk-summary-list__actions"><a class="govuk-link caviomorpha" href="#chinchilla">Change<span class="govuk-visually-hidden">this rodent for a different kind</span></a></dd>
 </div>
 </dl>
   </section>
   <section>
-    <pre><code class="language-ruby">render GovukComponent::SummaryListComponent.new do |component|
-  component.row(
-    key: 'Aardvark',
-    value: 'The aardvark is vaguely pig-like in appearance',
-    action: {
-      text: "Change",
-      href: '#aardvark',
-      classes: 'tubulidentata'
-    }
-  )
+    <pre><code class="language-ruby">render GovukComponent::SummaryListComponent.new do |summary_list|
+  summary_list.row do |row|
+    row.key { 'Aardvark' }
+    row.value { 'The aardvark is vaguely pig-like in appearance' }
+    row.action(text: "Change", href: '#aardvark', classes: 'tubulidentata')
+  end
 
-  component.row(
-    key: 'Baboon',
-    value: 'Monkeys of the genus Papio'
-  )
+  summary_list.row do |row|
+    row.key(text: 'Baboon')
+    row.value(text: 'Monkeys of the genus Papio')
+    row.action(href: nil)
+  end
 
-  component.row(
-    key: 'Chinchilla',
-    value: 'Either of two species of crepuscular rodents',
-    action: {
+  summary_list.row do |row|
+    row.key(text: 'Chinchilla')
+    row.value(text: 'Either of two species of crepuscular rodents')
+    row.action(
       text: 'Change',
       visually_hidden_text: 'this rodent for a different kind',
       href: '#chinchilla',
       classes: 'caviomorpha'
-    }
-  )
+    )
+  end
 end
 </code></pre>
   </section>
@@ -11975,15 +11975,15 @@ end
   </section>
   <section>
     <pre><code class="language-ruby">render GovukComponent::TabComponent.new(title: 'Days of the week') do |component|
-  component.tab(title: 'Monday') do
+  component.tab(label: 'Monday') do
     tag.p("Monday's child is fair of face", class: 'govuk-body')
   end
 
-  component.tab(title: 'Tuesday') do
+  component.tab(label: 'Tuesday') do
     tag.p("Tuesday's child is full of grace", class: 'govuk-body')
   end
 
-  component.tab(title: 'Wednesday') do
+  component.tab(label: 'Wednesday') do
     tag.p("Wednesday's child is full of woe", class: 'govuk-body')
   end
 end
@@ -12072,7 +12072,7 @@ end
   <section>
     <pre><code class="language-ruby">render GovukComponent::WarningTextComponent.new(
   text: "Starin' at my sandals, that's a paddlin'",
-  assistive_text: "Paddlin' warning")
+  icon_fallback_text: "Paddlin' warning")
 </code></pre>
   </section>
 </article>

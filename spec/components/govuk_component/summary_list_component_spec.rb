@@ -91,6 +91,12 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
             [row.key(text: "Key"), row.value(text: "Value")]
           )
         end
+
+        component.row(classes: "with-empty-action") do |row|
+          helper.safe_join(
+            [row.key(text: "Key"), row.value(text: "Value"), row.action(href: nil)]
+          )
+        end
       end
     end
 
@@ -106,6 +112,14 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
       expect(rendered_component).to have_tag("dl", with: { class: component_css_class }) do
         with_tag("div", with: { class: %(without-actions govuk-summary-list__row) }) do
           without_tag("dd", with: { class: "govuk-summary-list__actions" })
+        end
+      end
+    end
+
+    specify "renders an empty actions container when an action with a single href is called" do
+      expect(rendered_component).to have_tag("dl", with: { class: component_css_class }) do
+        with_tag("div", with: { class: %(with-empty-action govuk-summary-list__row) }) do
+          with_tag("dd", with: { class: "govuk-summary-list__actions" }, text: "")
         end
       end
     end
@@ -237,9 +251,19 @@ RSpec.describe(GovukComponent::SummaryListComponent::ActionComponent, type: :com
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 
-  context "when there is no text or block" do
+  context "when there is no text" do
+    subject! do
+      render_inline(described_class.new(href: custom_path))
+    end
+
+    specify "the text defaults to 'Change'" do
+      expect(rendered_component).to have_tag("a", with: { class: "govuk-link" }, text: "Change")
+    end
+  end
+
+  context "when text is nil and there's no block" do
     specify "raises an appropriate error" do
-      expect { render_inline(described_class.new(**kwargs.except(:text))) }.to raise_error(ArgumentError, "no text or content")
+      expect { render_inline(described_class.new(**kwargs.merge(text: nil))) }.to raise_error(ArgumentError, "no text or content")
     end
   end
 
