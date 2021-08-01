@@ -237,9 +237,19 @@ RSpec.describe(GovukComponent::SummaryListComponent::ActionComponent, type: :com
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 
-  context "when there is no text or block" do
+  context "when there is no text" do
+    subject! do
+      render_inline(described_class.new(href: custom_path))
+    end
+
+    specify "the text defaults to 'Change'" do
+      expect(rendered_component).to have_tag("a", with: { class: "govuk-link" }, text: "Change")
+    end
+  end
+
+  context "when text is nil and there's no block" do
     specify "raises an appropriate error" do
-      expect { render_inline(described_class.new(**kwargs.except(:text))) }.to raise_error(ArgumentError, "no text or content")
+      expect { render_inline(described_class.new(**kwargs.merge(text: nil))) }.to raise_error(ArgumentError, "no text or content")
     end
   end
 
