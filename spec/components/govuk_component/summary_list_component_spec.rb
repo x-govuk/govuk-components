@@ -77,22 +77,50 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
     end
   end
 
-  context "when some rows don't have actions" do
+  context "when rows have actions" do
     subject! do
       render_inline(described_class.new(**kwargs)) do |component|
-        component.row(classes: "with-actions") do |row|
+        component.row do |row|
           helper.safe_join(
             [row.key(text: "Key"), row.value(text: "Value"), row.action(href: "/action", text: "Action")]
           )
         end
+      end
+    end
 
-        component.row(classes: "without-actions") do |row|
+    specify "renders an actions column" do
+      expect(rendered_component).to have_tag("dl", with: { class: component_css_class }) do
+        with_tag("div", with: { class: %(govuk-summary-list__row) }) do
+          with_tag("dd", with: { class: "govuk-summary-list__actions" })
+        end
+      end
+    end
+  end
+
+  context "when no action is specified" do
+    subject! do
+      render_inline(described_class.new(**kwargs)) do |component|
+        component.row do |row|
           helper.safe_join(
             [row.key(text: "Key"), row.value(text: "Value")]
           )
         end
+      end
+    end
 
-        component.row(classes: "with-empty-action") do |row|
+    specify "doesn't render an action column" do
+      expect(rendered_component).to have_tag("dl", with: { class: component_css_class }) do
+        with_tag("div", with: { class: %(govuk-summary-list__row) }) do
+          without_tag("dd", with: { class: "govuk-summary-list__actions" })
+        end
+      end
+    end
+  end
+
+  context "when some rows don't have actions" do
+    subject! do
+      render_inline(described_class.new(**kwargs)) do |component|
+        component.row do |row|
           helper.safe_join(
             [row.key(text: "Key"), row.value(text: "Value"), row.action(href: nil)]
           )
@@ -100,25 +128,9 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
       end
     end
 
-    specify "renders actions for the rows that do" do
+    specify "renders an empty action column" do
       expect(rendered_component).to have_tag("dl", with: { class: component_css_class }) do
-        with_tag("div", with: { class: %(with-actions govuk-summary-list__row) }) do
-          with_tag("dd", with: { class: "govuk-summary-list__actions" })
-        end
-      end
-    end
-
-    specify "doesn't render actions on rows that don't" do
-      expect(rendered_component).to have_tag("dl", with: { class: component_css_class }) do
-        with_tag("div", with: { class: %(without-actions govuk-summary-list__row) }) do
-          without_tag("dd", with: { class: "govuk-summary-list__actions" })
-        end
-      end
-    end
-
-    specify "renders an empty actions container when an action with a single href is called" do
-      expect(rendered_component).to have_tag("dl", with: { class: component_css_class }) do
-        with_tag("div", with: { class: %(with-empty-action govuk-summary-list__row) }) do
+        with_tag("div", with: { class: %(govuk-summary-list__row) }) do
           with_tag("dd", with: { class: "govuk-summary-list__actions" }, text: "")
         end
       end
