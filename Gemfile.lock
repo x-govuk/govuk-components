@@ -4,7 +4,7 @@ PATH
     govuk-components (2.0.0rc1)
       activemodel (>= 6.0)
       railties (>= 6.0)
-      view_component (~> 2.31.1)
+      view_component (~> 2.36.0)
 
 GEM
   remote: https://rubygems.org/
@@ -34,7 +34,7 @@ GEM
     builder (3.2.4)
     byebug (11.1.3)
     coderay (1.1.3)
-    concurrent-ruby (1.1.8)
+    concurrent-ruby (1.1.9)
     crass (1.0.6)
     diff-lcs (1.4.4)
     docile (1.4.0)
@@ -155,8 +155,9 @@ GEM
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.0.0)
-    view_component (2.31.1)
-      activesupport (>= 5.0.0, < 7.0)
+    view_component (2.36.0)
+      activesupport (>= 5.0.0, < 8.0)
+      method_source (~> 1.0)
     zeitwerk (2.4.2)
 
 PLATFORMS

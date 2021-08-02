@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
-  include_context 'helpers'
-  include_context 'setup'
-
   let(:component_css_class) { 'govuk-summary-list' }
 
   let(:action_link_text) { 'Something' }
@@ -175,8 +172,6 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
 end
 
 RSpec.describe(GovukComponent::SummaryListComponent::RowComponent, type: :component) do
-  include_context 'setup'
-
   let(:component_css_class) { 'govuk-summary-list__row' }
   let(:kwargs) { {} }
 
@@ -185,9 +180,6 @@ RSpec.describe(GovukComponent::SummaryListComponent::RowComponent, type: :compon
 end
 
 RSpec.describe(GovukComponent::SummaryListComponent::KeyComponent, type: :component) do
-  include_context 'helpers'
-  include_context 'setup'
-
   let(:component_css_class) { 'govuk-summary-list__key' }
   let(:kwargs) { { text: "Some key" } }
 
@@ -219,9 +211,6 @@ RSpec.describe(GovukComponent::SummaryListComponent::KeyComponent, type: :compon
 end
 
 RSpec.describe(GovukComponent::SummaryListComponent::ValueComponent, type: :component) do
-  include_context 'setup'
-  include_context 'helpers'
-
   let(:component_css_class) { 'govuk-summary-list__value' }
   let(:kwargs) { { text: "Some value" } }
 
@@ -253,9 +242,6 @@ RSpec.describe(GovukComponent::SummaryListComponent::ValueComponent, type: :comp
 end
 
 RSpec.describe(GovukComponent::SummaryListComponent::ActionComponent, type: :component) do
-  include_context 'setup'
-  include_context 'helpers'
-
   let(:custom_path) { "/some/endpoint" }
   let(:component_css_class) { 'govuk-link' }
   let(:kwargs) { { href: custom_path, text: "Some value" } }

@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 RSpec.describe(GovukComponent::NotificationBannerComponent, type: :component) do
-  include_context 'helpers'
-  include_context 'setup'
-
   let(:component_css_class) { 'govuk-notification-banner' }
   let(:title) { 'A notification banner' }
 

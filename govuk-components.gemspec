@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "activemodel", ">= 6.0"
   spec.add_dependency "railties", ">= 6.0"
-  spec.add_dependency "view_component", "~> 2.31.1"
+  spec.add_dependency "view_component", "~> 2.36.0"
 
   spec.add_development_dependency "pry-byebug"
   spec.add_development_dependency "rspec-html-matchers", "~> 0.9"

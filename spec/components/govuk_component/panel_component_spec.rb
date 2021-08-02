@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 RSpec.describe(GovukComponent::PanelComponent, type: :component) do
-  include_context 'helpers'
-  include_context 'setup'
-
   let(:component_css_class) { 'govuk-panel.govuk-panel--confirmation' }
 
   let(:title_text) { 'Springfield' }

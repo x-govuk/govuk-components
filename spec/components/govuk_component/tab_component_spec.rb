@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 RSpec.describe(GovukComponent::TabComponent, type: :component) do
-  include_context 'setup'
-  include_context 'helpers'
-
   let(:title) { 'My favourite tabs' }
   let(:label) { 'A tab' }
   let(:component_css_class) { 'govuk-tabs' }

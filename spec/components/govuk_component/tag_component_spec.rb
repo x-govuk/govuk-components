@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 RSpec.describe(GovukComponent::TagComponent, type: :component) do
-  include_context 'helpers'
-  include_context 'setup'
-
   let(:text) { 'Alert' }
   let(:kwargs) { { text: text } }
   let(:component_css_class) { 'govuk-tag' }

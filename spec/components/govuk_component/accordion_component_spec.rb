@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
-  include_context 'helpers'
-  include_context 'setup'
-
   let(:id) { 'fancy-accordion' }
   let(:component_css_class) { 'govuk-accordion' }
 
