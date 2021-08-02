@@ -1,9 +1,6 @@
 require "spec_helper"
 
 RSpec.describe(GovukComponent::CookieBannerComponent, type: :component) do
-  include_context 'setup'
-  include_context 'helpers'
-
   let(:component_css_class) { 'govuk-cookie-banner' }
   let(:kwargs) { {} }
 
@@ -87,9 +84,6 @@ RSpec.describe(GovukComponent::CookieBannerComponent, type: :component) do
 end
 
 RSpec.describe(GovukComponent::CookieBannerComponent::MessageComponent, type: :component) do
-  include_context 'setup'
-  include_context 'helpers'
-
   let(:component_css_class) { "govuk-cookie-banner__message" }
   let(:custom_heading) { "Some heading" }
   let(:custom_text) { "Some message" }

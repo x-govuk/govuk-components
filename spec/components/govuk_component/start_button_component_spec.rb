@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 RSpec.describe(GovukComponent::StartButtonComponent, type: :component) do
-  include_context 'setup'
-
   let(:component_css_class) { 'govuk-button--start' }
   let(:text) { 'Department for Education' }
   let(:href) { 'https://www.gov.uk/government/organisations/department-for-education' }

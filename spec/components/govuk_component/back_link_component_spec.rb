@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 RSpec.describe(GovukComponent::BackLinkComponent, type: :component) do
-  include_context 'helpers'
-  include_context 'setup'
-
   let(:text) { 'Department for Education' }
   let(:href) { 'https://www.gov.uk/government/organisations/department-for-education' }
   let(:kwargs) { { text: text, href: href } }

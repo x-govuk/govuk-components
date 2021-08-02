@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
-  include_context "setup"
-  include_context "helpers"
-
   let(:component_css_class) { 'govuk-header' }
 
   let(:product_name) { 'Order an amazing ID' }

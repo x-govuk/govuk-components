@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 RSpec.describe(GovukComponent::BreadcrumbsComponent, type: :component) do
-  include_context 'setup'
-
   let(:breadcrumbs) do
     {
       "Home"                 => "/level-one",

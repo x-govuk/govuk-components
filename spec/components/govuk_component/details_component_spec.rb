@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 RSpec.describe(GovukComponent::DetailsComponent, type: :component) do
-  include_context 'helpers'
-  include_context 'setup'
-
   let(:component_css_class) { 'govuk-details' }
   let(:summary_text) { 'The new Ribwich' }
   let(:text) { 'Now without lettuce' }

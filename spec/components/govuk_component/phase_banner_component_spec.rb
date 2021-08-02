@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 RSpec.describe(GovukComponent::PhaseBannerComponent, type: :component) do
-  include_context 'setup'
-
   let(:component_css_class) { "govuk-phase-banner" }
 
   let(:phase) { 'Gamma' }

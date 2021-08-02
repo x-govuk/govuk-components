@@ -65,4 +65,7 @@ RSpec.configure do |config|
   # Allow ViewComponents to be tested
   config.include ViewComponent::TestHelpers, type: :component
   config.include RSpecHtmlMatchers
+
+  config.include_context "helpers"
+  config.include_context "setup"
 end

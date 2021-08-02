@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 RSpec.describe(GovukComponent::FooterComponent, type: :component) do
-  include_context 'setup'
-  include_context 'helpers'
-
   let(:component_css_class) { "govuk-footer" }
   let(:custom_content) { "The quick brown fox" }
   let(:heading_text) { "Some title" }
