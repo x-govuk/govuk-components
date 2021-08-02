@@ -51,7 +51,7 @@ RSpec.describe(GovukComponent::CookieBannerComponent, type: :component) do
 
     specify "renders the message heading" do
       expect(rendered_component).to have_tag(message_selector) do
-        with_tag("h2", text: custom_heading_text)
+        with_tag("h2", text: custom_heading_text, with: { class: %w(govuk-cookie-banner__heading govuk-heading-m) })
       end
     end
 
@@ -133,7 +133,7 @@ RSpec.describe(GovukComponent::CookieBannerComponent::MessageComponent, type: :c
 
     specify "the custom heading HTML is rendered" do
       expect(rendered_component).to have_tag("div", with: { class: component_css_class, role: custom_role }) do
-        with_tag("h2", class: "govuk-cookie-banner__heading") do
+        with_tag("h2", class: %w(govuk-cookie-banner__heading govuk-heading-m)) do
           with_tag(custom_heading_tag, text: custom_heading_text)
         end
       end

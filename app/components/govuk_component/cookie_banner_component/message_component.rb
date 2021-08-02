@@ -30,7 +30,7 @@ private
   end
 
   def heading_element
-    tag.h2(heading_content, class: "govuk-cookie-banner__heading")
+    tag.h2(heading_content, class: %w(govuk-cookie-banner__heading govuk-heading-m))
   end
 
   def heading_content
