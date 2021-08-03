@@ -1,5 +1,5 @@
 class GovukComponent::SummaryListComponent::RowComponent < GovukComponent::Base
-  attr_reader :href, :text, :visually_hidden_text
+  attr_reader :href, :visually_hidden_text
 
   renders_one :key, GovukComponent::SummaryListComponent::KeyComponent
   renders_one :value, GovukComponent::SummaryListComponent::ValueComponent
