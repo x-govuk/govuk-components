@@ -18,6 +18,6 @@ private
   end
 
   def value_content
-    content || text || fail(ArgumentError, "no text or content")
+    content || text || ""
   end
 end

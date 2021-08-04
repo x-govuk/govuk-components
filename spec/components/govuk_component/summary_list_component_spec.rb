@@ -218,8 +218,10 @@ RSpec.describe(GovukComponent::SummaryListComponent::ValueComponent, type: :comp
   it_behaves_like 'a component that accepts custom HTML attributes'
 
   context "when there is no text or block" do
-    specify "raises an appropriate error" do
-      expect { render_inline(described_class.new) }.to raise_error(ArgumentError, "no text or content")
+    subject! { render_inline(described_class.new) }
+
+    specify "renders an empty dd element" do
+      expect(rendered_component).to have_tag("dd", with: { class: "govuk-summary-list__value" }, text: "")
     end
   end
 
