@@ -16,9 +16,10 @@ class GovukComponent::CookieBannerComponent::MessageComponent < GovukComponent::
   def call
     tag.div(class: classes, role: role, hidden: hidden, **html_attributes) do
       tag.div(class: "govuk-grid-row") do
-        tag.div(class: "govuk-grid-column-two-thirds") do
-          safe_join([heading_element, message_element, actions_element])
-        end
+        safe_join([
+          tag.div(class: "govuk-grid-column-two-thirds") { safe_join([heading_element, message_element]) },
+          actions_element
+        ])
       end
     end
   end

@@ -70,11 +70,9 @@ RSpec.describe(GovukComponent::CookieBannerComponent, type: :component) do
     end
 
     specify "renders the actions" do
-      expect(rendered_component).to have_tag(message_selector) do
-        with_tag("div", with: { class: "govuk-button-group" }) do
-          with_tag("button", count: 1)
-          with_tag("a", count: 1)
-        end
+      expect(rendered_component).to have_tag(".govuk-cookie-banner > .govuk-cookie-banner__message > .govuk-grid-row > div.govuk-button-group") do
+        with_tag("button", count: 1)
+        with_tag("a", count: 1)
       end
     end
   end
