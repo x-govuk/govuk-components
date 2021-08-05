@@ -18,7 +18,7 @@ class GovukComponent::SummaryListComponent::ActionComponent < GovukComponent::Ba
     link_classes = govuk_link_classes.append(classes).flatten
 
     link_to(href, class: link_classes, **html_attributes) do
-      safe_join([action_text, visually_hidden_span])
+      safe_join([action_text, visually_hidden_span].compact, " ")
     end
   end
 
