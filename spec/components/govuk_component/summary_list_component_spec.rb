@@ -151,10 +151,10 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
       end
     end
 
-    specify "renders a span when visually hidden text is present" do
+    specify "renders a span containing visually hidden text separated by a space from the action text" do
       expect(rendered_component).to have_tag("dl", with: { class: component_css_class }) do
         with_tag("div", with: { class: %(with-visually-hidden-text govuk-summary-list__row) }) do
-          with_tag("dd", with: { class: "govuk-summary-list__actions" }) do
+          with_tag("dd", with: { class: "govuk-summary-list__actions" }, text: /Action\s/) do
             with_tag("a.govuk-link > span", with: { class: "govuk-visually-hidden" })
           end
         end
