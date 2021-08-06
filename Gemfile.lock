@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    govuk-components (2.0.0rc2)
+    govuk-components (2.0.0rc3)
       activemodel (>= 6.0)
       railties (>= 6.0)
       view_component (~> 2.36.0)
@@ -174,4 +174,4 @@ DEPENDENCIES
   sqlite3
 
 BUNDLED WITH
-   2.2.16
+   2.2.17
