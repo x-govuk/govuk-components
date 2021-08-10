@@ -90,12 +90,6 @@ RSpec.describe(GovukComponent::CookieBannerComponent::MessageComponent, type: :c
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 
-  context "when there is no heading_text or heading_html" do
-    specify "raises an appropriate error" do
-      expect { render_inline(described_class.new(**kwargs.except(:heading_text))) }.to raise_error(ArgumentError, "no heading_text or heading_html")
-    end
-  end
-
   context "when there is no text or block" do
     specify "raises an appropriate error" do
       expect { render_inline(described_class.new(**kwargs.except(:text))) }.to raise_error(ArgumentError, "no text or content")
