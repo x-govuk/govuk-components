@@ -60,7 +60,7 @@ This library allows components to be rendered with Rails' `render` method or via
 
 Here are the rendered tabs:
 
-![Accordion preview](docs/images/tabs.png)
+![Tabs preview](docs/images/tabs.png)
 
 For examples on usage see the [guide page](https://dfe-digital.github.io/govuk-components/).
 
