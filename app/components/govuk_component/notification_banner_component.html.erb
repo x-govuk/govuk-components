@@ -1,0 +1,14 @@
+<%= tag.div(class: classes, role: role, aria: { labelledby: title_id }, data: data_params, **html_attributes) do %>
+  <div class="govuk-notification-banner__header">
+    <%= content_tag(title_tag, class: "govuk-notification-banner__title", id: title_id) do %>
+      <%= title_content %>
+    <% end %>
+  </div>
+  <div class="govuk-notification-banner__content">
+    <% headings.each do |heading| %>
+      <%= heading %>
+    <% end %>
+
+    <%= content || text %>
+  </div>
+<% end %>

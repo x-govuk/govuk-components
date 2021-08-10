@@ -19,113 +19,113 @@ RSpec.describe(GovukComponentsHelper, type: 'helper') do
   [
     {
       helper_method: :govuk_accordion,
-      klass: GovukComponent::Accordion,
+      klass: GovukComponent::AccordionComponent,
       args: [],
       kwargs: {},
       css_matcher: %(.govuk-accordion)
     },
     {
       helper_method: :govuk_back_link,
-      klass: GovukComponent::BackLink,
+      klass: GovukComponent::BackLinkComponent,
       args: [],
       kwargs: { text: 'Back', href: '/right-to-the-start' },
       css_matcher: %(.govuk-back-link)
     },
     {
       helper_method: :govuk_breadcrumbs,
-      klass: GovukComponent::Breadcrumbs,
+      klass: GovukComponent::BreadcrumbsComponent,
       args: [],
       kwargs: { breadcrumbs: { one: 'One' } },
       css_matcher: %(.govuk-breadcrumbs)
     },
     {
       helper_method: :govuk_details,
-      klass: GovukComponent::Details,
+      klass: GovukComponent::DetailsComponent,
       args: [],
-      kwargs: { summary: 'Summary' },
+      kwargs: { summary_text: 'Summary' },
       css_matcher: %(.govuk-details)
     },
     {
       helper_method: :govuk_footer,
-      klass: GovukComponent::Footer,
+      klass: GovukComponent::FooterComponent,
       args: [],
       kwargs: {},
       css_matcher: %(.govuk-footer)
     },
     {
       helper_method: :govuk_header,
-      klass: GovukComponent::Header,
+      klass: GovukComponent::HeaderComponent,
       args: [],
       kwargs: {},
       css_matcher: %(.govuk-header)
     },
     {
       helper_method: :govuk_inset_text,
-      klass: GovukComponent::InsetText,
+      klass: GovukComponent::InsetTextComponent,
       args: [],
       kwargs: { text: 'Inset text' },
       css_matcher: %(.govuk-inset-text)
     },
     {
       helper_method: :govuk_cookie_banner,
-      klass: GovukComponent::CookieBanner,
+      klass: GovukComponent::CookieBannerComponent,
       args: [],
       kwargs: {},
       css_matcher: %(.govuk-cookie-banner)
     },
     {
       helper_method: :govuk_notification_banner,
-      klass: GovukComponent::NotificationBanner,
+      klass: GovukComponent::NotificationBannerComponent,
       args: [],
-      kwargs: { title: 'Notification banner' },
+      kwargs: { title_text: 'Notification banner' },
       css_matcher: %(.govuk-notification-banner),
-      block: Proc.new { |nb| nb.add_heading(text: "heading 1", link_text: "link 1", link_target: "/link-1") },
+      block: Proc.new { |nb| nb.heading(text: "heading 1", link_text: "link 1", link_href: "/link-1") },
     },
     {
       helper_method: :govuk_panel,
-      klass: GovukComponent::Panel,
+      klass: GovukComponent::PanelComponent,
       args: [],
-      kwargs: { title: 'Panel title', body: 'Panel body' },
+      kwargs: { title_text: 'Panel title', text: 'Panel body' },
       css_matcher: %(.govuk-panel)
     },
     {
       helper_method: :govuk_phase_banner,
-      klass: GovukComponent::PhaseBanner,
+      klass: GovukComponent::PhaseBannerComponent,
       args: [],
-      kwargs: { phase_tag: { text: 'Phase Test' } },
+      kwargs: { tag: { text: 'Phase Test' } },
       css_matcher: %(.govuk-phase-banner)
     },
     {
-      helper_method: :govuk_start_now_button,
-      klass: GovukComponent::StartNowButton,
+      helper_method: :govuk_start_button,
+      klass: GovukComponent::StartButtonComponent,
       args: [],
       kwargs: { text: 'Start now text', href: '/start-now-href' },
       css_matcher: %(.govuk-button)
     },
     {
       helper_method: :govuk_summary_list,
-      klass: GovukComponent::SummaryList,
+      klass: GovukComponent::SummaryListComponent,
       args: [],
       kwargs: {},
       css_matcher: %(.govuk-summary-list)
     },
     {
       helper_method: :govuk_tabs,
-      klass: GovukComponent::Tabs,
+      klass: GovukComponent::TabComponent,
       args: [],
       kwargs: { title: 'Tabs' },
       css_matcher: %(.govuk-tabs)
     },
     {
       helper_method: :govuk_tag,
-      klass: GovukComponent::Tag,
+      klass: GovukComponent::TagComponent,
       args: [],
       kwargs: { text: 'Tag' },
       css_matcher: %(.govuk-tag)
     },
     {
-      helper_method: :govuk_warning,
-      klass: GovukComponent::Warning,
+      helper_method: :govuk_warning_text,
+      klass: GovukComponent::WarningTextComponent,
       args: [],
       kwargs: { text: 'Warning' },
       css_matcher: %(.govuk-warning-text)
@@ -135,10 +135,11 @@ RSpec.describe(GovukComponentsHelper, type: 'helper') do
     .each do |hcm|
       describe hcm.helper_method do
         subject do
-          Capybara::Node::Simple.new(helper.send(hcm.helper_method, *hcm.args, **hcm.kwargs, &hcm.block))
+          helper.send(hcm.helper_method, *hcm.args, **hcm.kwargs, &hcm.block)
         end
+
         specify %(should render the component #{hcm.klass}) do
-          expect(subject).to have_css(hcm.css_matcher)
+          expect(subject).to have_tag(hcm.css_matcher)
         end
       end
     end

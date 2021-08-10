@@ -64,8 +64,8 @@ RSpec.configure do |config|
 
   # Allow ViewComponents to be tested
   config.include ViewComponent::TestHelpers, type: :component
-end
+  config.include RSpecHtmlMatchers
 
-Capybara.configure do |config|
-  config.default_normalize_ws = true
+  config.include_context "helpers"
+  config.include_context "setup"
 end

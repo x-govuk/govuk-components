@@ -6,7 +6,7 @@
         %w(grey green turquoise blue red purple pink orange yellow)
           .map do |colour|
             tag.li do
-              render(GovukComponent::Tag.new(text: colour, colour: colour))
+              render(GovukComponent::TagComponent.new(text: colour, colour: colour))
             end
           end
       )

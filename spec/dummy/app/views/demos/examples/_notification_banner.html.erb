@@ -1,14 +1,13 @@
 <%= example_heading('Notification banner') %>
 
 <%= render "shared/example", title: 'Notification banner', example: <<~NOTIFICATION_BANNER
-  render GovukComponent::NotificationBanner.new(title: 'Information', disable_auto_focus: true) do |notification_banner|
-    notification_banner.slot(
-      :heading,
+  render GovukComponent::NotificationBannerComponent.new(title_text: 'Information', disable_auto_focus: true) do |notification_banner|
+    notification_banner.heading(
       text: 'Very important information.',
       link_text: "Find out more",
-      link_target: "#"
+      link_href: "#"
     )
-    notification_banner.slot(:heading) do
+    notification_banner.heading do
       ["Any content can", tag.em("be passed in"), "via a block" ].join(" ").html_safe
     end
   end
@@ -16,21 +15,20 @@
 %>
 
 <%= render "shared/example", title: 'Notification banner with success', example: <<~NOTIFICATION_BANNER
-  render GovukComponent::NotificationBanner.new(title: 'Success', success: true, title_heading_level: 3, title_id: "swanky-notifications") do |notification_banner|
-    notification_banner.slot(:heading, text: 'Something excellent happened')
-    notification_banner.slot(
-      :heading,
+  render GovukComponent::NotificationBannerComponent.new(title_text: 'Success', success: true, title_heading_level: 3, title_id: "swanky-notifications") do |notification_banner|
+    notification_banner.heading(text: 'Something excellent happened')
+    notification_banner.heading(
       text: 'Many excellent things happened.',
       link_text: "See them all",
-      link_target: "#"
+      link_href: "#"
     )
   end
   NOTIFICATION_BANNER
 %>
 
 <%= render "shared/example", title: 'Notification banner called via the helper', example: <<~NOTIFICATION_BANNER
-  govuk_notification_banner(title: "Warning") do |banner|
-    banner.add_heading(text: "Something's afoot")
+  govuk_notification_banner(title_text: "Warning") do |banner|
+    banner.heading(text: "Something's afoot")
   end
   NOTIFICATION_BANNER
 %>

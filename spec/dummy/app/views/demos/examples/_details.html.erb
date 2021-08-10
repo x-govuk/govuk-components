@@ -1,15 +1,15 @@
 <%= example_heading('Details') %>
 
 <%= render "shared/example", title: 'Details - with text', example: <<~DETAILS
-  render GovukComponent::Details.new(
-    summary: 'The new Ribwich',
-    description: 'Now without lettuce'
+  render GovukComponent::DetailsComponent.new(
+    summary_text: 'The new Ribwich',
+    text: 'Now without lettuce'
   )
   DETAILS
 %>
 
 <%= render "shared/example", title: 'Details - with block', example: <<~DETAILS
-  render GovukComponent::Details.new(summary: 'The new Ribwich') do
+  render GovukComponent::DetailsComponent.new(summary_text: 'The new Ribwich') do
     tag.strong(%(You're way off. Think smaller, and more legs.))
   end
   DETAILS

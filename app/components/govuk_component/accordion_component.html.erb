@@ -1,0 +1,5 @@
+<%= tag.div(id: @id, class: classes, data: { module: 'govuk-accordion' }, **html_attributes) do %>
+  <% sections.each do |section| %>
+    <%= section %>
+  <% end %>
+<% end %>

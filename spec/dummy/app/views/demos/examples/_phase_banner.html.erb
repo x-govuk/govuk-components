@@ -1,14 +1,14 @@
 <%= example_heading('Phase banner') %>
 
 <%= render "shared/example", title: 'Phase banner - with text', example: <<~PHASE_BANNER
-  render GovukComponent::PhaseBanner.new(
-    phase_tag: { text: 'Gamma' },
+  render GovukComponent::PhaseBannerComponent.new(
+    tag: { text: 'Gamma' },
     text: 'This is an experimental service – be cautious')
   PHASE_BANNER
 %>
 
 <%= render "shared/example", title: 'Phase banner - with block', example: <<~PHASE_BANNER
-  render GovukComponent::PhaseBanner.new(phase_tag: { text: 'Alpha' }) do
+  render GovukComponent::PhaseBannerComponent.new(tag: { text: 'Alpha' }) do
     tag.strong('This is an Alpha project, ignore everything')
   end
   PHASE_BANNER

@@ -1,4 +1,4 @@
-# .rubocop.yml
+---
 inherit_gem:
   rubocop-govuk:
     - config/default.yml
@@ -9,6 +9,8 @@ AllCops:
   Exclude:
     - govuk_design_system_formbuilder.gemspec
     - spec/dummy/**/*
+Lint/MissingSuper:
+  Enabled: false
 Rails/Date:
   Enabled: false
 Rails/ActiveSupportAliases:
@@ -19,7 +21,15 @@ Style/TrailingCommaInArguments:
   Enabled: false
 Style/TrailingCommaInHashLiteral:
   Enabled: false
+Style/Lambda:
+  Enabled: false
+Style/StringConcatenation:
+  Enabled: false
 Style/TrailingCommaInArrayLiteral:
+  Enabled: false
+Style/TernaryParentheses:
+  Enabled: false
+Style/RedundantParentheses:
   Enabled: false
 Naming/MethodParameterName:
   Enabled: false
@@ -35,3 +45,8 @@ Style/AsciiComments:
   Enabled: false
 Style/FormatString:
   EnforcedStyle: format
+Gemspec/RequiredRubyVersion:
+  Enabled: false
+Style/MixinUsage:
+  Exclude:
+    - spec/spec_helper.rb

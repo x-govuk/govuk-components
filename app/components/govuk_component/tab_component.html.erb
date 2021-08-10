@@ -1,0 +1,11 @@
+<%= tag.div(id: id, class: classes, data: { module: 'govuk-tabs' }, **html_attributes) do %>
+  <%= tag.h2(title, class: "govuk-tabs__title") %>
+  <ul class="govuk-tabs__list">
+    <% tabs.each.with_index do |tab, i| %>
+      <%= tag.li(tab.li_link, class: tab.li_classes(i)) %>
+    <% end %>
+  </ul>
+  <% tabs.each.with_index do |tab, i| %>
+    <%= tag.div(tab, class: tab.classes.append(tab.hidden_class(i)), id: tab.id, **tab.html_attributes) %>
+  <% end %>
+<% end %>

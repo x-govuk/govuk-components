@@ -1,12 +1,12 @@
 <%= example_heading('Footer') %>
 
 <%= render "shared/example", title: 'Default footer', example: <<~FOOTER
-  render GovukComponent::Footer.new
+  render GovukComponent::FooterComponent.new
   FOOTER
 %>
 
 <%= render "shared/example", title: 'Footer with licence, copyright text and URL', example: <<~FOOTER
-  render GovukComponent::Footer.new(
+  render GovukComponent::FooterComponent.new(
     meta_licence: 'Custom licence',
     copyright_text: 'Custom copyright',
     copyright_url: 'https://design-system.service.gov.uk/')
@@ -14,14 +14,14 @@
 %>
 
 <%= render "shared/example", title: 'Footer with no licence and some alternative content', example: <<~FOOTER
-  render GovukComponent::Footer.new(
+  render GovukComponent::FooterComponent.new(
     meta_items: {
       One: "/one",
       Two: "/two"
     },
     meta_licence: false,
     meta_items_title: 'Supporting links') do |footer|
-      footer.slot(:meta_content) { "The quick brown fox jumped over the lazy dog" }
+      footer.meta_text { "The quick brown fox jumped over the lazy dog" }
     end
   FOOTER
 %>

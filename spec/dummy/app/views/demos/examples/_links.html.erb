@@ -1,6 +1,16 @@
 <%= example_heading('Links and buttons') %>
 
-<%= render "shared/example", title: 'Links', example: %{govuk_link_to('Home', '/')} %>
-<%= render "shared/example", title: 'Links styled like buttons', example: %{govuk_link_to('Continue', '/', button: true)} %>
-<%= render "shared/example", title: 'Email links', example: %{govuk_mail_to('Home', 'test@test.org')} %>
-<%= render "shared/example", title: 'Button links (this will render a form that POSTs)', example: %{govuk_button_to('Home', '/')} %>
+<%= render "shared/example", title: 'Links', example: %{govuk_link_to('Home', '#')} %>
+<%= render "shared/example", title: 'Email links', example: %{govuk_mail_to('text@text.org')} %>
+<%= render "shared/example", title: 'Text-coloured links', example: %{govuk_link_to('Continue', '#', { text_colour: true })} %>
+<%= render "shared/example", title: 'No-visited state', example: %{govuk_link_to('Continue', '#', { no_visited_state: true })} %>
+<%= render "shared/example", title: 'Inverse', example: %{govuk_link_to('Continue', '#', { inverse: true })} %>
+<%= render "shared/example", title: 'No underline', example: %{govuk_link_to('Continue', '#', { no_underline: true })} %>
+<%= render "shared/example", title: 'Muted', example: %{govuk_link_to('Continue', '#', { muted: true })} %>
+
+<%= render "shared/example", title: 'Link styled as button', example: %{govuk_button_link_to('Continue', '#')} %>
+
+<%= render "shared/example", title: 'Button (this will render a form that POSTs)', example: %{govuk_button_to('/') { 'Home' }} %>
+<%= render "shared/example", title: 'Warning button', example: %{govuk_button_to('/', { warning: true }) { 'Delete' }} %>
+<%= render "shared/example", title: 'Secondary button', example: %{govuk_button_to('/', { secondary: true }) { 'Go back' }} %>
+<%= render "shared/example", title: 'Disabled button', example: %{govuk_button_to('/', { disabled: true }) { 'Create' }} %>

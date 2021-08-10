@@ -1,9 +1,9 @@
 <%= example_heading("Panel") %>
 
 <%= render "shared/example", title: 'Panel', example: <<~PANEL
-  render GovukComponent::Panel.new(
-    title: 'Springfield',
-    body: 'A noble spirit embiggens the smallest man')
+  render GovukComponent::PanelComponent.new(
+    title_text: 'Springfield',
+    text: 'A noble spirit embiggens the smallest man')
   PANEL
 %>
 
