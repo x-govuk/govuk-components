@@ -72,6 +72,14 @@ Add this line to your `config/application.rb`:
 require "govuk/components"
 ```
 
+## Services using this library
+
+* [Register trainee teachers](https://github.com/DFE-Digital/register-trainee-teachers)
+* [Publish teacher training](https://github.com/DFE-Digital/publish-teacher-training)
+* [Teaching vacancies](https://github.com/DFE-Digital/teaching-vacancies)
+* [Get help with tech](https://github.com/DFE-Digital/get-help-with-tech)
+* [Apply for teacher training](https://github.com/DFE-Digital/apply-for-teacher-training)
+
 ## Installation
 
 Add this line to your application's Gemfile:
