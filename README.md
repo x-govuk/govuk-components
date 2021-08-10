@@ -39,7 +39,7 @@ This library also provides [several link helpers](https://dfe-digital.github.io/
 
 ## Example use
 
-This library allows components to be rendered with Rails' `render` method or via the provided helpers. Here we'll use the `govuk_accordion` to render an accordion.
+This library allows components to be rendered with Rails' `render` method or via the provided helpers. Here we'll use the `govuk_tabs` to render three tabbed sections.
 
 ```erb
 <%= govuk_tabs(title: 'Days of the week') do |component| %>
