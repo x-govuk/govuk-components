@@ -31,11 +31,13 @@ private
   end
 
   def heading_element
+    return if heading_content.blank?
+
     tag.h2(heading_content, class: %w(govuk-cookie-banner__heading govuk-heading-m))
   end
 
   def heading_content
-    heading_html || heading_text || fail(ArgumentError, "no heading_text or heading_html")
+    heading_html || heading_text
   end
 
   def message_element
