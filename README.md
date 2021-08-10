@@ -4,61 +4,63 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/cbcbc140f300b920d833/maintainability)](https://codeclimate.com/github/DFE-Digital/govuk-components/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/cbcbc140f300b920d833/test_coverage)](https://codeclimate.com/github/DFE-Digital/govuk-components/test_coverage)
 [![GitHub license](https://img.shields.io/github/license/DFE-Digital/govuk-components)](https://github.com/DFE-Digital/govuk-components/blob/master/LICENSE)
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=DFE-Digital/govuk-components)](https://dependabot.com)
-[![GOV.UK Design System Version](https://img.shields.io/badge/GOV.UK%20Design%20System-3.10.2-brightgreen)](https://design-system.service.gov.uk)
+[![GOV.UK Design System Version](https://img.shields.io/badge/GOV.UK%20Design%20System-3.13.0-brightgreen)](https://design-system.service.gov.uk)
 
 This gem provides a suite of reusable components for the [GOV.UK Design System](https://design-system.service.gov.uk/). It is intended to provide a lightweight alternative to the [GOV.UK Publishing Components](https://github.com/alphagov/govuk_publishing_components) library and is built with Github's [ViewComponent](https://github.com/github/view_component) framework.
 
-## What's included
+It aims to implement the functionality from the original Nunjucks macros in a way that will feel more familiar to Rails developers. Blocks are preferred over strings of HTML, beneath the surface each component is just a Ruby object, everything is inheritable and overrideable.
 
-| Component name                                                               | Helper                      |
-| --------------                                                               | ------                      |
-| [Accordion](app/components/govuk_component/accordion.rb)                     | `govuk_accordion`           |
-| [Back link](app/components/govuk_component/back_link.rb)                     | `govuk_back_link`           |
-| [Breadcrumbs](app/components/govuk_component/breadcrumbs.rb)                 | `govuk_breadcrumbs`         |
-| [Cookie banner](app/components/govuk_component/cookie_banner.rb)             | `govuk_cookie_banner`       |
-| [Details](app/components/govuk_component/details.rb)                         | `govuk_details`             |
-| [Footer](app/components/govuk_component/footer.rb)                           | `govuk_footer`              |
-| [Header](app/components/govuk_component/header.rb)                           | `govuk_header`              |
-| [Inset text](app/components/govuk_component/inset_text.rb)                   | `govuk_inset_text`          |
-| [Notification banner](app/components/govuk_component/notification_banner.rb) | `govuk_notification_banner` |
-| [Panel](app/components/govuk_component/panel.rb)                             | `govuk_panel`               |
-| [Phase banner](app/components/govuk_component/phase_banner.rb)               | `govuk_phase_banner`        |
-| [Start now button](app/components/govuk_component/start_now_button.rb)       | `govuk_start_now_button`    |
-| [Summary list](app/components/govuk_component/summary_list.rb)               | `govuk_summary_list`        |
-| [Tabs](app/components/govuk_component/tabs.rb)                               | `govuk_tabs`                |
-| [Tag](app/components/govuk_component/tag.rb)                                 | `govuk_tag`                 |
-| [Warning text](app/components/govuk_component/warning.rb)                    | `govuk_warning`             |
+## What's included?
 
-### Helpers
+All of the non-form components from the GOV.UK Design System are implmented by this library as ViewComponents. Form components are implemented by the [form builder](https://govuk-form-builder.netlify.app/).
 
-* `#govuk_link_to`
-* `#govuk_mail_to`
-* `#govuk_button_to`
-* `#govuk_back_to_top_link`
-* `#govuk_skip_link`
+The provided components are:
+
+* [Accordion](https://dfe-digital.github.io/govuk-components/#accordion)
+* [Back link](https://dfe-digital.github.io/govuk-components/#back-links)
+* [Back to top link](https://dfe-digital.github.io/govuk-components/#back-to-top-link)
+* [Breadcrumbs](https://dfe-digital.github.io/govuk-components/#breadcrumbs)
+* [Cookie banner](https://dfe-digital.github.io/govuk-components/#cookie-banner)
+* [Details](https://dfe-digital.github.io/govuk-components/#details)
+* [Footer](https://dfe-digital.github.io/govuk-components/#footer)
+* [Header](https://dfe-digital.github.io/govuk-components/#header)
+* [Inset text](https://dfe-digital.github.io/govuk-components/#inset-text)
+* [Notification banner](https://dfe-digital.github.io/govuk-components/#notification-banner)
+* [Panel](https://dfe-digital.github.io/govuk-components/#panel)
+* [Phase banner](https://dfe-digital.github.io/govuk-components/#phase-banner)
+* [Skip link](https://dfe-digital.github.io/govuk-components/#skip-link)
+* [Start button](https://dfe-digital.github.io/govuk-components/#start-button)
+* [Summary list](https://dfe-digital.github.io/govuk-components/#summary-list)
+* [Tabs](https://dfe-digital.github.io/govuk-components/#tabs)
+* [Tags](https://dfe-digital.github.io/govuk-components/#tags)
+* [Warning text](https://dfe-digital.github.io/govuk-components/#warning-text)
+
+This library also provides [several link helpers](https://dfe-digital.github.io/govuk-components/#links-and-buttons) that are commonly used in services, include `#govuk_link_to` and `#govuk_button_to`.
 
 ## Example use
 
 This library allows components to be rendered with Rails' `render` method or via the provided helpers. Here we'll use the `govuk_accordion` to render an accordion.
 
 ```erb
-<%= govuk_accordion(id: 'def234') do |accordion| %>
-  <%= accordion.add_section(title: 'Section 1') do %>
-    <p class="govuk-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+<%= govuk_tabs(title: 'Days of the week') do |component| %>
+  <% component.tab(label: 'Monday') do %>
+    <p>Monday's child is fair of face</p>
   <% end %>
-  <%= accordion.add_section(title: 'Section 2') do %>
-    <p class="govuk-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+  <% component.tab(label: 'Tuesday') do %>
+    <p>Tuesday's child is full of grace</p>
   <% end %>
-  <%= accordion.add_section(title: 'Section 3') do %>
-    <p class="govuk-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+  <% component.tab(label: 'Wednesday') do %>
+    <p>Wednesday's child is full of woe</p>
   <% end %>
 <% end %>
+
 ```
 
-Here is the rendered accordion.
+Here are the rendered tabs:
 
-![Accordion preview](docs/images/accordion.png)
+![Accordion preview](docs/images/tabs.png)
 
 For examples on usage see the [guide page](https://dfe-digital.github.io/govuk-components/).
 
