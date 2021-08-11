@@ -35,11 +35,34 @@ The provided components are:
 * [Tags](https://dfe-digital.github.io/govuk-components/#tags)
 * [Warning text](https://dfe-digital.github.io/govuk-components/#warning-text)
 
-This library also provides [several link helpers](https://dfe-digital.github.io/govuk-components/#links-and-buttons) that are commonly used in services, include `#govuk_link_to` and `#govuk_button_to`.
+This library also provides [several link helpers](https://dfe-digital.github.io/govuk-components/#links-and-buttons) that are commonly used in services, including `#govuk_link_to` and `#govuk_button_to`.
+
+## Alternative syntax
+
+All of the components can be rendered in two ways:
+
+* directly using Rails' `#render` method:
+
+  ```erb
+    <%= render GovukComponent::GovukComponent::WarningTextComponent.new do %>
+      A serious warning
+    <% end %>
+  ```
+
+* via the helper wrapper:
+
+  ```erb
+    <%= govuk_warning_text do %>
+      A serious warning
+    <% end %>
+  ```
+
+  The naming convention for helpers is `govuk_` followed by the component's name in snake case. You can
+  see the full list in [GovukComponentsHelper](app/helpers/govuk_components_helper.rb).
 
 ## Example use
 
-This library allows components to be rendered with Rails' `render` method or via the provided helpers. Here we'll use the `govuk_tabs` to render three tabbed sections.
+This library allows components to be rendered with Rails' `render` method or via the provided helpers. Here we'll use the `govuk_tabs` to render three tabbed sections:
 
 ```erb
 <%= govuk_tabs(title: 'Days of the week') do |component| %>
