@@ -97,11 +97,12 @@ require "govuk/components"
 
 ## Services using this library
 
-* [Register trainee teachers](https://github.com/DFE-Digital/register-trainee-teachers)
-* [Publish teacher training](https://github.com/DFE-Digital/publish-teacher-training)
-* [Teaching vacancies](https://github.com/DFE-Digital/teaching-vacancies)
-* [Get help with tech](https://github.com/DFE-Digital/get-help-with-tech)
 * [Apply for teacher training](https://github.com/DFE-Digital/apply-for-teacher-training)
+* [Find postgraduate teacher training](https://github.com/DFE-Digital/find-teacher-training)
+* [Get help with technology](https://github.com/DFE-Digital/get-help-with-tech)
+* [Publish teacher training courses](https://github.com/DFE-Digital/publish-teacher-training)
+* [Register trainee teachers](https://github.com/DFE-Digital/register-trainee-teachers)
+* [Teaching Vacancies](https://github.com/DFE-Digital/teaching-vacancies)
 
 ## Installation
 
