@@ -33,11 +33,7 @@
             <%= tag.ul(class: navigation_classes, id: "navigation", aria: { label: navigation_label }) do %>
               <% navigation_items.each do |item| %>
                 <%= tag.li(class: item.classes.append(item.active_class), **item.html_attributes) do %>
-                  <% if item.link? %>
-                    <%= link_to(item.text, item.href, class: "govuk-header__link") %>
-                  <% else %>
-                    <%= item.text %>
-                  <% end %>
+                  <%= item %>
                 <% end %>
               <% end %>
             <% end %>

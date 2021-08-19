@@ -75,6 +75,14 @@ private
       href.present?
     end
 
+    def call
+      if link?
+        link_to(text, href, class: "govuk-header__link")
+      else
+        text
+      end
+    end
+
   private
 
     def default_classes
