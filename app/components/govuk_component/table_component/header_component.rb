@@ -1,4 +1,4 @@
-class GovukComponent::TableComponent::HeaderCellComponent < GovukComponent::Base
+class GovukComponent::TableComponent::HeaderComponent < GovukComponent::Base
   attr_reader :text
 
   def initialize(text: nil, classes: [], html_attributes: {})
