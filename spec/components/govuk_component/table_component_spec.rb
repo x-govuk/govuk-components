@@ -4,14 +4,26 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
   let(:id) { 'important-table' }
   let(:component_css_class) { 'govuk-table' }
   let(:caption_text) { "What a nice table" }
+  let(:head) { %w(one two) }
+  let(:body) { %w(three four) }
 
   let(:kwargs) { { id: id } }
 
   subject! do
     render_inline(GovukComponent::TableComponent.new(**kwargs)) do |table|
       table.caption(text: "What a nice table")
-      table.thead(rows: %w(one two))
-      table.tbody
+
+      table.thead do |thead|
+        thead.row do
+          # header cells
+        end
+      end
+
+      table.tbody do |tbody|
+        tbody.row do
+          # row one cells
+        end
+      end
     end
   end
 
@@ -29,9 +41,13 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
     expect(rendered_component).to have_tag("table > thead")
   end
 
+  specify "renders a tbody element" do
+    expect(rendered_component).to have_tag("table > tbody")
+  end
+
   context "when the rows are passed in as a multidimensional array" do
     context "of arrays" do
-      context "when the first row contains headers" do
+      context "when the first row contains headers and there are three rows of data" do
         let(:rows) do
           [
             %w(header-col-1 header-col-2 header-col-3 header-col-4),
@@ -41,7 +57,26 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
           ]
         end
 
-        specify "renders one header row and three body rows"
+        subject! do
+          render_inline(GovukComponent::TableComponent.new(**kwargs.merge(rows: rows)))
+        end
+
+        specify "renders one header row" do
+          expect(rendered_component).to have_tag("table", with: { class: component_css_class }) do
+            with_tag("thead", with: { class: "govuk-table__head" }) do
+              with_tag("tr", with: { class: "govuk-table__row" }, count: 1)
+            end
+          end
+        end
+
+        specify "renders three body rows" do
+          expect(rendered_component).to have_tag("table", with: { class: component_css_class }) do
+            with_tag("tbody", with: { class: "govuk-table__body" }) do
+              with_tag("tr", with: { class: "govuk-table__row" }, count: 3)
+            end
+          end
+        end
+
         specify "the head contains the right columns"
         specify "the rows contain the right contents"
       end
