@@ -6,7 +6,7 @@ class GovukComponent::TableComponent::RowComponent < GovukComponent::Base
 
   def initialize(cell_data: nil, header: false)
     @cell_data = cell_data
-    @header = header
+    @header    = header
   end
 
   def call

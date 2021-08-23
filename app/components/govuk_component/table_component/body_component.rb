@@ -20,6 +20,8 @@ private
   end
 
   def build_rows
+    return if row_data.blank?
+
     safe_join(row_data.map { |rd| row(cell_data: rd) })
   end
 

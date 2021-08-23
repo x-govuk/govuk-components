@@ -1,7 +1,7 @@
 class GovukComponent::TableComponent < GovukComponent::Base
   renders_one :caption, GovukComponent::TableComponent::CaptionComponent
-  renders_one :thead, GovukComponent::TableComponent::HeadComponent
-  renders_one :tbody, GovukComponent::TableComponent::BodyComponent
+  renders_one :head, GovukComponent::TableComponent::HeadComponent
+  renders_many :bodies, GovukComponent::TableComponent::BodyComponent
 
   attr_accessor :id
 
@@ -24,30 +24,30 @@ class GovukComponent::TableComponent < GovukComponent::Base
 
   def call
     tag.table(class: classes, **html_attributes) do
-      safe_join([caption, thead_content, tbody_content])
+      safe_join([caption, head_content, bodies_content])
     end
   end
 
 private
 
-  def thead_content
-    thead || build_thead
+  def head_content
+    head || build_head
   end
 
-  def build_thead
+  def build_head
     return if head_data.blank?
 
-    thead(rows: [head_data])
+    head(rows: [head_data])
   end
 
-  def tbody_content
-    tbody || build_tbody
+  def bodies_content
+    bodies.presence || build_body
   end
 
-  def build_tbody
+  def build_body
     return if body_data.blank?
 
-    tbody(rows: body_data)
+    body(rows: body_data)
   end
 
   def default_classes

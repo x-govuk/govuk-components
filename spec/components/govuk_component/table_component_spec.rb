@@ -11,14 +11,14 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
     render_inline(GovukComponent::TableComponent.new(**kwargs)) do |table|
       table.caption(text: "What a nice table")
 
-      table.thead do |thead|
-        thead.row do
+      table.head do |head|
+        head.row do
           # header cells
         end
       end
 
-      table.tbody do |tbody|
-        tbody.row do
+      table.body do |body|
+        body.row do
           # row one cells
         end
       end
@@ -41,6 +41,22 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
 
   specify "renders a tbody element" do
     expect(rendered_component).to have_tag("table > tbody")
+  end
+
+  context "when there is more than one tbody" do
+    let(:expected_count) { 2 }
+
+    subject! do
+      render_inline(GovukComponent::TableComponent.new(**kwargs)) do |table|
+        table.caption(text: "What a nice table")
+
+        expected_count.times { table.body {} }
+      end
+    end
+
+    specify "mutiple tbody elements are rendered" do
+      expect(rendered_component).to have_tag("table > tbody", count: expected_count)
+    end
   end
 
   context "when the rows are passed in as a multidimensional array" do
