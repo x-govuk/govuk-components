@@ -44,7 +44,7 @@ All of the components can be rendered in two ways:
 * directly using Rails' `#render` method:
 
   ```erb
-    <%= render GovukComponent::GovukComponent::WarningTextComponent.new do %>
+    <%= render GovukComponent::WarningTextComponent.new do %>
       A serious warning
     <% end %>
   ```
