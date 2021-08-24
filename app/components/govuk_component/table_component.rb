@@ -5,8 +5,6 @@ class GovukComponent::TableComponent < GovukComponent::Base
 
   attr_accessor :id
 
-  attr_reader :head_data, :body_data
-
   def initialize(id: nil, rows: nil, head: nil, classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
@@ -15,39 +13,25 @@ class GovukComponent::TableComponent < GovukComponent::Base
     # when no rows are passed in it's likely we're taking the slot approach
     return unless rows
 
-    @head_data, @body_data = if head
-                               [head, rows]
-                             else
-                               [rows[0], rows[1..]]
-                             end
-  end
+    head_data, body_data = if head
+                             [head, rows]
+                           else
+                             [rows[0], rows[1..]]
+                           end
 
-  def call
-    tag.table(class: classes, **html_attributes) do
-      safe_join([caption, head_content, bodies_content])
-    end
+
+    build_head_from_head_data(head_data)
+    build_body_from_body_data(body_data)
   end
 
 private
 
-  def head_content
-    head || build_head
+  def build_head_from_head_data(data)
+    head(rows: [data])
   end
 
-  def build_head
-    return if head_data.blank?
-
-    head(rows: [head_data])
-  end
-
-  def bodies_content
-    bodies.presence || build_body
-  end
-
-  def build_body
-    return if body_data.blank?
-
-    body(rows: body_data)
+  def build_body_from_body_data(data)
+    body(rows: data)
   end
 
   def default_classes

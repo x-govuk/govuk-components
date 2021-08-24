@@ -6,21 +6,15 @@ class GovukComponent::TableComponent::HeadComponent < GovukComponent::Base
   def initialize(rows: nil, classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
-    @row_data = rows
-  end
-
-  def call
-    tag.thead(class: classes) { head_content }
+    build_rows_from_row_data(rows)
   end
 
 private
 
-  def head_content
-    rows.presence || build_rows
-  end
+  def build_rows_from_row_data(data)
+    return if data.blank?
 
-  def build_rows
-    safe_join(row_data.map { |rd| row(cell_data: rd, header: true) })
+    data.each { |d| row(cell_data: d, header: true) }
   end
 
   def default_classes

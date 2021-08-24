@@ -1,28 +1,18 @@
 class GovukComponent::TableComponent::BodyComponent < GovukComponent::Base
   renders_many :rows, GovukComponent::TableComponent::RowComponent
 
-  attr_reader :row_data
-
   def initialize(rows: nil, classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
-    @row_data = rows
-  end
-
-  def call
-    tag.tbody(class: classes) { body_content }
+    build_rows_from_row_data(rows)
   end
 
 private
 
-  def body_content
-    rows.presence || build_rows
-  end
+  def build_rows_from_row_data(data)
+    return if data.blank?
 
-  def build_rows
-    return if row_data.blank?
-
-    safe_join(row_data.map { |rd| row(cell_data: rd) })
+    data.each { |d| row(cell_data: d) }
   end
 
   def default_classes

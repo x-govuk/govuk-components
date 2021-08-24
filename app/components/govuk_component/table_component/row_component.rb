@@ -1,34 +1,22 @@
 class GovukComponent::TableComponent::RowComponent < GovukComponent::Base
   renders_many :cells, GovukComponent::TableComponent::CellComponent
-  renders_many :header_cells, GovukComponent::TableComponent::HeaderComponent
 
-  attr_reader :cell_data, :header
+  attr_reader :header
 
-  def initialize(cell_data: nil, header: false)
-    @cell_data = cell_data
-    @header    = header
-  end
+  def initialize(cell_data: nil, header: false, classes: [], html_attributes: {})
+    super(classes: classes, html_attributes: html_attributes)
 
-  def call
-    tag.tr(class: classes) { row_content }
+    @header = header
+
+    build_cells_from_cell_data(cell_data)
   end
 
 private
 
-  def row_content
-    cells.presence || header_cells.presence || if header
-                                                 build_header_cells
-                                               else
-                                                 build_cells
-                                               end
-  end
+  def build_cells_from_cell_data(cell_data)
+    return if cell_data.blank?
 
-  def build_cells
-    safe_join(cell_data.map { |cell| cell(text: cell) })
-  end
-
-  def build_header_cells
-    safe_join(cell_data.map { |cell| header_cell(text: cell) })
+    cell_data.map { |cd| cell(header: header, text: cd) }
   end
 
   def default_classes

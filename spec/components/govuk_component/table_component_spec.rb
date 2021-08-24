@@ -153,6 +153,47 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
   end
 
   context "when the rows are built using nested slots" do
+    subject! do
+      render_inline(GovukComponent::TableComponent.new) do |table|
+        table.head do |head|
+          head.row do |row|
+            helper.safe_join(1.upto(3).map { |i| row.cell(header: true, text: "header-col-#{i}") })
+          end
+        end
+
+        table.body do |body|
+          3.times do |i|
+            body.row do |row|
+              row.cell(text: "row-#{i}-col-1")
+              row.cell(text: "row-#{i}-col-2")
+              row.cell(text: "row-#{i}-col-3")
+            end
+          end
+        end
+      end
+    end
+
+    specify "renders a table" do
+      expect(rendered_component).to have_tag('table', with: { class: "govuk-table" })
+    end
+
+    specify "the table has the right head content" do
+      expect(rendered_component).to have_tag('table') do
+        with_tag('thead') do
+          with_tag('tr', with: { class: "govuk-table__row" }, count: 1) do
+            with_tag('th', with: { class: "govuk-table__header" }, count: 3)
+          end
+        end
+      end
+    end
+
+    specify "the table has the right body content" do
+      expect(rendered_component).to have_tag('table') do
+        with_tag('tbody') do
+          with_tag('tr', count: 3)
+        end
+      end
+    end
   end
 
   describe "customising the caption size" do

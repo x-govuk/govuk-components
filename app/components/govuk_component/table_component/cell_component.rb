@@ -1,19 +1,24 @@
 class GovukComponent::TableComponent::CellComponent < GovukComponent::Base
-  attr_reader :text
+  attr_reader :text, :header
 
-  def initialize(text: nil, classes: [], html_attributes: {})
+  def initialize(header: false, text: nil, classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
-    @text = text
-  end
-
-  def call
-    tag.td(text, class: default_classes, **html_attributes)
+    @header = header
+    @text   = text
   end
 
 private
 
+  def cell_content
+    content || text
+  end
+
+  def cell_element
+    header ? :th : :td
+  end
+
   def default_classes
-    %(govuk-table__cell)
+    header ? %w(govuk-table__header) : %w(govuk-table__cell)
   end
 end
