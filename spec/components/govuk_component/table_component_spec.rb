@@ -310,4 +310,24 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
       end
     end
   end
+
+  describe "custom colum widths" do
+    subject! do
+      render_inline(GovukComponent::TableComponent.new) do |table|
+        table.head do |head|
+          head.row do |row|
+            GovukComponent::TableComponent::CellComponent::WIDTHS.each_key do |width|
+              row.cell(text: width, header: true, width: width)
+            end
+          end
+        end
+      end
+    end
+
+    specify "adds the width class correctly" do
+      GovukComponent::TableComponent::CellComponent::WIDTHS.each_key do |width, expected_class|
+        expect(rendered_component).to have_tag("table > thead > tr > th", with: { class: expected_class }, text: width)
+      end
+    end
+  end
 end
