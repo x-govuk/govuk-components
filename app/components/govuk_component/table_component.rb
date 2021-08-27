@@ -11,27 +11,16 @@ class GovukComponent::TableComponent < GovukComponent::Base
     @id = id
 
     # when no rows are passed in it's likely we're taking the slot approach
-    return unless rows
+    return unless rows.presence
 
-    head_data, body_data = if head
-                             [head, rows]
-                           else
-                             [rows[0], rows[1..]]
-                           end
-
-
-    build_head_from_head_data(head_data)
-    build_body_from_body_data(body_data)
+    build(*(head ? [head, rows] : [rows[0], rows[1..]]))
   end
 
 private
 
-  def build_head_from_head_data(data)
-    head(rows: [data])
-  end
-
-  def build_body_from_body_data(data)
-    body(rows: data)
+  def build(head_data, body_data)
+    head(rows: [head_data])
+    body(rows: body_data)
   end
 
   def default_classes

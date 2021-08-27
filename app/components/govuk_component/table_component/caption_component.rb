@@ -10,11 +10,7 @@ class GovukComponent::TableComponent::CaptionComponent < GovukComponent::Base
   end
 
   def call
-    tag.caption(text, class: classes, **html_attributes)
-  end
-
-  def render?
-    text.present?
+    tag.caption((content || text), class: classes, **html_attributes)
   end
 
 private

@@ -12,27 +12,21 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
       table.caption(text: "What a nice table")
 
       table.head do |head|
-        head.row do
-          # header cells
-        end
+        head.row {}
       end
 
       table.body do |body|
-        body.row do
-          # row one cells
-        end
+        body.row {}
       end
     end
   end
 
   specify "renders a table with thead and tbody elements" do
-    expect(rendered_component).to have_tag("table.govuk-table")
+    expect(rendered_component).to have_tag("table", with: { class: "govuk-table" })
   end
 
-  specify "renders a caption" do
-    expect(rendered_component).to have_tag("table", with: { class: component_css_class }) do
-      with_tag("caption", text: caption_text)
-    end
+  specify "table has the provided id" do
+    expect(rendered_component).to have_tag("table", with: { id: id })
   end
 
   specify "renders a thead element" do
@@ -127,7 +121,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
           end
         end
 
-        specify "the head contains the right column data" do
+        specify "the head contains the right columns" do
           expect(rendered_component).to have_tag("table > thead > tr") do
             with_tag("th", count: 4)
 
@@ -137,7 +131,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
           end
         end
 
-        specify "the rows contain the right contents" do
+        specify "the rows each have the right contents" do
           expect(rendered_component).to have_tag("table > tbody") do
             with_tag("td", count: 4 * rows.size)
 
@@ -162,7 +156,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
         end
 
         table.body do |body|
-          3.times do |i|
+          1.upto(3) do |i|
             body.row do |row|
               row.cell(text: "row-#{i}-col-1")
               row.cell(text: "row-#{i}-col-2")
@@ -191,29 +185,69 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
       expect(rendered_component).to have_tag('table') do
         with_tag('tbody') do
           with_tag('tr', count: 3)
+
+          1.upto(3).map { |i| 1.upto(3).map { |j| "row-#{i}-col-#{j}" } }.each do |row|
+            row.each { |value| with_tag('tr > td', text: value) }
+          end
         end
       end
     end
   end
 
-  describe "customising the caption size" do
-    %w(s m l xl)
-      .each
-      .with_object({}) { |size, h| h[size] = "govuk-table__caption--#{size}" }
-      .each do |size, expected_class|
-        context "when #{size}" do
-          let(:size) { size }
+  describe "captions" do
+    specify "renders a caption with the correct text" do
+      expect(rendered_component).to have_tag("table", with: { class: component_css_class }) do
+        with_tag("caption", text: caption_text)
+      end
+    end
 
-          subject do
-            render_inline(GovukComponent::TableComponent.new(**kwargs)) do |table|
-              table.caption(text: "Caption size: #{size}", size: size)
+    describe "customising the caption size" do
+      %w(s m l xl)
+        .each
+        .with_object({}) { |size, h| h[size] = "govuk-table__caption--#{size}" }
+        .each do |size, expected_class|
+          context "when #{size}" do
+            let(:size) { size }
+
+            subject do
+              render_inline(GovukComponent::TableComponent.new(**kwargs)) do |table|
+                table.caption(text: "Caption size: #{size}", size: size)
+              end
+            end
+
+            specify "class '#{expected_class} is added" do
+              expect(rendered_component).to have_tag('caption', with: { class: ["govuk-table__caption", "govuk-table__caption--#{size}"] })
             end
           end
+        end
+    end
 
-          specify "class '#{expected_class} is added" do
-            expect(rendered_component).to have_tag('caption', with: { class: ["govuk-table__caption", "govuk-table__caption--#{size}"] })
-          end
+    describe "when the caption is provided in a block" do
+      let(:fancy_caption_text) { "Fancy caption" }
+      let(:fancy_caption) { helper.tag.span(fancy_caption_text) }
+
+      subject do
+        render_inline(GovukComponent::TableComponent.new(**kwargs)) do |table|
+          table.caption { fancy_caption }
         end
       end
+
+      specify "renders the custom caption content" do
+        expect(rendered_component).to have_tag("caption > span", text: fancy_caption_text)
+      end
+    end
+
+    describe "when no caption is provided" do
+      subject do
+        render_inline(GovukComponent::TableComponent.new(**kwargs)) do |table|
+          table.head {}
+          table.body {}
+        end
+      end
+
+      specify "no caption tag is rendered" do
+        expect(rendered_component).to have_tag("table") { without_tag("caption") }
+      end
+    end
   end
 end
