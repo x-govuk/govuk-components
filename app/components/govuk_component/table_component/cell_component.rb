@@ -1,11 +1,14 @@
 class GovukComponent::TableComponent::CellComponent < GovukComponent::Base
-  attr_reader :text, :header
+  attr_reader :text, :header, :numeric
 
-  def initialize(header: false, text: nil, classes: [], html_attributes: {})
+  alias_method :numeric?, :numeric
+
+  def initialize(header: false, text: nil, numeric: false, classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
-    @header = header
-    @text   = text
+    @header  = header
+    @text    = text
+    @numeric = numeric
   end
 
 private
@@ -19,6 +22,14 @@ private
   end
 
   def default_classes
-    header ? %w(govuk-table__header) : %w(govuk-table__cell)
+    if header
+      %w(govuk-table__header).tap do |c|
+        c << "govuk-table__header--numeric" if numeric?
+      end
+    else
+      %w(govuk-table__cell).tap do |c|
+        c << "govuk-table__cell--numeric" if numeric?
+      end
+    end
   end
 end

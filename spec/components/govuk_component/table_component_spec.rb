@@ -222,6 +222,38 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
     end
   end
 
+  context 'when some data is numeric' do
+    subject! do
+      render_inline(GovukComponent::TableComponent.new) do |table|
+        table.head do |head|
+          head.row do |row|
+            row.cell(text: "non-numeric", header: true)
+            row.cell(text: "numeric", header: true, numeric: true)
+          end
+        end
+
+        table.body do |body|
+          1.upto(3) do |i|
+            body.row do |row|
+              row.cell(text: "non-numeric")
+              row.cell(text: i, numeric: true)
+            end
+          end
+        end
+      end
+    end
+
+    specify "renders the numeric header with a numeric class" do
+      expect(rendered_component).to have_tag("table > thead > tr > th", text: "numeric", with: { class: %w(govuk-table__header--numeric) })
+    end
+
+    specify "renders the numeric cells with a numeric classes" do
+      1.upto(3).each do |i|
+        expect(rendered_component).to have_tag("table > tbody > tr > td", text: i, with: { class: %w(govuk-table__cell--numeric) })
+      end
+    end
+  end
+
   describe "captions" do
     specify "renders a caption with the correct text" do
       expect(rendered_component).to have_tag("table", with: { class: component_css_class }) do
