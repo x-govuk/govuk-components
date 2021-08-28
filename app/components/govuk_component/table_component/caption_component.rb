@@ -1,6 +1,8 @@
 class GovukComponent::TableComponent::CaptionComponent < GovukComponent::Base
   attr_reader :text, :size
 
+  SIZES = %w(s m l xl).freeze
+
   def initialize(text: nil, id: nil, size: 'm', classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
@@ -22,7 +24,7 @@ private
   end
 
   def caption_size_class
-    # TODO: fail unless size s, m, l, xl
+    fail(ArgumentError, "bad size #{size}, must be in #{SIZES}") unless size.in?(SIZES)
 
     %(govuk-table__caption--#{size})
   end

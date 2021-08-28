@@ -282,6 +282,15 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
         end
     end
 
+    describe "when an invalid size is supplied" do
+      let(:invalid_size) { 'xxxxxs' }
+      let(:caption) { GovukComponent::TableComponent::CaptionComponent.new(text: "Bad size", size: invalid_size) }
+
+      specify "fails with an appropriate error messsage" do
+        expect { render_inline(caption) }.to raise_error(ArgumentError, /bad size #{invalid_size}/)
+      end
+    end
+
     describe "when the caption is provided in a block" do
       let(:fancy_caption_text) { "Fancy caption" }
       let(:fancy_caption) { helper.tag.span(fancy_caption_text) }
