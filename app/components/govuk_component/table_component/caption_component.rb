@@ -12,10 +12,18 @@ class GovukComponent::TableComponent::CaptionComponent < GovukComponent::Base
   end
 
   def call
-    tag.caption((content || text), class: classes, **html_attributes)
+    tag.caption(caption_content, class: classes, **html_attributes)
+  end
+
+  def render?
+    caption_content.present?
   end
 
 private
+
+  def caption_content
+    @caption_content ||= (content || text)
+  end
 
   def default_classes
     %w(govuk-table__caption).tap do |c|

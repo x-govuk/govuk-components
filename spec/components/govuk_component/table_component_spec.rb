@@ -53,7 +53,39 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
     end
   end
 
-  describe "passing in an array of table data" do
+  describe "passing data directly into the table component" do
+    describe "captions" do
+      let(:rows) { [%w(a b c), %w(d e f)] }
+
+      context "when the caption is passed in as an argument" do
+        let(:caption_text) { "Argument-supplied caption" }
+
+        subject! do
+          render_inline(GovukComponent::TableComponent.new(**kwargs.merge(rows: rows, caption: caption_text)))
+        end
+
+        specify "renders the caption with the provided text" do
+          expect(rendered_component).to have_tag("table") do
+            with_tag("caption", text: caption_text)
+          end
+        end
+      end
+
+      context "when no caption is passed in" do
+        let(:caption_text) { nil }
+
+        subject! do
+          render_inline(GovukComponent::TableComponent.new(**kwargs.merge(rows: rows, caption: caption_text)))
+        end
+
+        specify "renders no caption element" do
+          expect(rendered_component).to have_tag("table") do
+            without_tag("caption")
+          end
+        end
+      end
+    end
+
     context "when the rows are passed in as a multidimensional array" do
       context "of arrays" do
         context "when the first row contains headers and there are three rows of data" do
@@ -378,7 +410,7 @@ end
 
 RSpec.describe(GovukComponent::TableComponent::CaptionComponent, type: :component) do
   let(:component_css_class) { 'govuk-table__caption' }
-  let(:kwargs) { {} }
+  let(:kwargs) { { text: "Some caption" } }
 
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
