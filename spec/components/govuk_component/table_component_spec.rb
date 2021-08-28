@@ -339,4 +339,47 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
       end
     end
   end
+
+  it_behaves_like 'a component that accepts custom classes'
+  it_behaves_like 'a component that accepts custom HTML attributes'
+end
+
+RSpec.describe(GovukComponent::TableComponent::HeadComponent, type: :component) do
+  let(:component_css_class) { 'govuk-table__head' }
+  let(:kwargs) { {} }
+
+  it_behaves_like 'a component that accepts custom classes'
+  it_behaves_like 'a component that accepts custom HTML attributes'
+end
+
+RSpec.describe(GovukComponent::TableComponent::BodyComponent, type: :component) do
+  let(:component_css_class) { 'govuk-table__body' }
+  let(:kwargs) { {} }
+
+  it_behaves_like 'a component that accepts custom classes'
+  it_behaves_like 'a component that accepts custom HTML attributes'
+end
+
+RSpec.describe(GovukComponent::TableComponent::RowComponent, type: :component) do
+  let(:component_css_class) { 'govuk-table__row' }
+  let(:kwargs) { {} }
+
+  it_behaves_like 'a component that accepts custom classes'
+  it_behaves_like 'a component that accepts custom HTML attributes'
+end
+
+RSpec.describe(GovukComponent::TableComponent::CellComponent, type: :component) do
+  let(:component_css_class) { 'govuk-table__cell' }
+  let(:kwargs) { {} }
+
+  it_behaves_like 'a component that accepts custom classes'
+  it_behaves_like 'a component that accepts custom HTML attributes'
+end
+
+RSpec.describe(GovukComponent::TableComponent::CaptionComponent, type: :component) do
+  let(:component_css_class) { 'govuk-table__caption' }
+  let(:kwargs) { {} }
+
+  it_behaves_like 'a component that accepts custom classes'
+  it_behaves_like 'a component that accepts custom HTML attributes'
 end
