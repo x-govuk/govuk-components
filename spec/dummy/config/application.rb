@@ -25,6 +25,8 @@ module Dummy
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+    config.view_component.preview_paths << Rails.root.join("lib/components/previews")
   end
 end
 
