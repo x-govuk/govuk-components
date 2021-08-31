@@ -13,6 +13,7 @@ module GovukComponentsHelper
     govuk_phase_banner: 'GovukComponent::PhaseBannerComponent',
     govuk_start_button: 'GovukComponent::StartButtonComponent',
     govuk_summary_list: 'GovukComponent::SummaryListComponent',
+    govuk_table: 'GovukComponent::TableComponent',
     govuk_tabs: 'GovukComponent::TabComponent',
     govuk_tag: 'GovukComponent::TagComponent',
     govuk_warning_text: 'GovukComponent::WarningTextComponent',

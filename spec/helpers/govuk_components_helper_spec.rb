@@ -110,6 +110,13 @@ RSpec.describe(GovukComponentsHelper, type: 'helper') do
       css_matcher: %(.govuk-summary-list)
     },
     {
+      helper_method: :govuk_table,
+      klass: GovukComponent::TableComponent,
+      args: [],
+      kwargs: { caption: 'Table', rows: [%w(a b c), %w(d e f)] },
+      css_matcher: %(.govuk-table)
+    },
+    {
       helper_method: :govuk_tabs,
       klass: GovukComponent::TabComponent,
       args: [],
