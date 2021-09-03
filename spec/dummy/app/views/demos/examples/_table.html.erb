@@ -4,17 +4,37 @@
   title: 'Table with slots',
   example: <<~SUMMARY_LIST
     render GovukComponent::TableComponent.new do |table|
+      table.caption { "List of Pokémon" }
+
       table.head do |head|
         head.row do |row|
-          row.cell(header: true, text: 'a')
-          row.cell(header: true, text: 'b')
+          row.cell(header: true, text: 'Name')
+          row.cell(header: true, text: 'Types')
+          row.cell(header: true, text: 'Pokédex number', numeric: true)
         end
       end
 
       table.body do |body|
         body.row do |row|
-          row.cell(text: 'c')
-          row.cell(text: 'd')
+          row.cell(text: 'Bulbasaur')
+          row.cell(text: 'Grass, Poison')
+          row.cell(text: '1', numeric: true)
+        end
+      end
+
+      table.body do |body|
+        body.row do |row|
+          row.cell(text: 'Charmander')
+          row.cell(text: 'Fire')
+          row.cell(text: '4', numeric: true)
+        end
+      end
+
+      table.body do |body|
+        body.row do |row|
+          row.cell(text: 'Squirtle')
+          row.cell(text: 'Water')
+          row.cell(text: '7', numeric: true)
         end
       end
     end
@@ -25,8 +45,14 @@
   title: 'Table from array',
   example: <<~SUMMARY_LIST
     render GovukComponent::TableComponent.new(
-      head: %w(a b c),
-      rows: [%w(d e f), %w(g h i)],
+      head: %w(Pokémon Type),
+      rows: [
+        ['Treecko', '🌾 Grass'],
+        ['Grovyle', '🌾 Grass'],
+        ['Torchic', '🔥 Fire'],
+        ['Mudkip', '💧 Water'],
+        ['Seedot', '🌾 Grass']
+      ]
     )
   SUMMARY_LIST
 %>
