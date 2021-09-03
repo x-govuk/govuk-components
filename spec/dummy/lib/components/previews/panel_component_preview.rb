@@ -1,5 +1,5 @@
 class PanelComponentPreview < ViewComponent::Preview
-  # @label Panel
+  # @label Basic panel
   #
   # The panel component is a visible container used on confirmation or results
   # pages to highlight important content.
