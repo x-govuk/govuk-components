@@ -32,6 +32,7 @@ The provided components are:
 * [Start button](https://dfe-digital.github.io/govuk-components/#start-button)
 * [Summary list](https://dfe-digital.github.io/govuk-components/#summary-list)
 * [Tabs](https://dfe-digital.github.io/govuk-components/#tabs)
+* [Tables](https://dfe-digital.github.io/govuk-components/#table)
 * [Tags](https://dfe-digital.github.io/govuk-components/#tags)
 * [Warning text](https://dfe-digital.github.io/govuk-components/#warning-text)
 
