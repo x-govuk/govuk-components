@@ -1,7 +1,7 @@
 class GovukComponent::BackLinkComponent < GovukComponent::Base
   attr_reader :text, :href
 
-  def initialize(href:, text: nil, classes: nil, html_attributes: {})
+  def initialize(href:, text: 'Back', classes: nil, html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
     @text = text
@@ -15,7 +15,7 @@ class GovukComponent::BackLinkComponent < GovukComponent::Base
 private
 
   def link_content
-    text || content || fail(ArgumentError, "no text or content")
+    content || text || fail(ArgumentError, "no text or content")
   end
 
   def default_classes

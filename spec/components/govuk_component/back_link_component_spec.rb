@@ -1,15 +1,24 @@
 require 'spec_helper'
 
 RSpec.describe(GovukComponent::BackLinkComponent, type: :component) do
-  let(:text) { 'Department for Education' }
+  let(:default_text) { 'Back' }
   let(:href) { 'https://www.gov.uk/government/organisations/department-for-education' }
-  let(:kwargs) { { text: text, href: href } }
+  let(:kwargs) { { href: href } }
   let(:component_css_class) { 'govuk-back-link' }
 
   subject! { render_inline(GovukComponent::BackLinkComponent.new(**kwargs)) }
 
   specify 'renders a link with the right href and text' do
-    expect(rendered_component).to have_tag('a', text: text, with: { href: href, class: component_css_class })
+    expect(rendered_component).to have_tag('a', text: default_text, with: { href: href, class: component_css_class })
+  end
+
+  context 'when custom text is provided via the text argument' do
+    let(:custom_text) { 'Department for Education' }
+    let(:kwargs) { { href: href, text: custom_text } }
+
+    specify 'renders the component with custom text' do
+      expect(rendered_component).to have_tag('a', with: { href: href, class: component_css_class }, text: custom_text)
+    end
   end
 
   context 'when link text is provided via a block' do
@@ -25,14 +34,6 @@ RSpec.describe(GovukComponent::BackLinkComponent, type: :component) do
       expect(rendered_component).to have_tag('a', with: { href: href, class: component_css_class }) do
         with_tag(custom_tag, text: custom_text)
       end
-    end
-  end
-
-  context "when neither text or a block is supplied" do
-    specify "raises an appropriate error" do
-      expect {
-        render_inline(GovukComponent::BackLinkComponent.new(href: href))
-      }.to raise_error(ArgumentError, "no text or content")
     end
   end
 
