@@ -12,8 +12,8 @@ class AccordionComponentPreview < ViewComponent::Preview
         tag.p("Electronic equipment intended for everyday use", class: 'govuk-body')
       end
 
-      accordion.section(heading_text: 'Appliances', summary_text: "Machines which assists in household functions such as cooking, cleaning and food preservation.")
-      accordion.section(heading_text: 'Toys', summary_text: "Tools that provide entertainment while fulfilling an educational role.")
+      accordion.section(heading_text: 'Appliances') { tag.p("Machines which assists in household functions such as cooking, cleaning and food preservation.", class: "govuk-body") }
+      accordion.section(heading_text: 'Toys') { tag.p("Tools that provide entertainment while fulfilling an educational role.", class: "govuk-body") }
     end
   end
 
