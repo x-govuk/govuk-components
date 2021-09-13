@@ -33,7 +33,7 @@ private
     if link.present?
       list_item { link_to(text, link, class: "govuk-breadcrumbs__link") }
     else
-      list_item(aria: { current: "page" }) { text }
+      list_item(aria: { current: "page" }) { text.to_s }
     end
   end
 
