@@ -1,12 +1,17 @@
 <%= example_heading('Breadcrumbs') %>
 
+<p class="govuk-inset-text">
+  To render the current level as text instead of a link you can pass either
+  <code>nil</code> or an empty string.
+</p>
+
 <%= render "shared/example",
   title: 'Breadcrumbs',
   example: <<~BREADCRUMBS
     render GovukComponent::BreadcrumbsComponent.new(breadcrumbs: {
       'Level one': '/level-one/',
       'Level two': '/level-one/level-two/',
-      'Level three': '/level-one/level-two/level-three'
+      'Level three': nil
     })
   BREADCRUMBS
 %>
