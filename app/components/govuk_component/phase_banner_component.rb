@@ -9,7 +9,7 @@ class GovukComponent::PhaseBannerComponent < GovukComponent::Base
   end
 
   def phase_tag_component
-    GovukComponent::TagComponent.new(classes: "govuk-phase-banner__content__tag", **phase_tag)
+    GovukComponent::TagComponent.new(**phase_tag.deep_merge(classes: "govuk-phase-banner__content__tag"))
   end
 
 private
