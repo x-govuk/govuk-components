@@ -53,14 +53,15 @@ private
   end
 
   class NavigationItem < GovukComponent::Base
-    attr_reader :text, :href, :active
+    attr_reader :text, :href, :options, :active
 
-    def initialize(text:, href: nil, active: false, classes: [], html_attributes: {})
+    def initialize(text:, href: nil, options: {}, active: false, classes: [], html_attributes: {})
       super(classes: classes, html_attributes: html_attributes)
 
-      @text   = text
-      @href   = href
-      @active = active
+      @text    = text
+      @href    = href
+      @options = options
+      @active  = active
     end
 
     def active?
@@ -77,7 +78,7 @@ private
 
     def call
       if link?
-        link_to(text, href, class: "govuk-header__link")
+        link_to(text, href, **options, class: "govuk-header__link")
       else
         text
       end
