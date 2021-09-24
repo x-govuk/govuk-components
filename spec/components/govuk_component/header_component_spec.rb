@@ -157,7 +157,8 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
         [
           { text: 'Item 1', href: '/item-1' },
           { text: 'Item 2', href: '/item-2', active: true },
-          { text: 'Item 3', href: '/item-3' }
+          { text: 'Item 3', href: '/item-3' },
+          { text: 'Item 4', href: '/item-4', options: { method: :delete } }
         ]
       end
 
@@ -194,7 +195,13 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
 
       specify 'nav items have the right text and links' do
         expect(rendered_component).to have_tag('nav') do
-          navigation_items.each { |link| with_tag('a', with: { href: link.fetch(:href) }, text: link.fetch(:text)) }
+          navigation_items.each do |link|
+            if link.key?(:options)
+              with_tag('a', with: { href: link.fetch(:href), "data-method": link.dig(:options, :method) }, text: link.fetch(:text))
+            else
+              with_tag('a', with: { href: link.fetch(:href) }, text: link.fetch(:text))
+            end
+          end
         end
       end
 
