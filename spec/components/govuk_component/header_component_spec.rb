@@ -1,6 +1,13 @@
 require 'spec_helper'
 
 RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
+  before do
+    allow_any_instance_of(GovukComponent::HeaderComponent::NavigationItem).to(
+      receive(:request).and_return(double(ActionDispatch::Request, get?: true, path: current_page))
+    )
+  end
+
+  let(:current_page) { "/item-3" }
   let(:component_css_class) { 'govuk-header' }
 
   let(:product_name) { 'Order an amazing ID' }
@@ -207,6 +214,14 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
 
       specify 'active nav item has active class' do
         active_link = navigation_items.detect { |item| item[:active] }
+
+        expect(rendered_component).to have_tag('nav') do
+          with_tag('li', text: active_link.fetch(:text), with: { class: 'govuk-header__navigation-item--active' }, count: 1)
+        end
+      end
+
+      specify 'nav item on current page has active class' do
+        active_link = navigation_items.detect { |item| item[:href] == current_page }
 
         expect(rendered_component).to have_tag('nav') do
           with_tag('li', text: active_link.fetch(:text), with: { class: 'govuk-header__navigation-item--active' }, count: 1)

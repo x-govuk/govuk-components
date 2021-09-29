@@ -55,7 +55,7 @@ private
   class NavigationItem < GovukComponent::Base
     attr_reader :text, :href, :options, :active
 
-    def initialize(text:, href: nil, options: {}, active: false, classes: [], html_attributes: {})
+    def initialize(text:, href: nil, options: {}, active: nil, classes: [], html_attributes: {})
       super(classes: classes, html_attributes: html_attributes)
 
       @text    = text
@@ -65,6 +65,8 @@ private
     end
 
     def active?
+      return current_page?(href) if active.nil?
+
       active
     end
 
