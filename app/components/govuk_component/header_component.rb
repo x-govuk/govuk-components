@@ -57,7 +57,6 @@ private
 
   def crown_fallback_image_attributes
     {
-      src: crown_fallback_image,
       class: "govuk-header__logotype-crown-fallback-image",
       width: "36",
       height: "32",

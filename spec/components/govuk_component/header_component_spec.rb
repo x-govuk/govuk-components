@@ -54,10 +54,10 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
         let(:kwargs) { { crown_fallback_image: custom_path } }
 
         specify 'renders the fallback image with the custom path' do
-          expect(rendered_component).to have_tag('.govuk-header__logotype') do
-            with_tag('svg', with: { class: 'govuk-header__logotype-crown' }) do
-              with_tag('image', with: { src: custom_path, class: 'govuk-header__logotype-crown-fallback-image' })
-            end
+          expect(rendered_component).to have_tag('.govuk-header__logotype') do |logotype|
+            # NOTE: it's rendered inside a IE8 conditional comment so we can't
+            # assert its presence normally, just ensure the path's included
+            expect(logotype.current_scope.inner_html).to include(custom_path)
           end
         end
       end
