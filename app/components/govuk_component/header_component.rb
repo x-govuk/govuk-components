@@ -18,7 +18,7 @@ class GovukComponent::HeaderComponent < GovukComponent::Base
                  html_attributes: {},
                  logotype: 'GOV.UK',
                  crown: true,
-                 crown_fallback_image: '/assets/images/govuk-logotype-crown.png',
+                 crown_fallback_image: nil,
                  homepage_url: '/',
                  menu_button_label: 'Show or hide navigation menu',
                  navigation_classes: [],

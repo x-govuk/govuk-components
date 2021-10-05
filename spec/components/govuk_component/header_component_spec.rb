@@ -43,20 +43,22 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
 
   describe 'the crown' do
     context 'when the crown is not disabled' do
-      specify 'the crown SVG is rendered along with a fallback image' do
+      specify 'the crown SVG is rendered along with no fallback image' do
         expect(rendered_component).to have_tag('.govuk-header__logotype') do
-          with_tag('svg', with: { class: 'govuk-header__logotype-crown' }) do
-            with_tag('image', with: { class: 'govuk-header__logotype-crown-fallback-image', src: '/assets/images/govuk-logotype-crown.png' })
-          end
+          with_tag('svg', with: { class: 'govuk-header__logotype-crown' })
         end
       end
 
-      context 'when the crown path is overridden' do
+      context 'when a fallback image path is provided' do
         let(:custom_path) { '/an-alternative-crown-file.jpg' }
         let(:kwargs) { { crown_fallback_image: custom_path } }
 
         specify 'renders the fallback image with the custom path' do
-          expect(rendered_component).to have_tag('image', with: { src: custom_path, class: 'govuk-header__logotype-crown-fallback-image' })
+          expect(rendered_component).to have_tag('.govuk-header__logotype') do
+            with_tag('svg', with: { class: 'govuk-header__logotype-crown' }) do
+              with_tag('image', with: { src: custom_path, class: 'govuk-header__logotype-crown-fallback-image' })
+            end
+          end
         end
       end
     end
