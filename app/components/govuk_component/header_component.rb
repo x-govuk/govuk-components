@@ -61,17 +61,16 @@ private
       @text    = text
       @href    = href
       @options = options
-      @active  = active
+
+      @active_override = active
     end
 
-    def active?
-      return current_page?(href) if active.nil?
-
-      active
+    def before_render
+      @active = active?(@active_override)
     end
 
     def active_class
-      %w(govuk-header__navigation-item--active) if active?
+      %w(govuk-header__navigation-item--active) if @active
     end
 
     def link?
@@ -79,14 +78,22 @@ private
     end
 
     def call
-      if link?
-        link_to(text, href, **options, class: "govuk-header__link")
-      else
-        text
+      tag.li(class: classes.append(active_class), **html_attributes) do
+        if link?
+          link_to(text, href, **options, class: "govuk-header__link")
+        else
+          text
+        end
       end
     end
 
   private
+
+    def active?(active_override)
+      return current_page?(href) if active_override.nil?
+
+      active_override
+    end
 
     def default_classes
       %w(govuk-header__navigation-item)
