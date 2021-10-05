@@ -216,7 +216,9 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
         active_link = navigation_items.detect { |item| item[:active] }
 
         expect(rendered_component).to have_tag('nav') do
-          with_tag('li', text: active_link.fetch(:text), with: { class: 'govuk-header__navigation-item--active' }, count: 1)
+          with_tag('li', with: { class: 'govuk-header__navigation-item--active' }) do
+            with_tag('a', text: active_link.fetch(:text), count: 1)
+          end
         end
       end
 
@@ -224,7 +226,9 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
         active_link = navigation_items.detect { |item| item[:href] == current_page }
 
         expect(rendered_component).to have_tag('nav') do
-          with_tag('li', text: active_link.fetch(:text), with: { class: 'govuk-header__navigation-item--active' }, count: 1)
+          with_tag('li', with: { class: 'govuk-header__navigation-item--active' }) do
+            with_tag('a', text: active_link.fetch(:text), count: 1)
+          end
         end
       end
 
