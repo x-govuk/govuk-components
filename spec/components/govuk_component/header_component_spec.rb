@@ -41,15 +41,38 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
     end
   end
 
-  context 'when the crown is disabled' do
-    let(:kwargs) { { crown: false } }
+  describe 'the crown' do
+    context 'when the crown is not disabled' do
+      specify 'the crown SVG is rendered along with no fallback image' do
+        expect(rendered_component).to have_tag('.govuk-header__logotype') do
+          with_tag('svg', with: { class: 'govuk-header__logotype-crown' })
+        end
+      end
 
-    specify "doesn't render the crown" do
-      expect(rendered_component).not_to have_tag("svg")
+      context 'when a fallback image path is provided' do
+        let(:custom_path) { '/an-alternative-crown-file.jpg' }
+        let(:kwargs) { { crown_fallback_image_path: custom_path } }
+
+        specify 'renders the fallback image with the custom path' do
+          expect(rendered_component).to have_tag('.govuk-header__logotype') do |logotype|
+            # NOTE: it's rendered inside a IE8 conditional comment so we can't
+            # assert its presence normally, just ensure the path's included
+            expect(logotype.current_scope.inner_html).to include(custom_path)
+          end
+        end
+      end
     end
 
-    specify "renders the default logotype" do
-      expect(rendered_component).to have_tag("span", text: /GOV.UK/)
+    context 'when the crown is disabled' do
+      let(:kwargs) { { crown: false } }
+
+      specify "doesn't render the crown" do
+        expect(rendered_component).not_to have_tag("svg")
+      end
+
+      specify "renders the default logotype" do
+        expect(rendered_component).to have_tag("span", text: /GOV.UK/)
+      end
     end
   end
 
