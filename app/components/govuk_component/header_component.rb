@@ -5,7 +5,7 @@ class GovukComponent::HeaderComponent < GovukComponent::Base
 
   attr_reader :logotype,
               :crown,
-              :crown_fallback_image,
+              :crown_fallback_image_path,
               :homepage_url,
               :service_name,
               :service_url,
@@ -18,7 +18,7 @@ class GovukComponent::HeaderComponent < GovukComponent::Base
                  html_attributes: {},
                  logotype: 'GOV.UK',
                  crown: true,
-                 crown_fallback_image: nil,
+                 crown_fallback_image_path: nil,
                  homepage_url: '/',
                  menu_button_label: 'Show or hide navigation menu',
                  navigation_classes: [],
@@ -31,7 +31,7 @@ class GovukComponent::HeaderComponent < GovukComponent::Base
 
     @logotype                  = logotype
     @crown                     = crown
-    @crown_fallback_image      = crown_fallback_image
+    @crown_fallback_image_path = crown_fallback_image_path
     @homepage_url              = homepage_url
     @service_name              = service_name
     @service_url               = service_url

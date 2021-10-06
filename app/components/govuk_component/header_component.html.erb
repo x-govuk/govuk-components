@@ -14,9 +14,9 @@
               <!--<![endif]-->
             <% end %>
 
-            <% if crown_fallback_image.present? %>
+            <% if crown_fallback_image_path.present? %>
               <!--[if IE 8]>
-                <%= image_tag(crown_fallback_image, **crown_fallback_image_attributes) %>
+                <%= image_tag(crown_fallback_image_path, **crown_fallback_image_attributes) %>
               <![endif]-->
             <% end %>
 

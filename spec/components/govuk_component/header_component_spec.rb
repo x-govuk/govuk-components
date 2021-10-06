@@ -51,7 +51,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
 
       context 'when a fallback image path is provided' do
         let(:custom_path) { '/an-alternative-crown-file.jpg' }
-        let(:kwargs) { { crown_fallback_image: custom_path } }
+        let(:kwargs) { { crown_fallback_image_path: custom_path } }
 
         specify 'renders the fallback image with the custom path' do
           expect(rendered_component).to have_tag('.govuk-header__logotype') do |logotype|
