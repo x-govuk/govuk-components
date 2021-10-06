@@ -60,7 +60,6 @@ private
       class: "govuk-header__logotype-crown-fallback-image",
       width: "36",
       height: "32",
-      "xlink:href" => "",
     }
   end
 
