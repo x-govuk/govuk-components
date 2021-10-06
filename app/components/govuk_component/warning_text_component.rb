@@ -3,7 +3,7 @@ class GovukComponent::WarningTextComponent < GovukComponent::Base
 
   ICON = '!'.freeze
 
-  def initialize(text:, icon_fallback_text: 'Warning', classes: [], html_attributes: {})
+  def initialize(text: nil, icon_fallback_text: 'Warning', classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
     @text = text
@@ -12,7 +12,7 @@ class GovukComponent::WarningTextComponent < GovukComponent::Base
 
   def call
     tag.div(class: classes, **html_attributes) do
-      safe_join([icon, (content || strong)])
+      safe_join([icon, warning_text])
     end
   end
 
@@ -22,9 +22,9 @@ private
     tag.span(ICON, class: 'govuk-warning-text__icon', aria: { hidden: true })
   end
 
-  def strong
+  def warning_text
     tag.strong(class: 'govuk-warning-text__text') do
-      safe_join([assistive, text])
+      safe_join([assistive, (content || text)])
     end
   end
 
