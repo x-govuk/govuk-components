@@ -64,7 +64,7 @@ RSpec.describe(GovukComponent::CookieBannerComponent, type: :component) do
     specify "renders the message text" do
       expect(rendered_component).to have_tag(message_selector) do
         with_tag("div", with: { class: "govuk-cookie-banner__content" }) do
-          with_tag("p", text: custom_message_text)
+          with_tag("p", text: custom_message_text, with: { class: "govuk-body" })
         end
       end
     end
