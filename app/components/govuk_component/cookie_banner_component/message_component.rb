@@ -51,7 +51,7 @@ private
   def wrap_in_p(message_text)
     return if message_text.blank?
 
-    tag.p(message_text)
+    tag.p(message_text, class: "govuk-body")
   end
 
   def actions_element
