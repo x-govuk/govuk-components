@@ -1,0 +1,31 @@
+<section>
+  <h3 id="injecting-content-with-blocks" class="govuk-heading-m">Injecting content with blocks</h3>
+
+  <p class="govuk-body">
+    Unlike the reference Nunjucks macros that require HTML to be passed in
+    via arguments, Rails allows us to pass blocks of template content into
+    components.
+  </p>
+
+  <figure>
+    <figcaption class="govuk-body">Rending a phase banner with a block</figcaption>
+
+    <section class="examples">
+      <div class="input">
+        <div>
+        <pre><code class="language-erb"><%%= govuk_phase_banner(tag: { text: 'beta' }) do %>
+  This is a new service
+<%% end %></code></pre>
+        </div>
+      </div>
+
+      <div class="output">
+        <%= 
+          govuk_phase_banner(tag: { text: 'beta' }) do
+            'This is a new service'
+          end
+        %>
+      </div>
+    </section>
+  </figure>
+</section>

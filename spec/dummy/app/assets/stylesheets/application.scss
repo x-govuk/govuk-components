@@ -1,13 +1,86 @@
 $govuk-image-url-function: "image-url";
 $govuk-font-url-function: "font-url";
 @import "govuk-frontend/govuk/all";
-@import "prismjs/themes/prism";
+@import "prismjs/themes/prism-tomorrow";
 
-.component-example {
-  border: 1px solid govuk-colour('mid-grey');
-  padding: 2em;
+.govuk-grid-row {
+  .govuk-body {
+    max-width: 60ch;
+  }
 
-  +.component-example {
+  pre {
+    padding: .5em 1em !important;
+  }
+
+  p.govuk-body > code,
+  td > code {
+    background-color: govuk-tint(govuk-colour('light-pink'), 85%);
+    color: govuk-shade(govuk-colour('pink'), 50%);
+    padding-inline: .25em;
+  }
+
+  section + section {
     margin-top: 3em;
+  }
+
+  figure {
+    border: 1px solid #b1b4b6;
+    padding: 1em;
+    margin: .2em 0 3em;
+
+    figcaption {
+      @extend %govuk-heading-s;
+    }
+
+    .input,
+    .output {
+      @extend %govuk-body-s;
+
+      &::before {
+        font-weight: bold;
+        display: block;
+        margin-bottom: .4em;
+      }
+
+      .example {
+        margin-top: 1em;
+      }
+
+      .blue-bg {
+        display: inline-block;
+        background-color: govuk-colour('blue');
+        padding: .2em .4em;
+      }
+
+      .example + .example {
+        margin-top: 1.5em;
+      }
+    }
+
+    .input {
+      &::before {
+        content: "Input:";
+      }
+    }
+
+    .input-with-render {
+      &::before {
+        content: "Input (with render):";
+      }
+    }
+
+    .input-with-helper {
+      &::before {
+        content: "Input (with helper):";
+      }
+    }
+
+    .output {
+      margin-top: 2em;
+
+      &::before {
+        content: "Output:";
+      }
+    }
   }
 }

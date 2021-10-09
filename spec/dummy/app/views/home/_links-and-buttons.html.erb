@@ -1,0 +1,134 @@
+<section>
+  <h3 id="links-and-buttons" class="govuk-heading-m">Links and buttons</h3>
+
+  <p class="govuk-body">
+    Nearly every GOV.UK Rails project ends up wrapping Rails' link and button helpers. Here
+    we are using the bundled <code>govuk_link_to</code>, <code>govuk_link_button_to</code> and
+    <code>govuk_button_to</code>.
+  </p>
+
+  <figure>
+    <figcaption class="govuk-body">Links</figcaption>
+
+    <section class="examples">
+      <div class="input">
+        <div>
+        <pre><code class="language-erb"><%%= govuk_link_to("Normal link", "#") %>
+<%%= govuk_link_to("Muted link", "#", muted: true) %>
+<%%= govuk_link_to("Inverse link", "#", inverse: true) %>
+<%%= govuk_link_to("Link without underline", "#", no_underline: true) %>
+<%%= govuk_link_to("Link without visited state", "#", no_visited_state: true) %>
+<%%= govuk_link_to("Text-colour link", "#", text_colour: true) %></code></pre>
+<%%= govuk_mail_to("Email link", "#") %>
+        </div>
+      </div>
+
+      <div class="output">
+        <div class="example">
+          <%= govuk_link_to("Normal link", "#") %>
+        </div>
+
+        <div class="example">
+          <%= govuk_link_to("Muted link", "#", muted: true) %>
+        </div>
+
+        <div class="example">
+          <div class="blue-bg">
+            <%= govuk_link_to("Inverse link", "#", inverse: true) %>
+          </div>
+        </div>
+
+        <div class="example">
+          <%= govuk_link_to("Link without underline", "#", no_underline: true) %>
+        </div>
+
+        <div class="example">
+          <%= govuk_link_to("Link without visited state", "#", no_visited_state: true) %>
+        </div>
+
+        <div class="example">
+          <%= govuk_link_to("Text-colour link", "#", text_colour: true) %>
+        </div>
+
+        <div class="example">
+          <%= govuk_mail_to("Email link", "#") %>
+        </div>
+      </div>
+    </section>
+  </figure>
+
+  <figure>
+    <figcaption class="govuk-body">Links</figcaption>
+
+    <section class="examples">
+      <div class="input">
+        <div>
+        <pre><code class="language-erb"><%%= govuk_button_link_to("Link styled as a button", "#") %>
+<%%= govuk_button_link_to("Link styled as a secondary button", "#", secondary: true) %>
+<%%= govuk_button_link_to("Link styled as a warning button", "#", warning: true) %>
+<%%= govuk_button_link_to(
+  "Link styled as a disabled warning button",
+  "#",
+  warning: true,
+  disabled: true
+) %>
+<%%= govuk_button_to("Button (wrapped in a form that submits)", "#") %>
+</code></pre>
+        </div>
+      </div>
+
+      <div class="output">
+        <div class="example">
+          <%= govuk_button_link_to("Link styled as a button", "#") %>
+        </div>
+
+        <div class="example">
+          <%= govuk_button_link_to("Link styled as a secondary button", "#", secondary: true) %>
+        </div>
+
+        <div class="example">
+          <%= govuk_button_link_to("Link styled as a warning button", "#", warning: true) %>
+        </div>
+
+        <div class="example">
+          <%= govuk_button_link_to("Link styled as a disabled warning button", "#", warning: true, disabled: true) %>
+        </div>
+
+        <div class="example">
+          <%= govuk_button_to("Button (wrapped in a form that submits)", "#") %>
+        </div>
+      </div>
+    </section>
+  </figure>
+
+  <p class="govuk-body govuk-inset-text">
+    Rails includes <strong>many other link helpers</strong> like <code>link_to_if</code>,
+    <code>link_to_unless</code> and <code>link_to_unless_current</code>. To use these
+    we can take advantage of the provided 
+  </p>
+
+  <figure>
+    <figcaption class="govuk-body">Link and button class helpers</figcaption>
+
+    <section class="examples">
+      <div class="input">
+        <div>
+        <pre><code class="language-erb"><%%= link_to_if(1 == 1, "Link to if", "#", class: govuk_link_classes) %>
+<%%= link_to_unless(
+  1 == 2,
+  "Link to muted",
+  "#",
+  class: govuk_link_classes(:muted, :no_underline)) %></code></pre>
+      </div>
+
+      <div class="output">
+        <div class="example">
+          <%= link_to_if(1 == 1, "Link to if", "#", class: govuk_link_classes) %>
+        </div>
+        <div class="example">
+          <%= link_to_unless(1 == 2, "Link to muted", "#", class: govuk_link_classes(:muted, :no_underline)) %>
+        </div>
+      </div>
+    </section>
+  </figure>
+</section>
