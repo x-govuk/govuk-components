@@ -8,18 +8,19 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="govuk-template__body">
+  <body class="govuk-template__body app">
     <script>
       document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
     </script>
     <%= govuk_skip_link %>
     <%= govuk_header(crown: false, logotype: "GOV.UK Components") %>
+    <%= yield :masthead %>
     <div class="govuk-width-container">
       <main class="govuk-main-wrapper" id="main-content">
         <%= yield %>
       </main>
     </div>
-    <%= govuk_footer %>
+    <%= govuk_footer(meta_items: { "GitHub" => "https://github.com/DFE-Digital/govuk-components", "RubyGems" => "https://rubygems.org/gems/govuk-components", "DfE Digital" => "https://dfedigital.blog.gov.uk/" }) %>
   <script>
     window.GOVUKFrontend.initAll();
   </script>

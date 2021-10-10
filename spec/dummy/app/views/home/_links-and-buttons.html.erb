@@ -18,8 +18,8 @@
 <%%= govuk_link_to("Inverse link", "#", inverse: true) %>
 <%%= govuk_link_to("Link without underline", "#", no_underline: true) %>
 <%%= govuk_link_to("Link without visited state", "#", no_visited_state: true) %>
-<%%= govuk_link_to("Text-colour link", "#", text_colour: true) %></code></pre>
-<%%= govuk_mail_to("Email link", "#") %>
+<%%= govuk_link_to("Text-colour link", "#", text_colour: true) %>
+<%%= govuk_mail_to("test@test.org", "Email link") %></code></pre>
         </div>
       </div>
 
@@ -51,14 +51,14 @@
         </div>
 
         <div class="example">
-          <%= govuk_mail_to("Email link", "#") %>
+          <%= govuk_mail_to("test@test.org", "Email link") %>
         </div>
       </div>
     </section>
   </figure>
 
   <figure>
-    <figcaption class="govuk-body">Links</figcaption>
+    <figcaption class="govuk-body">Buttons</figcaption>
 
     <section class="examples">
       <div class="input">

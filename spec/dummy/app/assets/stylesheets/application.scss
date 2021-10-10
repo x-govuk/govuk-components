@@ -2,85 +2,19 @@ $govuk-image-url-function: "image-url";
 $govuk-font-url-function: "font-url";
 @import "govuk-frontend/govuk/all";
 @import "prismjs/themes/prism-tomorrow";
+@import "app";
+@import "masthead";
 
-.govuk-grid-row {
-  .govuk-body {
-    max-width: 60ch;
-  }
+/* roboto-regular - latin */
+@font-face
+  font-family: 'Roboto'
+  font-style: normal
+  font-weight: 400
+  src: local('Roboto'), local('Roboto-Regular'), url('/assets/fonts/roboto-v20-latin-regular.woff2') format('woff2'), url('/assets/fonts/roboto-v20-latin-regular.woff') format('woff')
 
-  pre {
-    padding: .5em 1em !important;
-  }
-
-  p.govuk-body > code,
-  td > code {
-    background-color: govuk-tint(govuk-colour('light-pink'), 85%);
-    color: govuk-shade(govuk-colour('pink'), 50%);
-    padding-inline: .25em;
-  }
-
-  section + section {
-    margin-top: 3em;
-  }
-
-  figure {
-    border: 1px solid #b1b4b6;
-    padding: 1em;
-    margin: .2em 0 3em;
-
-    figcaption {
-      @extend %govuk-heading-s;
-    }
-
-    .input,
-    .output {
-      @extend %govuk-body-s;
-
-      &::before {
-        font-weight: bold;
-        display: block;
-        margin-bottom: .4em;
-      }
-
-      .example {
-        margin-top: 1em;
-      }
-
-      .blue-bg {
-        display: inline-block;
-        background-color: govuk-colour('blue');
-        padding: .2em .4em;
-      }
-
-      .example + .example {
-        margin-top: 1.5em;
-      }
-    }
-
-    .input {
-      &::before {
-        content: "Input:";
-      }
-    }
-
-    .input-with-render {
-      &::before {
-        content: "Input (with render):";
-      }
-    }
-
-    .input-with-helper {
-      &::before {
-        content: "Input (with helper):";
-      }
-    }
-
-    .output {
-      margin-top: 2em;
-
-      &::before {
-        content: "Output:";
-      }
-    }
-  }
-}
+/* roboto-700 - latin */
+@font-face
+  font-family: 'Roboto'
+  font-style: normal
+  font-weight: 700
+  src: local('Roboto Bold'), local('Roboto-Bold'), url('/assets/fonts/roboto-v20-latin-700.woff2') format('woff2'), url('/assets/fonts/roboto-v20-latin-700.woff') format('woff')

@@ -1,25 +1,13 @@
+<% content_for(:masthead) do %>
+  <%= render partial: 'masthead' %>
+<% end %>
+
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
-    <h1 class="govuk-heading-xl">GOV.UK Components Guide</h1>
-
-    <p class="govuk-body">
-      This library provides a set of reusable set of components built using
-      <a class="govuk-link" href="https://viewcomponent.org/">GitHub's ViewComponent</a> system. It also packages
-      some <a class="govuk-link" href="#links-and-buttons">commonly implemented helper methods for building links and buttons</a>.
-    </p>
-
-    <p class="govuk-body">
-      The goal is to bring the functionality from the <a href="https://design-system.service.gov.uk">GOV.UK Design System</a>
-      effortlessly to Ruby on Rails. 
-    </p>
-
-    <%= govuk_start_button(text: "Browse components", href: "/components") %>
-
     <h2 class="govuk-heading-l govuk-!-margin-top-9">Features</h2>
 
     <%= render partial: 'links-and-buttons' %>
     <%= render partial: 'helper-method-shorthand' %>
     <%= render partial: 'injecting-content-with-blocks' %>
-
   </div>
 </div>

@@ -1,0 +1,28 @@
+.masthead {
+  $theme: govuk-colour('bright-purple');
+  $white: govuk-colour('white');
+
+  padding: 2em 0;
+  background: $theme;
+
+  * {
+    color: $white;
+  }
+
+  .govuk-link {
+    color: $white;
+
+    &:visited {
+      color: $white;
+    }
+  }
+
+  .govuk-button.govuk-button--start {
+    background: $white;
+    color: $theme;
+
+    svg > path {
+      color: $theme;
+    }
+  }
+}
