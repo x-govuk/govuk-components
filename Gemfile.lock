@@ -115,6 +115,8 @@ GEM
     pry-byebug (3.9.0)
       byebug (~> 11.0)
       pry (~> 0.13.0)
+    puma (5.4.0)
+      nio4r (~> 2.0)
     racc (1.5.2)
     rack (2.2.3)
     rack-test (1.1.0)
@@ -248,6 +250,7 @@ DEPENDENCIES
   govuk-components!
   lookbook
   pry-byebug
+  puma
   rspec-html-matchers (~> 0.9)
   rspec-rails
   rubocop-govuk (= 4.0.0)

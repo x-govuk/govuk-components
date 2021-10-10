@@ -15,3 +15,4 @@ gemspec
 # gem 'byebug', group: [:development, :test]
 
 gem "lookbook"
+gem "puma"
