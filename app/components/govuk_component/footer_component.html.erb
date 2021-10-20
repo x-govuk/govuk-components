@@ -1,5 +1,13 @@
 <%= tag.footer(class: classes, role: 'contentinfo', **html_attributes) do %>
   <%= tag.div(class: container_classes, **container_html_attributes) do %>
+    <% if navigation.present? %>
+      <div class="govuk-footer__navigation">
+        <%= navigation %>
+      </div>
+
+      <hr class="govuk-footer__section-break">
+    <% end %>
+
     <%= tag.div(class: meta_classes, **meta_html_attributes) do %>
       <% if meta.present? %>
         <%= meta %>
@@ -31,9 +39,8 @@
             <%= meta_content %>
           <% end %>
         </div>
-        <div class="govuk-footer__meta">
-          <%= tag.div(copyright, class: "govuk-footer__meta-item") %>
-        </div>
+
+        <%= tag.div(copyright, class: "govuk-footer__meta-item") %>
       <% end %>
     <% end %>
   <% end %>

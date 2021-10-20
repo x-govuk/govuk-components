@@ -223,4 +223,22 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
 
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
+
+  describe "navigation" do
+    let(:custom_text) { "Some meta html" }
+    let(:custom_tag) { "span" }
+    let(:custom_html) { helper.content_tag(custom_tag, custom_text) }
+
+    subject! do
+      render_inline(GovukComponent::FooterComponent.new(**kwargs)) do |component|
+        component.navigation { custom_html }
+      end
+    end
+
+    specify "custom HTML is rendered" do
+      expect(rendered_component).to have_tag("div", with: { class: "govuk-footer__navigation" }) do
+        with_tag(custom_tag, text: Regexp.new(custom_text))
+      end
+    end
+  end
 end
