@@ -8,10 +8,26 @@ RSpec.describe(GovukComponent::CookieBannerComponent, type: :component) do
     render_inline(described_class.new(**kwargs))
   end
 
-  specify "renders a cookie banner div with the right attributes" do
-    expected_attributes = { class: component_css_class, role: "region", "aria-label" => "Cookie banner" }
+  specify "renders a cookie banner div with the default attributes" do
+    expected_attributes = {
+      class: %w(govuk-cookie-banner govuk-\!-display-none-print),
+      role: "region",
+      "aria-label" => "Cookie banner"
+    }
 
     expect(rendered_component).to have_tag("div", with: expected_attributes)
+  end
+
+  context "when hide_in_print: false" do
+    subject! { render_inline(described_class.new(**kwargs.merge(hide_in_print: false))) }
+
+    specify "the cookie banner does not have the `govuk-!-display-none-print` class" do
+      expect(rendered_component).to have_tag(
+        "div",
+        with: { class: component_css_class },
+        without: { class: "govuk-\\!-display-none-print" }
+      )
+    end
   end
 
   context "when hidden: true" do
