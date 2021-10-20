@@ -37,19 +37,13 @@ private
 
   def default_classes
     if header
-      %w(govuk-table__header).tap do |c|
-        c << "govuk-table__header--numeric" if numeric?
-        c << width_class if width?
-      end
+      class_names("govuk-table__header", "govuk-table__header--numeric" => numeric?, width_class => width?).split
     else
-      %w(govuk-table__cell).tap do |c|
-        c << "govuk-table__cell--numeric" if numeric?
-        c << width_class if width?
-      end
+      class_names("govuk-table__cell", "govuk-table__cell--numeric" => numeric?, width_class => width?).split
     end
   end
 
   def width_class
-    WIDTHS.fetch(width)
+    WIDTHS.fetch(width, nil)
   end
 end

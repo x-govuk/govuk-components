@@ -34,8 +34,6 @@ class GovukComponent::AccordionComponent::SectionComponent < GovukComponent::Bas
 private
 
   def default_classes
-    %w(govuk-accordion__section).tap do |classes|
-      classes.append("govuk-accordion__section--expanded") if expanded?
-    end
+    class_names("govuk-accordion__section", "govuk-accordion__section--expanded" => expanded?).split
   end
 end
