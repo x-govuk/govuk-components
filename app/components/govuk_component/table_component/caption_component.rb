@@ -26,9 +26,7 @@ private
   end
 
   def default_classes
-    %w(govuk-table__caption).tap do |c|
-      c << caption_size_class if @size
-    end
+    class_names("govuk-table__caption", caption_size_class => size).split
   end
 
   def caption_size_class

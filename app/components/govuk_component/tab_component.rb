@@ -35,9 +35,7 @@ private
     end
 
     def li_classes(i = nil)
-      %w(govuk-tabs__list-item).tap do |c|
-        c.append("govuk-tabs__list-item--selected") if i&.zero?
-      end
+      class_names("govuk-tabs__list-item", "govuk-tabs__list-item--selected" => i&.zero?).split
     end
 
     def li_link

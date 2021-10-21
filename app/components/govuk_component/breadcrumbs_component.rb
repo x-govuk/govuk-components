@@ -12,10 +12,11 @@ class GovukComponent::BreadcrumbsComponent < GovukComponent::Base
 private
 
   def default_classes
-    %w(govuk-breadcrumbs).tap do |classes|
-      classes << "govuk-!-display-none-print" if hide_in_print
-      classes << "govuk-breadcrumbs--collapse-on-mobile" if collapse_on_mobile
-    end
+    class_names(
+      "govuk-breadcrumbs",
+      "govuk-!-display-none-print" => hide_in_print,
+      "govuk-breadcrumbs--collapse-on-mobile" => collapse_on_mobile
+    ).split
   end
 
   def build_list(breadcrumbs)
