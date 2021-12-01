@@ -77,7 +77,7 @@ private
   end
 
   def default_copright_text
-    raw(%(&copy Crown copyright))
+    raw(%(© Crown copyright))
   end
 
   def default_copyright_url
