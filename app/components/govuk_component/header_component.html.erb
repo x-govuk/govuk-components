@@ -36,14 +36,14 @@
         <% end %>
 
         <% if navigation_items.any? %>
-          <%= tag.button("Menu", type: "button", class: %w(govuk-header__menu-button govuk-js-header-toggle), aria: { controls: "navigation", label: menu_button_label }) %>
-          <nav>
-            <%= tag.ul(class: navigation_classes, id: "navigation", aria: { label: navigation_label }) do %>
+          <%= tag.nav(class: navigation_classes, aria: { label: navigation_label }) do %>
+            <%= tag.button("Menu", type: "button", class: %w(govuk-header__menu-button govuk-js-header-toggle), aria: { controls: "navigation", label: menu_button_label }) %>
+            <ul id="navigation" class="govuk-header__navigation-list">
               <% navigation_items.each do |item| %>
                 <%= item %>
               <% end %>
-            <% end %>
-          </nav>
+            </ul>
+          <% end %>
         <% end %>
       </div>
     <% end %>

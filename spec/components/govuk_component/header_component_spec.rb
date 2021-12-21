@@ -210,12 +210,12 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
       end
 
       specify 'custom classes provided via navigation_classes are present' do
-        expect(rendered_component).to have_tag('ul', with: { class: custom_classes.append('govuk-header__navigation') })
+        expect(rendered_component).to have_tag('nav', with: { class: custom_classes.append('govuk-header__navigation') })
       end
 
       specify 'nav items are rendered in the right structure' do
-        expect(rendered_component).to have_tag('nav') do
-          with_tag('ul', with: { class: 'govuk-header__navigation' }) do
+        expect(rendered_component).to have_tag('nav', with: { class: 'govuk-header__navigation' }) do
+          with_tag('ul', with: { class: 'govuk-header__navigation-list' }) do
             with_tag('li', with: { class: 'govuk-header__navigation-item' }) do
               with_tag('a', with: { class: 'govuk-header__link' })
             end
@@ -293,7 +293,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
         end
 
         specify 'the navigation label contains the custom text' do
-          expect(rendered_component).to have_tag('ul', with: { class: 'govuk-header__navigation', 'aria-label' => custom_label })
+          expect(rendered_component).to have_tag('nav', with: { class: 'govuk-header__navigation', 'aria-label' => custom_label })
         end
       end
     end
