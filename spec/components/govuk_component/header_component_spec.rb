@@ -45,7 +45,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
     context 'when the crown is not disabled' do
       specify 'the crown SVG is rendered along with no fallback image' do
         expect(rendered_component).to have_tag('.govuk-header__logotype') do
-          with_tag('svg', with: { class: 'govuk-header__logotype-crown' })
+          with_tag('svg', with: { class: 'govuk-header__logotype-crown', 'aria-hidden' => true })
         end
       end
 
