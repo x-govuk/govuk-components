@@ -12,5 +12,7 @@
 //
 //= require rails-ujs
 //= require prismjs
+//= require prismjs/components/prism-markup-templating
 //= require prismjs/components/prism-ruby
+//= require prismjs/components/prism-erb
 //= require_tree .

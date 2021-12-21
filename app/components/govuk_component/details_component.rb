@@ -3,7 +3,7 @@ class GovukComponent::DetailsComponent < GovukComponent::Base
 
   renders_one :summary_html
 
-  def initialize(summary_text:, text: nil, classes: [], id: nil, open: nil, html_attributes: {})
+  def initialize(summary_text: nil, text: nil, classes: [], id: nil, open: nil, html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
     @summary_text = summary_text

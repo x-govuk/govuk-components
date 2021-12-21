@@ -161,7 +161,9 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
 
         specify "custom text is rendered" do
           expect(rendered_component).to have_tag("div", with: { class: "govuk-footer__meta-item" }) do
-            with_text(Regexp.new(custom_text))
+            with_tag('div', with: { class: "govuk-footer__meta-custom" }) do
+              with_text(Regexp.new(custom_text))
+            end
           end
         end
       end
@@ -179,7 +181,9 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
 
         specify "custom HTML is rendered" do
           expect(rendered_component).to have_tag("div", with: { class: "govuk-footer__meta-item" }) do
-            with_tag(custom_tag, text: Regexp.new(custom_text))
+            with_tag('div', with: { class: "govuk-footer__meta-custom" }) do
+              with_tag(custom_tag, text: Regexp.new(custom_text))
+            end
           end
         end
       end

@@ -1,0 +1,22 @@
+<div class="masthead">
+  <div class="govuk-width-container">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">GOV.UK Components Guide</h1>
+
+        <p class="govuk-body-l">
+          This library provides a set of reusable set of components built using
+          <%= govuk_link_to("GitHub's ViewComponent", "https://viewcomponent.org/", no_visited_state: true) %> system. It also packages
+          some <%= govuk_link_to("commonly implemented helper methods", "#links-and-buttons", no_visited_state: true) %> for building links and buttons.
+        </p>
+
+        <p class="govuk-body">
+          The goal is to bring the functionality from the <%= govuk_link_to("GOV.UK Design System", "https://design-system.service.gov.uk", no_visited_state: true) %>
+          effortlessly to Ruby on Rails. 
+        </p>
+
+        <%= govuk_start_button(text: "Browse components", href: "/components") %>
+      </div>
+    </div>
+  </div>
+</div>

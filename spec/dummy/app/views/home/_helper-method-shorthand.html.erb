@@ -1,0 +1,79 @@
+<section>
+  <h3 class="govuk-heading-m">Helper method shorthand</h3>
+
+  <p class="govuk-body">
+    All components come with a corresponding helper method that makes calling them easier. Components
+    can still be rendered by instantiating a ViewComponent object and passing it to <code>render</code>.
+  </p>
+
+  <figure>
+    <figcaption class="govuk-body">Using the built-in helpers to render components</figcaption>
+
+    <section class="examples">
+      <div class="input input-with-render">
+        <div>
+        <pre><code class="language-erb"><%%= render GovukComponent::TableComponent.new(
+head: %w(col-1 col-2 col-3),
+rows: [%w(a b c), %w(d e f), %w(g h i)]) %></code></pre>
+        </div>
+      </div>
+
+      <div class="input input-with-helper">
+        <div>
+        <pre><code class="language-erb"><%%= govuk_table(
+head: %w(col-1 col-2 col-3),
+rows: [%w(a b c), %w(d e f), %w(g h i)]) %></code></pre>
+        </div>
+      </div>
+
+      <div class="output">
+        <%= govuk_table(
+          head: %w(col-1 col-2 col-3),
+          rows: [%w(a b c), %w(d e f), %w(g h i)]) %>
+      </div>
+    </section>
+  </figure>
+
+  <%= govuk_table do |table| %>
+    <% table.caption(text: "Helper and summary mappings", size: "s") %>
+    <% table.head do |head| %>
+      <% head.row do |row| %>
+        <% row.cell(text: 'Component name', header: true) %>
+        <% row.cell(text: 'Helper', header: true) %>
+      <% end %>
+    <% end %>
+
+    <% table.body do |body| %>
+      <%
+        {
+          govuk_accordion: 'GovukComponent::AccordionComponent',
+          govuk_back_link: 'GovukComponent::BackLinkComponent',
+          govuk_breadcrumbs: 'GovukComponent::BreadcrumbsComponent',
+          govuk_cookie_banner: 'GovukComponent::CookieBannerComponent',
+          govuk_details: 'GovukComponent::DetailsComponent',
+          govuk_footer: 'GovukComponent::FooterComponent',
+          govuk_header: 'GovukComponent::HeaderComponent',
+          govuk_inset_text: 'GovukComponent::InsetTextComponent',
+          govuk_notification_banner: 'GovukComponent::NotificationBannerComponent',
+          govuk_panel: 'GovukComponent::PanelComponent',
+          govuk_phase_banner: 'GovukComponent::PhaseBannerComponent',
+          govuk_start_button: 'GovukComponent::StartButtonComponent',
+          govuk_summary_list: 'GovukComponent::SummaryListComponent',
+          govuk_table: 'GovukComponent::TableComponent',
+          govuk_tabs: 'GovukComponent::TabComponent',
+          govuk_tag: 'GovukComponent::TagComponent',
+          govuk_warning_text: 'GovukComponent::WarningTextComponent',
+        }.each do |name, klass|
+      %>
+        <% body.row do |row| %>
+          <% row.cell do %> 
+            <%= tag.code(klass) %>
+          <% end %>
+          <% row.cell do %> 
+            <%= tag.code("#".concat(name.to_s)) %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+</section>
