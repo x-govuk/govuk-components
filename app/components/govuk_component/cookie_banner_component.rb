@@ -12,7 +12,7 @@ class GovukComponent::CookieBannerComponent < GovukComponent::Base
   end
 
   def call
-    tag.div(class: classes, role: "region", aria: { label: aria_label }, hidden: hidden, **html_attributes) do
+    tag.div(class: classes, role: "region", aria: { label: aria_label }, data: { nosnippet: true }, hidden: hidden, **html_attributes) do
       safe_join(messages)
     end
   end

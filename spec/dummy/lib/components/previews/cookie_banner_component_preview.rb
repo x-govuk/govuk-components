@@ -42,8 +42,8 @@ class CookieBannerComponentPreview < ViewComponent::Preview
         message.action { govuk_link_to("View cookies", "#") }
 
         safe_join([
-          tag.p("We use some essential cookies to make this service work."),
-          tag.p("We’d also like to use analytics cookies so we can understand how you use the service and make improvements.")
+          tag.p("We use some essential cookies to make this service work.", class: "govuk-body"),
+          tag.p("We’d also like to use analytics cookies so we can understand how you use the service and make improvements.", class: "govuk-body")
         ])
       end
     end

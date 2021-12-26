@@ -38,7 +38,7 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
   specify 'the OGL logo is present' do
     expect(rendered_component).to have_tag('footer', with: { class: component_css_class }) do
       with_tag("div", with: { class: "govuk-footer__meta" }) do
-        with_tag("svg", with: { class: "govuk-footer__licence-logo" })
+        with_tag("svg", with: { class: "govuk-footer__licence-logo", 'aria-hidden' => true })
       end
     end
   end
