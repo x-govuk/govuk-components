@@ -1,0 +1,29 @@
+compile '/index.slim' do
+  filter :slim
+  layout '/splash.*'
+  write '/index.html'
+end
+
+compile '/**/*.slim' do
+  filter :slim, format: :html
+  filter :colorize_syntax, default_colorizer: :rouge
+  filter :rubypants
+  layout '/default.*'
+  write item.identifier.without_ext + '/index.html'
+end
+
+ignore '/**/_*.sass'
+compile '/**/*.sass' do
+  filter :sassc, syntax: :sass, style: :compressed, load_paths: ['content/css/']
+  snapshot :css
+  write item.identifier.without_ext + '.css'
+end
+
+# Ignore all the GOV.UK assets, they are pulled in manually
+ignore '/css/govuk/**/*'
+
+compile '/**/*' do
+  write item.identifier.to_s
+end
+
+layout '/**/*', :slim

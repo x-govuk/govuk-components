@@ -13,3 +13,6 @@ spec/dummy/config/master.key
 coverage
 *.gem
 .tool-versions
+guide/tmp
+guide/crash.log
+guide/output
