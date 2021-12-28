@@ -1,3 +1,15 @@
 doctype html
+html.govuk-template lang='en'
+  == render '/partials/head.*'
+  body.govuk-template__body
+    == render '/partials/header.*'
+    .govuk-width-container
+      == render '/partials/phase-banner.*'
+      == render '/partials/breadcrumbs.*'
 
-== yield
+      main#main-content.govuk-main-wrapper
+        .govuk-grid-row
+          .govuk-grid-column-full
+            article
+              == yield
+    == render '/partials/footer.*'

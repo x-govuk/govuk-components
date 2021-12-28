@@ -1,0 +1,19 @@
+doctype html
+html.govuk-template lang='en'
+  == render '/partials/head.*'
+  body#splash.govuk-template__body
+    script
+      | document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
+
+    a.govuk-skip-link href="#main-content"
+      | Skip to main content
+
+    header.govuk-header role='banner' data-module='govuk-header'
+      .govuk-header__container.govuk-width-container
+        .govuk-header__logo
+          a.govuk-header__link.govuk-header__link--homepage href="/"
+            span.govuk-header__logotype-text
+              | Form Builder Guide
+    main.govuk-main-wrapper
+      == yield
+    == render '/partials/footer.*'

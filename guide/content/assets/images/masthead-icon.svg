@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="300px" height="300px" viewBox="0 0 1423 1092" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g id="Artboard1" transform="matrix(1.12766,0,0,0.863607,-182.856,-399.229)">
+        <rect x="162.154" y="462.281" width="1261.42" height="1264.34" style="fill:none;"/>
+        <clipPath id="_clip1">
+            <rect x="162.154" y="462.281" width="1261.42" height="1264.34"/>
+        </clipPath>
+        <g clip-path="url(#_clip1)">
+            <g transform="matrix(0.886789,0,0,1.15793,71.4123,-113.37)">
+                <rect x="-262.83" y="-87.891" width="2847.18" height="3676.83" style="fill:rgb(29,112,184);"/>
+            </g>
+            <g id="Window" transform="matrix(0.506523,0,0,0.915497,231.221,113.198)">
+                <g transform="matrix(1,0,0,0.905743,59.2258,231.834)">
+                    <rect x="207.001" y="303.775" width="1685.18" height="1238.34" style="fill:rgb(235,235,235);fill-opacity:0;stroke:white;stroke-width:61.11px;"/>
+                </g>
+                <g transform="matrix(1,0,0,0.779718,59.2258,427.034)">
+                    <rect x="207.001" y="303.775" width="1685.18" height="1238.34" style="fill:rgb(235,235,235);fill-opacity:0;stroke:white;stroke-width:31.55px;"/>
+                </g>
+            </g>
+            <g id="Radio" transform="matrix(0.886789,0,0,1.15793,129.371,-248.057)">
+                <g id="Labels" transform="matrix(1,0,0,1,0,-10.0704)">
+                    <g transform="matrix(1.449,0,0,0.755765,-14.5324,762.873)">
+                        <path d="M732.714,789.215C732.714,785.633 731.197,782.725 729.329,782.725L422.972,782.725C421.104,782.725 419.587,785.633 419.587,789.215L419.587,832.59C419.587,836.172 421.104,839.08 422.972,839.08L729.329,839.08C731.197,839.08 732.714,836.172 732.714,832.59L732.714,789.215Z" style="fill:white;"/>
+                    </g>
+                    <g transform="matrix(1.449,0,0,1.56255,-14.5324,190.136)">
+                        <path d="M732.714,786.147C732.714,784.258 731.061,782.725 729.025,782.725L423.277,782.725C421.241,782.725 419.587,784.258 419.587,786.147L419.587,835.658C419.587,837.547 421.241,839.08 423.277,839.08L729.025,839.08C731.061,839.08 732.714,837.547 732.714,835.658L732.714,786.147Z" style="fill:white;fill-opacity:0.47;"/>
+                    </g>
+                </g>
+                <g transform="matrix(1.1647,0,0,1.13676,-1061.3,378.071)">
+                    <g id="Button">
+                        <ellipse cx="1338.37" cy="914.515" rx="41.445" ry="42.505" style="fill-opacity:0;stroke:white;stroke-width:16.29px;"/>
+                    </g>
+                </g>
+            </g>
+            <g id="Radio1" serif:id="Radio" transform="matrix(0.886789,0,0,1.15793,129.371,-486.622)">
+                <g id="Labels1" serif:id="Labels" transform="matrix(1,0,0,1,0,-10.0704)">
+                    <g transform="matrix(1.449,0,0,0.755765,-14.5324,762.873)">
+                        <path d="M732.714,789.215C732.714,785.633 731.197,782.725 729.329,782.725L422.972,782.725C421.104,782.725 419.587,785.633 419.587,789.215L419.587,832.59C419.587,836.172 421.104,839.08 422.972,839.08L729.329,839.08C731.197,839.08 732.714,836.172 732.714,832.59L732.714,789.215Z" style="fill:white;"/>
+                    </g>
+                    <g transform="matrix(1.449,0,0,1.56255,-14.5324,190.136)">
+                        <path d="M732.714,786.147C732.714,784.258 731.061,782.725 729.025,782.725L423.277,782.725C421.241,782.725 419.587,784.258 419.587,786.147L419.587,835.658C419.587,837.547 421.241,839.08 423.277,839.08L729.025,839.08C731.061,839.08 732.714,837.547 732.714,835.658L732.714,786.147Z" style="fill:white;fill-opacity:0.47;"/>
+                    </g>
+                </g>
+                <g id="Button1" serif:id="Button" transform="matrix(1,0,0,1,0,35.045)">
+                    <g transform="matrix(1.1647,0,0,1.13676,-1061.3,343.026)">
+                        <ellipse cx="1338.37" cy="914.515" rx="41.445" ry="42.505" style="fill:white;fill-opacity:0;stroke:white;stroke-width:16.29px;"/>
+                    </g>
+                    <g transform="matrix(0.554844,0,0,0.541533,-245.094,887.367)">
+                        <ellipse cx="1338.37" cy="914.515" rx="41.445" ry="42.505" style="fill:white;stroke:white;stroke-width:34.2px;"/>
+                    </g>
+                </g>
+            </g>
+            <g id="Heading" transform="matrix(2.02573,0,0,2.79745,-374.262,-1368.53)">
+                <path d="M732.714,786.389C732.714,784.367 730.978,782.725 728.839,782.725L423.462,782.725C421.324,782.725 419.587,784.367 419.587,786.389L419.587,835.416C419.587,837.438 421.324,839.08 423.462,839.08L728.839,839.08C730.978,839.08 732.714,837.438 732.714,835.416L732.714,786.389Z" style="fill:white;"/>
+            </g>
+        </g>
+    </g>
+</svg>

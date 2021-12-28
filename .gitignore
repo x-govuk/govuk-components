@@ -16,3 +16,4 @@ coverage
 guide/tmp
 guide/crash.log
 guide/output
+guide/node_modules

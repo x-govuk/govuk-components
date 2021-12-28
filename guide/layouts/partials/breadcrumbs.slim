@@ -1,0 +1,6 @@
+.govuk-breadcrumbs
+  ol.govuk-breadcrumbs__list
+    li.govuk-breadcrumbs__list-item
+      == link_to 'Index', '/', class: 'govuk-breadcrumbs__link'
+    li.govuk-breadcrumbs__list-item aria-current='page'
+      = @item[:title]

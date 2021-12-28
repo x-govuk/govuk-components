@@ -1,0 +1,218 @@
+$govuk-font-family: Roboto, arial, sans-serif
+$govuk-include-default-font-face: false
+
+@import "govuk/settings/all"
+@import "govuk/tools/all"
+@import "govuk/helpers/all"
+@import "govuk/core/all"
+@import "govuk/objects/all"
+@import "govuk/components/all"
+@import "govuk/utilities/all"
+@import "govuk/overrides/all"
+
+@import 'colours'
+$tablet: 768px
+
+
+/* roboto-regular - latin */
+@font-face
+  font-family: 'Roboto'
+  font-style: normal
+  font-weight: 400
+  src: local('Roboto'), local('Roboto-Regular'), url('/assets/fonts/roboto-v20-latin-regular.woff2') format('woff2'), url('/assets/fonts/roboto-v20-latin-regular.woff') format('woff')
+
+/* roboto-700 - latin */
+@font-face
+  font-family: 'Roboto'
+  font-style: normal
+  font-weight: 700
+  src: local('Roboto Bold'), local('Roboto-Bold'), url('/assets/fonts/roboto-v20-latin-700.woff2') format('woff2'), url('/assets/fonts/roboto-v20-latin-700.woff') format('woff')
+
+@font-face
+  font-family: FiraMono
+  src: url(/assets/fonts/FiraMono-Regular.woff2) format("woff2"), url(/assets/fonts/FiraMono-Regular.woff) format("woff")
+
+@font-face
+  font-family: FiraMono
+  font-weight: bold
+  src: url(/assets/fonts/FiraMono-Bold.woff2) format("woff2"), url(/assets/fonts/FiraMono-Bold.woff) format("woff")
+
+@mixin blue-left-border
+  border-left: 5px solid $blue
+  padding: 0.5rem 1rem 0.5rem 2rem
+
+@mixin blue-top-border
+  padding: 2rem 0.2rem 0.5rem
+  margin: 2rem 0rem
+
+  &:not(:first-child)
+    border-top: 5px solid $blue
+
+@mixin light-grey-border
+  border: 1px solid $light-grey
+  padding: 2rem
+
+article > pre
+  @include blue-left-border
+
+figure.image
+  margin: 0 0 2rem 0
+
+  img
+    width: 100%
+    max-width: 30em
+
+figure.full-sample
+  @media screen and (max-width: $tablet)
+    @include blue-top-border
+  @media screen and (min-width: $tablet)
+    @include blue-left-border
+
+  margin: 2.5rem 0rem 2.5rem
+
+  h3.example-heading
+    > a.govuk-link
+      &, &:hover, &:visited
+        color: $govuk-text-colour
+        text-decoration: none
+
+    > a:hover
+      &::after
+        content: "🔗"
+        padding-left: 0.5rem
+
+  section
+    padding: 1rem 0rem
+
+    pre,.example-output
+      @include light-grey-border
+
+    .govuk-tabs
+      pre,.example-output
+        border: none
+
+    &:last-child
+      margin-bottom: 0rem
+
+      pre
+        margin-bottom: 0rem
+
+pre
+  overflow: auto
+
+  > code.highlight
+    font-family: FiraMono, monospace
+    word-wrap: normal
+
+  > code.wrap
+    white-space: pre-wrap
+    word-wrap: break-word
+
+  &.smaller > code.highlight
+    font-size: 85%
+
+.code-sample
+  @include blue-left-border
+  margin: 1.5rem 0rem
+
+  > pre
+    padding: 0.2rem
+
+p, li, dt, dd, td, th
+  > code
+    background-color: $light-pink
+    font-family: FiraMono, monospace
+    padding: 0.1rem
+    font-size: 1rem
+    letter-spacing: -0.015rem
+
+$masthead-accent: $purple
+
+#splash
+  header.govuk-header
+    border-bottom: 10px solid $masthead-accent
+
+    .govuk-header__container
+      border-bottom: 10px solid $masthead-accent
+
+  main.govuk-main-wrapper
+    margin: 0rem
+    padding: 0rem
+
+  #masthead
+    background-color: $masthead-accent
+    padding: 3rem 0rem
+
+    section
+      display: flex
+      flex-direction: row
+
+      *
+        color: white
+
+      #intro
+        word-break: normal
+        overflow-wrap: break-word
+
+      #icon
+        flex-shrink: 0
+        display: flex
+        align-items: center
+        justify-content: center
+        margin-right: 5rem
+        overflow: hidden
+
+        @media screen and (max-width: 1000px)
+          display: none
+
+  #links
+    padding: 0rem 0rem 4rem
+
+.govuk-tag
+  &.govuk-tag-red
+    background-color: $red
+
+  &.govuk-tag-govuk
+    background-color: govuk-colour('black')
+
+.govuk-summary-list__key > a
+  text-decoration: none
+
+.important
+  background-color: govuk-tint(govuk_colour('yellow'), 80%)
+  padding: 1.5em 1em
+
+  code
+    background-color: govuk-tint(govuk_colour('yellow'), 40%)
+    padding: 0 .2em
+
+.ugly-gradient
+  display: inline-block
+  padding: 0 0.2rem
+  background: linear-gradient(90deg, rgba(184,255,255,1) 0%, rgba(255,152,255,1) 50%, rgba(255,255,108,1) 100%)
+
+.indigo-underline
+  text-decoration: underline indigo solid 1px
+  text-decoration-style: wavy
+
+.orange-underline
+  text-decoration: underline orange solid 2px
+  text-underline-offset: 4px
+
+.final-decision-warning
+  @extend %govuk-body-s
+
+  background: govuk-tint(govuk-colour('pink'), 92%)
+  border: 1px solid govuk-tint(govuk-colour('pink'), 80%)
+  padding: 1em 1em
+
+blockquote
+  background: govuk-tint(govuk-colour('light-grey'), 35%)
+  padding: 2em
+  margin: 1em 0
+
+  > p
+    font-style: italic
+
+  > footer
+    font-style
