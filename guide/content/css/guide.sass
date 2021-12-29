@@ -168,6 +168,10 @@ $masthead-accent: $purple
   #links
     padding: 0rem 0rem 4rem
 
+    ul.components-list
+      @include govuk-media-query($from: tablet)
+        columns: 2
+
 .govuk-tag
   &.govuk-tag-red
     background-color: $red

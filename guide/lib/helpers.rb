@@ -19,3 +19,8 @@ require 'components/govuk_component/traits/custom_classes'
 require 'components/govuk_component/traits/custom_html_attributes'
 require 'components/govuk_component/base'
 require 'components/govuk_component/panel_component'
+
+require 'helpers/govuk_link_helper'
+
+use_helper GovukLinkHelper
+
