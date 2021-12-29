@@ -4,52 +4,11 @@
 figure.full-sample
   figcaption
     h3.govuk-heading-m.example-heading id=anchor_id(caption)
-      == link_to caption, "#".concat(anchor_id(caption))
+      == govuk_link_to caption, "#".concat(anchor_id(caption))
 
   - if block_given? && (content = yield)
     section
       == content
-
-  - display_data = defined?(hide_data) && hide_data
-
-  - if defined?(sample_data) && !display_data
-    section
-      h4.govuk-heading-s.example-subheading.data Data
-
-      pre.example-input
-        code.highlight.language-ruby
-          | #{sample_data}
-
-  - if defined?(controller_code)
-    section
-      h4.govuk-heading-s.example-subheading.data Setup
-
-      pre.example-input
-        code.highlight.language-ruby
-          | #{controller_code}
-
-  - if defined?(raw_config)
-    section
-      h4.govuk-heading-s.example-subheading.locale Configuration
-
-      .govuk-inset-text
-        | Place your configuration in an
-          #{link_to('initializer', rails_initializer_link).html_safe} to ensure
-          it's loaded every time you start your Rails application.
-
-      pre.example-input
-        code.highlight.language-ruby
-          | #{raw_config}
-
-  - if defined?(localisation)
-    - I18n.backend.store_translations(:en, YAML.safe_load(localisation))
-
-    section
-      h4.govuk-heading-s.example-subheading.locale Localisation data
-
-      pre.example-input
-        code.highlight.language-yaml
-          | #{localisation}
 
   section
 
@@ -76,21 +35,12 @@ figure.full-sample
             code.highlight.language-erb.wrap
               = format_erb(code)
 
-  section
-    - display_errors = defined?(show_errors) && show_errors
-
-    h4.govuk-heading-s.example-subheading.output Rendered output
-    .example-output
-      == format_slim(code, f: builder(display_errors), **form_data)
-
   - unless defined?(hide_html_output) && hide_html_output
     section
       h4.govuk-heading-s.example-subheading.output HTML output
       pre.example-html.smaller
         code.highlight.language-html
-          - if defined?(sample_data)
-            - eval(sample_data)
-          = format_slim(code, f: builder(display_errors), **form_data)
+          = format_slim(code)
 
 - if defined?(custom_config)
   - reset_config

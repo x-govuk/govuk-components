@@ -1,4 +1,10 @@
 module Helpers
+  module TitleAnchorHelpers
+    def anchor_id(caption)
+      caption.parameterize
+    end
+  end
+
   module LinkHelpers
     def component_links
       {
@@ -43,6 +49,14 @@ module Helpers
 
     def code_climate_report_link
       'https://codeclimate.com/github/DFE-Digital/govuk_design_system_formbuilder'
+    end
+
+    def dfe_rails_boilerplate_link
+      'https://github.com/DFE-Digital/govuk-rails-boilerplate'
+    end
+
+    def viewcomponent_link
+      'https://viewcomponent.org/'
     end
   end
 end

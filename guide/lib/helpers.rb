@@ -1,12 +1,16 @@
 require 'pry'
 require 'action_view'
 require 'action_controller'
+require 'htmlbeautifier'
+require 'slim/erb_converter'
 
 Dir.glob(File.join('./lib', '**', '*.rb')).sort.each { |f| require f }
 
 use_helper Nanoc::Helpers::Rendering
 use_helper Nanoc::Helpers::LinkTo
 use_helper Helpers::LinkHelpers
+use_helper Helpers::TitleAnchorHelpers
+use_helper Helpers::Formatters
 
 $LOAD_PATH.unshift(File.expand_path("../../app", "app"))
 $LOAD_PATH.unshift(File.expand_path("../../lib", "lib"))
@@ -23,4 +27,5 @@ require 'components/govuk_component/panel_component'
 require 'helpers/govuk_link_helper'
 
 use_helper GovukLinkHelper
+use_helper Examples::BundledHelpers
 
