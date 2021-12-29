@@ -3,6 +3,7 @@ require 'action_view'
 require 'action_controller'
 require 'htmlbeautifier'
 require 'slim/erb_converter'
+require 'active_support/core_ext/hash/deep_merge'
 
 Dir.glob(File.join('./lib', '**', '*.rb')).sort.each { |f| require f }
 
@@ -23,9 +24,11 @@ require 'components/govuk_component/traits/custom_classes'
 require 'components/govuk_component/traits/custom_html_attributes'
 require 'components/govuk_component/base'
 require 'components/govuk_component/panel_component'
+require 'components/govuk_component/phase_banner_component'
+require 'components/govuk_component/tag_component'
 
 require 'helpers/govuk_link_helper'
 
 use_helper GovukLinkHelper
+use_helper GovukComponentsHelper
 use_helper Examples::BundledHelpers
-

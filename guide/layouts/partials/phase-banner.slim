@@ -1,8 +1,3 @@
-.govuk-phase-banner
-  p.govuk-phase-banner__content
-    strong.govuk-tag.govuk-phase-banner__content__tag
-      | documentation
-    span.govuk-phase-banner__text
-      ' This is a guide on using the
-      a< href="https://github.com/DFE-Digital/govuk-formbuilder"
-        ' GOV.UK Design System Form Builder
+- content = "This is a guide on using the #{govuk_link_to("GOV.UK Components", github_link)} collection".html_safe
+
+== ActionController::Base.render(GovukComponent::PhaseBannerComponent.new(tag: { text: "documentation", colour: "purple" }, text: content))

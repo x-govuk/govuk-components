@@ -11,8 +11,9 @@ $govuk-include-default-font-face: false
 @import "govuk/overrides/all"
 
 @import 'colours'
-$tablet: 768px
 
+$accent: $purple
+$tablet: 768px
 
 /* roboto-regular - latin */
 @font-face
@@ -37,23 +38,23 @@ $tablet: 768px
   font-weight: bold
   src: url(/assets/fonts/FiraMono-Bold.woff2) format("woff2"), url(/assets/fonts/FiraMono-Bold.woff) format("woff")
 
-@mixin blue-left-border
-  border-left: 5px solid $blue
+@mixin accent-left-border
+  border-left: 5px solid $accent
   padding: 0.5rem 1rem 0.5rem 2rem
 
-@mixin blue-top-border
+@mixin accent-top-border
   padding: 2rem 0.2rem 0.5rem
   margin: 2rem 0rem
 
   &:not(:first-child)
-    border-top: 5px solid $blue
+    border-top: 5px solid $accent
 
 @mixin light-grey-border
   border: 1px solid $light-grey
   padding: 2rem
 
 article > pre
-  @include blue-left-border
+  @include accent-left-border
 
 figure.image
   margin: 0 0 2rem 0
@@ -64,9 +65,9 @@ figure.image
 
 figure.full-sample
   @media screen and (max-width: $tablet)
-    @include blue-top-border
+    @include accent-top-border
   @media screen and (min-width: $tablet)
-    @include blue-left-border
+    @include accent-left-border
 
   margin: 2.5rem 0rem 2.5rem
 
@@ -112,7 +113,7 @@ pre
     font-size: 85%
 
 .code-sample
-  @include blue-left-border
+  @include accent-left-border
   margin: 1.5rem 0rem
 
   > pre
@@ -126,21 +127,19 @@ p, li, dt, dd, td, th
     font-size: 1rem
     letter-spacing: -0.015rem
 
-$masthead-accent: $purple
-
 #splash
   header.govuk-header
-    border-bottom: 10px solid $masthead-accent
+    border-bottom: 10px solid $accent
 
     .govuk-header__container
-      border-bottom: 10px solid $masthead-accent
+      border-bottom: 10px solid $accent
 
   main.govuk-main-wrapper
     margin: 0rem
     padding: 0rem
 
   #masthead
-    background-color: $masthead-accent
+    background-color: $accent
     padding: 3rem 0rem
 
     section
@@ -172,6 +171,9 @@ $masthead-accent: $purple
       @include govuk-media-query($from: tablet)
         columns: 2
 
+.govuk-header__container
+  border-bottom: 10px solid $accent
+
 .govuk-tag
   &.govuk-tag-red
     background-color: $red
@@ -189,26 +191,6 @@ $masthead-accent: $purple
   code
     background-color: govuk-tint(govuk_colour('yellow'), 40%)
     padding: 0 .2em
-
-.ugly-gradient
-  display: inline-block
-  padding: 0 0.2rem
-  background: linear-gradient(90deg, rgba(184,255,255,1) 0%, rgba(255,152,255,1) 50%, rgba(255,255,108,1) 100%)
-
-.indigo-underline
-  text-decoration: underline indigo solid 1px
-  text-decoration-style: wavy
-
-.orange-underline
-  text-decoration: underline orange solid 2px
-  text-underline-offset: 4px
-
-.final-decision-warning
-  @extend %govuk-body-s
-
-  background: govuk-tint(govuk-colour('pink'), 92%)
-  border: 1px solid govuk-tint(govuk-colour('pink'), 80%)
-  padding: 1em 1em
 
 blockquote
   background: govuk-tint(govuk-colour('light-grey'), 35%)
