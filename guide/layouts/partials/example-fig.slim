@@ -35,6 +35,11 @@ figure.full-sample
             code.highlight.language-erb.wrap
               = format_erb(code)
 
+  section
+    h4.govuk-heading-s.example-subheading.output Rendered output
+    .example-output class=("invert" if defined?(invert))
+      == format_slim(code)
+
   - unless defined?(hide_html_output) && hide_html_output
     section
       h4.govuk-heading-s.example-subheading.output HTML output

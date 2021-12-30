@@ -58,5 +58,13 @@ module Helpers
     def viewcomponent_link
       'https://viewcomponent.org/'
     end
+
+    def rails_docs_url_helper
+      'https://edgeapi.rubyonrails.org/classes/ActionView/Helpers/UrlHelper.html'
+    end
+
+    def rails_docs_button_to
+      'https://edgeapi.rubyonrails.org/classes/ActionView/Helpers/UrlHelper.html#method-i-button_to'
+    end
   end
 end

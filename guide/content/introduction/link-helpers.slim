@@ -1,0 +1,73 @@
+---
+title: Bundled helpers
+---
+
+h1.govuk-heading-xl Bundled helpers
+
+p.govuk-body
+  | In addition to the components this gem also comes with some helpers that are
+    frequently duplicated and reimplemented across projects.
+
+h2.govuk-heading-l Hyperlinks
+
+== render('/partials/example-fig.*',
+  caption: "Regular links",
+  code: govuk_link_to_normal) do
+
+  p.govuk-body
+    | Regular links are just plain #{govuk_link_to("anchor elements", "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a").html_safe}
+      with the <code>govuk-link</code> class.
+
+== render('/partials/example-fig.*',
+  caption: "Inverse hyperlinks",
+  code: govuk_link_to_inverse,
+  invert: true) do
+
+  p.govuk-body
+    | Use inverse hyperlinks on dark backgrounds.
+
+== render('/partials/example-fig.*',
+  caption: "Other styles of link",
+  code: govuk_link_other_styles)
+
+h2.govuk-heading-l Buttons
+
+== render('/partials/example-fig.*',
+  caption: "Regular buttons",
+  code: govuk_button_to_normal) do
+
+  p.govuk-body
+    | The <code>govuk_button_to</code> helper wraps Rails'
+      <code>#{link_to('button_to', rails_docs_button_to).html_safe}</code>
+      directly, rendering a form that will <code>POST</code> by default.
+
+== render('/partials/example-fig.*',
+  caption: "Links styled like buttons",
+  code: govuk_button_link_to_normal) do
+
+  p.govuk-body
+    | Usually when using buttons for navigation we want a link
+      styled like a button instead.
+
+== render('/partials/example-fig.*',
+  caption: "Other buttons styles",
+  code: govuk_button_other_styles)
+
+h2.govuk-heading-l Class helpers
+
+p.govuk-body
+  | Rails has #{link_to("lots of link helpers", rails_docs_url_helper).html_safe}
+    and only the most-frequently used are
+    wrapped by this library. If you need to use another variant, like
+    <code>link_to_if</code>, you can use the <code>govuk_link_classes</code>
+    and <code>govuk_button_classes</code> helpers to ensure the correct classes
+    are assigned.
+
+== render('/partials/example-fig.*',
+  caption: "Using other Rails link helpers",
+  code: govuk_link_classes_multiple) do
+
+  p.govuk-body
+    | When no arguments are provided to <code>govuk_link_classes</code> only
+      the default <code>govuk-link</code> will be added. Alternate styles
+      can be passed in as a snake cased array of variants.
