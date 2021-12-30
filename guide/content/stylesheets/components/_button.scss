@@ -1,0 +1,31 @@
+$app-button-shadow-size: $govuk-border-width-form-element;
+$app-button-inverse-background-colour: govuk-colour("white");
+$app-button-inverse-foreground-colour: $govuk-brand-colour;
+$app-button-inverse-shadow-colour: govuk-shade($app-button-inverse-foreground-colour, 30%);
+$app-button-inverse-hover-background-colour: govuk-tint($app-button-inverse-foreground-colour, 90%);
+
+.app-button--inverse,
+.app-button--inverse:link,
+.app-button--inverse:visited {
+  color: $app-button-inverse-foreground-colour;
+  background-color: $app-button-inverse-background-colour;
+  box-shadow: 0 $app-button-shadow-size 0 $app-button-inverse-shadow-colour;
+}
+
+.app-button--inverse:hover {
+  color: $app-button-inverse-foreground-colour;
+  background-color: $app-button-inverse-hover-background-colour;
+}
+
+.app-button--inverse:focus:not(:hover) {
+  color: $govuk-focus-text-colour;
+  background-color: $govuk-focus-colour;
+}
+
+.app-button--inverse:active,
+.app-button--inverse:focus {
+  border-color: $govuk-focus-colour;
+  color: $app-button-inverse-foreground-colour;
+  background-color: $app-button-inverse-hover-background-colour;
+  box-shadow: inset 0 0 0 2px $govuk-focus-colour;
+}

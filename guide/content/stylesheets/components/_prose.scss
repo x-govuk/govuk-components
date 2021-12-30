@@ -1,0 +1,64 @@
+.app-prose {
+  code {
+    background-color: govuk-colour("light-grey");
+    color: govuk-colour("red");
+    font-family: ui-monospace, monospace;
+    font-size: 1rem;
+    padding: 2px govuk-spacing(1);
+  }
+
+  pre {
+    @include govuk-responsive-margin(4, "bottom");
+    @include govuk-font($size: 16);
+    background-color: govuk-colour("light-grey");
+    line-height: 1.4;
+    overflow: auto;
+    padding: govuk-spacing(4);
+    -webkit-font-smoothing: antialiased;
+
+    + .govuk-heading-l {
+      padding-top: govuk-spacing(4)
+    }
+
+    + .govuk-heading-m,
+    + .govuk-heading-s {
+      padding-top: govuk-spacing(2)
+    }
+
+    code {
+      background: none;
+      padding: 0;
+    }
+  }
+
+  .header-anchor {
+    color: $govuk-text-colour;
+    margin-left: -1.5ch;
+    padding-left: 1.5ch;
+    text-decoration: none;
+
+    &:visited {
+      color: $govuk-text-colour
+    }
+
+    &:hover {
+      text-decoration: none !important
+    }
+
+    &:hover::before,
+    &:focus::before {
+      content: "#";
+      color: govuk-colour("mid-grey");
+      float: left;
+      font-style: italic;
+      height: 0;
+      left: -1.5ch;
+      position: relative;
+      width: 0;
+    }
+
+    &:focus::before {
+      color: $govuk-focus-text-colour;
+    }
+  }
+}

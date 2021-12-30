@@ -2,15 +2,13 @@
 title: Bundled helpers
 ---
 
-h1.govuk-heading-xl Bundled helpers
-
 p.govuk-body
   | In addition to the components this gem also comes with some helpers that are
     frequently duplicated and reimplemented across projects.
 
 h2.govuk-heading-l Hyperlinks
 
-== render('/partials/example-fig.*',
+== render('/partials/example.*',
   caption: "Regular links",
   code: govuk_link_to_normal) do
 
@@ -18,7 +16,7 @@ h2.govuk-heading-l Hyperlinks
     | Regular links are just plain #{govuk_link_to("anchor elements", "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a").html_safe}
       with the <code>govuk-link</code> class.
 
-== render('/partials/example-fig.*',
+== render('/partials/example.*',
   caption: "Inverse hyperlinks",
   code: govuk_link_to_inverse,
   invert: true) do
@@ -26,13 +24,13 @@ h2.govuk-heading-l Hyperlinks
   p.govuk-body
     | Use inverse hyperlinks on dark backgrounds.
 
-== render('/partials/example-fig.*',
+== render('/partials/example.*',
   caption: "Other styles of link",
   code: govuk_link_other_styles)
 
 h2.govuk-heading-l Buttons
 
-== render('/partials/example-fig.*',
+== render('/partials/example.*',
   caption: "Regular buttons",
   code: govuk_button_to_normal) do
 
@@ -41,7 +39,7 @@ h2.govuk-heading-l Buttons
       <code>#{link_to('button_to', rails_docs_button_to).html_safe}</code>
       directly, rendering a form that will <code>POST</code> by default.
 
-== render('/partials/example-fig.*',
+== render('/partials/example.*',
   caption: "Links styled like buttons",
   code: govuk_button_link_to_normal) do
 
@@ -49,7 +47,7 @@ h2.govuk-heading-l Buttons
     | Usually when using buttons for navigation we want a link
       styled like a button instead.
 
-== render('/partials/example-fig.*',
+== render('/partials/example.*',
   caption: "Other buttons styles",
   code: govuk_button_other_styles)
 
@@ -63,7 +61,7 @@ p.govuk-body
     and <code>govuk_button_classes</code> helpers to ensure the correct classes
     are assigned.
 
-== render('/partials/example-fig.*',
+== render('/partials/example.*',
   caption: "Using other Rails link helpers",
   code: govuk_link_classes_multiple) do
 

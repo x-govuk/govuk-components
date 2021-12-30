@@ -1,0 +1,14 @@
+// GOV.UK Frontend options
+$govuk-global-styles: true;
+$govuk-assets-path: "/assets/";
+
+// Import GOV.UK Frontend
+@import "govuk/all";
+
+// Applicaton components
+@import "components/button";
+@import "components/example";
+@import "components/header";
+@import "components/highlight";
+@import "components/masthead";
+@import "components/prose";

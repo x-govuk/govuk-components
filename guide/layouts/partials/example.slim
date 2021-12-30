@@ -1,0 +1,51 @@
+h3.govuk-heading-m.example-heading id=anchor_id(caption)
+  == link_to caption, "#".concat(anchor_id(caption)), class: "header-anchor"
+
+- if block_given? && (content = yield)
+  == content
+
+figure.app-example
+  .govuk-tabs data-module='govuk-tabs'
+    h4.govuk-heading-s.govuk-tabs--title.example-subheading.input Input
+
+    ul.govuk-tabs__list
+      li.govuk-tabs__list-item.govuk-tabs__list-item--selected
+        a.govuk-tabs__tab href=%(#input-slim-#{anchor_id(caption)})
+          | Slim
+      li.govuk-tabs__list-item
+        a.govuk-tabs__tab href=%(#input-erb-#{anchor_id(caption)})
+          | ERB
+
+    .govuk-tabs__panel id=%(input-slim-#{anchor_id(caption)})
+      pre
+        code.highlight.language-slim
+          | #{code}
+
+    .govuk-tabs__panel.govuk-tabs__panel--hidden id=%(input-erb-#{anchor_id(caption)})
+      pre.example-input
+        code.highlight.language-erb.wrap
+          = format_erb(code)
+
+
+  .govuk-tabs data-module='govuk-tabs'
+    h4.govuk-heading-s.govuk-tabs--title.input Output
+
+    ul.govuk-tabs__list
+      li.govuk-tabs__list-item.govuk-tabs__list-item--selected
+        a.govuk-tabs__tab href=%(#output-rendered-#{anchor_id(caption)})
+          | Rendered
+      li.govuk-tabs__list-item
+        a.govuk-tabs__tab href=%(#output-html-#{anchor_id(caption)})
+          | HTML
+
+    - unless defined?(hide_html_output) && hide_html_output
+
+      .govuk-tabs__panel id=%(output-rendered-#{anchor_id(caption)})
+        == format_slim(code)
+
+      .govuk-tabs__panel id=%(output-html-#{anchor_id(caption)})
+        pre.example-html
+          code.highlight.language-html
+            - if defined?(sample_data)
+              - eval(sample_data)
+            = format_slim(code)

@@ -14,6 +14,9 @@ coverage
 *.gem
 .tool-versions
 guide/tmp
-guide/crash.log
 guide/output
+guide/*.log
 guide/node_modules
+guide/content/assets/fonts
+guide/content/assets/images
+guide/content/javascripts/*.js
