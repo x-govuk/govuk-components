@@ -48,7 +48,7 @@ module Helpers
     end
 
     def code_climate_report_link
-      'https://codeclimate.com/github/DFE-Digital/govuk_design_system_formbuilder'
+      'https://codeclimate.com/github/DFE-Digital/govuk-components'
     end
 
     def dfe_rails_boilerplate_link

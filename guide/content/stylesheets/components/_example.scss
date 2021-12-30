@@ -1,8 +1,6 @@
 .app-example {
   @include govuk-font($size: 19);
   @include govuk-text-colour;
-  // Margin top intended to collapse
-  // This adds an additional 10px to the paragraph above
   @include govuk-responsive-margin(6, "top");
   @include govuk-responsive-margin(6, "bottom");
   margin-left: 0;
@@ -10,35 +8,11 @@
 
   .govuk-tabs__panel {
     pre {
-      margin-top: -10px;
+      margin-top: govuk-spacing(-2);
     }
-  }
 
-  pre:last-child {
-    margin-bottom: -10px
-  }
-
-  .ugly-gradient {
-    display: inline-block;
-    padding: 0 0.2rem;
-    background: linear-gradient(90deg, rgba(184,255,255,1) 0%, rgba(255,152,255,1) 50%, rgba(255,255,108,1) 100%);
-  }
-
-  .indigo-underline {
-    text-decoration: underline solid indigo;
-    -webkit-text-decoration: underline wavy indigo;
-  }
-
-  .orange-underline {
-    text-decoration: underline solid orange 2px;
-    -webkit-text-decoration: underline solid orange;
-    text-underline-offset: 4px;
-  }
-
-  .final-decision-warning {
-    @extend %govuk-body-s;
-
-    background: govuk-tint(govuk-colour('pink'), 92%);
-    padding: govuk-spacing(2);
+    pre:last-child {
+      margin-bottom: govuk-spacing(-2)
+    }
   }
 }

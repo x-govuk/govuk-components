@@ -8,11 +8,10 @@ html.govuk-template lang="en"
       == render '/partials/breadcrumbs.*'
 
       main#main-content.govuk-main-wrapper
-        .govuk-grid-row
-          .govuk-grid-column-three-quarters-from-desktop
-            article.app-prose
-              h1.govuk-heading-xl
-                | #{item[:title]}
+        article.app-prose
+          h1.govuk-heading-xl
+            | #{item[:title]}
 
-              == yield
+          == yield
+
     == render '/partials/footer.*'
