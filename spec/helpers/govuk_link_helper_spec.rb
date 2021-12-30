@@ -156,8 +156,7 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
     let(:button_params) { { controller: :some_controller, action: :some_action } }
 
     before do
-      allow(self).to receive(:url_for).with(button_params).and_return(button_url)
-      allow(self).to receive(:url_for).with(button_params.merge("class" => %w(govuk-button))).and_return(button_url)
+      allow(self).to receive(:url_for).with(anything).and_return(button_url)
     end
 
     context "when provided with button text and url params" do
