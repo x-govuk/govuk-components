@@ -1,20 +1,30 @@
 module Helpers
+  # This class exists purely to pass to render in format_slim, it doesn't appear
+  # to matter what's passed in so long as the first arg responds to #variants
+  # and the result responds to #first. Couldn't work out from Rails what the
+  # correct obejcts to pass in here are, it's a bit meta.
+  class FakeView < ActionView::Base
+    def initialize
+      super(OpenStruct.new(variants: OpenStruct.new(first: nil)), [], [])
+    end
+
+    def variants
+      []
+    end
+  end
+
   module Formatters
     def block_has_content?(block)
       block.call
     end
 
-    def format_slim(raw, **args)
+    def format_slim(raw)
       # FIXME: not sure why when we're several
       #        blocks deep we need to unescape more
       #        than once
-      beautify(
-        CGI.unescapeHTML(
-          CGI.unescapeHTML(
-           Slim::Template.new(format: :html) { raw }.render(ActionView::Base.new("", [], []))
-          )
-        )
-      )
+      template = Slim::Template.new(format: :html) { raw }.render(FakeView.new)
+
+      beautify(CGI.unescapeHTML(CGI.unescapeHTML(template)))
     end
 
     def format_erb(raw)

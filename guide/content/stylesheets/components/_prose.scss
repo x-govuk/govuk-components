@@ -1,18 +1,18 @@
 .app-prose {
-  h2 {
+  > h2 {
     max-width: 20em;
   }
 
-  h3 {
+  > h3 {
     max-width: 30em;
   }
 
-  h4,
-  h5,
-  h6,
-  p,
-  ul:not(.govuk-tabs__list),
-  ol,
+  > h4,
+  > h5,
+  > h6,
+  > p,
+  > ul:not(.govuk-tabs__list),
+  > ol,
   .app-table--constrained {
     max-width: 38em;
   }

@@ -1,5 +1,5 @@
 module Examples
-  module BundledHelpers
+  module LinkHelpers
     def govuk_link_to_normal
       %(= govuk_link_to 'A regular hyperlink', '#')
     end
