@@ -18,13 +18,23 @@ module Helpers
       block.call
     end
 
-    def format_slim(raw)
+    def format_slim(raw, data = nil)
       # FIXME: not sure why when we're several
       #        blocks deep we need to unescape more
       #        than once
-      template = Slim::Template.new(format: :html) { raw }.render(FakeView.new)
+      locals = if data
+                 eval(data)
+               else
+                 {}
+               end
+
+      template = Slim::Template.new(format: :html) { raw }.render(FakeView.new, **locals)
 
       beautify(CGI.unescapeHTML(CGI.unescapeHTML(template)))
+    end
+
+    def load_data(ruby)
+      eval(ruby)
     end
 
     def format_erb(raw)

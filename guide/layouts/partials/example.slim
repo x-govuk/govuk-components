@@ -16,6 +16,11 @@ figure.app-example
         a.govuk-tabs__tab href=%(#input-erb-#{anchor_id(caption)})
           | ERB
 
+      - if defined?(data)
+        li.govuk-tabs__list-item
+          a.govuk-tabs__tab href=%(#input-data-#{anchor_id(caption)})
+            | Data
+
     .govuk-tabs__panel id=%(input-slim-#{anchor_id(caption)})
       pre
         code.highlight.language-slim
@@ -25,6 +30,12 @@ figure.app-example
       pre
         code.highlight.language-erb.wrap
           = format_erb(code)
+
+    - if defined?(data)
+      .govuk-tabs__panel.govuk-tabs__panel--hidden id=%(input-data-#{anchor_id(caption)})
+        pre
+          code.highlight.language-ruby.wrap
+            = data
 
 
   .govuk-tabs data-module="govuk-tabs"
@@ -41,11 +52,15 @@ figure.app-example
     - unless defined?(hide_html_output) && hide_html_output
 
       .govuk-tabs__panel id=%(output-rendered-#{anchor_id(caption)})
-        == format_slim(code)
+        - if defined?(data)
+          == format_slim(code, data)
+        - else
+          == format_slim(code)
 
       .govuk-tabs__panel id=%(output-html-#{anchor_id(caption)})
         pre
           code.highlight.language-html
-            - if defined?(sample_data)
-              - eval(sample_data)
-            = format_slim(code)
+            - if defined?(data)
+              = format_slim(code, data)
+            - else
+              = format_slim(code)
