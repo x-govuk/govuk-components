@@ -34,6 +34,7 @@ require 'components/govuk_component/cookie_banner_component'
 require 'components/govuk_component/cookie_banner_component/message_component'
 require 'components/govuk_component/details_component'
 require 'components/govuk_component/footer_component'
+require 'components/govuk_component/header_component'
 
 require 'helpers/govuk_link_helper'
 
@@ -46,3 +47,4 @@ use_helper Examples::BackLinkHelpers
 use_helper Examples::CookieBannerHelpers
 use_helper Examples::DetailsHelpers
 use_helper Examples::FooterHelpers
+use_helper Examples::HeaderHelpers
