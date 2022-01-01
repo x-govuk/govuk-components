@@ -38,29 +38,48 @@ figure.app-example
             = data
 
 
-  .govuk-tabs data-module="govuk-tabs"
-    h4.govuk-heading-s.govuk-tabs--title Output
+  - if defined?(render_in_boxes) && render_in_boxes
 
-    ul.govuk-tabs__list
-      li.govuk-tabs__list-item.govuk-tabs__list-item--selected
-        a.govuk-tabs__tab href=%(#output-rendered-#{anchor_id(caption)})
-          | Rendered
-      li.govuk-tabs__list-item
-        a.govuk-tabs__tab href=%(#output-html-#{anchor_id(caption)})
-          | HTML
+    h4.govuk-heading-s Rendered output
 
-    - unless defined?(hide_html_output) && hide_html_output
+    - if defined?(data)
+      == format_slim(code, data)
+    - else
+      == format_slim(code)
 
-      .govuk-tabs__panel id=%(output-rendered-#{anchor_id(caption)}) class=("inverse" if defined?(inverse) && inverse)
+    h4.govuk-heading-s HTML output
+
+    pre
+      code.highlight.language-html
         - if defined?(data)
-          == format_slim(code, data)
+          = format_slim(code, data)
         - else
-          == format_slim(code)
+          = format_slim(code)
 
-      .govuk-tabs__panel id=%(output-html-#{anchor_id(caption)})
-        pre
-          code.highlight.language-html
-            - if defined?(data)
-              = format_slim(code, data)
-            - else
-              = format_slim(code)
+  - else
+    .govuk-tabs data-module="govuk-tabs"
+      h4.govuk-heading-s.govuk-tabs--title Output
+
+      ul.govuk-tabs__list
+        li.govuk-tabs__list-item.govuk-tabs__list-item--selected
+          a.govuk-tabs__tab href=%(#output-rendered-#{anchor_id(caption)})
+            | Rendered
+        li.govuk-tabs__list-item
+          a.govuk-tabs__tab href=%(#output-html-#{anchor_id(caption)})
+            | HTML
+
+      - unless defined?(hide_html_output) && hide_html_output
+
+        .govuk-tabs__panel id=%(output-rendered-#{anchor_id(caption)}) class=("inverse" if defined?(inverse) && inverse)
+          - if defined?(data)
+            == format_slim(code, data)
+          - else
+            == format_slim(code)
+
+        .govuk-tabs__panel id=%(output-html-#{anchor_id(caption)})
+          pre
+            code.highlight.language-html
+              - if defined?(data)
+                = format_slim(code, data)
+              - else
+                = format_slim(code)

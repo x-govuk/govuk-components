@@ -25,7 +25,6 @@ require 'components/govuk_component/traits/custom_html_attributes'
 require 'components/govuk_component/base'
 require 'components/govuk_component/accordion_component'
 require 'components/govuk_component/accordion_component/section_component'
-require 'components/govuk_component/tag_component'
 require 'components/govuk_component/back_link_component'
 require 'components/govuk_component/breadcrumbs_component'
 require 'components/govuk_component/cookie_banner_component'
@@ -48,6 +47,9 @@ require 'components/govuk_component/table_component/caption_component'
 require 'components/govuk_component/table_component/head_component'
 require 'components/govuk_component/table_component/body_component'
 require 'components/govuk_component/table_component/row_component'
+require 'components/govuk_component/tab_component'
+require 'components/govuk_component/tag_component'
+require 'components/govuk_component/warning_text_component'
 
 require 'helpers/govuk_link_helper'
 
@@ -67,3 +69,6 @@ use_helper Examples::PanelHelpers
 use_helper Examples::PhaseBannerHelpers
 use_helper Examples::SummaryListHelpers
 use_helper Examples::TableHelpers
+use_helper Examples::TabsHelpers
+use_helper Examples::TagHelpers
+use_helper Examples::WarningTextHelpers
