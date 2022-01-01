@@ -35,6 +35,8 @@ require 'components/govuk_component/cookie_banner_component/message_component'
 require 'components/govuk_component/details_component'
 require 'components/govuk_component/footer_component'
 require 'components/govuk_component/header_component'
+require 'components/govuk_component/inset_text_component'
+require 'components/govuk_component/notification_banner_component'
 
 require 'helpers/govuk_link_helper'
 
@@ -48,3 +50,5 @@ use_helper Examples::CookieBannerHelpers
 use_helper Examples::DetailsHelpers
 use_helper Examples::FooterHelpers
 use_helper Examples::HeaderHelpers
+use_helper Examples::InsetTextHelpers
+use_helper Examples::NotificationBannerHelpers
