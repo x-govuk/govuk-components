@@ -20,4 +20,10 @@
       background: govuk-colour('black');
     }
   }
+
+  // pull the with container in so rendered previews don't push
+  // up against the sides of the preview area
+  .govuk-width-container {
+    max-width: $govuk-page-width - 100px;
+  }
 }
