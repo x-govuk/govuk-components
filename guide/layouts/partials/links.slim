@@ -8,9 +8,9 @@ section#links.govuk-width-container
         li== govuk_link_to 'What is ViewComponent?', '/introduction/what-is-viewcomponent'
         li== govuk_link_to 'Link helpers', '/introduction/link-helpers'
 
-    .govuk-grid-column-one-third
+    .govuk-grid-column-two-thirds
       h2.govuk-heading-m Components
 
-      ul.govuk-list.components-list
+      ul.govuk-list.app-list--two-columns
         - component_links.each do |name, path|
           li== govuk_link_to(name, path)
