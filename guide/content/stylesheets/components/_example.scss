@@ -14,5 +14,10 @@
     pre:last-child {
       margin-bottom: govuk-spacing(-2)
     }
+
+    // make dark so the inverted hyperlinks (where the text is white) are visible
+    &.inverse {
+      background: govuk-colour('black');
+    }
   }
 }

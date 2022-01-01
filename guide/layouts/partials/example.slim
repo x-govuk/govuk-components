@@ -51,7 +51,7 @@ figure.app-example
 
     - unless defined?(hide_html_output) && hide_html_output
 
-      .govuk-tabs__panel id=%(output-rendered-#{anchor_id(caption)})
+      .govuk-tabs__panel id=%(output-rendered-#{anchor_id(caption)}) class=("inverse" if defined?(inverse) && inverse)
         - if defined?(data)
           == format_slim(code, data)
         - else
