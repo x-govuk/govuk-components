@@ -19,13 +19,13 @@ module Helpers
         "Notification banner" => "/components/notification-banner",
         "Panel" => "/components/panel",
         "Phase banner" => "/components/phase-banner",
+        "Start button" => "/components/start-button",
         "Skip link" => "/components/skip-link",
         "Summary list" => "/components/summary-list",
         "Table" => "/components/table",
         "Tabs" => "/components/tabs",
         "Tag" => "/components/tag",
         "Warning text" => "/components/warning-text",
-
       }
     end
 
