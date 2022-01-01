@@ -1,15 +1,13 @@
 ---
-title: Bundled helpers
+title: Link helpers
 ---
 
 p.govuk-body
-  | In addition to the components this gem also comes with some helpers that are
+  | In addition to the components this gem also comes with link helpers that are
     frequently duplicated and reimplemented across projects.
 
-h2.govuk-heading-l Hyperlinks
-
 == render('/partials/example.*',
-  caption: "Regular links",
+  caption: "Regular link",
   code: govuk_link_to_normal) do
 
   p.govuk-body
@@ -17,7 +15,7 @@ h2.govuk-heading-l Hyperlinks
       with the <code>govuk-link</code> class.
 
 == render('/partials/example.*',
-  caption: "Inverse hyperlinks",
+  caption: "Inverse hyperlink",
   code: govuk_link_to_inverse,
   inverse: true) do
 
@@ -25,33 +23,8 @@ h2.govuk-heading-l Hyperlinks
     | Use inverse hyperlinks on dark backgrounds.
 
 == render('/partials/example.*',
-  caption: "Other styles of link",
+  caption: "Other link styles",
   code: govuk_link_other_styles)
-
-hr.govuk-section-break.govuk-section-break--xl.govuk-section-break--visible
-
-h2.govuk-heading-l Buttons
-
-== render('/partials/example.*',
-  caption: "Regular buttons",
-  code: govuk_button_to_normal) do
-
-  p.govuk-body
-    | The <code>govuk_button_to</code> helper wraps Rails'
-      <code>#{link_to('button_to', rails_docs_button_to).html_safe}</code>
-      directly, rendering a form that will <code>POST</code> by default.
-
-== render('/partials/example.*',
-  caption: "Links styled like buttons",
-  code: govuk_button_link_to_normal) do
-
-  p.govuk-body
-    | Usually when using buttons for navigation we want a link
-      styled like a button instead.
-
-== render('/partials/example.*',
-  caption: "Other buttons styles",
-  code: govuk_button_other_styles)
 
 hr.govuk-section-break.govuk-section-break--xl.govuk-section-break--visible
 
@@ -66,7 +39,7 @@ p.govuk-body
     are assigned.
 
 == render('/partials/example.*',
-  caption: "Using other Rails link helpers",
+  caption: "Using the class helpers",
   code: govuk_link_classes_multiple) do
 
   p.govuk-body

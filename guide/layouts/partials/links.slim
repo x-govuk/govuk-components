@@ -6,9 +6,14 @@ section#links.govuk-width-container
       ul.govuk-list
         li== govuk_link_to 'Get started', '/introduction/get-started'
         li== govuk_link_to 'What is ViewComponent?', '/introduction/what-is-viewcomponent'
-        li== govuk_link_to 'Link helpers', '/introduction/link-helpers'
 
-    .govuk-grid-column-two-thirds
+      h2.govuk-heading-m Helpers
+
+      ul.govuk-list
+        li== govuk_link_to('Button', '/helpers/button')
+        li== govuk_link_to('Link', '/helpers/link')
+
+    .govuk-grid-column-two-thirds      
       h2.govuk-heading-m Components
 
       ul.govuk-list.app-list--two-columns
