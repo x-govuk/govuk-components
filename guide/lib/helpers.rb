@@ -30,6 +30,8 @@ require 'components/govuk_component/accordion_component/section_component'
 require 'components/govuk_component/tag_component'
 require 'components/govuk_component/back_link_component'
 require 'components/govuk_component/breadcrumbs_component'
+require 'components/govuk_component/cookie_banner_component'
+require 'components/govuk_component/cookie_banner_component/message_component'
 
 require 'helpers/govuk_link_helper'
 
@@ -39,3 +41,4 @@ use_helper Examples::LinkHelpers
 use_helper Examples::AccordionHelpers
 use_helper Examples::BreadcrumbsHelpers
 use_helper Examples::BackLinkHelpers
+use_helper Examples::CookieBannerHelpers
