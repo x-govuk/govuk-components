@@ -23,8 +23,6 @@ require 'components/govuk_component/traits'
 require 'components/govuk_component/traits/custom_classes'
 require 'components/govuk_component/traits/custom_html_attributes'
 require 'components/govuk_component/base'
-require 'components/govuk_component/panel_component'
-require 'components/govuk_component/phase_banner_component'
 require 'components/govuk_component/accordion_component'
 require 'components/govuk_component/accordion_component/section_component'
 require 'components/govuk_component/tag_component'
@@ -37,6 +35,19 @@ require 'components/govuk_component/footer_component'
 require 'components/govuk_component/header_component'
 require 'components/govuk_component/inset_text_component'
 require 'components/govuk_component/notification_banner_component'
+require 'components/govuk_component/panel_component'
+require 'components/govuk_component/phase_banner_component'
+require 'components/govuk_component/summary_list_component'
+require 'components/govuk_component/summary_list_component/key_component'
+require 'components/govuk_component/summary_list_component/value_component'
+require 'components/govuk_component/summary_list_component/action_component'
+require 'components/govuk_component/summary_list_component/row_component'
+require 'components/govuk_component/table_component'
+require 'components/govuk_component/table_component/cell_component'
+require 'components/govuk_component/table_component/caption_component'
+require 'components/govuk_component/table_component/head_component'
+require 'components/govuk_component/table_component/body_component'
+require 'components/govuk_component/table_component/row_component'
 
 require 'helpers/govuk_link_helper'
 
@@ -52,3 +63,7 @@ use_helper Examples::FooterHelpers
 use_helper Examples::HeaderHelpers
 use_helper Examples::InsetTextHelpers
 use_helper Examples::NotificationBannerHelpers
+use_helper Examples::PanelHelpers
+use_helper Examples::PhaseBannerHelpers
+use_helper Examples::SummaryListHelpers
+use_helper Examples::TableHelpers

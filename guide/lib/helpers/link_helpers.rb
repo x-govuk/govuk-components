@@ -17,6 +17,7 @@ module Helpers
         "Header" => "/components/header",
         "Inset text" => "/components/inset-text",
         "Notification banner" => "/components/notification-banner",
+        "Panel" => "/components/panel",
         "Phase banner" => "/components/phase-banner",
         "Skip link" => "/components/skip-link",
         "Summary list" => "/components/summary-list",
