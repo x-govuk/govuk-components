@@ -1,0 +1,30 @@
+---
+title: Syntax options
+---
+
+p There are two ways of rending GOV.UK Components inside templates,
+  passing a ViewComponent object to Rails' <code>render</code> or
+  using the packaged helpers that take care of the rendering step.
+
+h2.govuk-heading-m Using component objects directly
+
+p Rails supports the rendering of ViewComponent objects natively, just
+  pass them straight to <code>render</code> in your template.
+
+.code-sample
+  pre
+    code.highlight.language-slim
+      | = render(GovukComponent::InsetTextComponent.new(text: "Important message"))
+
+h2.govuk-heading-m Using the provided helper methods
+
+p The helper methods make rendering components easier and they
+  provide a more consistent experience when using with the
+  link helpers and #{link_to('form builder', 'https://govuk-form-builder.netlify.app/').html_safe}.
+
+.code-sample
+  pre
+    code.highlight.language-slim
+      | = govuk_inset_text(text: "Important message")
+
+== ActionController::Base.render(component_helper_mapping_table)

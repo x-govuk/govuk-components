@@ -20,7 +20,6 @@ module Helpers
         "Panel" => "/components/panel",
         "Phase banner" => "/components/phase-banner",
         "Start button" => "/components/start-button",
-        "Skip link" => "/components/skip-link",
         "Summary list" => "/components/summary-list",
         "Table" => "/components/table",
         "Tabs" => "/components/tabs",

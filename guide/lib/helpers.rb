@@ -12,6 +12,7 @@ use_helper Nanoc::Helpers::LinkTo
 use_helper Helpers::LinkHelpers
 use_helper Helpers::TitleAnchorHelpers
 use_helper Helpers::Formatters
+use_helper Helpers::ContentHelpers
 
 $LOAD_PATH.unshift(File.expand_path("../../app", "app"))
 $LOAD_PATH.unshift(File.expand_path("../../lib", "lib"))
