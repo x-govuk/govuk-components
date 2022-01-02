@@ -1,29 +1,29 @@
 ---
-title: What is ViewComponent?
+title: About ViewComponent
 ---
 
-p.govuk-body
+p
   | #{govuk_link_to("ViewComponent", viewcomponent_link).html_safe} is a
     framework for Ruby on Rails that lets us build and share reusable
     components.
 
-p.govuk-body
-  | Components built with ViewComponent are:
+p
+  | View components are:
 
 ul.govuk-list.govuk-list--bullet
-  li easier to test than partials
-  li incredibly efficient, ten times faster than partials
-  li better suited to complex markup than helper methods
+  li easy to test, both the logic and rendered HTML can be examined individually
+  li easier to understand than partials as they are backed by a Ruby object
+  li incredibly efficient, #{govuk_link_to("ten times faster than partials", "https://viewcomponent.org/#performance").html_safe}
 
 h2.govuk-heading-l How they work
 
-p.govuk-body
-  | ViewComponents are usually placed in <code>app/components</code> and usually consist of
+p
+  | View components are usually placed in <code>app/components</code> and usually consist of
     a Ruby file and a template file. They can be extended to provide custom JavaScript and CSS
     too, but this library doesn't do it.
 
-p.govuk-body
-  | A very basic ViewComponent might look like this:
+p
+  | A very basic view component might look like this:
 
 .code-sample
   pre
@@ -52,3 +52,12 @@ p.govuk-body
           h2 = title
 
           p.greeting = greeting
+
+
+p
+  | You can then use it from a template by passing an object to <code>render</code>:
+
+.code-sample
+  pre
+    code.highlight.language-slim
+      | = render(SampleComponent.new(title: "Welcome!", name: "Rosemary"))
