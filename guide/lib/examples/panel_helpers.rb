@@ -2,7 +2,8 @@ module Examples
   module PanelHelpers
     def panel_normal
       <<~PANEL
-        = govuk_panel(title_text: "Application complete", text: "You will soon receive an email confirmation.")
+        = govuk_panel(title_text: "Application complete",
+                      text: "You will soon receive an email confirmation.")
       PANEL
     end
 

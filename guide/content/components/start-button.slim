@@ -2,6 +2,14 @@
 title: Start button
 ---
 
+p
+  | Use a start button for the main call to action on your service’s
+    #{govuk_link_to('start page', 'https://design-system.service.gov.uk/patterns/start-pages/').html_safe}.
+    Start buttons do not submit form data, so they use a link tag rather
+    than a button tag.
+
 == render('/partials/example.*',
   caption: "Start button",
   code: start_button_normal)
+
+== render('/partials/related-info.*', links: start_button_info)

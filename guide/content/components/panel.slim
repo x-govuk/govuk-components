@@ -2,10 +2,19 @@
 title: Panel
 ---
 
+p
+  | The panel component is a visible container used on confirmation or results pages to highlight important content.
+
 == render('/partials/example.*',
-  caption: "Panel with text arguments",
+  caption: "Panel with a title and one line of text",
   code: panel_normal)
 
 == render('/partials/example.*',
-  caption: "Panel with block",
-  code: panel_with_block)
+  caption: "Panel with multiple lines of text",
+  code: panel_with_block) do
+
+  markdown:
+    Any content passed in via the block will be rendered beneath
+    the title.
+
+== render('/partials/related-info.*', links: panel_info)

@@ -2,16 +2,32 @@
 title: Details
 ---
 
+p Make a page easier to scan by letting users reveal more detailed information
+  only if they need it.
+
 == render('/partials/example.*',
   caption: "Details with text arguments",
   code: details_normal,
-  data: details_normal_arguments)
+  data: details_normal_arguments) do
+
+  markdown:
+    The `summary_text` argument controls the details element's label and `text` sets
+    the content.
 
 == render('/partials/example.*',
   caption: "Details with a block",
-  code: details_with_block)
+  code: details_with_block) do
+
+  markdown:
+    When the details element contains multiple lines of text or more complex
+    content, the body can be provided using a block.
 
 == render('/partials/example.*',
   caption: "Details that start open",
   code: details_open,
-  data: details_normal_arguments)
+  data: details_normal_arguments) do
+
+  markdown:
+    You can make a details element start open by passing in `open: true`.
+
+== render('/partials/related-info.*', links: details_info)

@@ -58,7 +58,7 @@ module Examples
       <<~FOOTER_WITH_NAVIGATION
         = govuk_footer do |footer|
           - footer.navigation do
-            .govuk-footer__section.govuk-grid-column-full
+            .govuk-footer__section.govuk-grid-column-one-third
               h2.govuk-footer__heading.govuk-heading-m Section one
 
               ul.govuk-footer__list.govuk-footer__list--columns-2
@@ -74,6 +74,31 @@ module Examples
                   | Fifth
                 li: a.govuk-footer__link href="#"
                   | Sixth
+
+            .govuk-footer__section.govuk-grid-column-two-thirds
+              h2.govuk-footer__heading.govuk-heading-m Section two
+
+              ul.govuk-footer__list.govuk-footer__list--columns-3
+                li: a.govuk-footer__link href="#"
+                  | First
+                li: a.govuk-footer__link href="#"
+                  | Second
+                li: a.govuk-footer__link href="#"
+                  | Third
+                li: a.govuk-footer__link href="#"
+                  | Fourth
+                li: a.govuk-footer__link href="#"
+                  | Fifth
+                li: a.govuk-footer__link href="#"
+                  | Sixth
+                li: a.govuk-footer__link href="#"
+                  | Seventh
+                li: a.govuk-footer__link href="#"
+                  | Eighth
+                li: a.govuk-footer__link href="#"
+                  | Nineth
+                li: a.govuk-footer__link href="#"
+                  | Tenth
       FOOTER_WITH_NAVIGATION
     end
   end

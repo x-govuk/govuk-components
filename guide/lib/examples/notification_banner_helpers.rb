@@ -11,7 +11,12 @@ module Examples
         = govuk_notification_banner(title_text: "Important") do
           p
             |
-              You have 7 days left to send your application.
+              You have 7 days left to send your application. You can send it:
+
+          ul
+            li by email
+            li by post
+            li by courier
       NOTIFICATION_BANNER
     end
 

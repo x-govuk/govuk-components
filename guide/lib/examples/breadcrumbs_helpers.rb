@@ -9,6 +9,8 @@ module Examples
     def breadcrumbs_that_collapse_on_mobile
       <<~BREADCRUMBS
         = govuk_breadcrumbs(breadcrumbs: breadcrumbs, collapse_on_mobile: true)
+
+        p.govuk-inset-text If you make this page narrower the inner breadcrumbs will be hiddden.
       BREADCRUMBS
     end
 

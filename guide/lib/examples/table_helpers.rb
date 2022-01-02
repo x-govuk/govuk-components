@@ -23,9 +23,9 @@ module Examples
               - row.cell(text: '4', numeric: true)
 
             - body.row do |row|
-              - row.cell(text: 'Squirtle')
-              - row.cell(text: 'Water')
-              - row.cell(text: '7', numeric: true)
+              - row.cell { 'Squirtle' }
+              - row.cell { 'Water' }
+              - row.cell(numeric: true) { '7' }
       TABLE
     end
 
@@ -60,7 +60,7 @@ module Examples
 
     def table_from_arrays
       <<~TABLE
-        = govuk_table(rows: data) { |t| t.caption { "Pokémon species and types" } }
+        = govuk_table(rows: data, caption: "Pokémon species and types")
       TABLE
     end
 

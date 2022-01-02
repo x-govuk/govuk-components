@@ -3,9 +3,11 @@ title: Warning text
 ---
 
 == render('/partials/example.*',
-  caption: "Warning text",
+  caption: "Warning text with a text argument",
   code: warning_text_normal)
 
 == render('/partials/example.*',
-  caption: "Warning text with custom icon fallback text",
+  caption: "Warning text provided by a block with custom icon fallback text",
   code: warning_text_with_custom_icon_fallback_text)
+
+== render('/partials/related-info.*', links: warning_text_info)

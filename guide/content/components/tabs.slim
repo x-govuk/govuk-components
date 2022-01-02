@@ -2,7 +2,19 @@
 title: Tabs
 ---
 
+p
+  | The tabs component lets users navigate between related sections of content,
+    displaying one section at a time.
+
 == render('/partials/example.*',
   caption: "Tabs with text and block content",
   code: tabs_normal,
-  render_in_boxes: true)
+  render_in_boxes: true) do
+
+  markdown:
+    The tabs component can contain one or more `tab` slots. Each tab
+    requires a `label` which will form the link at the top, and the
+    content can be set either using the `text` argument or via a block
+    of HTML.
+
+== render('/partials/related-info.*', links: tabs_info)

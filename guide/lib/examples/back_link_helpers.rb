@@ -8,7 +8,7 @@ module Examples
 
     def back_link_custom
       <<~BACK_LINK_NORMAL
-        = govuk_back_link(href: "/", text: "Return", classes: "hide-in-print")
+        = govuk_back_link(href: "/", text: "Return")
       BACK_LINK_NORMAL
     end
   end
