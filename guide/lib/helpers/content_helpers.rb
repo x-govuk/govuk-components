@@ -114,7 +114,7 @@ module Helpers
         "GovukComponent::Header" => "govuk_header",
         "GovukComponent::InsetText" => "govuk_inset_text",
         "GovukComponent::NotificationBanner" => "govuk_notification_banner",
-        "GovukComponent::Panel" => "/components/panel",
+        "GovukComponent::Panel" => "govuk_panel",
         "GovukComponent::PhaseBanner" => "govuk_phase_banner",
         "GovukComponent::StartButton" => "govuk_start_button",
         "GovukComponent::SummaryList" => "govuk_summary_list",
