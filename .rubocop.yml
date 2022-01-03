@@ -9,6 +9,9 @@ AllCops:
   Exclude:
     - govuk_design_system_formbuilder.gemspec
     - spec/dummy/**/*
+Security/Eval:
+  Exclude:
+    - guide/lib/helpers/formatters.rb
 Lint/MissingSuper:
   Enabled: false
 Rails/Date:
