@@ -16,27 +16,27 @@ All of the non-form components from the GOV.UK Design System are implemented by 
 
 The provided components are:
 
-* [Accordion](https://dfe-digital.github.io/govuk-components/#accordion)
-* [Back link](https://dfe-digital.github.io/govuk-components/#back-links)
-* [Back to top link](https://dfe-digital.github.io/govuk-components/#back-to-top-link)
-* [Breadcrumbs](https://dfe-digital.github.io/govuk-components/#breadcrumbs)
-* [Cookie banner](https://dfe-digital.github.io/govuk-components/#cookie-banner)
-* [Details](https://dfe-digital.github.io/govuk-components/#details)
-* [Footer](https://dfe-digital.github.io/govuk-components/#footer)
-* [Header](https://dfe-digital.github.io/govuk-components/#header)
-* [Inset text](https://dfe-digital.github.io/govuk-components/#inset-text)
-* [Notification banner](https://dfe-digital.github.io/govuk-components/#notification-banner)
-* [Panel](https://dfe-digital.github.io/govuk-components/#panel)
-* [Phase banner](https://dfe-digital.github.io/govuk-components/#phase-banner)
-* [Skip link](https://dfe-digital.github.io/govuk-components/#skip-link)
-* [Start button](https://dfe-digital.github.io/govuk-components/#start-button)
-* [Summary list](https://dfe-digital.github.io/govuk-components/#summary-list)
-* [Tabs](https://dfe-digital.github.io/govuk-components/#tabs)
-* [Tables](https://dfe-digital.github.io/govuk-components/#table)
-* [Tags](https://dfe-digital.github.io/govuk-components/#tags)
-* [Warning text](https://dfe-digital.github.io/govuk-components/#warning-text)
+* [Accordion](https://govuk-components.netlify.app/components/accordion)
+* [Back link](https://govuk-components.netlify.app/components/back-links)
+* [Back to top link](https://govuk-components.netlify.app/components/back-to-top-link)
+* [Breadcrumbs](https://govuk-components.netlify.app/components/breadcrumbs)
+* [Cookie banner](https://govuk-components.netlify.app/components/cookie-banner)
+* [Details](https://govuk-components.netlify.app/components/details)
+* [Footer](https://govuk-components.netlify.app/components/footer)
+* [Header](https://govuk-components.netlify.app/components/header)
+* [Inset text](https://govuk-components.netlify.app/components/inset-text)
+* [Notification banner](https://govuk-components.netlify.app/components/notification-banner)
+* [Panel](https://govuk-components.netlify.app/components/panel)
+* [Phase banner](https://govuk-components.netlify.app/components/phase-banner)
+* [Skip link](https://govuk-components.netlify.app/components/skip-link)
+* [Start button](https://govuk-components.netlify.app/components/start-button)
+* [Summary list](https://govuk-components.netlify.app/components/summary-list)
+* [Tabs](https://govuk-components.netlify.app/components/tabs)
+* [Tables](https://govuk-components.netlify.app/components/table)
+* [Tags](https://govuk-components.netlify.app/components/tags)
+* [Warning text](https://govuk-components.netlify.app/components/warning-text)
 
-This library also provides [several link helpers](https://dfe-digital.github.io/govuk-components/#links-and-buttons) that are commonly used in services, including `#govuk_link_to` and `#govuk_button_to`.
+This library also provides [link](https://govuk-components.netlify.app/helpers/link) and [button](https://govuk-components.netlify.app/helpers/button) helpers.
 
 ## Alternative syntax
 
