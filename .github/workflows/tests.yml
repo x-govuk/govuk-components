@@ -29,7 +29,7 @@ jobs:
       - name: Run RSpec
         env:
           SIMPLECOV: '0'
-        run: bundle exec rspec
+        run: make rspec
 
   quality_checks:
     runs-on: ubuntu-20.04
@@ -48,7 +48,7 @@ jobs:
           bundle install --jobs 4 --retry 3
 
       - name: Run Rubocop
-        run: bundle exec rubocop app lib config
+        run: make ruby-lint
 
       - name: Download CodeClimate reporter
         env:
@@ -62,7 +62,7 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
           SIMPLECOV: '1'
-        run: bundle exec rspec
+        run: make rspec
 
       - name: Report coverage to CodeClimate
         continue-on-error: true
@@ -71,3 +71,9 @@ jobs:
           GIT_BRANCH: ${{ steps.extract_branch.outputs.branch }}
           GIT_COMMIT_SHA: ${{ github.sha }}
         run: ./cc-test-reporter after-build -t simplecov
+
+      - name: Run Nanoc Check
+        run: make nanoc-check-all
+
+      - name: Run Guide Check
+        run: make slim-lint
