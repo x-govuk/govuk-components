@@ -1,6 +1,7 @@
 // GOV.UK Frontend options
 $govuk-global-styles: true;
 $govuk-assets-path: "/assets/";
+$app-iframe-mobile-height: 15rem;
 
 // Import GOV.UK Frontend
 @import "govuk/all";
@@ -10,6 +11,7 @@ $govuk-assets-path: "/assets/";
 @import "components/example";
 @import "components/header";
 @import "components/highlight";
+@import "components/iframe";
 @import "components/list";
 @import "components/masthead";
 @import "components/prose";

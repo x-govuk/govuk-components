@@ -38,7 +38,9 @@ p
 
 == render('/partials/example.*',
   caption: "Header with navigation items",
-  code: header_with_navigation_items)
+  code: header_with_navigation_items,
+  rendered_partial: "/components/header/header_with_navigation_items",
+  rendered_partial_js: true)
 
   markdown:
     Navigation items can be added using the `navigation_item` slot. When viewed

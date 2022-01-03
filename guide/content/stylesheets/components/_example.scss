@@ -26,4 +26,12 @@
   .govuk-width-container {
     max-width: $govuk-page-width - 100px;
   }
+
+  iframe {
+    width: 100%;
+    border: none;
+
+    height: $app-iframe-mobile-height;
+    background: white;
+  }
 }

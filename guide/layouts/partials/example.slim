@@ -71,10 +71,13 @@ figure.app-example
       - unless defined?(hide_html_output) && hide_html_output
 
         .govuk-tabs__panel id=%(output-rendered-#{anchor_id(caption)}) class=("inverse" if defined?(inverse) && inverse)
-          - if defined?(data)
-            == format_slim(code, data)
+          - if defined?(rendered_partial)
+            iframe src=rendered_partial sandbox=(!defined?(rendered_partial_js) || (defined?(rendered_partial_js) && !rendered_partial_js))
           - else
-            == format_slim(code)
+            - if defined?(data)
+              == format_slim(code, data)
+            - else
+              == format_slim(code)
 
         .govuk-tabs__panel id=%(output-html-#{anchor_id(caption)})
           pre
