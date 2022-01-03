@@ -1,0 +1,32 @@
+---
+title: Common options
+---
+
+markdown:
+  The components included in this library share some common options, `classes`
+  and `html_attributes`.
+
+  These are present on and work consistently consistently across all the
+  components and slots.
+
+== render('/partials/example.*',
+  caption: "Inset text with custom CSS classes",
+  code: inset_text_with_classes) do
+
+  markdown:
+    Every component, slot and helper has its own classes to make it look and work like
+    a GOV.UK Design System component. We can add extra classes to customise for
+    our projects by using the `classes` keyword argument. The built in and provided
+    classes are combined and all will be present in the rendered component.
+
+    Classes can be provided in an array or a space-separated string.
+
+markdown:
+== render('/partials/example.*',
+  caption: "Inset text with custom HTML attributes",
+  code: inset_text_with_html_attributes) do
+
+  markdown:
+    HTML attributes work in a similar fashion to classes but the `html_attributes`
+    argument must be a hash.
+

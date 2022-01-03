@@ -17,6 +17,15 @@
     max-width: 38em;
   }
 
+  > h2 {
+    @extend %govuk-heading-m;
+  }
+
+  > ul {
+    @extend %govuk-list;
+    @extend %govuk-list--bullet;
+  }
+
   dl {
     @include govuk-font($size: 19);
     @include govuk-text-colour;

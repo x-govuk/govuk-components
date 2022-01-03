@@ -76,3 +76,4 @@ use_helper Examples::TableHelpers
 use_helper Examples::TabsHelpers
 use_helper Examples::TagHelpers
 use_helper Examples::WarningTextHelpers
+use_helper Examples::CommonOptionsHelpers

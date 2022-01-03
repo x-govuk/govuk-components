@@ -2,62 +2,42 @@
 title: About ViewComponent
 ---
 
-p
-  | #{govuk_link_to("ViewComponent", viewcomponent_link).html_safe} is a
-    framework for Ruby on Rails that lets us build and share reusable
-    components.
+markdown:
+  [ViewComponent](https://viewcomponent.org/guide/slots.html) is a framework
+  for Ruby on Rails that lets us build and share reusable components. View
+  components are:
 
-p
-  | View components are:
+  * easy to test, both the logic and rendered HTML can be examined individually
+  * easier to understand than partials as they are backed by a Ruby object
+  * incredibly efficient, [ten times faster than partials](https://viewcomponent.org/#performance)
 
-ul.govuk-list.govuk-list--bullet
-  li easy to test, both the logic and rendered HTML can be examined individually
-  li easier to understand than partials as they are backed by a Ruby object
-  li incredibly efficient, #{govuk_link_to("10 times faster than partials", "https://viewcomponent.org/#performance").html_safe}
+  View components are typically placed in `app/components` and consist of
+  a Ruby file and a template file.
 
-h2.govuk-heading-l How they work
+  They can be extended [to provide custom JavaScript and
+  CSS](https://viewcomponent.org/guide/javascript_and_css.html) too, but this
+  library doesn't do it.
 
-p
-  | View components are usually placed in <code>app/components</code> and 
-    consist of a Ruby file and a template file. They can be extended to provide 
-    custom JavaScript and CSS too, but this library doesn’t do it.
+  ## Slots
 
-p
-  | A very basic view component might look like this:
+  Some compoonents contain elements that are repeated one or many times. For
+  example, the [header component can display multiple navigation
+  items](/components/header/#header-with-navigation-items). These are
+  implemented using
+  [ViewComponent's Slot API](https://viewcomponent.org/guide/slots.html).
 
-.code-sample
-  pre
-    code.highlight.language-ruby
-      | # in app/components/sample_component.rb
-        class SampleComponent < ViewComponent::Base
-          attr_reader :title
+  Slots are view components that appear within other view components, they can
+  be deeply nested. For example, the [table component](/components/table) has
+  many rows and each row can have many cells.
 
-          def initialize(title:, name:)
-            @title = title
-            @name  = name
-          end
-
-        private
-
-          def greeting
-            "Hi there \#{name}"
-          end
-        end
+  Slots are called by opening a block when rendering the component and calling
+  the slot by name against the object. In this example we have a shopping list
+  with several items:
 
 .code-sample
   pre
     code.highlight.language-slim
-      | / in app/components/sample_component.slim
-        .sample-component
-          h2 = title
-
-          p.greeting = greeting
-
-
-p
-  | You can then use it from a template by passing an object to <code>render</code>:
-
-.code-sample
-  pre
-    code.highlight.language-slim
-      | = render(SampleComponent.new(title: "Welcome!", name: "Rosemary"))
+      | = render(ShoppingList.new) do |shopping_list|
+          - shopping_list.item("Apple juice")
+          - shopping_list.item("Bread")
+          - shopping_list.item("Carrots")
