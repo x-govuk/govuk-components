@@ -6,13 +6,13 @@
 [![GitHub license](https://img.shields.io/github/license/DFE-Digital/govuk-components)](https://github.com/DFE-Digital/govuk-components/blob/master/LICENSE)
 [![GOV.UK Design System Version](https://img.shields.io/badge/GOV.UK%20Design%20System-3.13.1-brightgreen)](https://design-system.service.gov.uk)
 
-This gem provides a suite of reusable components for the [GOV.UK Design System](https://design-system.service.gov.uk/). It is intended to provide a lightweight alternative to the [GOV.UK Publishing Components](https://github.com/alphagov/govuk_publishing_components) library and is built with Github's [ViewComponent](https://github.com/github/view_component) framework.
+This gem provides a suite of reusable components for the [GOV.UK Design System](https://design-system.service.gov.uk/). It is intended to provide a lightweight alternative to the [GOV.UK Publishing Components](https://github.com/alphagov/govuk_publishing_components) library and is built with GitHub’s [ViewComponent](https://github.com/github/view_component) framework.
 
 It aims to implement the functionality from the original Nunjucks macros in a way that will feel more familiar to Rails developers. Blocks are preferred over strings of HTML, beneath the surface each component is just a Ruby object, everything is inheritable and overrideable.
 
-## What's included?
+## What’s included?
 
-All of the non-form components from the GOV.UK Design System are implmented by this library as ViewComponents. Form components are implemented by the [form builder](https://govuk-form-builder.netlify.app/).
+All of the non-form components from the GOV.UK Design System are implemented by this library as ViewComponents. Form components are implemented by the [GOV.UK Form Builder](https://govuk-form-builder.netlify.app/).
 
 The provided components are:
 
@@ -42,7 +42,7 @@ This library also provides [several link helpers](https://dfe-digital.github.io/
 
 All of the components can be rendered in two ways:
 
-* directly using Rails' `#render` method:
+* directly using Rails’ `#render` method:
 
   ```erb
     <%= render GovukComponent::WarningTextComponent.new do %>
@@ -58,25 +58,24 @@ All of the components can be rendered in two ways:
     <% end %>
   ```
 
-  The naming convention for helpers is `govuk_` followed by the component's name in snake case. You can
-  see the full list in [GovukComponentsHelper](app/helpers/govuk_components_helper.rb).
+  The naming convention for helpers is `govuk_` followed by the component’s name in snake case. You can see the full list in [GovukComponentsHelper](app/helpers/govuk_components_helper.rb).
 
 ## Example use
 
-This library allows components to be rendered with Rails' `render` method or via the provided helpers. Here we'll use the `govuk_tabs` to render three tabbed sections:
+This library allows components to be rendered with Rails’ `render` method or via the provided helpers. Here we’ll use the `govuk_tabs` to render three tabbed sections:
 
 ```erb
 <%= govuk_tabs(title: 'Days of the week') do |component| %>
   <% component.tab(label: 'Monday') do %>
-    <p>Monday's child is fair of face</p>
+    <p>Monday’s child is fair of face</p>
   <% end %>
 
   <% component.tab(label: 'Tuesday') do %>
-    <p>Tuesday's child is full of grace</p>
+    <p>Tuesday’s child is full of grace</p>
   <% end %>
 
   <% component.tab(label: 'Wednesday') do %>
-    <p>Wednesday's child is full of woe</p>
+    <p>Wednesday’s child is full of woe</p>
   <% end %>
 <% end %>
 
@@ -107,20 +106,22 @@ require "govuk/components"
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Add this line to your application’s Gemfile:
 
 ```ruby
 gem 'govuk-components'
 ```
 
 And then execute:
-```bash
-$ bundle
+
+```sh
+bundle
 ```
 
 Or install it yourself as:
-```bash
-$ gem install govuk-components
+
+```sh
+gem install govuk-components
 ```
 
 ## Contributing

@@ -1,0 +1,27 @@
+---
+title: Inset text
+---
+
+p
+  | Use the inset text component to differentiate a block of text from the
+    content that surrounds it, for example:
+
+ul.govuk-list.govuk-list--bullet
+  li quotes
+  li examples
+  li additional information about the page
+
+== render('/partials/example.*',
+  caption: "One line of inset text",
+  code: inset_text_normal) do
+
+  markdown:
+    One line of inset text can be passed in using the `text` argument.
+
+== render('/partials/example.*',
+  caption: "Multiple lines of inset text",
+  code: inset_text_block) do
+
+  markdown:
+    When more than a single line of inset text is needed, pass in any content 
+    in a block.

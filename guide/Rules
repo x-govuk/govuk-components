@@ -1,0 +1,33 @@
+compile '/index.slim' do
+  filter :slim
+  layout '/splash.*'
+  write '/index.html'
+end
+
+compile '/components/*/*.slim' do
+  filter :slim, format: :html
+  filter :colorize_syntax, default_colorizer: :rouge
+  filter :rubypants
+  layout '/example.*'
+  write item.identifier.without_ext + '/index.html'
+end
+
+compile '/**/*.slim' do
+  filter :slim, format: :html
+  filter :colorize_syntax, default_colorizer: :rouge
+  filter :rubypants
+  layout '/default.*'
+  write item.identifier.without_ext + '/index.html'
+end
+
+ignore '/**/_*.scss'
+compile '/**/*.scss' do
+  filter :sass, syntax: :scss, style: :compact, load_paths: ['node_modules/govuk-frontend', 'content/stylesheets/']
+  write item.identifier.without_ext + '.css'
+end
+
+compile '/**/*' do
+  write item.identifier.to_s
+end
+
+layout '/**/*', :slim

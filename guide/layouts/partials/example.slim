@@ -1,0 +1,88 @@
+h3 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-8" id=anchor_id(caption)
+  == link_to caption, "#".concat(anchor_id(caption)), class: "header-anchor"
+
+- if block_given? && (content = yield)
+  == content
+
+figure.app-example
+  .govuk-tabs data-module="govuk-tabs"
+    h4.govuk-heading-s.govuk-tabs--title Input
+
+    ul.govuk-tabs__list
+      li.govuk-tabs__list-item.govuk-tabs__list-item--selected
+        a.govuk-tabs__tab href=%(#input-slim-#{anchor_id(caption)})
+          | Slim
+      li.govuk-tabs__list-item
+        a.govuk-tabs__tab href=%(#input-erb-#{anchor_id(caption)})
+          | ERB
+
+      - if defined?(data)
+        li.govuk-tabs__list-item
+          a.govuk-tabs__tab href=%(#input-data-#{anchor_id(caption)})
+            | Data
+
+    .govuk-tabs__panel id=%(input-slim-#{anchor_id(caption)})
+      pre
+        code.highlight.language-slim
+          | #{code}
+
+    .govuk-tabs__panel.govuk-tabs__panel--hidden id=%(input-erb-#{anchor_id(caption)})
+      pre
+        code.highlight.language-erb.wrap
+          = format_erb(code)
+
+    - if defined?(data)
+      .govuk-tabs__panel.govuk-tabs__panel--hidden id=%(input-data-#{anchor_id(caption)})
+        pre
+          code.highlight.language-ruby.wrap
+            = data
+
+
+  - if defined?(render_in_boxes) && render_in_boxes
+
+    h4.govuk-heading-s Rendered output
+
+    - if defined?(data)
+      == format_slim(code, data)
+    - else
+      == format_slim(code)
+
+    h4.govuk-heading-s HTML output
+
+    pre
+      code.highlight.language-html
+        - if defined?(data)
+          = format_slim(code, data)
+        - else
+          = format_slim(code)
+
+  - else
+    .govuk-tabs data-module="govuk-tabs"
+      h4.govuk-heading-s.govuk-tabs--title Output
+
+      ul.govuk-tabs__list
+        li.govuk-tabs__list-item.govuk-tabs__list-item--selected
+          a.govuk-tabs__tab href=%(#output-rendered-#{anchor_id(caption)})
+            | Rendered
+        li.govuk-tabs__list-item
+          a.govuk-tabs__tab href=%(#output-html-#{anchor_id(caption)})
+            | HTML
+
+      - unless defined?(hide_html_output) && hide_html_output
+
+        .govuk-tabs__panel id=%(output-rendered-#{anchor_id(caption)}) class=("inverse" if defined?(inverse) && inverse)
+          - if defined?(rendered_partial)
+            iframe src=rendered_partial sandbox=(!defined?(rendered_partial_js) || (defined?(rendered_partial_js) && !rendered_partial_js))
+          - else
+            - if defined?(data)
+              == format_slim(code, data)
+            - else
+              == format_slim(code)
+
+        .govuk-tabs__panel id=%(output-html-#{anchor_id(caption)})
+          pre
+            code.highlight.language-html
+              - if defined?(data)
+                = format_slim(code, data)
+              - else
+                = format_slim(code)

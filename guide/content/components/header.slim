@@ -1,0 +1,49 @@
+---
+title: Header
+---
+
+p
+  | The GOV.UK header shows users that they are on GOV.UK and which service they
+    are using.
+
+== render('/partials/example.*',
+  caption: "Default header",
+  code: header_normal) do
+
+  markdown:
+    When no arguments are provided to the header it’s rendered with only the 
+    crown logo and logotype text.
+
+== render('/partials/example.*',
+  caption: "Header with custom logo and service name",
+  code: header_with_custom_logo_and_service_name) do
+
+  markdown:
+    The service name can be set using the `service_name` keyword argument.
+
+    If a custom logo is needed it can be set using the `custom_logo` slot.
+    This example uses an emoji but any graphic or text can be used instead.
+
+== render('/partials/example.*',
+  caption: "Header with custom logotype",
+  code: header_with_custom_logotype_and_homepage_url) do
+
+  markdown:
+    If you want to keep the crown logo but change the text use the `logotype`
+    argument.
+
+== render('/partials/example.*',
+  caption: "Header with custom product name",
+  code: header_with_custom_product_name)
+
+== render('/partials/example.*',
+  caption: "Header with navigation items",
+  code: header_with_navigation_items,
+  rendered_partial: "/components/header/header_with_navigation_items",
+  rendered_partial_js: true)
+
+  markdown:
+    Navigation items can be added using the `navigation_item` slot. When viewed
+    on mobile they will appear in a dropdown menu.
+
+== render('/partials/related-info.*', links: header_info)

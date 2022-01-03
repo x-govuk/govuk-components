@@ -4,12 +4,12 @@ class GovukComponent::TableComponent::CellComponent < GovukComponent::Base
   alias_method :numeric?, :numeric
 
   WIDTHS = {
-    "full"           => "govuk-input govuk-!-width-full",
-    "three-quarters" => "govuk-input govuk-!-width-three-quarters",
-    "two-thirds"     => "govuk-input govuk-!-width-two-thirds",
-    "one-half"       => "govuk-input govuk-!-width-one-half",
-    "one-third"      => "govuk-input govuk-!-width-one-third",
-    "one-quarter"    => "govuk-input govuk-!-width-one-quarter",
+    "full"           => "govuk-!-width-full",
+    "three-quarters" => "govuk-!-width-three-quarters",
+    "two-thirds"     => "govuk-!-width-two-thirds",
+    "one-half"       => "govuk-!-width-one-half",
+    "one-third"      => "govuk-!-width-one-third",
+    "one-quarter"    => "govuk-!-width-one-quarter",
   }.freeze
 
   def initialize(header: false, text: nil, numeric: false, width: nil, classes: [], html_attributes: {})

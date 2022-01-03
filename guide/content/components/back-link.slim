@@ -1,0 +1,17 @@
+---
+title: Back link
+---
+
+p
+  | Use the back link component to help users go back to the previous page in a
+    multi-page transaction.
+
+== render('/partials/example.*',
+  caption: "Basic back link",
+  code: back_link_normal)
+
+== render('/partials/example.*',
+  caption: "Back link with custom text",
+  code: back_link_custom)
+
+== render('/partials/related-info.*', links: back_link_info)
