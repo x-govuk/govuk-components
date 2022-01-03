@@ -7,18 +7,18 @@ title: Table
   code: table_normal) do
 
   markdown:
-    Complex tables can be built as we would in HTML, by declaring the
-    caption, head, body, rows and cells.
+    Complex tables can be built as we would in HTML, by declaring the caption, 
+    head, body, rows and cells.
 
-    Tables can have one caption which should be used to describe
-    the contents of the table.
+    Tables can have one caption which should be used to describe the contents 
+    of the table.
 
-    The head and body are created using the `head` and `body` slots and
-    can each contain one or more `row` elements. Each row can contain
-    multiple `cell` elements.
+    The head and body are created using the `head` and `body` slots and can 
+    each contain one or more `row` elements. Each row can contain multiple 
+    `cell` elements.
 
     By default `cell` will create a `<td>` element, when `header: true` is
-    passed in it will create a `<th>`. Cells values can be set using the
+    passed in it will create a `<th>`. Cells values can be set using the 
     `text:` argument or by passing in a block of HTML.
 
 == render('/partials/example.*',
@@ -26,8 +26,8 @@ title: Table
   code: table_with_header_column) do
 
   markdown:
-    To make a column of headers pass `header: true` to the first cell
-    on each row in the `body`.
+    To make a column of headers pass `header: true` to the first cell on each 
+    row in the `body`.
 
 == render('/partials/example.*',
   caption: "Building a table from arrays",
@@ -35,25 +35,25 @@ title: Table
   data: table_data) do
 
   markdown:
-    If you want to build a table without advanced options you can
-    pass in an array of arrays via the `rows` argument. Each element
-    in the outer array represents a `row` and and each element
-    in the inner array represents a `cell`.
+    If you want to build a table without advanced options you can pass in an 
+    array of arrays via the `rows` argument. Each element in the outer array 
+    represents a `row` and and each element in the inner array represents a 
+    `cell`.
 
-    You can set the header columns explicitely by passing an array
-    of headers using the `head` argument. If nothing is set the
-    first row will be used for headers.
+    You can set the header columns explicitely by passing an array of headers 
+    using the `head` argument. If nothing is set the first row will be used for 
+    headers.
 
 == render('/partials/example.*',
   caption: "Table with resized columns",
   code: table_with_resized_columns) do
 
   markdown:
-    By default the table will automatically size the columns to avoid
-    wrapping. This can make tables with lots of data feel cramped.
+    By default the table will automatically size the columns to avoid wrapping. 
+    This can make tables with lots of data feel cramped.
 
-    We can avoid this by setting the width of cells. We only need to
-    set it once per column and usually this is set in the `head` section.
+    We can avoid this by setting the width of cells. We only need to set it 
+    once per column and usually this is set in the `head` section.
 
     The options available are `one-quarter`, `one-third`, `one-half`,
     `two-thirds`, `three-quarters` and `full`.

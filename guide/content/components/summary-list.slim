@@ -3,25 +3,25 @@ title: Summary list
 ---
 
 p
-  | Use the summary list to summarise information, for example, a user’s responses
-    at the end of a form.
+  | Use the summary list to summarise information, for example, a user’s 
+    responses at the end of a form.
 
 == render('/partials/example.*',
   caption: "A summary list with various entries",
   code: summary_list_normal) do
 
   markdown:
-    Summary lists contain one or more rows with keys and values. Rows can optionally
-    contain actions which are links to other pages.
+    Summary lists contain one or more rows with keys and values. Rows can 
+    optionally contain actions which are links to other pages.
 
     The keys and values can either be set using the `text` argument or by
     passing a block of HTML.
 
-    Actions need `text` to set the link text and `href` for the link target. When
-    the same action text is used multiple times, like 'Change' in the example below,
-    we can provide the `visually_hidden_text` argument to describe what we're changing.
+    Actions need `text` to set the link text and `href` for the link target. 
+    When the same action text is used multiple times, like ‘Change’ in the 
+    example below, we can provide the `visually_hidden_text` argument to 
+    describe what we’re changing.
 
     The visually hidden text will be rendered immediately after the link.
-
 
 == render('/partials/related-info.*', links: summary_list_info)

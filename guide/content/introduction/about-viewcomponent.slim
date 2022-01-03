@@ -13,14 +13,14 @@ p
 ul.govuk-list.govuk-list--bullet
   li easy to test, both the logic and rendered HTML can be examined individually
   li easier to understand than partials as they are backed by a Ruby object
-  li incredibly efficient, #{govuk_link_to("ten times faster than partials", "https://viewcomponent.org/#performance").html_safe}
+  li incredibly efficient, #{govuk_link_to("10 times faster than partials", "https://viewcomponent.org/#performance").html_safe}
 
 h2.govuk-heading-l How they work
 
 p
-  | View components are usually placed in <code>app/components</code> and usually consist of
-    a Ruby file and a template file. They can be extended to provide custom JavaScript and CSS
-    too, but this library doesn't do it.
+  | View components are usually placed in <code>app/components</code> and 
+    consist of a Ruby file and a template file. They can be extended to provide 
+    custom JavaScript and CSS too, but this library doesn’t do it.
 
 p
   | A very basic view component might look like this:
