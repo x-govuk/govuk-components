@@ -67,7 +67,7 @@ module Helpers
 
     def start_button_info
       {
-        "GOV.UK Design System start button documentation" => "https://design-system.service.gov.uk/components/start-button/"
+        "GOV.UK Design System start button documentation" => "https://design-system.service.gov.uk/components/button/#start-buttons"
       }
     end
 
