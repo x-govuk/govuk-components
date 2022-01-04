@@ -3,8 +3,8 @@ title: Link helpers
 ---
 
 p.govuk-body
-  | In addition to the components this gem also comes with link helpers that are
-    frequently duplicated and reimplemented across projects.
+  | In addition to the components, this gem also comes with link helpers that are
+    often reimplemented across projects.
 
 == render('/partials/example.*',
   caption: "Regular link",
@@ -32,7 +32,7 @@ h2.govuk-heading-l Class helpers
 
 p.govuk-body
   | Rails has #{link_to("lots of link helpers", rails_docs_url_helper).html_safe}
-    and only the most-frequently used are wrapped by this library. If you need
+    and only the most frequently used are wrapped by this library. If you need
     to use another variant, like <code>link_to_if</code>, you can use the
     <code>govuk_link_classes</code> and <code>govuk_button_classes</code>
     helpers to ensure the correct classes are assigned.
@@ -42,6 +42,6 @@ p.govuk-body
   code: govuk_link_classes_multiple) do
 
   p.govuk-body
-    | When no arguments are provided to <code>govuk_link_classes</code> only
+    | When no arguments are provided to <code>govuk_link_classes</code>, only
       the default <code>govuk-link</code> will be added. Alternate styles
       can be passed in as a snake cased array of variants.
