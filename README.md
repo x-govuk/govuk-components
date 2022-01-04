@@ -4,7 +4,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/cbcbc140f300b920d833/maintainability)](https://codeclimate.com/github/DFE-Digital/govuk-components/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/cbcbc140f300b920d833/test_coverage)](https://codeclimate.com/github/DFE-Digital/govuk-components/test_coverage)
 [![GitHub license](https://img.shields.io/github/license/DFE-Digital/govuk-components)](https://github.com/DFE-Digital/govuk-components/blob/master/LICENSE)
-[![GOV.UK Design System Version](https://img.shields.io/badge/GOV.UK%20Design%20System-3.13.1-brightgreen)](https://design-system.service.gov.uk)
+[![GOV.UK Design System Version](https://img.shields.io/badge/GOV.UK%20Design%20System-4.0.0-brightgreen)](https://design-system.service.gov.uk)
 
 This gem provides a suite of reusable components for the [GOV.UK Design System](https://design-system.service.gov.uk/). It is intended to provide a lightweight alternative to the [GOV.UK Publishing Components](https://github.com/alphagov/govuk_publishing_components) library and is built with GitHub’s [ViewComponent](https://github.com/github/view_component) framework.
 
@@ -36,7 +36,8 @@ The provided components are:
 * [Tags](https://govuk-components.netlify.app/components/tags)
 * [Warning text](https://govuk-components.netlify.app/components/warning-text)
 
-This library also provides [link](https://govuk-components.netlify.app/helpers/link) and [button](https://govuk-components.netlify.app/helpers/button) helpers.
+This library also provides [link](https://govuk-components.netlify.app/helpers/link) and
+[button](https://govuk-components.netlify.app/helpers/button) helpers.
 
 ## Alternative syntax
 
@@ -78,7 +79,6 @@ This library allows components to be rendered with Rails’ `render` method or v
     <p>Wednesday’s child is full of woe</p>
   <% end %>
 <% end %>
-
 ```
 
 Here are the rendered tabs:
@@ -126,20 +126,18 @@ gem install govuk-components
 
 ## Contributing
 
-To setup the dummy app:
+Bug reports and feature requests are most welcome, please raise an issue or
+submit a pull request.
 
-`cd spec/dummy`
-`yarn install`
-`bundle install`
-`bin/rails db:create`
-`bin/rails db:migrate`
-`bin/rails s`
+Currently we're using [GOVUK Lint](https://github.com/alphagov/govuk-lint) to
+ensure code meets the GOV.UK guidelines. Please ensure that any PRs also adhere
+to this standard.
 
-After changing a component or adding a new one:
+To help keep the logs clean and tidy, please configure git to use your full name:
 
-* add or update the corresponding specs, and check they pass by running `bundle exec rspec`.
-
-* update the examples page by cd-ing into the dummy app `cd spec/dummy` and running the rake task `bin/rake generate_examples_page`.
+```sh
+git config --global user.name "Julius Hibbert"
+```
 
 ## License
 
