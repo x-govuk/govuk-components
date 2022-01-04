@@ -6,8 +6,7 @@ markdown:
   The components included in this library share some common options, `classes`
   and `html_attributes`.
 
-  These are present on and work consistently consistently across all the
-  components and slots.
+  These arguments work consistently across all the components and slots.
 
 == render('/partials/example.*',
   caption: "Inset text with custom CSS classes",
@@ -29,3 +28,6 @@ markdown:
   markdown:
     HTML attributes work in a similar fashion to classes but the `html_attributes`
     argument must be a hash.
+
+    You can use the [Rails convention](https://api.rubyonrails.org/classes/ActionView/Helpers/TagHelper.html#method-i-tag)
+    of nesting `aria` and `data` attributes and they'll be set properly.

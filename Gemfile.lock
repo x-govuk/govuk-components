@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    govuk-components (3.0.0b1)
+    govuk-components (3.0.0b2)
       activemodel (~> 6.1.4.4, >= 6.1)
       railties (~> 6.1.4.4, >= 6.1)
       view_component (~> 2.39.0)
@@ -357,4 +357,4 @@ DEPENDENCIES
   webrick (~> 1.7.0)
 
 BUNDLED WITH
-   2.2.28
+   2.2.32

@@ -9,7 +9,9 @@ module Examples
 
     def inset_text_with_html_attributes
       <<~LINK
-        = govuk_inset_text(html_attributes: { lang: "en-GB", data: { demo: true } })
+        = govuk_inset_text(html_attributes: { lang: "en-GB",
+                                              data: { demo: true },
+                                              aria: { role: 'note' } })
           | Text with custom HTML attributes
       LINK
     end
