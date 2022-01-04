@@ -21,6 +21,10 @@
     @extend %govuk-heading-m;
   }
 
+  > h3 {
+    @extend %govuk-heading-s;
+  }
+
   > ul {
     @extend %govuk-list;
     @extend %govuk-list--bullet;
