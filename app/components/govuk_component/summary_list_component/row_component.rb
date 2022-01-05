@@ -1,12 +1,14 @@
 class GovukComponent::SummaryListComponent::RowComponent < GovukComponent::Base
-  attr_reader :href, :visually_hidden_text
+  attr_reader :href, :visually_hidden_text, :show_actions_column
 
   renders_one :key, GovukComponent::SummaryListComponent::KeyComponent
   renders_one :value, GovukComponent::SummaryListComponent::ValueComponent
   renders_many :actions, GovukComponent::SummaryListComponent::ActionComponent
 
-  def initialize(classes: [], html_attributes: {})
+  def initialize(show_actions_column: nil, classes: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
+
+    @show_actions_column = show_actions_column
   end
 
   def call
@@ -18,7 +20,7 @@ class GovukComponent::SummaryListComponent::RowComponent < GovukComponent::Base
 private
 
   def actions_content
-    return if actions.blank?
+    return unless show_actions_column && actions.any?
 
     (actions.one?) ? single_action : actions_list
   end
@@ -36,7 +38,9 @@ private
   end
 
   def default_classes
-    %w(govuk-summary-list__row)
+    %w(govuk-summary-list__row).tap do |c|
+      c << "govuk-summary-list__row--no-actions" if show_actions_column && actions.none?
+    end
   end
 
   def actions_class

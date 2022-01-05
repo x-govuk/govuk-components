@@ -22,6 +22,20 @@ p
     example below, we can provide the `visually_hidden_text` argument to
     describe what we’re changing.
 
+    The summary list expects rows to have actions, rows without actions
+    will automatically have the class `govuk-summary-list__row--no-actions`
+    applied to maintain consistent alignment.
+
     The visually hidden text will be rendered immediately after the link.
+
+== render('/partials/example.*',
+  caption: "Summary lists without actions",
+  code: summary_list_without_actions) do
+
+  markdown:
+    When there are no user actions and the summary list is only used to
+    display static information, the actions column can be hidden entirely
+    using `actions: false`. Doing this makes the values column wider
+    consuming the remaining space.
 
 == render('/partials/related-info.*', links: summary_list_info)

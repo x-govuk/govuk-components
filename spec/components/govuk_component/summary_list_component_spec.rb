@@ -114,7 +114,7 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
     end
   end
 
-  context "when some rows don't have actions" do
+  context "when one row has actions and one does not" do
     subject! do
       render_inline(described_class.new(**kwargs)) do |component|
         component.row do |row|
@@ -122,15 +122,47 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
             [row.key(text: "Key"), row.value(text: "Value"), row.action(href: nil)]
           )
         end
+
+        component.row do |row|
+          helper.safe_join(
+            [row.key(text: "Key"), row.value(text: "Value")]
+          )
+        end
       end
     end
 
-    specify "renders an empty action column" do
+    specify "renders one row with the govuk-summary-list__row--no-actions class and no actions" do
       expect(rendered_component).to have_tag("dl", with: { class: component_css_class }) do
-        with_tag("div", with: { class: %(govuk-summary-list__row) }) do
-          with_tag("dd", with: { class: "govuk-summary-list__actions" }, text: "")
+        with_tag("div", with: { class: %(govuk-summary-list__row govuk-summary-list__row--no-actions) }, count: 1) do
+          without_tag("dd", with: { class: "govuk-summary-list__actions" })
         end
       end
+    end
+
+    specify "renders one row with actions" do
+      expect(rendered_component).to have_tag("dl", with: { class: component_css_class }) do
+        with_tag("div", with: { class: %(govuk-summary-list__row) }) do
+          with_tag("dd", with: { class: "govuk-summary-list__actions" }, count: 1)
+        end
+      end
+    end
+  end
+
+  context "when 'actions: false'" do
+    subject! do
+      render_inline(described_class.new(actions: false, **kwargs)) do |component|
+        component.row { |row| helper.safe_join([row.key(text: "Key"), row.value(text: "Value"), row.action(href: "/a")]) }
+        component.row { |row| helper.safe_join([row.key(text: "Key"), row.value(text: "Value"), row.action(href: "/b")]) }
+        component.row { |row| helper.safe_join([row.key(text: "Key"), row.value(text: "Value")]) }
+      end
+    end
+
+    specify "no actions are rendered, even when they're called on the row" do
+      expect(rendered_component).not_to have_tag("dd", with: { class: "govuk-summary-list__actions" })
+    end
+
+    specify "no rows have the class 'govuk-summary-list__row--no-actions'" do
+      expect(rendered_component).not_to have_tag("div", with: { class: %(govuk-summary-list__row govuk-summary-list__row--no-actions) })
     end
   end
 
