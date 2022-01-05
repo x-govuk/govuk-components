@@ -8,7 +8,7 @@ module Examples
 
     def footer_with_meta_items
       <<~FOOTER
-        = govuk_footer(meta_items_title: "Helfpul links", meta_items: meta_items)
+        = govuk_footer(meta_items_title: "Helpful links", meta_items: meta_items)
       FOOTER
     end
 
