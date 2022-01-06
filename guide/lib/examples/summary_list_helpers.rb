@@ -18,7 +18,29 @@ module Examples
             - row.key(text: 'Chinchilla')
             - row.value(text: 'Either of two species of crepuscular rodents')
             - row.action(text: 'Change', visually_hidden_text: 'chinchillas', href: '#')
+
+          - summary_list.row do |row|
+            - row.key(text: 'Dugong')
+            - row.value(text: 'Dugongs are a species of sea cow')
       SUMMARY_LIST
+    end
+
+    def summary_list_without_actions
+      <<~SUMMARY_LIST_WITHOUT_ACTIONS
+        = govuk_summary_list(actions: false) do |summary_list|
+          - summary_list.row do |row|
+            - row.key { 'Name' }
+            - row.value { 'Sherlock Holmes' }
+
+          - summary_list.row do |row|
+            - row.key(text: 'Address')
+            - row.value do
+              | 221B Baker Street, Westminster, London, NW1 6XE, England
+
+          - summary_list.row do |row|
+            - row.key(text: 'Phone number')
+            - row.value(text: '020 123 1234')
+      SUMMARY_LIST_WITHOUT_ACTIONS
     end
   end
 end

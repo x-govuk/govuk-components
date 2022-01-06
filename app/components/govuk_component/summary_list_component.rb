@@ -1,17 +1,21 @@
 module GovukComponent
   class SummaryListComponent < GovukComponent::Base
-    attr_reader :borders
+    attr_reader :borders, :actions
 
-    renders_many :rows, "GovukComponent::SummaryListComponent::RowComponent"
-
-    def initialize(borders: true, classes: [], html_attributes: {})
-      super(classes: classes, html_attributes: html_attributes)
-
-      @borders = borders
+    renders_many :rows, ->(classes: [], html_attributes: {}, &block) do
+      GovukComponent::SummaryListComponent::RowComponent.new(
+        show_actions_column: @show_actions_column,
+        classes: classes,
+        html_attributes: html_attributes,
+        &block
+      )
     end
 
-    def any_row_has_actions?
-      rows.any? { |row| row.href.present? }
+    def initialize(actions: true, borders: true, classes: [], html_attributes: {})
+      super(classes: classes, html_attributes: html_attributes)
+
+      @borders             = borders
+      @show_actions_column = actions
     end
 
     def classes
