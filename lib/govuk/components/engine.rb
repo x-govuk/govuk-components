@@ -1,3 +1,5 @@
+require "rails/engine"
+
 module Govuk
   module Components
     class Engine < ::Rails::Engine

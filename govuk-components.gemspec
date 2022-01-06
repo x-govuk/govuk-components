@@ -30,7 +30,7 @@ Gem::Specification.new do |spec|
     spec.add_dependency(*VersionFormatter.new(lib, rails_version, exact_rails_version).to_a)
   end
 
-  spec.add_dependency "view_component", "~> 2.39.0"
+  spec.add_dependency "view_component", "~> 2.47.0"
 
   spec.add_development_dependency "pry-byebug"
   spec.add_development_dependency "rspec-html-matchers", "~> 0.9"
