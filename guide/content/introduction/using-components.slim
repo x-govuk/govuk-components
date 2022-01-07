@@ -1,0 +1,37 @@
+---
+title: Using components
+---
+
+markdown:
+  You can use view components in Rails templates by:
+
+  * passing a ViewComponent object to Rails’ <code>render</code>
+    method directly
+  * using the packaged helpers that build and render the ViewComponent
+
+  The result and functionality of the components is the same
+  regardless of approach.
+
+  ## Using component objects directly
+
+  Rails supports the rendering of ViewComponent objects natively. You can
+  pass them straight to `render` in your template.
+
+.code-sample
+  pre
+    code.highlight.language-slim
+      | = render(GovukComponent::InsetTextComponent.new(text: "Important message"))
+
+markdown:
+  ## Using the provided helper methods
+
+  The helper methods make rendering components easier and they
+  provide a more consistent experience when using with the
+  [link helpers](/helpers/link) and [GOV.UK Form Builder](https://govuk-form-builder.netlify.app/).
+
+.code-sample
+  pre
+    code.highlight.language-slim
+      | = govuk_inset_text(text: "Important message")
+
+== ActionController::Base.render(component_helper_mapping_table)

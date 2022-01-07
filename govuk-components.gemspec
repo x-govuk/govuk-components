@@ -1,7 +1,7 @@
 $LOAD_PATH.push File.expand_path("lib", __dir__)
 
-# Maintain your gem's version:
 require "govuk/components/version"
+require_relative "util/version_formatter"
 
 METADATA = {
   "bug_tracker_uri"   => "https://github.com/DFE-Digital/govuk-components/issues",
@@ -11,7 +11,6 @@ METADATA = {
   "source_code_uri"   => "https://github.com/DFE-Digital/govuk-components"
 }.freeze
 
-# Describe your gem and declare its dependencies:
 Gem::Specification.new do |spec|
   spec.name        = "govuk-components"
   spec.version     = Govuk::Components::VERSION
@@ -22,11 +21,16 @@ Gem::Specification.new do |spec|
   spec.description = "A collection of components intended to ease the building of GOV.UK Design System web applications"
   spec.license     = "MIT"
 
-  spec.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
+  spec.files = Dir["{app,config,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  spec.add_dependency "activemodel", ">= 6.0"
-  spec.add_dependency "railties", ">= 6.0"
-  spec.add_dependency "view_component", "~> 2.39.0"
+  exact_rails_version = ENV.key?("RAILS_VERSION")
+  rails_version = ENV.fetch("RAILS_VERSION") { "6.1.4.4" }
+
+  %w(activemodel railties).each do |lib|
+    spec.add_dependency(*VersionFormatter.new(lib, rails_version, exact_rails_version).to_a)
+  end
+
+  spec.add_dependency "view_component", "~> 2.47.0"
 
   spec.add_development_dependency "pry-byebug"
   spec.add_development_dependency "rspec-html-matchers", "~> 0.9"
@@ -35,4 +39,15 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "sassc-rails"
   spec.add_development_dependency("simplecov", "~> 0.20")
   spec.add_development_dependency "sqlite3"
+
+  # Required for the guide
+  spec.add_development_dependency("htmlbeautifier", "~> 1.4.1")
+  spec.add_development_dependency("nanoc", "~> 4.11")
+  spec.add_development_dependency("rouge", "~> 3.27.0")
+  spec.add_development_dependency("rubypants", "~> 0.7.0")
+  spec.add_development_dependency("sass")
+  spec.add_development_dependency("sassc", "~> 2.4.0")
+  spec.add_development_dependency("slim", "~> 4.1.0")
+  spec.add_development_dependency("slim_lint", "~> 0.22.0")
+  spec.add_development_dependency("webrick", "~> 1.7.0")
 end

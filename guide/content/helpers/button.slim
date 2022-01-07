@@ -1,0 +1,46 @@
+---
+title: Button helpers
+---
+
+p.govuk-body
+  | In addition to the components, this gem also comes with button helpers that
+    are frequently duplicated and reimplemented across projects.
+
+== render('/partials/example.*',
+  caption: "Regular button",
+  code: govuk_button_to_normal) do
+
+  p.govuk-body
+    | The <code>govuk_button_to</code> helper wraps Rails'
+      #{link_to('button_to', rails_docs_button_to).html_safe}
+      directly, rendering a form that will <code>POST</code> by default.
+
+== render('/partials/example.*',
+  caption: "Link styled like a button",
+  code: govuk_button_link_to_normal) do
+
+  p.govuk-body
+    | When using buttons for navigation, we usually want a link styled like a
+      button instead.
+
+== render('/partials/example.*',
+  caption: "Other button styles",
+  code: govuk_button_other_styles) do
+
+  markdown:
+    ### Disabled buttons
+
+    Disabled buttons are created using `disabled: true`. They have poor
+    contrast and can confuse some users, so avoid them if possible.
+
+    ### Secondary buttons
+
+    Secondary buttons are created with `secondary: true`. Pages usually have
+    one primary call to action so secondary buttons are used for other
+    operations.
+
+    ### Warning buttons
+
+    Warning buttons are created with `warning: true`. They're designed to make
+    users think carefully before they use them. They only work if used very
+    sparingly. Most services should not need one.

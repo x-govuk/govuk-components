@@ -15,7 +15,7 @@ RSpec.describe(GovukComponent::StartButtonComponent, type: :component) do
 
   specify 'the link contains an SVG chevron' do
     expect(rendered_component).to have_tag('a') do
-      with_tag('svg') { with_tag('path') }
+      with_tag('svg', with: { 'aria-hidden' => true }) { with_tag('path') }
     end
   end
 

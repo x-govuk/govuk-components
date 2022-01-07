@@ -1,0 +1,47 @@
+---
+title: Footer
+---
+
+p The footer provides copyright, licensing and other information about your
+  service and department.
+
+== render('/partials/example.*',
+  caption: "Default footer",
+  code: footer_normal) do
+
+  markdown:
+    When no arguments are provided, a bare footer is generated.
+
+== render('/partials/example.*',
+  caption: "Footer with meta links",
+  code: footer_with_meta_items,
+  data: footer_meta_items) do
+
+  markdown:
+    You can also include links to meta information about a site, such as cookies
+    and contact details in the footer:
+
+== render('/partials/example.*',
+  caption: "Footer with custom content beneath the licence information",
+  code: footer_with_custom_meta_html) do
+
+  markdown:
+    The `meta_html` slot allows any custom HTML to be placed under the licence information.
+
+== render('/partials/example.*',
+  caption: "Footer with entirely custom content",
+  code: footer_with_custom_meta) do
+
+  markdown:
+    The `meta` slot overwrites the entire `meta` area of the footer.
+
+== render('/partials/example.*',
+  caption: "Footer with custom copyright and licence",
+  code: footer_with_custom_copyright_and_licence,
+  data: footer_copyright_and_licence_arguments)
+
+== render('/partials/example.*',
+  caption: "Footer with navigation",
+  code: footer_with_navigation)
+
+== render('/partials/related-info.*', links: footer_info)

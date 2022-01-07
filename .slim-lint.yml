@@ -1,0 +1,13 @@
+---
+skip_frontmatter: true
+
+linters:
+  ControlStatementSpacing:
+    enabled: false
+  LineLength:
+    enabled: false
+  RuboCop:
+    enabled: false
+    ignored_cops:
+      # it's a static site, what's the worst that can happen? 😅
+      - Security/Eval

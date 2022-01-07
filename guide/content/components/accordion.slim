@@ -1,0 +1,27 @@
+---
+title: Accordion
+---
+
+p The accordion component lets users show and hide sections of related content on a page.
+
+== render('/partials/example.*',
+  caption: "Creating a simple accordion",
+  code: accordion_normal) do
+
+  markdown:
+    Each accordion section requires `heading_text` to be set. The content is
+    built from any markup that is passed in via the block.
+
+    Sections can be automatically expanded by setting `expanded: true`.
+
+== render('/partials/example.*',
+  caption: "Creating an accordion with section summaries",
+  code: accordion_with_section_summaries) do
+
+  markdown:
+    If the section needs more of an explanation, you can optionally add a
+    summary line using the `summary_text` keyword.
+
+    Keep summary lines as short as possible.
+
+== render('/partials/related-info.*', links: accordion_info)

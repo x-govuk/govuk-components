@@ -1,0 +1,1 @@
+module GovukComponent::Traits; end

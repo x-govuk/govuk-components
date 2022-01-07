@@ -156,7 +156,7 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
     let(:button_params) { { controller: :some_controller, action: :some_action } }
 
     before do
-      allow(self).to receive(:url_for).with(button_params).and_return(button_url)
+      allow(self).to receive(:url_for).with(anything).and_return(button_url)
     end
 
     context "when provided with button text and url params" do
@@ -176,7 +176,11 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
 
       specify "renders a form with an button of type submit and the correct attributes" do
         expect(subject).to have_tag("form", with: { class: "button_to", action: button_url }) do
-          with_tag("button", with: { type: "submit", class: "govuk-button" })
+          if Rails.version >= "7.0.0"
+            with_tag("button", with: { class: "govuk-button" })
+          else
+            with_tag("button", with: { type: "submit", class: "govuk-button" })
+          end
         end
       end
     end

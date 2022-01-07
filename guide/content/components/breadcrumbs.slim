@@ -1,0 +1,42 @@
+---
+title: Breadcrumbs
+---
+
+markdown:
+  The breadcrumbs component helps users to understand where they are within a
+  website’s structure and move between levels.
+
+  Always place breadcrumbs at the top of a page, before the `<main>` element.
+  Placing them here means that the [‘Skip to main content’ link](/helpers/skip-link/)
+  allows the user to skip all navigation links, including breadcrumbs.
+
+== render('/partials/example.*',
+  caption: "Breadcrumbs with default arguments",
+  code: breadcrumbs_normal,
+  data: breadcrumbs_data_three_levels) do
+
+  markdown:
+    Breadcrumbs need to be provided in a Hash where the keys are the page name and the values are the path.
+
+== render('/partials/example.*',
+  caption: "Breadcrumbs that collapse on mobile",
+  code: breadcrumbs_that_collapse_on_mobile,
+  data: breadcrumbs_data_five_levels) do
+
+  markdown:
+    If you have long breadcrumbs, you can configure the component to only show
+    the first and last items on mobile devices.
+
+== render('/partials/example.*',
+  caption: "Breadcrumbs from an array of links",
+  code: breadcrumbs_from_an_array_of_links,
+  data: breadcrumbs_array_of_links) do
+
+  markdown:
+    If you need more control over the breadcrumbs you can pass in any array of
+    links.
+
+    The `govuk_breadcrumb_link_to` helper generates links with the
+    `govuk-breadcrumbs__link` class.
+
+== render('/partials/related-info.*', links: breadcrumbs_info)

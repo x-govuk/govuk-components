@@ -1,5 +1,5 @@
 class GovukComponent::TableComponent::RowComponent < GovukComponent::Base
-  renders_many :cells, GovukComponent::TableComponent::CellComponent
+  renders_many :cells, "GovukComponent::TableComponent::CellComponent"
 
   attr_reader :header, :first_cell_is_header
 

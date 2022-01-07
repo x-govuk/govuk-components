@@ -1,0 +1,17 @@
+doctype html
+html.govuk-template lang="en"
+  == render '/partials/head.*'
+  body.govuk-template__body
+    == render '/partials/header.*'
+
+    .govuk-width-container
+      == render '/partials/breadcrumbs.*'
+
+      main#main-content.govuk-main-wrapper
+        article.app-prose
+          h1.govuk-heading-xl
+            | #{item[:title]}
+
+          == yield
+
+    == render '/partials/footer.*'

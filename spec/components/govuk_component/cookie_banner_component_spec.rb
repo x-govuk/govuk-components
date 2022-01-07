@@ -12,7 +12,8 @@ RSpec.describe(GovukComponent::CookieBannerComponent, type: :component) do
     expected_attributes = {
       class: %w(govuk-cookie-banner govuk-\!-display-none-print),
       role: "region",
-      "aria-label" => "Cookie banner"
+      "aria-label" => "Cookie banner",
+      "data-nosnippet" => "true"
     }
 
     expect(rendered_component).to have_tag("div", with: expected_attributes)

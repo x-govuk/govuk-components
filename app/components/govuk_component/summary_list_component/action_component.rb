@@ -9,12 +9,11 @@ class GovukComponent::SummaryListComponent::ActionComponent < GovukComponent::Ba
     @visually_hidden_text = visually_hidden_text
   end
 
-  def call
-    # when no href is provided return an empty string so the dd container
-    # will render, it's useful in lists where some rows have actions
-    # and others don't
-    return "" if href.blank?
+  def render?
+    href.present?
+  end
 
+  def call
     link_classes = govuk_link_classes.append(classes).flatten
 
     link_to(href, class: link_classes, **html_attributes) do

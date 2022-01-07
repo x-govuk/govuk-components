@@ -1,29 +1,35 @@
-class GovukComponent::SummaryListComponent < GovukComponent::Base
-  attr_reader :borders
+module GovukComponent
+  class SummaryListComponent < GovukComponent::Base
+    attr_reader :borders, :actions
 
-  renders_many :rows, GovukComponent::SummaryListComponent::RowComponent
+    renders_many :rows, ->(classes: [], html_attributes: {}, &block) do
+      GovukComponent::SummaryListComponent::RowComponent.new(
+        show_actions_column: @show_actions_column,
+        classes: classes,
+        html_attributes: html_attributes,
+        &block
+      )
+    end
 
-  def initialize(borders: true, classes: [], html_attributes: {})
-    super(classes: classes, html_attributes: html_attributes)
+    def initialize(actions: true, borders: true, classes: [], html_attributes: {})
+      super(classes: classes, html_attributes: html_attributes)
 
-    @borders = borders
-  end
+      @borders             = borders
+      @show_actions_column = actions
+    end
 
-  def any_row_has_actions?
-    rows.any? { |row| row.href.present? }
-  end
+    def classes
+      super.append(borders_class).compact
+    end
 
-  def classes
-    super.append(borders_class).compact
-  end
+  private
 
-private
+    def borders_class
+      %(govuk-summary-list--no-border) unless borders
+    end
 
-  def borders_class
-    %(govuk-summary-list--no-border) unless borders
-  end
-
-  def default_classes
-    %w(govuk-summary-list)
+    def default_classes
+      %w(govuk-summary-list)
+    end
   end
 end
