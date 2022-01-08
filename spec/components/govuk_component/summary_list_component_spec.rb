@@ -201,6 +201,188 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
       end
     end
   end
+
+  describe "passing data directly into the summary list component" do
+    subject! { render_inline(described_class.new(rows: rows)) }
+
+    describe "setting keys, values and actions" do
+      let(:rows) do
+        [
+          # row 1
+          {
+            key: {
+              text: "Name",
+              classes: "row-1-custom-key-class",
+              html_attributes: { data: { id: "row-1-key-custom-data-id" } },
+            },
+            value: {
+              text: "Sherlock Holmes",
+              classes: "row-1-custom-value-key-class",
+              html_attributes: { data: { id: "row-1-value-custom-data-id" } },
+            },
+            actions: [
+              {
+                text: "Change",
+                href: "/row-1-action-1-href",
+                visually_hidden_text: "name",
+                classes: "row-1-custom-action-1-class",
+                html_attributes: { data: { id: "row-1-action-1-data-id" } }
+              },
+            ],
+            classes: "row-1-custom-class",
+            html_attributes: { data: { id: "row-1-custom-data-id" } },
+          },
+
+          # row 2
+          {
+            key: {
+              text: "Address",
+              classes: "row-2-custom-key-class",
+              html_attributes: { data: { id: "row-2-key-custom-data-id" } },
+            },
+            value: {
+              text: "331 Baker Street, London",
+              classes: "row-2-custom-value-class",
+              html_attributes: { data: { id: "row-2-key-custom-data-id" } },
+            },
+            actions: [
+              {
+                text: "Change",
+                href: "/row-2-action-1-href",
+                visually_hidden_text: "address",
+                classes: "row-2-custom-action-1-class",
+                html_attributes: { data: { id: "row-2-action-1-data-id" } }
+              },
+              {
+                text: "Delete",
+                href: "/row-2-action-2-href",
+                visually_hidden_text: "address",
+                classes: "row-2-custom-action-2-class",
+                html_attributes: { data: { id: "row-2-action-2-data-id" } }
+              }
+            ],
+            classes: "row-2-custom-class",
+            html_attributes: { data: { id: "row-2-custom-data-id" } },
+          },
+        ]
+      end
+
+      specify "renders a summary list with the right number of rows" do
+        expect(rendered_component).to have_tag("dl", with: { class: "govuk-summary-list" }) do
+          with_tag(".govuk-summary-list__row", count: 2)
+        end
+      end
+
+      specify "renders rows with the custom classes" do
+        %w(row-1-custom-class row-2-custom-class).each do |custom_class|
+          expect(rendered_component).to have_tag("dl") do
+            with_tag("div", with: { class: custom_class })
+          end
+        end
+      end
+
+      specify "renders rows with the custom HTML attributes" do
+        %w(row-1-custom-data-id row-2-custom-data-id).each do |custom_data_id|
+          expect(rendered_component).to have_tag("dl") do
+            with_tag("div", with: { "data-id" => custom_data_id })
+          end
+        end
+      end
+
+      specify "renders keys with the right text, classes and HTML attributes" do
+        expect(rendered_component).to have_tag("dl") do
+          with_tag("div", with: { class: "row-1-custom-class" }) do
+            with_tag("dt", {
+              text: "Name",
+              with: { class: "row-1-custom-key-class", "data-id" => "row-1-key-custom-data-id" }
+            })
+          end
+
+          with_tag("div", with: { class: "row-2-custom-class" }) do
+            with_tag("dt", {
+              text: "Address",
+              with: { class: "row-2-custom-key-class", "data-id" => "row-2-key-custom-data-id" }
+            })
+          end
+        end
+      end
+
+      specify "renders single actions in the dd element" do
+        expect(rendered_component).to have_tag("dl > .row-1-custom-class") do
+          with_tag("dd", with: { class: "govuk-summary-list__actions" }) do
+            with_tag("a", {
+              class: "govuk-link",
+              with: {
+                href: "/row-1-action-1-href",
+                class: "row-1-custom-action-1-class",
+                "data-id" => "row-1-action-1-data-id"
+              },
+              text: /Change/
+            }) do
+              with_tag("span", with: { class: "govuk-visually-hidden" }, text: "name")
+            end
+          end
+        end
+      end
+
+      specify "renders multiple actions in an actions list" do
+        expect(rendered_component).to have_tag("dl > .row-2-custom-class") do
+          with_tag("dd", with: { class: "govuk-summary-list__actions" }) do
+            with_tag("ul", with: { class: "govuk-summary-list__actions-list" }) do
+              with_tag("a", {
+                class: "govuk-link",
+                with: {
+                  href: "/row-2-action-1-href",
+                  class: "row-2-custom-action-1-class",
+                  "data-id" => "row-2-action-1-data-id"
+                },
+                text: /Change/
+              }) { with_tag("span", with: { class: "govuk-visually-hidden" }, text: "address") }
+
+              with_tag("a", {
+                class: "govuk-link",
+                with: {
+                  href: "/row-2-action-2-href",
+                  class: "row-2-custom-action-2-class",
+                  "data-id" => "row-2-action-2-data-id"
+                },
+                text: /Delete/
+              }) { with_tag("span", with: { class: "govuk-visually-hidden" }, text: "address") }
+            end
+          end
+        end
+      end
+    end
+
+    describe "applying the govuk-summary-list__row--no-actions class when some some rows don't have them" do
+      let(:row_with_no_action) { { key: { text: "no-action" }, value: { text: "no-action" } } }
+      let(:row_with_one_action) { { key: { text: "no-action" }, value: { text: "no-action" }, actions: [{ href: "/path" }] } }
+
+      context "when no rows have actions" do
+        let(:rows) { [row_with_no_action, row_with_no_action] }
+
+        specify "no rows should have the govuk-summary-list__row--no-actions class" do
+          expect(rendered_component).not_to have_tag("div", with: { class: "govuk-summary-list__row--no-actions" })
+        end
+      end
+
+      context "when all rows have actions" do
+        let(:rows) { [row_with_one_action, row_with_one_action] }
+
+        specify "no rows should have the govuk-summary-list__row--no-actions class" do
+          expect(rendered_component).not_to have_tag("div", with: { class: "govuk-summary-list__row--no-actions" })
+        end
+      end
+
+      context "when some rows have actions and some don't" do
+        let(:rows) { [row_with_one_action, row_with_no_action] }
+
+        specify "one row has the govuk-summary-list__row--no-actions class" do
+          expect(rendered_component).to have_tag("div", with: { class: "govuk-summary-list__row--no-actions" }, count: 1)
+        end
+      end
+    end
+  end
 end
 
 RSpec.describe(GovukComponent::SummaryListComponent::RowComponent, type: :component) do
