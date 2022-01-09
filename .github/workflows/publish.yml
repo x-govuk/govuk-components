@@ -1,0 +1,33 @@
+name: Publish
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Tag
+        required: true
+jobs:
+  publish:
+    name: Publish to RubyGems.org and GitHub Packages
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.inputs.tag }}
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.7.5'
+
+      - name: Install gems
+        env:
+          RAILS_VERSION: '6.1.4.4'
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+
+      - name: Publish gem
+        uses: dawidd6/action-publish-gem@v1
+        with:
+          api_key: ${{ secrets.RUBYGEMS_API_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
