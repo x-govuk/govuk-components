@@ -42,5 +42,26 @@ module Examples
             - row.value(text: '020 123 1234')
       SUMMARY_LIST_WITHOUT_ACTIONS
     end
+
+    def summary_list_from_rows
+      <<~SUMMARY_LIST_FROM_ROWS
+        = govuk_summary_list(rows: rows)
+      SUMMARY_LIST_FROM_ROWS
+    end
+
+    def summary_list_from_rows_data
+      <<~SUMMARY_LIST_FROM_ROWS_DATA
+        {
+          rows: [
+            { key: { text: "Name" }, value: { text: "Hercule Poirot" } },
+            {
+              key: { text: "Address" },
+              value: { text: "Flat 203, 56B Whitehaven Mansions, Charterhouse Square, London" },
+              actions: [{ href: "#", visually_hidden_text: "address" }]
+            }
+          ]
+        }
+      SUMMARY_LIST_FROM_ROWS_DATA
+    end
   end
 end
