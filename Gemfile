@@ -14,8 +14,6 @@ gemspec
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 
-gem "lookbook"
-
 group 'nanoc' do
   gem 'nanoc-live'
 end
