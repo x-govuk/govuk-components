@@ -6,7 +6,7 @@
 [![Gem](https://img.shields.io/gem/dt/govuk-components?logo=rubygems)](https://rubygems.org/gems/govuk-components)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/cbcbc140f300b920d833/test_coverage)](https://codeclimate.com/github/DFE-Digital/govuk-components/test_coverage)
 [![GitHub license](https://img.shields.io/github/license/DFE-Digital/govuk-components)](https://github.com/DFE-Digital/govuk-components/blob/main/LICENSE)
-[![GOV.UK Design System Version](https://img.shields.io/badge/GOV.UK%20Design%20System-4.0.0-brightgreen)](https://design-system.service.gov.uk)
+[![GOV.UK Design System Version](https://img.shields.io/badge/GOV.UK%20Design%20System-4.0.1-brightgreen)](https://design-system.service.gov.uk)
 [![Rails](https://img.shields.io/badge/Rails-6.1.4.4%20%E2%95%B1%207.0.1-E16D6D)](https://weblog.rubyonrails.org/releases/)
 [![Ruby](https://img.shields.io/badge/Ruby-2.7.5%20%20%E2%95%B1%203.0.3%20%20%E2%95%B1%203.1.0-E16D6D)](https://www.ruby-lang.org/en/downloads/)
 
