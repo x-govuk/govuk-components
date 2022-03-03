@@ -4,7 +4,7 @@ PATH
     govuk-components (3.0.2)
       activemodel (>= 6.1)
       railties (>= 6.1)
-      view_component (~> 2.47.0)
+      view_component (~> 2.49.1)
 
 GEM
   remote: https://rubygems.org/
