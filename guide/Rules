@@ -26,6 +26,11 @@ compile '/**/*.scss' do
   write item.identifier.without_ext + '.css'
 end
 
+compile '/sitemap.xml' do
+  filter :erb
+  write '/sitemap.xml'
+end
+
 compile '/**/*' do
   write item.identifier.to_s
 end
