@@ -89,7 +89,7 @@ Here are the rendered tabs:
 
 ![Tabs preview](docs/images/tabs.png)
 
-For examples on usage see the [guide page](https://dfe-digital.github.io/govuk-components/).
+For examples on usage see the [guide page](https://govuk-components.netlify.app/).
 
 ## Setup
 
