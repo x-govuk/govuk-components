@@ -37,7 +37,7 @@ The provided components are:
 * [Summary list](https://govuk-components.netlify.app/components/summary-list)
 * [Tabs](https://govuk-components.netlify.app/components/tabs)
 * [Tables](https://govuk-components.netlify.app/components/table)
-* [Tags](https://govuk-components.netlify.app/components/tags)
+* [Tags](https://govuk-components.netlify.app/components/tag)
 * [Warning text](https://govuk-components.netlify.app/components/warning-text)
 
 This library also provides [link](https://govuk-components.netlify.app/helpers/link) and
