@@ -38,8 +38,9 @@ The provided components are:
 * [Tags](https://govuk-components.netlify.app/components/tag)
 * [Warning text](https://govuk-components.netlify.app/components/warning-text)
 
-This library also provides [link](https://govuk-components.netlify.app/helpers/link) and
-[button](https://govuk-components.netlify.app/helpers/button) helpers.
+This library also provides helpers for creating [links](https://govuk-components.netlify.app/helpers/link),
+[buttons](https://govuk-components.netlify.app/helpers/button), [skip links](https://govuk-components.netlify.app/helpers/skip-link)
+and [back to top links](https://govuk-components.netlify.app/helpers/back-to-top-link).
 
 ## Alternative syntax
 
