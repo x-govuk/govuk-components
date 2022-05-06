@@ -13,5 +13,13 @@ RSpec.describe(GovukBackToTopLinkHelper, type: 'helper') do
         with_tag('svg')
       end
     end
+
+    context "when the target is overridden" do
+      subject { govuk_back_to_top_link("#pinacle") }
+
+      it "renders a back to top link with a custom target" do
+        expect(subject).to have_tag('a', with: { href: '#pinacle' })
+      end
+    end
   end
 end
