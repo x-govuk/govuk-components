@@ -21,8 +21,7 @@ All of the non-form components from the GOV.UK Design System are implemented by 
 The provided components are:
 
 * [Accordion](https://govuk-components.netlify.app/components/accordion)
-* [Back link](https://govuk-components.netlify.app/components/back-links)
-* [Back to top link](https://govuk-components.netlify.app/components/back-to-top-link)
+* [Back link](https://govuk-components.netlify.app/components/back-link)
 * [Breadcrumbs](https://govuk-components.netlify.app/components/breadcrumbs)
 * [Cookie banner](https://govuk-components.netlify.app/components/cookie-banner)
 * [Details](https://govuk-components.netlify.app/components/details)
@@ -32,7 +31,6 @@ The provided components are:
 * [Notification banner](https://govuk-components.netlify.app/components/notification-banner)
 * [Panel](https://govuk-components.netlify.app/components/panel)
 * [Phase banner](https://govuk-components.netlify.app/components/phase-banner)
-* [Skip link](https://govuk-components.netlify.app/components/skip-link)
 * [Start button](https://govuk-components.netlify.app/components/start-button)
 * [Summary list](https://govuk-components.netlify.app/components/summary-list)
 * [Tabs](https://govuk-components.netlify.app/components/tabs)
