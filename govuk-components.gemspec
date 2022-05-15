@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
   exact_rails_version = ENV.key?("RAILS_VERSION")
   rails_version = ENV.fetch("RAILS_VERSION") { "6.1.5" }
 
-  %w(activemodel railties).each do |lib|
+  %w(actionpack activemodel railties).each do |lib|
     spec.add_dependency(*VersionFormatter.new(lib, rails_version, exact_rails_version).to_a)
   end
 
