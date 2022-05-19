@@ -2,8 +2,8 @@ PATH
   remote: .
   specs:
     govuk-components (3.0.3)
-      activemodel (~> 6.1.4.4, >= 6.1)
-      railties (~> 6.1.4.4, >= 6.1)
+      activemodel (>= 6.1)
+      railties (>= 6.1)
       view_component (~> 2.49.1)
 
 GEM
@@ -112,7 +112,7 @@ GEM
       listen (~> 3.0)
       nanoc-cli (~> 4.11, >= 4.11.14)
       nanoc-core (~> 4.11, >= 4.11.14)
-    nokogiri (1.13.4)
+    nokogiri (1.13.6)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     parallel (1.21.0)
