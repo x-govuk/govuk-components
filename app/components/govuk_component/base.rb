@@ -1,19 +1,21 @@
 class GovukComponent::Base < ViewComponent::Base
-  include Govuk::Components::Helpers::CssUtilities
-
-  include GovukComponent::Traits::CustomClasses
-  include GovukComponent::Traits::CustomHtmlAttributes
+  using HTMLAttributesUtils
 
   attr_reader :html_attributes
 
   def initialize(classes:, html_attributes:)
-    @classes         = parse_classes(classes)
-    @html_attributes = html_attributes
+    # FIXME: remove first merge when we deprecate classes
+    #
+    # This step only needs to be here while we still accept classes:, now
+    # we're using html_attributes_utils we can start to move towards
+    # supporting html_attributes: { class: 'xyz' } over taking them
+    # separately
+
+    @html_attributes = default_attributes
+      .deep_merge_html_attributes({ class: classes })
+      .deep_merge_html_attributes(html_attributes)
+      .deep_tidy_html_attributes
 
     super
-  end
-
-  def default_classes
-    []
   end
 end
