@@ -2,8 +2,9 @@ PATH
   remote: .
   specs:
     govuk-components (3.0.4)
-      activemodel (>= 6.1)
-      railties (>= 6.1)
+      activemodel (~> 6.1.4.4, >= 6.1)
+      html-attributes-utils (~> 0.9.0)
+      railties (~> 6.1.4.4, >= 6.1)
       view_component (~> 2.49.1)
 
 GEM
@@ -50,6 +51,7 @@ GEM
     cri (2.15.11)
     ddmetrics (1.0.1)
     ddplugin (1.0.3)
+    deep_merge (1.2.2)
     diff-lcs (1.5.0)
     docile (1.4.0)
     em-websocket (0.5.3)
@@ -60,6 +62,8 @@ GEM
     ffi (1.15.5)
     hamster (3.0.0)
       concurrent-ruby (~> 1.0)
+    html-attributes-utils (0.9.0)
+      activesupport (>= 6.1.4.4)
     htmlbeautifier (1.4.2)
     http_parser.rb (0.8.0)
     i18n (1.10.0)
@@ -260,6 +264,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  deep_merge
   govuk-components!
   htmlbeautifier (~> 1.4.1)
   nanoc (~> 4.11)
@@ -281,4 +286,4 @@ DEPENDENCIES
   webrick (~> 1.7.0)
 
 BUNDLED WITH
-   2.3.4
+   2.3.14
