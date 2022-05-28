@@ -2,19 +2,19 @@ class GovukComponent::SummaryListComponent::KeyComponent < GovukComponent::Base
   attr_reader :text
 
   def initialize(text: nil, classes: [], html_attributes: {})
-    super(classes: classes, html_attributes: html_attributes)
-
     @text = text
+
+    super(classes: classes, html_attributes: html_attributes)
   end
 
   def call
-    tag.dt(key_content, class: classes, **html_attributes)
+    tag.dt(key_content, **html_attributes)
   end
 
 private
 
-  def default_classes
-    %w(govuk-summary-list__key)
+  def default_attributes
+    { class: %w(govuk-summary-list__key) }
   end
 
   def key_content

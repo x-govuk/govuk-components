@@ -1,4 +1,6 @@
 class GovukComponent::FooterComponent < GovukComponent::Base
+  using HTMLAttributesUtils
+
   renders_one :meta_html
   renders_one :meta
   renders_one :navigation
@@ -19,8 +21,6 @@ class GovukComponent::FooterComponent < GovukComponent::Base
     meta_classes: [],
     meta_html_attributes: {}
   )
-    super(classes: classes, html_attributes: html_attributes)
-
     @meta_text                        = meta_text
     @meta_items                       = build_meta_links(meta_items)
     @meta_items_title                 = meta_items_title
@@ -30,16 +30,14 @@ class GovukComponent::FooterComponent < GovukComponent::Base
     @copyright                        = build_copyright(copyright_text, copyright_url)
     @custom_container_classes         = container_classes
     @custom_container_html_attributes = container_html_attributes
+
+    super(classes: classes, html_attributes: html_attributes)
   end
 
 private
 
-  def default_classes
-    %w(govuk-footer)
-  end
-
-  def container_classes
-    combine_classes(%w(govuk-width-container), custom_container_classes)
+  def default_attributes
+    { class: %w(govuk-footer) }
   end
 
   def meta_content
@@ -55,7 +53,13 @@ private
   end
 
   def container_html_attributes
-    @custom_container_html_attributes
+    # FIXME: remove when we deprecate classes
+    #
+    # Once we drop classes this extra merging can be dropped along with the
+    # container_classes and meta_classes args
+    { class: %w(govuk-width-container) }.deep_merge_html_attributes(
+      @custom_container_html_attributes.merge(class: custom_container_classes)
+    )
   end
 
   def build_meta_links(links)

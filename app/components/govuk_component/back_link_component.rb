@@ -1,15 +1,15 @@
 class GovukComponent::BackLinkComponent < GovukComponent::Base
   attr_reader :text, :href
 
-  def initialize(href:, text: 'Back', classes: nil, html_attributes: {})
-    super(classes: classes, html_attributes: html_attributes)
-
+  def initialize(href:, text: 'Back', classes: [], html_attributes: {})
     @text = text
     @href = href
+
+    super(classes: classes, html_attributes: html_attributes)
   end
 
   def call
-    link_to(link_content, href, class: classes, **html_attributes)
+    link_to(link_content, href, **html_attributes)
   end
 
 private
@@ -18,7 +18,7 @@ private
     content || text || fail(ArgumentError, "no text or content")
   end
 
-  def default_classes
-    %w(govuk-back-link)
+  def default_attributes
+    { class: %w(govuk-back-link) }
   end
 end

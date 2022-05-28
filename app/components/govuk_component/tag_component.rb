@@ -4,14 +4,14 @@ class GovukComponent::TagComponent < GovukComponent::Base
   COLOURS = %w(grey green turquoise blue red purple pink orange yellow).freeze
 
   def initialize(text: nil, colour: nil, classes: [], html_attributes: {})
-    super(classes: classes, html_attributes: html_attributes)
-
     @text   = text
     @colour = colour
+
+    super(classes: classes, html_attributes: html_attributes)
   end
 
   def call
-    tag.strong(tag_content, class: classes.append(colour_class), **html_attributes)
+    tag.strong(tag_content, **html_attributes)
   end
 
 private
@@ -20,8 +20,10 @@ private
     @text || content || fail(ArgumentError, "no text or content")
   end
 
-  def default_classes
-    %w(govuk-tag)
+  def default_attributes
+    {
+      class: ["govuk-tag", colour_class]
+    }
   end
 
   def colour_class

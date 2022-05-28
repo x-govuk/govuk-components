@@ -1,5 +1,5 @@
-<%= tag.header(class: classes, role: 'banner', data: { module: 'govuk-header' }, **html_attributes) do %>
-  <%= tag.div(class: container_classes) do %>
+<%= tag.header(role: 'banner', data: { module: 'govuk-header' }, **html_attributes) do %>
+  <%= tag.div(**container_html_attributes) do %>
     <div class="govuk-header__logo">
       <%= link_to(homepage_url, class: %w(govuk-header__link govuk-header__link--homepage)) do %>
         <span class="govuk-header__logotype">
@@ -36,7 +36,7 @@
         <% end %>
 
         <% if navigation_items.any? %>
-          <%= tag.nav(class: navigation_classes, aria: { label: navigation_label }) do %>
+          <%= tag.nav(**navigation_html_attributes) do %>
             <%= tag.button("Menu", type: "button", class: %w(govuk-header__menu-button govuk-js-header-toggle), aria: { controls: "navigation", label: menu_button_label }) %>
             <ul id="navigation" class="govuk-header__navigation-list">
               <% navigation_items.each do |item| %>

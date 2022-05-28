@@ -12,18 +12,14 @@ module GovukComponent
     end
 
     def initialize(rows: nil, actions: true, borders: true, classes: [], html_attributes: {})
-      super(classes: classes, html_attributes: html_attributes)
-
       @borders             = borders
       @show_actions_column = actions
+
+      super(classes: classes, html_attributes: html_attributes)
 
       return unless rows.presence
 
       build(rows)
-    end
-
-    def classes
-      super.append(borders_class).compact
     end
 
   private
@@ -32,8 +28,8 @@ module GovukComponent
       %(govuk-summary-list--no-border) unless borders
     end
 
-    def default_classes
-      %w(govuk-summary-list)
+    def default_attributes
+      { class: ["govuk-summary-list", borders_class].compact }
     end
 
     def build(rows)

@@ -13,12 +13,16 @@ class GovukComponent::TableComponent::CellComponent < GovukComponent::Base
   }.freeze
 
   def initialize(header: false, text: nil, numeric: false, width: nil, classes: [], html_attributes: {})
-    super(classes: classes, html_attributes: html_attributes)
-
     @header  = header
     @text    = text
     @numeric = numeric
     @width   = width
+
+    super(classes: classes, html_attributes: html_attributes)
+  end
+
+  def call
+    content_tag(cell_element, cell_content, **html_attributes)
   end
 
 private
@@ -33,6 +37,10 @@ private
 
   def cell_element
     header ? :th : :td
+  end
+
+  def default_attributes
+    { class: default_classes }
   end
 
   def default_classes

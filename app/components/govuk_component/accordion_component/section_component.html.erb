@@ -1,4 +1,4 @@
-<%= tag.div(id: id(suffix: 'section'), class: classes, **html_attributes) do %>
+<%= tag.div(id: id(suffix: 'section'), **html_attributes) do %>
   <div class="govuk-accordion__section-header">
     <%= content_tag(heading_level, class: "govuk-accordion__section-heading") do %>
       <%= tag.span(heading_content, id: id, class: "govuk-accordion__section-button", aria: { expanded: expanded?, controls: id(suffix: 'content') }) %>

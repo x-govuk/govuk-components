@@ -1,4 +1,4 @@
-<%= tag.div(class: classes, **html_attributes) do %>
+<%= tag.div(**html_attributes) do %>
   <p class="govuk-phase-banner__content">
     <%= render(phase_tag_component) %>
     <%= tag.span((content.presence || @text), class: "govuk-phase-banner__text") %>

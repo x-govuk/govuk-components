@@ -8,13 +8,13 @@ class GovukComponent::SummaryListComponent::ValueComponent < GovukComponent::Bas
   end
 
   def call
-    tag.dd(value_content, class: classes, **html_attributes)
+    tag.dd(value_content, **html_attributes)
   end
 
 private
 
-  def default_classes
-    %w(govuk-summary-list__value)
+  def default_attributes
+    { class: %w(govuk-summary-list__value) }
   end
 
   def value_content

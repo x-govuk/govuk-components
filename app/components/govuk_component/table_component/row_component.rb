@@ -4,10 +4,10 @@ class GovukComponent::TableComponent::RowComponent < GovukComponent::Base
   attr_reader :header, :first_cell_is_header
 
   def initialize(cell_data: nil, first_cell_is_header: false, header: false, classes: [], html_attributes: {})
-    super(classes: classes, html_attributes: html_attributes)
-
     @header = header
     @first_cell_is_header = first_cell_is_header
+
+    super(classes: classes, html_attributes: html_attributes)
 
     build_cells_from_cell_data(cell_data)
   end
@@ -24,7 +24,7 @@ private
     header || (first_cell_is_header && count.zero?)
   end
 
-  def default_classes
-    %w(govuk-table__row)
+  def default_attributes
+    { class: %w(govuk-table__row) }
   end
 end

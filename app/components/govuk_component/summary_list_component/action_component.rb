@@ -14,14 +14,18 @@ class GovukComponent::SummaryListComponent::ActionComponent < GovukComponent::Ba
   end
 
   def call
-    link_classes = govuk_link_classes.append(classes).flatten
-
-    link_to(href, class: link_classes, **html_attributes) do
+    link_to(href, **html_attributes) do
       safe_join([action_text, visually_hidden_span].compact, " ")
     end
   end
 
 private
+
+  def default_attributes
+    link_classes = govuk_link_classes.append(classes).flatten
+
+    { class: link_classes }
+  end
 
   def action_text
     content || text || fail(ArgumentError, "no text or content")
