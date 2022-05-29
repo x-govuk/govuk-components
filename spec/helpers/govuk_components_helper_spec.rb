@@ -96,6 +96,13 @@ RSpec.describe(GovukComponentsHelper, type: 'helper') do
       css_matcher: %(.govuk-phase-banner)
     },
     {
+      helper_method: :govuk_section_break,
+      klass: GovukComponent::SectionBreakComponent,
+      args: [],
+      kwargs: {},
+      css_matcher: %(.govuk-section-break)
+    },
+    {
       helper_method: :govuk_start_button,
       klass: GovukComponent::StartButtonComponent,
       args: [],

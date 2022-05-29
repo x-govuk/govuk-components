@@ -38,6 +38,7 @@ require 'components/govuk_component/inset_text_component'
 require 'components/govuk_component/notification_banner_component'
 require 'components/govuk_component/panel_component'
 require 'components/govuk_component/phase_banner_component'
+require 'components/govuk_component/section_break_component'
 require 'components/govuk_component/start_button_component'
 require 'components/govuk_component/summary_list_component'
 require 'components/govuk_component/summary_list_component/key_component'
@@ -70,6 +71,7 @@ use_helper Examples::InsetTextHelpers
 use_helper Examples::NotificationBannerHelpers
 use_helper Examples::PanelHelpers
 use_helper Examples::PhaseBannerHelpers
+use_helper Examples::SectionBreakHelpers
 use_helper Examples::SkipLinkHelpers
 use_helper Examples::StartButtonHelpers
 use_helper Examples::SummaryListHelpers

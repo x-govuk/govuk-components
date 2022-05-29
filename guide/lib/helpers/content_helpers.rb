@@ -65,6 +65,12 @@ module Helpers
       }
     end
 
+    def section_break_info
+      {
+        "GOV.UK Design System section break documentation" => "https://design-system.service.gov.uk/styles/typography/#section-break"
+      }
+    end
+
     def start_button_info
       {
         "GOV.UK Design System start button documentation" => "https://design-system.service.gov.uk/components/button/#start-buttons"
