@@ -221,7 +221,13 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
       subject { govuk_button_link_to(button_text, button_params) }
 
       specify "renders a link styled as a button with the correct attributes" do
-        expect(subject).to have_tag("a", with: { href: button_url, class: "govuk-button" })
+        expect(subject).to have_tag("a", with: {
+          href: button_url,
+          class: "govuk-button",
+          draggable: false,
+          role: "button",
+          "data-module": "govuk-button"
+        })
       end
     end
 
