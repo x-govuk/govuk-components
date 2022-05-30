@@ -31,6 +31,7 @@ The provided components are:
 * [Notification banner](https://govuk-components.netlify.app/components/notification-banner)
 * [Panel](https://govuk-components.netlify.app/components/panel)
 * [Phase banner](https://govuk-components.netlify.app/components/phase-banner)
+* [Section break](https://govuk-components.netlify.app/components/section-break)
 * [Start button](https://govuk-components.netlify.app/components/start-button)
 * [Summary list](https://govuk-components.netlify.app/components/summary-list)
 * [Tabs](https://govuk-components.netlify.app/components/tabs)
