@@ -1,4 +1,10 @@
 class GovukComponent::StartButtonComponent < GovukComponent::Base
+  BUTTON_ATTRIBUTES = {
+    role: 'button',
+    draggable: 'false',
+    data: { module: 'govuk-button' }
+  }
+
   attr_reader :text, :href
 
   def initialize(text:, href:, classes: [], html_attributes: {})
@@ -17,12 +23,7 @@ class GovukComponent::StartButtonComponent < GovukComponent::Base
 private
 
   def default_attributes
-    {
-      role: 'button',
-      draggable: 'false',
-      class: classes,
-      data: { module: 'govuk-button' }
-    }
+    BUTTON_ATTRIBUTES.merge class: classes
   end
 
   def default_classes
