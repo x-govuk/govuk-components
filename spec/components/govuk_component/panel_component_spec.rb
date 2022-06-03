@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe(GovukComponent::PanelComponent, type: :component) do
-  let(:component_css_class) { 'govuk-panel.govuk-panel--confirmation' }
+  let(:component_css_class) { 'govuk-panel' }
 
   let(:title_text) { 'Springfield' }
   let(:text) { 'A noble spirit embiggens the smallest man' }
