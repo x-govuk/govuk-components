@@ -6,14 +6,20 @@ class GovukComponent::SummaryListComponent::RowComponent < GovukComponent::Base
   renders_many :actions, GovukComponent::SummaryListComponent::ActionComponent
 
   def initialize(show_actions_column: nil, classes: [], html_attributes: {})
-    super(classes: classes, html_attributes: html_attributes)
-
     @show_actions_column = show_actions_column
+
+    super(classes: classes, html_attributes: html_attributes)
   end
 
   def call
-    tag.div(class: classes, **html_attributes) do
+    tag.div(**html_attributes) do
       safe_join([key, value, actions_content])
+    end
+  end
+
+  def before_render
+    if show_actions_column && actions.none?
+      html_attributes[:class] << no_actions_class
     end
   end
 
@@ -37,13 +43,15 @@ private
     end
   end
 
-  def default_classes
-    %w(govuk-summary-list__row).tap do |c|
-      c << "govuk-summary-list__row--no-actions" if show_actions_column && actions.none?
-    end
+  def default_attributes
+    { class: %w(govuk-summary-list__row) }
   end
 
   def actions_class
     "govuk-summary-list__actions"
+  end
+
+  def no_actions_class
+    "govuk-summary-list__row--no-actions"
   end
 end

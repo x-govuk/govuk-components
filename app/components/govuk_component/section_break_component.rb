@@ -2,19 +2,23 @@ class GovukComponent::SectionBreakComponent < GovukComponent::Base
   SIZES = %w(m l xl).freeze
 
   def initialize(visible: false, size: nil, classes: [], html_attributes: {})
-    super(classes: classes, html_attributes: html_attributes)
-
     @visible = visible
     @size    = size
+
+    super(classes: classes, html_attributes: html_attributes)
   end
 
   def call
-    tag.hr(class: classes, **html_attributes)
+    tag.hr(**html_attributes)
   end
 
 private
 
   attr_reader :size, :visible
+
+  def default_attributes
+    { class: default_classes }
+  end
 
   def default_classes
     class_names(

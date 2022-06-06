@@ -17,7 +17,7 @@ private
     data.each { |d| row(cell_data: d, header: true) }
   end
 
-  def default_classes
-    %w(govuk-table__head)
+  def default_attributes
+    { class: %w(govuk-table__head) }
   end
 end

@@ -7,12 +7,12 @@ class GovukComponent::AccordionComponent::SectionComponent < GovukComponent::Bas
   alias_method :expanded?, :expanded
 
   def initialize(heading_text:, summary_text:, expanded:, heading_level:, classes: [], html_attributes: {})
-    super(classes: classes, html_attributes: html_attributes)
-
     @heading_text  = heading_text
     @summary_text  = summary_text
     @expanded      = expanded
     @heading_level = heading_level
+
+    super(classes: classes, html_attributes: html_attributes)
   end
 
   def id(suffix: nil)
@@ -33,7 +33,7 @@ class GovukComponent::AccordionComponent::SectionComponent < GovukComponent::Bas
 
 private
 
-  def default_classes
-    class_names("govuk-accordion__section", "govuk-accordion__section--expanded" => expanded?).split
+  def default_attributes
+    { class: class_names("govuk-accordion__section", "govuk-accordion__section--expanded" => expanded?).split }
   end
 end

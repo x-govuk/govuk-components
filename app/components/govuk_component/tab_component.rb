@@ -1,29 +1,31 @@
 class GovukComponent::TabComponent < GovukComponent::Base
+  using HTMLAttributesUtils
+
   renders_many :tabs, "Tab"
 
   attr_reader :title, :id
 
   def initialize(title:, id: nil, classes: [], html_attributes: {})
-    super(classes: classes, html_attributes: html_attributes)
-
     @title = title
     @id    = id
+
+    super(classes: classes, html_attributes: html_attributes)
   end
 
 private
 
-  def default_classes
-    %w(govuk-tabs)
+  def default_attributes
+    { id: id, class: %w(govuk-tabs), data: { module: 'govuk-tabs' } }
   end
 
   class Tab < GovukComponent::Base
     attr_reader :label, :text
 
     def initialize(label:, text: nil, classes: [], html_attributes: {})
-      super(classes: classes, html_attributes: html_attributes)
-
       @label = label
       @text  = text
+
+      super(classes: classes, html_attributes: html_attributes)
     end
 
     def id(prefix: nil)
@@ -31,7 +33,9 @@ private
     end
 
     def hidden_class(i = nil)
-      %(govuk-tabs__panel--hidden) unless i&.zero?
+      return [] if i&.zero?
+
+      %w(govuk-tabs__panel--hidden)
     end
 
     def li_classes(i = nil)
@@ -42,8 +46,12 @@ private
       link_to(label, id(prefix: '#'), class: "govuk-tabs__tab")
     end
 
-    def default_classes
-      %w(govuk-tabs__panel)
+    def default_attributes
+      { id: id, class: %w(govuk-tabs__panel) }
+    end
+
+    def combined_attributes(i)
+      html_attributes.deep_merge_html_attributes({ class: hidden_class(i) }).deep_tidy_html_attributes
     end
 
     def call

@@ -245,6 +245,20 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
         end
       end
 
+      specify 'only the active item has the active class' do
+        # two pages are active, /page-2 is overridden and the current path is /page-3
+        expect(rendered_component).to have_tag('nav') do
+          without_tag('li', text: 'Item 1', with: { class: 'govuk-header__navigation-item--active' })
+          with_tag('li', text: 'Item 1', with: { class: 'govuk-header__navigation-item' })
+
+          with_tag('li', text: 'Item 2', with: { class: 'govuk-header__navigation-item--active' })
+          with_tag('li', text: 'Item 3', with: { class: 'govuk-header__navigation-item--active' })
+
+          without_tag('li', text: 'Item 4', with: { class: 'govuk-header__navigation-item--active' })
+          with_tag('li', text: 'Item 4', with: { class: 'govuk-header__navigation-item' })
+        end
+      end
+
       specify 'nav item on current page has active class' do
         active_link = navigation_items.detect { |item| item[:href] == current_page }
 

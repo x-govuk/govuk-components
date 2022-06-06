@@ -2,10 +2,10 @@ class GovukComponent::PhaseBannerComponent < GovukComponent::Base
   attr_reader :text, :phase_tag
 
   def initialize(tag: nil, text: nil, classes: [], html_attributes: {})
-    super(classes: classes, html_attributes: html_attributes)
-
     @phase_tag = tag
     @text      = text
+
+    super(classes: classes, html_attributes: html_attributes)
   end
 
   def phase_tag_component
@@ -14,7 +14,7 @@ class GovukComponent::PhaseBannerComponent < GovukComponent::Base
 
 private
 
-  def default_classes
-    %w(govuk-phase-banner)
+  def default_attributes
+    { class: %w(govuk-phase-banner) }
   end
 end

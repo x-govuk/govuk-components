@@ -4,16 +4,16 @@ class GovukComponent::DetailsComponent < GovukComponent::Base
   renders_one :summary_html
 
   def initialize(summary_text: nil, text: nil, classes: [], id: nil, open: nil, html_attributes: {})
-    super(classes: classes, html_attributes: html_attributes)
-
     @summary_text = summary_text
     @text         = text
     @id           = id
     @open         = open
+
+    super(classes: classes, html_attributes: html_attributes)
   end
 
   def call
-    tag.details(class: classes, data: { module: "govuk-details" }, id: id, open: open, **html_attributes) do
+    tag.details(data: { module: "govuk-details" }, id: id, open: open, **html_attributes) do
       safe_join([summary, description])
     end
   end
@@ -36,7 +36,7 @@ private
     end
   end
 
-  def default_classes
-    %w(govuk-details)
+  def default_attributes
+    { class: %w(govuk-details) }
   end
 end

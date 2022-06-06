@@ -12,7 +12,7 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
     }
   end
 
-  let(:kwargs) { { id: id } }
+  let(:kwargs) { { html_attributes: { id: id } } }
 
   subject! do
     render_inline(GovukComponent::AccordionComponent.new(**kwargs)) do |component|

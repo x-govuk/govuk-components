@@ -27,8 +27,6 @@ class GovukComponent::HeaderComponent < GovukComponent::Base
                  service_url: '/',
                  container_classes: nil)
 
-    super(classes: classes, html_attributes: html_attributes)
-
     @logotype                  = logotype
     @crown                     = crown
     @crown_fallback_image_path = crown_fallback_image_path
@@ -39,20 +37,24 @@ class GovukComponent::HeaderComponent < GovukComponent::Base
     @custom_navigation_classes = navigation_classes
     @navigation_label          = navigation_label
     @custom_container_classes  = container_classes
+
+    super(classes: classes, html_attributes: html_attributes)
   end
 
 private
 
-  def default_classes
-    %w(govuk-header)
+  def default_attributes
+    { class: %w(govuk-header) }
   end
 
-  def navigation_classes
-    combine_classes(%w(govuk-header__navigation), custom_navigation_classes)
+  def navigation_html_attributes
+    nc = %w(govuk-header__navigation).append(custom_navigation_classes).compact
+
+    { class: nc, aria: { label: navigation_label } }
   end
 
-  def container_classes
-    combine_classes(%w(govuk-header__container govuk-width-container), custom_container_classes)
+  def container_html_attributes
+    { class: %w(govuk-header__container govuk-width-container).append(custom_container_classes).compact }
   end
 
   def crown_fallback_image_attributes
@@ -67,21 +69,22 @@ private
     attr_reader :text, :href, :options, :active
 
     def initialize(text:, href: nil, options: {}, active: nil, classes: [], html_attributes: {})
-      super(classes: classes, html_attributes: html_attributes)
-
-      @text    = text
-      @href    = href
-      @options = options
-
+      @text            = text
+      @href            = href
+      @options         = options
       @active_override = active
+
+      super(classes: classes, html_attributes: html_attributes)
     end
 
     def before_render
-      @active = active?(@active_override)
+      if active?
+        html_attributes[:class] << active_class
+      end
     end
 
     def active_class
-      %w(govuk-header__navigation-item--active) if @active
+      %w(govuk-header__navigation-item--active) if active?
     end
 
     def link?
@@ -89,9 +92,9 @@ private
     end
 
     def call
-      tag.li(class: classes.append(active_class), **html_attributes) do
+      tag.li(**html_attributes) do
         if link?
-          link_to(text, href, **options, class: "govuk-header__link")
+          link_to(text, href, class: "govuk-header__link", **options)
         else
           text
         end
@@ -100,14 +103,14 @@ private
 
   private
 
-    def active?(active_override)
-      return current_page?(href) if active_override.nil?
+    def active?
+      return @active_override unless @active_override.nil?
 
-      active_override
+      current_page?(href)
     end
 
-    def default_classes
-      %w(govuk-header__navigation-item)
+    def default_attributes
+      { class: %w(govuk-header__navigation-item) }
     end
   end
 
@@ -115,9 +118,9 @@ private
     attr_reader :name
 
     def initialize(name: nil, html_attributes: {}, classes: [])
-      super(classes: classes, html_attributes: html_attributes)
-
       @name = name
+
+      super(classes: classes, html_attributes: html_attributes)
     end
 
     def render?
@@ -126,16 +129,16 @@ private
 
     def call
       if content.present?
-        tag.div(content, class: classes)
+        tag.div(content, **html_attributes)
       else
-        tag.span(name, class: classes)
+        tag.span(name, **html_attributes)
       end
     end
 
   private
 
-    def default_classes
-      %w(govuk-header__product-name)
+    def default_attributes
+      { class: %w(govuk-header__product-name) }
     end
   end
 end

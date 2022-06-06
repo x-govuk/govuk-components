@@ -61,9 +61,9 @@ RSpec.describe GovukComponent::SectionBreakComponent, type: :component do
   end
 
   context "when size is invalid" do
-    it "raises an error" do
-      component = GovukComponent::SectionBreakComponent.new(size: "s")
+    let(:component) { GovukComponent::SectionBreakComponent.new(size: "s") }
 
+    it "raises an error" do
       expect { render_inline(component) }
         .to raise_error(ArgumentError, "invalid size s, supported sizes are m, l, and xl")
     end

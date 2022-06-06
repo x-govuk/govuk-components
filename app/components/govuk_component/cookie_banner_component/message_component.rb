@@ -5,16 +5,16 @@ class GovukComponent::CookieBannerComponent::MessageComponent < GovukComponent::
   renders_one :heading_html
 
   def initialize(heading_text: nil, text: nil, hidden: false, role: nil, classes: [], html_attributes: {})
-    super(classes: classes, html_attributes: html_attributes)
-
     @heading_text = heading_text
     @text         = text
     @hidden       = hidden
     @role         = role
+
+    super(classes: classes, html_attributes: html_attributes)
   end
 
   def call
-    tag.div(class: classes, role: role, hidden: hidden, **html_attributes) do
+    tag.div(role: role, hidden: hidden, **html_attributes) do
       safe_join([
         tag.div(class: "govuk-grid-row") do
           tag.div(class: "govuk-grid-column-two-thirds") { safe_join([heading_element, message_element]) }
@@ -26,8 +26,8 @@ class GovukComponent::CookieBannerComponent::MessageComponent < GovukComponent::
 
 private
 
-  def default_classes
-    %w(govuk-cookie-banner__message govuk-width-container)
+  def default_attributes
+    { class: %w(govuk-cookie-banner__message govuk-width-container) }
   end
 
   def heading_element

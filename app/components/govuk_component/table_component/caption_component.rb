@@ -4,15 +4,15 @@ class GovukComponent::TableComponent::CaptionComponent < GovukComponent::Base
   SIZES = %w(s m l xl).freeze
 
   def initialize(text: nil, id: nil, size: 'm', classes: [], html_attributes: {})
-    super(classes: classes, html_attributes: html_attributes)
-
     @id   = id
     @text = text
     @size = size
+
+    super(classes: classes, html_attributes: html_attributes)
   end
 
   def call
-    tag.caption(caption_content, class: classes, **html_attributes)
+    tag.caption(caption_content, **html_attributes)
   end
 
   def render?
@@ -25,8 +25,8 @@ private
     @caption_content ||= (content || text)
   end
 
-  def default_classes
-    class_names("govuk-table__caption", caption_size_class => size).split
+  def default_attributes
+    { class: class_names("govuk-table__caption", caption_size_class => size).split }
   end
 
   def caption_size_class
