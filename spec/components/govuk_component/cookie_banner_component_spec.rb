@@ -16,14 +16,14 @@ RSpec.describe(GovukComponent::CookieBannerComponent, type: :component) do
       "data-nosnippet" => "true"
     }
 
-    expect(rendered_component).to have_tag("div", with: expected_attributes)
+    expect(rendered_content).to have_tag("div", with: expected_attributes)
   end
 
   context "when hide_in_print: false" do
     subject! { render_inline(described_class.new(**kwargs.merge(hide_in_print: false))) }
 
     specify "the cookie banner does not have the `govuk-!-display-none-print` class" do
-      expect(rendered_component).to have_tag(
+      expect(rendered_content).to have_tag(
         "div",
         with: { class: component_css_class },
         without: { class: "govuk-\\!-display-none-print" }
@@ -35,7 +35,7 @@ RSpec.describe(GovukComponent::CookieBannerComponent, type: :component) do
     subject! { render_inline(described_class.new(**kwargs.merge(hidden: true))) }
 
     specify "the cookie banner has a hidden attribute" do
-      expect(rendered_component).to have_tag("div", with: { class: component_css_class, hidden: "hidden" })
+      expect(rendered_content).to have_tag("div", with: { class: component_css_class, hidden: "hidden" })
     end
   end
 
@@ -44,7 +44,7 @@ RSpec.describe(GovukComponent::CookieBannerComponent, type: :component) do
     subject! { render_inline(described_class.new(**kwargs.merge(aria_label: custom_label))) }
 
     specify "the cookie banner has the custom aria-label value" do
-      expect(rendered_component).to have_tag("div", with: { class: component_css_class, "aria-label" => custom_label })
+      expect(rendered_content).to have_tag("div", with: { class: component_css_class, "aria-label" => custom_label })
     end
   end
 
@@ -67,19 +67,19 @@ RSpec.describe(GovukComponent::CookieBannerComponent, type: :component) do
     end
 
     specify "renders the message heading" do
-      expect(rendered_component).to have_tag(message_selector) do
+      expect(rendered_content).to have_tag(message_selector) do
         with_tag("h2", text: custom_heading_text, with: { class: %w(govuk-cookie-banner__heading govuk-heading-m) })
       end
     end
 
     specify "applies the custom role" do
-      expect(rendered_component).to have_tag(".govuk-cookie-banner") do
+      expect(rendered_content).to have_tag(".govuk-cookie-banner") do
         with_tag("div", with: { class: "govuk-cookie-banner__message", role: custom_role })
       end
     end
 
     specify "renders the message text" do
-      expect(rendered_component).to have_tag(message_selector) do
+      expect(rendered_content).to have_tag(message_selector) do
         with_tag("div", with: { class: "govuk-cookie-banner__content" }) do
           with_tag("p", text: custom_message_text, with: { class: "govuk-body" })
         end
@@ -87,7 +87,7 @@ RSpec.describe(GovukComponent::CookieBannerComponent, type: :component) do
     end
 
     specify "renders the actions" do
-      expect(rendered_component).to have_tag(".govuk-cookie-banner > .govuk-cookie-banner__message > div.govuk-button-group") do
+      expect(rendered_content).to have_tag(".govuk-cookie-banner > .govuk-cookie-banner__message > div.govuk-button-group") do
         with_tag("button", count: 1)
         with_tag("a", count: 1)
       end
@@ -117,7 +117,7 @@ RSpec.describe(GovukComponent::CookieBannerComponent::MessageComponent, type: :c
     subject! { render_inline(described_class.new(**kwargs.merge(hidden: true))) }
 
     specify "the message has a hidden attribute" do
-      expect(rendered_component).to have_tag("div", with: { class: component_css_class, hidden: "hidden" })
+      expect(rendered_content).to have_tag("div", with: { class: component_css_class, hidden: "hidden" })
     end
   end
 
@@ -141,7 +141,7 @@ RSpec.describe(GovukComponent::CookieBannerComponent::MessageComponent, type: :c
     end
 
     specify "the custom heading HTML is rendered" do
-      expect(rendered_component).to have_tag("div", with: { class: component_css_class, role: custom_role }) do
+      expect(rendered_content).to have_tag("div", with: { class: component_css_class, role: custom_role }) do
         with_tag("h2", class: %w(govuk-cookie-banner__heading govuk-heading-m)) do
           with_tag(custom_heading_tag, text: custom_heading_text)
         end
@@ -149,7 +149,7 @@ RSpec.describe(GovukComponent::CookieBannerComponent::MessageComponent, type: :c
     end
 
     specify "the custom message HTML is rendered" do
-      expect(rendered_component).to have_tag("div", with: { class: component_css_class, role: custom_role }) do
+      expect(rendered_content).to have_tag("div", with: { class: component_css_class, role: custom_role }) do
         with_tag("div", class: "govuk-cookie-banner__content") do
           with_tag(custom_message_tag, text: custom_text)
         end

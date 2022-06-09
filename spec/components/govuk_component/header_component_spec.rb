@@ -34,7 +34,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
     let(:kwargs) { {} }
 
     specify 'outputs a header with correct logo text and no content' do
-      expect(rendered_component).to have_tag('header', with: { class: component_css_class }) do
+      expect(rendered_content).to have_tag('header', with: { class: component_css_class }) do
         with_tag('span', with: { class: 'govuk-header__logotype-text' }, text: default_header_text)
         without_tag('.govuk-header__content')
       end
@@ -44,7 +44,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
   describe 'the crown' do
     context 'when the crown is not disabled' do
       specify 'the crown SVG is rendered along with no fallback image' do
-        expect(rendered_component).to have_tag('.govuk-header__logotype') do
+        expect(rendered_content).to have_tag('.govuk-header__logotype') do
           with_tag('svg', with: { class: 'govuk-header__logotype-crown', 'aria-hidden' => true })
         end
       end
@@ -54,7 +54,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
         let(:kwargs) { { crown_fallback_image_path: custom_path } }
 
         specify 'renders the fallback image with the custom path' do
-          expect(rendered_component).to have_tag('.govuk-header__logotype') do |logotype|
+          expect(rendered_content).to have_tag('.govuk-header__logotype') do |logotype|
             # NOTE: it's rendered inside a IE8 conditional comment so we can't
             # assert its presence normally, just ensure the path's included
             expect(logotype.current_scope.inner_html).to include(custom_path)
@@ -67,11 +67,11 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
       let(:kwargs) { { crown: false } }
 
       specify "doesn't render the crown" do
-        expect(rendered_component).not_to have_tag("svg")
+        expect(rendered_content).not_to have_tag("svg")
       end
 
       specify "renders the default logotype" do
-        expect(rendered_component).to have_tag("span", text: /GOV.UK/)
+        expect(rendered_content).to have_tag("span", text: /GOV.UK/)
       end
     end
   end
@@ -81,7 +81,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
     let(:kwargs) { { container_classes: custom_classes } }
 
     specify 'adds the custom classes to the header container' do
-      expect(rendered_component).to have_tag('.govuk-header__container', with: { class: custom_classes })
+      expect(rendered_content).to have_tag('.govuk-header__container', with: { class: custom_classes })
     end
   end
 
@@ -89,7 +89,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
     let(:expected_service_name_classes) { %w(govuk-header__link govuk-header__link--service-name) }
 
     specify 'renders header with right logotype and provided service name' do
-      expect(rendered_component).to have_tag('header', with: { class: component_css_class }) do
+      expect(rendered_content).to have_tag('header', with: { class: component_css_class }) do
         with_tag('span', with: { class: 'govuk-header__logotype-text' }, text: logotype)
 
         with_tag('div', class: 'govuk-header__content') do
@@ -112,15 +112,15 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
     end
 
     specify "renders the custom logo" do
-      expect(rendered_component).to have_tag("h1", text: custom_logo_content)
+      expect(rendered_content).to have_tag("h1", text: custom_logo_content)
     end
 
     specify "doesn't render the crown" do
-      expect(rendered_component).not_to have_tag("svg")
+      expect(rendered_content).not_to have_tag("svg")
     end
 
     specify "doesn't render the default logotype" do
-      expect(rendered_component).not_to have_tag("span", text: /GOV.UK/)
+      expect(rendered_content).not_to have_tag("span", text: /GOV.UK/)
     end
   end
 
@@ -135,7 +135,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
       end
 
       specify 'the product name should be present' do
-        expect(rendered_component).to have_tag('div', with: { class: %w(govuk-header__logo) }) do
+        expect(rendered_content).to have_tag('div', with: { class: %w(govuk-header__logo) }) do
           with_tag('a', with: { class: 'govuk-header__link' }) do
             with_tag('span', with: { class: 'govuk-header__product-name' }, text: custom_name)
           end
@@ -153,7 +153,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
       end
 
       specify 'the product name should be present' do
-        expect(rendered_component).to have_tag('div', with: { class: %w(govuk-header__logo) }) do
+        expect(rendered_content).to have_tag('div', with: { class: %w(govuk-header__logo) }) do
           with_tag('a', with: { class: 'govuk-header__link' }) do
             with_tag('div', with: { class: 'govuk-header__product-name' }, text: custom_name)
           end
@@ -165,7 +165,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
       let(:kwargs) { all_kwargs.except(:product_name) }
 
       specify "the product name container isn't rendered at all" do
-        expect(rendered_component).to have_tag('div', with: { class: %w(govuk-header__logo) }) do
+        expect(rendered_content).to have_tag('div', with: { class: %w(govuk-header__logo) }) do
           with_tag('a', with: { class: 'govuk-header__link' }) do
             without_tag('.govuk-header__product-name')
           end
@@ -177,7 +177,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
   describe 'navigation menus' do
     context 'when no navigation items are supplied' do
       specify 'navigation block is not rendered' do
-        expect(rendered_component).not_to have_tag('nav')
+        expect(rendered_content).not_to have_tag('nav')
       end
     end
 
@@ -200,21 +200,21 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
       end
 
       specify 'nav element is rendered' do
-        expect(rendered_component).to have_tag('nav')
+        expect(rendered_content).to have_tag('nav')
       end
 
       specify 'nav contains the right number of items' do
-        expect(rendered_component).to have_tag('nav') do
+        expect(rendered_content).to have_tag('nav') do
           with_tag('a', with: { class: 'govuk-header__link' }, count: navigation_items.size)
         end
       end
 
       specify 'custom classes provided via navigation_classes are present' do
-        expect(rendered_component).to have_tag('nav', with: { class: custom_classes.append('govuk-header__navigation') })
+        expect(rendered_content).to have_tag('nav', with: { class: custom_classes.append('govuk-header__navigation') })
       end
 
       specify 'nav items are rendered in the right structure' do
-        expect(rendered_component).to have_tag('nav', with: { class: 'govuk-header__navigation' }) do
+        expect(rendered_content).to have_tag('nav', with: { class: 'govuk-header__navigation' }) do
           with_tag('ul', with: { class: 'govuk-header__navigation-list' }) do
             with_tag('li', with: { class: 'govuk-header__navigation-item' }) do
               with_tag('a', with: { class: 'govuk-header__link' })
@@ -224,7 +224,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
       end
 
       specify 'nav items have the right text and links' do
-        expect(rendered_component).to have_tag('nav') do
+        expect(rendered_content).to have_tag('nav') do
           navigation_items.each do |link|
             if link.key?(:options)
               with_tag('a', with: { href: link.fetch(:href), "data-method": link.dig(:options, :method) }, text: link.fetch(:text))
@@ -238,7 +238,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
       specify 'active nav item has active class' do
         active_link = navigation_items.detect { |item| item[:active] }
 
-        expect(rendered_component).to have_tag('nav') do
+        expect(rendered_content).to have_tag('nav') do
           with_tag('li', with: { class: 'govuk-header__navigation-item--active' }) do
             with_tag('a', text: active_link.fetch(:text), count: 1)
           end
@@ -247,7 +247,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
 
       specify 'only the active item has the active class' do
         # two pages are active, /page-2 is overridden and the current path is /page-3
-        expect(rendered_component).to have_tag('nav') do
+        expect(rendered_content).to have_tag('nav') do
           without_tag('li', text: 'Item 1', with: { class: 'govuk-header__navigation-item--active' })
           with_tag('li', text: 'Item 1', with: { class: 'govuk-header__navigation-item' })
 
@@ -262,7 +262,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
       specify 'nav item on current page has active class' do
         active_link = navigation_items.detect { |item| item[:href] == current_page }
 
-        expect(rendered_component).to have_tag('nav') do
+        expect(rendered_content).to have_tag('nav') do
           with_tag('li', with: { class: 'govuk-header__navigation-item--active' }) do
             with_tag('a', text: active_link.fetch(:text), count: 1)
           end
@@ -275,7 +275,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
         let(:button_aria_label) { 'Show or hide navigation menu' }
 
         specify 'the button is rendered' do
-          expect(rendered_component).to have_tag('div', with: { class: 'govuk-header__content' }) do
+          expect(rendered_content).to have_tag('div', with: { class: 'govuk-header__content' }) do
             with_tag('button', with: { class: button_classes, 'aria-label' => button_aria_label }, text: button_text)
           end
         end
@@ -290,7 +290,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
           end
 
           specify 'the button is rendered with the provided aria-label' do
-            expect(rendered_component).to have_tag('div', with: { class: 'govuk-header__content' }) do
+            expect(rendered_content).to have_tag('div', with: { class: 'govuk-header__content' }) do
               with_tag('button', with: { class: button_classes, 'aria-label' => custom_label }, text: button_text)
             end
           end
@@ -307,7 +307,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
         end
 
         specify 'the navigation label contains the custom text' do
-          expect(rendered_component).to have_tag('nav', with: { class: 'govuk-header__navigation', 'aria-label' => custom_label })
+          expect(rendered_content).to have_tag('nav', with: { class: 'govuk-header__navigation', 'aria-label' => custom_label })
         end
       end
     end

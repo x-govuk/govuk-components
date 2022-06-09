@@ -26,7 +26,7 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
   end
 
   specify "renders the summary list with the key, value and action" do
-    expect(rendered_component).to have_tag("dl", with: { class: component_css_class }) do
+    expect(rendered_content).to have_tag("dl", with: { class: component_css_class }) do
       with_tag("div", with: { class: "govuk-summary-list__row" }) do
         with_tag("dt", text: "Key", with: { class: "govuk-summary-list__key" })
         with_tag("dd", text: "Value", with: { class: "govuk-summary-list__value" })
@@ -55,7 +55,7 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
     end
 
     specify "renders the summary list with the key, value and all the actions in an action list" do
-      expect(rendered_component).to have_tag("dl", with: { class: component_css_class }) do
+      expect(rendered_content).to have_tag("dl", with: { class: component_css_class }) do
         with_tag("div", with: { class: "govuk-summary-list__row" }) do
           with_tag("dt", text: "Key")
           with_tag("dd", text: "Value")
@@ -86,7 +86,7 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
     end
 
     specify "renders an actions column" do
-      expect(rendered_component).to have_tag("dl", with: { class: component_css_class }) do
+      expect(rendered_content).to have_tag("dl", with: { class: component_css_class }) do
         with_tag("div", with: { class: %(govuk-summary-list__row) }) do
           with_tag("dd", with: { class: "govuk-summary-list__actions" })
         end
@@ -106,7 +106,7 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
     end
 
     specify "doesn't render an action column" do
-      expect(rendered_component).to have_tag("dl", with: { class: component_css_class }) do
+      expect(rendered_content).to have_tag("dl", with: { class: component_css_class }) do
         with_tag("div", with: { class: %(govuk-summary-list__row) }) do
           without_tag("dd", with: { class: "govuk-summary-list__actions" })
         end
@@ -132,7 +132,7 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
     end
 
     specify "renders one row with the govuk-summary-list__row--no-actions class and no actions" do
-      expect(rendered_component).to have_tag("dl", with: { class: component_css_class }) do
+      expect(rendered_content).to have_tag("dl", with: { class: component_css_class }) do
         with_tag("div", with: { class: %(govuk-summary-list__row govuk-summary-list__row--no-actions) }, count: 1) do
           without_tag("dd", with: { class: "govuk-summary-list__actions" })
         end
@@ -140,7 +140,7 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
     end
 
     specify "renders one row with actions" do
-      expect(rendered_component).to have_tag("dl", with: { class: component_css_class }) do
+      expect(rendered_content).to have_tag("dl", with: { class: component_css_class }) do
         with_tag("div", with: { class: %(govuk-summary-list__row) }) do
           with_tag("dd", with: { class: "govuk-summary-list__actions" }, count: 1)
         end
@@ -158,11 +158,11 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
     end
 
     specify "no actions are rendered, even when they're called on the row" do
-      expect(rendered_component).not_to have_tag("dd", with: { class: "govuk-summary-list__actions" })
+      expect(rendered_content).not_to have_tag("dd", with: { class: "govuk-summary-list__actions" })
     end
 
     specify "no rows have the class 'govuk-summary-list__row--no-actions'" do
-      expect(rendered_component).not_to have_tag("div", with: { class: %(govuk-summary-list__row govuk-summary-list__row--no-actions) })
+      expect(rendered_content).not_to have_tag("div", with: { class: %(govuk-summary-list__row govuk-summary-list__row--no-actions) })
     end
   end
 
@@ -184,7 +184,7 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
     end
 
     specify "renders a span containing visually hidden text separated by a space from the action text" do
-      expect(rendered_component).to have_tag("dl", with: { class: component_css_class }) do
+      expect(rendered_content).to have_tag("dl", with: { class: component_css_class }) do
         with_tag("div", with: { class: %(with-visually-hidden-text govuk-summary-list__row) }) do
           with_tag("dd", with: { class: "govuk-summary-list__actions" }, text: /Action\s/) do
             with_tag("a.govuk-link > span", with: { class: "govuk-visually-hidden" })
@@ -194,7 +194,7 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
     end
 
     specify "renders no span when there's no visually hidden text" do
-      expect(rendered_component).to have_tag("dl", with: { class: component_css_class }) do
+      expect(rendered_content).to have_tag("dl", with: { class: component_css_class }) do
         with_tag("div", with: { class: %(without-visually-hidden-text govuk-summary-list__row) }) do
           without_tag("span", with: { class: "govuk-visually-hidden" })
         end
@@ -268,14 +268,14 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
       end
 
       specify "renders a summary list with the right number of rows" do
-        expect(rendered_component).to have_tag("dl", with: { class: "govuk-summary-list" }) do
+        expect(rendered_content).to have_tag("dl", with: { class: "govuk-summary-list" }) do
           with_tag(".govuk-summary-list__row", count: 2)
         end
       end
 
       specify "renders rows with the custom classes" do
         %w(row-1-custom-class row-2-custom-class).each do |custom_class|
-          expect(rendered_component).to have_tag("dl") do
+          expect(rendered_content).to have_tag("dl") do
             with_tag("div", with: { class: custom_class })
           end
         end
@@ -283,14 +283,14 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
 
       specify "renders rows with the custom HTML attributes" do
         %w(row-1-custom-data-id row-2-custom-data-id).each do |custom_data_id|
-          expect(rendered_component).to have_tag("dl") do
+          expect(rendered_content).to have_tag("dl") do
             with_tag("div", with: { "data-id" => custom_data_id })
           end
         end
       end
 
       specify "renders keys with the right text, classes and HTML attributes" do
-        expect(rendered_component).to have_tag("dl") do
+        expect(rendered_content).to have_tag("dl") do
           with_tag("div", with: { class: "row-1-custom-class" }) do
             with_tag("dt", {
               text: "Name",
@@ -308,7 +308,7 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
       end
 
       specify "renders single actions in the dd element" do
-        expect(rendered_component).to have_tag("dl > .row-1-custom-class") do
+        expect(rendered_content).to have_tag("dl > .row-1-custom-class") do
           with_tag("dd", with: { class: "govuk-summary-list__actions" }) do
             with_tag("a", {
               class: "govuk-link",
@@ -326,7 +326,7 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
       end
 
       specify "renders multiple actions in an actions list" do
-        expect(rendered_component).to have_tag("dl > .row-2-custom-class") do
+        expect(rendered_content).to have_tag("dl > .row-2-custom-class") do
           with_tag("dd", with: { class: "govuk-summary-list__actions" }) do
             with_tag("ul", with: { class: "govuk-summary-list__actions-list" }) do
               with_tag("a", {
@@ -362,7 +362,7 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
         let(:rows) { [row_with_no_action, row_with_no_action] }
 
         specify "no rows should have the govuk-summary-list__row--no-actions class" do
-          expect(rendered_component).not_to have_tag("div", with: { class: "govuk-summary-list__row--no-actions" })
+          expect(rendered_content).not_to have_tag("div", with: { class: "govuk-summary-list__row--no-actions" })
         end
       end
 
@@ -370,7 +370,7 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
         let(:rows) { [row_with_one_action, row_with_one_action] }
 
         specify "no rows should have the govuk-summary-list__row--no-actions class" do
-          expect(rendered_component).not_to have_tag("div", with: { class: "govuk-summary-list__row--no-actions" })
+          expect(rendered_content).not_to have_tag("div", with: { class: "govuk-summary-list__row--no-actions" })
         end
       end
 
@@ -378,7 +378,7 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
         let(:rows) { [row_with_one_action, row_with_no_action] }
 
         specify "one row has the govuk-summary-list__row--no-actions class" do
-          expect(rendered_component).to have_tag("div", with: { class: "govuk-summary-list__row--no-actions" }, count: 1)
+          expect(rendered_content).to have_tag("div", with: { class: "govuk-summary-list__row--no-actions" }, count: 1)
         end
       end
     end
@@ -417,7 +417,7 @@ RSpec.describe(GovukComponent::SummaryListComponent::KeyComponent, type: :compon
     end
 
     specify "the custom HTML is rendered" do
-      expect(rendered_component).to have_tag("dt", with: { class: component_css_class }) do
+      expect(rendered_content).to have_tag("dt", with: { class: component_css_class }) do
         with_tag(custom_tag, text: custom_text)
       end
     end
@@ -435,7 +435,7 @@ RSpec.describe(GovukComponent::SummaryListComponent::ValueComponent, type: :comp
     subject! { render_inline(described_class.new) }
 
     specify "renders an empty dd element" do
-      expect(rendered_component).to have_tag("dd", with: { class: "govuk-summary-list__value" }, text: "")
+      expect(rendered_content).to have_tag("dd", with: { class: "govuk-summary-list__value" }, text: "")
     end
   end
 
@@ -450,7 +450,7 @@ RSpec.describe(GovukComponent::SummaryListComponent::ValueComponent, type: :comp
     end
 
     specify "the custom HTML is rendered" do
-      expect(rendered_component).to have_tag("dd", with: { class: component_css_class }) do
+      expect(rendered_content).to have_tag("dd", with: { class: component_css_class }) do
         with_tag(custom_tag, text: custom_text)
       end
     end
@@ -471,7 +471,7 @@ RSpec.describe(GovukComponent::SummaryListComponent::ActionComponent, type: :com
     end
 
     specify "the text defaults to 'Change'" do
-      expect(rendered_component).to have_tag("a", with: { class: "govuk-link" }, text: "Change")
+      expect(rendered_content).to have_tag("a", with: { class: "govuk-link" }, text: "Change")
     end
   end
 
@@ -492,7 +492,7 @@ RSpec.describe(GovukComponent::SummaryListComponent::ActionComponent, type: :com
     end
 
     specify "the custom HTML is rendered" do
-      expect(rendered_component).to have_tag("a", with: { class: component_css_class }) do
+      expect(rendered_content).to have_tag("a", with: { class: component_css_class }) do
         with_tag(custom_tag, text: custom_text)
       end
     end

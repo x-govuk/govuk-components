@@ -9,17 +9,17 @@ RSpec.describe(GovukComponent::WarningTextComponent, type: :component) do
   subject! { render_inline(GovukComponent::WarningTextComponent.new(**kwargs)) }
 
   specify 'renders a div element with the right class and text' do
-    expect(rendered_component).to have_tag('div', class: component_css_class, text: Regexp.new(text))
+    expect(rendered_content).to have_tag('div', class: component_css_class, text: Regexp.new(text))
   end
 
   specify 'the icon is present' do
-    expect(rendered_component).to have_tag('div', class: component_css_class) do
+    expect(rendered_content).to have_tag('div', class: component_css_class) do
       with_tag('span', with: { class: 'govuk-warning-text__icon' }, text: GovukComponent::WarningTextComponent::ICON)
     end
   end
 
   specify 'the default assistive text is included' do
-    expect(rendered_component).to have_tag(component_css_class_matcher) do
+    expect(rendered_content).to have_tag(component_css_class_matcher) do
       with_tag('strong', with: { class: 'govuk-warning-text__text' }) do
         with_tag('span', text: 'Warning', with: { class: 'govuk-warning-text__assistive' })
       end
@@ -30,7 +30,7 @@ RSpec.describe(GovukComponent::WarningTextComponent, type: :component) do
     subject! { render_inline(GovukComponent::WarningTextComponent.new(**kwargs.merge(icon_fallback_text: custom_icon_fallback_text))) }
 
     specify 'the custom assistive text is included' do
-      expect(rendered_component).to have_tag('div', class: component_css_class) do
+      expect(rendered_content).to have_tag('div', class: component_css_class) do
         with_tag('strong', with: { class: 'govuk-warning-text__text' }) do
           with_tag('span', text: custom_icon_fallback_text, with: { class: 'govuk-warning-text__assistive' })
         end
@@ -39,7 +39,7 @@ RSpec.describe(GovukComponent::WarningTextComponent, type: :component) do
   end
 
   specify 'the warning text is included' do
-    expect(rendered_component).to have_tag(component_css_class_matcher) do
+    expect(rendered_content).to have_tag(component_css_class_matcher) do
       with_tag('strong', text: Regexp.new(text), with: { class: 'govuk-warning-text__text' })
     end
   end
@@ -54,11 +54,11 @@ RSpec.describe(GovukComponent::WarningTextComponent, type: :component) do
     end
 
     specify "renders the custom html" do
-      expect(rendered_component).to have_tag(custom_tag, text: custom_text)
+      expect(rendered_content).to have_tag(custom_tag, text: custom_text)
     end
 
     specify "doesn't render any provided text" do
-      expect(rendered_component).not_to match(text)
+      expect(rendered_content).not_to match(text)
     end
   end
 

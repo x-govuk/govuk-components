@@ -23,21 +23,21 @@ RSpec.describe(GovukComponent::TabComponent, type: :component) do
     end
   end
 
-  let(:html) { Nokogiri.parse(rendered_component) }
+  let(:html) { Nokogiri.parse(rendered_content) }
 
   specify 'renders h2 element with right class and title' do
-    expect(rendered_component).to have_tag(component_css_class_matcher) do
+    expect(rendered_content).to have_tag(component_css_class_matcher) do
       with_tag('h2', with: { class: 'govuk-tabs__title' }, text: title)
     end
   end
 
   specify 'the right number of tabs are rendered' do
-    expect(rendered_component).to have_tag('li', with: { class: 'govuk-tabs__list-item' }, count: tabs.size)
+    expect(rendered_content).to have_tag('li', with: { class: 'govuk-tabs__list-item' }, count: tabs.size)
   end
 
   specify 'the tabs have the correct titles and hrefs' do
     tabs.each_key do |tab_title|
-      expect(rendered_component).to(
+      expect(rendered_content).to(
         have_tag('a', with: { href: '#' + tab_title.parameterize }, text: tab_title)
       )
     end
@@ -46,16 +46,16 @@ RSpec.describe(GovukComponent::TabComponent, type: :component) do
   specify 'only the first tab should be selected' do
     selected_tab_classes = %w(govuk-tabs__list-item govuk-tabs__list-item--selected)
 
-    expect(rendered_component).to have_tag('li', with: { class: selected_tab_classes }, count: 1)
+    expect(rendered_content).to have_tag('li', with: { class: selected_tab_classes }, count: 1)
   end
 
   specify 'there is one panel per tab' do
-    expect(rendered_component).to have_tag('div', with: { class: 'govuk-tabs__panel' }, count: tabs.size)
+    expect(rendered_content).to have_tag('div', with: { class: 'govuk-tabs__panel' }, count: tabs.size)
   end
 
   specify 'each panel contains the right content' do
     tabs.each do |title, content|
-      expect(rendered_component).to have_tag('div', with: { id: title.parameterize, class: 'govuk-tabs__panel' }) do
+      expect(rendered_content).to have_tag('div', with: { id: title.parameterize, class: 'govuk-tabs__panel' }) do
         with_text(content)
       end
     end
@@ -65,10 +65,10 @@ RSpec.describe(GovukComponent::TabComponent, type: :component) do
     visible_panel_id = tabs.keys.first.parameterize
     hidden_panel_ids = tabs.keys[1..].map(&:parameterize)
 
-    expect(rendered_component).to have_tag('div', with: { id: visible_panel_id, class: 'govuk-tabs__panel' })
+    expect(rendered_content).to have_tag('div', with: { id: visible_panel_id, class: 'govuk-tabs__panel' })
 
     hidden_panel_ids.each do |hidden_panel_id|
-      expect(rendered_component).to have_tag('div', with: { id: hidden_panel_id, class: %w(govuk-tabs__panel govuk-tabs__panel--hidden) })
+      expect(rendered_content).to have_tag('div', with: { id: hidden_panel_id, class: %w(govuk-tabs__panel govuk-tabs__panel--hidden) })
     end
   end
 
@@ -84,7 +84,7 @@ RSpec.describe(GovukComponent::TabComponent, type: :component) do
     let(:kwargs) { { title: "Some tabs", id: custom_id } }
 
     specify 'the tabs container has the specified id' do
-      expect(rendered_component).to have_tag('div', with: { id: custom_id, class: component_css_class })
+      expect(rendered_content).to have_tag('div', with: { id: custom_id, class: component_css_class })
     end
   end
 
@@ -99,7 +99,7 @@ RSpec.describe(GovukComponent::TabComponent, type: :component) do
 
     specify 'each panel contains the right content' do
       tabs.each do |title, content|
-        expect(rendered_component).to have_tag('div', with: { id: title.parameterize, class: 'govuk-tabs__panel' }) do
+        expect(rendered_content).to have_tag('div', with: { id: title.parameterize, class: 'govuk-tabs__panel' }) do
           with_text(content)
         end
       end
