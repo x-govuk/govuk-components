@@ -5,7 +5,7 @@ PATH
       activemodel (>= 6.1)
       html-attributes-utils (~> 0.9.0)
       railties (>= 6.1)
-      view_component (~> 2.49.1)
+      view_component (~> 2.56.2)
 
 GEM
   remote: https://rubygems.org/
@@ -254,7 +254,7 @@ GEM
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.1.0)
-    view_component (2.49.1)
+    view_component (2.56.2)
       activesupport (>= 5.0.0, < 8.0)
       method_source (~> 1.0)
     webrick (1.7.0)
