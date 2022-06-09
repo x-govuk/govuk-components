@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    govuk-components (3.0.5)
+    govuk-components (3.0.6)
       activemodel (>= 6.1)
       html-attributes-utils (~> 0.9.0)
       railties (>= 6.1)
