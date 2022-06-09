@@ -22,19 +22,19 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
   end
 
   specify "renders a table with thead and tbody elements" do
-    expect(rendered_component).to have_tag("table", with: { class: "govuk-table" })
+    expect(rendered_content).to have_tag("table", with: { class: "govuk-table" })
   end
 
   specify "table has the provided id" do
-    expect(rendered_component).to have_tag("table", with: { id: id })
+    expect(rendered_content).to have_tag("table", with: { id: id })
   end
 
   specify "renders a thead element" do
-    expect(rendered_component).to have_tag("table > thead")
+    expect(rendered_content).to have_tag("table > thead")
   end
 
   specify "renders a tbody element" do
-    expect(rendered_component).to have_tag("table > tbody")
+    expect(rendered_content).to have_tag("table > tbody")
   end
 
   context "when there is more than one tbody" do
@@ -49,7 +49,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
     end
 
     specify "mutiple tbody elements are rendered" do
-      expect(rendered_component).to have_tag("table > tbody", count: expected_count)
+      expect(rendered_content).to have_tag("table > tbody", count: expected_count)
     end
   end
 
@@ -65,7 +65,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
         end
 
         specify "renders the caption with the provided text" do
-          expect(rendered_component).to have_tag("table") do
+          expect(rendered_content).to have_tag("table") do
             with_tag("caption", text: caption_text)
           end
         end
@@ -79,7 +79,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
         end
 
         specify "renders no caption element" do
-          expect(rendered_component).to have_tag("table") do
+          expect(rendered_content).to have_tag("table") do
             without_tag("caption")
           end
         end
@@ -105,7 +105,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
           end
 
           specify "renders one header row" do
-            expect(rendered_component).to have_tag("table", with: { class: component_css_class }) do
+            expect(rendered_content).to have_tag("table", with: { class: component_css_class }) do
               with_tag("thead", with: { class: "govuk-table__head" }) do
                 with_tag("tr", with: { class: "govuk-table__row" }, count: 1)
               end
@@ -113,7 +113,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
           end
 
           specify "renders three body rows" do
-            expect(rendered_component).to have_tag("table", with: { class: component_css_class }) do
+            expect(rendered_content).to have_tag("table", with: { class: component_css_class }) do
               with_tag("tbody", with: { class: "govuk-table__body" }) do
                 with_tag("tr", with: { class: "govuk-table__row" }, count: 3)
               end
@@ -139,7 +139,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
           end
 
           specify "renders one header row" do
-            expect(rendered_component).to have_tag("table", with: { class: component_css_class }) do
+            expect(rendered_content).to have_tag("table", with: { class: component_css_class }) do
               with_tag("thead", with: { class: "govuk-table__head" }) do
                 with_tag("tr", with: { class: "govuk-table__row" }, count: 1)
               end
@@ -147,7 +147,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
           end
 
           specify "renders three body rows" do
-            expect(rendered_component).to have_tag("table", with: { class: component_css_class }) do
+            expect(rendered_content).to have_tag("table", with: { class: component_css_class }) do
               with_tag("tbody", with: { class: "govuk-table__body" }) do
                 with_tag("tr", with: { class: "govuk-table__row" }, count: 3)
               end
@@ -155,7 +155,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
           end
 
           specify "the head contains the right columns" do
-            expect(rendered_component).to have_tag("table > thead > tr") do
+            expect(rendered_content).to have_tag("table > thead > tr") do
               with_tag("th", count: 4)
 
               head.each do |header_value|
@@ -165,7 +165,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
           end
 
           specify "the rows each have the right contents" do
-            expect(rendered_component).to have_tag("table > tbody") do
+            expect(rendered_content).to have_tag("table > tbody") do
               with_tag("td", count: 4 * rows.size)
 
               rows.each do |row|
@@ -194,7 +194,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
       end
 
       specify "renders the header content in table header (th) cells" do
-        expect(rendered_component).to have_tag("table > tbody") do
+        expect(rendered_content).to have_tag("table > tbody") do
           with_tag('th', text: row_header_text, count: number_of_rows)
           with_tag('td', text: row_cell_text, count: number_of_rows * 2)
         end
@@ -228,11 +228,11 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
     end
 
     specify "renders a table" do
-      expect(rendered_component).to have_tag('table', with: { class: "govuk-table" })
+      expect(rendered_content).to have_tag('table', with: { class: "govuk-table" })
     end
 
     specify "the table has the right head content" do
-      expect(rendered_component).to have_tag('table') do
+      expect(rendered_content).to have_tag('table') do
         with_tag('thead') do
           with_tag('tr', with: { class: "govuk-table__row" }, count: 1) do
             with_tag('th', with: { class: "govuk-table__header" }, count: 3)
@@ -242,7 +242,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
     end
 
     specify "the table has the right body content" do
-      expect(rendered_component).to have_tag('table') do
+      expect(rendered_content).to have_tag('table') do
         with_tag('tbody') do
           with_tag('tr', count: 3)
 
@@ -276,19 +276,19 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
     end
 
     specify "renders the numeric header with a numeric class" do
-      expect(rendered_component).to have_tag("table > thead > tr > th", text: "numeric", with: { class: %w(govuk-table__header--numeric) })
+      expect(rendered_content).to have_tag("table > thead > tr > th", text: "numeric", with: { class: %w(govuk-table__header--numeric) })
     end
 
     specify "renders the numeric cells with a numeric classes" do
       1.upto(3).each do |i|
-        expect(rendered_component).to have_tag("table > tbody > tr > td", text: i, with: { class: %w(govuk-table__cell--numeric) })
+        expect(rendered_content).to have_tag("table > tbody > tr > td", text: i, with: { class: %w(govuk-table__cell--numeric) })
       end
     end
   end
 
   describe "captions" do
     specify "renders a caption with the correct text" do
-      expect(rendered_component).to have_tag("table", with: { class: component_css_class }) do
+      expect(rendered_content).to have_tag("table", with: { class: component_css_class }) do
         with_tag("caption", text: caption_text)
       end
     end
@@ -308,7 +308,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
             end
 
             specify "class '#{expected_class} is added" do
-              expect(rendered_component).to have_tag('caption', with: { class: ["govuk-table__caption", "govuk-table__caption--#{size}"] })
+              expect(rendered_content).to have_tag('caption', with: { class: ["govuk-table__caption", "govuk-table__caption--#{size}"] })
             end
           end
         end
@@ -334,7 +334,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
       end
 
       specify "renders the custom caption content" do
-        expect(rendered_component).to have_tag("caption > span", text: fancy_caption_text)
+        expect(rendered_content).to have_tag("caption > span", text: fancy_caption_text)
       end
     end
 
@@ -347,7 +347,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
       end
 
       specify "no caption tag is rendered" do
-        expect(rendered_component).to have_tag("table") { without_tag("caption") }
+        expect(rendered_content).to have_tag("table") { without_tag("caption") }
       end
     end
   end
@@ -367,7 +367,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
 
     specify "adds the width class correctly" do
       GovukComponent::TableComponent::CellComponent::WIDTHS.each_key do |width, expected_class|
-        expect(rendered_component).to have_tag("table > thead > tr > th", with: { class: expected_class }, text: width)
+        expect(rendered_content).to have_tag("table > thead > tr > th", with: { class: expected_class }, text: width)
       end
     end
   end

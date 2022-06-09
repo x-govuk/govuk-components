@@ -9,7 +9,7 @@ RSpec.describe(GovukComponent::TagComponent, type: :component) do
     subject! { render_inline(GovukComponent::TagComponent.new(**kwargs)) }
 
     specify 'renders strong element with right class and text' do
-      expect(rendered_component).to have_tag('strong', with: { class: component_css_class }, text: text)
+      expect(rendered_content).to have_tag('strong', with: { class: component_css_class }, text: text)
     end
 
     context 'when content is supplied in a block' do
@@ -24,7 +24,7 @@ RSpec.describe(GovukComponent::TagComponent, type: :component) do
       end
 
       specify 'renders strong element with right class and text' do
-        expect(rendered_component).to have_tag('strong', with: { class: component_css_class }) do
+        expect(rendered_content).to have_tag('strong', with: { class: component_css_class }) do
           with_tag(custom_tag, text: custom_text, with: { class: custom_class })
         end
       end
@@ -46,7 +46,7 @@ RSpec.describe(GovukComponent::TagComponent, type: :component) do
           let(:kwargs) { { text: text, colour: colour } }
 
           specify %(adds class .govuk-colour--#{colour}) do
-            expect(rendered_component).to have_tag(
+            expect(rendered_content).to have_tag(
               'strong',
               with: { class: [component_css_class, "govuk-tag--#{colour}"] },
               text: text

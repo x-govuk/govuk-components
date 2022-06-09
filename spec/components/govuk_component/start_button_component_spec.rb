@@ -10,11 +10,11 @@ RSpec.describe(GovukComponent::StartButtonComponent, type: :component) do
 
   specify 'renders a link element with the right text and href' do
     expected_classes = %w(govuk-button govuk-button--start)
-    expect(rendered_component).to have_tag('a', text: text, with: { class: expected_classes })
+    expect(rendered_content).to have_tag('a', text: text, with: { class: expected_classes })
   end
 
   specify 'the link contains an SVG chevron' do
-    expect(rendered_component).to have_tag('a') do
+    expect(rendered_content).to have_tag('a') do
       with_tag('svg', with: { 'aria-hidden' => true }) { with_tag('path') }
     end
   end
@@ -26,7 +26,7 @@ RSpec.describe(GovukComponent::StartButtonComponent, type: :component) do
       'draggable' => 'false'
     }
 
-    expect(rendered_component).to have_tag('a', with: expected_attributes)
+    expect(rendered_content).to have_tag('a', with: expected_attributes)
   end
 
   it_behaves_like 'a component that accepts custom classes'

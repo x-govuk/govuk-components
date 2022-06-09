@@ -13,7 +13,7 @@ RSpec.describe(GovukComponent::PanelComponent, type: :component) do
   specify 'contains a panel with the correct title and text' do
     render_inline(described_class.new(**kwargs))
 
-    expect(rendered_component).to have_tag('div', with: { class: %w(govuk-panel govuk-panel--confirmation) }) do
+    expect(rendered_content).to have_tag('div', with: { class: %w(govuk-panel govuk-panel--confirmation) }) do
       with_tag('h1', with: { class: 'govuk-panel__title' }, text: title_text)
       with_tag('div', with: { class: 'govuk-panel__body' }, text: text)
     end
@@ -29,7 +29,7 @@ RSpec.describe(GovukComponent::PanelComponent, type: :component) do
     end
 
     specify "the custom HTMl is rendered" do
-      expect(rendered_component).to have_tag("div", with: { class: component_css_class }) do
+      expect(rendered_content).to have_tag("div", with: { class: component_css_class }) do
         with_tag(custom_tag, text: custom_title_text)
       end
     end
@@ -41,7 +41,7 @@ RSpec.describe(GovukComponent::PanelComponent, type: :component) do
     before { render_inline(described_class.new(**kwargs.merge(id: custom_id))) }
 
     specify 'renders the panel with the custom id' do
-      expect(rendered_component).to have_tag('div', with: { id: custom_id, class: component_css_class })
+      expect(rendered_content).to have_tag('div', with: { id: custom_id, class: component_css_class })
     end
   end
 
@@ -49,7 +49,7 @@ RSpec.describe(GovukComponent::PanelComponent, type: :component) do
     before { render_inline(described_class.new(**kwargs.except(:title_text))) }
 
     specify 'contains a panel with no title and the text' do
-      expect(rendered_component).to have_tag('div', with: { class: %w(govuk-panel govuk-panel--confirmation) }) do
+      expect(rendered_content).to have_tag('div', with: { class: %w(govuk-panel govuk-panel--confirmation) }) do
         without_tag('h1', with: { class: 'govuk-panel__title' }, text: title_text)
         with_tag('div', with: { class: 'govuk-panel__body' }, text: text)
       end
@@ -61,7 +61,7 @@ RSpec.describe(GovukComponent::PanelComponent, type: :component) do
     before { render_inline(described_class.new(**kwargs.merge(heading_level: custom_heading_level))) }
 
     specify 'contains a panel with the title and no text' do
-      expect(rendered_component).to have_tag(%(h#{custom_heading_level}), with: { class: 'govuk-panel__title' }, text: title_text)
+      expect(rendered_content).to have_tag(%(h#{custom_heading_level}), with: { class: 'govuk-panel__title' }, text: title_text)
     end
   end
 
@@ -69,7 +69,7 @@ RSpec.describe(GovukComponent::PanelComponent, type: :component) do
     before { render_inline(described_class.new(**kwargs.except(:text))) }
 
     specify 'contains a panel with the title and no text' do
-      expect(rendered_component).to have_tag('div', with: { class: %w(govuk-panel govuk-panel--confirmation) }) do
+      expect(rendered_content).to have_tag('div', with: { class: %w(govuk-panel govuk-panel--confirmation) }) do
         with_tag('h1', with: { class: 'govuk-panel__title' }, text: title_text)
         without_tag('div', with: { class: 'govuk-panel__body' }, text: text)
       end
@@ -80,7 +80,7 @@ RSpec.describe(GovukComponent::PanelComponent, type: :component) do
     before { render_inline(described_class.new(**kwargs.except(:title_text))) { helper.tag.div('Something in a block') } }
 
     specify 'contains a panel with no title and the block' do
-      expect(rendered_component).to have_tag('div', with: { class: %w(govuk-panel govuk-panel--confirmation) }) do
+      expect(rendered_content).to have_tag('div', with: { class: %w(govuk-panel govuk-panel--confirmation) }) do
         without_tag('h1', with: { class: 'govuk-panel__title' }, text: title_text)
         with_tag('div', with: { class: 'govuk-panel__body' }) do
           with_tag('div', text: 'Something in a block')
@@ -93,7 +93,7 @@ RSpec.describe(GovukComponent::PanelComponent, type: :component) do
     before { render_inline(described_class.new) }
 
     specify 'nothing is rendered' do
-      expect(rendered_component).to be_blank
+      expect(rendered_content).to be_blank
     end
   end
 end

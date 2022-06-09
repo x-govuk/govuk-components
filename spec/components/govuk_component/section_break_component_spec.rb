@@ -13,7 +13,7 @@ RSpec.describe GovukComponent::SectionBreakComponent, type: :component do
 
       render_inline(component)
 
-      expect(rendered_component).to have_tag(
+      expect(rendered_content).to have_tag(
         "hr",
         with: { class: [component_css_class, "govuk-section-break--visible"] }
       )
@@ -26,7 +26,7 @@ RSpec.describe GovukComponent::SectionBreakComponent, type: :component do
 
       render_inline(component)
 
-      expect(rendered_component).to have_tag(
+      expect(rendered_content).to have_tag(
         "hr",
         with: { class: [component_css_class] },
         without: { class: ["govuk-section-break--visible"] }
@@ -40,7 +40,7 @@ RSpec.describe GovukComponent::SectionBreakComponent, type: :component do
 
       render_inline(component)
 
-      expect(rendered_component).to have_tag(
+      expect(rendered_content).to have_tag(
         "hr",
         with: { class: [component_css_class] }
       )
@@ -53,7 +53,7 @@ RSpec.describe GovukComponent::SectionBreakComponent, type: :component do
 
       render_inline(component)
 
-      expect(rendered_component).to have_tag(
+      expect(rendered_content).to have_tag(
         "hr",
         with: { class: [component_css_class, "govuk-section-break--xl"] }
       )

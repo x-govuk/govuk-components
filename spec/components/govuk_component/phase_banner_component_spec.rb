@@ -10,7 +10,7 @@ RSpec.describe(GovukComponent::PhaseBannerComponent, type: :component) do
   subject! { render_inline(GovukComponent::PhaseBannerComponent.new(**kwargs)) }
 
   specify "renders div element with the right text and banner tag" do
-    expect(rendered_component).to have_tag("div", with: { class: "govuk-phase-banner" }) do
+    expect(rendered_content).to have_tag("div", with: { class: "govuk-phase-banner" }) do
       with_tag("p", with: { class: "govuk-phase-banner__content" }) do
         with_tag("strong", text: phase, with: { class: "govuk-phase-banner__content__tag" })
         with_tag("span", text: text, with: { class: "govuk-phase-banner__text" })
@@ -26,7 +26,7 @@ RSpec.describe(GovukComponent::PhaseBannerComponent, type: :component) do
     end
 
     specify "renders div element with the right text, banner tag and content" do
-      expect(rendered_component).to have_tag("div", with: { class: "govuk-phase-banner" }) do
+      expect(rendered_content).to have_tag("div", with: { class: "govuk-phase-banner" }) do
         with_tag("p", with: { class: "govuk-phase-banner__content" }) do
           with_tag("strong", text: phase, with: { class: "govuk-phase-banner__content__tag" })
           with_tag("span", text: content, with: { class: "govuk-phase-banner__text" })
@@ -39,7 +39,7 @@ RSpec.describe(GovukComponent::PhaseBannerComponent, type: :component) do
     let(:kwargs) { { tag: { text: phase, colour: 'orange' }, text: text } }
 
     specify "the phase tag has the right colour class" do
-      expect(rendered_component).to have_tag("strong", with: { class: "govuk-tag--orange" }, text: phase)
+      expect(rendered_content).to have_tag("strong", with: { class: "govuk-tag--orange" }, text: phase)
     end
   end
 
