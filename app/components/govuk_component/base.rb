@@ -4,6 +4,11 @@ class GovukComponent::Base < ViewComponent::Base
   attr_reader :html_attributes
 
   def initialize(classes:, html_attributes:)
+    if classes.nil?
+      Rails.logger.warn("classes is nil, if no custom classes are needed omit the param")
+
+      classes = []
+    end
     # FIXME: remove first merge when we deprecate classes
     #
     # This step only needs to be here while we still accept classes:, now
