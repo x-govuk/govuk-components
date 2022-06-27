@@ -86,7 +86,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
   end
 
   context 'when custom logotype and service name are provided' do
-    let(:expected_service_name_classes) { %w(govuk-header__link govuk-header__link--service-name) }
+    let(:expected_service_name_classes) { %w(govuk-header__link govuk-header__service-name) }
 
     specify 'renders header with right logotype and provided service name' do
       expect(rendered_content).to have_tag('header', with: { class: component_css_class }) do
