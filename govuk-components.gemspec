@@ -31,6 +31,7 @@ Gem::Specification.new do |spec|
   end
 
   spec.add_dependency("html-attributes-utils", "~> 0.9", ">= 0.9.2")
+  spec.add_dependency("pagy", "~> 5.10.1")
   spec.add_dependency "view_component", "~> 2.56.2"
 
   spec.add_development_dependency "deep_merge"
@@ -45,7 +46,6 @@ Gem::Specification.new do |spec|
   # Required for the guide
   spec.add_development_dependency("htmlbeautifier", "~> 1.4.1")
   spec.add_development_dependency("nanoc", "~> 4.11")
-  spec.add_development_dependency("pagy", "~> 5.10.1")
   spec.add_development_dependency("redcarpet", "~> 3.5.1")
   spec.add_development_dependency("rouge", "~> 3.29.0")
   spec.add_development_dependency("rubypants", "~> 0.7.0")
