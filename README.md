@@ -8,7 +8,7 @@
 [![GitHub license](https://img.shields.io/github/license/DFE-Digital/govuk-components)](https://github.com/DFE-Digital/govuk-components/blob/main/LICENSE)
 [![GOV.UK Design System Version](https://img.shields.io/badge/GOV.UK%20Design%20System-4.2.0-brightgreen)](https://design-system.service.gov.uk)
 [![Rails](https://img.shields.io/badge/Rails-6.1.5%20%E2%95%B1%207.0.3-E16D6D)](https://weblog.rubyonrails.org/releases/)
-[![Ruby](https://img.shields.io/badge/Ruby-2.7.5%20%20%E2%95%B1%203.0.3%20%20%E2%95%B1%203.1.0-E16D6D)](https://www.ruby-lang.org/en/downloads/)
+[![Ruby](https://img.shields.io/badge/Ruby-2.7.5%20%20%E2%95%B1%203.0.3%20%20%E2%95%B1%203.1.2-E16D6D)](https://www.ruby-lang.org/en/downloads/)
 
 This gem provides a suite of reusable components for the [GOV.UK Design System](https://design-system.service.gov.uk/). It is intended to provide a lightweight alternative to the [GOV.UK Publishing Components](https://github.com/alphagov/govuk_publishing_components) library and is built with GitHub’s [ViewComponent](https://github.com/github/view_component) framework.
 

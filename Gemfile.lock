@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    govuk-components (3.1.0)
+    govuk-components (3.1.1)
       actionpack (>= 6.1)
       activemodel (>= 6.1)
       html-attributes-utils (~> 0.9, >= 0.9.2)
