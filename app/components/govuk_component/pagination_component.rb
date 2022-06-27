@@ -49,12 +49,12 @@ class GovukComponent::PaginationComponent < GovukComponent::Base
     @block_mode                    = block_mode
     @landmark_label                = landmark_label
 
-    build_items if pagy.present?
-
     super(classes: classes, html_attributes: html_attributes)
   end
 
   def before_render
+    build_items if pagy.present?
+
     @page_items       = items || build_items
     @previous_content = previous_page || build_previous
     @next_content     = next_page || build_next
