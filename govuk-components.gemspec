@@ -30,7 +30,7 @@ Gem::Specification.new do |spec|
     spec.add_dependency(*VersionFormatter.new(lib, rails_version, exact_rails_version).to_a)
   end
 
-  spec.add_dependency("html-attributes-utils", "~> 0.9.0")
+  spec.add_dependency("html-attributes-utils", "~> 0.9", ">= 0.9.2")
   spec.add_dependency "view_component", "~> 2.56.2"
 
   spec.add_development_dependency "deep_merge"
