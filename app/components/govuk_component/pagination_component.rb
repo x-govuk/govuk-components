@@ -53,9 +53,14 @@ class GovukComponent::PaginationComponent < GovukComponent::Base
   end
 
   def before_render
-    build_items if pagy.present?
+    @page_items = if pagy.present?
+                    build_items
+                  elsif items.any?
+                    items
+                  else
+                    []
+                  end
 
-    @page_items       = items || build_items
     @previous_content = previous_page || build_previous
     @next_content     = next_page || build_next
   end
