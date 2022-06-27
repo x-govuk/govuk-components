@@ -30,6 +30,7 @@ The provided components are:
 * [Inset text](https://govuk-components.netlify.app/components/inset-text)
 * [Notification banner](https://govuk-components.netlify.app/components/notification-banner)
 * [Panel](https://govuk-components.netlify.app/components/panel)
+* [Pagination](https://govuk-components.netlify.app/components/pagination)
 * [Phase banner](https://govuk-components.netlify.app/components/phase-banner)
 * [Section break](https://govuk-components.netlify.app/components/section-break)
 * [Start button](https://govuk-components.netlify.app/components/start-button)
