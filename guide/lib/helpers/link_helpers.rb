@@ -17,6 +17,7 @@ module Helpers
         "Header" => "/components/header",
         "Inset text" => "/components/inset-text",
         "Notification banner" => "/components/notification-banner",
+        "Pagination" => "/components/pagination",
         "Panel" => "/components/panel",
         "Phase banner" => "/components/phase-banner",
         "Start button" => "/components/start-button",

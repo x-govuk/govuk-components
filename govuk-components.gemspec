@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
   exact_rails_version = ENV.key?("RAILS_VERSION")
   rails_version = ENV.fetch("RAILS_VERSION") { "6.1.5" }
 
-  %w(activemodel railties).each do |lib|
+  %w(actionpack activemodel railties).each do |lib|
     spec.add_dependency(*VersionFormatter.new(lib, rails_version, exact_rails_version).to_a)
   end
 
@@ -45,6 +45,7 @@ Gem::Specification.new do |spec|
   # Required for the guide
   spec.add_development_dependency("htmlbeautifier", "~> 1.4.1")
   spec.add_development_dependency("nanoc", "~> 4.11")
+  spec.add_development_dependency("pagy", "~> 5.10.1")
   spec.add_development_dependency("redcarpet", "~> 3.5.1")
   spec.add_development_dependency("rouge", "~> 3.29.0")
   spec.add_development_dependency("rubypants", "~> 0.7.0")

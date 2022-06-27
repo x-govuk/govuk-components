@@ -2,6 +2,7 @@
 $govuk-global-styles: true;
 $govuk-assets-path: "/assets/";
 $app-iframe-mobile-height: 15rem;
+$govuk-new-link-styles: true;
 
 // Import GOV.UK Frontend
 @import "govuk/all";

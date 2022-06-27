@@ -5,6 +5,7 @@ require 'htmlbeautifier'
 require 'slim/erb_converter'
 require 'active_support/core_ext/hash/deep_merge'
 require 'active_support/core_ext/string/starts_ends_with'
+require 'pagy'
 
 Dir.glob(File.join('./lib', '**', '*.rb')).sort.each { |f| require f }
 
@@ -36,6 +37,11 @@ require 'components/govuk_component/footer_component'
 require 'components/govuk_component/header_component'
 require 'components/govuk_component/inset_text_component'
 require 'components/govuk_component/notification_banner_component'
+require 'components/govuk_component/pagination_component'
+require 'components/govuk_component/pagination_component/item'
+require 'components/govuk_component/pagination_component/adjacent_page'
+require 'components/govuk_component/pagination_component/next_page'
+require 'components/govuk_component/pagination_component/previous_page'
 require 'components/govuk_component/panel_component'
 require 'components/govuk_component/phase_banner_component'
 require 'components/govuk_component/section_break_component'
@@ -69,6 +75,7 @@ use_helper Examples::FooterHelpers
 use_helper Examples::HeaderHelpers
 use_helper Examples::InsetTextHelpers
 use_helper Examples::NotificationBannerHelpers
+use_helper Examples::PaginationHelpers
 use_helper Examples::PanelHelpers
 use_helper Examples::PhaseBannerHelpers
 use_helper Examples::SectionBreakHelpers
