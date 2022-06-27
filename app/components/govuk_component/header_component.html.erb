@@ -32,7 +32,7 @@
     <% if service_name.present? || navigation_items.present? %>
       <div class="govuk-header__content">
         <% if service_name.present? %>
-          <%= link_to(service_name, service_url, class: %w(govuk-header__link govuk-header__link--service-name)) %>
+          <%= link_to(service_name, service_url, class: %w(govuk-header__link govuk-header__service-name)) %>
         <% end %>
 
         <% if navigation_items.any? %>
