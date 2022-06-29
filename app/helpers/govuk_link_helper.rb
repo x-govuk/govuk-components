@@ -68,7 +68,7 @@ module GovukLinkHelper
 
   def govuk_button_link_to(name = nil, options = nil, extra_options = {}, &block)
     extra_options = options if block_given?
-    html_options = GovukComponent::StartButtonComponent::BUTTON_ATTRIBUTES
+    html_options = GovukComponent::StartButtonComponent::LINK_ATTRIBUTES
       .merge build_html_options(extra_options, style: :button)
 
     if block_given?
