@@ -411,7 +411,7 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
       end
     end
 
-    context "when there is only one page" do
+    context "when there are no pages or next/prev links" do
       subject! do
         render_inline(GovukComponent::PaginationComponent.new)
       end
