@@ -12,4 +12,22 @@ p
   caption: "Start button",
   code: start_button_normal)
 
+== render('/partials/example.*',
+  caption: "Rendering a start button in a form",
+  code: start_button_as_button) do
+
+  markdown:
+    If you need to submit data you can make the component render a form
+    containing a button instead of a link by passing `as_button: true`. This
+    approach uses the Rails `button_to` helper and will render a form that
+    will `POST` to the target URL.
+
+  div.govuk-warning-text
+    span.govuk-warning-text__icon aria-hidden="true"
+      | !
+    strong.govuk-warning-text__text
+      span.govuk-warning-text__assistive Warning
+      | The GOV.UK Design system
+      =< link_to("advises against submitting data with a start button", "https://design-system.service.gov.uk/components/button/#start-buttons").html_safe
+
 == render('/partials/related-info.*', links: start_button_info)
