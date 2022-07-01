@@ -11,6 +11,10 @@ module Helpers
     def variants
       []
     end
+
+    def protect_against_forgery?
+      false
+    end
   end
 
   module Formatters
