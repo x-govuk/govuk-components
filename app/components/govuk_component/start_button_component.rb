@@ -1,29 +1,38 @@
 class GovukComponent::StartButtonComponent < GovukComponent::Base
   BUTTON_ATTRIBUTES = {
-    role: 'button',
     draggable: 'false',
     data: { module: 'govuk-button' }
   }.freeze
 
-  attr_reader :text, :href
+  LINK_ATTRIBUTES = BUTTON_ATTRIBUTES.merge({ role: 'button' }).freeze
 
-  def initialize(text:, href:, classes: [], html_attributes: {})
+  attr_reader :text, :href, :as_button
+
+  def initialize(text:, href:, as_button: false, classes: [], html_attributes: {})
     @text = text
     @href = href
+    @as_button = as_button
 
     super(classes: classes, html_attributes: html_attributes)
   end
 
   def call
-    link_to(href, **html_attributes) do
-      safe_join([text, icon])
+    if as_button
+      button_to(href, **html_attributes) do
+        safe_join([text, icon])
+      end
+    else
+      link_to(href, **html_attributes) do
+        safe_join([text, icon])
+      end
     end
   end
 
 private
 
   def default_attributes
-    BUTTON_ATTRIBUTES.merge({ class: %w(govuk-button govuk-button--start) })
+    (as_button ? BUTTON_ATTRIBUTES : LINK_ATTRIBUTES)
+      .merge({ class: %w(govuk-button govuk-button--start) })
   end
 
   def icon
