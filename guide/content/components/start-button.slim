@@ -5,7 +5,7 @@ title: Start button
 p
   | Use a start button for the main call to action on your service’s
     #{govuk_link_to('start page', 'https://design-system.service.gov.uk/patterns/start-pages/').html_safe}.
-    Start buttons do not submit form data, so they use a link tag rather
+    Start buttons don't usually submit form data, so they use a link tag rather
     than a button tag.
 
 == render('/partials/example.*',
@@ -22,7 +22,7 @@ p
     approach uses the Rails `button_to` helper and will render a form that
     will `POST` to the target URL.
 
-  div.govuk-warning-text
+  .govuk-warning-text
     span.govuk-warning-text__icon aria-hidden="true"
       | !
     strong.govuk-warning-text__text
