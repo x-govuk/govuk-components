@@ -65,9 +65,14 @@ private
   def build_meta_links(links)
     return [] if links.blank?
 
-    fail(ArgumentError, 'meta links must be a hash') unless links.is_a?(Hash)
-
-    links.map { |text, href| raw(link_to(text, href, class: %w(govuk-footer__link))) }
+    case links
+    when Array
+      links.map { |link| raw(link_to(link[:text], link[:href], class: %w(govuk-footer__link), **link.fetch(:attr, {}))) }
+    when Hash
+      links.map { |text, href| raw(link_to(text, href, class: %w(govuk-footer__link))) }
+    else
+      fail(ArgumentError, 'meta links must be a hash') unless links.is_a?(Hash)
+    end
   end
 
   def default_licence
