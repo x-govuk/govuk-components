@@ -108,6 +108,12 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
           end
         end
       end
+
+      context "when invalid meta items are provided" do
+        specify "raises an error" do
+          expect { GovukComponent::FooterComponent.new(meta_items: "invalid") }.to raise_error(ArgumentError, "meta links must be a hash or array of hashes")
+        end
+      end
     end
 
     describe "custom meta_licence text" do
