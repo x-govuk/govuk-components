@@ -18,6 +18,19 @@ module Examples
       FOOTER_META_ITEMS
     end
 
+    def footer_meta_complex_items
+      <<~FOOTER_META_ITEMS
+        {
+          meta_items: [
+            { text: "Apricot", href: "#apr", attr: { data: { controller: "item-a" } } },
+            { text: "Blackberry", href: "#blb", attr: { data: { controller: "item-b" } } },
+            { text: "Cherry", href: "#chy", attr: { rel: "noopener" } },
+            { text: "Damson", href: "#dsn", attr: { aria: { description: "An edible subspecies of plum" } } },
+          ]
+        }
+      FOOTER_META_ITEMS
+    end
+
     def footer_with_custom_meta_html
       <<~FOOTER_META_HTML
         = render GovukComponent::FooterComponent.new do |footer|

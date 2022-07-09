@@ -22,6 +22,16 @@ p The footer provides copyright, licensing and other information about your
     and contact details in the footer:
 
 == render('/partials/example.*',
+  caption: "Footer with meta links that have custom HTML attributes",
+  code: footer_with_meta_items,
+  data: footer_meta_complex_items) do
+
+  markdown:
+    If you need greater control of the meta links you can
+    provide them as an array of hashes with the keys `text:`, `href:` and `attr:` where
+    attr is a hash of HTML attributes.
+
+== render('/partials/example.*',
   caption: "Footer with custom content beneath the licence information",
   code: footer_with_custom_meta_html) do
 
