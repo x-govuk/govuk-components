@@ -105,6 +105,7 @@ private
 
     def active?
       return @active_override unless @active_override.nil?
+      return false if href.blank?
 
       current_page?(href)
     end
