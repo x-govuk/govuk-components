@@ -28,7 +28,7 @@ private
     when Hash
       breadcrumbs.map { |text, link| build_list_item(text, link) }
     else
-      fail(ArgumentError, "breadcrumb must be an array or hash")
+      fail(ArgumentError, "breadcrumbs must be an array or hash")
     end
   end
 
