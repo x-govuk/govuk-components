@@ -83,6 +83,31 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
           end
         end
       end
+
+      context "when meta items are provided as an array of hashes" do
+        let(:meta_items) do
+          [
+            { text: "One", href: "/one", attr: { a: "one" } },
+            { text: "Two", href: "/two", attr: { b: "two" } },
+            { text: "Three", href: "/two" }
+          ]
+        end
+        let(:kwargs) { { meta_items_title: heading_text, meta_items: meta_items } }
+
+        specify "each meta item is rendered" do
+          expect(rendered_content).to have_tag(selector) do
+            with_tag("li > a", count: meta_items.size)
+
+            meta_items.each do |item|
+              with_tag("li", with: { class: "govuk-footer__inline-list-item" }) do
+                expected_attributes = { href: item[:href] }.merge(item.fetch(:attr, {}))
+
+                with_tag("a", with: expected_attributes, text: item[:text])
+              end
+            end
+          end
+        end
+      end
     end
 
     describe "custom meta_licence text" do
