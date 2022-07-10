@@ -40,6 +40,12 @@ RSpec.describe(GovukComponent::BreadcrumbsComponent, type: :component) do
     end
   end
 
+  context 'when an invalid breadcrumbs object is provided' do
+    specify "raises an error" do
+      expect { GovukComponent::BreadcrumbsComponent.new(breadcrumbs: "invalid") }.to raise_error(ArgumentError, "breadcrumbs must be an array or hash")
+    end
+  end
+
   specify 'breadcrumbs links are correct' do
     breadcrumbs.reject { |_, path| path.nil? }.each do |name, path|
       expect(rendered_content).to have_tag('li > a', with: { class: 'govuk-breadcrumbs__link', href: path }, text: name)

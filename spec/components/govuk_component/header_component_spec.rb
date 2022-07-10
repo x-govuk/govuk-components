@@ -188,7 +188,8 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
           { text: 'Item 1', href: '/item-1' },
           { text: 'Item 2', href: '/item-2', active: true },
           { text: 'Item 3', href: '/item-3' },
-          { text: 'Item 4', href: '/item-4', options: { method: :delete } }
+          { text: 'Item 4', href: '/item-4', options: { method: :delete } },
+          { text: 'Item 5' }
         ]
       end
 
@@ -204,8 +205,25 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
       end
 
       specify 'nav contains the right number of items' do
+        expect(rendered_content).to have_tag("li", with: { class: "govuk-header__navigation-item" }, count: navigation_items.count)
+      end
+
+      specify 'the naviation items with a href present are rendered as links' do
         expect(rendered_content).to have_tag('nav') do
-          with_tag('a', with: { class: 'govuk-header__link' }, count: navigation_items.size)
+          navigation_items.select { |ni| ni.key?(:href) }.each do |item|
+            with_tag('li', with: { class: 'govuk-header__navigation-item' }) do
+              with_tag('a', with: { class: 'govuk-header__link' }, text: item[:text])
+            end
+          end
+        end
+      end
+
+      specify 'the naviation items without a href present are rendered as text' do
+        expect(rendered_content).to have_tag('nav') do
+          navigation_items.reject { |ni| ni.key?(:href) }.each do |item|
+            with_tag('li', with: { class: 'govuk-header__navigation-item' }, text: item[:text])
+            without_tag("a", text: item[:text])
+          end
         end
       end
 
@@ -225,11 +243,13 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
 
       specify 'nav items have the right text and links' do
         expect(rendered_content).to have_tag('nav') do
-          navigation_items.each do |link|
-            if link.key?(:options)
-              with_tag('a', with: { href: link.fetch(:href), "data-method": link.dig(:options, :method) }, text: link.fetch(:text))
+          navigation_items.each do |item|
+            if item.key?(:options)
+              with_tag('a', with: { href: item.fetch(:href), "data-method": item.dig(:options, :method) }, text: item.fetch(:text))
+            elsif item.key?(:href)
+              with_tag('a', with: { href: item.fetch(:href) }, text: item.fetch(:text))
             else
-              with_tag('a', with: { href: link.fetch(:href) }, text: link.fetch(:text))
+              with_tag('li', text: item.fetch(:text))
             end
           end
         end

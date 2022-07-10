@@ -71,7 +71,7 @@ private
     when Hash
       links.map { |text, href| raw(link_to(text, href, class: %w(govuk-footer__link))) }
     else
-      fail(ArgumentError, 'meta links must be a hash') unless links.is_a?(Hash)
+      fail(ArgumentError, 'meta links must be a hash or array of hashes') unless links.is_a?(Hash)
     end
   end
 
