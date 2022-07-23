@@ -14,6 +14,15 @@ This gem provides a suite of reusable components for the [GOV.UK Design System](
 
 It aims to implement the functionality from the original Nunjucks macros in a way that will feel more familiar to Rails developers. Blocks are preferred over strings of HTML, beneath the surface each component is just a Ruby object, everything is inheritable and overrideable.
 
+## Documentation
+
+The gem comes with [a full guide](https://govuk-components.netlify.app/) that
+covers most aspects of day-to-day use, along with code and output examples. The
+examples in the guide (and the guide itself) are built using the components,
+so it will always be up to date.
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d40a5a0a-b086-4c35-b046-97fbcbf9f219/deploy-status)](https://app.netlify.com/sites/govuk-components/deploys)
+
 ## What’s included?
 
 All of the non-form components from the GOV.UK Design System are implemented by this library as ViewComponents. Form components are implemented by the [GOV.UK Form Builder](https://govuk-form-builder.netlify.app/).
