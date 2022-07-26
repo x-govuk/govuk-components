@@ -63,5 +63,73 @@ module Examples
         }
       SUMMARY_LIST_FROM_ROWS_DATA
     end
+
+    def summary_list_card
+      <<~SUMMARY_LIST_CARD
+        = govuk_summary_list_card(title: "Araquanid") do |card|
+          - card.with_action { govuk_link_to("Status", "#") }
+          - card.with_action { govuk_link_to("Choose", "#") }
+          - card.with_summary_list(rows: araquanid_data)
+
+        = govuk_summary_list(header: { title: "Emboar", actions: emboar_actions }, rows: emboar_data)
+      SUMMARY_LIST_CARD
+    end
+
+    def summary_list_card_data
+      <<~SUMMARY_LIST_FROM_ROWS_DATA
+        {
+          araquanid_data: [
+            { key: { text: "Type" }, value: { text: "💧 Water" } },
+            {
+              key: { text: "Description" },
+              value: { text: "Araquanid is an arachnoid Pokémon with a water bubble around its head." },
+              actions: [{ href: "#", visually_hidden_text: "Araquanid's description" }],
+            },
+            {
+              key: { text: "Attack" },
+              value: { text: "70" },
+              actions: [{ href: "#", visually_hidden_text: "Araquanid's attack statistics" }],
+            },
+            {
+              key: { text: "Defence" },
+              value: { text: "92" },
+              actions: [{ href: "#", visually_hidden_text: "Araquanid's defence statistics" }],
+            },
+            {
+              key: { text: "Speed" },
+              value: { text: "42" },
+              actions: [{ href: "#", visually_hidden_text: "Araquanid's speed" }],
+            }
+          ],
+          emboar_actions: [
+            govuk_link_to("Status", "#"),
+            govuk_link_to("Choose", "#")
+          ],
+          emboar_data: [
+            { key: { text: "Type" }, value: { text: "🔥 Fire" } },
+            {
+              key: { text: "Description" },
+              value: { text: "Emboar is a bulky, bipedal Pokémon with pig-like features." },
+              actions: [{ href: "#", visually_hidden_text: "Emboar's description" }],
+            },
+            {
+              key: { text: "Attack" },
+              value: { text: "123" },
+              actions: [{ href: "#", visually_hidden_text: "Emboar's attack statistics" }],
+            },
+            {
+              key: { text: "Defence" },
+              value: { text: "65" },
+              actions: [{ href: "#", visually_hidden_text: "Emboar's defence statistics" }],
+            },
+            {
+              key: { text: "Speed" },
+              value: { text: "65" },
+              actions: [{ href: "#", visually_hidden_text: "Emboar's speed" }],
+            }
+          ]
+        }
+      SUMMARY_LIST_FROM_ROWS_DATA
+    end
   end
 end
