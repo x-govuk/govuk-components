@@ -20,9 +20,9 @@ class GovukComponent::HeaderComponent < GovukComponent::Base
                  crown: true,
                  crown_fallback_image_path: nil,
                  homepage_url: '/',
-                 menu_button_label: 'Show or hide navigation menu',
+                 menu_button_label: Govuk::Components.config.default_header_component_menu_button_label,
                  navigation_classes: [],
-                 navigation_label: 'Navigation menu',
+                 navigation_label: Govuk::Components.config.default_header_component_navigation_label,
                  service_name: nil,
                  service_url: '/',
                  container_classes: nil)

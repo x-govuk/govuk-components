@@ -29,7 +29,9 @@ module Govuk
     end
 
     DEFAULTS = {
-      hello: "world"
+      default_back_link_component_text: 'Back',
+      default_header_component_navigation_label: 'Navigation menu',
+      default_header_component_menu_button_label: 'Show or hide navigation menu',
     }.freeze
 
     DEFAULTS.each_key { |k| config_accessor(k) { DEFAULTS[k] } }
