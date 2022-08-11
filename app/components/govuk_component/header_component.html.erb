@@ -37,7 +37,7 @@
 
         <% if navigation_items.any? %>
           <%= tag.nav(**navigation_html_attributes) do %>
-            <%= tag.button("Menu", type: "button", class: %w(govuk-header__menu-button govuk-js-header-toggle), aria: { controls: "navigation", label: menu_button_label }) %>
+            <%= tag.button("Menu", type: "button", class: %w(govuk-header__menu-button govuk-js-header-toggle), hidden: true, aria: { controls: "navigation", label: menu_button_label }) %>
             <ul id="navigation" class="govuk-header__navigation-list">
               <% navigation_items.each do |item| %>
                 <%= item %>

@@ -296,7 +296,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
 
         specify 'the button is rendered' do
           expect(rendered_content).to have_tag('div', with: { class: 'govuk-header__content' }) do
-            with_tag('button', with: { class: button_classes, 'aria-label' => button_aria_label }, text: button_text)
+            with_tag('button', with: { class: button_classes, 'aria-label' => button_aria_label, hidden: 'hidden' }, text: button_text)
           end
         end
 
