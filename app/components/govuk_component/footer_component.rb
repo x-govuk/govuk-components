@@ -11,13 +11,13 @@ class GovukComponent::FooterComponent < GovukComponent::Base
     classes: [],
     container_classes: [],
     container_html_attributes: {},
-    copyright_text: default_copright_text,
-    copyright_url: default_copyright_url,
+    copyright_text: Govuk::Components.config.default_footer_component_copyright_text,
+    copyright_url: Govuk::Components.config.default_footer_component_copyright_url,
     html_attributes: {},
     meta_items: {},
     meta_items_title: "Support links",
     meta_licence: nil,
-    meta_text: nil,
+    meta_text: Govuk::Components.config.default_footer_component_meta_text,
     meta_classes: [],
     meta_html_attributes: {}
   )
@@ -83,13 +83,5 @@ private
 
   def build_copyright(text, url)
     link_to(text, url, class: %w(govuk-footer__link govuk-footer__copyright-logo))
-  end
-
-  def default_copright_text
-    raw(%(© Crown copyright))
-  end
-
-  def default_copyright_url
-    "https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
   end
 end
