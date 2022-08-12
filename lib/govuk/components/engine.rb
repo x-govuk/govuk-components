@@ -32,6 +32,9 @@ module Govuk
       default_back_link_component_text: 'Back',
       default_header_component_navigation_label: 'Navigation menu',
       default_header_component_menu_button_label: 'Show or hide navigation menu',
+      default_footer_component_meta_text: nil,
+      default_footer_component_copyright_text: '© Crown copyright',
+      default_footer_component_copyright_url: "https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/",
     }.freeze
 
     DEFAULTS.each_key { |k| config_accessor(k) { DEFAULTS[k] } }
