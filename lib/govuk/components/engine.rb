@@ -32,6 +32,8 @@ module Govuk
       default_back_link_component_text: 'Back',
       default_breadcrumbs_component_collapse_on_mobile: false,
       default_breadcrumbs_component_hide_in_print: false,
+      default_cookie_banner_aria_label: "Cookie banner",
+      default_cookie_banner_hide_in_print: true,
       default_header_component_navigation_label: 'Navigation menu',
       default_header_component_menu_button_label: 'Show or hide navigation menu',
       default_footer_component_meta_text: nil,
