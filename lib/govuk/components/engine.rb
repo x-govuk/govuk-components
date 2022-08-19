@@ -39,6 +39,8 @@ module Govuk
       default_footer_component_meta_text: nil,
       default_footer_component_copyright_text: '© Crown copyright',
       default_footer_component_copyright_url: "https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/",
+      default_phase_banner_component_tag: nil,
+      default_phase_banner_component_text: nil,
       default_tag_component_colour: nil,
     }.freeze
 
