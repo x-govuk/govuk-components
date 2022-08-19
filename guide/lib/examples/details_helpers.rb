@@ -2,7 +2,7 @@ module Examples
   module DetailsHelpers
     def details_normal
       <<~DETAILS
-        = govuk_details(summary_text: summary_text, text: text) do
+        = govuk_details(summary_text: summary_text, text: text)
       DETAILS
     end
 
@@ -30,7 +30,7 @@ module Examples
 
     def details_open
       <<~DETAILS
-        = govuk_details(summary_text: summary_text, text: text, open: true) do
+        = govuk_details(summary_text: summary_text, text: text, open: true)
       DETAILS
     end
   end
