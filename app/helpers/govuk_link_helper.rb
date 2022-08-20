@@ -13,6 +13,11 @@ module GovukLinkHelper
     warning:   "govuk-button--warning",
   }.freeze
 
+  NEW_TAB_ATTRIBUTES = {
+    target: "_blank",
+    rel: "noreferrer noopener"
+  }.freeze
+
   def govuk_link_classes(*styles, default_class: 'govuk-link')
     if (invalid_styles = (styles - LINK_STYLES.keys)) && invalid_styles.any?
       fail(ArgumentError, "invalid styles #{invalid_styles.to_sentence}. Valid styles are #{LINK_STYLES.keys.to_sentence}")
@@ -29,9 +34,9 @@ module GovukLinkHelper
     [default_class] + BUTTON_STYLES.values_at(*styles).compact
   end
 
-  def govuk_link_to(name = nil, options = nil, extra_options = {}, &block)
+  def govuk_link_to(name = nil, options = nil, extra_options = {}, new_tab: false, &block)
     extra_options = options if block_given?
-    html_options = build_html_options(extra_options)
+    html_options = build_html_options(extra_options, new_tab: new_tab)
 
     if block_given?
       link_to(name, html_options, &block)
@@ -62,10 +67,10 @@ module GovukLinkHelper
     end
   end
 
-  def govuk_button_link_to(name = nil, options = nil, extra_options = {}, &block)
+  def govuk_button_link_to(name = nil, options = nil, extra_options = {}, new_tab: false, &block)
     extra_options = options if block_given?
     html_options = GovukComponent::StartButtonComponent::LINK_ATTRIBUTES
-      .merge build_html_options(extra_options, style: :button)
+      .merge build_html_options(extra_options, style: :button, new_tab: new_tab)
 
     if block_given?
       link_to(name, html_options, &block)
@@ -87,18 +92,21 @@ module GovukLinkHelper
 
 private
 
-  def build_html_options(provided_options, style: :link)
-    styles = case style
-             when :link       then LINK_STYLES
-             when :button     then BUTTON_STYLES
-             else {}
-             end
+  def build_html_options(provided_options, style: :link, new_tab: false)
+    element_styles = { link: LINK_STYLES, button: BUTTON_STYLES }.fetch(style, {})
 
-    remaining_options = provided_options&.slice!(*styles.keys)
+    remaining_options = {
+      **remove_styles_from_provided_options(element_styles, provided_options),
+      **new_tab_options(new_tab)
+    }
 
-    return {} unless (style_classes = build_style_classes(style, provided_options))
+    style_classes = build_style_classes(style, extract_styles_from_provided_options(element_styles, provided_options))
 
-    inject_class(remaining_options, class_name: style_classes)
+    combine_attributes(remaining_options, class_name: style_classes)
+  end
+
+  def new_tab_options(new_tab)
+    new_tab ? NEW_TAB_ATTRIBUTES : {}
   end
 
   def build_style_classes(style, provided_options)
@@ -111,12 +119,24 @@ private
     end
   end
 
-  def inject_class(attributes, class_name:)
+  def combine_attributes(attributes, class_name:)
     attributes ||= {}
 
     attributes.with_indifferent_access.tap do |attrs|
       attrs[:class] = Array.wrap(attrs[:class]).prepend(class_name).flatten.join(" ")
     end
+  end
+
+  def extract_styles_from_provided_options(styles, provided_options)
+    return {} if provided_options.blank?
+
+    provided_options.slice(*styles.keys)
+  end
+
+  def remove_styles_from_provided_options(styles, provided_options)
+    return {} if provided_options.blank?
+
+    provided_options&.except(*styles.keys)
   end
 end
 

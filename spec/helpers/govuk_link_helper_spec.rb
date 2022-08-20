@@ -105,6 +105,14 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
 
       it { is_expected.to have_tag('a', with: { href: link_url, class: %w(green govuk-link--no-underline) }, text: link_text) }
     end
+
+    context "when new_tab: true" do
+      let(:link_params) { { controller: :some_controller, action: :some_action } }
+
+      subject { govuk_link_to(link_text, link_params, new_tab: true) }
+
+      it { is_expected.to have_tag('a', with: { href: link_url, class: %w(govuk-link), target: "_blank", rel: "noreferrer noopener" }, text: link_text) }
+    end
   end
 
   describe "#govuk_mail_to" do
@@ -205,60 +213,61 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
   end
 
   describe "#govuk_button_link_to" do
-    let(:button_text) { 'Do something' }
-    let(:button_url) { '/some/action' }
-    let(:button_params) { { controller: :some_controller, action: :some_action } }
-
-    before do
-      allow(self).to receive(:url_for).with(button_params).and_return(button_url)
-    end
+    let(:button_link_text) { 'Activate!' }
+    let(:button_link_url) { '/another/link' }
 
     context "when provided with button text and url params" do
-      subject { govuk_button_link_to(button_text, button_params) }
+      subject { govuk_button_link_to(button_link_text, button_link_url) }
 
       specify "renders a link styled as a button with the correct attributes" do
-        expect(subject).to have_tag("a", with: {
-          href: button_url,
-          class: "govuk-button",
-          draggable: false,
-          role: "button",
-          "data-module": "govuk-button"
-        })
+        expect(subject).to have_tag(
+          "a",
+          with: {
+            href: button_link_url,
+            class: "govuk-button",
+            draggable: false,
+            role: "button",
+            "data-module": "govuk-button"
+          },
+          text: button_link_text
+        )
       end
     end
 
     context "when provided with url params and a block" do
       let(:button_html) { tag.span(button_text) }
 
-      subject { govuk_button_link_to(button_params) { button_html } }
+      subject { govuk_button_link_to(button_link_url) { button_link_text } }
 
       specify "renders a link styled as a button with the correct attributes" do
-        expect(subject).to have_tag("a", with: { href: button_url, class: "govuk-button" }) do
-          with_tag("span", text: button_text)
-        end
+        expect(subject).to have_tag("a", with: { href: button_link_url, class: "govuk-button" }, text: button_link_text)
       end
     end
 
     context "customising the GOV.UK button style" do
-      let(:custom_button_options) { { secondary: true } }
+      let(:custom_link_button_options) { { secondary: true } }
 
-      subject { govuk_button_to(button_text, button_params, custom_button_options) }
+      subject { govuk_button_link_to(button_link_text, button_link_url, custom_link_button_options) }
 
       specify "renders a form with an button that has the GOV.UK modifier classes" do
-        expect(subject).to have_tag("form", with: { class: "button_to", action: button_url }) do
-          with_tag("input", with: { type: "submit", class: %w(govuk-button govuk-button--secondary) })
-        end
+        expect(subject).to have_tag("a", with: { href: button_link_url, class: %w(govuk-button govuk-button--secondary) }, text: button_link_text)
       end
     end
 
     context "adding custom classes" do
-      subject { govuk_button_to(button_text, button_params, { class: "yellow", disabled: true }) }
+      subject { govuk_button_link_to(button_link_text, button_link_url, { class: "yellow", disabled: true }) }
 
       specify "renders a form with an button that has the custom classes" do
-        expect(subject).to have_tag("form", with: { class: "button_to", action: button_url }) do
-          with_tag("input", with: { type: "submit", class: %w(govuk-button yellow govuk-button--disabled) })
-        end
+        expect(subject).to have_tag("a", with: { href: button_link_url, class: %w(govuk-button yellow) }, text: button_link_text)
       end
+    end
+
+    context "when new_tab: true" do
+      let(:link_params) { { controller: :some_controller, action: :some_action } }
+
+      subject { govuk_button_link_to(button_link_text, button_link_url, new_tab: true) }
+
+      it { is_expected.to have_tag('a', with: { href: button_link_url, class: %w(govuk-button), target: "_blank", rel: "noreferrer noopener" }, text: button_link_text) }
     end
   end
 
