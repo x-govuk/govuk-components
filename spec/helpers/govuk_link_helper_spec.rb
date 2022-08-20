@@ -106,12 +106,24 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
       it { is_expected.to have_tag('a', with: { href: link_url, class: %w(green govuk-link--no-underline) }, text: link_text) }
     end
 
-    context "when new_tab: true" do
-      let(:link_params) { { controller: :some_controller, action: :some_action } }
+    describe "opening links in new windows" do
+      context "when new_tab: true" do
+        let(:default_new_tab_text) { "(opens in new tab)" }
+        let(:link_params) { { controller: :some_controller, action: :some_action } }
 
-      subject { govuk_link_to(link_text, link_params, new_tab: true) }
+        subject { govuk_link_to(link_text, link_params, new_tab: true) }
 
-      it { is_expected.to have_tag('a', with: { href: link_url, class: %w(govuk-link), target: "_blank", rel: "noreferrer noopener" }, text: link_text) }
+        it { is_expected.to have_tag('a', with: { href: link_url, class: %w(govuk-link), target: "_blank", rel: "noreferrer noopener" }, text: "#{link_text} #{default_new_tab_text}") }
+      end
+
+      context "when new_tab: '(opens in new window)'" do
+        let(:overridden_new_tab_text) { "(opens in new window)" }
+        let(:link_params) { { controller: :some_controller, action: :some_action } }
+
+        subject { govuk_link_to(link_text, link_params, new_tab: overridden_new_tab_text) }
+
+        it { is_expected.to have_tag('a', with: { href: link_url, class: %w(govuk-link), target: "_blank", rel: "noreferrer noopener" }, text: "#{link_text} #{overridden_new_tab_text}") }
+      end
     end
   end
 
@@ -262,12 +274,24 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
       end
     end
 
-    context "when new_tab: true" do
-      let(:link_params) { { controller: :some_controller, action: :some_action } }
+    describe "opening links in new windows" do
+      context "when new_tab: true" do
+        let(:default_new_tab_text) { "(opens in new tab)" }
+        let(:link_params) { { controller: :some_controller, action: :some_action } }
 
-      subject { govuk_button_link_to(button_link_text, button_link_url, new_tab: true) }
+        subject { govuk_button_link_to(button_link_text, button_link_url, new_tab: true) }
 
-      it { is_expected.to have_tag('a', with: { href: button_link_url, class: %w(govuk-button), target: "_blank", rel: "noreferrer noopener" }, text: button_link_text) }
+        it { is_expected.to have_tag('a', with: { href: button_link_url, class: %w(govuk-button), target: "_blank", rel: "noreferrer noopener" }, text: "#{button_link_text} #{default_new_tab_text}") }
+      end
+
+      context "when new_tab: '(opens in new window)'" do
+        let(:overridden_new_tab_text) { "(opens in new window)" }
+        let(:link_params) { { controller: :some_controller, action: :some_action } }
+
+        subject { govuk_button_link_to(button_link_text, button_link_url, new_tab: overridden_new_tab_text) }
+
+        it { is_expected.to have_tag('a', with: { href: button_link_url, class: %w(govuk-button), target: "_blank", rel: "noreferrer noopener" }, text: "#{button_link_text} #{overridden_new_tab_text}") }
+      end
     end
   end
 

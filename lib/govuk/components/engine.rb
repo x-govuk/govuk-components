@@ -96,6 +96,8 @@ module Govuk
       default_warning_text_icon_fallback_text: "Warning",
       default_warning_text_icon: "!",
 
+      default_link_new_tab_text: "(opens in new tab)",
+
       require_summary_list_action_visually_hidden_text: false,
     }.freeze
 

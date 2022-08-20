@@ -41,7 +41,7 @@ module GovukLinkHelper
     if block_given?
       link_to(name, html_options, &block)
     else
-      link_to(name, options, html_options)
+      link_to(prepare_link_text(name, new_tab), options, html_options)
     end
   end
 
@@ -75,7 +75,7 @@ module GovukLinkHelper
     if block_given?
       link_to(name, html_options, &block)
     else
-      link_to(name, options, html_options)
+      link_to(prepare_link_text(name, new_tab), options, html_options)
     end
   end
 
@@ -137,6 +137,14 @@ private
     return {} if provided_options.blank?
 
     provided_options&.except(*styles.keys)
+  end
+
+  def prepare_link_text(text, new_tab)
+    return text unless new_tab
+
+    new_tab_text = new_tab.is_a?(String) ? new_tab : Govuk::Components.config.default_link_new_tab_text
+
+    %(#{text} #{new_tab_text})
   end
 end
 
