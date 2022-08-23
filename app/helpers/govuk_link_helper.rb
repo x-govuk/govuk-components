@@ -56,11 +56,7 @@ module GovukLinkHelper
     html_options = build_html_options(extra_options, style: :button)
 
     if block_given?
-      if Rails.version >= "7.0.0" && name.is_a?(Hash)
-        button_to(name.merge(html_options), &block)
-      else
-        button_to(name, html_options, &block)
-      end
+      button_to(options, html_options, &block)
     else
       button_to(name, options, html_options)
     end

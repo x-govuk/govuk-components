@@ -60,7 +60,7 @@ RSpec.describe(GovukComponent::CookieBannerComponent, type: :component) do
     subject! do
       render_inline(described_class.new(**kwargs)) do |cookie_banner|
         cookie_banner.message(heading_text: custom_heading_text, role: custom_role, text: custom_message_text) do |message|
-          message.action { helper.govuk_button_to("/accept") { "Accept" } }
+          message.action { helper.govuk_button_link_to("/accept") { "Accept" } }
           message.action { helper.govuk_link_to("View cookie policy", "/cookie-policy") }
         end
       end
@@ -88,8 +88,7 @@ RSpec.describe(GovukComponent::CookieBannerComponent, type: :component) do
 
     specify "renders the actions" do
       expect(rendered_content).to have_tag(".govuk-cookie-banner > .govuk-cookie-banner__message > div.govuk-button-group") do
-        with_tag("button", count: 1)
-        with_tag("a", count: 1)
+        with_tag("a", with: { class: "govuk-button" }, count: 1)
       end
     end
   end
