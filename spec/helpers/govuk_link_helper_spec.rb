@@ -176,11 +176,7 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
 
       specify "renders a form with an button of type submit and the correct attributes" do
         expect(subject).to have_tag("form", with: { class: "button_to", action: button_url }) do
-          if Rails.version >= "7.0.0"
-            with_tag("button", with: { class: "govuk-button" })
-          else
-            with_tag("button", with: { type: "submit", class: "govuk-button" })
-          end
+          with_tag("button", with: { class: "govuk-button" })
         end
       end
     end

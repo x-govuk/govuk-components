@@ -1,4 +1,7 @@
+.ruby-version
+.envrc
 .bundle/
+Gemfile.lock
 log/*.log
 pkg/
 spec/dummy/db/*.sqlite3

@@ -19,9 +19,11 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7.5
+          ruby-version: ${{ matrix.ruby }}
 
       - name: Install gems
+        env:
+          RAILS_VERSION: ${{ matrix.rails }}
         run: |
           gem install bundler
           bundle install --jobs 4 --retry 3
