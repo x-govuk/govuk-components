@@ -1,11 +1,5 @@
 require 'spec_helper'
 
-module Pagy::UrlHelpers
-  def request
-    OpenStruct.new(GET: {}, session: nil, host: "https://somesite/")
-  end
-end
-
 RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
   let(:count) { 30 }
   let(:items) { 5 }
