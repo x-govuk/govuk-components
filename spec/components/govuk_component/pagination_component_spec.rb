@@ -425,31 +425,21 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
   describe "overriding the next and previous text when using Pagy" do
     context "when the next text is overridden" do
       let(:next_text) { "Proceed" }
-      let(:visually_hidden_next_text) { "Visually hidden proceed" }
 
-      subject! { render_inline(GovukComponent::PaginationComponent.new(next_text: next_text, visually_hidden_next_text: visually_hidden_next_text, pagy: pagy)) }
+      subject! { render_inline(GovukComponent::PaginationComponent.new(next_text: next_text, pagy: pagy)) }
 
       specify "the text value should be set correctly" do
         expect(rendered_content).to have_tag("div", with: { class: "govuk-pagination__next" }, text: next_text)
-      end
-
-      specify "the aria-label on the link should be set correctly" do
-        expect(rendered_content).to have_tag("a", with: { "aria-label" => visually_hidden_next_text })
       end
     end
 
     context "when the previous text is overridden" do
       let(:previous_text) { "Regress" }
-      let(:visually_hidden_previous_text) { "Visually hidden regress" }
 
-      subject! { render_inline(GovukComponent::PaginationComponent.new(previous_text: previous_text, visually_hidden_previous_text: visually_hidden_previous_text, pagy: pagy)) }
+      subject! { render_inline(GovukComponent::PaginationComponent.new(previous_text: previous_text, pagy: pagy)) }
 
       specify "the text value should be set correctly" do
         expect(rendered_content).to have_tag("div", with: { class: "govuk-pagination__prev" }, text: previous_text)
-      end
-
-      specify "the aria-label on the link should be set correctly" do
-        expect(rendered_content).to have_tag("a", with: { "aria-label" => visually_hidden_previous_text })
       end
     end
   end

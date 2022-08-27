@@ -4,8 +4,6 @@ class GovukComponent::PaginationComponent < GovukComponent::Base
   attr_reader :pagy,
               :next_text,
               :previous_text,
-              :visually_hidden_next_text,
-              :visually_hidden_previous_text,
               :page_items,
               :previous_content,
               :next_content,
@@ -22,7 +20,6 @@ class GovukComponent::PaginationComponent < GovukComponent::Base
       href: href,
       label_text: label_text,
       block_mode: block_mode?,
-      visually_hidden_text: visually_hidden_text,
       classes: classes,
       html_attributes: html_attributes
     )
@@ -34,7 +31,6 @@ class GovukComponent::PaginationComponent < GovukComponent::Base
       href: href,
       label_text: label_text,
       block_mode: block_mode?,
-      visually_hidden_text: visually_hidden_text,
       classes: classes,
       html_attributes: html_attributes
     )
@@ -44,8 +40,6 @@ class GovukComponent::PaginationComponent < GovukComponent::Base
     @pagy                          = pagy
     @next_text                     = next_text
     @previous_text                 = previous_text
-    @visually_hidden_next_text     = visually_hidden_next_text
-    @visually_hidden_previous_text = visually_hidden_previous_text
     @block_mode                    = block_mode
     @landmark_label                = landmark_label
 
@@ -94,7 +88,6 @@ private
     kwargs = {
       href: pagy_url_for(pagy, pagy.prev),
       text: @previous_text,
-      visually_hidden_text: visually_hidden_previous_text,
     }
 
     previous_page(**kwargs.compact)
@@ -106,7 +99,6 @@ private
     kwargs = {
       href: pagy_url_for(pagy, pagy.next),
       text: @next_text,
-      visually_hidden_text: visually_hidden_next_text,
     }
 
     next_page(**kwargs.compact)
