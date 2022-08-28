@@ -3,6 +3,8 @@ class GovukComponent::Base < ViewComponent::Base
 
   attr_reader :html_attributes
 
+  delegate :config, to: Govuk::Components
+
   def initialize(classes:, html_attributes:)
     if classes.nil?
       Rails.logger.warn("classes is nil, if no custom classes are needed omit the param")
