@@ -48,6 +48,8 @@ module Govuk
       default_pagination_previous_text: %w(Previous page),
       default_phase_banner_component_tag: nil,
       default_phase_banner_component_text: nil,
+      default_section_break_visible: false,
+      default_section_break_size: nil,
       default_tag_component_colour: nil,
     }.freeze
 

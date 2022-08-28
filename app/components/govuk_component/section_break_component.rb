@@ -1,7 +1,12 @@
 class GovukComponent::SectionBreakComponent < GovukComponent::Base
   SIZES = %w(m l xl).freeze
 
-  def initialize(visible: false, size: nil, classes: [], html_attributes: {})
+  def initialize(
+    visible: config.default_section_break_visible,
+    size: config.default_section_break_size,
+    classes: [],
+    html_attributes: {}
+  )
     @visible = visible
     @size    = size
 
