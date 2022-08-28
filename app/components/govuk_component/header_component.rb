@@ -16,15 +16,15 @@ class GovukComponent::HeaderComponent < GovukComponent::Base
 
   def initialize(classes: [],
                  html_attributes: {},
-                 logotype: 'GOV.UK',
+                 logotype: Govuk::Components.config.default_header_component_logotype,
                  crown: true,
                  crown_fallback_image_path: nil,
-                 homepage_url: '/',
+                 homepage_url: Govuk::Components.config.default_header_component_homepage_url,
                  menu_button_label: Govuk::Components.config.default_header_component_menu_button_label,
                  navigation_classes: [],
                  navigation_label: Govuk::Components.config.default_header_component_navigation_label,
-                 service_name: nil,
-                 service_url: '/',
+                 service_name: Govuk::Components.config.default_header_component_service_name,
+                 service_url: Govuk::Components.config.default_header_component_service_url,
                  container_classes: nil)
 
     @logotype                  = logotype
