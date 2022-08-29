@@ -53,6 +53,10 @@ module Govuk
       default_tag_component_colour: nil,
       default_start_button_as_button: false,
       default_summary_list_borders: true,
+      default_notification_banner_title_id: "govuk-notification-banner-title",
+      default_notification_disable_auto_focus: nil,
+      default_notification_title_heading_level: 2,
+      default_notification_title_success: false,
     }.freeze
 
     DEFAULTS.each_key { |k| config_accessor(k) { DEFAULTS[k] } }

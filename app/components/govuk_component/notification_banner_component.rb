@@ -4,7 +4,17 @@ class GovukComponent::NotificationBannerComponent < GovukComponent::Base
   renders_one :title_html
   renders_many :headings, "Heading"
 
-  def initialize(title_text: nil, text: nil, role: nil, success: false, title_heading_level: 2, title_id: "govuk-notification-banner-title", disable_auto_focus: nil, classes: [], html_attributes: {})
+  def initialize(
+    title_text: nil,
+    text: nil,
+    role: nil,
+    success: config.default_notification_title_success,
+    title_heading_level: config.default_notification_title_heading_level,
+    title_id: config.default_notification_banner_title_id,
+    disable_auto_focus: config.default_notification_disable_auto_focus,
+    classes: [],
+    html_attributes: {}
+  )
     @title_text          = title_text
     @title_id            = title_id
     @text                = text
