@@ -51,6 +51,7 @@ module Govuk
       default_section_break_visible: false,
       default_section_break_size: nil,
       default_tag_component_colour: nil,
+      default_start_button_as_button: false,
     }.freeze
 
     DEFAULTS.each_key { |k| config_accessor(k) { DEFAULTS[k] } }
