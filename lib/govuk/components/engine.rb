@@ -57,6 +57,8 @@ module Govuk
       default_notification_disable_auto_focus: nil,
       default_notification_title_heading_level: 2,
       default_notification_title_success: false,
+      default_warning_text_icon_fallback_text: "Warning",
+      default_warning_text_icon: "!",
     }.freeze
 
     DEFAULTS.each_key { |k| config_accessor(k) { DEFAULTS[k] } }
