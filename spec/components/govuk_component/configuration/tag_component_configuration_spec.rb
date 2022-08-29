@@ -13,7 +13,7 @@ RSpec.describe(GovukComponent::TagComponent, type: :component) do
     describe 'colours' do
       before do
         Govuk::Components.configure do |config|
-          config.default_tag_component_colour = default_colour
+          config.default_tag_colour = default_colour
         end
       end
 

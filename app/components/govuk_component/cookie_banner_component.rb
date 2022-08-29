@@ -5,9 +5,9 @@ module GovukComponent
     attr_accessor :aria_label, :hidden, :hide_in_print
 
     def initialize(
-      aria_label: Govuk::Components.config.default_cookie_banner_aria_label,
+      aria_label: config.default_cookie_banner_aria_label,
       hidden: false,
-      hide_in_print: Govuk::Components.config.default_cookie_banner_hide_in_print,
+      hide_in_print: config.default_cookie_banner_hide_in_print,
       classes: [],
       html_attributes: {}
     )

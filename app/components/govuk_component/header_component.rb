@@ -16,15 +16,15 @@ class GovukComponent::HeaderComponent < GovukComponent::Base
 
   def initialize(classes: [],
                  html_attributes: {},
-                 logotype: Govuk::Components.config.default_header_component_logotype,
+                 logotype: config.default_header_logotype,
                  crown: true,
                  crown_fallback_image_path: nil,
-                 homepage_url: Govuk::Components.config.default_header_component_homepage_url,
-                 menu_button_label: Govuk::Components.config.default_header_component_menu_button_label,
+                 homepage_url: config.default_header_homepage_url,
+                 menu_button_label: config.default_header_menu_button_label,
                  navigation_classes: [],
-                 navigation_label: Govuk::Components.config.default_header_component_navigation_label,
-                 service_name: Govuk::Components.config.default_header_component_service_name,
-                 service_url: Govuk::Components.config.default_header_component_service_url,
+                 navigation_label: config.default_header_navigation_label,
+                 service_name: config.default_header_service_name,
+                 service_url: config.default_header_service_url,
                  container_classes: nil)
 
     @logotype                  = logotype

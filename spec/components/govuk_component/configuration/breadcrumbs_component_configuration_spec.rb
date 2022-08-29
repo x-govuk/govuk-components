@@ -10,13 +10,13 @@ RSpec.describe(GovukComponent::BreadcrumbsComponent, type: :component) do
   describe 'configuration' do
     after { Govuk::Components.reset! }
 
-    describe 'default_breadcrumbs_collapse_on_mobile_value' do
+    describe 'default_breadcrumbs_collapse_on_mobile' do
       let(:overridden_default_collapse_on_mobile) { true }
       let(:collapse_on_mobile_css_class) { 'govuk-breadcrumbs--collapse-on-mobile' }
 
       before do
         Govuk::Components.configure do |config|
-          config.default_breadcrumbs_component_collapse_on_mobile = overridden_default_collapse_on_mobile
+          config.default_breadcrumbs_collapse_on_mobile = overridden_default_collapse_on_mobile
         end
       end
 
@@ -32,13 +32,13 @@ RSpec.describe(GovukComponent::BreadcrumbsComponent, type: :component) do
       end
     end
 
-    describe 'default_breadcrumbs_hide_in_print_value' do
+    describe 'default_breadcrumbs_hide_in_print' do
       let(:hide_in_print_css_class) { 'govuk-\!-display-none-print' }
       let(:overridden_default_hide_in_print) { true }
 
       before do
         Govuk::Components.configure do |config|
-          config.default_breadcrumbs_component_hide_in_print = overridden_default_hide_in_print
+          config.default_breadcrumbs_hide_in_print = overridden_default_hide_in_print
         end
       end
 

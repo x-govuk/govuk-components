@@ -13,8 +13,8 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
 
       before do
         Govuk::Components.configure do |config|
-          config.default_footer_component_copyright_text = overridden_default_text
-          config.default_footer_component_copyright_url = overridden_default_url
+          config.default_footer_copyright_text = overridden_default_text
+          config.default_footer_copyright_url = overridden_default_url
         end
       end
 
@@ -28,12 +28,12 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
       end
     end
 
-    describe 'default_footer_component_meta_text' do
+    describe 'default_footer_meta_text' do
       let(:overridden_default_text) { 'some meta text' }
 
       before do
         Govuk::Components.configure do |config|
-          config.default_footer_component_meta_text = overridden_default_text
+          config.default_footer_meta_text = overridden_default_text
         end
       end
 

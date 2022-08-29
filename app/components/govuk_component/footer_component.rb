@@ -11,13 +11,13 @@ class GovukComponent::FooterComponent < GovukComponent::Base
     classes: [],
     container_classes: [],
     container_html_attributes: {},
-    copyright_text: Govuk::Components.config.default_footer_component_copyright_text,
-    copyright_url: Govuk::Components.config.default_footer_component_copyright_url,
+    copyright_text: config.default_footer_copyright_text,
+    copyright_url: config.default_footer_copyright_url,
     html_attributes: {},
     meta_items: {},
     meta_items_title: "Support links",
     meta_licence: nil,
-    meta_text: Govuk::Components.config.default_footer_component_meta_text,
+    meta_text: config.default_footer_component_meta_text,
     meta_classes: [],
     meta_html_attributes: {}
   )

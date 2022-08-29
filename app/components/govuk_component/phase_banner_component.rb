@@ -2,8 +2,8 @@ class GovukComponent::PhaseBannerComponent < GovukComponent::Base
   attr_reader :text, :phase_tag
 
   def initialize(
-    tag: { text: Govuk::Components.config.default_phase_banner_component_tag },
-    text: Govuk::Components.config.default_phase_banner_component_text,
+    tag: { text: config.default_phase_banner_tag },
+    text: config.default_phase_banner_text,
     classes: [],
     html_attributes: {}
   )

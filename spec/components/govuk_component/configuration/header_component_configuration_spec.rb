@@ -12,12 +12,12 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
       end
     end
 
-    describe 'default_header_component_navigation_label' do
+    describe 'default_header_navigation_label' do
       let(:overridden_navigation_label) { "New nav label" }
 
       before do
         Govuk::Components.configure do |config|
-          config.default_header_component_navigation_label = overridden_navigation_label
+          config.default_header_navigation_label = overridden_navigation_label
         end
       end
 
@@ -30,12 +30,12 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
       end
     end
 
-    describe 'default_header_component_menu_button_label' do
+    describe 'default_header_menu_button_label' do
       let(:overriddden_menu_button_label) { 'Toggle menu' }
 
       before do
         Govuk::Components.configure do |config|
-          config.default_header_component_menu_button_label = overriddden_menu_button_label
+          config.default_header_menu_button_label = overriddden_menu_button_label
         end
       end
 
@@ -48,12 +48,12 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
       end
     end
 
-    describe 'default_header_component_logotype' do
+    describe 'default_header_logotype' do
       let(:overridden_logotype) { 'DfE' }
 
       before do
         Govuk::Components.configure do |config|
-          config.default_header_component_logotype = overridden_logotype
+          config.default_header_logotype = overridden_logotype
         end
       end
 
@@ -66,12 +66,12 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
       end
     end
 
-    describe 'default_header_component_homepage_url' do
+    describe 'default_header_homepage_url' do
       let(:overriddden_homepage_url) { "/some-page" }
 
       before do
         Govuk::Components.configure do |config|
-          config.default_header_component_homepage_url = overriddden_homepage_url
+          config.default_header_homepage_url = overriddden_homepage_url
         end
       end
 
@@ -84,7 +84,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
       end
     end
 
-    describe 'default_header_component_service_name and default_header_component_service_url' do
+    describe 'default_header_service_name and default_header_service_url' do
       let(:current_page) { "/item-3" }
 
       let(:overridden_service_name) { "A new service" }
@@ -92,8 +92,8 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
 
       before do
         Govuk::Components.configure do |config|
-          config.default_header_component_service_name = overridden_service_name
-          config.default_header_component_service_url = overridden_service_url
+          config.default_header_service_name = overridden_service_name
+          config.default_header_service_url = overridden_service_url
         end
       end
 

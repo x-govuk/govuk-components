@@ -1,7 +1,7 @@
 class GovukComponent::BackLinkComponent < GovukComponent::Base
   attr_reader :text, :href
 
-  def initialize(href:, text: Govuk::Components.config.default_back_link_component_text, classes: [], html_attributes: {})
+  def initialize(href:, text: config.default_back_link_text, classes: [], html_attributes: {})
     @text = text
     @href = href
 

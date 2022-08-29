@@ -10,8 +10,8 @@ RSpec.describe(GovukComponent::PhaseBannerComponent, type: :component) do
 
       before do
         Govuk::Components.configure do |config|
-          config.default_phase_banner_component_tag = overridden_default_tag
-          config.default_phase_banner_component_text = overridden_default_text
+          config.default_phase_banner_tag = overridden_default_tag
+          config.default_phase_banner_text = overridden_default_text
         end
       end
 

@@ -8,12 +8,12 @@ RSpec.describe(GovukComponent::BackLinkComponent, type: :component) do
   describe 'configuration' do
     after { Govuk::Components.reset! }
 
-    describe 'default_back_link_component_text' do
+    describe 'default_back_link_text' do
       let(:overriden_default_text) { 'Retreat' }
 
       before do
         Govuk::Components.configure do |config|
-          config.default_back_link_component_text = overriden_default_text
+          config.default_back_link_text = overriden_default_text
         end
       end
 

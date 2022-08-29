@@ -40,7 +40,7 @@ class GovukComponent::PaginationComponent < GovukComponent::Base
                  next_text: nil,
                  previous_text: nil,
                  block_mode: false,
-                 landmark_label: Govuk::Components.config.default_pagination_landmark_label,
+                 landmark_label: config.default_pagination_landmark_label,
                  classes: [],
                  html_attributes: {})
     @pagy                          = pagy
@@ -117,9 +117,9 @@ private
   def default_adjacent_text(side)
     visible, hidden = *case side
                        when :next
-                         Govuk::Components.config.default_pagination_next_text
+                         config.default_pagination_next_text
                        when :prev
-                         Govuk::Components.config.default_pagination_previous_text
+                         config.default_pagination_previous_text
                        end
 
     return visible if hidden.blank?
