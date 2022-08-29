@@ -1,10 +1,9 @@
 class GovukComponent::WarningTextComponent < GovukComponent::Base
-  attr_reader :text, :icon_fallback_text
+  attr_reader :text, :icon, :icon_fallback_text
 
-  ICON = '!'.freeze
-
-  def initialize(text: nil, icon_fallback_text: 'Warning', classes: [], html_attributes: {})
+  def initialize(text: nil, icon_fallback_text: 'Warning', icon: "!", classes: [], html_attributes: {})
     @text = text
+    @icon = icon
     @icon_fallback_text = icon_fallback_text
 
     super(classes: classes, html_attributes: html_attributes)
@@ -12,14 +11,14 @@ class GovukComponent::WarningTextComponent < GovukComponent::Base
 
   def call
     tag.div(**html_attributes) do
-      safe_join([icon, warning_text])
+      safe_join([icon_element, warning_text])
     end
   end
 
 private
 
-  def icon
-    tag.span(ICON, class: 'govuk-warning-text__icon', aria: { hidden: true })
+  def icon_element
+    tag.span(icon, class: 'govuk-warning-text__icon', aria: { hidden: true })
   end
 
   def warning_text

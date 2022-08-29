@@ -14,7 +14,7 @@ RSpec.describe(GovukComponent::WarningTextComponent, type: :component) do
 
   specify 'the icon is present' do
     expect(rendered_content).to have_tag('div', class: component_css_class) do
-      with_tag('span', with: { class: 'govuk-warning-text__icon' }, text: GovukComponent::WarningTextComponent::ICON)
+      with_tag('span', with: { class: 'govuk-warning-text__icon' }, text: "!")
     end
   end
 
@@ -59,6 +59,15 @@ RSpec.describe(GovukComponent::WarningTextComponent, type: :component) do
 
     specify "doesn't render any provided text" do
       expect(rendered_content).not_to match(text)
+    end
+  end
+
+  context "when the icon is overridden" do
+    let(:custom_icon) { "?" }
+    subject! { render_inline(GovukComponent::WarningTextComponent.new(**kwargs.merge(icon: custom_icon))) }
+
+    specify "renders the warning text with the custom icon" do
+      expect(rendered_content).to have_tag("span", text: custom_icon, with: { class: "govuk-warning-text__icon" })
     end
   end
 
