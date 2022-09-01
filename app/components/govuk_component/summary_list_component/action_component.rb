@@ -1,7 +1,13 @@
 class GovukComponent::SummaryListComponent::ActionComponent < GovukComponent::Base
+  class VisuallyHiddenDefaultNilClass < NilClass; end
+
   attr_reader :href, :text, :visually_hidden_text, :attributes, :classes
 
-  def initialize(href: nil, text: 'Change', visually_hidden_text:, classes: [], html_attributes: {})
+  def initialize(href: nil, text: 'Change', visually_hidden_text: VisuallyHiddenDefaultNilClass, classes: [], html_attributes: {})
+    if config.require_summary_list_action_visually_hidden_text && visually_hidden_text == VisuallyHiddenDefaultNilClass
+      fail(ArgumentError, "missing keyword: visually_hidden_text")
+    end
+
     super(classes: classes, html_attributes: html_attributes)
 
     @href                 = href
