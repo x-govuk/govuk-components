@@ -2,20 +2,19 @@ class GovukComponent::PaginationComponent::AdjacentPage < GovukComponent::Base
   attr_reader :href, :label_text, :text, :suffix, :block_mode, :visually_hidden_text
   alias_method :block_mode?, :block_mode
 
-  def initialize(href:, suffix:, visually_hidden_text:, text:, block_mode: true, label_text: nil, classes: [], html_attributes: {})
+  def initialize(href:, suffix:, text:, block_mode: true, label_text: nil, classes: [], html_attributes: {})
     @href                 = href
     @label_text           = label_text
     @text                 = text
     @block_mode           = block_mode
     @suffix               = suffix
-    @visually_hidden_text = visually_hidden_text
 
     super(html_attributes: html_attributes, classes: classes)
   end
 
   def call
     tag.div(**html_attributes) do
-      tag.a(href: href, class: %w(govuk-link govuk-pagination__link), rel: suffix, aria: { label: aria_label }) do
+      tag.a(href: href, class: %w(govuk-link govuk-pagination__link), rel: suffix) do
         safe_join([body, divider, label_content])
       end
     end

@@ -1,12 +1,11 @@
 class GovukComponent::PaginationComponent::NextPage < GovukComponent::PaginationComponent::AdjacentPage
-  def initialize(href:, text:, label_text: nil, visually_hidden_text: nil, block_mode: true, classes: [], html_attributes: {})
+  def initialize(href:, text:, label_text: nil, block_mode: true, classes: [], html_attributes: {})
     super(
       suffix: "next",
       text: text,
       href: href,
       label_text: label_text,
       block_mode: block_mode,
-      visually_hidden_text: visually_hidden_text,
       classes: classes,
       html_attributes: html_attributes
     )
@@ -19,10 +18,6 @@ class GovukComponent::PaginationComponent::NextPage < GovukComponent::Pagination
   end
 
 private
-
-  def aria_label
-    @visually_hidden_text || "Next page"
-  end
 
   def arrow
     tag.svg(class: "govuk-pagination__icon govuk-pagination__icon--next", xmlns: "http://www.w3.org/2000/svg", height: "13", width: "15", focusable: "false", viewBox: "0 0 15 13", aria: { hidden: "true" }) do

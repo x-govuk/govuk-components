@@ -1,7 +1,12 @@
 class GovukComponent::BreadcrumbsComponent < GovukComponent::Base
   attr_reader :breadcrumbs, :hide_in_print, :collapse_on_mobile
 
-  def initialize(breadcrumbs:, hide_in_print: false, collapse_on_mobile: false, classes: [], html_attributes: {})
+  def initialize(breadcrumbs:,
+                 hide_in_print: config.default_breadcrumbs_hide_in_print,
+                 collapse_on_mobile: config.default_breadcrumbs_collapse_on_mobile,
+                 classes: [],
+                 html_attributes: {})
+
     @breadcrumbs        = build_list(breadcrumbs)
     @hide_in_print      = hide_in_print
     @collapse_on_mobile = collapse_on_mobile

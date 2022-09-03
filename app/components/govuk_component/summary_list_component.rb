@@ -11,7 +11,7 @@ module GovukComponent
       )
     end
 
-    def initialize(rows: nil, actions: true, borders: true, classes: [], html_attributes: {})
+    def initialize(rows: nil, actions: true, borders: config.default_summary_list_borders, classes: [], html_attributes: {})
       @borders             = borders
       @show_actions_column = actions
 

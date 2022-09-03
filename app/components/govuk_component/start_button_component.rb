@@ -8,7 +8,7 @@ class GovukComponent::StartButtonComponent < GovukComponent::Base
 
   attr_reader :text, :href, :as_button
 
-  def initialize(text:, href:, as_button: false, classes: [], html_attributes: {})
+  def initialize(text:, href:, as_button: config.default_start_button_as_button, classes: [], html_attributes: {})
     @text = text
     @href = href
     @as_button = as_button

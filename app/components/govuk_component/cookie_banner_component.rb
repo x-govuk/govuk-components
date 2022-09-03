@@ -4,7 +4,13 @@ module GovukComponent
 
     attr_accessor :aria_label, :hidden, :hide_in_print
 
-    def initialize(aria_label: "Cookie banner", hidden: false, hide_in_print: true, classes: [], html_attributes: {})
+    def initialize(
+      aria_label: config.default_cookie_banner_aria_label,
+      hidden: false,
+      hide_in_print: config.default_cookie_banner_hide_in_print,
+      classes: [],
+      html_attributes: {}
+    )
       @aria_label    = aria_label
       @hidden        = hidden
       @hide_in_print = hide_in_print
