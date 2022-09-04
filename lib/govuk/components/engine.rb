@@ -62,6 +62,8 @@ module Govuk
     # +:default_notification_title_success+ false
     # +:default_warning_text_icon_fallback_text+ "Warning"
     # +:default_warning_text_icon+ "!"
+    #
+    # +:require_summary_list_action_visually_hidden_text+ when true forces visually hidden text to be set for every action. It can still be explicitly skipped by passing in +nil+. Defaults to +false+
     DEFAULTS = {
       default_back_link_text: 'Back',
       default_breadcrumbs_collapse_on_mobile: false,
@@ -93,6 +95,8 @@ module Govuk
       default_notification_title_success: false,
       default_warning_text_icon_fallback_text: "Warning",
       default_warning_text_icon: "!",
+
+      require_summary_list_action_visually_hidden_text: false,
     }.freeze
 
     DEFAULTS.each_key { |k| config_accessor(k) { DEFAULTS[k] } }

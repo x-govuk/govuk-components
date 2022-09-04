@@ -18,7 +18,7 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
           [
             row.key(text: "Key"),
             row.value(text: "Value"),
-            row.action(href: "/action", text: "Action"),
+            row.action(href: "/action", text: "Action", visually_hidden_text: "for key"),
           ]
         )
       end
@@ -31,7 +31,7 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
         with_tag("dt", text: "Key", with: { class: "govuk-summary-list__key" })
         with_tag("dd", text: "Value", with: { class: "govuk-summary-list__value" })
         with_tag("dd", with: { class: "govuk-summary-list__actions" }) do
-          with_tag("a", with: { href: "/action" }, text: "Action")
+          with_tag("a", with: { href: "/action" }, text: "Action for key")
         end
       end
     end
@@ -45,9 +45,9 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
             [
               row.key(text: "Key"),
               row.value(text: "Value"),
-              row.action(href: "/action-1", text: "First action"),
-              row.action(href: "/action-2", text: "Second action"),
-              row.action(href: "/action-3", text: "Third action"),
+              row.action(href: "/action-1", text: "First action", visually_hidden_text: "for key"),
+              row.action(href: "/action-2", text: "Second action", visually_hidden_text: "for key"),
+              row.action(href: "/action-3", text: "Third action", visually_hidden_text: "for key"),
             ]
           )
         end
@@ -64,7 +64,7 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
             with_tag("ul", with: { class: "govuk-summary-list__actions-list" }) do
               { "/action-1" => "First action", "/action-2" => "Second action", "/action-3" => "Third action" }.each do |path, text|
                 with_tag("li", with: { class: "govuk-summary-list__actions-list-item" }) do
-                  with_tag("a", with: { href: path }, text: text)
+                  with_tag("a", with: { href: path }, text: text + " for key")
                 end
               end
             end
@@ -79,7 +79,7 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
       render_inline(described_class.new(**kwargs)) do |component|
         component.row do |row|
           helper.safe_join(
-            [row.key(text: "Key"), row.value(text: "Value"), row.action(href: "/action", text: "Action")]
+            [row.key(text: "Key"), row.value(text: "Value"), row.action(href: "/action", text: "Action", visually_hidden_text: "key")]
           )
         end
       end
@@ -119,7 +119,7 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
       render_inline(described_class.new(**kwargs)) do |component|
         component.row do |row|
           helper.safe_join(
-            [row.key(text: "Key"), row.value(text: "Value"), row.action(href: nil)]
+            [row.key(text: "Key"), row.value(text: "Value"), row.action(href: nil, visually_hidden_text: nil)]
           )
         end
 
@@ -151,8 +151,8 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
   context "when 'actions: false'" do
     subject! do
       render_inline(described_class.new(actions: false, **kwargs)) do |component|
-        component.row { |row| helper.safe_join([row.key(text: "Key"), row.value(text: "Value"), row.action(href: "/a")]) }
-        component.row { |row| helper.safe_join([row.key(text: "Key"), row.value(text: "Value"), row.action(href: "/b")]) }
+        component.row { |row| helper.safe_join([row.key(text: "Key"), row.value(text: "Value"), row.action(href: "/a", visually_hidden_text: "for key")]) }
+        component.row { |row| helper.safe_join([row.key(text: "Key"), row.value(text: "Value"), row.action(href: "/b", visually_hidden_text: "for key")]) }
         component.row { |row| helper.safe_join([row.key(text: "Key"), row.value(text: "Value")]) }
       end
     end
@@ -177,7 +177,7 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
 
         component.row(classes: "without-visually-hidden-text") do |row|
           helper.safe_join(
-            [row.key(text: "Key"), row.value(text: "Value"), row.action(href: "/action", text: "Action")]
+            [row.key(text: "Key"), row.value(text: "Value"), row.action(href: "/action", text: "Action", visually_hidden_text: nil)]
           )
         end
       end
@@ -356,7 +356,7 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
 
     describe "applying the govuk-summary-list__row--no-actions class when some some rows don't have them" do
       let(:row_with_no_action) { { key: { text: "no-action" }, value: { text: "no-action" } } }
-      let(:row_with_one_action) { { key: { text: "no-action" }, value: { text: "no-action" }, actions: [{ href: "/path" }] } }
+      let(:row_with_one_action) { { key: { text: "no-action" }, value: { text: "no-action" }, actions: [{ href: "/path", visually_hidden_text: "key" }] } }
 
       context "when no rows have actions" do
         let(:rows) { [row_with_no_action, row_with_no_action] }
@@ -460,14 +460,14 @@ end
 RSpec.describe(GovukComponent::SummaryListComponent::ActionComponent, type: :component) do
   let(:custom_path) { "/some/endpoint" }
   let(:component_css_class) { 'govuk-link' }
-  let(:kwargs) { { href: custom_path, text: "Some value" } }
+  let(:kwargs) { { href: custom_path, text: "Some value", visually_hidden_text: nil } }
 
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 
   context "when there is no text" do
     subject! do
-      render_inline(described_class.new(href: custom_path))
+      render_inline(described_class.new(href: custom_path, visually_hidden_text: nil))
     end
 
     specify "the text defaults to 'Change'" do
@@ -477,7 +477,7 @@ RSpec.describe(GovukComponent::SummaryListComponent::ActionComponent, type: :com
 
   context "when text is nil and there's no block" do
     specify "raises an appropriate error" do
-      expect { render_inline(described_class.new(**kwargs.merge(text: nil))) }.to raise_error(ArgumentError, "no text or content")
+      expect { render_inline(described_class.new(**kwargs.merge(text: nil, visually_hidden_text: nil))) }.to raise_error(ArgumentError, "no text or content")
     end
   end
 
@@ -486,7 +486,7 @@ RSpec.describe(GovukComponent::SummaryListComponent::ActionComponent, type: :com
     let(:custom_text) { "Do a thing, now" }
 
     subject! do
-      render_inline(described_class.new(href: custom_path)) do
+      render_inline(described_class.new(href: custom_path, visually_hidden_text: nil)) do
         helper.content_tag(custom_tag, custom_text)
       end
     end
