@@ -25,18 +25,37 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
         end
       end
 
-      subject do
-        render_inline(GovukComponent::SummaryListComponent.new) do |sl|
-          sl.row do |row|
-            row.key(text: "key one")
-            row.value(text: "value one")
-            row.action(text: "action one", href: "/action-one")
+      context "when visually_hidden_text is supplied" do
+        let(:visually_hidden_text) { "visually hidden info" }
+        subject! do
+          render_inline(GovukComponent::SummaryListComponent.new) do |sl|
+            sl.row do |row|
+              row.key(text: "key one")
+              row.value(text: "value one")
+              row.action(text: "action one", href: "/action-one", visually_hidden_text: visually_hidden_text)
+            end
           end
+        end
+
+        specify "raises an error when no visually hidden text is supplied" do
+          expect(rendered_content).to have_tag("span", text: visually_hidden_text, with: { class: "govuk-visually-hidden" })
         end
       end
 
-      specify "raises an error when no visually hidden text is supplied" do
-        expect { subject }.to raise_error(ArgumentError, "missing keyword: visually_hidden_text")
+      context "when visually_hidden_text is omitted" do
+        subject do
+          render_inline(GovukComponent::SummaryListComponent.new) do |sl|
+            sl.row do |row|
+              row.key(text: "key one")
+              row.value(text: "value one")
+              row.action(text: "action one", href: "/action-one")
+            end
+          end
+        end
+
+        specify "raises an error when no visually hidden text is supplied" do
+          expect { subject }.to raise_error(ArgumentError, "missing keyword: visually_hidden_text")
+        end
       end
     end
   end
