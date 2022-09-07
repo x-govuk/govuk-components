@@ -166,37 +166,65 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
     end
   end
 
-  context "when there is visually hidden text" do
-    subject! do
-      render_inline(described_class.new(**kwargs)) do |component|
-        component.row(classes: "with-visually-hidden-text") do |row|
-          helper.safe_join(
-            [row.key(text: "Key"), row.value(text: "Value"), row.action(href: "/action", text: "Action", visually_hidden_text: "visually hidden")]
-          )
-        end
-
-        component.row(classes: "without-visually-hidden-text") do |row|
-          helper.safe_join(
-            [row.key(text: "Key"), row.value(text: "Value"), row.action(href: "/action", text: "Action", visually_hidden_text: nil)]
-          )
+  describe "visually hidden text" do
+    context "when there is visually hidden text" do
+      subject! do
+        render_inline(described_class.new(**kwargs)) do |component|
+          component.row do |row|
+            helper.safe_join(
+              [row.key(text: "Key"), row.value(text: "Value"), row.action(href: "/action", text: "Action", visually_hidden_text: "visually hidden")]
+            )
+          end
         end
       end
-    end
 
-    specify "renders a span containing visually hidden text separated by a space from the action text" do
-      expect(rendered_content).to have_tag("dl", with: { class: component_css_class }) do
-        with_tag("div", with: { class: %(with-visually-hidden-text govuk-summary-list__row) }) do
-          with_tag("dd", with: { class: "govuk-summary-list__actions" }, text: /Action\s/) do
-            with_tag("a.govuk-link > span", with: { class: "govuk-visually-hidden" })
+      specify "renders a span containing visually hidden text separated by a space from the action text" do
+        expect(rendered_content).to have_tag("dl", with: { class: component_css_class }) do
+          with_tag("div", with: { class: %(govuk-summary-list__row) }) do
+            with_tag("dd", with: { class: "govuk-summary-list__actions" }, text: /Action\s/) do
+              with_tag("a.govuk-link > span", with: { class: "govuk-visually-hidden" })
+            end
           end
         end
       end
     end
 
-    specify "renders no span when there's no visually hidden text" do
-      expect(rendered_content).to have_tag("dl", with: { class: component_css_class }) do
-        with_tag("div", with: { class: %(without-visually-hidden-text govuk-summary-list__row) }) do
-          without_tag("span", with: { class: "govuk-visually-hidden" })
+    context "when visually hidden text is nil" do
+      subject! do
+        render_inline(described_class.new(**kwargs)) do |component|
+          component.row do |row|
+            helper.safe_join(
+              [row.key(text: "Key"), row.value(text: "Value"), row.action(href: "/action", text: "Action", visually_hidden_text: nil)]
+            )
+          end
+        end
+      end
+
+      specify "renders no span when there's no visually hidden text" do
+        expect(rendered_content).to have_tag("dl", with: { class: component_css_class }) do
+          with_tag("div", with: { class: %(govuk-summary-list__row) }) do
+            without_tag("span", with: { class: "govuk-visually-hidden" })
+          end
+        end
+      end
+    end
+
+    context "when visually hidden text param is omitted" do
+      subject! do
+        render_inline(described_class.new(**kwargs)) do |component|
+          component.row do |row|
+            helper.safe_join(
+              [row.key(text: "Key"), row.value(text: "Value"), row.action(href: "/action", text: "Action")]
+            )
+          end
+        end
+      end
+
+      specify "renders no span when there's no visually hidden text" do
+        expect(rendered_content).to have_tag("dl", with: { class: component_css_class }) do
+          with_tag("div", with: { class: %(govuk-summary-list__row) }) do
+            without_tag("span", with: { class: "govuk-visually-hidden" })
+          end
         end
       end
     end
