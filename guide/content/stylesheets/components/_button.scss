@@ -1,6 +1,6 @@
 $app-button-shadow-size: $govuk-border-width-form-element;
 $app-button-inverse-background-colour: govuk-colour("white");
-$app-button-inverse-foreground-colour: $govuk-brand-colour;
+$app-button-inverse-foreground-colour: $x-govuk-brand-colour;
 $app-button-inverse-shadow-colour: govuk-shade($app-button-inverse-foreground-colour, 30%);
 $app-button-inverse-hover-background-colour: govuk-tint($app-button-inverse-foreground-colour, 90%);
 

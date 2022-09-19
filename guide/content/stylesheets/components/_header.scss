@@ -2,4 +2,9 @@
   .govuk-header__logo {
     width: auto;
   }
+
+  // overrides the main header's border without affecting examples
+  .govuk-header__container {
+    border-bottom: 10px solid $x-govuk-brand-colour;
+  }
 }
