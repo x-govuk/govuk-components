@@ -3,7 +3,7 @@
   @include govuk-responsive-padding(6, "top");
   @include govuk-responsive-padding(6, "bottom");
   color: govuk-colour("white");
-  background-color: $govuk-brand-colour;
+  background-color: $x-govuk-brand-colour;
   margin-top: govuk-spacing(-2);
 
   .app-button--inverse {
