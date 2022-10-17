@@ -1,4 +1,7 @@
-# GOV.UK Components
+# Composants du DSFR
+
+Ce projet a pour but de fournir une palette de composants du DSFR, à
+l'instar de GOV.UK Components dont il est issu.
 
 [![Tests](https://github.com/DFE-Digital/govuk-components/workflows/Tests/badge.svg)](https://github.com/DFE-Digital/govuk-components/actions?query=workflow%3ATests)
 [![Maintainability](https://api.codeclimate.com/v1/badges/cbcbc140f300b920d833/maintainability)](https://codeclimate.com/github/DFE-Digital/govuk-components/maintainability)
