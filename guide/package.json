@@ -7,6 +7,7 @@
     "lib": "lib"
   },
   "scripts": {
+    "postinstall": "cp -R node_modules/@gouvfr/dsfr/dist/fonts/** content/stylesheets/fonts/ && cp -R node_modules/@gouvfr/dsfr/dist/icons/** content/stylesheets/icons && cp -R node_modules/@gouvfr/dsfr/dist/dsfr.**.min.js content/javascripts/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
