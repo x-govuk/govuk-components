@@ -1,15 +1,15 @@
 doctype html
-html.govuk-template lang="en"
+html lang="fr"
   == render '/partials/head.*'
-  body.govuk-template__body
+  body
     == render '/partials/header.*'
 
-    .govuk-width-container
+    .fr-container
       == render '/partials/breadcrumbs.*'
 
-      main#main-content.govuk-main-wrapper
+      main#content.fr-grid-row
         article.app-prose
-          h1.govuk-heading-xl
+          h1
             | #{item[:title]}
 
           == yield
