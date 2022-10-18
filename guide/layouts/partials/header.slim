@@ -1,17 +1,25 @@
 script
   | document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
 
-a.govuk-skip-link href="#main-content"
-  | Skip to main content
+.fr-skiplinks
+  nav.fr-container aria-label='Accès rapide' role='navigation'
+    ul.fr-skiplinks__list
+      li
+        a.fr-link href="#content"
+          | Contenu
 
-header.govuk-header.app-header role="banner" data-module="govuk-header"
-  .govuk-header__container.govuk-width-container
-    .govuk-header__logo
-      a.govuk-header__link.govuk-header__link--homepage href="/"
-
-        span.govuk-header__logotype
-          span.govuk-header__logotype-text
-            | GOV.UK
-
-        span.govuk-header__product-name<
-          | Ruby on Rails components
+header.fr-header role='banner'
+  .fr-header__body
+    .fr-container
+      .fr-header__body-row
+        .fr-header__brand.fr-enlarge-link
+          .fr-header__brand-top
+            .fr-header__logo
+              p.fr-logo
+                | République
+                br
+                | Française
+          .fr-header__service
+            a href="/" title="Composants du DSFR - Accueil"
+              p.fr-header__service-title
+                | Composants du DSFR
