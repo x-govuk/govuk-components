@@ -2,7 +2,7 @@
 title: Button helpers
 ---
 
-p.govuk-body
+p
   | In addition to the components, this gem also comes with button helpers that
     are frequently duplicated and reimplemented across projects.
 
@@ -10,7 +10,7 @@ p.govuk-body
   caption: "Regular button",
   code: dsfr_button_to_normal) do
 
-  p.govuk-body
+  p
     | The <code>dsfr_button_to</code> helper wraps Rails'
       #{link_to('button_to', rails_docs_button_to).html_safe}
       directly, rendering a form that will <code>POST</code> by default.
@@ -19,7 +19,7 @@ p.govuk-body
   caption: "Link styled like a button",
   code: dsfr_button_link_to_normal) do
 
-  p.govuk-body
+  p
     | When using buttons for navigation, we usually want a link styled like a
       button instead.
 

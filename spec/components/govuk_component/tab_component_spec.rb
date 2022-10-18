@@ -50,12 +50,12 @@ RSpec.describe(DsfrComponent::TabComponent, type: :component) do
   end
 
   specify 'there is one panel per tab' do
-    expect(rendered_content).to have_tag('div', with: { class: 'govuk-tabs__panel' }, count: tabs.size)
+    expect(rendered_content).to have_tag('div', with: { class: 'fr-tabs__panel' }, count: tabs.size)
   end
 
   specify 'each panel contains the right content' do
     tabs.each do |title, content|
-      expect(rendered_content).to have_tag('div', with: { id: title.parameterize, class: 'govuk-tabs__panel' }) do
+      expect(rendered_content).to have_tag('div', with: { id: title.parameterize, class: 'fr-tabs__panel' }) do
         with_text(content)
       end
     end
@@ -65,16 +65,16 @@ RSpec.describe(DsfrComponent::TabComponent, type: :component) do
     visible_panel_id = tabs.keys.first.parameterize
     hidden_panel_ids = tabs.keys[1..].map(&:parameterize)
 
-    expect(rendered_content).to have_tag('div', with: { id: visible_panel_id, class: 'govuk-tabs__panel' })
+    expect(rendered_content).to have_tag('div', with: { id: visible_panel_id, class: 'fr-tabs__panel' })
 
     hidden_panel_ids.each do |hidden_panel_id|
-      expect(rendered_content).to have_tag('div', with: { id: hidden_panel_id, class: %w(govuk-tabs__panel govuk-tabs__panel--hidden) })
+      expect(rendered_content).to have_tag('div', with: { id: hidden_panel_id, class: %w(fr-tabs__panel fr-tabs__panel--hidden) })
     end
   end
 
   specify 'tabs are associated with the right panels' do
     tab_link_hrefs = html.css('a.govuk-tabs__tab').map { |tab| tab[:href].tr('#', '') }
-    panel_ids = html.css('div.govuk-tabs__panel').map { |panel| panel[:id] }
+    panel_ids = html.css('div.fr-tabs__panel').map { |panel| panel[:id] }
 
     expect(tab_link_hrefs).to eql(panel_ids)
   end
@@ -99,7 +99,7 @@ RSpec.describe(DsfrComponent::TabComponent, type: :component) do
 
     specify 'each panel contains the right content' do
       tabs.each do |title, content|
-        expect(rendered_content).to have_tag('div', with: { id: title.parameterize, class: 'govuk-tabs__panel' }) do
+        expect(rendered_content).to have_tag('div', with: { id: title.parameterize, class: 'fr-tabs__panel' }) do
           with_text(content)
         end
       end

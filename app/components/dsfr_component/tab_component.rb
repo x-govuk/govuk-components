@@ -35,7 +35,7 @@ private
     def hidden_class(i = nil)
       return [] if i&.zero?
 
-      %w(govuk-tabs__panel--hidden)
+      %w(fr-tabs__panel--hidden)
     end
 
     def li_classes(i = nil)
@@ -47,7 +47,7 @@ private
     end
 
     def default_attributes
-      { id: id, class: %w(govuk-tabs__panel) }
+      { id: id, class: %w(fr-tabs__panel) }
     end
 
     def combined_attributes(i)
