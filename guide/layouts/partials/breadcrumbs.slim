@@ -1,6 +1,9 @@
-.govuk-breadcrumbs
-  ol.govuk-breadcrumbs__list
-    li.govuk-breadcrumbs__list-item
-      == link_to 'Home', '/', class: 'govuk-breadcrumbs__link'
-    li.govuk-breadcrumbs__list-item aria-current='page'
-      = @item[:title]
+nav.fr-breadcrumb aria-label="Vous êtes ici :" role="navigation"
+  button.fr-breadcrumb__button aria-expanded="false" aria-controls="breadcrumb-1"
+    | Voir le fil d’Ariane
+  .fr-collapse#breadcrumb-1
+    ol.fr-breadcrumb__list
+      li
+        == link_to 'Home', '/', class: 'fr-breadcrumb__link'
+      li
+        == link_to @item[:title], '', class: 'fr-breadcrumb__link', 'aria-current' => 'page'
