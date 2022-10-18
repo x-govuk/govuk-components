@@ -12,7 +12,7 @@ module Examples
   module PaginationHelpers
     def pagination_normal
       <<~PAGINATION
-        = govuk_pagination(pagy: pagy)
+        = dsfr_pagination(pagy: pagy)
       PAGINATION
     end
 
@@ -24,7 +24,7 @@ module Examples
 
     def pagination_lots_of_pages
       <<~PAGINATION
-        = govuk_pagination(pagy: pagy)
+        = dsfr_pagination(pagy: pagy)
       PAGINATION
     end
 
@@ -36,7 +36,7 @@ module Examples
 
     def pagination_vertical
       <<~PAGINATION
-        = govuk_pagination(block_mode: true) do |p|
+        = dsfr_pagination(block_mode: true) do |p|
           - p.previous_page(text: "Chapter 3", label_text: "Edmund and the Wardrobe", href: "#")
           - p.next_page(text: "Chapter 5", label_text: "Back on This Side of the Door", href: "#")
       PAGINATION
@@ -61,7 +61,7 @@ module Examples
 
     def pagination_manual
       <<~PAGINATION
-        = govuk_pagination do |p|
+        = dsfr_pagination do |p|
           - p.previous_page(href: "#", text: "Previous events", html_attributes: { id: 'page-prev' })
           - p.with_items(item_data)
           - p.next_page(href: "#", text: "Next events", html_attributes: { id: 'page-next' })

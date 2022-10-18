@@ -1,6 +1,6 @@
 require "spec_helper"
 
-RSpec.describe GovukComponent::SectionBreakComponent, type: :component do
+RSpec.describe DsfrComponent::SectionBreakComponent, type: :component do
   let(:component_css_class) { "govuk-section-break" }
   let(:kwargs) { {} }
 
@@ -9,7 +9,7 @@ RSpec.describe GovukComponent::SectionBreakComponent, type: :component do
 
   context "when visible is true" do
     it "renders the section break with the visible class" do
-      component = GovukComponent::SectionBreakComponent.new(visible: true)
+      component = DsfrComponent::SectionBreakComponent.new(visible: true)
 
       render_inline(component)
 
@@ -22,7 +22,7 @@ RSpec.describe GovukComponent::SectionBreakComponent, type: :component do
 
   context "when visible is false" do
     it "renders the section break without the visible class" do
-      component = GovukComponent::SectionBreakComponent.new(visible: false)
+      component = DsfrComponent::SectionBreakComponent.new(visible: false)
 
       render_inline(component)
 
@@ -36,7 +36,7 @@ RSpec.describe GovukComponent::SectionBreakComponent, type: :component do
 
   context "when size is blank" do
     it "renders the section break without the size class" do
-      component = GovukComponent::SectionBreakComponent.new
+      component = DsfrComponent::SectionBreakComponent.new
 
       render_inline(component)
 
@@ -49,7 +49,7 @@ RSpec.describe GovukComponent::SectionBreakComponent, type: :component do
 
   context "when size is valid" do
     it "renders the section break with the size class" do
-      component = GovukComponent::SectionBreakComponent.new(size: "xl")
+      component = DsfrComponent::SectionBreakComponent.new(size: "xl")
 
       render_inline(component)
 
@@ -61,7 +61,7 @@ RSpec.describe GovukComponent::SectionBreakComponent, type: :component do
   end
 
   context "when size is invalid" do
-    let(:component) { GovukComponent::SectionBreakComponent.new(size: "s") }
+    let(:component) { DsfrComponent::SectionBreakComponent.new(size: "s") }
 
     it "raises an error" do
       expect { render_inline(component) }

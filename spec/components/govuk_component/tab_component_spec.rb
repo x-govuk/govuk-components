@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe(GovukComponent::TabComponent, type: :component) do
+RSpec.describe(DsfrComponent::TabComponent, type: :component) do
   let(:title) { 'My favourite tabs' }
   let(:label) { 'A tab' }
   let(:component_css_class) { 'govuk-tabs' }
@@ -16,7 +16,7 @@ RSpec.describe(GovukComponent::TabComponent, type: :component) do
   let(:kwargs) { { title: title } }
 
   subject! do
-    render_inline(GovukComponent::TabComponent.new(**kwargs)) do |component|
+    render_inline(DsfrComponent::TabComponent.new(**kwargs)) do |component|
       tabs.each do |label, content|
         component.tab(label: label) { content }
       end
@@ -90,7 +90,7 @@ RSpec.describe(GovukComponent::TabComponent, type: :component) do
 
   context 'when text is passed to a tab instead of a block' do
     subject! do
-      render_inline(GovukComponent::TabComponent.new(**kwargs)) do |component|
+      render_inline(DsfrComponent::TabComponent.new(**kwargs)) do |component|
         tabs.each do |label, content|
           component.tab(label: label, text: content)
         end

@@ -2,7 +2,7 @@ module Examples
   module DetailsHelpers
     def details_normal
       <<~DETAILS
-        = govuk_details(summary_text: summary_text, text: text)
+        = dsfr_details(summary_text: summary_text, text: text)
       DETAILS
     end
 
@@ -17,7 +17,7 @@ module Examples
 
     def details_with_block
       <<~DETAILS
-        = govuk_details(summary_text: "Help with nationality") do
+        = dsfr_details(summary_text: "Help with nationality") do
           p
             | We need to know your nationality so we can work out which elections
               you’re entitled to vote in.
@@ -30,7 +30,7 @@ module Examples
 
     def details_open
       <<~DETAILS
-        = govuk_details(summary_text: summary_text, text: text, open: true)
+        = dsfr_details(summary_text: summary_text, text: text, open: true)
       DETAILS
     end
   end

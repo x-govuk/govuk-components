@@ -2,13 +2,13 @@ module Examples
   module FooterHelpers
     def footer_normal
       <<~FOOTER
-        = govuk_footer
+        = dsfr_footer
       FOOTER
     end
 
     def footer_with_meta_items
       <<~FOOTER
-        = govuk_footer(meta_items_title: "Helpful links", meta_items: meta_items)
+        = dsfr_footer(meta_items_title: "Helpful links", meta_items: meta_items)
       FOOTER
     end
 
@@ -33,7 +33,7 @@ module Examples
 
     def footer_with_custom_meta_html
       <<~FOOTER_META_HTML
-        = render GovukComponent::FooterComponent.new do |footer|
+        = render DsfrComponent::FooterComponent.new do |footer|
           - footer.meta_html do
             .govuk-footer__meta-custom class="govuk-\!-margin-top-1"
               | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
@@ -43,7 +43,7 @@ module Examples
 
     def footer_with_custom_meta
       <<~FOOTER_META
-        = render GovukComponent::FooterComponent.new do |footer|
+        = render DsfrComponent::FooterComponent.new do |footer|
           - footer.meta do
             .govuk-footer__meta-item
               p.govuk-footer__meta-custom
@@ -54,7 +54,7 @@ module Examples
 
     def footer_with_custom_copyright_and_licence
       <<~FOOTER
-        = govuk_footer(copyright_text: copyright_text, meta_licence: meta_licence)
+        = dsfr_footer(copyright_text: copyright_text, meta_licence: meta_licence)
       FOOTER
     end
 
@@ -69,7 +69,7 @@ module Examples
 
     def footer_with_navigation
       <<~FOOTER_WITH_NAVIGATION
-        = govuk_footer do |footer|
+        = dsfr_footer do |footer|
           - footer.navigation do
             .govuk-footer__section.govuk-grid-column-one-third
               h2.govuk-footer__heading.govuk-heading-m Section one

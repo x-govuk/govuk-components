@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
+RSpec.describe(DsfrComponent::HeaderComponent, type: :component) do
   before do
-    allow_any_instance_of(GovukComponent::HeaderComponent::NavigationItem).to(
+    allow_any_instance_of(DsfrComponent::HeaderComponent::NavigationItem).to(
       receive(:request).and_return(double(ActionDispatch::Request, get?: true, path: current_page))
     )
   end
@@ -27,7 +27,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
   end
   let(:kwargs) { all_kwargs }
 
-  subject! { render_inline(GovukComponent::HeaderComponent.new(**kwargs)) }
+  subject! { render_inline(DsfrComponent::HeaderComponent.new(**kwargs)) }
 
   context 'by default' do
     let(:default_header_text) { 'GOV.UK' }
@@ -106,7 +106,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
     end
 
     subject! do
-      render_inline(GovukComponent::HeaderComponent.new) do |component|
+      render_inline(DsfrComponent::HeaderComponent.new) do |component|
         component.custom_logo { custom_logo }
       end
     end
@@ -129,7 +129,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
       let(:custom_name) { "The fantastic product" }
 
       subject! do
-        render_inline(GovukComponent::HeaderComponent.new) do |component|
+        render_inline(DsfrComponent::HeaderComponent.new) do |component|
           component.product_name(name: custom_name)
         end
       end
@@ -147,7 +147,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
       let(:custom_name) { "The amazing product" }
 
       subject! do
-        render_inline(GovukComponent::HeaderComponent.new) do |component|
+        render_inline(DsfrComponent::HeaderComponent.new) do |component|
           component.product_name { custom_name }
         end
       end
@@ -195,7 +195,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
 
       subject! do
         header_kwargs = kwargs.merge(navigation_classes: custom_classes)
-        render_inline(GovukComponent::HeaderComponent.new(**header_kwargs)) do |component|
+        render_inline(DsfrComponent::HeaderComponent.new(**header_kwargs)) do |component|
           navigation_items.each { |navigation_item| component.navigation_item(**navigation_item) }
         end
       end
@@ -304,7 +304,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
           let(:custom_label) { 'More stuff' }
 
           subject! do
-            render_inline(GovukComponent::HeaderComponent.new(**kwargs.merge(menu_button_label: custom_label))) do |component|
+            render_inline(DsfrComponent::HeaderComponent.new(**kwargs.merge(menu_button_label: custom_label))) do |component|
               navigation_items.each { |item| component.navigation_item(**item) }
             end
           end
@@ -321,7 +321,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
         let(:custom_label) { 'Top level navigation' }
 
         subject! do
-          render_inline(GovukComponent::HeaderComponent.new(**kwargs.merge(navigation_label: custom_label))) do |component|
+          render_inline(DsfrComponent::HeaderComponent.new(**kwargs.merge(navigation_label: custom_label))) do |component|
             navigation_items.each { |item| component.navigation_item(**item) }
           end
         end

@@ -1,2 +1,2 @@
-Govuk::Components::Engine.routes.draw do
+Dsfr::Components::Engine.routes.draw do
 end

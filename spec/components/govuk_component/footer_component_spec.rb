@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe(GovukComponent::FooterComponent, type: :component) do
+RSpec.describe(DsfrComponent::FooterComponent, type: :component) do
   let(:component_css_class) { "govuk-footer" }
   let(:custom_content) { "The quick brown fox" }
   let(:heading_text) { "Some title" }
@@ -16,7 +16,7 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
   end
 
   subject! do
-    render_inline(GovukComponent::FooterComponent.new(**kwargs))
+    render_inline(DsfrComponent::FooterComponent.new(**kwargs))
   end
 
   specify 'renders a footer element' do
@@ -111,7 +111,7 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
 
       context "when invalid meta items are provided" do
         specify "raises an error" do
-          expect { GovukComponent::FooterComponent.new(meta_items: "invalid") }.to raise_error(ArgumentError, "meta links must be a hash or array of hashes")
+          expect { DsfrComponent::FooterComponent.new(meta_items: "invalid") }.to raise_error(ArgumentError, "meta links must be a hash or array of hashes")
         end
       end
     end
@@ -166,7 +166,7 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
       let(:kwargs) { { meta_items_title: heading_text, meta_items: meta_items } }
 
       subject! do
-        render_inline(GovukComponent::FooterComponent.new(**kwargs)) do |footer|
+        render_inline(DsfrComponent::FooterComponent.new(**kwargs)) do |footer|
           footer.meta_html { custom_content }
         end
       end
@@ -188,7 +188,7 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
       describe "meta_text" do
         let(:custom_text) { "Some meta text" }
 
-        subject! { render_inline(GovukComponent::FooterComponent.new(meta_text: custom_text, **kwargs)) }
+        subject! { render_inline(DsfrComponent::FooterComponent.new(meta_text: custom_text, **kwargs)) }
 
         specify "custom text is rendered" do
           expect(rendered_content).to have_tag("div", with: { class: "govuk-footer__meta-item" }) do
@@ -205,7 +205,7 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
         let(:custom_html) { helper.content_tag(custom_tag, custom_text) }
 
         subject! do
-          render_inline(GovukComponent::FooterComponent.new(**kwargs)) do |component|
+          render_inline(DsfrComponent::FooterComponent.new(**kwargs)) do |component|
             component.meta_html { custom_html }
           end
         end
@@ -225,7 +225,7 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
     let(:kwargs) { { meta_items_title: heading_text, meta_items: meta_items } }
 
     subject! do
-      render_inline(GovukComponent::FooterComponent.new(**kwargs)) do |footer|
+      render_inline(DsfrComponent::FooterComponent.new(**kwargs)) do |footer|
         footer.meta { custom_content }
       end
     end
@@ -265,7 +265,7 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
     let(:custom_html) { helper.content_tag(custom_tag, custom_text) }
 
     subject! do
-      render_inline(GovukComponent::FooterComponent.new(**kwargs)) do |component|
+      render_inline(DsfrComponent::FooterComponent.new(**kwargs)) do |component|
         component.navigation { custom_html }
       end
     end

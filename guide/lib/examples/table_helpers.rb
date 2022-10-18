@@ -2,7 +2,7 @@ module Examples
   module TableHelpers
     def table_normal
       <<~TABLE
-        = govuk_table do |table|
+        = dsfr_table do |table|
           - table.caption(size: 'm', text: 'List of Pokémon')
 
           - table.head do |head|
@@ -31,7 +31,7 @@ module Examples
 
     def table_with_header_column
       <<~TABLE
-        = govuk_table do |table|
+        = dsfr_table do |table|
           - table.caption(size: 'm', text: 'List of Pokémon generations')
 
           - table.head do |head|
@@ -60,7 +60,7 @@ module Examples
 
     def table_from_arrays
       <<~TABLE
-        = govuk_table(rows: data, caption: "Pokémon species and types")
+        = dsfr_table(rows: data, caption: "Pokémon species and types")
       TABLE
     end
 
@@ -80,7 +80,7 @@ module Examples
 
     def table_with_resized_columns
       <<~TABLE
-        = govuk_table do |table|
+        = dsfr_table do |table|
           - table.caption(size: 'm', text: 'List of Pokémon with descriptions')
 
           - table.head do |head|

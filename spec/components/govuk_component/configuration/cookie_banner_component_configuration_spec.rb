@@ -1,16 +1,16 @@
 require "spec_helper"
 
-RSpec.describe(GovukComponent::CookieBannerComponent, type: :component) do
+RSpec.describe(DsfrComponent::CookieBannerComponent, type: :component) do
   let(:component_css_class) { 'govuk-cookie-banner' }
 
   describe "configuration" do
-    after { Govuk::Components.reset! }
+    after { Dsfr::Components.reset! }
 
     describe "default_cookie_banner_aria_label" do
       let(:overriden_aria_label) { "Biscuit flag" }
 
       before do
-        Govuk::Components.configure do |config|
+        Dsfr::Components.configure do |config|
           config.default_cookie_banner_aria_label = overriden_aria_label
         end
       end
@@ -33,7 +33,7 @@ RSpec.describe(GovukComponent::CookieBannerComponent, type: :component) do
       let(:overriden_hide_in_print) { false }
 
       before do
-        Govuk::Components.configure do |config|
+        Dsfr::Components.configure do |config|
           config.default_cookie_banner_hide_in_print = overriden_hide_in_print
         end
       end

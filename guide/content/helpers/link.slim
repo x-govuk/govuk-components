@@ -8,19 +8,19 @@ markdown:
 
 == render('/partials/example.*',
   caption: "Regular link",
-  code: govuk_link_to_normal) do
+  code: dsfr_link_to_normal) do
 
   p.govuk-body
 
   markdown:
     Regular links are just plain [anchor elements][0]
-    with the `govuk-link` class.
+    with the `fr-link` class.
 
     [0]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
 
 == render('/partials/example.*',
   caption: "Inverse hyperlink",
-  code: govuk_link_to_inverse,
+  code: dsfr_link_to_inverse,
   inverse: true) do
 
   p.govuk-body
@@ -28,7 +28,7 @@ markdown:
 
 == render('/partials/example.*',
   caption: "Other link styles",
-  code: govuk_link_other_styles)
+  code: dsfr_link_other_styles)
 
 hr.govuk-section-break.govuk-section-break--xl.govuk-section-break--visible
 
@@ -38,17 +38,17 @@ markdown:
   Rails has [lots of link helpers][0]
   and only the most frequently used are wrapped by this library. If you need
   to use another variant, like `link_to_if`, you can use the
-  `govuk_link_classes` and `govuk_button_classes`
+  `dsfr_link_classes` and `dsfr_button_classes`
   helpers to ensure the correct classes are assigned.
 
   [0]: #{rails_docs_url_helper}
 
 == render('/partials/example.*',
   caption: "Using the class helpers",
-  code: govuk_link_classes_multiple) do
+  code: dsfr_link_classes_multiple) do
 
   p.govuk-body
     markdown:
-      When no arguments are provided to `govuk_link_classes`, only
-      the default `govuk-link` will be added. Alternate styles
+      When no arguments are provided to `dsfr_link_classes`, only
+      the default `fr-link` will be added. Alternate styles
       can be passed in as a snake cased array of variants.

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe(GovukComponent::NotificationBannerComponent, type: :component) do
+RSpec.describe(DsfrComponent::NotificationBannerComponent, type: :component) do
   let(:component_css_class) { 'govuk-notification-banner' }
   let(:title) { 'A notification banner' }
 

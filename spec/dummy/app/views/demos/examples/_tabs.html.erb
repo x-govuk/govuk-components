@@ -1,7 +1,7 @@
 <%= example_heading('Tabs') %>
 
 <%= render "shared/example", title: "Tabs", example: <<~TABS
-  render GovukComponent::TabComponent.new(title: 'Days of the week') do |component|
+  render DsfrComponent::TabComponent.new(title: 'Days of the week') do |component|
     component.tab(label: 'Monday') do
       tag.p("Monday’s child is fair of face", class: 'govuk-body')
     end

@@ -7,7 +7,7 @@ inherit_gem:
 AllCops:
   TargetRubyVersion: 2.7
   Exclude:
-    - govuk_design_system_formbuilder.gemspec
+    - dsfr_design_system_formbuilder.gemspec
     - spec/dummy/**/*
 Security/Eval:
   Exclude:

@@ -8,16 +8,16 @@ p.govuk-body
 
 == render('/partials/example.*',
   caption: "Regular button",
-  code: govuk_button_to_normal) do
+  code: dsfr_button_to_normal) do
 
   p.govuk-body
-    | The <code>govuk_button_to</code> helper wraps Rails'
+    | The <code>dsfr_button_to</code> helper wraps Rails'
       #{link_to('button_to', rails_docs_button_to).html_safe}
       directly, rendering a form that will <code>POST</code> by default.
 
 == render('/partials/example.*',
   caption: "Link styled like a button",
-  code: govuk_button_link_to_normal) do
+  code: dsfr_button_link_to_normal) do
 
   p.govuk-body
     | When using buttons for navigation, we usually want a link styled like a
@@ -25,7 +25,7 @@ p.govuk-body
 
 == render('/partials/example.*',
   caption: "Other button styles",
-  code: govuk_button_other_styles) do
+  code: dsfr_button_other_styles) do
 
   markdown:
     ### Disabled buttons

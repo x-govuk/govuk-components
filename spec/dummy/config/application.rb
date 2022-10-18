@@ -14,7 +14,7 @@ require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
 Bundler.require(*Rails.groups)
-require "govuk/components"
+require "dsfr/components"
 
 module Dummy
   class Application < Rails::Application
@@ -30,4 +30,3 @@ module Dummy
     config.view_component.default_preview_layout = "preview"
   end
 end
-

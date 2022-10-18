@@ -2,13 +2,13 @@ module Examples
   module BreadcrumbsHelpers
     def breadcrumbs_normal
       <<~BREADCRUMBS
-        = govuk_breadcrumbs(breadcrumbs: breadcrumbs)
+        = dsfr_breadcrumbs(breadcrumbs: breadcrumbs)
       BREADCRUMBS
     end
 
     def breadcrumbs_that_collapse_on_mobile
       <<~BREADCRUMBS
-        = govuk_breadcrumbs(breadcrumbs: breadcrumbs, collapse_on_mobile: true)
+        = dsfr_breadcrumbs(breadcrumbs: breadcrumbs, collapse_on_mobile: true)
 
         p.govuk-inset-text If you make this page narrower the inner breadcrumbs will be hiddden.
       BREADCRUMBS
@@ -16,7 +16,7 @@ module Examples
 
     def breadcrumbs_from_an_array_of_links
       <<~BREADCRUMBS
-        = govuk_breadcrumbs(breadcrumbs: breadcrumbs)
+        = dsfr_breadcrumbs(breadcrumbs: breadcrumbs)
       BREADCRUMBS
     end
 
@@ -44,9 +44,9 @@ module Examples
       <<~BREADCRUMBS
         {
           breadcrumbs: [
-            govuk_breadcrumb_link_to("Home", "/"),
-            govuk_breadcrumb_link_to("Level one page", "/"),
-            govuk_breadcrumb_link_to("Level two page", "/")
+            dsfr_breadcrumb_link_to("Home", "/"),
+            dsfr_breadcrumb_link_to("Level one page", "/"),
+            dsfr_breadcrumb_link_to("Level two page", "/")
           ]
         }
       BREADCRUMBS

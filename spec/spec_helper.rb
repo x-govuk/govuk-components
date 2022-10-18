@@ -10,9 +10,9 @@ if ENV.fetch('SIMPLECOV') { '1' } == '1'
   SimpleCov.start
 end
 
-include GovukLinkHelper
-include GovukBackToTopLinkHelper
-include GovukSkipLinkHelper
+include DsfrLinkHelper
+include DsfrBackToTopLinkHelper
+include DsfrSkipLinkHelper
 
 module Pagy::UrlHelpers
   def request

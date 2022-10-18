@@ -1,17 +1,17 @@
 require 'spec_helper'
 
-RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
+RSpec.describe(DsfrComponent::SummaryListComponent, type: :component) do
   describe 'configuration' do
-    after { Govuk::Components.reset! }
+    after { Dsfr::Components.reset! }
 
     describe 'default_summary_list_borders' do
       before do
-        Govuk::Components.configure do |config|
+        Dsfr::Components.configure do |config|
           config.default_summary_list_borders = false
         end
       end
 
-      subject! { render_inline(GovukComponent::SummaryListComponent.new) }
+      subject! { render_inline(DsfrComponent::SummaryListComponent.new) }
 
       specify "renders the borders based on the config setting" do
         expect(rendered_content).to have_tag("dl", with: { class: "govuk-summary-list--no-border" })
@@ -20,7 +20,7 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
 
     describe 'require_summary_list_action_visually_hidden_text' do
       before do
-        Govuk::Components.configure do |config|
+        Dsfr::Components.configure do |config|
           config.require_summary_list_action_visually_hidden_text = true
         end
       end
@@ -28,7 +28,7 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
       context "when visually_hidden_text is supplied" do
         let(:visually_hidden_text) { "visually hidden info" }
         subject! do
-          render_inline(GovukComponent::SummaryListComponent.new) do |sl|
+          render_inline(DsfrComponent::SummaryListComponent.new) do |sl|
             sl.row do |row|
               row.key(text: "key one")
               row.value(text: "value one")
@@ -44,7 +44,7 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
 
       context "when visually_hidden_text is omitted" do
         subject do
-          render_inline(GovukComponent::SummaryListComponent.new) do |sl|
+          render_inline(DsfrComponent::SummaryListComponent.new) do |sl|
             sl.row do |row|
               row.key(text: "key one")
               row.value(text: "value one")

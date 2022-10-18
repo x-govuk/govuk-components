@@ -1,5 +1,5 @@
 $govuk-image-url-function: "image-url";
 $govuk-font-url-function: "font-url";
 
-@import "govuk-frontend/govuk/all";
+@import "@gouvfr/dsfr/dist/dsfr.css";
 @import "prismjs/themes/prism-tomorrow";

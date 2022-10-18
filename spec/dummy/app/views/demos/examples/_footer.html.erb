@@ -1,12 +1,12 @@
 <%= example_heading('Footer') %>
 
 <%= render "shared/example", title: 'Default footer', example: <<~FOOTER
-  render GovukComponent::FooterComponent.new
+  render DsfrComponent::FooterComponent.new
   FOOTER
 %>
 
 <%= render "shared/example", title: 'Footer with licence, copyright text and URL', example: <<~FOOTER
-  render GovukComponent::FooterComponent.new(
+  render DsfrComponent::FooterComponent.new(
     meta_licence: 'Custom licence',
     copyright_text: 'Custom copyright',
     copyright_url: 'https://design-system.service.gov.uk/')
@@ -14,7 +14,7 @@
 %>
 
 <%= render "shared/example", title: 'Footer with no licence and some alternative content', example: <<~FOOTER
-  render GovukComponent::FooterComponent.new(
+  render DsfrComponent::FooterComponent.new(
     meta_items: {
       One: "/one",
       Two: "/two"

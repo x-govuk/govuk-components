@@ -22,7 +22,7 @@ nanoc-check-external:
 nanoc-check-all: build-guide
 	( ${guide_dir} ${prefix} nanoc check ${nanoc_internal_checks} ${nanoc_external_checks} )
 build:
-	${prefix} gem build govuk-components.gemspec
+	${prefix} gem build dsfr-components.gemspec
 build-guide: npm-install
 	( ${guide_dir} ${prefix} nanoc )
 view-guide: build-guide

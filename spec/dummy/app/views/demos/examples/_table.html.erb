@@ -3,7 +3,7 @@
 <%= render "shared/example",
   title: 'Table with slots',
   example: <<~SUMMARY_LIST
-    render GovukComponent::TableComponent.new do |table|
+    render DsfrComponent::TableComponent.new do |table|
       table.caption { "List of Pokémon" }
 
       table.head do |head|
@@ -44,7 +44,7 @@
 <%= render "shared/example",
   title: 'Table from array',
   example: <<~SUMMARY_LIST
-    render GovukComponent::TableComponent.new(
+    render DsfrComponent::TableComponent.new(
       head: %w(Pokémon Type),
       rows: [
         ['Treecko', '🌾 Grass'],

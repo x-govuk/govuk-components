@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-RSpec.describe(GovukComponent::WarningTextComponent, type: :component) do
+RSpec.describe(DsfrComponent::WarningTextComponent, type: :component) do
   let(:component_css_class) { 'govuk-warning-text' }
   let(:custom_icon_fallback_text) { 'Informative text goes here' }
   let(:kwargs) { { text: text } }
   let(:text) { 'Some fancy warning' }
 
-  subject! { render_inline(GovukComponent::WarningTextComponent.new(**kwargs)) }
+  subject! { render_inline(DsfrComponent::WarningTextComponent.new(**kwargs)) }
 
   specify 'renders a div element with the right class and text' do
     expect(rendered_content).to have_tag('div', class: component_css_class, text: Regexp.new(text))
@@ -27,7 +27,7 @@ RSpec.describe(GovukComponent::WarningTextComponent, type: :component) do
   end
 
   context 'when assistive text is overriden' do
-    subject! { render_inline(GovukComponent::WarningTextComponent.new(**kwargs.merge(icon_fallback_text: custom_icon_fallback_text))) }
+    subject! { render_inline(DsfrComponent::WarningTextComponent.new(**kwargs.merge(icon_fallback_text: custom_icon_fallback_text))) }
 
     specify 'the custom assistive text is included' do
       expect(rendered_content).to have_tag('div', class: component_css_class) do
@@ -50,7 +50,7 @@ RSpec.describe(GovukComponent::WarningTextComponent, type: :component) do
     let(:custom_html) { helper.content_tag(custom_tag, custom_text) }
 
     subject! do
-      render_inline(GovukComponent::WarningTextComponent.new(**kwargs)) { custom_html }
+      render_inline(DsfrComponent::WarningTextComponent.new(**kwargs)) { custom_html }
     end
 
     specify "renders the custom html" do
@@ -64,7 +64,7 @@ RSpec.describe(GovukComponent::WarningTextComponent, type: :component) do
 
   context "when the icon is overridden" do
     let(:custom_icon) { "?" }
-    subject! { render_inline(GovukComponent::WarningTextComponent.new(**kwargs.merge(icon: custom_icon))) }
+    subject! { render_inline(DsfrComponent::WarningTextComponent.new(**kwargs.merge(icon: custom_icon))) }
 
     specify "renders the warning text with the custom icon" do
       expect(rendered_content).to have_tag("span", text: custom_icon, with: { class: "govuk-warning-text__icon" })

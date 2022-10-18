@@ -2,7 +2,7 @@ module Examples
   module SummaryListHelpers
     def summary_list_normal
       <<~SUMMARY_LIST
-        = govuk_summary_list do |summary_list|
+        = dsfr_summary_list do |summary_list|
           - summary_list.row do |row|
             - row.key { 'Aardvark' }
             - row.value { 'The aardvark is vaguely pig-like in appearance' }
@@ -27,7 +27,7 @@ module Examples
 
     def summary_list_without_actions
       <<~SUMMARY_LIST_WITHOUT_ACTIONS
-        = govuk_summary_list(actions: false) do |summary_list|
+        = dsfr_summary_list(actions: false) do |summary_list|
           - summary_list.row do |row|
             - row.key { 'Name' }
             - row.value { 'Sherlock Holmes' }
@@ -45,7 +45,7 @@ module Examples
 
     def summary_list_from_rows
       <<~SUMMARY_LIST_FROM_ROWS
-        = govuk_summary_list(rows: rows)
+        = dsfr_summary_list(rows: rows)
       SUMMARY_LIST_FROM_ROWS
     end
 

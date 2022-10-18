@@ -1,0 +1,6 @@
+require "rails/engine"
+require "view_component"
+require "dsfr/components/helpers/css_utilities"
+require "dsfr/components/engine"
+require "html_attributes_utils"
+require "pagy"

@@ -1,10 +1,10 @@
 <%= example_heading("Cookie banner") %>
 
 <%= render "shared/example", title: "Cookie banner", example: <<~COOKIE_BANNER
-  render GovukComponent::CookieBannerComponent.new do |cookie_banner|
+  render DsfrComponent::CookieBannerComponent.new do |cookie_banner|
     cookie_banner.message(heading_text: "Warning", text: "We have lots of nice cookies") do |message|
-      message.action { govuk_button_link_to("Accept", "#") }
-      message.action { govuk_button_link_to("Reject", "#", warning: true) }
+      message.action { dsfr_button_link_to("Accept", "#") }
+      message.action { dsfr_button_link_to("Reject", "#", warning: true) }
     end
   end
   COOKIE_BANNER

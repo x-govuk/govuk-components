@@ -2,13 +2,13 @@
 
 <%= render "shared/example",
   title: 'Inset text with text param',
-  example: %{render GovukComponent::InsetTextComponent.new(text: 'Bake him away, toys.')}
+  example: %{render DsfrComponent::InsetTextComponent.new(text: 'Bake him away, toys.')}
 %>
 
 <%= render "shared/example",
   title: 'Inset text with text block',
   example: <<~INSET_TEXT
-    render GovukComponent::InsetTextComponent.new do
+    render DsfrComponent::InsetTextComponent.new do
       "Subject is hatless. Repeat, hatless."
     end
   INSET_TEXT

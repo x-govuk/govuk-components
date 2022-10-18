@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
+RSpec.describe(DsfrComponent::SummaryListComponent, type: :component) do
   let(:component_css_class) { 'govuk-summary-list' }
 
   let(:action_link_text) { 'Something' }
@@ -182,7 +182,7 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
         expect(rendered_content).to have_tag("dl", with: { class: component_css_class }) do
           with_tag("div", with: { class: %(govuk-summary-list__row) }) do
             with_tag("dd", with: { class: "govuk-summary-list__actions" }, text: /Action\s/) do
-              with_tag("a.govuk-link > span", with: { class: "govuk-visually-hidden" })
+              with_tag("a.fr-link > span", with: { class: "govuk-visually-hidden" })
             end
           end
         end
@@ -339,7 +339,7 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
         expect(rendered_content).to have_tag("dl > .row-1-custom-class") do
           with_tag("dd", with: { class: "govuk-summary-list__actions" }) do
             with_tag("a", {
-              class: "govuk-link",
+              class: "fr-link",
               with: {
                 href: "/row-1-action-1-href",
                 class: "row-1-custom-action-1-class",
@@ -358,7 +358,7 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
           with_tag("dd", with: { class: "govuk-summary-list__actions" }) do
             with_tag("ul", with: { class: "govuk-summary-list__actions-list" }) do
               with_tag("a", {
-                class: "govuk-link",
+                class: "fr-link",
                 with: {
                   href: "/row-2-action-1-href",
                   class: "row-2-custom-action-1-class",
@@ -368,7 +368,7 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
               }) { with_tag("span", with: { class: "govuk-visually-hidden" }, text: "address") }
 
               with_tag("a", {
-                class: "govuk-link",
+                class: "fr-link",
                 with: {
                   href: "/row-2-action-2-href",
                   class: "row-2-custom-action-2-class",
@@ -413,7 +413,7 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
   end
 end
 
-RSpec.describe(GovukComponent::SummaryListComponent::RowComponent, type: :component) do
+RSpec.describe(DsfrComponent::SummaryListComponent::RowComponent, type: :component) do
   let(:component_css_class) { 'govuk-summary-list__row' }
   let(:kwargs) { {} }
 
@@ -421,7 +421,7 @@ RSpec.describe(GovukComponent::SummaryListComponent::RowComponent, type: :compon
   it_behaves_like 'a component that accepts custom HTML attributes'
 end
 
-RSpec.describe(GovukComponent::SummaryListComponent::KeyComponent, type: :component) do
+RSpec.describe(DsfrComponent::SummaryListComponent::KeyComponent, type: :component) do
   let(:component_css_class) { 'govuk-summary-list__key' }
   let(:kwargs) { { text: "Some key" } }
 
@@ -452,7 +452,7 @@ RSpec.describe(GovukComponent::SummaryListComponent::KeyComponent, type: :compon
   end
 end
 
-RSpec.describe(GovukComponent::SummaryListComponent::ValueComponent, type: :component) do
+RSpec.describe(DsfrComponent::SummaryListComponent::ValueComponent, type: :component) do
   let(:component_css_class) { 'govuk-summary-list__value' }
   let(:kwargs) { { text: "Some value" } }
 
@@ -485,9 +485,9 @@ RSpec.describe(GovukComponent::SummaryListComponent::ValueComponent, type: :comp
   end
 end
 
-RSpec.describe(GovukComponent::SummaryListComponent::ActionComponent, type: :component) do
+RSpec.describe(DsfrComponent::SummaryListComponent::ActionComponent, type: :component) do
   let(:custom_path) { "/some/endpoint" }
-  let(:component_css_class) { 'govuk-link' }
+  let(:component_css_class) { 'fr-link' }
   let(:kwargs) { { href: custom_path, text: "Some value", visually_hidden_text: nil } }
 
   it_behaves_like 'a component that accepts custom classes'
@@ -499,7 +499,7 @@ RSpec.describe(GovukComponent::SummaryListComponent::ActionComponent, type: :com
     end
 
     specify "the text defaults to 'Change'" do
-      expect(rendered_content).to have_tag("a", with: { class: "govuk-link" }, text: "Change")
+      expect(rendered_content).to have_tag("a", with: { class: "fr-link" }, text: "Change")
     end
   end
 

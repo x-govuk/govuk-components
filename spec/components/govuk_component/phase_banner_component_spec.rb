@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-RSpec.describe(GovukComponent::PhaseBannerComponent, type: :component) do
+RSpec.describe(DsfrComponent::PhaseBannerComponent, type: :component) do
   let(:component_css_class) { "govuk-phase-banner" }
 
   let(:phase) { 'Gamma' }
   let(:text) { 'This is an experimental service – be cautious' }
   let(:kwargs) { { tag: { text: phase }, text: text } }
 
-  subject! { render_inline(GovukComponent::PhaseBannerComponent.new(**kwargs)) }
+  subject! { render_inline(DsfrComponent::PhaseBannerComponent.new(**kwargs)) }
 
   specify "renders div element with the right text and banner tag" do
     expect(rendered_content).to have_tag("div", with: { class: "govuk-phase-banner" }) do
@@ -22,7 +22,7 @@ RSpec.describe(GovukComponent::PhaseBannerComponent, type: :component) do
     let(:content) { 'Ignore everything' }
 
     subject! do
-      render_inline(GovukComponent::PhaseBannerComponent.new(**kwargs.except(:text))) { content }
+      render_inline(DsfrComponent::PhaseBannerComponent.new(**kwargs.except(:text))) { content }
     end
 
     specify "renders div element with the right text, banner tag and content" do

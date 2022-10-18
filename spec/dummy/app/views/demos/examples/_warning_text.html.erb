@@ -1,20 +1,20 @@
 <%= example_heading('Warning text') %>
 
 <%= render "shared/example", title: 'Warning text', example: <<~WARNING
-  render GovukComponent::WarningTextComponent.new(
+  render DsfrComponent::WarningTextComponent.new(
     text: "Talkin' out of turn, that's a paddlin'")
   WARNING
 %>
 
 <%= render "shared/example", title: 'Warning text with custom classes', example: <<~WARNING
-  render GovukComponent::WarningTextComponent.new(
+  render DsfrComponent::WarningTextComponent.new(
     text: "Lookin' out the window, that's a paddlin'",
     classes: 'my-custom-class')
   WARNING
 %>
 
 <%= render "shared/example", title: 'Warning text with custom assistive text', example: <<~WARNING
-  render GovukComponent::WarningTextComponent.new(
+  render DsfrComponent::WarningTextComponent.new(
     text: "Starin' at my sandals, that's a paddlin'",
     icon_fallback_text: "Paddlin' warning")
   WARNING

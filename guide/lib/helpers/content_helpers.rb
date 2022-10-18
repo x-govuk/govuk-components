@@ -4,7 +4,7 @@ module Helpers
       head = ["Component class name", "Helper method"]
       rows = component_helper_mapping.to_a.map { |v| v.map { |c| "<code>#{c}</code>".html_safe } }
 
-      GovukComponent::TableComponent.new(
+      DsfrComponent::TableComponent.new(
         head: head,
         rows: rows,
         caption: "Component to helper mappings"
@@ -111,24 +111,24 @@ module Helpers
 
     def component_helper_mapping
       {
-        "GovukComponent::AccordionComponent" => "govuk_accordion",
-        "GovukComponent::BackLinkComponent" => "govuk_back_link",
-        "GovukComponent::BreadcrumbsComponent" => "govuk_breadcrumbs",
-        "GovukComponent::CookieBannerComponent" => "govuk_cookie_banner",
-        "GovukComponent::DetailsComponent" => "govuk_details",
-        "GovukComponent::FooterComponent" => "govuk_footer",
-        "GovukComponent::HeaderComponent" => "govuk_header",
-        "GovukComponent::InsetTextComponent" => "govuk_inset_text",
-        "GovukComponent::NotificationBannerComponent" => "govuk_notification_banner",
-        "GovukComponent::PaginationComponent" => "govuk_pagination",
-        "GovukComponent::PanelComponent" => "govuk_panel",
-        "GovukComponent::PhaseBannerComponent" => "govuk_phase_banner",
-        "GovukComponent::StartButtonComponent" => "govuk_start_button",
-        "GovukComponent::SummaryListComponent" => "govuk_summary_list",
-        "GovukComponent::TableComponent" => "govuk_table",
-        "GovukComponent::TabComponent" => "govuk_tabs",
-        "GovukComponent::TagComponent" => "govuk_tag",
-        "GovukComponent::WarningTextComponent" => "govuk_warning_text",
+        "DsfrComponent::AccordionComponent" => "dsfr_accordion",
+        "DsfrComponent::BackLinkComponent" => "dsfr_back_link",
+        "DsfrComponent::BreadcrumbsComponent" => "dsfr_breadcrumbs",
+        "DsfrComponent::CookieBannerComponent" => "dsfr_cookie_banner",
+        "DsfrComponent::DetailsComponent" => "dsfr_details",
+        "DsfrComponent::FooterComponent" => "dsfr_footer",
+        "DsfrComponent::HeaderComponent" => "dsfr_header",
+        "DsfrComponent::InsetTextComponent" => "dsfr_inset_text",
+        "DsfrComponent::NotificationBannerComponent" => "dsfr_notification_banner",
+        "DsfrComponent::PaginationComponent" => "dsfr_pagination",
+        "DsfrComponent::PanelComponent" => "dsfr_panel",
+        "DsfrComponent::PhaseBannerComponent" => "dsfr_phase_banner",
+        "DsfrComponent::StartButtonComponent" => "dsfr_start_button",
+        "DsfrComponent::SummaryListComponent" => "dsfr_summary_list",
+        "DsfrComponent::TableComponent" => "dsfr_table",
+        "DsfrComponent::TabComponent" => "dsfr_tabs",
+        "DsfrComponent::TagComponent" => "dsfr_tag",
+        "DsfrComponent::WarningTextComponent" => "dsfr_warning_text",
       }
     end
   end

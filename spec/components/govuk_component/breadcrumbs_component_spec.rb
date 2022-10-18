@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe(GovukComponent::BreadcrumbsComponent, type: :component) do
+RSpec.describe(DsfrComponent::BreadcrumbsComponent, type: :component) do
   let(:breadcrumbs) do
     {
       "Home"                 => "/level-one",
@@ -14,7 +14,7 @@ RSpec.describe(GovukComponent::BreadcrumbsComponent, type: :component) do
 
   let(:component_css_class) { 'govuk-breadcrumbs' }
 
-  subject! { render_inline(GovukComponent::BreadcrumbsComponent.new(**kwargs)) }
+  subject! { render_inline(DsfrComponent::BreadcrumbsComponent.new(**kwargs)) }
 
   specify 'renders a div element containing an ordered list of breadcrumbs' do
     expect(rendered_content).to have_tag('div', with: { class: component_css_class }) do
@@ -42,7 +42,7 @@ RSpec.describe(GovukComponent::BreadcrumbsComponent, type: :component) do
 
   context 'when an invalid breadcrumbs object is provided' do
     specify "raises an error" do
-      expect { GovukComponent::BreadcrumbsComponent.new(breadcrumbs: "invalid") }.to raise_error(ArgumentError, "breadcrumbs must be an array or hash")
+      expect { DsfrComponent::BreadcrumbsComponent.new(breadcrumbs: "invalid") }.to raise_error(ArgumentError, "breadcrumbs must be an array or hash")
     end
   end
 

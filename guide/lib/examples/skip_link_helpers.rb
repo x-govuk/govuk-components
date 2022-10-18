@@ -4,7 +4,7 @@ module Examples
       <<~SKIP_LINK
         #{skip_link_instructions}
 
-        = govuk_skip_link
+        = dsfr_skip_link
       SKIP_LINK
     end
 
@@ -12,7 +12,7 @@ module Examples
       <<~SKIP_LINK
         #{skip_link_instructions}
 
-        = govuk_skip_link(href: "#some-other-id", text: "Jump to the important bits")
+        = dsfr_skip_link(href: "#some-other-id", text: "Jump to the important bits")
       SKIP_LINK
     end
 

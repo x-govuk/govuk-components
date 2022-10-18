@@ -1,6 +1,6 @@
 require "spec_helper"
 
-RSpec.describe(GovukComponent::CookieBannerComponent, type: :component) do
+RSpec.describe(DsfrComponent::CookieBannerComponent, type: :component) do
   let(:component_css_class) { 'govuk-cookie-banner' }
   let(:kwargs) { {} }
 
@@ -60,8 +60,8 @@ RSpec.describe(GovukComponent::CookieBannerComponent, type: :component) do
     subject! do
       render_inline(described_class.new(**kwargs)) do |cookie_banner|
         cookie_banner.message(heading_text: custom_heading_text, role: custom_role, text: custom_message_text) do |message|
-          message.action { helper.govuk_button_link_to("/accept") { "Accept" } }
-          message.action { helper.govuk_link_to("View cookie policy", "/cookie-policy") }
+          message.action { helper.dsfr_button_link_to("/accept") { "Accept" } }
+          message.action { helper.dsfr_link_to("View cookie policy", "/cookie-policy") }
         end
       end
     end
@@ -87,8 +87,8 @@ RSpec.describe(GovukComponent::CookieBannerComponent, type: :component) do
     end
 
     specify "renders the actions" do
-      expect(rendered_content).to have_tag(".govuk-cookie-banner > .govuk-cookie-banner__message > div.govuk-button-group") do
-        with_tag("a", with: { class: "govuk-button" }, count: 1)
+      expect(rendered_content).to have_tag(".govuk-cookie-banner > .govuk-cookie-banner__message > div.fr-btn-group") do
+        with_tag("a", with: { class: "fr-btn" }, count: 1)
       end
     end
   end
@@ -97,7 +97,7 @@ RSpec.describe(GovukComponent::CookieBannerComponent, type: :component) do
   it_behaves_like "a component that accepts custom HTML attributes"
 end
 
-RSpec.describe(GovukComponent::CookieBannerComponent::MessageComponent, type: :component) do
+RSpec.describe(DsfrComponent::CookieBannerComponent::MessageComponent, type: :component) do
   let(:component_css_class) { "govuk-cookie-banner__message" }
   let(:custom_heading) { "Some heading" }
   let(:custom_text) { "Some message" }

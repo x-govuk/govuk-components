@@ -3,7 +3,7 @@
 <%= render "shared/example",
   title: 'Summary list',
   example: <<~SUMMARY_LIST
-    render GovukComponent::SummaryListComponent.new do |summary_list|
+    render DsfrComponent::SummaryListComponent.new do |summary_list|
       summary_list.row do |row|
         row.key { 'Aardvark' }
         row.value { 'The aardvark is vaguely pig-like in appearance' }

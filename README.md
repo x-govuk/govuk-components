@@ -13,7 +13,7 @@ l'instar de GOV.UK Components dont il est issu.
 [![Rails](https://img.shields.io/badge/Rails-6.1.5%20%E2%95%B1%207.0.3-E16D6D)](https://weblog.rubyonrails.org/releases/)
 [![Ruby](https://img.shields.io/badge/Ruby-2.7.6%20%20%E2%95%B1%203.0.3%20%20%E2%95%B1%203.1.2-E16D6D)](https://www.ruby-lang.org/en/downloads/)
 
-This gem provides a suite of reusable components for the [GOV.UK Design System](https://design-system.service.gov.uk/). It is intended to provide a lightweight alternative to the [GOV.UK Publishing Components](https://github.com/alphagov/govuk_publishing_components) library and is built with GitHub’s [ViewComponent](https://github.com/github/view_component) framework.
+This gem provides a suite of reusable components for the [GOV.UK Design System](https://design-system.service.gov.uk/). It is intended to provide a lightweight alternative to the [GOV.UK Publishing Components](https://github.com/alphagov/dsfr_publishing_components) library and is built with GitHub’s [ViewComponent](https://github.com/github/view_component) framework.
 
 It aims to implement the functionality from the original Nunjucks macros in a way that will feel more familiar to Rails developers. Blocks are preferred over strings of HTML, beneath the surface each component is just a Ruby object, everything is inheritable and overrideable.
 
@@ -63,7 +63,7 @@ All of the components can be rendered in two ways:
 * directly using Rails’ `#render` method:
 
   ```erb
-    <%= render GovukComponent::WarningTextComponent.new do %>
+    <%= render DsfrComponent::WarningTextComponent.new do %>
       A serious warning
     <% end %>
   ```
@@ -71,19 +71,19 @@ All of the components can be rendered in two ways:
 * via the helper wrapper:
 
   ```erb
-    <%= govuk_warning_text do %>
+    <%= dsfr_warning_text do %>
       A serious warning
     <% end %>
   ```
 
-  The naming convention for helpers is `govuk_` followed by the component’s name in snake case. You can see the full list in [GovukComponentsHelper](app/helpers/govuk_components_helper.rb).
+  The naming convention for helpers is `dsfr_` followed by the component’s name in snake case. You can see the full list in [DsfrComponentsHelper](app/helpers/dsfr_components_helper.rb).
 
 ## Example use
 
-This library allows components to be rendered with Rails’ `render` method or via the provided helpers. Here we’ll use the `govuk_tabs` to render three tabbed sections:
+This library allows components to be rendered with Rails’ `render` method or via the provided helpers. Here we’ll use the `dsfr_tabs` to render three tabbed sections:
 
 ```erb
-<%= govuk_tabs(title: 'Days of the week') do |component| %>
+<%= dsfr_tabs(title: 'Days of the week') do |component| %>
   <% component.tab(label: 'Monday') do %>
     <p>Monday’s child is fair of face</p>
   <% end %>

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe(GovukComponent::InsetTextComponent, type: :component) do
+RSpec.describe(DsfrComponent::InsetTextComponent, type: :component) do
   let(:component_css_class) { 'govuk-inset-text' }
 
   let(:text) { 'Bake him away, toys.' }

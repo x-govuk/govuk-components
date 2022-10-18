@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe(GovukComponent::DetailsComponent, type: :component) do
+RSpec.describe(DsfrComponent::DetailsComponent, type: :component) do
   let(:component_css_class) { 'govuk-details' }
   let(:summary_text) { 'The new Ribwich' }
   let(:text) { 'Now without lettuce' }

@@ -41,7 +41,7 @@ markdown:
 .code-sample
   pre
     code.highlight.language-slim
-      | = render(GovukComponent::InsetTextComponent.new(text: "Important message"))
+      | = render(DsfrComponent::InsetTextComponent.new(text: "Important message"))
 
 markdown:
   ## Using the provided helper methods
@@ -53,6 +53,6 @@ markdown:
 .code-sample
   pre
     code.highlight.language-slim
-      | = govuk_inset_text(text: "Important message")
+      | = dsfr_inset_text(text: "Important message")
 
 == ActionController::Base.render(component_helper_mapping_table)

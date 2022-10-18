@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
+RSpec.describe(DsfrComponent::PaginationComponent, type: :component) do
   let(:count) { 30 }
   let(:items) { 5 }
   let(:size) { [1, 2, 2, 1] }
@@ -11,7 +11,7 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
 
   let(:kwargs) { { pagy: pagy } }
 
-  subject! { render_inline(GovukComponent::PaginationComponent.new(**kwargs)) }
+  subject! { render_inline(DsfrComponent::PaginationComponent.new(**kwargs)) }
 
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
@@ -37,7 +37,7 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
   specify "renders a previous link" do
     expect(rendered_content).to have_tag("nav") do
       with_tag("div", with: { class: %w(govuk-pagination__prev) }) do
-        with_tag("a", with: { class: %w(govuk-link govuk-pagination__link) }, text: "Previous page")
+        with_tag("a", with: { class: %w(fr-link govuk-pagination__link) }, text: "Previous page")
         with_tag("svg", with: { class: %w(govuk-pagination__icon govuk-pagination__icon--prev) })
       end
     end
@@ -46,7 +46,7 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
   specify "renders a next link" do
     expect(rendered_content).to have_tag("nav") do
       with_tag("div", with: { class: %w(govuk-pagination__next) }) do
-        with_tag("a", with: { class: %w(govuk-link govuk-pagination__link) }, text: "Next page")
+        with_tag("a", with: { class: %w(fr-link govuk-pagination__link) }, text: "Next page")
         with_tag("svg", with: { class: %w(govuk-pagination__icon govuk-pagination__icon--next) })
       end
     end
@@ -289,7 +289,7 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
     let(:next_label) { next_page.label }
 
     subject! do
-      render_inline(GovukComponent::PaginationComponent.new) do |pagination|
+      render_inline(DsfrComponent::PaginationComponent.new) do |pagination|
         pagination.previous_page(href: previous_href, text: previous_text, label_text: previous_label)
         pagination.next_page(href: next_href, text: next_text, label_text: next_label)
       end
@@ -340,7 +340,7 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
       let(:expected_classes) { %w(govuk-pagination__link-title govuk-pagination__link-title--decorated) }
 
       subject! do
-        render_inline(GovukComponent::PaginationComponent.new) do |pagination|
+        render_inline(DsfrComponent::PaginationComponent.new) do |pagination|
           pagination.previous_page(href: previous_href, text: previous_text)
           pagination.next_page(href: next_href, text: next_text)
         end
@@ -362,7 +362,7 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
 
   describe "manually passing in page items" do
     subject! do
-      render_inline(GovukComponent::PaginationComponent.new) do |pagination|
+      render_inline(DsfrComponent::PaginationComponent.new) do |pagination|
         pagination.previous_page(href: "#prev")
         pagination.item(href: "#1", number: 1)
         pagination.item(href: "#2", number: 2)
@@ -407,7 +407,7 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
 
     context "when there are no pages or next/prev links" do
       subject! do
-        render_inline(GovukComponent::PaginationComponent.new)
+        render_inline(DsfrComponent::PaginationComponent.new)
       end
 
       specify "when there is no pagy object and neither a next or previous page" do
@@ -420,7 +420,7 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
     context "when the next text is overridden" do
       let(:next_text) { "Proceed" }
 
-      subject! { render_inline(GovukComponent::PaginationComponent.new(next_text: next_text, pagy: pagy)) }
+      subject! { render_inline(DsfrComponent::PaginationComponent.new(next_text: next_text, pagy: pagy)) }
 
       specify "the text value should be set correctly" do
         expect(rendered_content).to have_tag("div", with: { class: "govuk-pagination__next" }, text: next_text)
@@ -430,7 +430,7 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
     context "when the previous text is overridden" do
       let(:previous_text) { "Regress" }
 
-      subject! { render_inline(GovukComponent::PaginationComponent.new(previous_text: previous_text, pagy: pagy)) }
+      subject! { render_inline(DsfrComponent::PaginationComponent.new(previous_text: previous_text, pagy: pagy)) }
 
       specify "the text value should be set correctly" do
         expect(rendered_content).to have_tag("div", with: { class: "govuk-pagination__prev" }, text: previous_text)
@@ -439,34 +439,34 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
   end
 end
 
-RSpec.describe(GovukComponent::PaginationComponent::PreviousPage, type: :component) do
+RSpec.describe(DsfrComponent::PaginationComponent::PreviousPage, type: :component) do
   let(:component_css_class) { 'govuk-pagination__prev' }
 
   let(:kwargs) { { href: "#", text: "1" } }
 
-  subject! { render_inline(GovukComponent::PaginationComponent::PreviousPage.new(**kwargs)) }
+  subject! { render_inline(DsfrComponent::PaginationComponent::PreviousPage.new(**kwargs)) }
 
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 end
 
-RSpec.describe(GovukComponent::PaginationComponent::NextPage, type: :component) do
+RSpec.describe(DsfrComponent::PaginationComponent::NextPage, type: :component) do
   let(:component_css_class) { 'govuk-pagination__next' }
 
   let(:kwargs) { { href: "#", text: "1" } }
 
-  subject! { render_inline(GovukComponent::PaginationComponent::NextPage.new(**kwargs)) }
+  subject! { render_inline(DsfrComponent::PaginationComponent::NextPage.new(**kwargs)) }
 
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 end
 
-RSpec.describe(GovukComponent::PaginationComponent::Item, type: :component) do
+RSpec.describe(DsfrComponent::PaginationComponent::Item, type: :component) do
   let(:component_css_class) { 'govuk-pagination__item' }
 
   let(:kwargs) { { href: "#", number: 2 } }
 
-  subject! { render_inline(GovukComponent::PaginationComponent::Item.new(**kwargs)) }
+  subject! { render_inline(DsfrComponent::PaginationComponent::Item.new(**kwargs)) }
 
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'

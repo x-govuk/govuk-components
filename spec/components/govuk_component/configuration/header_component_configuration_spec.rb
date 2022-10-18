@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
+RSpec.describe(DsfrComponent::HeaderComponent, type: :component) do
   let(:kwargs) { {} }
 
   describe 'configuration' do
-    after { Govuk::Components.reset! }
+    after { Dsfr::Components.reset! }
 
     let(:component_with_a_nav_item) do
-      render_inline(GovukComponent::HeaderComponent.new) do |header|
+      render_inline(DsfrComponent::HeaderComponent.new) do |header|
         header.navigation_item(text: "one")
       end
     end
@@ -16,7 +16,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
       let(:overridden_navigation_label) { "New nav label" }
 
       before do
-        Govuk::Components.configure do |config|
+        Dsfr::Components.configure do |config|
           config.default_header_navigation_label = overridden_navigation_label
         end
       end
@@ -34,7 +34,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
       let(:overriddden_menu_button_label) { 'Toggle menu' }
 
       before do
-        Govuk::Components.configure do |config|
+        Dsfr::Components.configure do |config|
           config.default_header_menu_button_label = overriddden_menu_button_label
         end
       end
@@ -52,7 +52,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
       let(:overridden_logotype) { 'DfE' }
 
       before do
-        Govuk::Components.configure do |config|
+        Dsfr::Components.configure do |config|
           config.default_header_logotype = overridden_logotype
         end
       end
@@ -70,7 +70,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
       let(:overriddden_homepage_url) { "/some-page" }
 
       before do
-        Govuk::Components.configure do |config|
+        Dsfr::Components.configure do |config|
           config.default_header_homepage_url = overriddden_homepage_url
         end
       end
@@ -91,7 +91,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
       let(:overridden_service_url) { "https://wwww.new-service.org" }
 
       before do
-        Govuk::Components.configure do |config|
+        Dsfr::Components.configure do |config|
           config.default_header_service_name = overridden_service_name
           config.default_header_service_url = overridden_service_url
         end

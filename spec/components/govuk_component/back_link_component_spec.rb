@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-RSpec.describe(GovukComponent::BackLinkComponent, type: :component) do
+RSpec.describe(DsfrComponent::BackLinkComponent, type: :component) do
   let(:default_text) { 'Back' }
   let(:href) { 'https://www.gov.uk/government/organisations/department-for-education' }
   let(:kwargs) { { href: href } }
   let(:component_css_class) { 'govuk-back-link' }
 
-  subject! { render_inline(GovukComponent::BackLinkComponent.new(**kwargs)) }
+  subject! { render_inline(DsfrComponent::BackLinkComponent.new(**kwargs)) }
 
   specify 'renders a link with the right href and text' do
     expect(rendered_content).to have_tag('a', text: default_text, with: { href: href, class: component_css_class })
@@ -25,7 +25,7 @@ RSpec.describe(GovukComponent::BackLinkComponent, type: :component) do
     let(:custom_text) { "Some text" }
     let(:custom_tag) { :code }
     subject! do
-      render_inline(GovukComponent::BackLinkComponent.new(href: href)) do
+      render_inline(DsfrComponent::BackLinkComponent.new(href: href)) do
         helper.content_tag(custom_tag, custom_text)
       end
     end

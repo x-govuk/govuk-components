@@ -1,22 +1,22 @@
 require 'spec_helper'
 
-RSpec.describe(GovukComponent::StartButtonComponent, type: :component) do
-  let(:component_css_class) { 'govuk-button--start' }
+RSpec.describe(DsfrComponent::StartButtonComponent, type: :component) do
+  let(:component_css_class) { 'fr-btn--start' }
   let(:text) { 'Department for Education' }
   let(:href) { 'https://www.gov.uk/government/organisations/department-for-education' }
   let(:as_button) { false }
   let(:kwargs) { { text: text, href: href, as_button: as_button } }
 
   before do
-    allow_any_instance_of(GovukComponent::StartButtonComponent)
+    allow_any_instance_of(DsfrComponent::StartButtonComponent)
       .to(receive(:protect_against_forgery?).and_return(false))
   end
 
-  subject! { render_inline(GovukComponent::StartButtonComponent.new(**kwargs)) }
+  subject! { render_inline(DsfrComponent::StartButtonComponent.new(**kwargs)) }
 
   context 'as a link' do
     specify 'renders a link element with the right text and href' do
-      expected_classes = %w(govuk-button govuk-button--start)
+      expected_classes = %w(fr-btn fr-btn--start)
       expect(rendered_content).to have_tag('a', text: text, with: { class: expected_classes })
     end
 
@@ -28,7 +28,7 @@ RSpec.describe(GovukComponent::StartButtonComponent, type: :component) do
 
     specify 'the link has the right attributes' do
       expected_attributes = {
-        'data-module' => 'govuk-button',
+        'data-module' => 'fr-btn',
         'role' => 'button',
         'draggable' => 'false'
       }
@@ -44,7 +44,7 @@ RSpec.describe(GovukComponent::StartButtonComponent, type: :component) do
     let(:as_button) { true }
 
     specify 'renders a button element with the right text and href' do
-      expected_classes = %w(govuk-button govuk-button--start)
+      expected_classes = %w(fr-btn fr-btn--start)
       expect(rendered_content).to have_tag('button', text: text, with: { class: expected_classes })
     end
 
@@ -56,7 +56,7 @@ RSpec.describe(GovukComponent::StartButtonComponent, type: :component) do
 
     specify 'the link has the right attributes' do
       expected_attributes = {
-        'data-module' => 'govuk-button',
+        'data-module' => 'fr-btn',
         'draggable' => 'false'
       }
 

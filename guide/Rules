@@ -24,7 +24,7 @@ ignore '/**/_*.scss'
 compile '/**/*.scss' do
   filter :dart_sass,
     targets: %w(content/stylesheets/application.scss),
-    load_paths: "node_modules/govuk-frontend/"
+    load_paths: "node_modules/@gouvfr/"
   write item.identifier.without_ext + '.css'
 end
 

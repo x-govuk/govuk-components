@@ -1,21 +1,21 @@
 require 'spec_helper'
 
-RSpec.describe(GovukComponent::PhaseBannerComponent, type: :component) do
+RSpec.describe(DsfrComponent::PhaseBannerComponent, type: :component) do
   describe "configuration" do
-    after { Govuk::Components.reset! }
+    after { Dsfr::Components.reset! }
 
     describe 'default phase banner component tag and text' do
       let(:overridden_default_tag) { 'Beta' }
       let(:overridden_default_text) { 'Public service' }
 
       before do
-        Govuk::Components.configure do |config|
+        Dsfr::Components.configure do |config|
           config.default_phase_banner_tag = overridden_default_tag
           config.default_phase_banner_text = overridden_default_text
         end
       end
 
-      subject! { render_inline(GovukComponent::PhaseBannerComponent.new) }
+      subject! { render_inline(DsfrComponent::PhaseBannerComponent.new) }
 
       specify "renders div element with the overridden text and banner tag" do
         expect(rendered_content).to have_tag("div", with: { class: "govuk-phase-banner" }) do

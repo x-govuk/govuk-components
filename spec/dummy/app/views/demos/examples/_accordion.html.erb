@@ -1,7 +1,7 @@
 <%= example_heading('Accordion') %>
 
 <%= render "shared/example", title: "Accordion", example: <<~ACCORDION
-  render GovukComponent::AccordionComponent.new(id: 'abc123') do |component|
+  render DsfrComponent::AccordionComponent.new(id: 'abc123') do |component|
     component.section(
       heading_text: 'Home electronics',
       summary_text: 'Entertainment, communication and recreation',
@@ -33,7 +33,7 @@
 %>
 
 <%= render "shared/example", title: "Accordion (using the helper)", example: <<~ACCORDION
-  govuk_accordion(id: 'def234') do |accordion|
+  dsfr_accordion(id: 'def234') do |accordion|
     accordion.section(heading_text: 'Section 1') do
       tag.p(class: 'govuk-body') do
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit."

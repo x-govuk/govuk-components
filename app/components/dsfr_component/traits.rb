@@ -1,0 +1,1 @@
+module DsfrComponent::Traits; end

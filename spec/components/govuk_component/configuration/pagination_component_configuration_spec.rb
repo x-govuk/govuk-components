@@ -1,22 +1,22 @@
 require 'spec_helper'
 
-RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
+RSpec.describe(DsfrComponent::PaginationComponent, type: :component) do
   let(:pagy) { Pagy.new(page: 2, count: 20, items: 5, size: [1, 1, 1, 1]) }
   let(:kwargs) { { pagy: pagy } }
 
   describe "configuration" do
-    after { Govuk::Components.reset! }
+    after { Dsfr::Components.reset! }
 
     describe "default_pagination_landmark_label" do
       let(:overridden_landmark_label) { "Landmark label" }
 
       before do
-        Govuk::Components.configure do |config|
+        Dsfr::Components.configure do |config|
           config.default_pagination_landmark_label = overridden_landmark_label
         end
       end
 
-      subject! { render_inline(GovukComponent::PaginationComponent.new(**kwargs)) }
+      subject! { render_inline(DsfrComponent::PaginationComponent.new(**kwargs)) }
 
       specify "sets the nav's aria-label to the overridden value" do
         expect(rendered_content).to have_tag("nav", with: { "aria-label" => overridden_landmark_label })
@@ -27,12 +27,12 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
       let(:next_text) { "Rightwards" }
 
       before do
-        Govuk::Components.configure do |config|
+        Dsfr::Components.configure do |config|
           config.default_pagination_next_text = next_text
         end
       end
 
-      subject! { render_inline(GovukComponent::PaginationComponent.new(**kwargs)) }
+      subject! { render_inline(DsfrComponent::PaginationComponent.new(**kwargs)) }
 
       specify "sets the 'next' text to the overridden value" do
         expect(rendered_content).to have_tag("div", with: { class: "govuk-pagination__next" }) do
@@ -45,12 +45,12 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
       let(:prev_text) { "Leftwards" }
 
       before do
-        Govuk::Components.configure do |config|
+        Dsfr::Components.configure do |config|
           config.default_pagination_previous_text = prev_text
         end
       end
 
-      subject! { render_inline(GovukComponent::PaginationComponent.new(**kwargs)) }
+      subject! { render_inline(DsfrComponent::PaginationComponent.new(**kwargs)) }
 
       specify "sets the 'previous' text to the overridden value" do
         expect(rendered_content).to have_tag("div", with: { class: "govuk-pagination__prev" }) do

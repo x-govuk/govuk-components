@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe(GovukComponent::TableComponent, type: :component) do
+RSpec.describe(DsfrComponent::TableComponent, type: :component) do
   let(:id) { 'important-table' }
   let(:component_css_class) { 'govuk-table' }
   let(:caption_text) { "What a nice table" }
@@ -8,7 +8,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
   let(:kwargs) { { id: id } }
 
   subject! do
-    render_inline(GovukComponent::TableComponent.new(**kwargs)) do |table|
+    render_inline(DsfrComponent::TableComponent.new(**kwargs)) do |table|
       table.caption(text: "What a nice table")
 
       table.head do |head|
@@ -41,7 +41,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
     let(:expected_count) { 2 }
 
     subject! do
-      render_inline(GovukComponent::TableComponent.new(**kwargs)) do |table|
+      render_inline(DsfrComponent::TableComponent.new(**kwargs)) do |table|
         table.caption(text: "What a nice table")
 
         expected_count.times { table.body {} }
@@ -61,7 +61,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
         let(:caption_text) { "Argument-supplied caption" }
 
         subject! do
-          render_inline(GovukComponent::TableComponent.new(**kwargs.merge(rows: rows, caption: caption_text)))
+          render_inline(DsfrComponent::TableComponent.new(**kwargs.merge(rows: rows, caption: caption_text)))
         end
 
         specify "renders the caption with the provided text" do
@@ -75,7 +75,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
         let(:caption_text) { nil }
 
         subject! do
-          render_inline(GovukComponent::TableComponent.new(**kwargs.merge(rows: rows, caption: caption_text)))
+          render_inline(DsfrComponent::TableComponent.new(**kwargs.merge(rows: rows, caption: caption_text)))
         end
 
         specify "renders no caption element" do
@@ -101,7 +101,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
           let(:body_rows) { rows[1..] }
 
           subject! do
-            render_inline(GovukComponent::TableComponent.new(**kwargs.merge(rows: rows)))
+            render_inline(DsfrComponent::TableComponent.new(**kwargs.merge(rows: rows)))
           end
 
           specify "renders one header row" do
@@ -135,7 +135,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
           end
 
           subject! do
-            render_inline(GovukComponent::TableComponent.new(**kwargs.merge(head: head, rows: rows)))
+            render_inline(DsfrComponent::TableComponent.new(**kwargs.merge(head: head, rows: rows)))
           end
 
           specify "renders one header row" do
@@ -190,7 +190,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
       end
 
       subject! do
-        render_inline(GovukComponent::TableComponent.new(**kwargs.merge(head: head, rows: rows, first_cell_is_header: true)))
+        render_inline(DsfrComponent::TableComponent.new(**kwargs.merge(head: head, rows: rows, first_cell_is_header: true)))
       end
 
       specify "renders the header content in table header (th) cells" do
@@ -208,7 +208,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
 
   context "when the rows are built using nested slots" do
     subject! do
-      render_inline(GovukComponent::TableComponent.new) do |table|
+      render_inline(DsfrComponent::TableComponent.new) do |table|
         table.head do |head|
           head.row do |row|
             helper.safe_join(1.upto(3).map { |i| row.cell(header: true, text: "header-col-#{i}") })
@@ -256,7 +256,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
 
   context 'when some data is numeric' do
     subject! do
-      render_inline(GovukComponent::TableComponent.new) do |table|
+      render_inline(DsfrComponent::TableComponent.new) do |table|
         table.head do |head|
           head.row do |row|
             row.cell(text: "non-numeric", header: true)
@@ -302,7 +302,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
             let(:size) { size }
 
             subject do
-              render_inline(GovukComponent::TableComponent.new(**kwargs)) do |table|
+              render_inline(DsfrComponent::TableComponent.new(**kwargs)) do |table|
                 table.caption(text: "Caption size: #{size}", size: size)
               end
             end
@@ -316,7 +316,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
 
     describe "when an invalid size is supplied" do
       let(:invalid_size) { 'xxxxxs' }
-      let(:caption) { GovukComponent::TableComponent::CaptionComponent.new(text: "Bad size", size: invalid_size) }
+      let(:caption) { DsfrComponent::TableComponent::CaptionComponent.new(text: "Bad size", size: invalid_size) }
 
       specify "fails with an appropriate error messsage" do
         expect { render_inline(caption) }.to raise_error(ArgumentError, /bad size #{invalid_size}/)
@@ -328,7 +328,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
       let(:fancy_caption) { helper.tag.span(fancy_caption_text) }
 
       subject do
-        render_inline(GovukComponent::TableComponent.new(**kwargs)) do |table|
+        render_inline(DsfrComponent::TableComponent.new(**kwargs)) do |table|
           table.caption { fancy_caption }
         end
       end
@@ -340,7 +340,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
 
     describe "when no caption is provided" do
       subject do
-        render_inline(GovukComponent::TableComponent.new(**kwargs)) do |table|
+        render_inline(DsfrComponent::TableComponent.new(**kwargs)) do |table|
           table.head {}
           table.body {}
         end
@@ -354,10 +354,10 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
 
   describe "custom colum widths" do
     subject! do
-      render_inline(GovukComponent::TableComponent.new) do |table|
+      render_inline(DsfrComponent::TableComponent.new) do |table|
         table.head do |head|
           head.row do |row|
-            GovukComponent::TableComponent::CellComponent::WIDTHS.each_key do |width|
+            DsfrComponent::TableComponent::CellComponent::WIDTHS.each_key do |width|
               row.cell(text: width, header: true, width: width)
             end
           end
@@ -366,7 +366,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
     end
 
     specify "adds the width class correctly" do
-      GovukComponent::TableComponent::CellComponent::WIDTHS.each_key do |width, expected_class|
+      DsfrComponent::TableComponent::CellComponent::WIDTHS.each_key do |width, expected_class|
         expect(rendered_content).to have_tag("table > thead > tr > th", with: { class: expected_class }, text: width)
       end
     end
@@ -376,7 +376,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
   it_behaves_like 'a component that accepts custom HTML attributes'
 end
 
-RSpec.describe(GovukComponent::TableComponent::HeadComponent, type: :component) do
+RSpec.describe(DsfrComponent::TableComponent::HeadComponent, type: :component) do
   let(:component_css_class) { 'govuk-table__head' }
   let(:kwargs) { {} }
 
@@ -384,7 +384,7 @@ RSpec.describe(GovukComponent::TableComponent::HeadComponent, type: :component) 
   it_behaves_like 'a component that accepts custom HTML attributes'
 end
 
-RSpec.describe(GovukComponent::TableComponent::BodyComponent, type: :component) do
+RSpec.describe(DsfrComponent::TableComponent::BodyComponent, type: :component) do
   let(:component_css_class) { 'govuk-table__body' }
   let(:kwargs) { {} }
 
@@ -392,7 +392,7 @@ RSpec.describe(GovukComponent::TableComponent::BodyComponent, type: :component) 
   it_behaves_like 'a component that accepts custom HTML attributes'
 end
 
-RSpec.describe(GovukComponent::TableComponent::RowComponent, type: :component) do
+RSpec.describe(DsfrComponent::TableComponent::RowComponent, type: :component) do
   let(:component_css_class) { 'govuk-table__row' }
   let(:kwargs) { {} }
 
@@ -400,7 +400,7 @@ RSpec.describe(GovukComponent::TableComponent::RowComponent, type: :component) d
   it_behaves_like 'a component that accepts custom HTML attributes'
 end
 
-RSpec.describe(GovukComponent::TableComponent::CellComponent, type: :component) do
+RSpec.describe(DsfrComponent::TableComponent::CellComponent, type: :component) do
   let(:component_css_class) { 'govuk-table__cell' }
   let(:kwargs) { {} }
 
@@ -408,7 +408,7 @@ RSpec.describe(GovukComponent::TableComponent::CellComponent, type: :component) 
   it_behaves_like 'a component that accepts custom HTML attributes'
 end
 
-RSpec.describe(GovukComponent::TableComponent::CaptionComponent, type: :component) do
+RSpec.describe(DsfrComponent::TableComponent::CaptionComponent, type: :component) do
   let(:component_css_class) { 'govuk-table__caption' }
   let(:kwargs) { { text: "Some caption" } }
 

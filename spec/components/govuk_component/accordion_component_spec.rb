@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
+RSpec.describe(DsfrComponent::AccordionComponent, type: :component) do
   let(:id) { 'fancy-accordion' }
   let(:component_css_class) { 'govuk-accordion' }
 
@@ -15,7 +15,7 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
   let(:kwargs) { { html_attributes: { id: id } } }
 
   subject! do
-    render_inline(GovukComponent::AccordionComponent.new(**kwargs)) do |component|
+    render_inline(DsfrComponent::AccordionComponent.new(**kwargs)) do |component|
       helper.safe_join(
         sections.map do |heading_text, content|
           component.section(heading_text: heading_text) { content }
@@ -32,7 +32,7 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
 
   context 'when a custom ID is provided' do
     before do
-      render_inline(GovukComponent::AccordionComponent.new(**kwargs))
+      render_inline(DsfrComponent::AccordionComponent.new(**kwargs))
     end
 
     specify 'the container div has the right id' do
@@ -83,7 +83,7 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
       specify 'has the overriden level' do
         expected_message = "heading_level must be 1-6"
 
-        expect { GovukComponent::AccordionComponent.new(heading_level: 8) }.to raise_error(ArgumentError, expected_message)
+        expect { DsfrComponent::AccordionComponent.new(heading_level: 8) }.to raise_error(ArgumentError, expected_message)
       end
     end
   end
@@ -95,7 +95,7 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
     let(:custom_content) { "What a nice accordion!" }
 
     subject! do
-      render_inline(GovukComponent::AccordionComponent.new(**kwargs)) do |component|
+      render_inline(DsfrComponent::AccordionComponent.new(**kwargs)) do |component|
         component.section do |section|
           section.heading_html do
             helper.content_tag(custom_tag, custom_text, class: custom_class)
@@ -128,7 +128,7 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
   describe 'when no heading text or HTML is supplied' do
     specify "raises an appropriate error" do
       expect {
-        render_inline(GovukComponent::AccordionComponent.new(**kwargs)) do |component|
+        render_inline(DsfrComponent::AccordionComponent.new(**kwargs)) do |component|
           component.section(summary_text: "A summary")
         end
       }.to raise_error(ArgumentError, /no heading_text or heading_html/)
@@ -146,7 +146,7 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
       let(:expected_classes) { %w(govuk-accordion__section-summary govuk-body) }
 
       subject! do
-        render_inline(GovukComponent::AccordionComponent.new) do |component|
+        render_inline(DsfrComponent::AccordionComponent.new) do |component|
           component.section(heading_text: heading_text, summary_text: summary_text) { 'abc' }
         end
       end
@@ -166,7 +166,7 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
       let(:heading_text) { "some heading" }
 
       subject! do
-        render_inline(GovukComponent::AccordionComponent.new(**kwargs)) do |component|
+        render_inline(DsfrComponent::AccordionComponent.new(**kwargs)) do |component|
           component.section(heading_text: heading_text) do |section|
             section.summary_html do
               helper.content_tag(custom_tag, custom_text, class: custom_class)
@@ -203,7 +203,7 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
     it_behaves_like 'a component with a slot that accepts custom html attributes'
 
     specify 'sections have the correct expanded states' do
-      render_inline(GovukComponent::AccordionComponent.new) do |component|
+      render_inline(DsfrComponent::AccordionComponent.new) do |component|
         component.section(expanded: true, heading_text: 'section 1', html_attributes: { id: 'section_1' }) { 'abc' }
         component.section(heading_text: 'section 2', html_attributes: { id: 'section_2' }) { 'def' }
       end

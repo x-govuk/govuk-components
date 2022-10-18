@@ -13,133 +13,133 @@ class HelperComponentMapping
   end
 end
 
-RSpec.describe(GovukComponentsHelper, type: 'helper') do
+RSpec.describe(DsfrComponentsHelper, type: 'helper') do
   include_context 'helpers'
 
   [
     {
-      helper_method: :govuk_accordion,
-      klass: GovukComponent::AccordionComponent,
+      helper_method: :dsfr_accordion,
+      klass: DsfrComponent::AccordionComponent,
       args: [],
       kwargs: {},
       css_matcher: %(.govuk-accordion)
     },
     {
-      helper_method: :govuk_back_link,
-      klass: GovukComponent::BackLinkComponent,
+      helper_method: :dsfr_back_link,
+      klass: DsfrComponent::BackLinkComponent,
       args: [],
       kwargs: { text: 'Back', href: '/right-to-the-start' },
       css_matcher: %(.govuk-back-link)
     },
     {
-      helper_method: :govuk_breadcrumbs,
-      klass: GovukComponent::BreadcrumbsComponent,
+      helper_method: :dsfr_breadcrumbs,
+      klass: DsfrComponent::BreadcrumbsComponent,
       args: [],
       kwargs: { breadcrumbs: { one: 'One' } },
       css_matcher: %(.govuk-breadcrumbs)
     },
     {
-      helper_method: :govuk_details,
-      klass: GovukComponent::DetailsComponent,
+      helper_method: :dsfr_details,
+      klass: DsfrComponent::DetailsComponent,
       args: [],
       kwargs: { summary_text: 'Summary' },
       css_matcher: %(.govuk-details)
     },
     {
-      helper_method: :govuk_footer,
-      klass: GovukComponent::FooterComponent,
+      helper_method: :dsfr_footer,
+      klass: DsfrComponent::FooterComponent,
       args: [],
       kwargs: {},
       css_matcher: %(.govuk-footer)
     },
     {
-      helper_method: :govuk_header,
-      klass: GovukComponent::HeaderComponent,
+      helper_method: :dsfr_header,
+      klass: DsfrComponent::HeaderComponent,
       args: [],
       kwargs: {},
       css_matcher: %(.govuk-header)
     },
     {
-      helper_method: :govuk_inset_text,
-      klass: GovukComponent::InsetTextComponent,
+      helper_method: :dsfr_inset_text,
+      klass: DsfrComponent::InsetTextComponent,
       args: [],
       kwargs: { text: 'Inset text' },
       css_matcher: %(.govuk-inset-text)
     },
     {
-      helper_method: :govuk_cookie_banner,
-      klass: GovukComponent::CookieBannerComponent,
+      helper_method: :dsfr_cookie_banner,
+      klass: DsfrComponent::CookieBannerComponent,
       args: [],
       kwargs: {},
       css_matcher: %(.govuk-cookie-banner)
     },
     {
-      helper_method: :govuk_notification_banner,
-      klass: GovukComponent::NotificationBannerComponent,
+      helper_method: :dsfr_notification_banner,
+      klass: DsfrComponent::NotificationBannerComponent,
       args: [],
       kwargs: { title_text: 'Notification banner' },
       css_matcher: %(.govuk-notification-banner),
       block: Proc.new { |nb| nb.heading(text: "heading 1", link_text: "link 1", link_href: "/link-1") },
     },
     {
-      helper_method: :govuk_panel,
-      klass: GovukComponent::PanelComponent,
+      helper_method: :dsfr_panel,
+      klass: DsfrComponent::PanelComponent,
       args: [],
       kwargs: { title_text: 'Panel title', text: 'Panel body' },
       css_matcher: %(.govuk-panel)
     },
     {
-      helper_method: :govuk_phase_banner,
-      klass: GovukComponent::PhaseBannerComponent,
+      helper_method: :dsfr_phase_banner,
+      klass: DsfrComponent::PhaseBannerComponent,
       args: [],
       kwargs: { tag: { text: 'Phase Test' } },
       css_matcher: %(.govuk-phase-banner)
     },
     {
-      helper_method: :govuk_section_break,
-      klass: GovukComponent::SectionBreakComponent,
+      helper_method: :dsfr_section_break,
+      klass: DsfrComponent::SectionBreakComponent,
       args: [],
       kwargs: {},
       css_matcher: %(.govuk-section-break)
     },
     {
-      helper_method: :govuk_start_button,
-      klass: GovukComponent::StartButtonComponent,
+      helper_method: :dsfr_start_button,
+      klass: DsfrComponent::StartButtonComponent,
       args: [],
       kwargs: { text: 'Start now text', href: '/start-now-href' },
-      css_matcher: %(.govuk-button)
+      css_matcher: %(.fr-btn)
     },
     {
-      helper_method: :govuk_summary_list,
-      klass: GovukComponent::SummaryListComponent,
+      helper_method: :dsfr_summary_list,
+      klass: DsfrComponent::SummaryListComponent,
       args: [],
       kwargs: {},
       css_matcher: %(.govuk-summary-list)
     },
     {
-      helper_method: :govuk_table,
-      klass: GovukComponent::TableComponent,
+      helper_method: :dsfr_table,
+      klass: DsfrComponent::TableComponent,
       args: [],
       kwargs: { caption: 'Table', rows: [%w(a b c), %w(d e f)] },
       css_matcher: %(.govuk-table)
     },
     {
-      helper_method: :govuk_tabs,
-      klass: GovukComponent::TabComponent,
+      helper_method: :dsfr_tabs,
+      klass: DsfrComponent::TabComponent,
       args: [],
       kwargs: { title: 'Tabs' },
       css_matcher: %(.govuk-tabs)
     },
     {
-      helper_method: :govuk_tag,
-      klass: GovukComponent::TagComponent,
+      helper_method: :dsfr_tag,
+      klass: DsfrComponent::TagComponent,
       args: [],
       kwargs: { text: 'Tag' },
       css_matcher: %(.govuk-tag)
     },
     {
-      helper_method: :govuk_warning_text,
-      klass: GovukComponent::WarningTextComponent,
+      helper_method: :dsfr_warning_text,
+      klass: DsfrComponent::WarningTextComponent,
       args: [],
       kwargs: { text: 'Warning' },
       css_matcher: %(.govuk-warning-text)

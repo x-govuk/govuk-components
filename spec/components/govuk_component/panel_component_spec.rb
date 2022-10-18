@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe(GovukComponent::PanelComponent, type: :component) do
+RSpec.describe(DsfrComponent::PanelComponent, type: :component) do
   let(:component_css_class) { 'govuk-panel' }
 
   let(:title_text) { 'Springfield' }

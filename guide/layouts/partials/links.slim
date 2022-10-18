@@ -4,24 +4,24 @@ section#links.govuk-width-container
       h2.govuk-heading-m Introduction
 
       ul.govuk-list
-        li== govuk_link_to 'Get started', '/introduction/get-started'
-        li== govuk_link_to 'About ViewComponent', '/introduction/about-viewcomponent'
-        li== govuk_link_to 'Using components', '/introduction/using-components'
-        li== govuk_link_to 'Common options', '/introduction/common-options'
-        li== govuk_link_to 'Supported versions', '/introduction/supported-versions'
-        li== govuk_link_to 'Configuration', '/introduction/configuration'
+        li== dsfr_link_to 'Get started', '/introduction/get-started'
+        li== dsfr_link_to 'About ViewComponent', '/introduction/about-viewcomponent'
+        li== dsfr_link_to 'Using components', '/introduction/using-components'
+        li== dsfr_link_to 'Common options', '/introduction/common-options'
+        li== dsfr_link_to 'Supported versions', '/introduction/supported-versions'
+        li== dsfr_link_to 'Configuration', '/introduction/configuration'
 
       h2.govuk-heading-m Helpers
 
       ul.govuk-list
-        li== govuk_link_to('Button', '/helpers/button')
-        li== govuk_link_to('Link', '/helpers/link')
-        li== govuk_link_to('Skip link', '/helpers/skip-link')
-        li== govuk_link_to('Back to top link', '/helpers/back-to-top-link')
+        li== dsfr_link_to('Button', '/helpers/button')
+        li== dsfr_link_to('Link', '/helpers/link')
+        li== dsfr_link_to('Skip link', '/helpers/skip-link')
+        li== dsfr_link_to('Back to top link', '/helpers/back-to-top-link')
 
     .govuk-grid-column-two-thirds
       h2.govuk-heading-m Components
 
       ul.govuk-list.app-list--two-columns
         - component_links.each do |name, path|
-          li== govuk_link_to(name, path)
+          li== dsfr_link_to(name, path)
