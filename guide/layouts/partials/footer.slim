@@ -25,5 +25,11 @@ footer.govuk-footer role="contentinfo"
         span.govuk-footer__licence-description
           | All content is available under the #{link_to('Open Government Licence v3.0', national_archives_link, class: "govuk-footer__link").html_safe} except where otherwise stated
 
+javascript:
+  window.dsfr = {
+    verbose: true,
+    mode: 'manual'
+  };
+
 script type="module" src="/javascripts/dsfr.module.min.js"
-script type="text/javascript" src="/javascripts/dsfr.nomodule.min.js"
+script type="text/javascript" nomodule="true" src="/javascripts/dsfr.nomodule.min.js"
