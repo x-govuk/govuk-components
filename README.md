@@ -1,7 +1,12 @@
 # Composants du DSFR
 
-Ce projet a pour but de fournir une palette de composants du DSFR, à
-l'instar de GOV.UK Components dont il est issu.
+Cette gem fournit des composants pour le Design Système de l'État (DSFR) en s'appuyant sur le [framework ViewComponent](https://github.com/ViewComponent/view_component).
+
+C'est un fork de [govuk-components](https://github.com/DFE-Digital/govuk-components) qui propose l'équivalent pour le GOV.UK Design System.
+
+⚠️ Cette gem est en cours de développement et n'est pas adaptée à un usage en production. N'hésitez pas à contribuer pour nous aider à avancer !
+
+<!--
 
 [![Tests](https://github.com/DFE-Digital/govuk-components/workflows/Tests/badge.svg)](https://github.com/DFE-Digital/govuk-components/actions?query=workflow%3ATests)
 [![Maintainability](https://api.codeclimate.com/v1/badges/cbcbc140f300b920d833/maintainability)](https://codeclimate.com/github/DFE-Digital/govuk-components/maintainability)
@@ -26,36 +31,64 @@ so it will always be up to date.
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/d40a5a0a-b086-4c35-b046-97fbcbf9f219/deploy-status)](https://app.netlify.com/sites/govuk-components/deploys)
 
-## What’s included?
+-->
 
-All of the non-form components from the GOV.UK Design System are implemented by this library as ViewComponents. Form components are implemented by the [GOV.UK Form Builder](https://govuk-form-builder.netlify.app/).
+## Composants disponibles
 
-The provided components are:
+Cette gem a pour but de supporter tous les composants proposés par le Design Système de l'État hormis ceux concernant les formulaires. Ceux-ci seront fournis dans une gem indépendante dans le futur.
 
-* [Accordion](https://govuk-components.netlify.app/components/accordion)
-* [Back link](https://govuk-components.netlify.app/components/back-link)
-* [Breadcrumbs](https://govuk-components.netlify.app/components/breadcrumbs)
-* [Cookie banner](https://govuk-components.netlify.app/components/cookie-banner)
-* [Details](https://govuk-components.netlify.app/components/details)
-* [Footer](https://govuk-components.netlify.app/components/footer)
-* [Header](https://govuk-components.netlify.app/components/header)
-* [Inset text](https://govuk-components.netlify.app/components/inset-text)
-* [Notification banner](https://govuk-components.netlify.app/components/notification-banner)
-* [Panel](https://govuk-components.netlify.app/components/panel)
-* [Pagination](https://govuk-components.netlify.app/components/pagination)
-* [Phase banner](https://govuk-components.netlify.app/components/phase-banner)
-* [Section break](https://govuk-components.netlify.app/components/section-break)
-* [Start button](https://govuk-components.netlify.app/components/start-button)
-* [Summary list](https://govuk-components.netlify.app/components/summary-list)
-* [Tabs](https://govuk-components.netlify.app/components/tabs)
-* [Tables](https://govuk-components.netlify.app/components/table)
-* [Tags](https://govuk-components.netlify.app/components/tag)
-* [Warning text](https://govuk-components.netlify.app/components/warning-text)
+Les composants disponibles sont :
 
+- [ ] Accordéon - Accordion
+- [ ] Ajout de fichier - File upload
+- [ ] Alertes - Alert
+- [ ] Badge
+- [ ] Bandeau d'information importante
+- [ ] Barre de recherche - Search bar
+- [ ] Boutons - Buttons
+- [ ] Groupe de bouton
+- [ ] Bouton FranceConnect
+- [ ] Boutons radio
+- [ ] Boutons radio 'riches'
+- [ ] Case à cocher - Checkbox
+- [ ] Cartes - Cards
+- [ ] Champ de saisie - Input
+- [ ] Citation - Quote
+- [ ] Contenu médias - Responsive médias
+- [ ] En-tête - Header
+- [ ] Fil d'Ariane - Breadcrumb
+- [ ] Gestionnaire de consentement - Consent banner
+- [ ] Icônes de favoris - Favicons
+- [ ] Indicateur d'étape
+- [ ] Interrupteur - Toggle switch
+- [ ] Lettre d'information et réseaux sociaux - Newsletter &amp; Follow us
+- [ ] Liens - Links
+- [ ] Liens d'évitement - Skiplinks
+- [ ] Liste déroulante - Select
+- [ ] Menu latéral - Side menu
+- [ ] Mise en avant - Call out
+- [ ] Mise en exergue - Highlight
+- [ ] Modale - Modal
+- [ ] Navigation principale - Main navigation
+- [ ] Onglets - Tabs
+- [ ] Pagination
+- [ ] Paramètres d'affichage - Display
+- [ ] Partage - Share
+- [ ] Pied de page - Footer
+- [ ] Sélecteur de langue
+- [ ] Sommaire - Summary
+- [ ] Tableau - Table
+- [ ] Tag
+- [ ] Téléchargement de fichier
+- [ ] Tuile - Tile
+
+<!--
 This library also provides helpers for creating [links](https://govuk-components.netlify.app/helpers/link),
 [buttons](https://govuk-components.netlify.app/helpers/button), [skip links](https://govuk-components.netlify.app/helpers/skip-link)
 and [back to top links](https://govuk-components.netlify.app/helpers/back-to-top-link).
+-->
 
+<!--
 ## Alternative syntax
 
 All of the components can be rendered in two ways:
@@ -123,10 +156,10 @@ require "govuk/components"
 
 ## Installation
 
-Add this line to your application’s Gemfile:
+Ajouter cette ligne à votre Gemfile:
 
 ```ruby
-gem 'govuk-components'
+gem 'dsfr-components'
 ```
 
 And then execute:
@@ -140,22 +173,36 @@ Or install it yourself as:
 ```sh
 gem install govuk-components
 ```
+-->
 
-## Contributing
+## Contribuer
 
-Bug reports and feature requests are most welcome, please raise an issue or
-submit a pull request.
-
-Currently we're using [GOVUK Lint](https://github.com/alphagov/govuk-lint) to
-ensure code meets the GOV.UK guidelines. Please ensure that any PRs also adhere
-to this standard.
-
-To help keep the logs clean and tidy, please configure git to use your full name:
+Nous conseillons d'utiliser [rbenv](https://github.com/rbenv/rbenv) pour gérer vos versions de ruby :
 
 ```sh
-git config --global user.name "Julius Hibbert"
+rbenv local 3.1.2
+rbenv install
 ```
 
-## License
+Lancer les tests :
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+```sh
+bundle install
+bundle exec rspec spec
+```
+
+Lancer la dummy app pour itérer sur les composants :
+
+```sh
+cd spec/dummy
+bundle install && npm install
+bundle exec rails server
+```
+
+Déployer une nouvelle version de la gem :
+
+TODO
+
+## Licence
+
+Le code source et la gem sont ouverts sous la licence [MIT](https://opensource.org/licenses/MIT).
