@@ -1,28 +1,100 @@
 <!DOCTYPE html>
-<html class="govuk-template">
+<html>
   <head>
-    <title>GOV.UK Components</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>DSFR Components - Dummy App</title>
     <%= csp_meta_tag %>
 
+    <%# <meta name="theme-color" content="#000091"> %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="govuk-template__body app">
-    <script>
-      document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
-    </script>
-    <%= dsfr_skip_link %>
-    <%= dsfr_header(crown: false, logotype: "GOV.UK Components") %>
-    <%= yield :masthead %>
-    <div class="govuk-width-container">
-      <main class="govuk-main-wrapper" id="main-content">
+  <body>
+    <header role="banner" class="fr-header">
+      <div class="fr-header__body">
+        <div class="fr-container">
+          <div class="fr-header__body-row">
+            <div class="fr-header__brand fr-enlarge-link">
+              <div class="fr-header__brand-top">
+                <div class="fr-header__logo">
+                  <p class="fr-logo">
+                    République
+                    <br>Française
+                  </p>
+                </div>
+                <div class="fr-header__navbar">
+                  <button class="fr-btn--menu fr-btn" data-fr-opened="false" aria-controls="modal-menu" aria-haspopup="menu" title="Menu">
+                    Menu
+                  </button>
+                </div>
+              </div>
+              <div class="fr-header__service">
+                <a href="/" title="DSFR Components - Dummy App">
+                  <p class="fr-header__service-title">DSFR Components - Dummy App</p>
+                </a>
+                <p class="fr-header__service-tagline">Rails ViewComponents à réutiliser</p>
+              </div>
+            </div>
+
+            <div class="fr-header__tools">
+              <div class="fr-header__tools-links">
+                <ul class="fr-links-group">
+                  <li>
+                    <a class="fr-link fr-fi-external-link-line fr-link--icon-right" href="https://github.com/betagouv/dsfr-components" title="documentation officielle - nouvelle fenêtre" target="_blank" rel="noopener">GitHub</a>
+                  </li>
+                  <li>
+                    <button class="fr-link fr-fi-sun-fill-line fr-link--icon-left" aria-controls="fr-theme-modal" data-fr-opened="false">Paramètres d'affichage</button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fr-header__menu fr-modal" id="modal-menu">
+        <div class="fr-container">
+          <button class="fr-link--close fr-link" aria-controls="modal-menu">Fermer</button>
+          <div class="fr-header__menu-links">
+          </div>
+
+          <nav class="fr-nav" role="navigation" aria-label="Menu principal" id="header-navigation">
+            <ul class="fr-nav__list">
+              <li class="fr-nav__item">
+                <a
+                  class="fr-nav__link" href="/" target="_self"
+                  <%= 'aria-current="page"' if request.path == "/" %>
+                >
+                  Accueil
+                </a>
+              </li>
+              <li class="fr-nav__item">
+                <a
+                  class="fr-nav__link" href="/demos" target="_self"
+                  <%= 'aria-current="page"' if request.path == "/demos"%>
+                >
+                  Composants
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <%# dsfr_skip_link %>
+    <%# dsfr_header(crown: false, logotype: "GOV.UK Components") %>
+    <%# yield :masthead %>
+
+    <main role="main">
+      <div class="fr-container fr-py-4w">
         <%= yield %>
-      </main>
-    </div>
-    <%= dsfr_footer(meta_items: { "GitHub" => "https://github.com/DFE-Digital/govuk-components", "RubyGems" => "https://rubygems.org/gems/govuk-components", "DfE Digital" => "https://dfedigital.blog.gov.uk/" }) %>
-  <script>
-    window.GOVUKFrontend.initAll();
-  </script>
+      </div>
+    </main>
+
+    <%# dsfr_footer(meta_items: { "GitHub" => "https://github.com/DFE-Digital/govuk-components", "RubyGems" => "https://rubygems.org/gems/govuk-components", "DfE Digital" => "https://dfedigital.blog.gov.uk/" }) %>
+
   </body>
 </html>

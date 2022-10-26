@@ -1,0 +1,8 @@
+<%= example_heading('Alertes - Alert') %>
+
+<%= render "shared/example", title: "Alert", example: <<~ALERT
+  render DsfrComponent::AlertComponent.new(title: 'Erreur : titre du message') do
+    "Ceci est une alerte d'erreur"
+  end
+  ALERT
+%>
