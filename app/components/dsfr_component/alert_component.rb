@@ -9,8 +9,7 @@ class DsfrComponent::AlertComponent < DsfrComponent::Base
 
   def call
     tag.div(**html_attributes) do
-      tag.h3(class: "fr-alert__title") { title }
-      tag.p { content }
+      safe_join([title_tag, content_tag])
     end
   end
 
@@ -18,5 +17,13 @@ private
 
   def default_attributes
     { class: %w(fr-alert) }
+  end
+
+  def title_tag
+    tag.h3(class: "fr-alert__title") { title }
+  end
+
+  def content_tag
+    tag.p { content }
   end
 end
