@@ -1,0 +1,155 @@
+# https://github.com/alphagov/govuk-lint/pull/36
+# "When we have sequence of if/unless statements,
+# some with multiple lines within the if statement
+# block and some with a single line, forcing the single
+# line statements to re-written makes it a harder
+# to follow the branching logic."
+Style/IfUnlessModifier:
+  Enabled: false
+
+# Part of the orignal GDS styleguide
+# "Never chain do...end"
+# https://github.com/alphagov/styleguides/blob/6395a10d41c3938f4c147cda443fd83f854c3e7a/ruby.md#syntax
+Style/MethodCalledOnDoEndBlock:
+  Enabled: true
+
+# Part of the orignal GDS styleguide
+# "Add a trailing comma to multi-line array [...]
+# for clearer diffs with less line noise."
+# https://github.com/alphagov/styleguides/blob/6395a10d41c3938f4c147cda443fd83f854c3e7a/ruby.md#collections
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+# Part of the orignal GDS styleguide
+# "Add a trailing comma to multi-line hash definitions [...]
+# for clearer diffs with less line noise."
+# https://github.com/alphagov/styleguides/blob/6395a10d41c3938f4c147cda443fd83f854c3e7a/ruby.md#collections
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
+
+# Part of the orignal GDS styleguide
+# "When long lists of method arguments require
+# breaking over multiple lines, break each successive
+# argument on a new line, including the first argument
+# and closing paren. The final argument should include
+# a trailing comma."
+# https://github.com/alphagov/styleguides/blob/6395a10d41c3938f4c147cda443fd83f854c3e7a/ruby.md#general
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
+
+# Part of the orignal GDS styleguide
+# "Prefer %w to the literal array syntax when you need
+# an array of strings."
+# https://github.com/alphagov/styleguides/blob/6395a10d41c3938f4c147cda443fd83f854c3e7a/ruby.md#collections
+Style/WordArray:
+  MinSize: 0
+
+# "Try not to mix up single-quoted and double-quoted
+# strings within a file: it can make the code harder to read.
+# Definitely don't mix up single-quoted and double-quoted
+# strings within a method. If in doubt, use double-quoted strings,
+# because you’ll probably need to use interpolation somewhere.
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+# Introduced in: 5ca6b7d20fd62a6ce890868abdeca12837e436d7
+# "The wording of the description is hard to understand - it's not
+# immediately obvious what you have to do, and doesn't really say why
+# this is a good thing.
+#
+# It's not auto-fixable, which means it takes a lot of time to get the
+# syntax right for every occurrence of `%.2f` for example (taken from
+# `smart-answers`) for not very much benefit."
+Style/FormatStringToken:
+  Enabled: false
+
+# Using the default style leads to buggy auto-correct in several
+# repos that have their own 'format' method defined. While it's not
+# ideal to override a standard/Kernel method, it's also not practical
+# to change a term that's so deeply embedded within our domain.
+#
+# Related PR: https://github.com/alphagov/specialist-publisher/pull/1640
+# Related PR: https://github.com/alphagov/publisher/pull/1268
+Style/FormatString:
+  EnforcedStyle: sprintf
+
+# This is a contentious issue, since 'alias_method' works in
+# all circumstances, whereas 'alias' only works lexically. As
+# with single vs. double quotes, it seems pointless to expend
+# effort deciding between them. Our predominant style is to use
+# 'alias_method', which always works.
+Style/Alias:
+  EnforcedStyle: prefer_alias_method
+
+# This prevents weird characters in comments, such as stylistic
+# quote characters and strange whitespace. We should only allow
+# special characters when they are essential for a comment. It's
+# a waste of effort to go and find the special sequence when an
+# alternative exists e.g. '×' can be replaced with '*' in maths.
+Style/AsciiComments:
+  AllowedChars: ['£']
+
+# We should only use braces in multiline blocks in a # chained
+# method call. This is consistent with the RSpec 'expect' syntax.
+#
+# expect {
+#   a_long_and_complex_method_call
+# }.to raise_error(SomeError)
+#
+Style/BlockDelimiters:
+  EnforcedStyle: braces_for_chaining
+
+# We have no concensus on this. Using the nested style is the
+# default for generated Rails app (see 'config/application.rb').
+# Using the compact style can help to reduce boilerplate within
+# modules. At the time of writing, the auto-correct for this Cop
+# is unsafe for moving to either style.
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# Introduced in: c69a7eb3af955d6c4c0cf0c3cec8e9f330c74429
+# Documenting every class is a lot of effort and we don't
+# expect to get any value from this. Another risk of adding
+# more documentation is the potential for confusion if that
+# documentation gets out-of-sync with the class/module.
+Style/Documentation:
+  Enabled: false
+
+# Introduced in: c69a7eb3af955d6c4c0cf0c3cec8e9f330c74429
+# This can lead to excessively long lines. Consistent with
+# disabling "Layout/LineLength".
+#
+# "There are occasions where following this rule forces you to make the
+# code less readable."
+Style/GuardClause:
+  Enabled: false
+
+# Analog of: 736b3d295f88b9ba6676fc168b823535582388c2
+# "Disable opinionated cops"
+#
+# We should avoid cops that are based on heuristics, since
+# it's not clear what action to take to fix an issue.
+Style/RegexpLiteral:
+  Enabled: false
+
+# Using safe navigation is less explicit than making a clear
+# check for truthiness, as evidenced by its own safelist for
+# certain methods. Safe navigation is also less visible and
+# pollutes otherwise readable method calls.
+Style/SafeNavigation:
+  Enabled: false
+
+# Introduced in: b171d652d3e434b74ddc621df3b5be24c49bc7e8
+# This cop was added in preperation for a Ruby feature
+# that is no longer likely to become part of the language.
+# https://github.com/rubocop-hq/rubocop/issues/7197
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# We should only use DateTime when it's necessary to account
+# for ancient calendar changes. Otherwise, the arbitrary use
+# of this class in place of Date or Time is confusing.
+#
+# https://rubystyle.guide/#no-datetime
+Style/DateTime:
+  Enabled: true

@@ -17,3 +17,5 @@ gemspec
 group 'nanoc' do
   gem 'nanoc-live'
 end
+
+gem "rubocop-rspec", "~> 2.14"

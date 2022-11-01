@@ -1,0 +1,28 @@
+RSpec/DescribedClass:
+  Enabled: false
+RSpec/LeadingSubject:
+  Enabled: false
+RSpec/FilePath:
+  Enabled: false
+RSpec/ContextWording:
+  Enabled: false
+RSpec/EmptyLineAfterFinalLet:
+  Enabled: false
+RSpec/AnyInstance:
+  Enabled: false
+RSpec/MultipleDescribes:
+  Enabled: false
+RSpec/NamedSubject:
+  Enabled: false
+RSpec/VerifiedDoubles:
+  Enabled: false
+RSpec/VoidExpect:
+  Enabled: false
+RSpec/EmptyLineAfterExampleGroup:
+  Enabled: false
+RSpec/ScatteredLet:
+  Enabled: false
+RSpec/EmptyLineAfterSubject:
+  Enabled: false
+RSpec/RepeatedExampleGroupBody:
+  Enabled: false

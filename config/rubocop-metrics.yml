@@ -1,0 +1,73 @@
+# Analog of: 736b3d295f88b9ba6676fc168b823535582388c2
+#
+# We should avoid cops that are based on heuristics, since
+# it's not clear what action to take to fix an issue.
+#
+# For this Cop, there are also several kinds of file that
+# have long blocks by convention (tests, config, rake tasks,
+# gemspecs), to the point where its value is dubious.
+Metrics/BlockLength:
+  Enabled: false
+
+# Introduced in: 736b3d295f88b9ba6676fc168b823535582388c2
+# "Disable opinionated cops"
+#
+# We should avoid cops that are based on heuristics, since
+# it's not clear what action to take to fix an issue.
+Metrics/AbcSize:
+  Enabled: false
+
+# Introduced in: 736b3d295f88b9ba6676fc168b823535582388c2
+# "Disable opinionated cops"
+#
+# We should avoid cops that are based on heuristics, since
+# it's not clear what action to take to fix an issue.
+Metrics/ClassLength:
+  Enabled: false
+
+# Introduced in: 736b3d295f88b9ba6676fc168b823535582388c2
+# "Disable opinionated cops"
+#
+# We should avoid cops that are based on heuristics, since
+# it's not clear what action to take to fix an issue.
+Metrics/ModuleLength:
+  Enabled: false
+
+# Introduced in: 736b3d295f88b9ba6676fc168b823535582388c2
+# "Disable opinionated cops"
+#
+# We should avoid cops that are based on heuristics, since
+# it's not clear what action to take to fix an issue.
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+# Introduced in: c69a7eb3af955d6c4c0cf0c3cec8e9f330c74429
+#
+# We should avoid cops that are based on heuristics, since
+# it's not clear what action to take to fix an issue.
+Metrics/BlockNesting:
+  Enabled: false
+
+# Analog of: 736b3d295f88b9ba6676fc168b823535582388c2
+# "Disable opinionated cops"
+#
+# We should avoid cops that are based on heuristics, since
+# it's not clear what action to take to fix an issue.
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+# Analog of: 736b3d295f88b9ba6676fc168b823535582388c2
+# "Disable opinionated cops"
+#
+# We should avoid cops that are based on heuristics, since
+# it's not clear what action to take to fix an issue.
+Metrics/MethodLength:
+  Enabled: false
+
+# Analog of: 736b3d295f88b9ba6676fc168b823535582388c2
+# "Disable opinionated cops"
+#
+# We should avoid cops that are based on heuristics, since
+# it's not clear what action to take to fix an issue.
+Metrics/ParameterLists:
+  Enabled: false

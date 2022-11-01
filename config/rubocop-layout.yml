@@ -1,0 +1,78 @@
+# https://github.com/alphagov/govuk-lint/pull/7
+# "There are occasions where following this rule forces you to make the
+# code less readable. This is particularly the case for tests where method
+# names form the test descriptions. Keeping test descriptions under a
+# certain length can force them to become cryptic."
+Layout/LineLength:
+  Enabled: false
+
+# We have two styles of method call in our apps:
+#
+# SomeClass.first_method_call_on_same_line
+#          .other_method_call
+#
+# a_particularly_long_first_method_call
+#   .subsequent_method_call
+#
+# Any setting of this Cop would cause odd alignment
+# for one of these styles. Since there isn't a Cop to
+# set a preferred style, we should disable this one.
+Layout/MultilineMethodCallIndentation:
+  Enabled: false
+
+# Part of the orignal GDS styleguide
+# "Outdent private etc"
+# https://github.com/alphagov/styleguides/blob/6395a10d41c3938f4c147cda443fd83f854c3e7a/ruby.md#classes
+Layout/AccessModifierIndentation:
+  Enabled: true
+  EnforcedStyle: outdent
+
+# Our predominant style of writing multiline arrays is:
+#
+# my_array = [
+#   element_1,
+#   element_2,
+# ]
+#
+# even_in_a_method_call([
+#   element_1,
+#   element_2,
+# ])
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+
+# Our predominant style of writing multiline hashes is:
+#
+# my_hash = {
+#   key_1: value_1,
+#   key_2: value_2,
+# }
+#
+# even_in_a_method_call({
+#   key_1: value_1,
+#   key_2: value_2,
+# })
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+
+# Our predominant style of writing multiline operations is
+# to indent the subsequent lines. This helps to prevent
+# misreading the next line as a new/separate statement.
+#
+# Introduced in: 9b2a744ab119d7797aaf423abcec914360f4208e
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+# We should be consistent: if some items of an array are
+# on multiple lines, then all items should be. This works
+# better with the indentation Cops, produces clearer diffs,
+# and avoids wasting time tweaking an arbitrary layout.
+Layout/MultilineArrayLineBreaks:
+  Enabled: true
+
+# We should be consistent: if some items of a hash are
+# on multiple lines, then all items should be. This works
+# better with the indentation Cops, produces clearer diffs,
+# and avoids wasting time tweaking an arbitrary layout.
+Layout/MultilineHashKeyLineBreaks:
+  Enabled: true

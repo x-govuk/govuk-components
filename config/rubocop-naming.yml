@@ -1,0 +1,28 @@
+# Conflicts with the original GDS styleguide
+#
+# While this may conflict with the original GDS styleguide, there
+# are times where we wish to call a method that "sets" something.
+#
+# def set_political_and_government(edition)
+#
+# The original styleguide only accounts for a specific kind of "set"
+# operation, where the argument is the value being assigned.
+#
+# Introduced in: c69a7eb3af955d6c4c0cf0c3cec8e9f330c74429
+# https://github.com/alphagov/styleguides/blob/6395a10d41c3938f4c147cda443fd83f854c3e7a/ruby.md#naming
+Naming/AccessorMethodName:
+  Enabled: false
+
+# We should be free to decide on interfaces that make sense to us.
+# At the time of writing, this Cop is not auto-correctable, and
+# would generate a prohibitively high number of issues across our
+# repos, which would require manual intervention.
+Naming/PredicateName:
+  Enabled: false
+
+# This rule can cause readability issues when applied (for example
+# `born_on_or_before_6_april_1935` becomes `born_on_or_before_6april1935`)
+# and would require lots of amends to apply either `normalcase`
+# or `snake_case` to projects. It is not auto-correctable.
+Naming/VariableNumber:
+  Enabled: false

@@ -38,7 +38,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry-byebug"
   spec.add_development_dependency "rspec-html-matchers", "~> 0.9"
   spec.add_development_dependency "rspec-rails"
-  spec.add_development_dependency "rubocop-govuk", "= 4.0.0"
+  spec.add_development_dependency "rubocop"
+  spec.add_development_dependency "rubocop-rails"
   spec.add_development_dependency "sassc-rails"
   spec.add_development_dependency("simplecov", "~> 0.20")
   spec.add_development_dependency "sqlite3"

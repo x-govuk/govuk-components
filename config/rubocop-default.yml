@@ -1,0 +1,26 @@
+AllCops:
+  NewCops: disable
+  SuggestExtensions: false
+  Exclude:
+    - 'bin/**'
+    - 'config.ru'
+    - 'tmp/**/*'
+    - 'db/schema.rb'
+    - 'db/migrate/201*'
+    - 'vendor/**/*'
+    - 'node_modules/**/*'
+
+  DisplayCopNames:
+    Enabled: true
+
+  ExtraDetails:
+    Enabled: true
+
+  DisplayStyleGuide:
+    Enabled: true
+
+inherit_from:
+  - rubocop-layout.yml
+  - rubocop-metrics.yml
+  - rubocop-naming.yml
+  - rubocop-style.yml

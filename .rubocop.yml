@@ -1,55 +1,16 @@
 ---
-inherit_gem:
-  rubocop-govuk:
-    - config/default.yml
-    - config/rails.yml
-
-AllCops:
-  TargetRubyVersion: 2.7
-  Exclude:
-    - dsfr_design_system_formbuilder.gemspec
-    - spec/dummy/**/*
-Security/Eval:
-  Exclude:
-    - guide/lib/helpers/formatters.rb
-Lint/MissingSuper:
-  Enabled: false
-Rails/Date:
-  Enabled: false
-Rails/ActiveSupportAliases:
-  Enabled: false
-Style/StringLiterals:
-  Enabled: false
-Style/TrailingCommaInArguments:
-  Enabled: false
-Style/TrailingCommaInHashLiteral:
-  Enabled: false
-Style/Lambda:
-  Enabled: false
-Style/StringConcatenation:
-  Enabled: false
-Style/TrailingCommaInArrayLiteral:
-  Enabled: false
-Style/TernaryParentheses:
-  Enabled: false
-Style/RedundantParentheses:
-  Enabled: false
-Naming/MethodParameterName:
-  Enabled: false
-Style/PercentLiteralDelimiters:
-  Enabled: false
-Layout/HashAlignment:
-  Enabled: false
-Style/SignalException:
-  Enabled: false
-Style/Proc:
-  Enabled: false
-Style/AsciiComments:
-  Enabled: false
-Style/FormatString:
-  EnforcedStyle: format
-Gemspec/RequiredRubyVersion:
-  Enabled: false
+require:
+  - rubocop-rails
+  - rubocop-rspec
+inherit_from:
+  - ./config/rubocop-default.yml
+  - ./config/rubocop-rails.yml
+  - ./config/rubocop-rspec.yml
+  - ./config/rubocop-govuk-components.yml
+  - ./config/rubocop-dsfr-overrides.yml
+inherit_mode:
+  merge:
+    - Exclude
 Style/MixinUsage:
   Exclude:
     - spec/spec_helper.rb

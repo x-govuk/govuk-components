@@ -1,0 +1,47 @@
+# Analog of: 736b3d295f88b9ba6676fc168b823535582388c2
+#
+# We should avoid cops that are based on heuristics, since
+# it's not clear what action to take to fix an issue.
+RSpec/ExampleLength:
+  Enabled: false
+
+# We should avoid cops that are based on heuristics, since
+# it's not clear what action to take to fix an issue.
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+# We have common cases, such as rake tasks, where we do not
+# use a class to the describe the test.
+RSpec/DescribeClass:
+  Enabled: false
+
+# We accept multiple expectations (within reason), preferring
+# them to running mulitple similar tests.
+RSpec/MultipleExpectations:
+  Enabled: false
+
+# Part of the GOV.UK feature style involves instance variables.
+RSpec/InstanceVariable:
+  Exclude:
+    - 'spec/features/**/*.rb'
+
+# In GOV.UK we quite often test that a class received a method.
+RSpec/MessageSpies:
+  Enabled: false
+
+# Analog of: 736b3d295f88b9ba6676fc168b823535582388c2
+#
+# We should avoid cops that are based on heuristics, since
+# it's not clear what action to take to fix an issue.
+RSpec/NestedGroups:
+  Enabled: false
+
+# Nested contexts make more sense with "and" or "but", since
+# they are a refinement of an outer context.
+RSpec/ContextWording:
+  Prefixes:
+    - when
+    - with
+    - without
+    - and
+    - but

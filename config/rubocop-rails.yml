@@ -1,0 +1,94 @@
+##################### Rails ##################################
+
+# By default Rails is switched off so this can be used by non-Rails apps,
+# this can be enabled in a local .rubocop.yml file
+
+require: rubocop-rails
+
+AllCops:
+  Exclude:
+    - 'db/schema.rb'
+    - 'db/migrate/201*'
+
+Rails:
+  Enabled: true
+
+# We have custom find_by methods in several repos, which
+# we're not going to rename. This Cop also raises false
+# positives for find_by methods that are unrelated to model
+# classes, as well as for repos using Mongoid. The value
+# of the consistency this brings is limited, since we mostly
+# use find_by(key: value) anyway.
+#
+# https://github.com/rubocop-hq/rubocop/issues/3758
+Rails/DynamicFindBy:
+  Enabled: false
+
+# We commonly print output in Ruby code that has been
+# extracted from a Rake task in 'lib/'.
+Rails/Output:
+  Exclude:
+    - 'lib/**/*.rb'
+
+# It's unclear what remedial action to take for the total
+# set of methods this Cop has issues with. For example, we
+# use 'update_all' in many of our repos, for which there is
+# no efficient alternative. Instead, we should only enable
+# this Cop for methods that have a clear alternative.
+Rails/SkipsModelValidations:
+  ForbiddenMethods:
+    - update_attribute
+
+# While using has_many/through does have some advantages,
+# it also requires a significant amount of boilerplate code:
+#
+# - An additional 'has_many :join_table' statement
+# - An additional class for the join table (model)
+#
+# This Cop/rule appears to have been written with the
+# assumption that all join tables have inherent meaning,
+# we want to represent, which is not the case; sometimes
+# relationships are just # many-to-many, and that's it.
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
+# While using 'inverse_of' can reduce DB queries, we have
+# not found this to be a problem in practice. The advantage
+# of turning this on would be that we make the inverse
+# behaviour explicit everywhere ActiveRecord can't apply it
+# automatically, but this is rarely a surprise for developers.
+# We also don't want to add 'inverse_of: false' everywhere;
+# at the time of writing, there is no auto-correct for this.
+Rails/InverseOf:
+  Enabled: false
+
+# This is incompatible with the more robust use of foreign
+# key constraints, which provide the same behaviour.
+#
+# Example: https://github.com/alphagov/content-publisher/blob/f26d9b551842fdf2084159b5b7f1bb078da56936/db/schema.rb#L396
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+
+# We commonly want to render HTML without escaping it, which
+# is what 'html_safe' is for. In many cases, the content we
+# render has already been sanitised (e.g. through Govspeak),
+# or is otherwise trusted e.g. from a content item. We trust
+# that developers will use 'html_safe' responsibly, and prefer
+# the default, escaped output otherwise. At the time of writing,
+# this Cop is disabled in a lot of repos, indicating it offers
+# little value to many developers.
+Rails/OutputSafety:
+  Enabled: false
+
+# We seldom check the return value of 'update' to see if
+# the operation was successful. Since we assume success, we
+# should raise an exception if this is not the case.
+Rails/SaveBang:
+  Enabled: true
+
+# We should avoid unnecessary ambiguity between 'Time.current'
+# and 'Time.zone.now', where 'Time.current' behaves differently
+# depending on application config. We should always be explicit
+# about whether we mean 'Time[.zone].now'.
+Rails/TimeZone:
+  EnforcedStyle: "strict"
