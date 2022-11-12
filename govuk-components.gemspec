@@ -1,7 +1,6 @@
 $LOAD_PATH.push File.expand_path("lib", __dir__)
 
 require "govuk/components/version"
-require_relative "util/version_formatter"
 
 METADATA = {
   "bug_tracker_uri"   => "https://github.com/DFE-Digital/govuk-components/issues",
@@ -22,13 +21,6 @@ Gem::Specification.new do |spec|
   spec.license     = "MIT"
 
   spec.files = Dir["{app,config,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
-
-  exact_rails_version = ENV.key?("RAILS_VERSION")
-  rails_version = ENV.fetch("RAILS_VERSION") { "6.1.5" }
-
-  %w(actionpack activemodel railties).each do |lib|
-    spec.add_dependency(*VersionFormatter.new(lib, rails_version, exact_rails_version).to_a)
-  end
 
   spec.add_dependency("html-attributes-utils", "~> 0.9", ">= 0.9.2")
   spec.add_dependency("pagy", "~> 5.10.1")
