@@ -141,7 +141,9 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
           specify "renders one header row" do
             expect(rendered_content).to have_tag("table", with: { class: component_css_class }) do
               with_tag("thead", with: { class: "govuk-table__head" }) do
-                with_tag("tr", with: { class: "govuk-table__row" }, count: 1)
+                with_tag("tr", with: { class: "govuk-table__row" }, count: 1) do
+                  with_tag("th", with: { class: "govuk-table__header", scope: "col" }, count: 4)
+                end
               end
             end
           end
@@ -193,15 +195,32 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
         render_inline(GovukComponent::TableComponent.new(**kwargs.merge(head: head, rows: rows, first_cell_is_header: true)))
       end
 
-      specify "renders the header content in table header (th) cells" do
+      specify "renders the table header" do
+        expect(rendered_content).to have_tag("table > thead") do
+          head.each do |heading|
+            with_tag('th', text: heading, with: { class: 'govuk-table__header', scope: 'col' })
+          end
+        end
+      end
+
+      specify "renders the header column in table body cells" do
         expect(rendered_content).to have_tag("table > tbody") do
-          with_tag('th', text: row_header_text, count: number_of_rows)
+          with_tag('th', text: row_header_text, count: number_of_rows, with: { scope: 'row' })
           with_tag('td', text: row_cell_text, count: number_of_rows * 2)
         end
       end
 
       specify "the header is always first" do
         html.css('tbody > tr').map(&:elements).each { |r| expect(r.first.name).to eql('th') }
+      end
+
+      specify "all header cells in the tbody have a scope but no data cells do" do
+        attributes_per_element_type = %w(th td).each.with_object({}) do |element, h|
+          h[element] = html.css(element).map(&:attributes).map(&:keys)
+        end
+
+        expect(attributes_per_element_type["th"]).to all(eql(%w(class scope)))
+        expect(attributes_per_element_type["td"]).to all(eql(%w(class)))
       end
     end
   end
@@ -220,7 +239,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
             body.row do |row|
               row.cell(text: "row-#{i}-col-1")
               row.cell(text: "row-#{i}-col-2")
-              row.cell(text: "row-#{i}-col-3")
+              row.cell(text: "row-#{i}-col-3", scope: "bananas")
             end
           end
         end
@@ -235,7 +254,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
       expect(rendered_content).to have_tag('table') do
         with_tag('thead') do
           with_tag('tr', with: { class: "govuk-table__row" }, count: 1) do
-            with_tag('th', with: { class: "govuk-table__header" }, count: 3)
+            with_tag('th', with: { class: "govuk-table__header", scope: "col" }, count: 3)
           end
         end
       end
@@ -251,6 +270,10 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
           end
         end
       end
+    end
+
+    specify "scopes can be set to arbitrary values" do
+      expect(rendered_content).to have_tag("td", with: { scope: "bananas" }, count: 3)
     end
   end
 
@@ -394,7 +417,7 @@ end
 
 RSpec.describe(GovukComponent::TableComponent::RowComponent, type: :component) do
   let(:component_css_class) { 'govuk-table__row' }
-  let(:kwargs) { {} }
+  let(:kwargs) { { parent: 'tbody' } }
 
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
@@ -402,7 +425,7 @@ end
 
 RSpec.describe(GovukComponent::TableComponent::CellComponent, type: :component) do
   let(:component_css_class) { 'govuk-table__cell' }
-  let(:kwargs) { {} }
+  let(:kwargs) { { scope: nil } }
 
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'

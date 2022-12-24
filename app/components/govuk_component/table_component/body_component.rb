@@ -1,8 +1,9 @@
 class GovukComponent::TableComponent::BodyComponent < GovukComponent::Base
-  renders_many :rows, ->(cell_data: nil, first_cell_is_header: false, classes: [], html_attributes: {}, &block) do
+  renders_many :rows, ->(cell_data: nil, first_cell_is_header: false, parent: 'tbody', classes: [], html_attributes: {}, &block) do
     GovukComponent::TableComponent::RowComponent.new(
       cell_data: cell_data,
       first_cell_is_header: first_cell_is_header,
+      parent: parent,
       classes: classes,
       html_attributes: html_attributes,
       &block
