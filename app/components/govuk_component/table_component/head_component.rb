@@ -1,5 +1,13 @@
 class GovukComponent::TableComponent::HeadComponent < GovukComponent::Base
-  renders_many :rows, "GovukComponent::TableComponent::RowComponent"
+  renders_many :rows, ->(cell_data: nil, header: true, classes: [], html_attributes: {}, &block) do
+    GovukComponent::TableComponent::RowComponent.new(
+      cell_data: cell_data,
+      header: header,
+      classes: classes,
+      html_attributes: html_attributes,
+      &block
+    )
+  end
 
   attr_reader :row_data
 

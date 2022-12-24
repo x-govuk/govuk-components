@@ -1,5 +1,16 @@
 class GovukComponent::TableComponent::RowComponent < GovukComponent::Base
-  renders_many :cells, "GovukComponent::TableComponent::CellComponent"
+  renders_many :cells, ->(header: false, scope: nil, text: nil, numeric: false, width: nil, classes: [], html_attributes: {}, &block) do
+    GovukComponent::TableComponent::CellComponent.new(
+      header: header,
+      text: text,
+      numeric: numeric,
+      width: width,
+      scope: scope || cell_scope(header, parent),
+      classes: classes,
+      html_attributes: html_attributes,
+      &block
+    )
+  end
 
   attr_reader :header, :first_cell_is_header
 
