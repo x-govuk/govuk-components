@@ -10,13 +10,28 @@ markdown:
   caption: "Regular link",
   code: govuk_link_to_normal) do
 
-  p.govuk-body
-
   markdown:
     Regular links are just plain [anchor elements][0]
     with the `govuk-link` class.
 
     [0]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
+
+== render('/partials/example.*',
+  caption: "Links that open in a new tab",
+  code: govuk_link_to_new_tab) do
+
+  markdown:
+    You can use the `new_tab` parameter to automatically set the `target` and
+    `rel` [attributes as suggested by the design system][0].
+
+    When the link text is passed in as a string argument, 'opens in new tab' is
+    added to the end automatically. No suffix is added when the helper is used
+    in block mode.
+
+    The default text can be set using the `default_link_new_tab_text` configuration option
+    and it can be suppressed by setting it to an empty string.
+
+    [0]: https://design-system.service.gov.uk/styles/typography/#opening-links-in-a-new-tab
 
 == render('/partials/example.*',
   caption: "Inverse hyperlink",
