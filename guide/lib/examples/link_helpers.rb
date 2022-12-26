@@ -4,6 +4,17 @@ module Examples
       %(= govuk_link_to 'A regular hyperlink', '#')
     end
 
+    def govuk_link_to_new_tab
+      <<~NEW_TAB
+        = govuk_link_to 'A text hyperlink that opens a new tab', '#', new_tab: true
+
+        br
+
+        = govuk_link_to('#', new_tab: true) { "A block hyperlink that opens a new tab" }
+
+      NEW_TAB
+    end
+
     def govuk_link_to_inverse
       %(= govuk_link_to('An inverse hyperlink', '#', { inverse: true }))
     end
