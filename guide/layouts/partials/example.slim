@@ -1,4 +1,4 @@
-h3 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-8" id=anchor_id(caption)
+h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-8" id=anchor_id(caption)
   == link_to caption, "#".concat(anchor_id(caption)), class: "header-anchor"
 
 - if block_given? && (content = yield)
@@ -6,7 +6,7 @@ h3 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-8" id=anchor_i
 
 figure.app-example
   .govuk-tabs data-module="govuk-tabs"
-    h4.govuk-heading-s.govuk-tabs--title Input
+    h3.govuk-heading-s.govuk-tabs--title Input
 
     ul.govuk-tabs__list
       li.govuk-tabs__list-item.govuk-tabs__list-item--selected
@@ -39,14 +39,14 @@ figure.app-example
 
   - if defined?(render_in_boxes) && render_in_boxes
 
-    h4.govuk-heading-s Rendered output
+    h3.govuk-heading-s Rendered output
 
     - if defined?(data)
       == format_slim(code, data)
     - else
       == format_slim(code)
 
-    h4.govuk-heading-s HTML output
+    h3.govuk-heading-s HTML output
 
     pre
       code.highlight.language-html
@@ -57,7 +57,7 @@ figure.app-example
 
   - else
     .govuk-tabs data-module="govuk-tabs"
-      h4.govuk-heading-s.govuk-tabs--title Output
+      h3.govuk-heading-s.govuk-tabs--title Output
 
       ul.govuk-tabs__list
         li.govuk-tabs__list-item.govuk-tabs__list-item--selected
