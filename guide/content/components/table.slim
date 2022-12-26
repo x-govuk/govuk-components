@@ -47,6 +47,9 @@ p Use the table component to make information easier to compare and scan for
     using the `head` argument. If nothing is set, the first row will be used for
     headers.
 
+    The `first_cell_is_header` parameter can be used to change the first column
+    in the table body to header cells with `scope='row'`.
+
 == render('/partials/example.*',
   caption: "Table with resized columns",
   code: table_with_resized_columns) do

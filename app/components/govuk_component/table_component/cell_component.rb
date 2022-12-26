@@ -12,7 +12,7 @@ class GovukComponent::TableComponent::CellComponent < GovukComponent::Base
     "one-quarter"    => "govuk-!-width-one-quarter",
   }.freeze
 
-  def initialize(header: false, scope:, text: nil, numeric: false, width: nil, classes: [], html_attributes: {})
+  def initialize(scope:, header: false, numeric: false, text: nil, width: nil, classes: [], html_attributes: {})
     @header  = header
     @text    = text
     @numeric = numeric
