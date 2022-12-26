@@ -5,23 +5,23 @@ module Examples
     end
 
     def govuk_link_to_inverse
-      %(= govuk_link_to 'An inverse hyperlink', '#', inverse: true)
+      %(= govuk_link_to('An inverse hyperlink', '#', { inverse: true }))
     end
 
     def govuk_link_to_muted
-      %(= govuk_link_to 'A muted hyperlink', '#', muted: true)
+      %(= govuk_link_to('A muted hyperlink', '#', { muted: true }))
     end
 
     def govuk_link_other_styles
       <<~LINKS
         p
-          = govuk_link_to 'A hyperlink without an underline', '#', no_underline: true
+          = govuk_link_to('A hyperlink without an underline', '#', { no_underline: true })
 
         p
-          = govuk_link_to 'A hyperlink without a visited state', '#', no_visited_state: true
+          = govuk_link_to('A hyperlink without a visited state', '#', { no_visited_state: true })
 
         p
-          = govuk_link_to 'A text-coloured hyperlink', '#', text_colour: true
+          = govuk_link_to('A text-coloured hyperlink', '#', { text_colour: true })
       LINKS
     end
 
@@ -36,9 +36,9 @@ module Examples
     def govuk_button_other_styles
       <<~BUTTONS
         .govuk-button-group
-          = govuk_button_link_to 'A disabled button', '#', disabled: true
-          = govuk_button_link_to 'A secondary button', '#', secondary: true
-          = govuk_button_link_to 'A warning button', '#', warning: true
+          = govuk_button_link_to('A disabled button', '#', { disabled: true })
+          = govuk_button_link_to('A secondary button', '#', { secondary: true })
+          = govuk_button_link_to('A warning button', '#', { warning: true })
       BUTTONS
     end
 

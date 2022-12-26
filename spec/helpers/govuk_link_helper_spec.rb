@@ -66,14 +66,23 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
   describe "#govuk_link_to" do
     let(:link_text) { 'Onwards!' }
     let(:link_url) { '/some/link' }
+    let(:link_params) { { controller: :some_controller, action: :some_action } }
 
     before do
       allow(self).to receive(:url_for).with(link_params).and_return(link_url)
     end
 
-    context "when provided with link text and url params" do
-      let(:link_params) { { controller: :some_controller, action: :some_action } }
+    context "when provided with a path instead of params" do
+      let(:path) { "/some/path" }
+      before { allow(self).to receive(:url_for).with(path).and_return(path) }
+      subject { govuk_link_to(path) { link_text } }
 
+      specify "renders a link with the given path" do
+        expect(subject).to have_tag("a", with: { href: path, class: "govuk-link" }, text: link_text)
+      end
+    end
+
+    context "when provided with link text and url params" do
       subject { govuk_link_to link_text, link_params }
 
       it { is_expected.to have_tag('a', text: link_text, with: { href: link_url, class: 'govuk-link' }) }
@@ -81,7 +90,6 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
 
     context "when provided with url params and the block" do
       let(:link_html) { tag.span(link_text) }
-      let(:link_params) { { controller: :some_controller, action: :some_action } }
 
       subject { govuk_link_to(link_params) { link_html } }
 
@@ -89,7 +97,6 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
     end
 
     context "customising the GOV.UK link style" do
-      let(:link_params) { { controller: :some_controller, action: :some_action } }
       let(:custom_html_options) { { inverse: true } }
 
       subject { govuk_link_to(link_text, link_params, custom_html_options) }
@@ -98,12 +105,50 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
     end
 
     context "adding custom classes" do
-      let(:link_params) { { controller: :some_controller, action: :some_action } }
       let(:custom_class) { { class: "green" } }
 
       subject { govuk_link_to(link_text, link_params, { class: "green", no_underline: true }) }
 
       it { is_expected.to have_tag('a', with: { href: link_url, class: %w(green govuk-link--no-underline) }, text: link_text) }
+    end
+
+    describe "opening links in new tabs" do
+      context "when new_tab: true" do
+        let(:default_new_tab_text) { "(opens in new tab)" }
+        subject { govuk_link_to(link_text, link_params, new_tab: true) }
+
+        it { is_expected.to have_tag('a', with: { href: link_url, class: %w(govuk-link), target: "_blank", rel: "noreferrer noopener" }, text: "#{link_text} #{default_new_tab_text}") }
+      end
+
+      context "when new_tab: '(opens in new window)'" do
+        let(:overridden_new_tab_text) { "(opens in new window)" }
+        subject { govuk_link_to(link_text, link_params, new_tab: overridden_new_tab_text) }
+
+        it { is_expected.to have_tag('a', with: { href: link_url, class: %w(govuk-link), target: "_blank", rel: "noreferrer noopener" }, text: "#{link_text} #{overridden_new_tab_text}") }
+      end
+
+      context "when new_tab is an empty string" do
+        let(:overridden_new_tab_text) { "" }
+        subject { govuk_link_to(link_text, link_params, new_tab: overridden_new_tab_text) }
+
+        it "appends nothing to the string" do
+          expect(subject).to have_tag('a', with: { href: link_url, class: %w(govuk-link), target: "_blank", rel: "noreferrer noopener" }, text: link_text)
+        end
+      end
+
+      context "when custom 'rel' and 'target' values are provided" do
+        let(:custom_rel) { { rel: "help" } }
+        let(:custom_target) { { target: "new" } }
+        subject { govuk_link_to(link_text, link_params, { **custom_rel, **custom_target }, new_tab: true) }
+
+        it "replaces the default target value with the provided one" do
+          expect(subject).to have_tag('a', with: { rel: "noreferrer noopener help" })
+        end
+
+        it "appends the provided rel value to 'noreferrer' and 'noopener'" do
+          expect(subject).to have_tag('a', with: { target: 'new' })
+        end
+      end
     end
   end
 
@@ -205,58 +250,107 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
   end
 
   describe "#govuk_button_link_to" do
-    let(:button_text) { 'Do something' }
-    let(:button_url) { '/some/action' }
-    let(:button_params) { { controller: :some_controller, action: :some_action } }
+    let(:button_link_text) { 'Activate!' }
+    let(:button_link_url) { '/another/link' }
+    let(:link_params) { { controller: :some_controller, action: :some_action } }
 
     before do
-      allow(self).to receive(:url_for).with(button_params).and_return(button_url)
+      allow(self).to receive(:url_for).with(link_params).and_return(button_link_url)
     end
 
     context "when provided with button text and url params" do
-      subject { govuk_button_link_to(button_text, button_params) }
+      subject { govuk_button_link_to(button_link_text, link_params) }
 
       specify "renders a link styled as a button with the correct attributes" do
-        expect(subject).to have_tag("a", with: {
-          href: button_url,
-          class: "govuk-button",
-          draggable: false,
-          role: "button",
-          "data-module": "govuk-button"
-        })
+        expect(subject).to have_tag(
+          "a",
+          with: {
+            href: button_link_url,
+            class: "govuk-button",
+            draggable: false,
+            role: "button",
+            "data-module": "govuk-button"
+          },
+          text: button_link_text
+        )
+      end
+    end
+
+    context "when provided with a path instead of params" do
+      let(:path) { "/some/path" }
+      before { allow(self).to receive(:url_for).with(path).and_return(path) }
+      subject { govuk_button_link_to(path) { button_link_text } }
+
+      specify "renders a link with the given path" do
+        expect(subject).to have_tag("a", with: { href: path, class: "govuk-button" }, text: button_link_text)
       end
     end
 
     context "when provided with url params and a block" do
       let(:button_html) { tag.span(button_text) }
 
-      subject { govuk_button_link_to(button_params) { button_html } }
+      subject { govuk_button_link_to(link_params) { button_link_text } }
 
       specify "renders a link styled as a button with the correct attributes" do
-        expect(subject).to have_tag("a", with: { href: button_url, class: "govuk-button" }) do
-          with_tag("span", text: button_text)
-        end
+        expect(subject).to have_tag("a", with: { href: button_link_url, class: "govuk-button" }, text: button_link_text)
       end
     end
 
     context "customising the GOV.UK button style" do
-      let(:custom_button_options) { { secondary: true } }
+      let(:custom_link_button_options) { { secondary: true } }
 
-      subject { govuk_button_to(button_text, button_params, custom_button_options) }
+      subject { govuk_button_link_to(button_link_text, link_params, custom_link_button_options) }
 
       specify "renders a form with an button that has the GOV.UK modifier classes" do
-        expect(subject).to have_tag("form", with: { class: "button_to", action: button_url }) do
-          with_tag("input", with: { type: "submit", class: %w(govuk-button govuk-button--secondary) })
-        end
+        expect(subject).to have_tag("a", with: { href: button_link_url, class: %w(govuk-button govuk-button--secondary) }, text: button_link_text)
       end
     end
 
     context "adding custom classes" do
-      subject { govuk_button_to(button_text, button_params, { class: "yellow", disabled: true }) }
+      subject { govuk_button_link_to(button_link_text, link_params, { class: "yellow", disabled: true }) }
 
       specify "renders a form with an button that has the custom classes" do
-        expect(subject).to have_tag("form", with: { class: "button_to", action: button_url }) do
-          with_tag("input", with: { type: "submit", class: %w(govuk-button yellow govuk-button--disabled) })
+        expect(subject).to have_tag("a", with: { href: button_link_url, class: %w(govuk-button yellow) }, text: button_link_text)
+      end
+    end
+
+    describe "opening links in new tabs" do
+      let(:link_params) { { controller: :some_controller, action: :some_action } }
+
+      context "when new_tab: true" do
+        let(:default_new_tab_text) { "(opens in new tab)" }
+        subject { govuk_button_link_to(button_link_text, link_params, new_tab: true) }
+
+        it { is_expected.to have_tag('a', with: { href: button_link_url, class: %w(govuk-button), target: "_blank", rel: "noreferrer noopener" }, text: "#{button_link_text} #{default_new_tab_text}") }
+      end
+
+      context "when new_tab: '(opens in new window)'" do
+        let(:overridden_new_tab_text) { "(opens in new window)" }
+        subject { govuk_button_link_to(button_link_text, link_params, new_tab: overridden_new_tab_text) }
+
+        it { is_expected.to have_tag('a', with: { href: button_link_url, class: %w(govuk-button), target: "_blank", rel: "noreferrer noopener" }, text: "#{button_link_text} #{overridden_new_tab_text}") }
+      end
+
+      context "when new_tab is an empty string" do
+        let(:overridden_new_tab_text) { "" }
+        subject { govuk_button_link_to(button_link_text, link_params, new_tab: overridden_new_tab_text) }
+
+        it "appends nothing to the string" do
+          expect(subject).to have_tag('a', with: { href: button_link_url, class: %w(govuk-button), target: "_blank", rel: "noreferrer noopener" }, text: button_link_text)
+        end
+      end
+
+      context "when custom 'rel' and 'target' values are provided" do
+        let(:custom_rel) { { rel: "help" } }
+        let(:custom_target) { { target: "new" } }
+        subject { govuk_button_link_to(button_link_text, link_params, { **custom_rel, **custom_target }, new_tab: true) }
+
+        it "replaces the default target value with the provided one" do
+          expect(subject).to have_tag('a', with: { rel: "noreferrer noopener help" })
+        end
+
+        it "appends the provided rel value to 'noreferrer' and 'noopener'" do
+          expect(subject).to have_tag('a', with: { target: 'new' })
         end
       end
     end

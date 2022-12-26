@@ -1,4 +1,8 @@
+require "html_attributes_utils"
+
 module GovukLinkHelper
+  using HTMLAttributesUtils
+
   LINK_STYLES = {
     inverse:          "govuk-link--inverse",
     muted:            "govuk-link--muted",
@@ -11,6 +15,11 @@ module GovukLinkHelper
     disabled:  "govuk-button--disabled",
     secondary: "govuk-button--secondary",
     warning:   "govuk-button--warning",
+  }.freeze
+
+  NEW_TAB_ATTRIBUTES = {
+    target: "_blank",
+    rel: "noreferrer noopener"
   }.freeze
 
   def govuk_link_classes(*styles, default_class: 'govuk-link')
@@ -29,14 +38,14 @@ module GovukLinkHelper
     [default_class] + BUTTON_STYLES.values_at(*styles).compact
   end
 
-  def govuk_link_to(name = nil, options = nil, extra_options = {}, &block)
+  def govuk_link_to(name = nil, options = nil, extra_options = {}, new_tab: false, &block)
     extra_options = options if block_given?
-    html_options = build_html_options(extra_options)
+    html_options = build_html_options(extra_options, new_tab: new_tab)
 
     if block_given?
       link_to(name, html_options, &block)
     else
-      link_to(name, options, html_options)
+      link_to(prepare_link_text(name, new_tab), options, html_options)
     end
   end
 
@@ -62,15 +71,15 @@ module GovukLinkHelper
     end
   end
 
-  def govuk_button_link_to(name = nil, options = nil, extra_options = {}, &block)
+  def govuk_button_link_to(name = nil, options = nil, extra_options = {}, new_tab: false, &block)
     extra_options = options if block_given?
     html_options = GovukComponent::StartButtonComponent::LINK_ATTRIBUTES
-      .merge build_html_options(extra_options, style: :button)
+      .merge build_html_options(extra_options, style: :button, new_tab: new_tab)
 
     if block_given?
       link_to(name, html_options, &block)
     else
-      link_to(name, options, html_options)
+      link_to(prepare_link_text(name, new_tab), options, html_options)
     end
   end
 
@@ -87,18 +96,22 @@ module GovukLinkHelper
 
 private
 
-  def build_html_options(provided_options, style: :link)
-    styles = case style
-             when :link       then LINK_STYLES
-             when :button     then BUTTON_STYLES
-             else {}
-             end
+  def build_html_options(provided_options, style: :link, new_tab: false)
+    element_styles = { link: LINK_STYLES, button: BUTTON_STYLES }.fetch(style, {})
 
-    remaining_options = provided_options&.slice!(*styles.keys)
+    # we need to take a couple of extra steps here because we don't want the style
+    # params (inverse, muted, etc) to end up as extra attributes on the link.
 
-    return {} unless (style_classes = build_style_classes(style, provided_options))
+    remaining_options = new_tab_options(new_tab)
+      .deep_merge_html_attributes(remove_styles_from_provided_options(element_styles, provided_options))
 
-    inject_class(remaining_options, class_name: style_classes)
+    style_classes = build_style_classes(style, extract_styles_from_provided_options(element_styles, provided_options))
+
+    combine_attributes(remaining_options, class_name: style_classes)
+  end
+
+  def new_tab_options(new_tab)
+    new_tab ? NEW_TAB_ATTRIBUTES : {}
   end
 
   def build_style_classes(style, provided_options)
@@ -111,12 +124,34 @@ private
     end
   end
 
-  def inject_class(attributes, class_name:)
+  def combine_attributes(attributes, class_name:)
     attributes ||= {}
 
     attributes.with_indifferent_access.tap do |attrs|
       attrs[:class] = Array.wrap(attrs[:class]).prepend(class_name).flatten.join(" ")
     end
+  end
+
+  def extract_styles_from_provided_options(styles, provided_options)
+    return {} if provided_options.blank?
+
+    provided_options.slice(*styles.keys)
+  end
+
+  def remove_styles_from_provided_options(styles, provided_options)
+    return {} if provided_options.blank?
+
+    provided_options&.except(*styles.keys)
+  end
+
+  def prepare_link_text(text, new_tab)
+    return text unless new_tab
+
+    new_tab_text = new_tab.is_a?(String) ? new_tab : Govuk::Components.config.default_link_new_tab_text
+
+    return text if new_tab_text.blank?
+
+    %(#{text} #{new_tab_text})
   end
 end
 
