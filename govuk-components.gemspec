@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir["{app,config,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  spec.add_dependency("html-attributes-utils", "~> 0.9", ">= 0.9.2")
+  spec.add_dependency("html-attributes-utils", "~> 1.0.0", ">= 1.0.0")
   spec.add_dependency("pagy", "~> 6.0")
   spec.add_dependency "view_component", "~> 2.74.1"
 
