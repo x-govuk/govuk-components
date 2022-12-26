@@ -1,4 +1,8 @@
+require "html_attributes_utils"
+
 module GovukLinkHelper
+  using HTMLAttributesUtils
+
   LINK_STYLES = {
     inverse:          "govuk-link--inverse",
     muted:            "govuk-link--muted",
@@ -95,10 +99,11 @@ private
   def build_html_options(provided_options, style: :link, new_tab: false)
     element_styles = { link: LINK_STYLES, button: BUTTON_STYLES }.fetch(style, {})
 
-    remaining_options = {
-      **remove_styles_from_provided_options(element_styles, provided_options),
-      **new_tab_options(new_tab)
-    }
+    # we need to take a couple of extra steps here because we don't want the style
+    # params (inverse, muted, etc) to end up as extra attributes on the link.
+
+    remaining_options = new_tab_options(new_tab)
+      .deep_merge_html_attributes(remove_styles_from_provided_options(element_styles, provided_options))
 
     style_classes = build_style_classes(style, extract_styles_from_provided_options(element_styles, provided_options))
 

@@ -107,10 +107,10 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
     end
 
     describe "opening links in new windows" do
+      let(:link_params) { { controller: :some_controller, action: :some_action } }
+
       context "when new_tab: true" do
         let(:default_new_tab_text) { "(opens in new tab)" }
-        let(:link_params) { { controller: :some_controller, action: :some_action } }
-
         subject { govuk_link_to(link_text, link_params, new_tab: true) }
 
         it { is_expected.to have_tag('a', with: { href: link_url, class: %w(govuk-link), target: "_blank", rel: "noreferrer noopener" }, text: "#{link_text} #{default_new_tab_text}") }
@@ -118,11 +118,23 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
 
       context "when new_tab: '(opens in new window)'" do
         let(:overridden_new_tab_text) { "(opens in new window)" }
-        let(:link_params) { { controller: :some_controller, action: :some_action } }
-
         subject { govuk_link_to(link_text, link_params, new_tab: overridden_new_tab_text) }
 
         it { is_expected.to have_tag('a', with: { href: link_url, class: %w(govuk-link), target: "_blank", rel: "noreferrer noopener" }, text: "#{link_text} #{overridden_new_tab_text}") }
+      end
+
+      context "when custom 'rel' and 'target' values are provided" do
+        let(:custom_rel) { { rel: "help" } }
+        let(:custom_target) { { target: "new" } }
+        subject { govuk_link_to(link_text, link_params, { **custom_rel, **custom_target }, new_tab: true) }
+
+        it "replaces the default target value with the provided one" do
+          expect(subject).to have_tag('a', with: { rel: "noreferrer noopener help" })
+        end
+
+        it "appends the provided rel value to 'noreferrer' and 'noopener'" do
+          expect(subject).to have_tag('a', with: { target: 'new' })
+        end
       end
     end
   end
