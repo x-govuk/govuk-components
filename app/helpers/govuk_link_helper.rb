@@ -149,6 +149,8 @@ private
 
     new_tab_text = new_tab.is_a?(String) ? new_tab : Govuk::Components.config.default_link_new_tab_text
 
+    return text if new_tab_text.blank?
+
     %(#{text} #{new_tab_text})
   end
 end
