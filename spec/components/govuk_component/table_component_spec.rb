@@ -432,6 +432,43 @@ RSpec.describe(GovukComponent::TableComponent::CellComponent, type: :component) 
 
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
+
+  describe "controlling scopes" do
+    subject! do
+      render_inline(GovukComponent::TableComponent::RowComponent.new(parent: 'thead')) do |row|
+        row.cell(
+          text: "ABC",
+          scope: false,
+          header: true,
+          html_attributes: { class: "scope_is_false" },
+        )
+        row.cell(
+          text: "DEF",
+          scope: true,
+          header: true,
+          html_attributes: { class: "scope_is_true" },
+        )
+        row.cell(
+          text: "GHI",
+          scope: "custom",
+          header: false,
+          html_attributes: { class: "scope_on_td" },
+        )
+      end
+    end
+
+    it "suppresses the scope attribute when scope: false" do
+      expect(html.at_css('th.scope_is_false').attributes.keys).to match_array(%w(class))
+    end
+
+    it "doesn't suppress the scope attribute when scope: true" do
+      expect(html.at_css('th.scope_is_true').attributes.keys).to match_array(%w(class scope))
+    end
+
+    it "sets the custom scope when scope: 'custom'" do
+      expect(rendered_content).to have_tag('td', with: { class: 'scope_on_td', scope: 'custom' })
+    end
+  end
 end
 
 RSpec.describe(GovukComponent::TableComponent::CaptionComponent, type: :component) do

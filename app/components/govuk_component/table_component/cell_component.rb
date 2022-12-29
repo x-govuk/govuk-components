@@ -43,17 +43,22 @@ private
   end
 
   def default_attributes
-    { class: default_classes, scope: (scope || default_scope) }
+    { class: default_classes, scope: determine_scope }
   end
 
-  def default_scope
-    return unless header?
-    return 'col' if parent == 'thead'
-    return 'row' if parent == 'tbody'
+  def determine_scope
+    conditions = { scope: scope, parent: parent, header: header }
 
-    # FIXME: tfoot? https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tfoot
-
-    fail(ArgumentError, "invalid parent")
+    case conditions
+    in { scope: String }
+      scope
+    in { scope: false } | { header: false }
+      nil
+    in { parent: 'thead' }
+      'col'
+    in { parent: 'tbody' }
+      'row'
+    end
   end
 
   def default_classes
