@@ -1,7 +1,8 @@
 class GovukComponent::TableComponent::CellComponent < GovukComponent::Base
-  attr_reader :text, :header, :numeric, :width, :scope
+  attr_reader :text, :header, :numeric, :width, :scope, :parent
 
   alias_method :numeric?, :numeric
+  alias_method :header?, :header
 
   WIDTHS = {
     "full"           => "govuk-!-width-full",
@@ -12,12 +13,13 @@ class GovukComponent::TableComponent::CellComponent < GovukComponent::Base
     "one-quarter"    => "govuk-!-width-one-quarter",
   }.freeze
 
-  def initialize(scope:, header: false, numeric: false, text: nil, width: nil, classes: [], html_attributes: {})
+  def initialize(scope: nil, header: false, numeric: false, text: nil, width: nil, parent: nil, classes: [], html_attributes: {})
     @header  = header
     @text    = text
     @numeric = numeric
     @width   = width
     @scope   = scope
+    @parent  = parent
 
     super(classes: classes, html_attributes: html_attributes)
   end
@@ -41,17 +43,24 @@ private
   end
 
   def default_attributes
-    {
-      class: default_classes,
-      scope: scope
-    }
+    { class: default_classes, scope: (scope || default_scope) }
+  end
+
+  def default_scope
+    return unless header?
+    return 'col' if parent == 'thead'
+    return 'row' if parent == 'tbody'
+
+    # FIXME: tfoot? https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tfoot
+
+    fail(ArgumentError, "invalid parent")
   end
 
   def default_classes
     if header
-      class_names("govuk-table__header", "govuk-table__header--numeric" => numeric?, width_class => width?).split
+      class_names("govuk-table__header", "govuk-table__header--numeric" => numeric?, width_class => width?)
     else
-      class_names("govuk-table__cell", "govuk-table__cell--numeric" => numeric?, width_class => width?).split
+      class_names("govuk-table__cell", "govuk-table__cell--numeric" => numeric?, width_class => width?)
     end
   end
 

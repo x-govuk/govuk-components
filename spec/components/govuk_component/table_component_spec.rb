@@ -22,7 +22,10 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
   end
 
   specify "renders a table with thead and tbody elements" do
-    expect(rendered_content).to have_tag("table", with: { class: "govuk-table" })
+    expect(rendered_content).to have_tag("table", with: { class: "govuk-table" }) do
+      with_tag('thead', with: { class: "govuk-table__head" })
+      with_tag('tbody', with: { class: "govuk-table__body" })
+    end
   end
 
   specify "table has the provided id" do
@@ -417,7 +420,7 @@ end
 
 RSpec.describe(GovukComponent::TableComponent::RowComponent, type: :component) do
   let(:component_css_class) { 'govuk-table__row' }
-  let(:kwargs) { { parent: 'tbody' } }
+  let(:kwargs) { {} }
 
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
