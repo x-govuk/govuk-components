@@ -64,6 +64,7 @@ module Govuk
     # +:default_warning_text_icon+ "!"
     #
     # +:require_summary_list_action_visually_hidden_text+ when true forces visually hidden text to be set for every action. It can still be explicitly skipped by passing in +nil+. Defaults to +false+
+    # +:enable_auto_table_scopes+ automatically adds a scope of 'col' to th elements in thead and 'row' to th elements in tbody.
     DEFAULTS = {
       default_back_link_text: 'Back',
       default_breadcrumbs_collapse_on_mobile: false,
@@ -99,6 +100,7 @@ module Govuk
       default_link_new_tab_text: "(opens in new tab)",
 
       require_summary_list_action_visually_hidden_text: false,
+      enable_auto_table_scopes: true,
     }.freeze
 
     DEFAULTS.each_key { |k| config_accessor(k) { DEFAULTS[k] } }

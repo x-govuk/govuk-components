@@ -47,17 +47,21 @@ private
   end
 
   def determine_scope
-    conditions = { scope: scope, parent: parent, header: header }
+    conditions = { scope: scope, parent: parent, header: header, auto_table_scopes: config.enable_auto_table_scopes }
 
     case conditions
     in { scope: String }
       scope
-    in { scope: false } | { header: false }
+    in { scope: false } | { header: false } | { auto_table_scopes: false }
       nil
-    in { parent: 'thead' }
+    in { auto_table_scopes: true, parent: 'thead' }
       'col'
-    in { parent: 'tbody' }
+    in { auto_table_scopes: true, parent: 'tbody' }
       'row'
+    else
+      Rails.logger.warning("No scope pattern matched")
+
+      nil
     end
   end
 
