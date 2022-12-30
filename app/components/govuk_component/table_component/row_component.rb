@@ -33,6 +33,10 @@ class GovukComponent::TableComponent::RowComponent < GovukComponent::Base
     new(*args, parent: 'tbody', **kwargs, &block)
   end
 
+  def call
+    tag.tr(**html_attributes) { safe_join(cells) }
+  end
+
 private
 
   def build_cells_from_cell_data(cell_data)

@@ -15,6 +15,10 @@ class GovukComponent::TableComponent::BodyComponent < GovukComponent::Base
     build_rows_from_row_data(rows, first_cell_is_header)
   end
 
+  def call
+    tag.tbody(**html_attributes) { safe_join(rows) }
+  end
+
 private
 
   def build_rows_from_row_data(data, first_cell_is_header)

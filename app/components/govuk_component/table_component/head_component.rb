@@ -17,6 +17,10 @@ class GovukComponent::TableComponent::HeadComponent < GovukComponent::Base
     build_rows_from_row_data(rows)
   end
 
+  def call
+    tag.thead(**html_attributes) { safe_join(rows) }
+  end
+
 private
 
   def build_rows_from_row_data(data)
