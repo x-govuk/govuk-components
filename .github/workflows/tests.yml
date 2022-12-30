@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-20.04
     name: Testing with Ruby ${{ matrix.ruby }} and Rails ${{ matrix.rails }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-20.04
     name: Code quality, test coverage and documentation checks
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
