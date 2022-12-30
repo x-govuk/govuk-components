@@ -22,6 +22,16 @@ $LOAD_PATH.unshift(File.expand_path("../../lib", "lib"))
 
 require 'govuk/components'
 
+# FIXME: Just set this to *something* to make the guide build, otherwise
+#        if the view_component_path is nil we get a crash when view component
+#        tries to interpolate the nil into a regexp.
+#
+#        The problem was started with this issue which hasn't
+#        yet been solved:
+#
+#        https://github.com/ViewComponent/view_component/issues/1565
+ViewComponent::Base.config.view_component_path = "app/components"
+
 require 'components/govuk_component'
 require 'components/govuk_component/traits'
 require 'components/govuk_component/traits/custom_html_attributes'
