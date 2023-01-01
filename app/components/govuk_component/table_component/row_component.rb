@@ -32,6 +32,10 @@ class GovukComponent::TableComponent::RowComponent < GovukComponent::Base
     new(*args, parent: 'tbody', **kwargs, &block)
   end
 
+  def self.from_foot(*args, **kwargs, &block)
+    new(*args, parent: 'tfoot', **kwargs, &block)
+  end
+
   def call
     tag.tr(**html_attributes) { safe_join(cells) }
   end

@@ -260,6 +260,12 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
             end
           end
         end
+
+        table.foot do |foot|
+          foot.row do |row|
+            helper.safe_join(1.upto(3).map { |i| row.cell(text: "foot-col-#{i}") })
+          end
+        end
       end
     end
 
@@ -284,6 +290,16 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
 
           1.upto(3).map { |i| 1.upto(3).map { |j| "row-#{i}-col-#{j}" } }.each do |row|
             row.each { |value| with_tag('tr > td', text: value) }
+          end
+        end
+      end
+    end
+
+    specify "the table has the right foot content" do
+      expect(rendered_content).to have_tag('table') do
+        with_tag('tfoot') do
+          with_tag('tr', with: { class: "govuk-table__row" }, count: 1) do
+            with_tag('td', with: { class: "govuk-table__cell" }, count: 3)
           end
         end
       end
@@ -488,6 +504,14 @@ end
 RSpec.describe(GovukComponent::TableComponent::CaptionComponent, type: :component) do
   let(:component_css_class) { 'govuk-table__caption' }
   let(:kwargs) { { text: "Some caption" } }
+
+  it_behaves_like 'a component that accepts custom classes'
+  it_behaves_like 'a component that accepts custom HTML attributes'
+end
+
+RSpec.describe(GovukComponent::TableComponent::FootComponent, type: :component) do
+  let(:component_css_class) { 'govuk-table__foot' }
+  let(:kwargs) { {} }
 
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
