@@ -20,6 +20,10 @@ module GovukComponent
       build(*(head ? [head, rows] : [rows[0], rows[1..]]), caption_text)
     end
 
+    def call
+      tag.table(**html_attributes) { safe_join([caption, head, bodies]) }
+    end
+
   private
 
     def build(head_data, body_data, caption_text)

@@ -60,7 +60,7 @@ module Examples
 
     def table_from_arrays
       <<~TABLE
-        = govuk_table(rows: data, caption: "Pokémon species and types")
+        = govuk_table(rows: data, caption: "Pokémon species and types", first_cell_is_header: true)
       TABLE
     end
 
@@ -68,11 +68,11 @@ module Examples
       <<~TABLE_DATA
         {
           data: [
-            ["Name", "Primary type"],
-            ["Weedle", "Bug"],
-            ["Rattata", "Normal"],
-            ["Raichu", "Electric"],
-            ["Golduck", "Water"]
+            ["Name"   , "Primary type", "Catch rate", "Other types"],
+            ["Weedle" , "Bug"         , 255         , "Poison"],
+            ["Rattata", "Normal"      , 255         , "Dark"],
+            ["Raichu" , "Electric"    , 75          , "Psychic"],
+            ["Golduck", "Water"       , 75          , "No other types"]
           ]
         }
       TABLE_DATA

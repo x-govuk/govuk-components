@@ -1,7 +1,8 @@
 class GovukComponent::TableComponent::CellComponent < GovukComponent::Base
-  attr_reader :text, :header, :numeric, :width
+  attr_reader :text, :header, :numeric, :width, :scope, :parent
 
   alias_method :numeric?, :numeric
+  alias_method :header?, :header
 
   WIDTHS = {
     "full"           => "govuk-!-width-full",
@@ -12,11 +13,13 @@ class GovukComponent::TableComponent::CellComponent < GovukComponent::Base
     "one-quarter"    => "govuk-!-width-one-quarter",
   }.freeze
 
-  def initialize(header: false, text: nil, numeric: false, width: nil, classes: [], html_attributes: {})
+  def initialize(scope: nil, header: false, numeric: false, text: nil, width: nil, parent: nil, classes: [], html_attributes: {})
     @header  = header
     @text    = text
     @numeric = numeric
     @width   = width
+    @scope   = scope
+    @parent  = parent
 
     super(classes: classes, html_attributes: html_attributes)
   end
@@ -36,18 +39,37 @@ private
   end
 
   def cell_element
-    header ? :th : :td
+    header ? 'th' : 'td'
   end
 
   def default_attributes
-    { class: default_classes }
+    { class: default_classes, scope: determine_scope }
+  end
+
+  def determine_scope
+    conditions = { scope: scope, parent: parent, header: header, auto_table_scopes: config.enable_auto_table_scopes }
+
+    case conditions
+    in { scope: String }
+      scope
+    in { scope: false } | { header: false } | { auto_table_scopes: false }
+      nil
+    in { auto_table_scopes: true, parent: 'thead' }
+      'col'
+    in { auto_table_scopes: true, parent: 'tbody' }
+      'row'
+    else
+      Rails.logger.warning("No scope pattern matched")
+
+      nil
+    end
   end
 
   def default_classes
     if header
-      class_names("govuk-table__header", "govuk-table__header--numeric" => numeric?, width_class => width?).split
+      class_names("govuk-table__header", "govuk-table__header--numeric" => numeric?, width_class => width?)
     else
-      class_names("govuk-table__cell", "govuk-table__cell--numeric" => numeric?, width_class => width?).split
+      class_names("govuk-table__cell", "govuk-table__cell--numeric" => numeric?, width_class => width?)
     end
   end
 

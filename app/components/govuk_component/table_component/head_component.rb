@@ -1,5 +1,13 @@
 class GovukComponent::TableComponent::HeadComponent < GovukComponent::Base
-  renders_many :rows, "GovukComponent::TableComponent::RowComponent"
+  renders_many :rows, ->(cell_data: nil, header: true, classes: [], html_attributes: {}, &block) do
+    GovukComponent::TableComponent::RowComponent.from_head(
+      cell_data: cell_data,
+      header: header,
+      classes: classes,
+      html_attributes: html_attributes,
+      &block
+    )
+  end
 
   attr_reader :row_data
 
@@ -7,6 +15,10 @@ class GovukComponent::TableComponent::HeadComponent < GovukComponent::Base
     super(classes: classes, html_attributes: html_attributes)
 
     build_rows_from_row_data(rows)
+  end
+
+  def call
+    tag.thead(**html_attributes) { safe_join(rows) }
   end
 
 private
