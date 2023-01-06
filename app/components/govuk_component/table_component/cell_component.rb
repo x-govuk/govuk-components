@@ -59,7 +59,7 @@ private
     in { auto_table_scopes: true, parent: 'tbody' }
       'row'
     else
-      Rails.logger.warning("No scope pattern matched")
+      Rails.logger.warn("No scope pattern matched")
 
       nil
     end
