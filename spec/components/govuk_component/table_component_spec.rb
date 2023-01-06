@@ -12,11 +12,17 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
       table.caption(text: "What a nice table")
 
       table.head do |head|
-        head.row {}
+        head.row do |row|
+          row.cell(text: "A")
+          row.cell(text: "B")
+        end
       end
 
       table.body do |body|
-        body.row {}
+        body.row do |row|
+          row.cell(text: "C")
+          row.cell(text: "D")
+        end
       end
     end
   end
@@ -36,8 +42,16 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
     expect(rendered_content).to have_tag("table > thead")
   end
 
+  specify "the cells in thead should default to th" do
+    expect(rendered_content).to have_tag("table > thead > tr > th", count: 2)
+  end
+
   specify "renders a tbody element" do
     expect(rendered_content).to have_tag("table > tbody")
+  end
+
+  specify "the cells in tbody should default to td" do
+    expect(rendered_content).to have_tag("table > tbody > tr > td", count: 2)
   end
 
   context "when there is more than one tbody" do
