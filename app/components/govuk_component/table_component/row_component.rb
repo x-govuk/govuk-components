@@ -45,7 +45,14 @@ private
   def build_cells_from_cell_data(cell_data)
     return if cell_data.blank?
 
-    cell_data.each.with_index { |data, i| cell(text: data, **cell_attributes(i)) }
+    cell_data.each_with_index do |data, i|
+      case data
+      when Hash
+        cell(**data, **cell_attributes(i))
+      when String
+        cell(text: data, **cell_attributes(i))
+      end
+    end
   end
 
   def cell_attributes(count)

@@ -50,6 +50,11 @@ p Use the table component to make information easier to compare and scan for
     The `first_cell_is_header` parameter can be used to change the first column
     in the table body to header cells with `scope='row'`.
 
+    An optional `foot` parameter can be used to render a [table
+    footer](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tfoot).
+    Footers are usually used provide a summary of the table's contents. They
+    are not part of the GOV.UK Design System so custom styles will be required.
+
 == render('/partials/example.*',
   caption: "Table with resized columns",
   code: table_with_resized_columns) do

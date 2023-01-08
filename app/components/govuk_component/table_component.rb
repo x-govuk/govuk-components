@@ -7,7 +7,7 @@ module GovukComponent
 
     attr_accessor :id, :first_cell_is_header, :caption_text
 
-    def initialize(id: nil, rows: nil, head: nil, caption: nil, first_cell_is_header: false, classes: [], html_attributes: {})
+    def initialize(id: nil, rows: nil, head: nil, foot: nil, caption: nil, first_cell_is_header: false, classes: [], html_attributes: {})
       @id                   = id
       @first_cell_is_header = first_cell_is_header
       @caption_text         = caption
@@ -18,7 +18,7 @@ module GovukComponent
       return unless rows.presence
 
       # if no head is passed in,use the first row for headers
-      build(*(head ? [head, rows] : [rows[0], rows[1..]]), caption_text)
+      build(*(head ? [head, rows] : [rows[0], rows[1..]]), foot, caption_text)
     end
 
     def call
@@ -27,10 +27,11 @@ module GovukComponent
 
   private
 
-    def build(head_data, body_data, caption_text)
+    def build(head_data, body_data, foot_data, caption_text)
       caption(text: caption_text)
       head(rows: [head_data])
       body(rows: body_data, first_cell_is_header: first_cell_is_header)
+      foot(rows: foot_data, first_cell_is_header: first_cell_is_header)
     end
 
     def default_attributes
