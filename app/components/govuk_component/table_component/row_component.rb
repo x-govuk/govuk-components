@@ -1,5 +1,5 @@
 class GovukComponent::TableComponent::RowComponent < GovukComponent::Base
-  renders_many :cells, ->(scope: nil, header: false, text: nil, numeric: false, width: nil, classes: [], html_attributes: {}, &block) do
+  renders_many :cells, ->(scope: nil, header: nil, text: nil, numeric: false, width: nil, classes: [], html_attributes: {}, &block) do
     GovukComponent::TableComponent::CellComponent.new(
       scope: scope,
       header: header,
@@ -13,10 +13,9 @@ class GovukComponent::TableComponent::RowComponent < GovukComponent::Base
     )
   end
 
-  attr_reader :header, :first_cell_is_header, :parent
+  attr_reader :first_cell_is_header, :parent
 
-  def initialize(cell_data: nil, first_cell_is_header: false, header: false, parent: nil, classes: [], html_attributes: {})
-    @header = header
+  def initialize(cell_data: nil, first_cell_is_header: false, parent: nil, classes: [], html_attributes: {})
     @first_cell_is_header = first_cell_is_header
     @parent = parent
 
@@ -52,10 +51,14 @@ private
   end
 
   def cell_is_header?(count)
-    header || (first_cell_is_header && count.zero?)
+    in_thead? || (first_cell_is_header && count.zero?)
   end
 
   def default_attributes
     { class: %w(govuk-table__row) }
+  end
+
+  def in_thead?
+    parent == "thead"
   end
 end

@@ -7,9 +7,9 @@ module Examples
 
           - table.head do |head|
             - head.row do |row|
-              - row.cell(header: true, text: 'Name')
-              - row.cell(header: true, text: 'Types')
-              - row.cell(header: true, text: 'Pokédex number', numeric: true)
+              - row.cell(text: 'Name')
+              - row.cell(text: 'Types')
+              - row.cell(text: 'Pokédex number', numeric: true)
 
           - table.body do |body|
             - body.row do |row|
@@ -36,8 +36,8 @@ module Examples
 
           - table.head do |head|
             - head.row do |row|
-              - row.cell(header: true, text: 'Generation')
-              - row.cell(header: true, text: 'Years')
+              - row.cell(text: 'Generation')
+              - row.cell(text: 'Years')
 
           - table.body do |body|
             - body.row do |row|
@@ -85,8 +85,8 @@ module Examples
 
           - table.head do |head|
             - head.row do |row|
-              - row.cell(header: true, text: 'Name', width: 'one-third')
-              - row.cell(header: true, text: 'Description')
+              - row.cell(text: 'Name', width: 'one-third')
+              - row.cell(text: 'Description')
 
           - table.body do |body|
             - body.row do |row|

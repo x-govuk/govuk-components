@@ -13,13 +13,13 @@ class GovukComponent::TableComponent::CellComponent < GovukComponent::Base
     "one-quarter"    => "govuk-!-width-one-quarter",
   }.freeze
 
-  def initialize(scope: nil, header: false, numeric: false, text: nil, width: nil, parent: nil, classes: [], html_attributes: {})
-    @header  = header
+  def initialize(scope: nil, header: nil, numeric: false, text: nil, width: nil, parent: nil, classes: [], html_attributes: {})
     @text    = text
     @numeric = numeric
     @width   = width
     @scope   = scope
     @parent  = parent
+    @header  = (header.nil?) ? in_thead? : header
 
     super(classes: classes, html_attributes: html_attributes)
   end
@@ -59,7 +59,7 @@ private
     in { auto_table_scopes: true, parent: 'tbody' }
       'row'
     else
-      Rails.logger.warning("No scope pattern matched")
+      Rails.logger.warn("No scope pattern matched")
 
       nil
     end
@@ -75,5 +75,9 @@ private
 
   def width_class
     WIDTHS.fetch(width, nil)
+  end
+
+  def in_thead?
+    parent == "thead"
   end
 end
