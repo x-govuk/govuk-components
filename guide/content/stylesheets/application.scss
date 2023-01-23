@@ -19,3 +19,27 @@ $x-govuk-brand-colour: #28a;
 @import "components/list";
 @import "components/masthead";
 @import "components/prose";
+
+// Classes used in examples
+.govuk-table__foot {
+  border-top: 3px solid $govuk-border-colour;
+  @include govuk-typography-weight-bold;
+
+  th.govuk-table__footer {
+    text-align: left;
+  }
+
+  th.govuk-table__footer {
+    padding: govuk-spacing(2) govuk-spacing(4) govuk-spacing(2) 0;
+  }
+
+  .govuk-table__footer--numeric {
+    text-align: right;
+  }
+
+  .govuk-table__row:last-of-type {
+    th.govuk-table__header {
+      border-bottom: none;
+    }
+  }
+}

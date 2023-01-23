@@ -39,7 +39,11 @@ private
   end
 
   def cell_element
-    header ? 'th' : 'td'
+    if in_thead? || header?
+      'th'
+    else
+      'td'
+    end
   end
 
   def default_attributes
@@ -56,28 +60,40 @@ private
       nil
     in { auto_table_scopes: true, parent: 'thead' }
       'col'
-    in { auto_table_scopes: true, parent: 'tbody' }
+    in { auto_table_scopes: true, parent: 'tbody' } | { auto_table_scopes: true, parent: 'tfoot' }
       'row'
     else
-      Rails.logger.warn("No scope pattern matched")
-
       nil
     end
   end
 
   def default_classes
-    if header
-      class_names("govuk-table__header", "govuk-table__header--numeric" => numeric?, width_class => width?)
-    else
-      class_names("govuk-table__cell", "govuk-table__cell--numeric" => numeric?, width_class => width?)
-    end
+    class_names(
+      "govuk-table__#{class_suffix}",
+      "govuk-table__#{class_suffix}--numeric" => numeric?,
+      width => width?,
+    )
   end
 
-  def width_class
-    WIDTHS.fetch(width, nil)
+  def class_suffix
+    if in_thead? || (in_tbody? && header?)
+      "header"
+    elsif in_tfoot?
+      "footer"
+    else
+      "cell"
+    end
   end
 
   def in_thead?
     parent == "thead"
+  end
+
+  def in_tfoot?
+    parent == "tfoot"
+  end
+
+  def in_tbody?
+    parent == "tbody"
   end
 end

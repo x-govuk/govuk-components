@@ -60,20 +60,21 @@ module Examples
 
     def table_from_arrays
       <<~TABLE
-        = govuk_table(rows: data, caption: "Pokémon species and types", first_cell_is_header: true)
+        = govuk_table(caption: "Helioptile statistics", head:, rows:, foot:, first_cell_is_header: true)
       TABLE
     end
 
     def table_data
       <<~TABLE_DATA
         {
-          data: [
-            ["Name"   , "Primary type", "Catch rate", "Other types"],
-            ["Weedle" , "Bug"         , 255         , "Poison"],
-            ["Rattata", "Normal"      , 255         , "Dark"],
-            ["Raichu" , "Electric"    , 75          , "Psychic"],
-            ["Golduck", "Water"       , 75          , "No other types"]
-          ]
+          head: [  "Name",          { text: "Rating", numeric: true }],
+          rows: [
+                  ["Health Points", { text: 44, numeric: true }],
+                  ["Attack",        { text: 38, numeric: true }],
+                  ["Defence",       { text: 33, numeric: true }],
+                  ["Speed",         { text: 70, numeric: true }],
+                ],
+          foot: [  "Total",         { text: 44 + 38 + 33 + 70, numeric: true }]
         }
       TABLE_DATA
     end
