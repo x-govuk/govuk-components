@@ -71,7 +71,7 @@ module Examples
           - card.with_action { govuk_link_to("Choose", "#") }
           - card.with_summary_list(rows: araquanid_data)
 
-        = govuk_summary_list(header: { title: "Emboar", actions: emboar_actions }, rows: emboar_data)
+        = govuk_summary_list(card: { title: "Emboar", actions: emboar_actions }, rows: emboar_data)
       SUMMARY_LIST_CARD
     end
 

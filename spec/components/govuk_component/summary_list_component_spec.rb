@@ -166,9 +166,9 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
     end
   end
 
-  context "when there is a card header" do
+  context "when there is a card" do
     subject! do
-      render_inline(described_class.new(header: { title: "Hi" }, **kwargs)) do |component|
+      render_inline(described_class.new(card: { title: "Hi" }, **kwargs)) do |component|
         component.with_row { |row| helper.safe_join([row.with_key(text: "Key"), row.with_value(text: "Value"), row.with_action(href: "/a", visually_hidden_text: "for key")]) }
       end
     end
