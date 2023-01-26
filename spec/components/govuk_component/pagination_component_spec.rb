@@ -290,8 +290,8 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
 
     subject! do
       render_inline(GovukComponent::PaginationComponent.new) do |pagination|
-        pagination.previous_page(href: previous_href, text: previous_text, label_text: previous_label)
-        pagination.next_page(href: next_href, text: next_text, label_text: next_label)
+        pagination.with_previous_page(href: previous_href, text: previous_text, label_text: previous_label)
+        pagination.with_next_page(href: next_href, text: next_text, label_text: next_label)
       end
     end
 
@@ -341,8 +341,8 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
 
       subject! do
         render_inline(GovukComponent::PaginationComponent.new) do |pagination|
-          pagination.previous_page(href: previous_href, text: previous_text)
-          pagination.next_page(href: next_href, text: next_text)
+          pagination.with_previous_page(href: previous_href, text: previous_text)
+          pagination.with_next_page(href: next_href, text: next_text)
         end
       end
 
@@ -363,11 +363,11 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
   describe "manually passing in page items" do
     subject! do
       render_inline(GovukComponent::PaginationComponent.new) do |pagination|
-        pagination.previous_page(href: "#prev")
-        pagination.item(href: "#1", number: 1)
-        pagination.item(href: "#2", number: 2)
-        pagination.item(href: "#3", number: 3, visually_hidden_text: "third")
-        pagination.next_page(href: "#next")
+        pagination.with_previous_page(href: "#prev")
+        pagination.with_item(href: "#1", number: 1)
+        pagination.with_item(href: "#2", number: 2)
+        pagination.with_item(href: "#3", number: 3, visually_hidden_text: "third")
+        pagination.with_next_page(href: "#next")
       end
     end
 

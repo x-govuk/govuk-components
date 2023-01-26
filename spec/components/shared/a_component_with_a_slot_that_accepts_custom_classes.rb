@@ -3,7 +3,7 @@ shared_examples 'a component with a slot that accepts custom classes' do
 
   subject! do
     render_inline(described_class.send(:new, **kwargs)) do |component|
-      component.send(slot, classes: custom_class, **slot_kwargs) { content.call }
+      component.send("with_#{slot}", classes: custom_class, **slot_kwargs) { content.call }
     end
   end
 

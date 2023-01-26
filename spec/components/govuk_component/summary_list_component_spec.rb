@@ -13,12 +13,12 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
 
   subject! do
     render_inline(described_class.new(**kwargs)) do |component|
-      component.row do |row|
+      component.with_row do |row|
         helper.safe_join(
           [
-            row.key(text: "Key"),
-            row.value(text: "Value"),
-            row.action(href: "/action", text: "Action", visually_hidden_text: "for key"),
+            row.with_key(text: "Key"),
+            row.with_value(text: "Value"),
+            row.with_action(href: "/action", text: "Action", visually_hidden_text: "for key"),
           ]
         )
       end
@@ -40,14 +40,14 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
   context "when there are multiple actions" do
     subject! do
       render_inline(described_class.new(**kwargs)) do |component|
-        component.row do |row|
+        component.with_row do |row|
           helper.safe_join(
             [
-              row.key(text: "Key"),
-              row.value(text: "Value"),
-              row.action(href: "/action-1", text: "First action", visually_hidden_text: "for key"),
-              row.action(href: "/action-2", text: "Second action", visually_hidden_text: "for key"),
-              row.action(href: "/action-3", text: "Third action", visually_hidden_text: "for key"),
+              row.with_key(text: "Key"),
+              row.with_value(text: "Value"),
+              row.with_action(href: "/action-1", text: "First action", visually_hidden_text: "for key"),
+              row.with_action(href: "/action-2", text: "Second action", visually_hidden_text: "for key"),
+              row.with_action(href: "/action-3", text: "Third action", visually_hidden_text: "for key"),
             ]
           )
         end
@@ -77,9 +77,9 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
   context "when rows have actions" do
     subject! do
       render_inline(described_class.new(**kwargs)) do |component|
-        component.row do |row|
+        component.with_row do |row|
           helper.safe_join(
-            [row.key(text: "Key"), row.value(text: "Value"), row.action(href: "/action", text: "Action", visually_hidden_text: "key")]
+            [row.with_key(text: "Key"), row.with_value(text: "Value"), row.with_action(href: "/action", text: "Action", visually_hidden_text: "key")]
           )
         end
       end
@@ -97,9 +97,9 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
   context "when no action is specified" do
     subject! do
       render_inline(described_class.new(**kwargs)) do |component|
-        component.row do |row|
+        component.with_row do |row|
           helper.safe_join(
-            [row.key(text: "Key"), row.value(text: "Value")]
+            [row.with_key(text: "Key"), row.with_value(text: "Value")]
           )
         end
       end
@@ -117,15 +117,15 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
   context "when one row has actions and one does not" do
     subject! do
       render_inline(described_class.new(**kwargs)) do |component|
-        component.row do |row|
+        component.with_row do |row|
           helper.safe_join(
-            [row.key(text: "Key"), row.value(text: "Value"), row.action(href: nil, visually_hidden_text: nil)]
+            [row.with_key(text: "Key"), row.with_value(text: "Value"), row.with_action(href: nil, visually_hidden_text: nil)]
           )
         end
 
-        component.row do |row|
+        component.with_row do |row|
           helper.safe_join(
-            [row.key(text: "Key"), row.value(text: "Value")]
+            [row.with_key(text: "Key"), row.with_value(text: "Value")]
           )
         end
       end
@@ -151,9 +151,9 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
   context "when 'actions: false'" do
     subject! do
       render_inline(described_class.new(actions: false, **kwargs)) do |component|
-        component.row { |row| helper.safe_join([row.key(text: "Key"), row.value(text: "Value"), row.action(href: "/a", visually_hidden_text: "for key")]) }
-        component.row { |row| helper.safe_join([row.key(text: "Key"), row.value(text: "Value"), row.action(href: "/b", visually_hidden_text: "for key")]) }
-        component.row { |row| helper.safe_join([row.key(text: "Key"), row.value(text: "Value")]) }
+        component.with_row { |row| helper.safe_join([row.with_key(text: "Key"), row.with_value(text: "Value"), row.with_action(href: "/a", visually_hidden_text: "for key")]) }
+        component.with_row { |row| helper.safe_join([row.with_key(text: "Key"), row.with_value(text: "Value"), row.with_action(href: "/b", visually_hidden_text: "for key")]) }
+        component.with_row { |row| helper.safe_join([row.with_key(text: "Key"), row.with_value(text: "Value")]) }
       end
     end
 
@@ -170,9 +170,9 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
     context "when there is visually hidden text" do
       subject! do
         render_inline(described_class.new(**kwargs)) do |component|
-          component.row do |row|
+          component.with_row do |row|
             helper.safe_join(
-              [row.key(text: "Key"), row.value(text: "Value"), row.action(href: "/action", text: "Action", visually_hidden_text: "visually hidden")]
+              [row.with_key(text: "Key"), row.with_value(text: "Value"), row.with_action(href: "/action", text: "Action", visually_hidden_text: "visually hidden")]
             )
           end
         end
@@ -192,9 +192,9 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
     context "when visually hidden text is nil" do
       subject! do
         render_inline(described_class.new(**kwargs)) do |component|
-          component.row do |row|
+          component.with_row do |row|
             helper.safe_join(
-              [row.key(text: "Key"), row.value(text: "Value"), row.action(href: "/action", text: "Action", visually_hidden_text: nil)]
+              [row.with_key(text: "Key"), row.with_value(text: "Value"), row.with_action(href: "/action", text: "Action", visually_hidden_text: nil)]
             )
           end
         end
@@ -212,9 +212,9 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
     context "when visually hidden text param is omitted" do
       subject! do
         render_inline(described_class.new(**kwargs)) do |component|
-          component.row do |row|
+          component.with_row do |row|
             helper.safe_join(
-              [row.key(text: "Key"), row.value(text: "Value"), row.action(href: "/action", text: "Action")]
+              [row.with_key(text: "Key"), row.with_value(text: "Value"), row.with_action(href: "/action", text: "Action")]
             )
           end
         end

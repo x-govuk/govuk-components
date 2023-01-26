@@ -28,10 +28,10 @@ module GovukComponent
   private
 
     def build(head_data, body_data, foot_data, caption_text)
-      caption(text: caption_text)
-      head(rows: [head_data])
-      body(rows: body_data, first_cell_is_header: first_cell_is_header)
-      foot(rows: foot_data, first_cell_is_header: first_cell_is_header)
+      with_caption(text: caption_text)
+      with_head(rows: [head_data])
+      with_body(rows: body_data, first_cell_is_header: first_cell_is_header)
+      with_foot(rows: foot_data, first_cell_is_header: first_cell_is_header)
     end
 
     def default_attributes

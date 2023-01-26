@@ -24,7 +24,7 @@ private
   def build_rows_from_row_data(data, first_cell_is_header)
     return if data.blank?
 
-    data.each { |d| row(cell_data: d, first_cell_is_header: first_cell_is_header) }
+    data.each { |d| with_row(cell_data: d, first_cell_is_header: first_cell_is_header) }
   end
 
   def default_attributes

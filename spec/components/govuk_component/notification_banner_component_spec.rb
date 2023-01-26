@@ -17,9 +17,9 @@ RSpec.describe(GovukComponent::NotificationBannerComponent, type: :component) do
     context "when supplied with a block" do
       subject! do
         render_inline(described_class.new(**kwargs)) do |component|
-          component.heading(**slot_kwargs)
-          component.heading(text: 'More text here')
-          component.heading do
+          component.with_heading(**slot_kwargs)
+          component.with_heading(text: 'More text here')
+          component.with_heading do
             helper.tag.p('some special content')
           end
         end
@@ -58,7 +58,7 @@ RSpec.describe(GovukComponent::NotificationBannerComponent, type: :component) do
 
       subject! do
         render_inline(described_class.new(text: "Something")) do |component|
-          component.title_html { custom_html }
+          component.with_title_html { custom_html }
         end
       end
 
@@ -105,7 +105,7 @@ RSpec.describe(GovukComponent::NotificationBannerComponent, type: :component) do
   describe 'custom classes' do
     before do
       render_inline(described_class.new(**kwargs.merge(classes: custom_classes))) do |component|
-        component.heading(text: 'A title')
+        component.with_heading(text: 'A title')
       end
     end
 
@@ -129,7 +129,7 @@ RSpec.describe(GovukComponent::NotificationBannerComponent, type: :component) do
   describe 'custom html attributes' do
     before do
       render_inline(described_class.new(**kwargs)) do |component|
-        component.heading(text: 'A title')
+        component.with_heading(text: 'A title')
       end
     end
 
@@ -146,7 +146,7 @@ RSpec.describe(GovukComponent::NotificationBannerComponent, type: :component) do
   describe 'rendering a notification banner with headings' do
     before do
       render_inline(described_class.new(**kwargs)) do |component|
-        component.heading(text: 'omg')
+        component.with_heading(text: 'omg')
       end
     end
 
@@ -189,7 +189,7 @@ RSpec.describe(GovukComponent::NotificationBannerComponent, type: :component) do
 
       before do
         render_inline(described_class.new(**kwargs)) do |component|
-          component.heading { heading_text }
+          component.with_heading { heading_text }
         end
       end
 
@@ -200,7 +200,7 @@ RSpec.describe(GovukComponent::NotificationBannerComponent, type: :component) do
       context 'when custom content and heading text is provided' do
         before do
           render_inline(described_class.new(**kwargs)) do |component|
-            component.heading(text: 'Some text') { heading_text }
+            component.with_heading(text: 'Some text') { heading_text }
           end
         end
 

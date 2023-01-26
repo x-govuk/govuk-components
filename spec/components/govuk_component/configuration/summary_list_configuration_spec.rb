@@ -29,10 +29,10 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
         let(:visually_hidden_text) { "visually hidden info" }
         subject! do
           render_inline(GovukComponent::SummaryListComponent.new) do |sl|
-            sl.row do |row|
-              row.key(text: "key one")
-              row.value(text: "value one")
-              row.action(text: "action one", href: "/action-one", visually_hidden_text: visually_hidden_text)
+            sl.with_row do |row|
+              row.with_key(text: "key one")
+              row.with_value(text: "value one")
+              row.with_action(text: "action one", href: "/action-one", visually_hidden_text: visually_hidden_text)
             end
           end
         end
@@ -45,10 +45,10 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
       context "when visually_hidden_text is omitted" do
         subject do
           render_inline(GovukComponent::SummaryListComponent.new) do |sl|
-            sl.row do |row|
-              row.key(text: "key one")
-              row.value(text: "value one")
-              row.action(text: "action one", href: "/action-one")
+            sl.with_row do |row|
+              row.with_key(text: "key one")
+              row.with_value(text: "value one")
+              row.with_action(text: "action one", href: "/action-one")
             end
           end
         end

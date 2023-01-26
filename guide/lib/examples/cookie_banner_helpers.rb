@@ -3,10 +3,10 @@ module Examples
     def cookie_banner_normal
       <<~COOKIE_BANNER
         = govuk_cookie_banner do |cb|
-          - cb.message(heading_text: "Cookies on this service") do |m|
-            - m.action { govuk_button_link_to("Accept additional cookies", "#") }
-            - m.action { govuk_button_link_to("Reject additional cookies", "#") }
-            - m.action { govuk_link_to("Read the cookie policy", "#") }
+          - cb.with_message(heading_text: "Cookies on this service") do |m|
+            - m.with_action { govuk_button_link_to("Accept additional cookies", "#") }
+            - m.with_action { govuk_button_link_to("Reject additional cookies", "#") }
+            - m.with_action { govuk_link_to("Read the cookie policy", "#") }
 
             p
               | We use some essential cookies to make this service work.

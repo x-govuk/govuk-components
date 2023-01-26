@@ -107,7 +107,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
 
     subject! do
       render_inline(GovukComponent::HeaderComponent.new) do |component|
-        component.custom_logo { custom_logo }
+        component.with_custom_logo { custom_logo }
       end
     end
 
@@ -130,7 +130,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
 
       subject! do
         render_inline(GovukComponent::HeaderComponent.new) do |component|
-          component.product_name(name: custom_name)
+          component.with_product_name(name: custom_name)
         end
       end
 
@@ -148,7 +148,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
 
       subject! do
         render_inline(GovukComponent::HeaderComponent.new) do |component|
-          component.product_name { custom_name }
+          component.with_product_name { custom_name }
         end
       end
 
@@ -196,7 +196,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
       subject! do
         header_kwargs = kwargs.merge(navigation_classes: custom_classes)
         render_inline(GovukComponent::HeaderComponent.new(**header_kwargs)) do |component|
-          navigation_items.each { |navigation_item| component.navigation_item(**navigation_item) }
+          navigation_items.each { |navigation_item| component.with_navigation_item(**navigation_item) }
         end
       end
 
@@ -305,7 +305,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
 
           subject! do
             render_inline(GovukComponent::HeaderComponent.new(**kwargs.merge(menu_button_label: custom_label))) do |component|
-              navigation_items.each { |item| component.navigation_item(**item) }
+              navigation_items.each { |item| component.with_navigation_item(**item) }
             end
           end
 
@@ -322,7 +322,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
 
         subject! do
           render_inline(GovukComponent::HeaderComponent.new(**kwargs.merge(navigation_label: custom_label))) do |component|
-            navigation_items.each { |item| component.navigation_item(**item) }
+            navigation_items.each { |item| component.with_navigation_item(**item) }
           end
         end
 

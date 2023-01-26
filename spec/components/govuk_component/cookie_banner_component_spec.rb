@@ -59,9 +59,9 @@ RSpec.describe(GovukComponent::CookieBannerComponent, type: :component) do
 
     subject! do
       render_inline(described_class.new(**kwargs)) do |cookie_banner|
-        cookie_banner.message(heading_text: custom_heading_text, role: custom_role, text: custom_message_text) do |message|
-          message.action { helper.govuk_button_link_to("/accept") { "Accept" } }
-          message.action { helper.govuk_link_to("View cookie policy", "/cookie-policy") }
+        cookie_banner.with_message(heading_text: custom_heading_text, role: custom_role, text: custom_message_text) do |message|
+          message.with_action { helper.govuk_button_link_to("/accept") { "Accept" } }
+          message.with_action { helper.govuk_link_to("View cookie policy", "/cookie-policy") }
         end
       end
     end
@@ -133,7 +133,7 @@ RSpec.describe(GovukComponent::CookieBannerComponent::MessageComponent, type: :c
 
     subject! do
       render_inline(described_class.new(role: custom_role)) do |message|
-        message.heading_html { custom_heading_html }
+        message.with_heading_html { custom_heading_html }
 
         helper.content_tag(custom_message_tag, custom_text)
       end

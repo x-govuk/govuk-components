@@ -38,10 +38,10 @@ module GovukComponent
       rows.each do |data|
         k, v, a = data.values_at(:key, :value, :actions)
 
-        row(**data.slice(:classes, :html_attributes)) do |r|
-          r.key(**k)
-          r.value(**v)
-          Array.wrap(a).each { |ad| r.action(**ad) }
+        with_row(**data.slice(:classes, :html_attributes)) do |r|
+          r.with_key(**k)
+          r.with_value(**v)
+          Array.wrap(a).each { |ad| r.with_action(**ad) }
         end
       end
     end
