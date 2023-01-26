@@ -24,7 +24,7 @@ RSpec.describe(GovukComponent::PanelComponent, type: :component) do
     let(:custom_title_text) { "I'm a title" }
     before do
       render_inline(described_class.new(**kwargs.except(:title_text))) do |component|
-        component.title_html { helper.content_tag(custom_tag, custom_title_text) }
+        component.with_title_html { helper.content_tag(custom_tag, custom_title_text) }
       end
     end
 

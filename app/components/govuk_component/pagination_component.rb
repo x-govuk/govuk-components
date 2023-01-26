@@ -96,7 +96,7 @@ private
       text: @previous_text,
     }
 
-    previous_page(**kwargs.compact)
+    with_previous_page(**kwargs.compact)
   end
 
   def build_next
@@ -107,11 +107,11 @@ private
       text: @next_text,
     }
 
-    next_page(**kwargs.compact)
+    with_next_page(**kwargs.compact)
   end
 
   def build_items
-    pagy.series.map { |i| item(number: i, href: pagy_url_for(pagy, i), from_pagy: true) }
+    pagy.series.map { |i| with_item(number: i, href: pagy_url_for(pagy, i), from_pagy: true) }
   end
 
   def default_adjacent_text(side)

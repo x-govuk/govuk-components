@@ -9,19 +9,19 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
 
   subject! do
     render_inline(GovukComponent::TableComponent.new(**kwargs)) do |table|
-      table.caption(text: "What a nice table")
+      table.with_caption(text: "What a nice table")
 
-      table.head do |head|
-        head.row do |row|
-          row.cell(text: "A")
-          row.cell(text: "B")
+      table.with_head do |head|
+        head.with_row do |row|
+          row.with_cell(text: "A")
+          row.with_cell(text: "B")
         end
       end
 
-      table.body do |body|
-        body.row do |row|
-          row.cell(text: "C")
-          row.cell(text: "D")
+      table.with_body do |body|
+        body.with_row do |row|
+          row.with_cell(text: "C")
+          row.with_cell(text: "D")
         end
       end
     end
@@ -61,7 +61,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
       render_inline(GovukComponent::TableComponent.new(**kwargs)) do |table|
         table.caption(text: "What a nice table")
 
-        expected_count.times { table.body {} }
+        expected_count.times { table.with_body {} }
       end
     end
 
@@ -312,25 +312,25 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
   context "when the rows are built using nested slots" do
     subject! do
       render_inline(GovukComponent::TableComponent.new) do |table|
-        table.head do |head|
-          head.row do |row|
-            helper.safe_join(1.upto(3).map { |i| row.cell(header: true, text: "header-col-#{i}") })
+        table.with_head do |head|
+          head.with_row do |row|
+            helper.safe_join(1.upto(3).map { |i| row.with_cell(header: true, text: "header-col-#{i}") })
           end
         end
 
-        table.body do |body|
+        table.with_body do |body|
           1.upto(3) do |i|
-            body.row do |row|
-              row.cell(text: "row-#{i}-col-1")
-              row.cell(text: "row-#{i}-col-2")
-              row.cell(text: "row-#{i}-col-3", scope: "bananas")
+            body.with_row do |row|
+              row.with_cell(text: "row-#{i}-col-1")
+              row.with_cell(text: "row-#{i}-col-2")
+              row.with_cell(text: "row-#{i}-col-3", scope: "bananas")
             end
           end
         end
 
-        table.foot do |foot|
-          foot.row do |row|
-            helper.safe_join(1.upto(3).map { |i| row.cell(text: "foot-col-#{i}") })
+        table.with_foot do |foot|
+          foot.with_row do |row|
+            helper.safe_join(1.upto(3).map { |i| row.with_cell(text: "foot-col-#{i}") })
           end
         end
       end
@@ -380,18 +380,18 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
   context 'when some data is numeric' do
     subject! do
       render_inline(GovukComponent::TableComponent.new) do |table|
-        table.head do |head|
-          head.row do |row|
-            row.cell(text: "non-numeric", header: true)
-            row.cell(text: "numeric", header: true, numeric: true)
+        table.with_head do |head|
+          head.with_row do |row|
+            row.with_cell(text: "non-numeric", header: true)
+            row.with_cell(text: "numeric", header: true, numeric: true)
           end
         end
 
-        table.body do |body|
+        table.with_body do |body|
           1.upto(3) do |i|
-            body.row do |row|
-              row.cell(text: "non-numeric")
-              row.cell(text: i, numeric: true)
+            body.with_row do |row|
+              row.with_cell(text: "non-numeric")
+              row.with_cell(text: i, numeric: true)
             end
           end
         end
@@ -426,7 +426,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
 
             subject do
               render_inline(GovukComponent::TableComponent.new(**kwargs)) do |table|
-                table.caption(text: "Caption size: #{size}", size: size)
+                table.with_caption(text: "Caption size: #{size}", size: size)
               end
             end
 
@@ -452,7 +452,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
 
       subject do
         render_inline(GovukComponent::TableComponent.new(**kwargs)) do |table|
-          table.caption { fancy_caption }
+          table.with_caption { fancy_caption }
         end
       end
 
@@ -464,8 +464,8 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
     describe "when no caption is provided" do
       subject do
         render_inline(GovukComponent::TableComponent.new(**kwargs)) do |table|
-          table.head {}
-          table.body {}
+          table.with_head {}
+          table.with_body {}
         end
       end
 
@@ -478,10 +478,10 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
   describe "custom colum widths" do
     subject! do
       render_inline(GovukComponent::TableComponent.new) do |table|
-        table.head do |head|
-          head.row do |row|
+        table.with_head do |head|
+          head.with_row do |row|
             GovukComponent::TableComponent::CellComponent::WIDTHS.each_key do |width|
-              row.cell(text: width, header: true, width: width)
+              row.with_cell(text: width, header: true, width: width)
             end
           end
         end
@@ -533,19 +533,19 @@ RSpec.describe(GovukComponent::TableComponent::CellComponent, type: :component) 
   describe "controlling scopes" do
     subject! do
       render_inline(GovukComponent::TableComponent::RowComponent.new(parent: 'tbody')) do |row|
-        row.cell(
+        row.with_cell(
           text: "ABC",
           scope: false,
           header: true,
           html_attributes: { class: "scope_is_false" },
         )
-        row.cell(
+        row.with_cell(
           text: "DEF",
           scope: true,
           header: true,
           html_attributes: { class: "scope_is_true" },
         )
-        row.cell(
+        row.with_cell(
           text: "GHI",
           scope: "custom",
           header: false,

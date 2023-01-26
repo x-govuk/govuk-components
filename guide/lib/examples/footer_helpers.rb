@@ -44,7 +44,7 @@ module Examples
     def footer_with_custom_meta
       <<~FOOTER_META
         = render GovukComponent::FooterComponent.new do |footer|
-          - footer.meta do
+          - footer.with_meta do
             .govuk-footer__meta-item
               p.govuk-footer__meta-custom
                 | Any custom HTML can go here, all other content will be
@@ -70,7 +70,7 @@ module Examples
     def footer_with_navigation
       <<~FOOTER_WITH_NAVIGATION
         = govuk_footer do |footer|
-          - footer.navigation do
+          - footer.with_navigation do
             .govuk-footer__section.govuk-grid-column-one-third
               h2.govuk-footer__heading.govuk-heading-m Section one
 

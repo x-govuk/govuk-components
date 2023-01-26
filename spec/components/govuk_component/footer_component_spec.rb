@@ -167,7 +167,7 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
 
       subject! do
         render_inline(GovukComponent::FooterComponent.new(**kwargs)) do |footer|
-          footer.meta_html { custom_content }
+          footer.with_meta_html { custom_content }
         end
       end
 
@@ -206,7 +206,7 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
 
         subject! do
           render_inline(GovukComponent::FooterComponent.new(**kwargs)) do |component|
-            component.meta_html { custom_html }
+            component.with_meta_html { custom_html }
           end
         end
 
@@ -226,7 +226,7 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
 
     subject! do
       render_inline(GovukComponent::FooterComponent.new(**kwargs)) do |footer|
-        footer.meta { custom_content }
+        footer.with_meta { custom_content }
       end
     end
 
@@ -266,7 +266,7 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
 
     subject! do
       render_inline(GovukComponent::FooterComponent.new(**kwargs)) do |component|
-        component.navigation { custom_html }
+        component.with_navigation { custom_html }
       end
     end
 

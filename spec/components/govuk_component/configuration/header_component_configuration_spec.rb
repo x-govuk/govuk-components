@@ -8,7 +8,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
 
     let(:component_with_a_nav_item) do
       render_inline(GovukComponent::HeaderComponent.new) do |header|
-        header.navigation_item(text: "one")
+        header.with_navigation_item(text: "one")
       end
     end
 

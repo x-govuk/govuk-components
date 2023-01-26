@@ -30,7 +30,7 @@ RSpec.describe(GovukComponent::DetailsComponent, type: :component) do
 
     before do
       render_inline(described_class.new(**kwargs)) do |component|
-        component.summary_html { summary_html }
+        component.with_summary_html { summary_html }
       end
     end
 

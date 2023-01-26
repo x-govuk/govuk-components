@@ -18,7 +18,7 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
     render_inline(GovukComponent::AccordionComponent.new(**kwargs)) do |component|
       helper.safe_join(
         sections.map do |heading_text, content|
-          component.section(heading_text: heading_text) { content }
+          component.with_section(heading_text: heading_text) { content }
         end
       )
     end
@@ -96,8 +96,8 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
 
     subject! do
       render_inline(GovukComponent::AccordionComponent.new(**kwargs)) do |component|
-        component.section do |section|
-          section.heading_html do
+        component.with_section do |section|
+          section.with_heading_html do
             helper.content_tag(custom_tag, custom_text, class: custom_class)
           end
 
@@ -129,7 +129,7 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
     specify "raises an appropriate error" do
       expect {
         render_inline(GovukComponent::AccordionComponent.new(**kwargs)) do |component|
-          component.section(summary_text: "A summary")
+          component.with_section(summary_text: "A summary")
         end
       }.to raise_error(ArgumentError, /no heading_text or heading_html/)
     end
@@ -147,7 +147,7 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
 
       subject! do
         render_inline(GovukComponent::AccordionComponent.new) do |component|
-          component.section(heading_text: heading_text, summary_text: summary_text) { 'abc' }
+          component.with_section(heading_text: heading_text, summary_text: summary_text) { 'abc' }
         end
       end
 
@@ -167,8 +167,8 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
 
       subject! do
         render_inline(GovukComponent::AccordionComponent.new(**kwargs)) do |component|
-          component.section(heading_text: heading_text) do |section|
-            section.summary_html do
+          component.with_section(heading_text: heading_text) do |section|
+            section.with_summary_html do
               helper.content_tag(custom_tag, custom_text, class: custom_class)
             end
 
@@ -204,8 +204,8 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
 
     specify 'sections have the correct expanded states' do
       render_inline(GovukComponent::AccordionComponent.new) do |component|
-        component.section(expanded: true, heading_text: 'section 1', html_attributes: { id: 'section_1' }) { 'abc' }
-        component.section(heading_text: 'section 2', html_attributes: { id: 'section_2' }) { 'def' }
+        component.with_section(expanded: true, heading_text: 'section 1', html_attributes: { id: 'section_1' }) { 'abc' }
+        component.with_section(heading_text: 'section 2', html_attributes: { id: 'section_2' }) { 'def' }
       end
 
       expect(rendered_content).to have_tag('div', with: { id: 'section_1', class: %w(govuk-accordion__section govuk-accordion__section--expanded) })

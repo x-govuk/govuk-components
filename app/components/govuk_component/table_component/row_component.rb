@@ -48,9 +48,9 @@ private
     cell_data.each_with_index do |data, i|
       case data
       when Hash
-        cell(**data, **cell_attributes(i))
+        with_cell(**data, **cell_attributes(i))
       when String
-        cell(text: data, **cell_attributes(i))
+        with_cell(text: data, **cell_attributes(i))
       end
     end
   end

@@ -25,7 +25,7 @@ private
   def build_rows_from_row_data(data)
     return if data.blank?
 
-    data.each { |d| row(cell_data: d) }
+    data.each { |d| with_row(cell_data: d) }
   end
 
   def default_attributes

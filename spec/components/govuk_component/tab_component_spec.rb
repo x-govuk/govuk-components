@@ -18,7 +18,7 @@ RSpec.describe(GovukComponent::TabComponent, type: :component) do
   subject! do
     render_inline(GovukComponent::TabComponent.new(**kwargs)) do |component|
       tabs.each do |label, content|
-        component.tab(label: label) { content }
+        component.with_tab(label: label) { content }
       end
     end
   end
@@ -92,7 +92,7 @@ RSpec.describe(GovukComponent::TabComponent, type: :component) do
     subject! do
       render_inline(GovukComponent::TabComponent.new(**kwargs)) do |component|
         tabs.each do |label, content|
-          component.tab(label: label, text: content)
+          component.with_tab(label: label, text: content)
         end
       end
     end
