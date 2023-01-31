@@ -174,7 +174,7 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
     end
 
     specify "the summary list is wrapped in a card" do
-      expect(rendered_content).to have_tag("div", with: { class: "govuk-summary-list__card" })
+      expect(rendered_content).to have_tag("div", with: { class: "govuk-summary-card" })
     end
   end
 

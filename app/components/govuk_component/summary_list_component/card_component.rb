@@ -14,6 +14,6 @@ class GovukComponent::SummaryListComponent::CardComponent < GovukComponent::Base
 private
 
   def default_attributes
-    { class: %w(govuk-summary-list__card) }
+    { class: %w(govuk-summary-card) }
   end
 end

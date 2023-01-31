@@ -63,17 +63,43 @@ RSpec.describe(GovukComponent::SummaryListComponent::CardComponent, type: :compo
     ]
   end
 
+  let(:title) { "Some title" }
+
   subject! do
-    render_inline(described_class.new(title: "Some title")) do |component|
-      component.summary_list(rows: rows)
+    render_inline(described_class.new(title: title)) do |component|
+      component.with_summary_list(rows: rows)
     end
   end
 
   specify "renders a card" do
-    expect(rendered_content).to have_tag("div", with: { class: "govuk-summary-list__card" })
+    expect(rendered_content).to have_tag("div", with: { class: "govuk-summary-card" })
+  end
+
+  specify "the card has the right title" do
+    expect(rendered_content).to have_tag("h2", text: title, with: { class: "govuk-summary-card__title" })
   end
 
   specify "card contains a summary list" do
     expect(rendered_content).to have_tag("dl", with: { class: "govuk-summary-list" })
+  end
+
+  specify "no actions list is rendered" do
+    expect(rendered_content).not_to have_tag("ul", with: { class: "govuk-summary-card__actions" })
+  end
+
+  context "when there are actions" do
+    let(:actions) { %w[abc def] }
+
+    subject! do
+      render_inline(described_class.new(title: title, actions: actions)) do |component|
+        component.with_summary_list(rows: rows)
+      end
+    end
+
+    specify "the actions are rendered" do
+      expect(rendered_content).to have_tag("ul", with: { class: "govuk-summary-card__actions" }) do
+        actions.each { |action| with_tag("li", text: action, with: { class: "govuk-summary-card__action" }) }
+      end
+    end
   end
 end
