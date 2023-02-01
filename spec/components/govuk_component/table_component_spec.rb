@@ -640,6 +640,26 @@ RSpec.describe(GovukComponent::TableComponent::ColGroupComponent, type: :compone
 
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
+
+  describe "conditionally rendering based on column presence" do
+    subject! do
+      render_inline(GovukComponent::TableComponent::ColGroupComponent.new(**kwargs))
+    end
+
+    context "when there are cols" do
+      specify "the col group is rendered" do
+        expect(rendered_content).to have_tag("colgroup") { with_tag("col", count: 2) }
+      end
+    end
+
+    context "when there are no cols" do
+      let(:kwargs) { { cols: [] } }
+
+      specify "nothing is rendered" do
+        expect(rendered_content).to be_blank
+      end
+    end
+  end
 end
 
 RSpec.describe(GovukComponent::TableComponent::ColGroupComponent::ColComponent, type: :component) do
