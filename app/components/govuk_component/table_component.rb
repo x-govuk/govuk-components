@@ -1,6 +1,7 @@
 module GovukComponent
   class TableComponent < GovukComponent::Base
     renders_one :caption, "GovukComponent::TableComponent::CaptionComponent"
+    renders_many :cols, "GovukComponent::TableComponent::ColGroupComponent::ColComponent"
     renders_many :colgroups, "GovukComponent::TableComponent::ColGroupComponent"
     renders_one :head, "GovukComponent::TableComponent::HeadComponent"
     renders_many :bodies, "GovukComponent::TableComponent::BodyComponent"

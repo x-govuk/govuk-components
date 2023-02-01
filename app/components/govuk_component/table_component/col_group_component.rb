@@ -4,7 +4,7 @@ class GovukComponent::TableComponent::ColGroupComponent < GovukComponent::Base
   def initialize(classes: [], cols: [], html_attributes: {})
     super(classes: classes, html_attributes: html_attributes)
 
-    return unless cols
+    return if cols.blank?
 
     cols.each { |c| with_col(span: c) }
   end

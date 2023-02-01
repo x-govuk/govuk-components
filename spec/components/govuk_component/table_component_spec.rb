@@ -524,13 +524,11 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
       expect(rendered_content).to have_tag("table", with: { class: "govuk-table" }) do
         with_tag("colgroup", with: { class: "first" }) do
           with_tag("col", count: 3)
-          with_tag("col", with: { span: 1 }, count: 2)
           with_tag("col", with: { span: 2 }, count: 1)
         end
 
         with_tag("colgroup", with: { class: "second" }) do
           with_tag("col", count: 2)
-          with_tag("col", with: { span: 1 }, count: 1)
           with_tag("col", with: { span: 3 }, count: 1)
         end
       end

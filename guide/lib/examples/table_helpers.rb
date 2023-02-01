@@ -103,5 +103,78 @@ module Examples
               - row.with_cell(text: %(Blue plant vines cloak the Pokémon's identity in a tangled mass.))
       TABLE
     end
+
+    def table_complex
+      <<~TABLE
+        = govuk_table do |table|
+          - table.caption(text: "Starter Pokémon")
+          - table.with_colgroup do |colgroup|
+            - colgroup.with_col
+            - colgroup.with_col(span: 3, html_attributes: { class: "generation-1" })
+            - colgroup.with_col(span: 3, html_attributes: { class: "generation-2" })
+
+          - table.with_head do |head|
+            - head.with_row do |row|
+              - row.with_cell
+              - row.with_cell(text: "Generation 1", colspan: 3, scope: "colgroup")
+              - row.with_cell(text: "Generation 2", colspan: 3, scope: "colgroup")
+            - head.with_row do |row|
+              - row.with_cell
+
+              - row.with_cell(text: "Grass")
+              - row.with_cell(text: "Fire")
+              - row.with_cell(text: "Water")
+
+              - row.with_cell(text: "Grass")
+              - row.with_cell(text: "Fire")
+              - row.with_cell(text: "Water")
+
+          - table.with_body do |body|
+            - body.with_row do |row|
+              - row.with_cell(header: true, text: "Level 1-15")
+
+              - row.with_cell(text: "Bulbasaur")
+              - row.with_cell(text: "Charmander")
+              - row.with_cell(text: "Squirtle")
+
+              - row.with_cell(text: "Chikorita")
+              - row.with_cell(text: "Cyndaquil")
+              - row.with_cell(text: "Totodile")
+
+            - body.with_row do |row|
+              - row.with_cell(header: true, text: "Level 16-31")
+
+              - row.with_cell(text: "Ivysaur")
+              - row.with_cell(text: "Charmaleon")
+              - row.with_cell(text: "Wartortle")
+
+              - row.with_cell(text: "Bayleef")
+              - row.with_cell(text: "Quilava")
+              - row.with_cell(text: "Croconaw")
+
+            - body.with_row do |row|
+              - row.with_cell(header: true, text: "Level 32-100")
+
+              - row.with_cell(text: "Venusaur")
+              - row.with_cell(text: "Charizard")
+              - row.with_cell(text: "Blastoise")
+
+              - row.with_cell(text: "Meganium")
+              - row.with_cell(text: "Typhlosion")
+              - row.with_cell(text: "Feraligatr")
+
+          - table.with_foot do |foot|
+            - foot.with_row do |row|
+              - row.with_cell(header: true, text: "Pokédex colour")
+
+              - row.with_cell(text: govuk_tag(text: "Green", colour: "green"))
+              - row.with_cell(text: govuk_tag(text: "Red", colour: "red"))
+              - row.with_cell(text: govuk_tag(text: "Blue", colour: "blue"))
+
+              - row.with_cell(text: govuk_tag(text: "Green", colour: "green"))
+              - row.with_cell(text: govuk_tag(text: "Yellow", colour: "yellow"))
+              - row.with_cell(text: govuk_tag(text: "Blue", colour: "blue"))
+      TABLE
+    end
   end
 end
