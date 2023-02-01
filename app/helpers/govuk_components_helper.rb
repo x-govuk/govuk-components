@@ -15,6 +15,7 @@ module GovukComponentsHelper
     govuk_section_break: 'GovukComponent::SectionBreakComponent',
     govuk_start_button: 'GovukComponent::StartButtonComponent',
     govuk_summary_list: 'GovukComponent::SummaryListComponent',
+    govuk_summary_list_card: 'GovukComponent::SummaryListComponent::CardComponent',
     govuk_table: 'GovukComponent::TableComponent',
     govuk_tabs: 'GovukComponent::TabComponent',
     govuk_tag: 'GovukComponent::TagComponent',

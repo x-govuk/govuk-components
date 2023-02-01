@@ -166,6 +166,18 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
     end
   end
 
+  context "when there is a card" do
+    subject! do
+      render_inline(described_class.new(card: { title: "Hi" }, **kwargs)) do |component|
+        component.with_row { |row| helper.safe_join([row.with_key(text: "Key"), row.with_value(text: "Value"), row.with_action(href: "/a", visually_hidden_text: "for key")]) }
+      end
+    end
+
+    specify "the summary list is wrapped in a card" do
+      expect(rendered_content).to have_tag("div", with: { class: "govuk-summary-card" })
+    end
+  end
+
   describe "visually hidden text" do
     context "when there is visually hidden text" do
       subject! do
