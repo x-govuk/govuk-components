@@ -1,5 +1,5 @@
 class GovukComponent::TableComponent::CellComponent < GovukComponent::Base
-  attr_reader :text, :header, :numeric, :width, :scope, :parent
+  attr_reader :text, :header, :numeric, :width, :scope, :parent, :colspan, :rowspan
 
   alias_method :numeric?, :numeric
   alias_method :header?, :header
@@ -13,12 +13,14 @@ class GovukComponent::TableComponent::CellComponent < GovukComponent::Base
     "one-quarter"    => "govuk-!-width-one-quarter",
   }.freeze
 
-  def initialize(scope: nil, header: nil, numeric: false, text: nil, width: nil, parent: nil, classes: [], html_attributes: {})
+  def initialize(scope: nil, header: nil, numeric: false, text: nil, width: nil, parent: nil, rowspan: nil, colspan: nil, classes: [], html_attributes: {})
     @text    = text
     @numeric = numeric
     @width   = width
     @scope   = scope
     @parent  = parent
+    @colspan = colspan
+    @rowspan = rowspan
     @header  = (header.nil?) ? in_thead? : header
 
     super(classes: classes, html_attributes: html_attributes)
@@ -47,7 +49,7 @@ private
   end
 
   def default_attributes
-    { class: default_classes, scope: determine_scope }
+    { class: default_classes, scope: determine_scope, colspan: colspan, rowspan: rowspan }.compact
   end
 
   def determine_scope

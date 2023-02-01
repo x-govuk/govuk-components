@@ -1,6 +1,7 @@
 module GovukComponent
   class TableComponent < GovukComponent::Base
     renders_one :caption, "GovukComponent::TableComponent::CaptionComponent"
+    renders_many :colgroups, "GovukComponent::TableComponent::ColGroupComponent"
     renders_one :head, "GovukComponent::TableComponent::HeadComponent"
     renders_many :bodies, "GovukComponent::TableComponent::BodyComponent"
     renders_one :foot, "GovukComponent::TableComponent::FootComponent"
@@ -22,7 +23,7 @@ module GovukComponent
     end
 
     def call
-      tag.table(**html_attributes) { safe_join([caption, head, bodies, foot]) }
+      tag.table(**html_attributes) { safe_join([caption, colgroups, head, bodies, foot]) }
     end
 
   private
