@@ -66,7 +66,7 @@ module Examples
 
     def summary_list_card
       <<~SUMMARY_LIST_CARD
-        = govuk_summary_list_card(title: "Araquanid") do |card|
+        = govuk_summary_card(title: "Araquanid") do |card|
           - card.with_action { govuk_link_to("Status", "#") }
           - card.with_action { govuk_link_to("Choose", "#") }
           - card.with_summary_list(rows: araquanid_data)

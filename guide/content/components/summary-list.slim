@@ -54,8 +54,22 @@ p
     [0]: https://design-system.service.gov.uk/components/summary-list/
 
 == render('/partials/example.*',
-  caption: "Building a summary list card",
+  caption: "Summary cards",
   code: summary_list_card,
-  data: summary_list_card_data)
+  data: summary_list_card_data) do
+
+  markdown:
+    If you’re showing multiple summary lists on a page, you can show each list
+    within a summary card. This lets you visually separate each summary list
+    and give each a title and some actions.
+
+    Use summary cards when you need to show:
+
+    * multiple summary lists that all describe the same type of thing, such as people
+    * actions that will apply to all the items in a list
+
+markdown:
+  Arbitrary HTML content can be passed into the `govuk_summary_card` block and it will
+  render in the place of a summary list.
 
 == render('/partials/related-info.*', links: summary_list_info)
