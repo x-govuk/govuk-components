@@ -10,8 +10,8 @@ p Use the table component to make information easier to compare and scan for
   code: table_normal) do
 
   markdown:
-    Complex tables can be built as in HTML, by declaring the caption,
-    head, body, rows and cells.
+    Tables can be declared similarly to how they'd be built in HTML, by
+    declaring the caption, head, body, rows and cells.
 
     Tables can have one caption which should be used to describe the contents
     of the table.
@@ -70,7 +70,16 @@ p Use the table component to make information easier to compare and scan for
     `two-thirds`, `three-quarters` and `full`.
 
 == render('/partials/example.*',
-  caption: "A complex table",
-  code: table_complex)
+  caption: "Complex tables",
+  code: table_complex) do
+
+  markdown:
+    Sometimes we need to build tables that have more two dimensions. To make
+    these tables accessible we can use `<colgroup>` and `<col>` elements to
+    describe the groups of columns, and we can add extra table headers with
+    scopes to describe each axis.
+
+    Columns can be made to stretch across multiple rows with the `rowspan` and
+    columns with the `colspan` parameters.
 
 == render('/partials/related-info.*', links: table_info)
