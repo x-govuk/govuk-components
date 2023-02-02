@@ -1,12 +1,11 @@
 class GovukComponent::PaginationComponent::NextPage < GovukComponent::PaginationComponent::AdjacentPage
-  def initialize(href:, text:, label_text: nil, block_mode: true, classes: [], html_attributes: {})
+  def initialize(href:, text:, label_text: nil, block_mode: true, html_attributes: {})
     super(
       suffix: "next",
       text: text,
       href: href,
       label_text: label_text,
       block_mode: block_mode,
-      classes: classes,
       html_attributes: html_attributes
     )
   end

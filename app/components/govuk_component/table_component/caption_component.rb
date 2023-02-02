@@ -3,12 +3,12 @@ class GovukComponent::TableComponent::CaptionComponent < GovukComponent::Base
 
   SIZES = %w(s m l xl).freeze
 
-  def initialize(text: nil, id: nil, size: 'm', classes: [], html_attributes: {})
+  def initialize(text: nil, id: nil, size: 'm', html_attributes: {})
     @id   = id
     @text = text
     @size = size
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(html_attributes: html_attributes)
   end
 
   def call

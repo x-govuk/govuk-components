@@ -8,7 +8,6 @@ class GovukComponent::FooterComponent < GovukComponent::Base
   attr_reader :meta_items, :meta_text, :meta_items_title, :meta_licence, :copyright, :custom_container_classes
 
   def initialize(
-    classes: [],
     container_classes: [],
     container_html_attributes: {},
     copyright_text: config.default_footer_copyright_text,
@@ -31,7 +30,7 @@ class GovukComponent::FooterComponent < GovukComponent::Base
     @custom_container_classes         = container_classes
     @custom_container_html_attributes = container_html_attributes
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(html_attributes: html_attributes)
   end
 
 private

@@ -3,11 +3,11 @@ class GovukComponent::TagComponent < GovukComponent::Base
 
   COLOURS = %w(grey green turquoise blue red purple pink orange yellow).freeze
 
-  def initialize(text: nil, colour: config.default_tag_colour, classes: [], html_attributes: {})
+  def initialize(text: nil, colour: config.default_tag_colour, html_attributes: {})
     @text   = text
     @colour = colour
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(html_attributes: html_attributes)
   end
 
   def call

@@ -1,8 +1,8 @@
 class GovukComponent::SummaryListComponent::ValueComponent < GovukComponent::Base
   attr_reader :text
 
-  def initialize(text: nil, classes: [], html_attributes: {})
-    super(classes: classes, html_attributes: html_attributes)
+  def initialize(text: nil, html_attributes: {})
+    super(html_attributes: html_attributes)
 
     @text = text
   end

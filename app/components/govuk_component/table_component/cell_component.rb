@@ -13,7 +13,7 @@ class GovukComponent::TableComponent::CellComponent < GovukComponent::Base
     "one-quarter"    => "govuk-!-width-one-quarter",
   }.freeze
 
-  def initialize(scope: nil, header: nil, numeric: false, text: nil, width: nil, parent: nil, rowspan: nil, colspan: nil, classes: [], html_attributes: {})
+  def initialize(scope: nil, header: nil, numeric: false, text: nil, width: nil, parent: nil, rowspan: nil, colspan: nil, html_attributes: {})
     @text    = text
     @numeric = numeric
     @width   = width
@@ -23,7 +23,7 @@ class GovukComponent::TableComponent::CellComponent < GovukComponent::Base
     @rowspan = rowspan
     @header  = (header.nil?) ? in_thead? : header
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(html_attributes: html_attributes)
   end
 
   def call

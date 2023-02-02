@@ -5,11 +5,11 @@ class GovukComponent::TabComponent < GovukComponent::Base
 
   attr_reader :title, :id
 
-  def initialize(title:, id: nil, classes: [], html_attributes: {})
+  def initialize(title:, id: nil, html_attributes: {})
     @title = title
     @id    = id
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(html_attributes: html_attributes)
   end
 
 private
@@ -21,11 +21,11 @@ private
   class Tab < GovukComponent::Base
     attr_reader :label, :text
 
-    def initialize(label:, text: nil, classes: [], html_attributes: {})
+    def initialize(label:, text: nil, html_attributes: {})
       @label = label
       @text  = text
 
-      super(classes: classes, html_attributes: html_attributes)
+      super(html_attributes: html_attributes)
     end
 
     def id(prefix: nil)

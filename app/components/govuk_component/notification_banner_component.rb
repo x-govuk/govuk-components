@@ -12,7 +12,6 @@ class GovukComponent::NotificationBannerComponent < GovukComponent::Base
     title_heading_level: config.default_notification_title_heading_level,
     title_id: config.default_notification_banner_title_id,
     disable_auto_focus: config.default_notification_disable_auto_focus,
-    classes: [],
     html_attributes: {}
   )
     @title_text          = title_text
@@ -23,7 +22,7 @@ class GovukComponent::NotificationBannerComponent < GovukComponent::Base
     @title_heading_level = title_heading_level
     @disable_auto_focus  = disable_auto_focus
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(html_attributes: html_attributes)
   end
 
   def render?
@@ -33,12 +32,12 @@ class GovukComponent::NotificationBannerComponent < GovukComponent::Base
   class Heading < GovukComponent::Base
     attr_reader :text, :link_href, :link_text
 
-    def initialize(text: nil, link_text: nil, link_href: nil, classes: [], html_attributes: {})
+    def initialize(text: nil, link_text: nil, link_href: nil, html_attributes: {})
       @text      = text
       @link_text = link_text
       @link_href = link_href
 
-      super(classes: classes, html_attributes: html_attributes)
+      super(html_attributes: html_attributes)
     end
 
     def call

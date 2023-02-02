@@ -4,13 +4,12 @@ class GovukComponent::SectionBreakComponent < GovukComponent::Base
   def initialize(
     visible: config.default_section_break_visible,
     size: config.default_section_break_size,
-    classes: [],
     html_attributes: {}
   )
     @visible = visible
     @size    = size
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(html_attributes: html_attributes)
   end
 
   def call

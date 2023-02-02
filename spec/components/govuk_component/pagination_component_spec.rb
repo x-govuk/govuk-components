@@ -13,7 +13,6 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
 
   subject! { render_inline(GovukComponent::PaginationComponent.new(**kwargs)) }
 
-  it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 
   specify "renders some page items" do
@@ -446,7 +445,6 @@ RSpec.describe(GovukComponent::PaginationComponent::PreviousPage, type: :compone
 
   subject! { render_inline(GovukComponent::PaginationComponent::PreviousPage.new(**kwargs)) }
 
-  it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 end
 
@@ -457,7 +455,6 @@ RSpec.describe(GovukComponent::PaginationComponent::NextPage, type: :component) 
 
   subject! { render_inline(GovukComponent::PaginationComponent::NextPage.new(**kwargs)) }
 
-  it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 end
 
@@ -468,6 +465,5 @@ RSpec.describe(GovukComponent::PaginationComponent::Item, type: :component) do
 
   subject! { render_inline(GovukComponent::PaginationComponent::Item.new(**kwargs)) }
 
-  it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 end

@@ -8,57 +8,48 @@ RSpec.describe(GovukComponent::SummaryListComponent::CardComponent, type: :compo
       {
         key: {
           text: "Name",
-          classes: "row-1-custom-key-class",
-          html_attributes: { data: { id: "row-1-key-custom-data-id" } },
+          html_attributes: { class: "row-1-custom-key-class", data: { id: "row-1-key-custom-data-id" } },
         },
         value: {
           text: "Sherlock Holmes",
-          classes: "row-1-custom-value-key-class",
-          html_attributes: { data: { id: "row-1-value-custom-data-id" } },
+          html_attributes: { class: "row-1-custom-value-key-class", data: { id: "row-1-value-custom-data-id" } },
         },
         actions: [
           {
             text: "Change",
             href: "/row-1-action-1-href",
             visually_hidden_text: "name",
-            classes: "row-1-custom-action-1-class",
-            html_attributes: { data: { id: "row-1-action-1-data-id" } }
+            html_attributes: { class: "row-1-custom-action-1-class", data: { id: "row-1-action-1-data-id" } }
           },
         ],
-        classes: "row-1-custom-class",
-        html_attributes: { data: { id: "row-1-custom-data-id" } },
+        html_attributes: { class: "row-1-custom-class", data: { id: "row-1-custom-data-id" } },
       },
 
       # row 2
       {
         key: {
           text: "Address",
-          classes: "row-2-custom-key-class",
-          html_attributes: { data: { id: "row-2-key-custom-data-id" } },
+          html_attributes: { class: "row-2-custom-key-class", data: { id: "row-2-key-custom-data-id" } },
         },
         value: {
           text: "331 Baker Street, London",
-          classes: "row-2-custom-value-class",
-          html_attributes: { data: { id: "row-2-key-custom-data-id" } },
+          html_attributes: { class: "row-2-custom-value-class", data: { id: "row-2-key-custom-data-id" } },
         },
         actions: [
           {
             text: "Change",
             href: "/row-2-action-1-href",
             visually_hidden_text: "address",
-            classes: "row-2-custom-action-1-class",
-            html_attributes: { data: { id: "row-2-action-1-data-id" } }
+            html_attributes: { class: "row-2-custom-action-1-class", data: { id: "row-2-action-1-data-id" } }
           },
           {
             text: "Delete",
             href: "/row-2-action-2-href",
             visually_hidden_text: "address",
-            classes: "row-2-custom-action-2-class",
-            html_attributes: { data: { id: "row-2-action-2-data-id" } }
+            html_attributes: { class: "row-2-custom-action-2-class", data: { id: "row-2-action-2-data-id" } }
           }
         ],
-        classes: "row-2-custom-class",
-        html_attributes: { data: { id: "row-2-custom-data-id" } },
+        html_attributes: { class: "row-2-custom-class", data: { id: "row-2-custom-data-id" } },
       },
     ]
   end

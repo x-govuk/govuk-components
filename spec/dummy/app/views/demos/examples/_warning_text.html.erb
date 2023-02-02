@@ -9,7 +9,7 @@
 <%= render "shared/example", title: 'Warning text with custom classes', example: <<~WARNING
   render GovukComponent::WarningTextComponent.new(
     text: "Lookin' out the window, that's a paddlin'",
-    classes: 'my-custom-class')
+    html_attributes: { class: 'my-custom-class' })
   WARNING
 %>
 

@@ -11,7 +11,6 @@ RSpec.describe(GovukComponent::NotificationBannerComponent, type: :component) do
     let(:content) { -> { 'some swanky heading content' } }
     let(:slot_kwargs) { { text: 'some text', link_text: 'With a link', link_href: '#look-at-me' } }
 
-    it_behaves_like 'a component with a slot that accepts custom classes'
     it_behaves_like 'a component with a slot that accepts custom html attributes'
 
     context "when supplied with a block" do
@@ -104,7 +103,7 @@ RSpec.describe(GovukComponent::NotificationBannerComponent, type: :component) do
   # need a heading to be present for anything to render
   describe 'custom classes' do
     before do
-      render_inline(described_class.new(**kwargs.merge(classes: custom_classes))) do |component|
+      render_inline(described_class.new(**kwargs.merge(html_attributes: { class: custom_classes }))) do |component|
         component.with_heading(text: 'A title')
       end
     end

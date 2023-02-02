@@ -333,7 +333,6 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
     end
   end
 
-  it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 
   context 'slot arguments' do
@@ -341,7 +340,6 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
     let(:content) { nil }
     let(:slot_kwargs) { { text: 'text', href: '/one/two/three', active: true } }
 
-    it_behaves_like 'a component with a slot that accepts custom classes'
     it_behaves_like 'a component with a slot that accepts custom html attributes'
   end
 end

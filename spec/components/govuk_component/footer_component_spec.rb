@@ -256,7 +256,6 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
     end
   end
 
-  it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 
   describe "navigation" do

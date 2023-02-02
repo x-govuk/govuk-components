@@ -14,24 +14,22 @@ class GovukComponent::PaginationComponent < GovukComponent::Base
 
   renders_many :items, "GovukComponent::PaginationComponent::Item"
 
-  renders_one :next_page, ->(href:, text: default_adjacent_text(:next), label_text: nil, classes: [], html_attributes: {}) do
+  renders_one :next_page, ->(href:, text: default_adjacent_text(:next), label_text: nil, html_attributes: {}) do
     GovukComponent::PaginationComponent::NextPage.new(
       text: text,
       href: href,
       label_text: label_text,
       block_mode: block_mode?,
-      classes: classes,
       html_attributes: html_attributes
     )
   end
 
-  renders_one :previous_page, ->(href:, text: default_adjacent_text(:prev), label_text: nil, classes: [], html_attributes: {}) do
+  renders_one :previous_page, ->(href:, text: default_adjacent_text(:prev), label_text: nil, html_attributes: {}) do
     GovukComponent::PaginationComponent::PreviousPage.new(
       text: text,
       href: href,
       label_text: label_text,
       block_mode: block_mode?,
-      classes: classes,
       html_attributes: html_attributes
     )
   end
@@ -41,7 +39,6 @@ class GovukComponent::PaginationComponent < GovukComponent::Base
                  previous_text: nil,
                  block_mode: false,
                  landmark_label: config.default_pagination_landmark_label,
-                 classes: [],
                  html_attributes: {})
     @pagy                          = pagy
     @next_text                     = next_text
@@ -49,7 +46,7 @@ class GovukComponent::PaginationComponent < GovukComponent::Base
     @block_mode                    = block_mode
     @landmark_label                = landmark_label
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(html_attributes: html_attributes)
   end
 
   def before_render

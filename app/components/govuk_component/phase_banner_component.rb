@@ -4,17 +4,16 @@ class GovukComponent::PhaseBannerComponent < GovukComponent::Base
   def initialize(
     tag: { text: config.default_phase_banner_tag },
     text: config.default_phase_banner_text,
-    classes: [],
     html_attributes: {}
   )
     @phase_tag = tag
     @text      = text
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(html_attributes: html_attributes)
   end
 
   def phase_tag_component
-    GovukComponent::TagComponent.new(**phase_tag.deep_merge(classes: "govuk-phase-banner__content__tag"))
+    GovukComponent::TagComponent.new(**phase_tag.deep_merge(html_attributes: { class: "govuk-phase-banner__content__tag" }))
   end
 
 private

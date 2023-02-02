@@ -33,8 +33,6 @@ require 'govuk/components'
 ViewComponent::Base.config.view_component_path = "app/components"
 
 require 'components/govuk_component'
-require 'components/govuk_component/traits'
-require 'components/govuk_component/traits/custom_html_attributes'
 require 'components/govuk_component/base'
 require 'components/govuk_component/accordion_component'
 require 'components/govuk_component/accordion_component/section_component'

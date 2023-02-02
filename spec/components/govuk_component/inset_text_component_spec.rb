@@ -6,7 +6,6 @@ RSpec.describe(GovukComponent::InsetTextComponent, type: :component) do
   let(:text) { 'Bake him away, toys.' }
   let(:kwargs) { { text: text } }
 
-  it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 
   context 'when text is supplied' do

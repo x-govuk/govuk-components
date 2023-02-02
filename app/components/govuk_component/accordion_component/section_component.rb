@@ -6,13 +6,13 @@ class GovukComponent::AccordionComponent::SectionComponent < GovukComponent::Bas
 
   alias_method :expanded?, :expanded
 
-  def initialize(heading_text:, summary_text:, expanded:, heading_level:, classes: [], html_attributes: {})
+  def initialize(heading_text:, summary_text:, expanded:, heading_level:, html_attributes: {})
     @heading_text  = heading_text
     @summary_text  = summary_text
     @expanded      = expanded
     @heading_level = heading_level
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(html_attributes: html_attributes)
   end
 
   def id(suffix: nil)

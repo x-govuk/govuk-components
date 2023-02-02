@@ -36,7 +36,6 @@ RSpec.describe(GovukComponent::StartButtonComponent, type: :component) do
       expect(rendered_content).to have_tag('a', with: expected_attributes)
     end
 
-    it_behaves_like 'a component that accepts custom classes'
     it_behaves_like 'a component that accepts custom HTML attributes'
   end
 
@@ -63,7 +62,6 @@ RSpec.describe(GovukComponent::StartButtonComponent, type: :component) do
       expect(rendered_content).to have_tag('button', with: expected_attributes)
     end
 
-    it_behaves_like 'a component that accepts custom classes'
     it_behaves_like 'a component that accepts custom HTML attributes'
   end
 end

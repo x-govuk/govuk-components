@@ -7,7 +7,7 @@
       summary_list.row do |row|
         row.key { 'Aardvark' }
         row.value { 'The aardvark is vaguely pig-like in appearance' }
-        row.action(text: "Change", href: '#aardvark', classes: 'tubulidentata')
+        row.action(text: "Change", href: '#aardvark', html_attributes { class: 'tubulidentata' })
       end
 
       summary_list.row do |row|
@@ -23,7 +23,7 @@
           text: 'Change',
           visually_hidden_text: 'this rodent for a different kind',
           href: '#chinchilla',
-          classes: 'caviomorpha'
+          html_attributes: { class: 'caviomorpha' }
         )
       end
     end

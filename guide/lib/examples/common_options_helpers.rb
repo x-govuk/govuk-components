@@ -2,7 +2,7 @@ module Examples
   module CommonOptionsHelpers
     def inset_text_with_classes
       <<~LINK
-        = govuk_inset_text(classes: "govuk-!-font-weight-bold")
+        = govuk_inset_text(html_attributes: { class: "govuk-!-font-weight-bold" })
           | Some strong text
       LINK
     end

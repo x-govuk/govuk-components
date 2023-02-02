@@ -1,11 +1,11 @@
 class GovukComponent::InsetTextComponent < GovukComponent::Base
   attr_reader :text, :id
 
-  def initialize(text: nil, id: nil, classes: [], html_attributes: {})
+  def initialize(text: nil, id: nil, html_attributes: {})
     @text = text
     @id   = id
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(html_attributes: html_attributes)
   end
 
   def call

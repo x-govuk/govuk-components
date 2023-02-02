@@ -6,7 +6,6 @@ RSpec.describe(GovukComponent::DetailsComponent, type: :component) do
   let(:text) { 'Now without lettuce' }
   let(:kwargs) { { summary_text: summary_text, text: text } }
 
-  it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 
   context 'when text is supplied' do

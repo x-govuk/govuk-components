@@ -1,12 +1,12 @@
 class GovukComponent::WarningTextComponent < GovukComponent::Base
   attr_reader :text, :icon, :icon_fallback_text
 
-  def initialize(text: nil, icon_fallback_text: config.default_warning_text_icon_fallback_text, icon: config.default_warning_text_icon, classes: [], html_attributes: {})
+  def initialize(text: nil, icon_fallback_text: config.default_warning_text_icon_fallback_text, icon: config.default_warning_text_icon, html_attributes: {})
     @text = text
     @icon = icon
     @icon_fallback_text = icon_fallback_text
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(html_attributes: html_attributes)
   end
 
   def call

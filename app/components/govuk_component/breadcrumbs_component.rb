@@ -4,14 +4,13 @@ class GovukComponent::BreadcrumbsComponent < GovukComponent::Base
   def initialize(breadcrumbs:,
                  hide_in_print: config.default_breadcrumbs_hide_in_print,
                  collapse_on_mobile: config.default_breadcrumbs_collapse_on_mobile,
-                 classes: [],
                  html_attributes: {})
 
     @breadcrumbs        = build_list(breadcrumbs)
     @hide_in_print      = hide_in_print
     @collapse_on_mobile = collapse_on_mobile
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(html_attributes: html_attributes)
   end
 
 private

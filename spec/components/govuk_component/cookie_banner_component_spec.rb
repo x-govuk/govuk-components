@@ -93,7 +93,6 @@ RSpec.describe(GovukComponent::CookieBannerComponent, type: :component) do
     end
   end
 
-  it_behaves_like "a component that accepts custom classes"
   it_behaves_like "a component that accepts custom HTML attributes"
 end
 
@@ -103,7 +102,6 @@ RSpec.describe(GovukComponent::CookieBannerComponent::MessageComponent, type: :c
   let(:custom_text) { "Some message" }
   let(:kwargs) { { heading_text: custom_heading, text: custom_text } }
 
-  it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 
   context "when there is no text or block" do

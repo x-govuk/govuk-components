@@ -3,13 +3,13 @@ class GovukComponent::PanelComponent < GovukComponent::Base
 
   renders_one :title_html
 
-  def initialize(title_text: nil, text: nil, heading_level: 1, id: nil, classes: [], html_attributes: {})
+  def initialize(title_text: nil, text: nil, heading_level: 1, id: nil, html_attributes: {})
     @heading_level = heading_level
     @title_text    = title_text
     @text          = text
     @id            = id
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(html_attributes: html_attributes)
   end
 
   def call

@@ -2,21 +2,20 @@ module GovukComponent
   class SummaryListComponent < GovukComponent::Base
     attr_reader :borders, :actions, :card
 
-    renders_many :rows, ->(classes: [], html_attributes: {}, &block) do
+    renders_many :rows, ->(html_attributes: {}, &block) do
       GovukComponent::SummaryListComponent::RowComponent.new(
         show_actions_column: @show_actions_column,
-        classes: classes,
         html_attributes: html_attributes,
         &block
       )
     end
 
-    def initialize(rows: nil, actions: true, borders: config.default_summary_list_borders, card: nil, classes: [], html_attributes: {})
+    def initialize(rows: nil, actions: true, borders: config.default_summary_list_borders, card: nil, html_attributes: {})
       @borders             = borders
       @show_actions_column = actions
       @card                = card
 
-      super(classes: classes, html_attributes: html_attributes)
+      super(html_attributes: html_attributes)
 
       return unless rows.presence
 
@@ -52,7 +51,7 @@ module GovukComponent
       rows.each do |data|
         k, v, a = data.values_at(:key, :value, :actions)
 
-        with_row(**data.slice(:classes, :html_attributes)) do |r|
+        with_row(**data.slice(:html_attributes)) do |r|
           r.with_key(**k)
           r.with_value(**v)
           Array.wrap(a).each { |ad| r.with_action(**ad) }

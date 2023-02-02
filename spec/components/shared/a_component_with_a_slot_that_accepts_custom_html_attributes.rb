@@ -1,5 +1,5 @@
 shared_examples 'a component with a slot that accepts custom html attributes' do
-  let(:custom_attributes) { { lang: "en-GB", style: "background-color: blue;" } }
+  let(:custom_attributes) { { lang: "en-GB", style: "background-color: blue;", class: "yellow-swirls" } }
 
   subject! do
     render_inline(described_class.send(:new, **kwargs)) do |component|
@@ -8,6 +8,6 @@ shared_examples 'a component with a slot that accepts custom html attributes' do
   end
 
   specify 'the rendered slot should have the HTML attributes' do
-    expect(rendered_content).to have_tag(custom_attributes.map { |k, v| %([#{k}='#{v}']) }.join)
+    expect(rendered_content).to have_tag("*", with: custom_attributes)
   end
 end

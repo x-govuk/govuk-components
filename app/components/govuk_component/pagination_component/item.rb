@@ -1,7 +1,7 @@
 class GovukComponent::PaginationComponent::Item < GovukComponent::Base
   attr_reader :number, :href, :visually_hidden_text, :mode
 
-  def initialize(number: nil, href: nil, current: false, ellipsis: false, from_pagy: false, visually_hidden_text: nil, classes: [], html_attributes: {})
+  def initialize(number: nil, href: nil, current: false, ellipsis: false, from_pagy: false, visually_hidden_text: nil, html_attributes: {})
     @number               = number
     @href                 = href
     @visually_hidden_text = visually_hidden_text
@@ -22,7 +22,7 @@ class GovukComponent::PaginationComponent::Item < GovukComponent::Base
     # ignored
     @mode = from_pagy ? pagy_mode(number) : manual_mode(ellipsis, current)
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(html_attributes: html_attributes)
   end
 
   def call

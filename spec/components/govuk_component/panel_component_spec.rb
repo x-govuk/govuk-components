@@ -7,7 +7,6 @@ RSpec.describe(GovukComponent::PanelComponent, type: :component) do
   let(:text) { 'A noble spirit embiggens the smallest man' }
   let(:kwargs) { { title_text: title_text, text: text } }
 
-  it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 
   specify 'contains a panel with the correct title and text' do

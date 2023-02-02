@@ -1,9 +1,8 @@
 class GovukComponent::TableComponent::FootComponent < GovukComponent::Base
-  renders_many :rows, ->(cell_data: nil, first_cell_is_header: false, classes: [], html_attributes: {}, &block) do
+  renders_many :rows, ->(cell_data: nil, first_cell_is_header: false, html_attributes: {}, &block) do
     GovukComponent::TableComponent::RowComponent.from_foot(
       cell_data: cell_data,
       first_cell_is_header: first_cell_is_header,
-      classes: classes,
       html_attributes: html_attributes,
       &block
     )
@@ -11,11 +10,11 @@ class GovukComponent::TableComponent::FootComponent < GovukComponent::Base
 
   attr_reader :first_cell_is_header, :row_data
 
-  def initialize(rows: nil, first_cell_is_header: false, classes: [], html_attributes: {})
+  def initialize(rows: nil, first_cell_is_header: false, html_attributes: {})
     @rows = rows
     @first_cell_is_header = first_cell_is_header
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(html_attributes: html_attributes)
 
     return unless rows.presence
 

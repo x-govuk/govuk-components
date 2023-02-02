@@ -8,14 +8,13 @@ module GovukComponent
       aria_label: config.default_cookie_banner_aria_label,
       hidden: false,
       hide_in_print: config.default_cookie_banner_hide_in_print,
-      classes: [],
       html_attributes: {}
     )
       @aria_label    = aria_label
       @hidden        = hidden
       @hide_in_print = hide_in_print
 
-      super(classes: classes, html_attributes: html_attributes)
+      super(html_attributes: html_attributes)
     end
 
     def call

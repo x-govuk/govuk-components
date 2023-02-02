@@ -12,7 +12,7 @@
   render GovukComponent::BackLinkComponent.new(
     text: 'Department for Education',
     href: 'https://www.gov.uk/government/organisations/department-for-education',
-    classes: 'my-class'
+    html_attributes: { class: 'my-class' }
   )
   BACK_LINK
 %>
@@ -32,8 +32,8 @@
   govuk_back_link(
     text: 'Department for Education',
     href: 'https://www.gov.uk/government/organisations/department-for-education',
-    classes: 'app-class',
-    html_attributes:{
+    html_attributes: {
+      class: 'app-class',
       data: {
         qa: "my-qa-value"
       }

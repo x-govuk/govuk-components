@@ -1,8 +1,7 @@
 class GovukComponent::TableComponent::HeadComponent < GovukComponent::Base
-  renders_many :rows, ->(cell_data: nil, classes: [], html_attributes: {}, &block) do
+  renders_many :rows, ->(cell_data: nil, html_attributes: {}, &block) do
     GovukComponent::TableComponent::RowComponent.from_head(
       cell_data: cell_data,
-      classes: classes,
       html_attributes: html_attributes,
       &block
     )
@@ -10,8 +9,8 @@ class GovukComponent::TableComponent::HeadComponent < GovukComponent::Base
 
   attr_reader :row_data
 
-  def initialize(rows: nil, classes: [], html_attributes: {})
-    super(classes: classes, html_attributes: html_attributes)
+  def initialize(rows: nil, html_attributes: {})
+    super(html_attributes: html_attributes)
 
     build_rows_from_row_data(rows)
   end

@@ -36,20 +36,20 @@ RSpec.describe(GovukSkipLinkHelper, type: 'helper') do
     describe 'extra classes' do
       context 'when supplied with extra classes as a string' do
         let(:custom_classes) { 'pink' }
-        subject { govuk_skip_link(classes: custom_classes) }
+        subject { govuk_skip_link(html_attributes: { class: custom_classes }) }
         it { is_expected.to have_tag('a', with: expected.deep_merge(class: Array.wrap(custom_classes)), text: default_link_text) }
       end
 
       context 'when supplied with extra classes as an array' do
         let(:custom_classes) { %w(yellow spots) }
-        subject { govuk_skip_link(classes: custom_classes) }
+        subject { govuk_skip_link(html_attributes: { class: custom_classes }) }
         it { is_expected.to have_tag('a', with: expected.deep_merge(class: custom_classes), text: default_link_text) }
       end
     end
 
     describe 'custom html attributes' do
       let(:custom_attributes) { { lang: "en-GB", data: { awesome: "yes" } } }
-      subject { govuk_skip_link(**custom_attributes) }
+      subject { govuk_skip_link(html_attributes: custom_attributes) }
       it { is_expected.to have_tag('a', with: expected.deep_merge("data-awesome" => "yes"), text: default_link_text) }
     end
 

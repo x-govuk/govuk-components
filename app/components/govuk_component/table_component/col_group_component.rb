@@ -1,8 +1,8 @@
 class GovukComponent::TableComponent::ColGroupComponent < GovukComponent::Base
   renders_many :cols, "ColComponent"
 
-  def initialize(classes: [], cols: [], html_attributes: {})
-    super(classes: classes, html_attributes: html_attributes)
+  def initialize(cols: [], html_attributes: {})
+    super(html_attributes: html_attributes)
 
     return if cols.blank?
 
@@ -26,10 +26,10 @@ private
   class ColComponent < GovukComponent::Base
     attr_reader :span
 
-    def initialize(span: 1, classes: [], html_attributes: {})
+    def initialize(span: 1, html_attributes: {})
       @span = span.to_s
 
-      super(classes: classes, html_attributes: html_attributes)
+      super(html_attributes: html_attributes)
     end
 
     def call

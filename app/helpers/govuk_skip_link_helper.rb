@@ -1,12 +1,12 @@
 module GovukSkipLinkHelper
-  def govuk_skip_link(text: 'Skip to main content', href: '#main-content', classes: [], **html_attributes, &block)
-    link_classes = Array.wrap(classes).append('govuk-skip-link')
+  using HTMLAttributesUtils
 
-    html_attributes_with_data_module = { data: { module: "govuk-skip-link" } }.deep_merge(html_attributes)
+  def govuk_skip_link(text: 'Skip to main content', href: '#main-content', html_attributes: {}, &block)
+    html_attributes_with_data_module = { class: 'govuk-skip-link', data: { module: "govuk-skip-link" } }.deep_merge_html_attributes(html_attributes)
 
-    return link_to(href, class: link_classes, **html_attributes_with_data_module, &block) if block_given?
+    return link_to(href, **html_attributes_with_data_module, &block) if block_given?
 
-    link_to(text, href, class: link_classes, **html_attributes_with_data_module)
+    link_to(text, href, **html_attributes_with_data_module)
   end
 end
 

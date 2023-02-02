@@ -71,6 +71,5 @@ RSpec.describe(GovukComponent::WarningTextComponent, type: :component) do
     end
   end
 
-  it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 end

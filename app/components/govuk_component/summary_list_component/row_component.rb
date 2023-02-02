@@ -5,10 +5,10 @@ class GovukComponent::SummaryListComponent::RowComponent < GovukComponent::Base
   renders_one :value, GovukComponent::SummaryListComponent::ValueComponent
   renders_many :actions, GovukComponent::SummaryListComponent::ActionComponent
 
-  def initialize(show_actions_column: nil, classes: [], html_attributes: {})
+  def initialize(show_actions_column: nil, html_attributes: {})
     @show_actions_column = show_actions_column
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(html_attributes: html_attributes)
   end
 
   def call

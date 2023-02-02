@@ -495,19 +495,18 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
     end
   end
 
-  it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 
   describe "column groups and columns" do
     subject! do
       render_inline(GovukComponent::TableComponent.new) do |table|
-        table.with_colgroup(classes: "first") do |colgroup|
+        table.with_colgroup(html_attributes: { class: "first" }) do |colgroup|
           colgroup.with_col
           colgroup.with_col(span: 2)
           colgroup.with_col
         end
 
-        table.with_colgroup(classes: "second") do |colgroup|
+        table.with_colgroup(html_attributes: { class: "second" }) do |colgroup|
           colgroup.with_col
           colgroup.with_col(span: 3)
         end
@@ -540,7 +539,6 @@ RSpec.describe(GovukComponent::TableComponent::HeadComponent, type: :component) 
   let(:component_css_class) { 'govuk-table__head' }
   let(:kwargs) { {} }
 
-  it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 end
 
@@ -548,7 +546,6 @@ RSpec.describe(GovukComponent::TableComponent::BodyComponent, type: :component) 
   let(:component_css_class) { 'govuk-table__body' }
   let(:kwargs) { {} }
 
-  it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 end
 
@@ -556,7 +553,6 @@ RSpec.describe(GovukComponent::TableComponent::RowComponent, type: :component) d
   let(:component_css_class) { 'govuk-table__row' }
   let(:kwargs) { {} }
 
-  it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 end
 
@@ -564,7 +560,6 @@ RSpec.describe(GovukComponent::TableComponent::CellComponent, type: :component) 
   let(:component_css_class) { 'govuk-table__cell' }
   let(:kwargs) { { scope: nil } }
 
-  it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 
   describe "controlling scopes" do
@@ -621,7 +616,6 @@ RSpec.describe(GovukComponent::TableComponent::CaptionComponent, type: :componen
   let(:component_css_class) { 'govuk-table__caption' }
   let(:kwargs) { { text: "Some caption" } }
 
-  it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 end
 
@@ -629,7 +623,6 @@ RSpec.describe(GovukComponent::TableComponent::FootComponent, type: :component) 
   let(:component_css_class) { 'govuk-table__foot' }
   let(:kwargs) { { rows: [%w(a b c)] } }
 
-  it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 end
 
@@ -638,7 +631,6 @@ RSpec.describe(GovukComponent::TableComponent::ColGroupComponent, type: :compone
   let(:component_tag) { 'colgroup' }
   let(:kwargs) { { cols: [1, 1] } }
 
-  it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 
   describe "conditionally rendering based on column presence" do
@@ -667,6 +659,5 @@ RSpec.describe(GovukComponent::TableComponent::ColGroupComponent::ColComponent, 
   let(:component_tag) { 'col' }
   let(:kwargs) { {} }
 
-  it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 end

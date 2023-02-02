@@ -4,13 +4,13 @@ class GovukComponent::CookieBannerComponent::MessageComponent < GovukComponent::
   renders_many :actions
   renders_one :heading_html
 
-  def initialize(heading_text: nil, text: nil, hidden: false, role: nil, classes: [], html_attributes: {})
+  def initialize(heading_text: nil, text: nil, hidden: false, role: nil, html_attributes: {})
     @heading_text = heading_text
     @text         = text
     @hidden       = hidden
     @role         = role
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(html_attributes: html_attributes)
   end
 
   def call

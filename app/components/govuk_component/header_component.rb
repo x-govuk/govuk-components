@@ -14,8 +14,7 @@ class GovukComponent::HeaderComponent < GovukComponent::Base
               :custom_navigation_classes,
               :custom_container_classes
 
-  def initialize(classes: [],
-                 html_attributes: {},
+  def initialize(html_attributes: {},
                  logotype: config.default_header_logotype,
                  crown: true,
                  crown_fallback_image_path: nil,
@@ -38,7 +37,7 @@ class GovukComponent::HeaderComponent < GovukComponent::Base
     @navigation_label          = navigation_label
     @custom_container_classes  = container_classes
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(html_attributes: html_attributes)
   end
 
 private
@@ -68,13 +67,13 @@ private
   class NavigationItem < GovukComponent::Base
     attr_reader :text, :href, :options, :active
 
-    def initialize(text:, href: nil, options: {}, active: nil, classes: [], html_attributes: {})
+    def initialize(text:, href: nil, options: {}, active: nil, html_attributes: {})
       @text            = text
       @href            = href
       @options         = options
       @active_override = active
 
-      super(classes: classes, html_attributes: html_attributes)
+      super(html_attributes: html_attributes)
     end
 
     def before_render
@@ -118,10 +117,10 @@ private
   class ProductName < GovukComponent::Base
     attr_reader :name
 
-    def initialize(name: nil, html_attributes: {}, classes: [])
+    def initialize(name: nil, html_attributes: {})
       @name = name
 
-      super(classes: classes, html_attributes: html_attributes)
+      super(html_attributes: html_attributes)
     end
 
     def render?

@@ -191,7 +191,6 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
     end
   end
 
-  it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 
   context 'slot arguments' do
@@ -199,7 +198,6 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
     let(:content) { -> { 'some swanky accordion content' } }
     let(:slot_kwargs) { { heading_text: 'A heading_text', summary_text: 'A summary' } }
 
-    it_behaves_like 'a component with a slot that accepts custom classes'
     it_behaves_like 'a component with a slot that accepts custom html attributes'
 
     specify 'sections have the correct expanded states' do

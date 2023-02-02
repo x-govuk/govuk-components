@@ -2,14 +2,14 @@ class GovukComponent::PaginationComponent::AdjacentPage < GovukComponent::Base
   attr_reader :href, :label_text, :text, :suffix, :block_mode, :visually_hidden_text
   alias_method :block_mode?, :block_mode
 
-  def initialize(href:, suffix:, text:, block_mode: true, label_text: nil, classes: [], html_attributes: {})
+  def initialize(href:, suffix:, text:, block_mode: true, label_text: nil, html_attributes: {})
     @href                 = href
     @label_text           = label_text
     @text                 = text
     @block_mode           = block_mode
     @suffix               = suffix
 
-    super(html_attributes: html_attributes, classes: classes)
+    super(html_attributes: html_attributes)
   end
 
   def call

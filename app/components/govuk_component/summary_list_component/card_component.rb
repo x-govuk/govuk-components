@@ -4,11 +4,11 @@ class GovukComponent::SummaryListComponent::CardComponent < GovukComponent::Base
   renders_many :actions
   renders_one :summary_list, "GovukComponent::SummaryListComponent"
 
-  def initialize(title:, actions: [], classes: [], html_attributes: {})
+  def initialize(title:, actions: [], html_attributes: {})
     @title = title
     actions.each { |a| with_action { a } } if actions.any?
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(html_attributes: html_attributes)
   end
 
 private
