@@ -24,50 +24,46 @@ $x-govuk-brand-colour: #28a;
 
 // advanced table example, change some alignment to make multiple sets
 // of headers more readable
-table.starter-pokemon-weights {
-  thead > tr {
-    > th.generation-heading { text-align: center; }
-    > th {
-      &.main-type-heading { text-align: right; }
-
-      border: none;
-    }
-  }
-
-  td, th {
-    &.border-left {
-      border-left: 1px solid $govuk-border-colour;
+.govuk-table {
+  &.starter-pokemon-weights {
+    .govuk-table__head > .govuk-table__row {
+      > .govuk-table__header {
+        &.generation-heading {
+          border-bottom: none;
+          text-align: center;
+        }
+      }
     }
 
-    &.thick-border-bottom {
-      border-bottom: 3px solid $govuk-border-colour;
+    .govuk-table__head,
+    .govuk-table__body,
+    .govuk-table__foot {
+      > .govuk-table__row {
+        .border-left { border-left: 1px solid $govuk-border-colour; }
+        .thick-border-bottom { border-bottom: 3px solid $govuk-border-colour; }
+        .no-border-bottom { border-bottom: none }
+      }
     }
   }
 
   .govuk-table__foot {
-    border-top: 3px solid $govuk-border-colour;
     @include govuk-typography-weight-bold;
+    border-top: 3px solid $govuk-border-colour;
 
     .govuk-table__row {
       .govuk-table__footer {
         text-align: left;
         padding: govuk-spacing(2) govuk-spacing(4) govuk-spacing(2) 0;
 
-        &--numeric {
-          text-align: right;
-        }
+        &--numeric { text-align: right; }
       }
 
       &:last-of-type {
-        th.govuk-table__header {
-          border-bottom: none;
-        }
+        .govuk-table__header { border-bottom: none; }
       }
 
       .govuk-table__footer {
-        &:last-child {
-          padding-right: 0;
-        }
+        &:last-child { padding-right: 0; }
       }
     }
   }
