@@ -13,7 +13,7 @@ shared_examples 'a component that accepts custom HTML attributes' do
     let(:updated_kwargs) { kwargs.deep_merge({ html_attributes: { class: Array.wrap(custom_class) } }) }
 
     specify 'the custom class is merged with the default ones' do
-      expect(rendered_content).to have_tag('*', with: { class: [custom_class, component_css_class] })
+      expect(rendered_content).to have_tag('*', with: { class: [custom_class, component_css_class].compact })
     end
   end
 end

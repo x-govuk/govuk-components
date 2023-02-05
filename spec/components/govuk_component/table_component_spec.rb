@@ -497,6 +497,43 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
 
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
+
+  describe "column groups and columns" do
+    subject! do
+      render_inline(GovukComponent::TableComponent.new) do |table|
+        table.with_colgroup(classes: "first") do |colgroup|
+          colgroup.with_col
+          colgroup.with_col(span: 2)
+          colgroup.with_col
+        end
+
+        table.with_colgroup(classes: "second") do |colgroup|
+          colgroup.with_col
+          colgroup.with_col(span: 3)
+        end
+      end
+    end
+
+    specify "renders colgroups with the correct attributes" do
+      expect(rendered_content).to have_tag("table", with: { class: "govuk-table" }) do
+        with_tag("colgroup", count: 2)
+      end
+    end
+
+    specify "renders the correct columns" do
+      expect(rendered_content).to have_tag("table", with: { class: "govuk-table" }) do
+        with_tag("colgroup", with: { class: "first" }) do
+          with_tag("col", count: 3)
+          with_tag("col", with: { span: 2 }, count: 1)
+        end
+
+        with_tag("colgroup", with: { class: "second" }) do
+          with_tag("col", count: 2)
+          with_tag("col", with: { span: 3 }, count: 1)
+        end
+      end
+    end
+  end
 end
 
 RSpec.describe(GovukComponent::TableComponent::HeadComponent, type: :component) do
@@ -566,6 +603,18 @@ RSpec.describe(GovukComponent::TableComponent::CellComponent, type: :component) 
       expect(rendered_content).to have_tag('td', with: { class: 'scope_on_td', scope: 'custom' })
     end
   end
+
+  describe "rowspan and colspan" do
+    subject! do
+      render_inline(GovukComponent::TableComponent::RowComponent.new(parent: 'tbody')) do |row|
+        row.with_cell(text: "span test", rowspan: 2, colspan: 3)
+      end
+    end
+
+    it "sets the colspan and rowspan attributes correctly" do
+      expect(rendered_content).to have_tag('td', with: { class: "govuk-table__cell", rowspan: "2", colspan: "3" })
+    end
+  end
 end
 
 RSpec.describe(GovukComponent::TableComponent::CaptionComponent, type: :component) do
@@ -579,6 +628,44 @@ end
 RSpec.describe(GovukComponent::TableComponent::FootComponent, type: :component) do
   let(:component_css_class) { 'govuk-table__foot' }
   let(:kwargs) { { rows: [%w(a b c)] } }
+
+  it_behaves_like 'a component that accepts custom classes'
+  it_behaves_like 'a component that accepts custom HTML attributes'
+end
+
+RSpec.describe(GovukComponent::TableComponent::ColGroupComponent, type: :component) do
+  let(:component_css_class) { nil }
+  let(:component_tag) { 'colgroup' }
+  let(:kwargs) { { cols: [1, 1] } }
+
+  it_behaves_like 'a component that accepts custom classes'
+  it_behaves_like 'a component that accepts custom HTML attributes'
+
+  describe "conditionally rendering based on column presence" do
+    subject! do
+      render_inline(GovukComponent::TableComponent::ColGroupComponent.new(**kwargs))
+    end
+
+    context "when there are cols" do
+      specify "the col group is rendered" do
+        expect(rendered_content).to have_tag("colgroup") { with_tag("col", count: 2) }
+      end
+    end
+
+    context "when there are no cols" do
+      let(:kwargs) { { cols: [] } }
+
+      specify "nothing is rendered" do
+        expect(rendered_content).to be_blank
+      end
+    end
+  end
+end
+
+RSpec.describe(GovukComponent::TableComponent::ColGroupComponent::ColComponent, type: :component) do
+  let(:component_css_class) { nil }
+  let(:component_tag) { 'col' }
+  let(:kwargs) { {} }
 
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'

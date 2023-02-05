@@ -1,5 +1,5 @@
 class GovukComponent::TableComponent::RowComponent < GovukComponent::Base
-  renders_many :cells, ->(scope: nil, header: nil, text: nil, numeric: false, width: nil, classes: [], html_attributes: {}, &block) do
+  renders_many :cells, ->(scope: nil, header: nil, text: nil, numeric: false, width: nil, rowspan: nil, colspan: nil, classes: [], html_attributes: {}, &block) do
     GovukComponent::TableComponent::CellComponent.new(
       scope: scope,
       header: header,
@@ -7,6 +7,8 @@ class GovukComponent::TableComponent::RowComponent < GovukComponent::Base
       numeric: numeric,
       width: width,
       parent: parent,
+      rowspan: rowspan,
+      colspan: colspan,
       classes: classes,
       html_attributes: html_attributes,
       &block
