@@ -38,7 +38,7 @@ Gem::Specification.new do |spec|
   # Required for the guide
   spec.add_development_dependency("htmlbeautifier", "~> 1.4.1")
   spec.add_development_dependency("nanoc", "~> 4.11")
-  spec.add_development_dependency("redcarpet", "~> 3.5.1")
+  spec.add_development_dependency("redcarpet", "~> 3.6.0")
   spec.add_development_dependency("rouge", "~> 4.0.0")
   spec.add_development_dependency("rubypants", "~> 0.7.0")
   spec.add_development_dependency("sass")
