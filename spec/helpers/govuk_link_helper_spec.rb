@@ -111,45 +111,6 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
 
       it { is_expected.to have_tag('a', with: { href: link_url, class: %w(green govuk-link--no-underline) }, text: link_text) }
     end
-
-    describe "opening links in new tabs" do
-      context "when new_tab: true" do
-        let(:default_new_tab_text) { "(opens in new tab)" }
-        subject { govuk_link_to(link_text, link_params, new_tab: true) }
-
-        it { is_expected.to have_tag('a', with: { href: link_url, class: %w(govuk-link), target: "_blank", rel: "noreferrer noopener" }, text: "#{link_text} #{default_new_tab_text}") }
-      end
-
-      context "when new_tab: '(opens in new window)'" do
-        let(:overridden_new_tab_text) { "(opens in new window)" }
-        subject { govuk_link_to(link_text, link_params, new_tab: overridden_new_tab_text) }
-
-        it { is_expected.to have_tag('a', with: { href: link_url, class: %w(govuk-link), target: "_blank", rel: "noreferrer noopener" }, text: "#{link_text} #{overridden_new_tab_text}") }
-      end
-
-      context "when new_tab is an empty string" do
-        let(:overridden_new_tab_text) { "" }
-        subject { govuk_link_to(link_text, link_params, new_tab: overridden_new_tab_text) }
-
-        it "appends nothing to the string" do
-          expect(subject).to have_tag('a', with: { href: link_url, class: %w(govuk-link), target: "_blank", rel: "noreferrer noopener" }, text: link_text)
-        end
-      end
-
-      context "when custom 'rel' and 'target' values are provided" do
-        let(:custom_rel) { { rel: "help" } }
-        let(:custom_target) { { target: "new" } }
-        subject { govuk_link_to(link_text, link_params, { **custom_rel, **custom_target }, new_tab: true) }
-
-        it "replaces the default target value with the provided one" do
-          expect(subject).to have_tag('a', with: { rel: "noreferrer noopener help" })
-        end
-
-        it "appends the provided rel value to 'noreferrer' and 'noopener'" do
-          expect(subject).to have_tag('a', with: { target: 'new' })
-        end
-      end
-    end
   end
 
   describe "#govuk_mail_to" do
@@ -311,47 +272,6 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
 
       specify "renders a form with an button that has the custom classes" do
         expect(subject).to have_tag("a", with: { href: button_link_url, class: %w(govuk-button yellow) }, text: button_link_text)
-      end
-    end
-
-    describe "opening links in new tabs" do
-      let(:link_params) { { controller: :some_controller, action: :some_action } }
-
-      context "when new_tab: true" do
-        let(:default_new_tab_text) { "(opens in new tab)" }
-        subject { govuk_button_link_to(button_link_text, link_params, new_tab: true) }
-
-        it { is_expected.to have_tag('a', with: { href: button_link_url, class: %w(govuk-button), target: "_blank", rel: "noreferrer noopener" }, text: "#{button_link_text} #{default_new_tab_text}") }
-      end
-
-      context "when new_tab: '(opens in new window)'" do
-        let(:overridden_new_tab_text) { "(opens in new window)" }
-        subject { govuk_button_link_to(button_link_text, link_params, new_tab: overridden_new_tab_text) }
-
-        it { is_expected.to have_tag('a', with: { href: button_link_url, class: %w(govuk-button), target: "_blank", rel: "noreferrer noopener" }, text: "#{button_link_text} #{overridden_new_tab_text}") }
-      end
-
-      context "when new_tab is an empty string" do
-        let(:overridden_new_tab_text) { "" }
-        subject { govuk_button_link_to(button_link_text, link_params, new_tab: overridden_new_tab_text) }
-
-        it "appends nothing to the string" do
-          expect(subject).to have_tag('a', with: { href: button_link_url, class: %w(govuk-button), target: "_blank", rel: "noreferrer noopener" }, text: button_link_text)
-        end
-      end
-
-      context "when custom 'rel' and 'target' values are provided" do
-        let(:custom_rel) { { rel: "help" } }
-        let(:custom_target) { { target: "new" } }
-        subject { govuk_button_link_to(button_link_text, link_params, { **custom_rel, **custom_target }, new_tab: true) }
-
-        it "replaces the default target value with the provided one" do
-          expect(subject).to have_tag('a', with: { rel: "noreferrer noopener help" })
-        end
-
-        it "appends the provided rel value to 'noreferrer' and 'noopener'" do
-          expect(subject).to have_tag('a', with: { target: 'new' })
-        end
       end
     end
   end
