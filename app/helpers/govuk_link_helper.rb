@@ -17,11 +17,6 @@ module GovukLinkHelper
     warning:   "govuk-button--warning",
   }.freeze
 
-  NEW_TAB_ATTRIBUTES = {
-    target: "_blank",
-    rel: "noreferrer noopener"
-  }.freeze
-
   def govuk_link_classes(*styles, default_class: 'govuk-link')
     if (invalid_styles = (styles - LINK_STYLES.keys)) && invalid_styles.any?
       fail(ArgumentError, "invalid styles #{invalid_styles.to_sentence}. Valid styles are #{LINK_STYLES.keys.to_sentence}")
@@ -38,14 +33,14 @@ module GovukLinkHelper
     [default_class] + BUTTON_STYLES.values_at(*styles).compact
   end
 
-  def govuk_link_to(name = nil, options = nil, extra_options = {}, new_tab: false, &block)
+  def govuk_link_to(name = nil, options = nil, extra_options = {}, &block)
     extra_options = options if block_given?
-    html_options = build_html_options(extra_options, new_tab: new_tab)
+    html_options = build_html_options(extra_options)
 
     if block_given?
       link_to(name, html_options, &block)
     else
-      link_to(prepare_link_text(name, new_tab), options, html_options)
+      link_to(name, options, html_options)
     end
   end
 
@@ -71,15 +66,15 @@ module GovukLinkHelper
     end
   end
 
-  def govuk_button_link_to(name = nil, options = nil, extra_options = {}, new_tab: false, &block)
+  def govuk_button_link_to(name = nil, options = nil, extra_options = {}, &block)
     extra_options = options if block_given?
     html_options = GovukComponent::StartButtonComponent::LINK_ATTRIBUTES
-      .merge build_html_options(extra_options, style: :button, new_tab: new_tab)
+      .merge build_html_options(extra_options, style: :button)
 
     if block_given?
       link_to(name, html_options, &block)
     else
-      link_to(prepare_link_text(name, new_tab), options, html_options)
+      link_to(name, options, html_options)
     end
   end
 
@@ -96,22 +91,17 @@ module GovukLinkHelper
 
 private
 
-  def build_html_options(provided_options, style: :link, new_tab: false)
+  def build_html_options(provided_options, style: :link)
     element_styles = { link: LINK_STYLES, button: BUTTON_STYLES }.fetch(style, {})
 
     # we need to take a couple of extra steps here because we don't want the style
     # params (inverse, muted, etc) to end up as extra attributes on the link.
 
-    remaining_options = new_tab_options(new_tab)
-      .deep_merge_html_attributes(remove_styles_from_provided_options(element_styles, provided_options))
+    remaining_options = remove_styles_from_provided_options(element_styles, provided_options)
 
     style_classes = build_style_classes(style, extract_styles_from_provided_options(element_styles, provided_options))
 
     combine_attributes(remaining_options, class_name: style_classes)
-  end
-
-  def new_tab_options(new_tab)
-    new_tab ? NEW_TAB_ATTRIBUTES : {}
   end
 
   def build_style_classes(style, provided_options)
@@ -142,16 +132,6 @@ private
     return {} if provided_options.blank?
 
     provided_options&.except(*styles.keys)
-  end
-
-  def prepare_link_text(text, new_tab)
-    return text unless new_tab
-
-    new_tab_text = new_tab.is_a?(String) ? new_tab : Govuk::Components.config.default_link_new_tab_text
-
-    return text if new_tab_text.blank?
-
-    %(#{text} #{new_tab_text})
   end
 end
 
