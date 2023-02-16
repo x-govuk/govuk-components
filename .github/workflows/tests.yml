@@ -9,8 +9,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ruby: ['3.0.5', '3.1.3', '3.2.0']
-        rails: ['6.1.7', '7.0.3']
+        ruby: ['3.0.5', '3.1.3', '3.2.1']
+        rails: ['6.1.7', '7.0.4']
     runs-on: ubuntu-20.04
     name: Testing with Ruby ${{ matrix.ruby }} and Rails ${{ matrix.rails }}
     steps:
