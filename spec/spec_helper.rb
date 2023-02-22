@@ -2,6 +2,8 @@ require 'pry'
 require 'pry-byebug'
 require 'view_component/test_helpers'
 require 'simplecov'
+require 'action_controller'
+require 'action_controller/test_case'
 
 require File.expand_path("dummy/config/environment", __dir__)
 
