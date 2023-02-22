@@ -125,11 +125,11 @@ private
     end
 
     def render?
-      name.present? || content.present?
+      name.present? || content?
     end
 
     def call
-      if content.present?
+      if content?
         tag.div(content, **html_attributes)
       else
         tag.span(name, **html_attributes)

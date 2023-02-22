@@ -27,7 +27,7 @@ class GovukComponent::NotificationBannerComponent < GovukComponent::Base
   end
 
   def render?
-    headings.any? || text.present? || content.present?
+    headings.any? || text.present? || content?
   end
 
   class Heading < GovukComponent::Base
