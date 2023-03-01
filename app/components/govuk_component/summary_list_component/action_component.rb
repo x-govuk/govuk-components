@@ -19,8 +19,10 @@ class GovukComponent::SummaryListComponent::ActionComponent < GovukComponent::Ba
   end
 
   def call
+    space = config.summary_list_action_visually_hidden_space ? nil : " "
+
     link_to(href, **html_attributes) do
-      safe_join([action_text, visually_hidden_span].compact, " ")
+      safe_join([action_text, visually_hidden_span].compact, space)
     end
   end
 
@@ -37,6 +39,8 @@ private
   end
 
   def visually_hidden_span
-    tag.span(visually_hidden_text, class: "govuk-visually-hidden") if visually_hidden_text.present?
+    space = config.summary_list_action_visually_hidden_space ? "&nbsp;" : nil
+
+    tag.span("#{space}#{visually_hidden_text}", class: "govuk-visually-hidden") if visually_hidden_text.present?
   end
 end

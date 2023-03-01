@@ -100,6 +100,7 @@ module Govuk
       default_link_new_tab_text: "(opens in new tab)",
 
       require_summary_list_action_visually_hidden_text: false,
+      summary_list_action_visually_hidden_space: false,
       enable_auto_table_scopes: true,
     }.freeze
 

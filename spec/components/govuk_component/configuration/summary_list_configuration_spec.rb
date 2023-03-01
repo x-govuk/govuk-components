@@ -58,5 +58,29 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
         end
       end
     end
+
+    describe "summary_list_action_visually_hidden_space" do
+      before do
+        Govuk::Components.configure do |config|
+          config.summary_list_action_visually_hidden_space = true
+        end
+      end
+
+      let(:visually_hidden_text) { "visually hidden info" }
+
+      subject! do
+        render_inline(GovukComponent::SummaryListComponent.new) do |sl|
+          sl.with_row do |row|
+            row.with_key(text: "key one")
+            row.with_value(text: "value one")
+            row.with_action(text: "action one", href: "/action-one", visually_hidden_text: visually_hidden_text)
+          end
+        end
+      end
+
+      specify "renders a span with a space inside the visually hidden text" do
+        expect(rendered_content).to have_tag("span", text: "&nbsp;#{visually_hidden_text}", with: { class: "govuk-visually-hidden" })
+      end
+    end
   end
 end
