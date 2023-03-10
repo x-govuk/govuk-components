@@ -37,8 +37,8 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
           end
         end
 
-        specify "renders a span with the visually hidden text" do
-          expect(rendered_content).to have_tag("span", text: visually_hidden_text, with: { class: "govuk-visually-hidden" })
+        specify "renders a span with the visually hidden text with a leading space" do
+          expect(rendered_content).to have_tag("span", text: %( #{visually_hidden_text}), with: { class: "govuk-visually-hidden" })
         end
       end
 

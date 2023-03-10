@@ -357,9 +357,9 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
                 class: "row-1-custom-action-1-class",
                 "data-id" => "row-1-action-1-data-id"
               },
-              text: /Change/
+              text: /\AChange/
             }) do
-              with_tag("span", with: { class: "govuk-visually-hidden" }, text: "name")
+              with_tag("span", with: { class: "govuk-visually-hidden" }, text: " name")
             end
           end
         end
@@ -376,8 +376,8 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
                   class: "row-2-custom-action-1-class",
                   "data-id" => "row-2-action-1-data-id"
                 },
-                text: /Change/
-              }) { with_tag("span", with: { class: "govuk-visually-hidden" }, text: "address") }
+                text: /\AChange/
+              }) { with_tag("span", with: { class: "govuk-visually-hidden" }, text: " address") }
 
               with_tag("a", {
                 class: "govuk-link",
@@ -386,8 +386,8 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
                   class: "row-2-custom-action-2-class",
                   "data-id" => "row-2-action-2-data-id"
                 },
-                text: /Delete/
-              }) { with_tag("span", with: { class: "govuk-visually-hidden" }, text: "address") }
+                text: /\ADelete/
+              }) { with_tag("span", with: { class: "govuk-visually-hidden" }, text: " address") }
             end
           end
         end
