@@ -20,7 +20,7 @@ class GovukComponent::SummaryListComponent::ActionComponent < GovukComponent::Ba
 
   def call
     link_to(href, **html_attributes) do
-      safe_join([action_text, visually_hidden_span].compact, " ")
+      safe_join([action_text, visually_hidden_span].compact)
     end
   end
 
@@ -37,6 +37,6 @@ private
   end
 
   def visually_hidden_span
-    tag.span(visually_hidden_text, class: "govuk-visually-hidden") if visually_hidden_text.present?
+    tag.span(%( #{visually_hidden_text}), class: "govuk-visually-hidden") if visually_hidden_text.present?
   end
 end
