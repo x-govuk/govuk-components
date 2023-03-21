@@ -43,31 +43,41 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
   describe 'for each section' do
     specify 'the heading text and content is present' do
       sections.each do |heading_text, content|
-        expect(rendered_content).to have_tag('div', with: { class: 'govuk-accordion__section', id: %(#{heading_text.parameterize}-section) }) do
+        expect(rendered_content).to have_tag('div', with: { class: 'govuk-accordion__section', id: %(#{id}-#{heading_text.parameterize}-section) }) do
           with_tag('h2', class: 'govuk-accordion__section-heading') do
-            with_tag('span', text: heading_text, with: { id: heading_text.parameterize, class: 'govuk-accordion__section-button' })
+            with_tag('span', text: heading_text, with: { id: %(#{id}-#{heading_text.parameterize}), class: 'govuk-accordion__section-button' })
           end
 
-          with_tag('div', with: { id: %(#{heading_text.parameterize}-content), class: 'govuk-accordion__section-content' }, text: content)
+          with_tag('div', with: { id: %(#{id}-#{heading_text.parameterize}-content), class: 'govuk-accordion__section-content' }, text: content)
         end
       end
     end
 
     specify 'each section ID matches the content aria-labelledby' do
       sections.each_key do |heading_text|
-        id = heading_text.parameterize
+        expected_id = %(#{id}-#{heading_text.parameterize})
 
-        expect(rendered_content).to have_tag('span', with: { id: id, class: 'govuk-accordion__section-button' })
-        expect(rendered_content).to have_tag('div', with: { 'aria-labelledby' => id })
+        expect(rendered_content).to have_tag('span', with: { id: expected_id, class: 'govuk-accordion__section-button' })
+        expect(rendered_content).to have_tag('div', with: { 'aria-labelledby' => expected_id })
       end
     end
 
     specify 'each section ID matches the button aria-controls' do
       sections.each_key do |heading_text|
-        id = heading_text.parameterize
+        expected_id = %(#{id}-#{heading_text.parameterize}-content)
 
-        expect(rendered_content).to have_tag('div', with: { id: %(#{id}-content) })
-        expect(rendered_content).to have_tag('span', with: { 'aria-controls' => %(#{id}-content) })
+        expect(rendered_content).to have_tag('div', with: { id: expected_id })
+        expect(rendered_content).to have_tag('span', with: { 'aria-controls' => expected_id })
+      end
+    end
+  end
+
+  describe 'building unique section ids' do
+    context 'when the accordion has an ID' do
+      let(:kwargs) { { html_attributes: { id: id } } }
+
+      specify 'the accordion id is prefixes the section id' do
+        expect(html.css('.govuk-accordion__section').map { |e| e[:id] }).to all(start_with(id))
       end
     end
   end

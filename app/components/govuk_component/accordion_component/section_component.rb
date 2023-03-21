@@ -1,26 +1,29 @@
 class GovukComponent::AccordionComponent::SectionComponent < GovukComponent::Base
-  attr_reader :heading_text, :summary_text, :expanded, :heading_level
+  attr_reader :heading_text, :summary_text, :expanded, :heading_level, :accordion_id
 
   renders_one :heading_html
   renders_one :summary_html
 
   alias_method :expanded?, :expanded
 
-  def initialize(heading_text:, summary_text:, expanded:, heading_level:, classes: [], html_attributes: {})
+  def initialize(heading_text:, summary_text:, expanded:, heading_level:, accordion_id: nil, classes: [], html_attributes: {})
     @heading_text  = heading_text
     @summary_text  = summary_text
     @expanded      = expanded
     @heading_level = heading_level
+    @accordion_id  = accordion_id
 
     super(classes: classes, html_attributes: html_attributes)
   end
 
   def id(suffix: nil)
+    prefix = @accordion_id
+
     # generate a random number if we don't have heading_text to avoid attempting
     # to parameterize a potentially-huge chunk of HTML
-    @prefix ||= heading_text&.parameterize || SecureRandom.hex(4)
+    @unique_identifier ||= heading_text&.parameterize || SecureRandom.hex(4)
 
-    [@prefix, suffix].compact.join('-')
+    [prefix, @unique_identifier, suffix].compact.join('-')
   end
 
   def heading_content
