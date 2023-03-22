@@ -7,16 +7,16 @@ class GovukComponent::AccordionComponent < GovukComponent::Base
       html_attributes: html_attributes,
       summary_text: summary_text,
       heading_text: heading_text,
-      accordion_id: id,
+      accordion_id: accordion_id,
       &block
     )
   end
 
-  attr_reader :id, :heading_level
+  attr_reader :accordion_id, :heading_level
 
   def initialize(heading_level: 2, classes: [], html_attributes: {})
     @heading_level = heading_tag(heading_level)
-    @id            = html_attributes[:id]
+    @accordion_id  = html_attributes[:id]
 
     super(classes: classes, html_attributes: html_attributes)
   end
@@ -24,7 +24,7 @@ class GovukComponent::AccordionComponent < GovukComponent::Base
 private
 
   def default_attributes
-    { id: id, class: %w(govuk-accordion), data: { module: 'govuk-accordion' } }.compact
+    { class: %w(govuk-accordion), data: { module: 'govuk-accordion' } }.compact
   end
 
   def heading_tag(level)
