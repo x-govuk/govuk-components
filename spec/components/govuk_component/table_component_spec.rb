@@ -59,7 +59,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
 
     subject! do
       render_inline(GovukComponent::TableComponent.new(**kwargs)) do |table|
-        table.caption(text: "What a nice table")
+        table.with_caption(text: "What a nice table")
 
         expected_count.times { table.with_body {} }
       end
