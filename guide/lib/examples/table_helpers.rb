@@ -82,7 +82,7 @@ module Examples
     def table_with_resized_columns
       <<~TABLE
         = govuk_table do |table|
-          - table.caption(size: 'm', text: 'List of Pokémon with descriptions')
+          - table.with_caption(size: 'm', text: 'List of Pokémon with descriptions')
 
           - table.with_head do |head|
             - head.with_row do |row|
