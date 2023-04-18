@@ -47,7 +47,7 @@ module GovukComponent
     end
 
     def build(rows)
-      @show_actions_column = rows.any? { |r| r.key?(:actions) }
+      @show_actions_column &&= rows.any? { |r| r.key?(:actions) }
 
       rows.each do |data|
         k, v, a = data.values_at(:key, :value, :actions)
