@@ -243,7 +243,8 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
   end
 
   describe "passing data directly into the summary list component" do
-    subject! { render_inline(described_class.new(rows: rows)) }
+    subject! { render_inline(described_class.new(rows: rows, actions: actions)) }
+    let(:actions) { true }
 
     describe "setting keys, values and actions" do
       let(:rows) do
@@ -388,6 +389,18 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
                 },
                 text: /\ADelete/
               }) { with_tag("span", with: { class: "govuk-visually-hidden" }, text: " address") }
+            end
+          end
+        end
+      end
+
+      context "when actions are set to false" do
+        let(:actions) { false }
+
+        specify "doesn't render an action column" do
+          expect(rendered_content).to have_tag("dl", with: { class: component_css_class }) do
+            with_tag("div", with: { class: %(govuk-summary-list__row) }) do
+              without_tag("dd", with: { class: "govuk-summary-list__actions" })
             end
           end
         end
