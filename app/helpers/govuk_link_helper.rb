@@ -12,7 +12,6 @@ module GovukLinkHelper
   }.freeze
 
   BUTTON_STYLES = {
-    disabled:  "govuk-button--disabled",
     secondary: "govuk-button--secondary",
     warning:   "govuk-button--warning",
   }.freeze
