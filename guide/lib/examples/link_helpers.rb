@@ -47,7 +47,6 @@ module Examples
     def govuk_button_other_styles
       <<~BUTTONS
         .govuk-button-group
-          = govuk_button_link_to('A disabled button', '#', { disabled: true })
           = govuk_button_link_to('A secondary button', '#', { secondary: true })
           = govuk_button_link_to('A warning button', '#', { warning: true })
       BUTTONS
