@@ -110,13 +110,15 @@ module Examples
           - table.with_caption(text: 'Starter Pokémon weights in kilograms by level, type and generation')
 
           - table.with_colgroup do |colgroup|
-            - colgroup.with_col(span: 2)
+            - colgroup.with_col(span: 1)
+
             - colgroup.with_col(span: 3, html_attributes: { class: 'generation-1' })
             - colgroup.with_col(span: 3, html_attributes: { class: 'generation-2' })
 
           - table.with_head do |head|
             - head.with_row do |row|
               - row.with_cell(scope: false, html_attributes: { class: 'no-border-bottom' })
+
               - row.with_cell(text: 'Generation 1', colspan: 3, scope: 'colgroup', html_attributes: { class: 'generation-heading border-left' })
               - row.with_cell(text: 'Generation 2', colspan: 3, scope: 'colgroup', html_attributes: { class: 'generation-heading border-left' })
 
