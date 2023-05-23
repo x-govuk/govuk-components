@@ -52,6 +52,7 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
       secondary: 'govuk-button--secondary',
       warning:   'govuk-button--warning',
       disabled:  'govuk-button--disabled',
+      inverse:   'govuk-button--inverse',
     }.each do |style, css_class|
       describe "generating a #{style}-style button with '#{style}: true'" do
         let(:args) { [style] }
