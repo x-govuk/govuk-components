@@ -44,6 +44,12 @@ module Examples
       %(= govuk_button_link_to 'A link styled like a button', '#')
     end
 
+    def govuk_button_inverse
+      <<~BUTTON
+        = govuk_button_link_to('An inverse button', '#', { inverse: true })
+      BUTTON
+    end
+
     def govuk_button_other_styles
       <<~BUTTONS
         .govuk-button-group
