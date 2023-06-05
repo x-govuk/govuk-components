@@ -15,6 +15,7 @@ module GovukLinkHelper
     disabled:  "govuk-button--disabled",
     secondary: "govuk-button--secondary",
     warning:   "govuk-button--warning",
+    inverse:   "govuk-button--inverse",
   }.freeze
 
   def govuk_link_classes(*styles, default_class: 'govuk-link')
