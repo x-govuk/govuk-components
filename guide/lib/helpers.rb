@@ -110,3 +110,5 @@ use_helper Examples::WarningTextHelpers
 use_helper Examples::CommonOptionsHelpers
 use_helper Examples::BackToTopLinkHelpers
 use_helper Examples::TitleWithErrorPrefixHelpers
+
+ActiveSupport.on_load(:action_view) { include GovukLinkHelper }
