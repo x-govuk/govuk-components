@@ -3,156 +3,123 @@ require "html_attributes_utils"
 module GovukLinkHelper
   using HTMLAttributesUtils
 
-  def govuk_link_classes(*styles, default_class: "#{brand}-link")
-    if (invalid_styles = (styles - link_styles.keys)) && invalid_styles.any?
-      fail(ArgumentError, "invalid styles #{invalid_styles.to_sentence}. Valid styles are #{link_styles.keys.to_sentence}")
+  def govuk_link_classes(inverse: false, muted: false, no_underline: false, no_visited_state: false, text_colour: false)
+    if [text_colour, inverse, muted].count(true) > 1
+      fail("links can be either text_colour, inverse or muted - not combinations of the three")
     end
 
-    [default_class] + link_styles.values_at(*styles).compact
+    class_names(
+      "#{brand}-link",
+      "#{brand}-link--inverse"          => inverse,
+      "#{brand}-link--muted"            => muted,
+      "#{brand}-link--no-underline"     => no_underline,
+      "#{brand}-link--no-visited-state" => no_visited_state,
+      "#{brand}-link--text-colour"      => text_colour,
+    )
   end
 
-  def govuk_button_classes(*styles, default_class: "#{brand}-button")
-    if (invalid_styles = (styles - button_styles.keys)) && invalid_styles.any?
-      fail(ArgumentError, "invalid styles #{invalid_styles.to_sentence}. Valid styles are #{button_styles.keys.to_sentence}")
+  def govuk_button_classes(disabled: false, inverse: false, secondary: false, warning: false)
+    if [inverse, secondary, warning].count(true) > 1
+      fail("buttons can be either inverse, secondary or warning - not combinations of the three")
     end
 
-    [default_class] + button_styles.values_at(*styles).compact
+    class_names(
+      "#{brand}-button",
+      "#{brand}-button--disabled"  => disabled,
+      "#{brand}-button--inverse"   => inverse,
+      "#{brand}-button--secondary" => secondary,
+      "#{brand}-button--warning"   => warning,
+    )
   end
 
-  def govuk_link_to(name = nil, options = nil, extra_options = {}, &block)
-    extra_options = options if block_given?
-    html_options = build_html_options(extra_options)
+  def govuk_link_to(name, href = nil, new_tab: false, inverse: false, muted: false, no_underline: false, no_visited_state: false, text_colour: false, **kwargs, &block)
+    link_args = extract_link_args(new_tab: new_tab, inverse: inverse, muted: muted, no_underline: no_underline, no_visited_state: no_visited_state, text_colour: text_colour, **kwargs)
 
     if block_given?
-      link_to(name, html_options, &block)
+      link_to(block.call, href, **link_args)
     else
-      link_to(name, options, html_options)
+      link_to(name, href, **link_args)
     end
   end
 
-  def govuk_mail_to(email_address, name = nil, extra_options = {}, &block)
-    extra_options = name if block_given?
-    html_options = build_html_options(extra_options)
+  def govuk_mail_to(email_address, name = nil, new_tab: false, inverse: false, muted: false, no_underline: false, no_visited_state: false, text_colour: false, **kwargs, &block)
+    link_args = extract_link_args(new_tab: new_tab, inverse: inverse, muted: muted, no_underline: no_underline, no_visited_state: no_visited_state, text_colour: text_colour, **kwargs)
 
     if block_given?
-      mail_to(email_address, html_options, &block)
+      mail_to(email_address, block.call, **link_args)
     else
-      mail_to(email_address, name, html_options)
+      mail_to(email_address, name, **link_args)
     end
   end
 
-  def govuk_button_to(name = nil, options = nil, extra_options = {}, &block)
-    extra_options = options if block_given?
-    html_options = {
-      data: { module: "govuk-button" }
-    }
-
-    if extra_options && extra_options[:prevent_double_click]
-      html_options[:data]["prevent-double-click"] = "true"
-      extra_options = extra_options.except(:prevent_double_click)
-    end
-
-    html_options.merge! build_html_options(extra_options, style: :button)
+  def govuk_button_to(name, href = nil, disabled: false, inverse: false, secondary: false, warning: false, **kwargs, &block)
+    button_args = extract_button_args(new_tab: false, disabled: disabled, inverse: inverse, secondary: secondary, warning: warning, **kwargs)
 
     if block_given?
-      button_to(options, html_options, &block)
+      button_to(block.call, href, **button_args)
     else
-      button_to(name, options, html_options)
+      button_to(name, href, **button_args)
     end
   end
 
-  def govuk_button_link_to(name = nil, options = nil, extra_options = {}, &block)
-    extra_options = options if block_given?
-    html_options = {
-      data: { module: "#{brand}-button" },
-      draggable: 'false',
-      role: 'button',
-    }.merge build_html_options(extra_options, style: :button)
+  def govuk_button_link_to(name, href = nil, new_tab: false, disabled: false, inverse: false, secondary: false, warning: false, **kwargs, &block)
+    button_args = extract_button_args(new_tab: new_tab, disabled: disabled, inverse: inverse, secondary: secondary, warning: warning, **kwargs)
 
     if block_given?
-      link_to(name, html_options, &block)
+      link_to(block.call, href, **button_args)
     else
-      link_to(name, options, html_options)
+      link_to(name, href, **button_args)
     end
   end
 
-  def govuk_breadcrumb_link_to(name = nil, options = nil, extra_options = {}, &block)
-    extra_options = options if block_given?
-    html_options = build_html_options(extra_options, style: :breadcrumb)
+  def govuk_breadcrumb_link_to(name, href = nil, **kwargs, &block)
+    link_args = { class: "#{brand}-breadcrumbs--link" }.deep_merge_html_attributes(kwargs)
 
     if block_given?
-      link_to(name, html_options, &block)
+      link_to(block.call, href, **link_args)
     else
-      link_to(name, options, html_options)
+      link_to(name, href, **link_args)
     end
   end
 
 private
 
+  def new_tab_args(new_tab)
+    new_tab ? { target: "_blank", rel: "noreferrer noopener" } : {}
+  end
+
+  def button_attributes(disabled)
+    disabled ? { disabled: true, aria: { disabled: true } } : {}
+  end
+
+  def extract_link_args(new_tab: false, inverse: false, muted: false, no_underline: false, no_visited_state: false, text_colour: false, **kwargs)
+    {
+      class: govuk_link_classes(
+        inverse: inverse,
+        muted: muted,
+        no_underline: no_underline,
+        no_visited_state: no_visited_state,
+        text_colour: text_colour
+      ),
+      **new_tab_args(new_tab)
+    }.deep_merge_html_attributes(kwargs)
+  end
+
+  def extract_button_args(new_tab: false, disabled: false, inverse: false, secondary: false, warning: false, **kwargs)
+    {
+      class: govuk_button_classes(
+        disabled: disabled,
+        inverse: inverse,
+        secondary: secondary,
+        warning: warning
+      ),
+      **button_attributes(disabled),
+      **new_tab_args(new_tab)
+    }.deep_merge_html_attributes(kwargs)
+  end
+
   def brand
     Govuk::Components.brand
-  end
-
-  def link_styles
-    {
-      inverse:          "#{brand}-link--inverse",
-      muted:            "#{brand}-link--muted",
-      no_underline:     "#{brand}-link--no-underline",
-      no_visited_state: "#{brand}-link--no-visited-state",
-      text_colour:      "#{brand}-link--text-colour",
-    }
-  end
-
-  def button_styles
-    {
-      disabled:  "#{brand}-button--disabled",
-      secondary: "#{brand}-button--secondary",
-      warning:   "#{brand}-button--warning",
-      inverse:   "#{brand}-button--inverse",
-    }
-  end
-
-  def build_html_options(provided_options, style: :link)
-    element_styles = { link: link_styles, button: button_styles }.fetch(style, {})
-
-    # we need to take a couple of extra steps here because we don't want the style
-    # params (inverse, muted, etc) to end up as extra attributes on the link.
-
-    remaining_options = remove_styles_from_provided_options(element_styles, provided_options)
-
-    style_classes = build_style_classes(style, extract_styles_from_provided_options(element_styles, provided_options))
-
-    combine_attributes(remaining_options, class_name: style_classes)
-  end
-
-  def build_style_classes(style, provided_options)
-    keys = *provided_options&.keys
-
-    case style
-    when :link then govuk_link_classes(*keys)
-    when :button then govuk_button_classes(*keys)
-    when :breadcrumb then "#{brand}-breadcrumbs__link"
-    end
-  end
-
-  def combine_attributes(attributes, class_name:)
-    attributes ||= {}
-
-    attributes.with_indifferent_access.tap do |attrs|
-      attrs[:class] = Array.wrap(attrs[:class]).prepend(class_name).flatten.join(" ")
-    end
-  end
-
-  def extract_styles_from_provided_options(styles, provided_options)
-    return {} if provided_options.blank?
-
-    provided_options.slice(*styles.keys)
-  end
-
-  def remove_styles_from_provided_options(styles, provided_options)
-    return {} if provided_options.blank?
-
-    provided_options&.except(*styles.keys)
   end
 end
 
