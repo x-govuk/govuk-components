@@ -38,7 +38,7 @@ module Helpers
     end
 
     def github_link
-      'https://github.com/DFE-Digital/govuk-components'
+      'https://github.com/x-govuk/govuk-components'
     end
 
     def rubygems_link
@@ -50,7 +50,7 @@ module Helpers
     end
 
     def code_climate_report_link
-      'https://codeclimate.com/github/DFE-Digital/govuk-components'
+      'https://codeclimate.com/github/x-govuk/govuk-components'
     end
 
     def dfe_rails_boilerplate_link
