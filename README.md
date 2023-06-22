@@ -81,15 +81,15 @@ This library allows components to be rendered with Rails’ `render` method or v
 
 ```erb
 <%= govuk_tabs(title: 'Days of the week') do |component| %>
-  <% component.tab(label: 'Monday') do %>
+  <% component.with_tab(label: 'Monday') do %>
     <p>Monday’s child is fair of face</p>
   <% end %>
 
-  <% component.tab(label: 'Tuesday') do %>
+  <% component.with_tab(label: 'Tuesday') do %>
     <p>Tuesday’s child is full of grace</p>
   <% end %>
 
-  <% component.tab(label: 'Wednesday') do %>
+  <% component.with_tab(label: 'Wednesday') do %>
     <p>Wednesday’s child is full of woe</p>
   <% end %>
 <% end %>
