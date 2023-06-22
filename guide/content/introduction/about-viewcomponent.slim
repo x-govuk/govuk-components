@@ -42,9 +42,9 @@ markdown:
 
         / with slots:
         = render(ShoppingList.new) do |shopping_list|
-          - shopping_list.item("Apple juice")
-          - shopping_list.item("Bread")
-          - shopping_list.item("Carrots")
+          - shopping_list.with_item("Apple juice")
+          - shopping_list.with_item("Bread")
+          - shopping_list.with_item("Carrots")
 
 markdown:
   Slots give us more flexibilty. In this scenario they'd make it easier to
@@ -55,10 +55,10 @@ markdown:
     code.highlight.language-slim
       |
         = render(ShoppingList.new) do |shopping_list|
-          - shopping_list.item(count: 3)
+          - shopping_list.with_item(count: 3)
             | Apple juice
 
-          - shopping_list.item("Bread", sliced: true)
+          - shopping_list.with_item("Bread", sliced: true)
 
           - if cupboard.carrots.count == 0
-            - shopping_list.item("Carrots")
+            - shopping_list.with_item("Carrots")
