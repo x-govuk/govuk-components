@@ -3,11 +3,11 @@ $LOAD_PATH.push File.expand_path("lib", __dir__)
 require "govuk/components/version"
 
 METADATA = {
-  "bug_tracker_uri"   => "https://github.com/DFE-Digital/govuk-components/issues",
-  "changelog_uri"     => "https://github.com/DFE-Digital/govuk-components/releases",
+  "bug_tracker_uri"   => "https://github.com/x-govuk/govuk-components/issues",
+  "changelog_uri"     => "https://github.com/x-govuk/govuk-components/releases",
   "documentation_uri" => "https://www.rubydoc.info/gems/govuk-components/",
-  "homepage_uri"      => "https://github.com/DFE-Digital/govuk-components",
-  "source_code_uri"   => "https://github.com/DFE-Digital/govuk-components"
+  "homepage_uri"      => "https://github.com/x-govuk/govuk-components",
+  "source_code_uri"   => "https://github.com/x-govuk/govuk-components"
 }.freeze
 
 Gem::Specification.new do |spec|
@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
   spec.version     = Govuk::Components::VERSION
   spec.authors     = ["DfE developers"]
   spec.email       = ["peter.yates@digital.education.gov.uk"]
-  spec.homepage    = "https://github.com/DFE-Digital/govuk-components"
+  spec.homepage    = "https://github.com/x-govuk/govuk-components"
   spec.summary     = "Lightweight set of reusable GOV.UK Design System components"
   spec.description = "A collection of components intended to ease the building of GOV.UK Design System web applications"
   spec.license     = "MIT"
