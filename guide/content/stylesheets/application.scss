@@ -3,14 +3,13 @@ $govuk-global-styles: true;
 $govuk-assets-path: "/assets/";
 $app-iframe-mobile-height: 15rem;
 $govuk-new-link-styles: true;
-$govuk-font-family: "TransportNew", sans-serif;
+$govuk-font-family: system-ui, sans-serif;
 $x-govuk-brand-colour: #28a;
 
 // Import GOV.UK Frontend
 @import "govuk/all";
 
 // Application components
-@import "components/fonts";
 @import "components/button";
 @import "components/example";
 @import "components/header";
