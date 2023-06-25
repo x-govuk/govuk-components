@@ -1,5 +1,12 @@
 .app-masthead.app-masthead--large
   .govuk-width-container
+    .govuk-breadcrumbs class="app-breadcrumbs--inverse govuk-!-display-none-print govuk-!-margin-0"
+      ol.govuk-breadcrumbs__list
+        li.govuk-breadcrumbs__list-item
+          == link_to 'X-GOVUK projects', 'https://x-govuk.github.io/#projects', class: 'govuk-breadcrumbs__link'
+        li.govuk-breadcrumbs__list-item aria-current="page"
+          | GOV.UK Components for Ruby on Rails
+
     .govuk-grid-row
       .govuk-grid-column-two-thirds-from-desktop
         h1.app-masthead__title Build GOV.UK services using Ruby on Rails components
