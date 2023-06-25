@@ -1,15 +1,17 @@
 class GovukComponent::BreadcrumbsComponent < GovukComponent::Base
-  attr_reader :breadcrumbs, :hide_in_print, :collapse_on_mobile
+  attr_reader :breadcrumbs, :hide_in_print, :collapse_on_mobile, :inverse
 
   def initialize(breadcrumbs:,
                  hide_in_print: config.default_breadcrumbs_hide_in_print,
                  collapse_on_mobile: config.default_breadcrumbs_collapse_on_mobile,
+                 inverse: false,
                  classes: [],
                  html_attributes: {})
 
     @breadcrumbs        = build_list(breadcrumbs)
     @hide_in_print      = hide_in_print
     @collapse_on_mobile = collapse_on_mobile
+    @inverse            = inverse
 
     super(classes: classes, html_attributes: html_attributes)
   end
@@ -21,7 +23,8 @@ private
       class: class_names(
         "govuk-breadcrumbs",
         "govuk-!-display-none-print" => hide_in_print,
-        "govuk-breadcrumbs--collapse-on-mobile" => collapse_on_mobile
+        "govuk-breadcrumbs--collapse-on-mobile" => collapse_on_mobile,
+        "govuk-breadcrumbs--inverse" => inverse
       ).split
     }
   end

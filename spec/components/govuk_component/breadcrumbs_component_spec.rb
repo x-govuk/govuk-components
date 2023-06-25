@@ -77,6 +77,15 @@ RSpec.describe(GovukComponent::BreadcrumbsComponent, type: :component) do
     end
   end
 
+  context 'when breadcrumb colours are inverted' do
+    let(:kwargs) { { breadcrumbs: breadcrumbs, inverse: true } }
+    let(:expected_class) { 'govuk-breadcrumbs.govuk-breadcrumbs--inverse' }
+
+    specify 'breadcrumbs colours are inverted' do
+      expect(rendered_content).to have_tag('div', with: { class: %w(govuk-breadcrumbs govuk-breadcrumbs--inverse) })
+    end
+  end
+
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 end
