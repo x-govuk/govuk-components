@@ -29,8 +29,8 @@ module Helpers
       }
     end
 
-    def national_archives_link
-      'https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/'
+    def licence_link
+      'https://github.com/x-govuk/govuk-components/blob/main/LICENSE.txt'
     end
 
     def design_system_link
