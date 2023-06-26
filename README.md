@@ -1,12 +1,12 @@
-# GOV.UK Components
+# GOV.UK Components for Ruby on Rails
 
 [![Tests](https://github.com/x-govuk/govuk-components/workflows/Tests/badge.svg)](https://github.com/x-govuk/govuk-components/actions?query=workflow%3ATests)
 [![Maintainability](https://api.codeclimate.com/v1/badges/cbcbc140f300b920d833/maintainability)](https://codeclimate.com/github/x-govuk/govuk-components/maintainability)
-[![Gem Version](https://badge.fury.io/rb/govuk-components.svg)](https://badge.fury.io/rb/govuk-components)
+[![Gem version](https://badge.fury.io/rb/govuk-components.svg)](https://badge.fury.io/rb/govuk-components)
 [![Gem](https://img.shields.io/gem/dt/govuk-components?logo=rubygems)](https://rubygems.org/gems/govuk-components)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/cbcbc140f300b920d833/test_coverage)](https://codeclimate.com/github/x-govuk/govuk-components/test_coverage)
+[![Test coverage](https://api.codeclimate.com/v1/badges/cbcbc140f300b920d833/test_coverage)](https://codeclimate.com/github/x-govuk/govuk-components/test_coverage)
 [![Licence](https://img.shields.io/github/license/x-govuk/govuk-components)](https://github.com/x-govuk/govuk-components/blob/main/LICENSE.txt)
-[![GOV.UK Design System Version](https://img.shields.io/badge/GOV.UK%20Design%20System-4.6.0-brightgreen)](https://design-system.service.gov.uk)
+[![GOV.UK Design System version](https://img.shields.io/badge/GOV.UK%20Design%20System-4.6.0-brightgreen)](https://design-system.service.gov.uk)
 [![Rails](https://img.shields.io/badge/Rails-6.1.7%20%E2%95%B1%207.0.3-E16D6D)](https://weblog.rubyonrails.org/releases/)
 [![Ruby](https://img.shields.io/badge/Ruby-3.0.5%20%20%E2%95%B1%203.1.3%20%20%E2%95%B1%203.2.0-E16D6D)](https://www.ruby-lang.org/en/downloads/)
 
@@ -16,10 +16,7 @@ It aims to implement the functionality from the original Nunjucks macros in a wa
 
 ## Documentation
 
-The gem comes with [a full guide](https://govuk-components.netlify.app/) that
-covers most aspects of day-to-day use, along with code and output examples. The
-examples in the guide (and the guide itself) are built using the components,
-so it will always be up to date.
+The gem comes with [a full guide](https://govuk-components.netlify.app/) that covers most aspects of day-to-day use, along with code and output examples. The examples in the guide (and the guide itself) are built using the components, so it will always be up to date.
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/d40a5a0a-b086-4c35-b046-97fbcbf9f219/deploy-status)](https://app.netlify.com/sites/govuk-components/deploys)
 
@@ -144,12 +141,9 @@ gem install govuk-components
 
 ## Contributing
 
-Bug reports and feature requests are most welcome, please raise an issue or
-submit a pull request.
+Bug reports and feature requests are most welcome, please raise an issue or submit a pull request.
 
-Currently we're using [GOVUK Lint](https://github.com/alphagov/govuk-lint) to
-ensure code meets the GOV.UK guidelines. Please ensure that any PRs also adhere
-to this standard.
+Currently we're using [GOVUK Lint](https://github.com/alphagov/govuk-lint) to ensure code meets the GOV.UK guidelines. Please ensure that any PRs also adhere to this standard.
 
 To help keep the logs clean and tidy, please configure git to use your full name:
 

@@ -16,8 +16,8 @@ Gem::Specification.new do |spec|
   spec.authors     = ["DfE developers"]
   spec.email       = ["peter.yates@digital.education.gov.uk"]
   spec.homepage    = "https://github.com/x-govuk/govuk-components"
-  spec.summary     = "Lightweight set of reusable GOV.UK Design System components"
-  spec.description = "A collection of components intended to ease the building of GOV.UK Design System web applications"
+  spec.summary     = "GOV.UK Components for Ruby on Rails"
+  spec.description = "This library provides view components for the GOV.UK Design System. It makes creating services more familiar for Ruby on Rails developers."
   spec.license     = "MIT"
 
   spec.files = Dir["{app,config,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
