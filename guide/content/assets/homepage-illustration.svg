@@ -18,7 +18,7 @@
   <path fill="#EDEDED" fill-rule="nonzero" d="M486 446h-1V207.5c0-5-3.5-8.5-8.5-8.5h-337c-5 0-8.5 3.5-8.5 8.5V446h-1V207.5c0-5.5 4-9.5 9.5-9.5h337c5.5 0 9.5 4 9.5 9.5V446Z"/>
   <path fill="#808283" fill-rule="nonzero" d="M269 446h78v7h-78z"/>
   <path fill="#B1B4B6" fill-rule="nonzero" d="M339.5 452.5H276c-5 0-6.5-3-6.5-6.5H80v10a8 8 0 0 0 8 8h440a8 8 0 0 0 8-8v-10H346.5c0 4-2 6.5-7 6.5Z"/>
-  <path stroke="#EDEDED" d="M536 446.5H346.5c0 4-2.5 6-6.5 6h-64c-4 0-6.5-2-6.5-6H80"/>
+  <path fill="none" stroke="#EDEDED" d="M536 446.5H346.5c0 4-2.5 6-6.5 6h-64c-4 0-6.5-2-6.5-6H80"/>
   <path fill="#A5A9AB" fill-rule="nonzero" d="M80 456v.1a8 8 0 0 0 8 7.9h440a7.9 7.9 0 0 0 7.9-8 8.5 8.5 0 0 1-5.5 2H86c-2.1 0-4.2-.7-5.9-2Z"/>
   <path fill="#000" fill-opacity=".5" fill-rule="nonzero" d="M105 466h406l20 4H85z"/>
   <path fill="#505A5F" fill-rule="nonzero" d="m107.4 464 5.7 3h38.6l5.7-3zm352 0 5.7 3h38.6l5.7-3z"/>
