@@ -62,7 +62,7 @@ module Examples
       <<~FOOTER_COPYRIGHT_AND_LICENCE
         {
           copyright_text: "© Creative Commons",
-          meta_licence: "This license allows reusers to distribute, remix, adapt, and build upon the material in any medium or format, so long as attribution is given to the creator."
+          meta_licence: "This licence allows reusers to distribute, remix, adapt, and build upon the material in any medium or format, so long as attribution is given to the creator."
         }
       FOOTER_COPYRIGHT_AND_LICENCE
     end
