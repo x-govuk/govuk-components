@@ -1,3 +1,9 @@
+require 'rails'
+
+module FakeRails
+  class Application < Rails::Application; end
+end
+
 require 'pry'
 require 'action_view'
 require 'action_controller'
