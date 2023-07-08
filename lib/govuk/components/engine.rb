@@ -37,6 +37,8 @@ module Govuk
     # +:default_breadcrumbs_hide_in_print+ false
     # +:default_cookie_banner_aria_label+ "Cookie banner"
     # +:default_cookie_banner_hide_in_print+ true
+    # +:default_exit_this_page_redirect_url+ The URL that the exit this page component links to by default. Defaults to https://www.bbc.co.uk/weather
+    # +:default_exit_this_page_text+ The default text that forms the link. Defaults to 'Exit this page'
     # +:default_header_navigation_label+ 'Navigation menu'
     # +:default_header_menu_button_label+ 'Show or hide navigation menu'
     # +:default_header_logotype+ 'GOV.UK'
@@ -71,6 +73,8 @@ module Govuk
       default_breadcrumbs_hide_in_print: false,
       default_cookie_banner_aria_label: "Cookie banner",
       default_cookie_banner_hide_in_print: true,
+      default_exit_this_page_redirect_url: "https://www.bbc.co.uk/weather",
+      default_exit_this_page_text: "Exit this page",
       default_header_navigation_label: 'Navigation menu',
       default_header_menu_button_label: 'Show or hide navigation menu',
       default_header_logotype: 'GOV.UK',
