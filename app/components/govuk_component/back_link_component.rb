@@ -1,9 +1,10 @@
 class GovukComponent::BackLinkComponent < GovukComponent::Base
-  attr_reader :text, :href
+  attr_reader :text, :href, :inverse
 
-  def initialize(href:, text: config.default_back_link_text, classes: [], html_attributes: {})
+  def initialize(href:, inverse: false, text: config.default_back_link_text, classes: [], html_attributes: {})
     @text = text
     @href = href
+    @inverse = inverse
 
     super(classes: classes, html_attributes: html_attributes)
   end
@@ -19,6 +20,11 @@ private
   end
 
   def default_attributes
-    { class: %w(govuk-back-link) }
+    {
+      class: class_names(
+        "govuk-back-link",
+        "govuk-back-link--inverse" => inverse
+      ).split
+    }
   end
 end

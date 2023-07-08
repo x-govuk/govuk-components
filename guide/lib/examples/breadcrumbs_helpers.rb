@@ -51,5 +51,24 @@ module Examples
         }
       BREADCRUMBS
     end
+
+    def breadcrumbs_inverted
+      <<~BREADCRUMBS
+        = govuk_breadcrumbs(breadcrumbs: breadcrumbs, inverse: true)
+      BREADCRUMBS
+    end
+
+    def breadcrumbs_nav_hierarchy
+      <<~BREADCRUMBS
+        {
+          breadcrumbs: [
+            govuk_breadcrumb_link_to("Home", "/"),
+            govuk_breadcrumb_link_to("Education and learning", "/"),
+            govuk_breadcrumb_link_to("Schools and curriculum", "/"),
+            govuk_breadcrumb_link_to("Early years foundation stage", "/")
+          ]
+        }
+      BREADCRUMBS
+    end
   end
 end

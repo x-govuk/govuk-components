@@ -21,6 +21,15 @@ RSpec.describe(GovukComponent::BackLinkComponent, type: :component) do
     end
   end
 
+  context 'when back link colours are inverted' do
+    let(:kwargs) { { href: href, inverse: true } }
+    let(:expected_classes) { [component_css_class, "govuk-back-link--inverse"] }
+
+    specify 'renders the component with the inverted colour class present' do
+      expect(rendered_content).to have_tag('a', with: { href: href, class: expected_classes }, text: default_text)
+    end
+  end
+
   context 'when link text is provided via a block' do
     let(:custom_text) { "Some text" }
     let(:custom_tag) { :code }

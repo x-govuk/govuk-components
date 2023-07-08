@@ -14,4 +14,13 @@ p
   caption: "Back link with custom text",
   code: back_link_custom)
 
+== render('/partials/example.*',
+  caption: "Back link with inverted colours",
+  code: back_link_inverse,
+  inverse: true) do
+
+  markdown:
+    When back links are displayed on darker backgrounds the `inverse` keyword argument can
+    be used to make them readable.
+
 == render('/partials/related-info.*', links: back_link_info)

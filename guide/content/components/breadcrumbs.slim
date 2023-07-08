@@ -39,4 +39,14 @@ markdown:
     The `govuk_breadcrumb_link_to` helper generates links with the
     `govuk-breadcrumbs__link` class.
 
+== render('/partials/example.*',
+  caption: "Breadcrumbs with inverted colours",
+  code: breadcrumbs_inverted,
+  data: breadcrumbs_nav_hierarchy,
+  inverse: true) do
+
+  markdown:
+    When breadcrumbs are displayed on darker backgrounds the `inverse` keyword argument can
+    be used to make them readable.
+
 == render('/partials/related-info.*', links: breadcrumbs_info)
