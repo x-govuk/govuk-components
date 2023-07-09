@@ -1,0 +1,37 @@
+---
+title: Exit this page
+---
+
+p.govuk-body
+  | Give users a way to quickly and safely exit a service, website or
+    application. Keyboard-only users can quickly tap the shift key 3 times to
+    exit the page.
+
+== render('/partials/example.*',
+  caption: "Exit this page with no parameters",
+  code: exit_this_page_normal) do
+
+  markdown:
+    When called with no additional arguments the component renders a button
+    that links to BBC Weather. The default link target can be changed in the
+    [library configuration options](/introduction/configuration/).
+
+== render('/partials/example.*',
+  caption: "Exit this page with custom text and URL",
+  code: exit_this_page_custom_link_and_text)
+
+== render('/partials/example.*',
+  caption: "Exit this page with custom HTML",
+  code: exit_this_page_custom_html) do
+
+  markdown:
+    Any HTML can be provided to the exit this page component using a block.
+
+== render('/partials/example.*',
+  caption: "Secondary mode",
+  code: exit_this_page_secondary) do
+
+  markdown:
+    Secondary
+
+== render('/partials/related-info.*', links: exit_this_page_info)

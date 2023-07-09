@@ -34,4 +34,10 @@
     height: $app-iframe-mobile-height;
     background: white;
   }
+
+  // display the example in its own block formatting context so floating
+  // components (exit this page) don't make the tab panel collapse
+  &__output {
+    display: flow-root;
+  }
 }

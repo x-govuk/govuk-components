@@ -44,6 +44,9 @@ private
   end
 
   def secondary_link_attributes
-    { data: { module: "govuk-skip-link" } }
+    {
+      data: { module: "govuk-skip-link" },
+      class: %w(govuk-skip-link govuk-js-exit-this-page-skiplink)
+    }
   end
 end
