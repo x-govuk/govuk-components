@@ -1,32 +1,21 @@
 class GovukComponent::ExitThisPageComponent < GovukComponent::Base
-  attr_reader :text, :redirect_url, :secondary
+  attr_reader :text, :redirect_url
 
-  def initialize(text: config.default_exit_this_page_text, redirect_url: config.default_exit_this_page_redirect_url, secondary: false, classes: [], html_attributes: {})
+  def initialize(text: config.default_exit_this_page_text, redirect_url: config.default_exit_this_page_redirect_url, classes: [], html_attributes: {})
     @text = text
     @redirect_url = redirect_url
-    @secondary = secondary
 
     super(classes: classes, html_attributes: html_attributes)
   end
 
   def call
-    if secondary
-      exit_this_page_content
-    else
-      tag.div(exit_this_page_content, **html_attributes)
-    end
+    tag.div(exit_this_page_content, **html_attributes)
   end
 
 private
 
   def exit_this_page_content
-    return content if content.present?
-
-    if secondary
-      govuk_link_to(text, redirect_url, **link_attributes, **secondary_link_attributes)
-    else
-      govuk_button_link_to(text, redirect_url, **link_attributes)
-    end
+    content.presence || govuk_button_link_to(text, redirect_url, **link_attributes)
   end
 
   def default_attributes
@@ -40,13 +29,6 @@ private
     {
       warning: true,
       class: %w(govuk-exit-this-page__button govuk-js-exit-this-page-button)
-    }
-  end
-
-  def secondary_link_attributes
-    {
-      data: { module: "govuk-skip-link" },
-      class: %w(govuk-skip-link govuk-js-exit-this-page-skiplink)
     }
   end
 end

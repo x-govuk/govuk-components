@@ -19,11 +19,11 @@ module Examples
       EXIT_THIS_PAGE
     end
 
-    def exit_this_page_secondary
+    def exit_this_page_link_helper
       <<~EXIT_THIS_PAGE
         #{skip_link_instructions}
 
-        = govuk_exit_this_page(secondary: true)
+        = govuk_exit_this_page_link
       EXIT_THIS_PAGE
     end
   end

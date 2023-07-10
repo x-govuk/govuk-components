@@ -19,27 +19,6 @@ RSpec.describe(GovukComponent::ExitThisPageComponent, type: :component) do
     expect(rendered_content).to have_tag("a", with: { class: %w(govuk-exit-this-page__button govuk-js-exit-this-page-button) })
   end
 
-  describe "secondary mode" do
-    subject! { render_inline(GovukComponent::ExitThisPageComponent.new(secondary: true)) }
-
-    specify "renders an 'Exit this page' link to BBC Weather" do
-      expect(rendered_content).to have_tag("a", text: "Exit this page", with: { href: "https://www.bbc.co.uk/weather" })
-    end
-
-    specify "does not render a surrounding div" do
-      expect(rendered_content).not_to have_tag("div")
-    end
-
-    specify "the link isn't styled like a button" do
-      expect(rendered_content).to have_tag("a")
-      expect(rendered_content).not_to have_tag("a", with: { class: "govuk-button" })
-    end
-
-    specify "the link has the govuk-skip-link data module" do
-      expect(rendered_content).to have_tag("a", with: { "data-module" => "govuk-skip-link" })
-    end
-  end
-
   context "when a block of content is passed in" do
     let(:custom_redirect_text) { "Leave this page" }
     let(:custom_redirect_url) { "https://www.wikipedia.org" }

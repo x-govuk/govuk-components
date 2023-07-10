@@ -13,10 +13,18 @@ RSpec.describe(GovukComponent::ExitThisPageComponent, type: :component) do
         end
       end
 
-      subject! { render_inline(GovukComponent::ExitThisPageComponent.new) }
+      describe "component" do
+        subject! { render_inline(GovukComponent::ExitThisPageComponent.new) }
 
-      specify "renders the exit component with the custom text" do
-        expect(rendered_content).to have_tag("a", text: overridden_text)
+        specify "renders the exit component with the custom text" do
+          expect(rendered_content).to have_tag("a", text: overridden_text)
+        end
+      end
+
+      describe "link" do
+        specify "renders the exit link with the custom text" do
+          expect(helper.govuk_exit_this_page_link).to have_tag("a", text: overridden_text)
+        end
       end
     end
 
@@ -29,10 +37,18 @@ RSpec.describe(GovukComponent::ExitThisPageComponent, type: :component) do
         end
       end
 
-      subject! { render_inline(GovukComponent::ExitThisPageComponent.new) }
+      describe "component" do
+        subject! { render_inline(GovukComponent::ExitThisPageComponent.new) }
 
-      specify "renders the exit component with the custom redirect url" do
-        expect(rendered_content).to have_tag("a", with: { href: overridden_redirect_url })
+        specify "renders the exit component with the custom redirect url" do
+          expect(rendered_content).to have_tag("a", with: { href: overridden_redirect_url })
+        end
+      end
+
+      describe "link" do
+        specify "renders the exit link with the custom redirect url" do
+          expect(helper.govuk_exit_this_page_link).to have_tag("a", with: { href: overridden_redirect_url })
+        end
       end
     end
   end
