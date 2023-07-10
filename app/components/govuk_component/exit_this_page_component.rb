@@ -1,9 +1,11 @@
 class GovukComponent::ExitThisPageComponent < GovukComponent::Base
   attr_reader :text, :redirect_url
 
-  def initialize(text: config.default_exit_this_page_text, redirect_url: config.default_exit_this_page_redirect_url, classes: [], html_attributes: {})
+  def initialize(redirect_url: nil, href: nil, text: config.default_exit_this_page_text, classes: [], html_attributes: {})
+    fail(ArgumentError, "provide either redirect_url or href, not both") if redirect_url.present? && href.present?
+
     @text = text
-    @redirect_url = redirect_url
+    @redirect_url = href || redirect_url || config.default_exit_this_page_redirect_url
 
     super(classes: classes, html_attributes: html_attributes)
   end

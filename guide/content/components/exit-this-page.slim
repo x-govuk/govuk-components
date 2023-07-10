@@ -18,7 +18,11 @@ p.govuk-body
 
 == render('/partials/example.*',
   caption: "Exit this page with custom text and URL",
-  code: exit_this_page_custom_link_and_text)
+  code: exit_this_page_custom_link_and_text) do
+
+  markdown:
+    Both the link text and redirect URL can be overridden with arguments. For consistency
+    with other link helpers, `href` can be used instead of `redirect_url`.
 
 == render('/partials/example.*',
   caption: "Exit this page with custom HTML",

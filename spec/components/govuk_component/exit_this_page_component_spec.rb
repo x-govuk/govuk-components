@@ -35,4 +35,31 @@ RSpec.describe(GovukComponent::ExitThisPageComponent, type: :component) do
       end
     end
   end
+
+  describe "link arguments" do
+    let(:custom_href) { "https://test.com" }
+
+    context "when providing a redirect_url" do
+      subject! { render_inline(GovukComponent::ExitThisPageComponent.new(redirect_url: custom_href)) }
+
+      specify "renders a link with the provided href" do
+        expect(rendered_content).to have_tag("a", with: { href: custom_href })
+      end
+    end
+
+    context "when providing a href" do
+      subject! { render_inline(GovukComponent::ExitThisPageComponent.new(href: custom_href)) }
+
+      specify "renders a link with the provided href" do
+        expect(rendered_content).to have_tag("a", with: { href: custom_href })
+      end
+    end
+
+    context "when providing a href and a redirect_url" do
+      specify "fails with an appropriate error message" do
+        expect { render_inline(GovukComponent::ExitThisPageComponent.new(href: custom_href, redirect_url: custom_href)) }
+          .to raise_error(ArgumentError, /either redirect_url or href, not both/)
+      end
+    end
+  end
 end
