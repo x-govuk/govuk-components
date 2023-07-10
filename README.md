@@ -32,6 +32,7 @@ The provided components are:
 * [Breadcrumbs](https://govuk-components.netlify.app/components/breadcrumbs)
 * [Cookie banner](https://govuk-components.netlify.app/components/cookie-banner)
 * [Details](https://govuk-components.netlify.app/components/details)
+* [Exit this page](https://govuk-components.netlify.app/components/exit-this-page)
 * [Footer](https://govuk-components.netlify.app/components/footer)
 * [Header](https://govuk-components.netlify.app/components/header)
 * [Inset text](https://govuk-components.netlify.app/components/inset-text)
