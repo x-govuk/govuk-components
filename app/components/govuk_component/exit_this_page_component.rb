@@ -17,7 +17,7 @@ class GovukComponent::ExitThisPageComponent < GovukComponent::Base
 private
 
   def exit_this_page_content
-    content.presence || govuk_button_link_to(text, redirect_url, **link_attributes)
+    govuk_button_link_to((content.presence || text), redirect_url, **link_attributes)
   end
 
   def default_attributes

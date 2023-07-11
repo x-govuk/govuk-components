@@ -24,14 +24,14 @@ RSpec.describe(GovukComponent::ExitThisPageComponent, type: :component) do
     let(:custom_redirect_url) { "https://www.wikipedia.org" }
 
     subject! do
-      render_inline(GovukComponent::ExitThisPageComponent.new) do
-        helper.govuk_button_link_to(custom_redirect_text, custom_redirect_url, secondary: true)
+      render_inline(GovukComponent::ExitThisPageComponent.new(redirect_url: custom_redirect_url)) do
+        custom_redirect_text
       end
     end
 
     specify "the custom content is rendered in the div" do
       expect(rendered_content).to have_tag("div", with: { class: component_css_class }) do
-        with_tag("a", text: custom_redirect_text, with: { href: custom_redirect_url, class: "govuk-button--secondary" })
+        with_tag("a", text: custom_redirect_text, with: { href: custom_redirect_url })
       end
     end
   end

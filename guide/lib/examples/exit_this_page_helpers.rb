@@ -14,8 +14,8 @@ module Examples
 
     def exit_this_page_custom_html
       <<~EXIT_THIS_PAGE
-        = govuk_exit_this_page do
-          = govuk_button_link_to("Go to Wikipedia", "https://www.wikipedia.org", secondary: true, class: %w(govuk-exit-this-page__button govuk-js-exit-this-page-button))
+        = govuk_exit_this_page(redirect_url: "https://www.wikipedia.org") do
+          strong Exit this page now
       EXIT_THIS_PAGE
     end
 
