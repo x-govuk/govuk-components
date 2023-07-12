@@ -10,9 +10,7 @@ module GovukExitThisPageLinkHelper
 
     html_attributes_with_data_module = { data: { module: "govuk-skip-link" } }.deep_merge(html_attributes)
 
-    return link_to(href, class: link_classes, **html_attributes_with_data_module, &block) if block_given?
-
-    link_to(text, href, class: link_classes, **html_attributes_with_data_module)
+    link_to(text, href, class: link_classes, **html_attributes_with_data_module, &block)
   end
 end
 
