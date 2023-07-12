@@ -51,5 +51,73 @@ RSpec.describe(GovukComponent::ExitThisPageComponent, type: :component) do
         end
       end
     end
+
+    describe "announcements" do
+      let(:element) { html.at('div.govuk-exit-this-page') }
+
+      describe "default_exit_this_page_activated_text" do
+        let(:overridden_activated_text) { 'Exiting the page immediately' }
+
+        before do
+          Govuk::Components.configure do |config|
+            config.default_exit_this_page_activated_text = overridden_activated_text
+          end
+        end
+
+        subject! { render_inline(GovukComponent::ExitThisPageComponent.new) }
+
+        specify "adds the overridden i18n data attribute for activated text" do
+          expect(element.attributes["data-i18n.activated"].value).to eql(overridden_activated_text)
+        end
+      end
+
+      describe "default_exit_this_page_timed_out_text" do
+        let(:overridden_timed_out_text) { 'Exit this page just expired.' }
+
+        before do
+          Govuk::Components.configure do |config|
+            config.default_exit_this_page_timed_out_text = overridden_timed_out_text
+          end
+        end
+
+        subject! { render_inline(GovukComponent::ExitThisPageComponent.new) }
+
+        specify "adds the overridden i18n data attribute for activated text" do
+          expect(element.attributes["data-i18n.timed-out"].value).to eql(overridden_timed_out_text)
+        end
+      end
+
+      describe "default_exit_this_page_press_two_more_times_text" do
+        let(:overridden_press_two_more_times_text) { 'Press me two more times to leave.' }
+
+        before do
+          Govuk::Components.configure do |config|
+            config.default_exit_this_page_press_two_more_times_text = overridden_press_two_more_times_text
+          end
+        end
+
+        subject! { render_inline(GovukComponent::ExitThisPageComponent.new) }
+
+        specify "adds the overridden i18n data attribute for activated text" do
+          expect(element.attributes["data-i18n.press-two-more-times"].value).to eql(overridden_press_two_more_times_text)
+        end
+      end
+
+      describe "default_exit_this_page_press_one_more_time_text" do
+        let(:overridden_press_one_more_time_text) { 'Press me once more to leave.' }
+
+        before do
+          Govuk::Components.configure do |config|
+            config.default_exit_this_page_press_one_more_time_text = overridden_press_one_more_time_text
+          end
+        end
+
+        subject! { render_inline(GovukComponent::ExitThisPageComponent.new) }
+
+        specify "adds the overridden i18n data attribute for activated text" do
+          expect(element.attributes["data-i18n.press-one-more-time"].value).to eql(overridden_press_one_more_time_text)
+        end
+      end
+    end
   end
 end
