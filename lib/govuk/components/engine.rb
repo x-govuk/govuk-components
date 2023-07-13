@@ -37,6 +37,12 @@ module Govuk
     # +:default_breadcrumbs_hide_in_print+ false
     # +:default_cookie_banner_aria_label+ "Cookie banner"
     # +:default_cookie_banner_hide_in_print+ true
+    # +:default_exit_this_page_redirect_url+ The URL that the exit this page component links to by default. Defaults to https://www.bbc.co.uk/weather
+    # +:default_exit_this_page_text+ The default text that forms the link. Defaults to 'Exit this page'
+    # +:default_exit_this_page_activated_text+ Text announced by screen readers when Exit this Page has been activated via the keyboard shortcut. Default in govuk-frontend is 'Exiting page.' Defaults to nil so govuk-frontend value is used unless overridden.
+    # +:default_exit_this_page_timed_out_text+ Text announced by screen readers when the keyboard shortcut has timed out without successful activation. Default in govuk-frontend is 'Exit this page expired.' Defaults to nil so govuk-frontend value is used unless overridden.
+    # +:default_exit_this_page_press_two_more_times_text+ Text announced by screen readers when the user must press *Shift* two more times to activate the button. Default in govuk-frontend is 'Shift, press 2 more times to exit.' Defaults to nil so govuk-frontend value is used unless overridden.
+    # +:default_exit_this_page_press_one_more_time_text+ Text announced by screen readers when the user must press *Shift* one more time to activate the button. Default in govuk-frontend is 'Shift, press 1 more time to exit.' Defaults to nil so govuk-frontend value is used unless overridden.
     # +:default_header_navigation_label+ 'Navigation menu'
     # +:default_header_menu_button_label+ 'Show or hide navigation menu'
     # +:default_header_logotype+ 'GOV.UK'
@@ -71,6 +77,12 @@ module Govuk
       default_breadcrumbs_hide_in_print: false,
       default_cookie_banner_aria_label: "Cookie banner",
       default_cookie_banner_hide_in_print: true,
+      default_exit_this_page_redirect_url: "https://www.bbc.co.uk/weather",
+      default_exit_this_page_text: "Exit this page",
+      default_exit_this_page_activated_text: nil,
+      default_exit_this_page_timed_out_text: nil,
+      default_exit_this_page_press_two_more_times_text: nil,
+      default_exit_this_page_press_one_more_time_text: nil,
       default_header_navigation_label: 'Navigation menu',
       default_header_menu_button_label: 'Show or hide navigation menu',
       default_header_logotype: 'GOV.UK',

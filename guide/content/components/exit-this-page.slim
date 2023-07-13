@@ -1,0 +1,57 @@
+---
+title: Exit this page
+---
+
+p.govuk-body
+  | Give users a way to quickly and safely exit a service, website or
+    application. Keyboard-only users can quickly tap the shift key 3 times to
+    exit the page.
+
+== render('/partials/example.*',
+  caption: "Exit this page with no parameters",
+  code: exit_this_page_normal) do
+
+  markdown:
+    When called with no additional arguments the component renders a button
+    that links to BBC Weather. The default link target can be changed in the
+    [library configuration options](/introduction/configuration/).
+
+== render('/partials/example.*',
+  caption: "Exit this page with custom text and URL",
+  code: exit_this_page_custom_link_and_text) do
+
+  markdown:
+    Both the link text and redirect URL can be overridden with arguments. For consistency
+    with other link helpers, `href` can be used instead of `redirect_url`.
+
+== render('/partials/example.*',
+  caption: "Exit this page with custom HTML",
+  code: exit_this_page_custom_html) do
+
+  markdown:
+    Any HTML can be provided to the exit this page component using a block.
+
+== render('/partials/example.*',
+  caption: "Adding a secondary link to the top of the page",
+  code: exit_this_page_link_helper) do
+
+  markdown:
+    In addition to the component a link can be added alongside the [skip link](/helpers/skip-link) that
+    allows people to quickly exit the site using their keyboard.
+
+== render('/partials/example.*',
+  caption: "Overriding the assistive text",
+  code: exit_this_page_with_custom_assistive_text) do
+
+  markdown:
+    When operating in keyboard mode screen readers will announce the following events:
+
+    * activation (configured with `activated_text`)
+    * timing out (configured with `timed_out_text`)
+    * press two more times to exit (configured with `press_two_more_times_text`)
+    * press one more time to exit (configured with `press_one_more_time_text`)
+
+    The defaults cen be overwritten application wide by setting the appropriate
+    values [in the configuration](/introduction/configuration/).
+
+== render('/partials/related-info.*', links: exit_this_page_info)

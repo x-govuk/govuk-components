@@ -13,6 +13,7 @@ module Helpers
         "Breadcrumbs" => "/components/breadcrumbs",
         "Cookie banner" => "/components/cookie-banner",
         "Details" => "/components/details",
+        "Exit this page" => "/components/exit-this-page",
         "Footer" => "/components/footer",
         "Header" => "/components/header",
         "Inset text" => "/components/inset-text",
