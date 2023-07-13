@@ -17,11 +17,11 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.0.5'
+          ruby-version: '3.0.6'
 
       - name: Install gems
         env:
-          RAILS_VERSION: '6.1.4.4'
+          RAILS_VERSION: '6.1.7.4'
         run: |
           gem install bundler
           bundle install --jobs 4 --retry 3
