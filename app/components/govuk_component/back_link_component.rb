@@ -22,8 +22,8 @@ private
   def default_attributes
     {
       class: class_names(
-        "govuk-back-link",
-        "govuk-back-link--inverse" => inverse
+        "#{brand}-back-link",
+        "#{brand}-back-link--inverse" => inverse
       ).split
     }
   end
