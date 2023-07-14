@@ -28,7 +28,7 @@ module GovukComponent
 
     def default_attributes
       {
-        class: class_names("govuk-cookie-banner", "govuk-!-display-none-print" => hide_in_print).split
+        class: class_names("#{ brand }-cookie-banner", "#{ brand }-!-display-none-print" => hide_in_print).split
       }
     end
   end

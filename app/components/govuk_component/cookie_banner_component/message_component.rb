@@ -16,8 +16,8 @@ class GovukComponent::CookieBannerComponent::MessageComponent < GovukComponent::
   def call
     tag.div(role: role, hidden: hidden, **html_attributes) do
       safe_join([
-        tag.div(class: "govuk-grid-row") do
-          tag.div(class: "govuk-grid-column-two-thirds") { safe_join([heading_element, message_element]) }
+        tag.div(class: "#{brand}-grid-row") do
+          tag.div(class: "#{brand}-grid-column-two-thirds") { safe_join([heading_element, message_element]) }
         end,
         actions_element
       ])
@@ -27,13 +27,13 @@ class GovukComponent::CookieBannerComponent::MessageComponent < GovukComponent::
 private
 
   def default_attributes
-    { class: %w(govuk-cookie-banner__message govuk-width-container) }
+    { class: "#{brand}-cookie-banner__message #{brand}-width-container" }
   end
 
   def heading_element
     return if heading_content.blank?
 
-    tag.h2(heading_content, class: %w(govuk-cookie-banner__heading govuk-heading-m))
+    tag.h2(heading_content, class: "#{brand}-cookie-banner__heading #{brand}-heading-m")
   end
 
   def heading_content
@@ -41,7 +41,7 @@ private
   end
 
   def message_element
-    tag.div(message_content, class: "govuk-cookie-banner__content")
+    tag.div(message_content, class: "#{brand}-cookie-banner__content")
   end
 
   def message_content
@@ -51,12 +51,12 @@ private
   def wrap_in_p(message_text)
     return if message_text.blank?
 
-    tag.p(message_text, class: "govuk-body")
+    tag.p(message_text, class: "#{brand}-body")
   end
 
   def actions_element
     return if actions.none?
 
-    tag.div(class: "govuk-button-group") { safe_join(actions) }
+    tag.div(class: "#{brand}-button-group") { safe_join(actions) }
   end
 end
