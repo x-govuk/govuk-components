@@ -112,4 +112,6 @@ RSpec.describe(GovukComponent::ExitThisPageComponent, type: :component) do
       end
     end
   end
+
+  it_behaves_like 'a component that supports custom branding'
 end
