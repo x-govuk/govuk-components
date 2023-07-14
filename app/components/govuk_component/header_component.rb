@@ -44,22 +44,22 @@ class GovukComponent::HeaderComponent < GovukComponent::Base
 private
 
   def default_attributes
-    { class: %w(govuk-header) }
+    { class: ["#{ brand }-header"] }
   end
 
   def navigation_html_attributes
-    nc = %w(govuk-header__navigation).append(custom_navigation_classes).compact
+    nc = ["#{ brand }-header__navigation"].append(custom_navigation_classes).compact
 
     { class: nc, aria: { label: navigation_label } }
   end
 
   def container_html_attributes
-    { class: %w(govuk-header__container govuk-width-container).append(custom_container_classes).compact }
+    { class: ["#{ brand }-header__container", "#{ brand }-width-container"].append(custom_container_classes).compact }
   end
 
   def crown_fallback_image_attributes
     {
-      class: "govuk-header__logotype-crown-fallback-image",
+      class: "#{ brand }-header__logotype-crown-fallback-image",
       width: "36",
       height: "32",
     }
@@ -84,7 +84,7 @@ private
     end
 
     def active_class
-      %w(govuk-header__navigation-item--active) if active?
+      ["#{ brand }-header__navigation-item--active"] if active?
     end
 
     def link?
@@ -94,7 +94,7 @@ private
     def call
       tag.li(**html_attributes) do
         if link?
-          link_to(text, href, class: "govuk-header__link", **options)
+          link_to(text, href, class: "#{ brand }-header__link", **options)
         else
           text
         end
@@ -111,7 +111,7 @@ private
     end
 
     def default_attributes
-      { class: %w(govuk-header__navigation-item) }
+      { class: ["#{ brand }-header__navigation-item"] }
     end
   end
 
@@ -139,7 +139,7 @@ private
   private
 
     def default_attributes
-      { class: %w(govuk-header__product-name) }
+      { class: ["#{ brand }-header__product-name"] }
     end
   end
 end
