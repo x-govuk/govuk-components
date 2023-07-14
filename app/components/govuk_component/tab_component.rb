@@ -15,7 +15,7 @@ class GovukComponent::TabComponent < GovukComponent::Base
 private
 
   def default_attributes
-    { id: id, class: %w(govuk-tabs), data: { module: 'govuk-tabs' } }
+    { id: id, class: "#{brand}-tabs", data: { module: "#{brand}-tabs" } }
   end
 
   class Tab < GovukComponent::Base
@@ -35,19 +35,19 @@ private
     def hidden_class(i = nil)
       return [] if i&.zero?
 
-      %w(govuk-tabs__panel--hidden)
+      ["#{brand}-tabs__panel--hidden"]
     end
 
     def li_classes(i = nil)
-      class_names("govuk-tabs__list-item", "govuk-tabs__list-item--selected" => i&.zero?).split
+      class_names("#{brand}-tabs__list-item", "#{brand}-tabs__list-item--selected" => i&.zero?).split
     end
 
     def li_link
-      link_to(label, id(prefix: '#'), class: "govuk-tabs__tab")
+      link_to(label, id(prefix: '#'), class: "#{brand}-tabs__tab")
     end
 
     def default_attributes
-      { id: id, class: %w(govuk-tabs__panel) }
+      { id: id, class: "#{brand}-tabs__panel" }
     end
 
     def combined_attributes(i)
