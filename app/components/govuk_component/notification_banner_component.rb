@@ -52,11 +52,11 @@ class GovukComponent::NotificationBannerComponent < GovukComponent::Base
     end
 
     def link
-      link_to(link_text, link_href, class: 'govuk-notification-banner__link') if link_text.present? && link_href.present?
+      link_to(link_text, link_href, class: "#{ brand }-notification-banner__link") if link_text.present? && link_href.present?
     end
 
     def default_attributes
-      { class: %w(govuk-notification-banner__heading) }
+      { class: ["#{ brand }-notification-banner__heading"] }
     end
   end
 
@@ -65,11 +65,11 @@ private
   def default_attributes
     {
       class: class_names(
-        "govuk-notification-banner",
-        "govuk-notification-banner--success" => success
+        "#{ brand }-notification-banner",
+        "#{ brand }-notification-banner--success" => success
       ),
       data: {
-        "module" => "govuk-notification-banner",
+        "module" => "#{ brand }-notification-banner",
         "disable-auto-focus" => disable_auto_focus
       },
       role: role,

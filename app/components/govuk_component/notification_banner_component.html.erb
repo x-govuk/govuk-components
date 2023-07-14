@@ -1,10 +1,10 @@
 <%= tag.div(**html_attributes) do %>
-  <div class="govuk-notification-banner__header">
-    <%= content_tag(title_tag, class: "govuk-notification-banner__title", id: title_id) do %>
+  <div class="<%= brand %>-notification-banner__header">
+    <%= content_tag(title_tag, class: "#{ brand }-notification-banner__title", id: title_id) do %>
       <%= title_content %>
     <% end %>
   </div>
-  <div class="govuk-notification-banner__content">
+  <div class="<%= brand %>-notification-banner__content">
     <% headings.each do |heading| %>
       <%= heading %>
     <% end %>
