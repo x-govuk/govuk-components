@@ -14,12 +14,12 @@ class GovukComponent::PhaseBannerComponent < GovukComponent::Base
   end
 
   def phase_tag_component
-    GovukComponent::TagComponent.new(**phase_tag.deep_merge(classes: "govuk-phase-banner__content__tag"))
+    GovukComponent::TagComponent.new(**phase_tag.deep_merge(classes: "#{ brand }-phase-banner__content__tag"))
   end
 
 private
 
   def default_attributes
-    { class: %w(govuk-phase-banner) }
+    { class: "#{ brand }-phase-banner" }
   end
 end
