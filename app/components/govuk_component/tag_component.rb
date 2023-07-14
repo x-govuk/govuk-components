@@ -22,7 +22,7 @@ private
 
   def default_attributes
     {
-      class: ["govuk-tag", colour_class]
+      class: ["#{ brand }-tag", colour_class]
     }
   end
 
@@ -31,7 +31,7 @@ private
 
     fail(ArgumentError, colour_error_message) unless valid_colour?
 
-    %(govuk-tag--#{colour})
+    "#{ brand }-tag--#{colour}"
   end
 
   def valid_colour?
