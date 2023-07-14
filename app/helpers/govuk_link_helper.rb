@@ -3,35 +3,20 @@ require "html_attributes_utils"
 module GovukLinkHelper
   using HTMLAttributesUtils
 
-  LINK_STYLES = {
-    inverse:          "govuk-link--inverse",
-    muted:            "govuk-link--muted",
-    no_underline:     "govuk-link--no-underline",
-    no_visited_state: "govuk-link--no-visited-state",
-    text_colour:      "govuk-link--text-colour",
-  }.freeze
-
-  BUTTON_STYLES = {
-    disabled:  "govuk-button--disabled",
-    secondary: "govuk-button--secondary",
-    warning:   "govuk-button--warning",
-    inverse:   "govuk-button--inverse",
-  }.freeze
-
-  def govuk_link_classes(*styles, default_class: 'govuk-link')
-    if (invalid_styles = (styles - LINK_STYLES.keys)) && invalid_styles.any?
-      fail(ArgumentError, "invalid styles #{invalid_styles.to_sentence}. Valid styles are #{LINK_STYLES.keys.to_sentence}")
+  def govuk_link_classes(*styles, default_class: "#{brand}-link")
+    if (invalid_styles = (styles - link_styles.keys)) && invalid_styles.any?
+      fail(ArgumentError, "invalid styles #{invalid_styles.to_sentence}. Valid styles are #{link_styles.keys.to_sentence}")
     end
 
-    [default_class] + LINK_STYLES.values_at(*styles).compact
+    [default_class] + link_styles.values_at(*styles).compact
   end
 
-  def govuk_button_classes(*styles, default_class: 'govuk-button')
-    if (invalid_styles = (styles - BUTTON_STYLES.keys)) && invalid_styles.any?
-      fail(ArgumentError, "invalid styles #{invalid_styles.to_sentence}. Valid styles are #{BUTTON_STYLES.keys.to_sentence}")
+  def govuk_button_classes(*styles, default_class: "#{brand}-button")
+    if (invalid_styles = (styles - button_styles.keys)) && invalid_styles.any?
+      fail(ArgumentError, "invalid styles #{invalid_styles.to_sentence}. Valid styles are #{button_styles.keys.to_sentence}")
     end
 
-    [default_class] + BUTTON_STYLES.values_at(*styles).compact
+    [default_class] + button_styles.values_at(*styles).compact
   end
 
   def govuk_link_to(name = nil, options = nil, extra_options = {}, &block)
@@ -69,8 +54,11 @@ module GovukLinkHelper
 
   def govuk_button_link_to(name = nil, options = nil, extra_options = {}, &block)
     extra_options = options if block_given?
-    html_options = GovukComponent::StartButtonComponent::LINK_ATTRIBUTES
-      .merge build_html_options(extra_options, style: :button)
+    html_options = {
+      data: { module: "#{brand}-button" },
+      draggable: 'false',
+      role: 'button',
+    }.merge build_html_options(extra_options, style: :button)
 
     if block_given?
       link_to(name, html_options, &block)
@@ -92,8 +80,31 @@ module GovukLinkHelper
 
 private
 
+  def brand
+    Govuk::Components.brand
+  end
+
+  def link_styles
+    {
+      inverse:          "#{brand}-link--inverse",
+      muted:            "#{brand}-link--muted",
+      no_underline:     "#{brand}-link--no-underline",
+      no_visited_state: "#{brand}-link--no-visited-state",
+      text_colour:      "#{brand}-link--text-colour",
+    }
+  end
+
+  def button_styles
+    {
+      disabled:  "#{brand}-button--disabled",
+      secondary: "#{brand}-button--secondary",
+      warning:   "#{brand}-button--warning",
+      inverse:   "#{brand}-button--inverse",
+    }
+  end
+
   def build_html_options(provided_options, style: :link)
-    element_styles = { link: LINK_STYLES, button: BUTTON_STYLES }.fetch(style, {})
+    element_styles = { link: link_styles, button: button_styles }.fetch(style, {})
 
     # we need to take a couple of extra steps here because we don't want the style
     # params (inverse, muted, etc) to end up as extra attributes on the link.
@@ -111,7 +122,7 @@ private
     case style
     when :link then govuk_link_classes(*keys)
     when :button then govuk_button_classes(*keys)
-    when :breadcrumb then %w(govuk-breadcrumbs__link)
+    when :breadcrumb then "#{brand}-breadcrumbs__link"
     end
   end
 

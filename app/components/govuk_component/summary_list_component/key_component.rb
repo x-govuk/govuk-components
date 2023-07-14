@@ -14,7 +14,7 @@ class GovukComponent::SummaryListComponent::KeyComponent < GovukComponent::Base
 private
 
   def default_attributes
-    { class: %w(govuk-summary-list__key) }
+    { class: "#{brand}-summary-list__key" }
   end
 
   def key_content

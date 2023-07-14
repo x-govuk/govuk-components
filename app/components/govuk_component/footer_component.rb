@@ -37,7 +37,7 @@ class GovukComponent::FooterComponent < GovukComponent::Base
 private
 
   def default_attributes
-    { class: %w(govuk-footer) }
+    { class: "#{brand}-footer" }
   end
 
   def meta_content
@@ -45,7 +45,7 @@ private
   end
 
   def meta_classes
-    %w(govuk-footer__meta).append(@custom_meta_classes)
+    ["#{brand}-footer__meta"].append(@custom_meta_classes)
   end
 
   def meta_html_attributes
@@ -57,7 +57,7 @@ private
     #
     # Once we drop classes this extra merging can be dropped along with the
     # container_classes and meta_classes args
-    { class: %w(govuk-width-container) }.deep_merge_html_attributes(
+    { class: "#{brand}-width-container" }.deep_merge_html_attributes(
       @custom_container_html_attributes.merge(class: custom_container_classes)
     )
   end
@@ -67,21 +67,21 @@ private
 
     case links
     when Array
-      links.map { |link| raw(link_to(link[:text], link[:href], class: %w(govuk-footer__link), **link.fetch(:attr, {}))) }
+      links.map { |link| raw(link_to(link[:text], link[:href], class: "#{brand}-footer__link", **link.fetch(:attr, {}))) }
     when Hash
-      links.map { |text, href| raw(link_to(text, href, class: %w(govuk-footer__link))) }
+      links.map { |text, href| raw(link_to(text, href, class: "#{brand}-footer__link")) }
     else
       fail(ArgumentError, 'meta links must be a hash or array of hashes') unless links.is_a?(Hash)
     end
   end
 
   def default_licence
-    link = link_to("Open Government Licence v3.0", "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/", class: %w(govuk-footer__link))
+    link = link_to("Open Government Licence v3.0", "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/", class: "#{brand}-footer__link")
 
     raw(%(All content is available under the #{link}, except where otherwise stated))
   end
 
   def build_copyright(text, url)
-    link_to(text, url, class: %w(govuk-footer__link govuk-footer__copyright-logo))
+    link_to(text, url, class: "#{brand}-footer__link #{brand}-footer__copyright-logo")
   end
 end

@@ -29,6 +29,6 @@ private
   end
 
   def default_attributes
-    { class: %w(govuk-table__head) }
+    { class: "#{brand}-table__head" }
   end
 end

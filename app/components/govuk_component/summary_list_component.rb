@@ -39,11 +39,11 @@ module GovukComponent
     end
 
     def borders_class
-      %(govuk-summary-list--no-border) unless borders
+      "#{brand}-summary-list--no-border" unless borders
     end
 
     def default_attributes
-      { class: ["govuk-summary-list", borders_class].compact }
+      { class: ["#{brand}-summary-list", borders_class].compact }
     end
 
     def build(rows)

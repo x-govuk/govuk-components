@@ -13,7 +13,7 @@ class GovukComponent::DetailsComponent < GovukComponent::Base
   end
 
   def call
-    tag.details(data: { module: "govuk-details" }, id: id, open: open, **html_attributes) do
+    tag.details(data: { module: "#{brand}-details" }, id: id, open: open, **html_attributes) do
       safe_join([summary, description])
     end
   end
@@ -21,8 +21,8 @@ class GovukComponent::DetailsComponent < GovukComponent::Base
 private
 
   def summary
-    tag.summary(class: "govuk-details__summary") do
-      tag.span(summary_content, class: "govuk-details__summary-text")
+    tag.summary(class: "#{brand}-details__summary") do
+      tag.span(summary_content, class: "#{brand}-details__summary-text")
     end
   end
 
@@ -31,12 +31,12 @@ private
   end
 
   def description
-    tag.div(class: "govuk-details__text") do
+    tag.div(class: "#{brand}-details__text") do
       content.presence || text
     end
   end
 
   def default_attributes
-    { class: %w(govuk-details) }
+    { class: "#{brand}-details" }
   end
 end

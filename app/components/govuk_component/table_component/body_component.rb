@@ -28,6 +28,6 @@ private
   end
 
   def default_attributes
-    { class: %w(govuk-table__body) }
+    { class: "#{brand}-table__body" }
   end
 end

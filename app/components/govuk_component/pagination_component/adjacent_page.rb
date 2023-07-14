@@ -14,7 +14,7 @@ class GovukComponent::PaginationComponent::AdjacentPage < GovukComponent::Base
 
   def call
     tag.div(**html_attributes) do
-      tag.a(href: href, class: %w(govuk-link govuk-pagination__link), rel: suffix) do
+      tag.a(href: href, class: ["#{brand}-link", "#{brand}-pagination__link"], rel: suffix) do
         safe_join([body, divider, label_content])
       end
     end
@@ -23,7 +23,7 @@ class GovukComponent::PaginationComponent::AdjacentPage < GovukComponent::Base
 private
 
   def default_attributes
-    { class: ["govuk-pagination__#{suffix}"] }
+    { class: ["#{brand}-pagination__#{suffix}"] }
   end
 
   def body
@@ -37,7 +37,7 @@ private
   def divider
     return if label_text.blank?
 
-    tag.span(":", class: %w(govuk-visually-hidden))
+    tag.span(":", class: "#{brand}-visually-hidden")
   end
 
   def label_content
@@ -48,12 +48,12 @@ private
 
   def title_classes
     class_names(
-      %(govuk-pagination__link-title),
-      %(govuk-pagination__link-title--decorated) => label_text.blank?
+      "#{brand}-pagination__link-title",
+      "#{brand}-pagination__link-title--decorated" => label_text.blank?
     )
   end
 
   def label_classes
-    %w(govuk-pagination__link-label)
+    "#{brand}-pagination__link-label"
   end
 end

@@ -37,6 +37,6 @@ class GovukComponent::AccordionComponent::SectionComponent < GovukComponent::Bas
 private
 
   def default_attributes
-    { class: class_names("govuk-accordion__section", "govuk-accordion__section--expanded" => expanded?).split }
+    { class: class_names("#{brand}-accordion__section", "#{brand}-accordion__section--expanded" => expanded?).split }
   end
 end

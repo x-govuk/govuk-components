@@ -23,6 +23,6 @@ private
   end
 
   def default_attributes
-    { class: %w(govuk-inset-text) }
+    { class: ["#{brand}-inset-text"] }
   end
 end

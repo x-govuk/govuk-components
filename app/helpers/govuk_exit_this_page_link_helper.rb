@@ -6,11 +6,17 @@ module GovukExitThisPageLinkHelper
     **html_attributes,
     &block
   )
-    link_classes = Array.wrap(classes).append(%w(govuk-skip-link govuk-js-exit-this-page-skiplink))
+    link_classes = Array.wrap(classes).append(["#{brand}-skip-link", "#{brand}-js-exit-this-page-skiplink"])
 
-    html_attributes_with_data_module = { data: { module: "govuk-skip-link" } }.deep_merge(html_attributes)
+    html_attributes_with_data_module = { data: { module: "#{brand}-skip-link" } }.deep_merge(html_attributes)
 
     link_to(text, href, class: link_classes, **html_attributes_with_data_module, &block)
+  end
+
+private
+
+  def brand
+    Govuk::Components.brand
   end
 end
 

@@ -68,7 +68,7 @@ private
   end
 
   def default_attributes
-    { class: %w(govuk-table__row) }
+    { class: "#{brand}-table__row" }
   end
 
   def in_thead?

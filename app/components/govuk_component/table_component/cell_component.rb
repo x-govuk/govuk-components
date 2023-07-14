@@ -4,14 +4,16 @@ class GovukComponent::TableComponent::CellComponent < GovukComponent::Base
   alias_method :numeric?, :numeric
   alias_method :header?, :header
 
-  WIDTHS = {
-    "full"           => "govuk-!-width-full",
-    "three-quarters" => "govuk-!-width-three-quarters",
-    "two-thirds"     => "govuk-!-width-two-thirds",
-    "one-half"       => "govuk-!-width-one-half",
-    "one-third"      => "govuk-!-width-one-third",
-    "one-quarter"    => "govuk-!-width-one-quarter",
-  }.freeze
+  def self.widths
+    {
+      "full"           => "#{brand}-!-width-full",
+      "three-quarters" => "#{brand}-!-width-three-quarters",
+      "two-thirds"     => "#{brand}-!-width-two-thirds",
+      "one-half"       => "#{brand}-!-width-one-half",
+      "one-third"      => "#{brand}-!-width-one-third",
+      "one-quarter"    => "#{brand}-!-width-one-quarter",
+    }.freeze
+  end
 
   def initialize(scope: nil, header: nil, numeric: false, text: nil, width: nil, parent: nil, rowspan: nil, colspan: nil, classes: [], html_attributes: {})
     @text    = text
@@ -71,8 +73,8 @@ private
 
   def default_classes
     class_names(
-      "govuk-table__#{class_suffix}",
-      "govuk-table__#{class_suffix}--numeric" => numeric?,
+      "#{brand}-table__#{class_suffix}",
+      "#{brand}-table__#{class_suffix}--numeric" => numeric?,
       width => width?,
     )
   end

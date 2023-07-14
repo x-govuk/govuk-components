@@ -36,9 +36,9 @@ private
 
   def default_attributes
     {
-      class: "govuk-exit-this-page",
+      class: "#{brand}-exit-this-page",
       data: {
-        module: "govuk-exit-this-page",
+        module: "#{brand}-exit-this-page",
         "i18n.activated" => activated_text,
         "i18n.timed-out" => timed_out_text,
         "i18n.press-two-more-times" => press_two_more_times_text,
@@ -50,7 +50,7 @@ private
   def link_attributes
     {
       warning: true,
-      class: %w(govuk-exit-this-page__button govuk-js-exit-this-page-button)
+      class: "#{brand}-exit-this-page__button #{brand}-js-exit-this-page-button"
     }
   end
 end

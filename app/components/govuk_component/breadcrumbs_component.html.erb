@@ -1,5 +1,5 @@
 <%= tag.div(**html_attributes) do %>
-  <ol class="govuk-breadcrumbs__list">
+  <ol class="<%= brand %>-breadcrumbs__list">
     <% @breadcrumbs.each do |link| %>
       <%= link %>
     <% end %>
