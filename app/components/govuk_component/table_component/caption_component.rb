@@ -26,12 +26,12 @@ private
   end
 
   def default_attributes
-    { class: class_names("govuk-table__caption", caption_size_class => size).split }
+    { class: class_names("#{ brand }-table__caption", caption_size_class => size).split }
   end
 
   def caption_size_class
     fail(ArgumentError, "bad size #{size}, must be in #{SIZES}") unless size.in?(SIZES)
 
-    %(govuk-table__caption--#{size})
+    "#{ brand }-table__caption--#{size}"
   end
 end

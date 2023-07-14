@@ -39,6 +39,6 @@ private
   end
 
   def default_attributes
-    { class: %w(govuk-table__foot) }
+    { class: "#{ brand }-table__foot" }
   end
 end

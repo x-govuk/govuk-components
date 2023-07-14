@@ -37,7 +37,7 @@ module GovukComponent
     end
 
     def default_attributes
-      { id: id, class: %w(govuk-table) }
+      { id: id, class: "#{ brand }-table" }
     end
   end
 end
