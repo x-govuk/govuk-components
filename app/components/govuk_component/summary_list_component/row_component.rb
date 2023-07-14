@@ -37,21 +37,21 @@ private
 
   def actions_list
     tag.dd(class: actions_class) do
-      tag.ul(class: "govuk-summary-list__actions-list") do
-        safe_join(actions.map { |action| tag.li(action, class: "govuk-summary-list__actions-list-item") })
+      tag.ul(class: "#{ brand }-summary-list__actions-list") do
+        safe_join(actions.map { |action| tag.li(action, class: "#{ brand }-summary-list__actions-list-item") })
       end
     end
   end
 
   def default_attributes
-    { class: %w(govuk-summary-list__row) }
+    { class: "#{ brand }-summary-list__row" }
   end
 
   def actions_class
-    "govuk-summary-list__actions"
+    "#{ brand }-summary-list__actions"
   end
 
   def no_actions_class
-    "govuk-summary-list__row--no-actions"
+    "#{ brand }-summary-list__row--no-actions"
   end
 end
