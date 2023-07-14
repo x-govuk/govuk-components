@@ -27,9 +27,9 @@ private
 
   def default_classes
     class_names(
-      "govuk-section-break",
+      "#{ brand }-section-break",
       size_class,
-      "govuk-section-break--visible" => visible?
+      "#{ brand }-section-break--visible" => visible?
     ).split
   end
 
@@ -37,7 +37,7 @@ private
     if size.blank?
       ""
     elsif size.in?(SIZES)
-      "govuk-section-break--#{size}"
+      "#{ brand }-section-break--#{size}"
     else
       raise ArgumentError, "invalid size #{size}, supported sizes are #{SIZES.to_sentence}"
     end
