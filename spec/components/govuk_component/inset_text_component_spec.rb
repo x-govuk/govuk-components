@@ -8,6 +8,7 @@ RSpec.describe(GovukComponent::InsetTextComponent, type: :component) do
 
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
+  it_behaves_like 'a component that supports custom branding'
 
   context 'when text is supplied' do
     before { render_inline(described_class.new(**kwargs)) }

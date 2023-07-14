@@ -14,6 +14,12 @@ RSpec.describe(GovukComponent::NotificationBannerComponent, type: :component) do
     it_behaves_like 'a component with a slot that accepts custom classes'
     it_behaves_like 'a component with a slot that accepts custom html attributes'
 
+    context "with a custom title id that is not govuk-ish" do
+      let(:kwargs) { { title_text: title, text: "something", title_id: 'custom-id' } }
+
+      it_behaves_like 'a component that supports custom branding'
+    end
+
     context "when supplied with a block" do
       subject! do
         render_inline(described_class.new(**kwargs)) do |component|
