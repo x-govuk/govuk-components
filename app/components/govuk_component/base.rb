@@ -25,4 +25,8 @@ class GovukComponent::Base < ViewComponent::Base
 
     super
   end
+
+  def brand(override = nil)
+    override || config.brand
+  end
 end

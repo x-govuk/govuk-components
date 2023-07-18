@@ -18,20 +18,20 @@ class GovukComponent::WarningTextComponent < GovukComponent::Base
 private
 
   def icon_element
-    tag.span(icon, class: 'govuk-warning-text__icon', aria: { hidden: true })
+    tag.span(icon, class: "#{brand}-warning-text__icon", aria: { hidden: true })
   end
 
   def warning_text
-    tag.strong(class: 'govuk-warning-text__text') do
+    tag.strong(class: "#{brand}-warning-text__text") do
       safe_join([assistive, (content || text)])
     end
   end
 
   def assistive
-    tag.span(icon_fallback_text, class: 'govuk-warning-text__assistive')
+    tag.span(icon_fallback_text, class: "#{brand}-warning-text__assistive")
   end
 
   def default_attributes
-    { class: %w(govuk-warning-text) }
+    { class: "#{brand}-warning-text" }
   end
 end

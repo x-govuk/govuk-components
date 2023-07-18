@@ -24,7 +24,7 @@ class GovukComponent::AccordionComponent < GovukComponent::Base
 private
 
   def default_attributes
-    { class: %w(govuk-accordion), data: { module: 'govuk-accordion' } }.compact
+    { class: "#{brand}-accordion", data: { module: "#{brand}-accordion" } }.compact
   end
 
   def heading_tag(level)

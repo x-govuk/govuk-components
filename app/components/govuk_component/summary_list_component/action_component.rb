@@ -37,6 +37,6 @@ private
   end
 
   def visually_hidden_span
-    tag.span(%( #{visually_hidden_text}), class: "govuk-visually-hidden") if visually_hidden_text.present?
+    tag.span(%( #{visually_hidden_text}), class: "#{brand}-visually-hidden") if visually_hidden_text.present?
   end
 end

@@ -15,6 +15,7 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
 
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
+  it_behaves_like 'a component that supports custom branding'
 
   specify "renders some page items" do
     expect(rendered_content).to have_tag("nav", with: { class: component_css_class }) do

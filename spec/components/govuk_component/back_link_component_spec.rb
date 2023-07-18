@@ -48,4 +48,5 @@ RSpec.describe(GovukComponent::BackLinkComponent, type: :component) do
 
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
+  it_behaves_like 'a component that supports custom branding'
 end

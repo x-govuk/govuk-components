@@ -53,20 +53,20 @@ private
   end
 
   def link(current: false)
-    attributes = html_attributes.tap { |ha| ha[:class] << "govuk-pagination__item--current" if current }
+    attributes = html_attributes.tap { |ha| ha[:class] << "#{brand}-pagination__item--current" if current }
 
     tag.li(**attributes) do
-      tag.a(href: href, class: %w(govuk-link govuk-pagination__link)) { number.to_s }
+      tag.a(href: href, class: ["#{brand}-link", "#{brand}-pagination__link"]) { number.to_s }
     end
   end
 
   def ellipsis_item
-    tag.li("⋯", class: %w(govuk-pagination__item govuk-pagination__item--ellipses))
+    tag.li("⋯", class: ["#{brand}-pagination__item", "#{brand}-pagination__item--ellipses"])
   end
 
   def default_attributes
     {
-      class: %w(govuk-pagination__item),
+      class: ["#{brand}-pagination__item"],
       aria: { label: aria_label }
     }
   end

@@ -480,7 +480,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
       render_inline(GovukComponent::TableComponent.new) do |table|
         table.with_head do |head|
           head.with_row do |row|
-            GovukComponent::TableComponent::CellComponent::WIDTHS.each_key do |width|
+            GovukComponent::TableComponent::CellComponent.widths.each_key do |width|
               row.with_cell(text: width, header: true, width: width)
             end
           end
@@ -489,7 +489,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
     end
 
     specify "adds the width class correctly" do
-      GovukComponent::TableComponent::CellComponent::WIDTHS.each_key do |width, expected_class|
+      GovukComponent::TableComponent::CellComponent.widths.each_key do |width, expected_class|
         expect(rendered_content).to have_tag("table > thead > tr > th", with: { class: expected_class }, text: width)
       end
     end
@@ -497,6 +497,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
 
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
+  it_behaves_like 'a component that supports custom branding'
 
   describe "column groups and columns" do
     subject! do

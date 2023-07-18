@@ -32,6 +32,7 @@ module Govuk
     #
     # Default components configuration
     #
+    # +:brand+ sets the value used to prefix all classes, used to allow the components to be branded for alternative (similar) design systems
     # +:default_back_link_text+ Default text for the back link, defaults to +Back+
     # +:default_breadcrumbs_collapse_on_mobile+ false
     # +:default_breadcrumbs_hide_in_print+ false
@@ -72,6 +73,7 @@ module Govuk
     # +:require_summary_list_action_visually_hidden_text+ when true forces visually hidden text to be set for every action. It can still be explicitly skipped by passing in +nil+. Defaults to +false+
     # +:enable_auto_table_scopes+ automatically adds a scope of 'col' to th elements in thead and 'row' to th elements in tbody.
     DEFAULTS = {
+      brand: 'govuk',
       default_back_link_text: 'Back',
       default_breadcrumbs_collapse_on_mobile: false,
       default_breadcrumbs_hide_in_print: false,

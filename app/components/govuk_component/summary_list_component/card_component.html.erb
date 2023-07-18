@@ -1,16 +1,16 @@
 <%= tag.div(**html_attributes) do %>
-  <div class="govuk-summary-card__title-wrapper">
-    <%= tag.h2(title, class: "govuk-summary-card__title") %>
+  <div class="<%= brand %>-summary-card__title-wrapper">
+    <%= tag.h2(title, class: "#{brand}-summary-card__title") %>
 
     <% if actions.any? %>
-      <ul class="govuk-summary-card__actions">
+      <ul class="<%= brand %>-summary-card__actions">
         <% actions.each do |action| %>
-          <%= tag.li(action, class: "govuk-summary-card__action") %>
+          <%= tag.li(action, class: "#{brand}-summary-card__action") %>
         <% end %>
       </ul>
     <% end %>
   </div>
-  <div class="govuk-summary-card__content">
+  <div class="<%= brand %>-summary-card__content">
     <%= summary_list || content %>
   </div>
 <% end %>

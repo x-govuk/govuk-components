@@ -1,24 +1,24 @@
 <%= tag.footer(role: 'contentinfo', **html_attributes) do %>
   <%= tag.div(**container_html_attributes) do %>
     <% if navigation.present? %>
-      <div class="govuk-footer__navigation">
+      <div class="<%= brand %>-footer__navigation">
         <%= navigation %>
       </div>
 
-      <hr class="govuk-footer__section-break">
+      <hr class="<% brand %>-footer__section-break">
     <% end %>
 
     <%= tag.div(class: meta_classes, **meta_html_attributes) do %>
       <% if meta.present? %>
         <%= meta %>
       <% else %>
-        <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+        <div class="<%= brand %>-footer__meta-item <%= brand %>-footer__meta-item--grow">
           <% if meta_items.any? %>
-            <h2 class="govuk-visually-hidden"><%= meta_items_title %></h2>
+            <h2 class="<%= brand %>-visually-hidden"><%= meta_items_title %></h2>
 
-            <ul class="govuk-footer__inline-list">
+            <ul class="<%= brand %>-footer__inline-list">
               <% @meta_items.each do |hyperlink| %>
-                <li class="govuk-footer__inline-list-item">
+                <li class="<%= brand %>-footer__inline-list-item">
                   <%= hyperlink %>
                 </li>
               <% end %>
@@ -26,23 +26,23 @@
           <% end %>
 
           <% if meta_licence.nil? %>
-            <svg aria-hidden="true" focusable="false" class="govuk-footer__licence-logo" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 483.2 195.7" height="17" width="41">
+            <svg aria-hidden="true" focusable="false" class="<%= brand %>-footer__licence-logo" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 483.2 195.7" height="17" width="41">
               <path fill="currentColor" d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145" />
             </svg>
 
-            <%= tag.span(default_licence, class: "govuk-footer__licence-description") %>
+            <%= tag.span(default_licence, class: "#{brand}-footer__licence-description") %>
           <% elsif meta_licence.present? %>
-            <%= tag.span(meta_licence, class: "govuk-footer__licence-description") %>
+            <%= tag.span(meta_licence, class: "#{brand}-footer__licence-description") %>
           <% end %>
 
           <% if meta_content.present? %>
-            <div class="govuk-footer__meta-custom">
+            <div class="<%= brand %>-footer__meta-custom">
               <%= meta_content %>
             </div>
           <% end %>
         </div>
 
-        <%= tag.div(copyright, class: "govuk-footer__meta-item") %>
+        <%= tag.div(copyright, class: "#{brand}-footer__meta-item") %>
       <% end %>
     <% end %>
   <% end %>

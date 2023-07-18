@@ -66,12 +66,12 @@ class GovukComponent::PaginationComponent < GovukComponent::Base
   end
 
   def call
-    attributes = html_attributes.tap { |ha| (ha[:class] << "govuk-pagination--block") if items.empty? }
+    attributes = html_attributes.tap { |ha| (ha[:class] << "#{brand}-pagination--block") if items.empty? }
 
     tag.nav(**attributes) do
       safe_join([
         previous_content,
-        tag.ul(class: "govuk-pagination__list") { safe_join(page_items) },
+        tag.ul(class: "#{brand}-pagination__list") { safe_join(page_items) },
         next_content
       ])
     end
@@ -85,7 +85,7 @@ class GovukComponent::PaginationComponent < GovukComponent::Base
 private
 
   def default_attributes
-    { role: "navigation", aria: { label: landmark_label }, class: %w(govuk-pagination) }
+    { role: "navigation", aria: { label: landmark_label }, class: "#{brand}-pagination" }
   end
 
   def build_previous
@@ -124,6 +124,6 @@ private
 
     return visible if hidden.blank?
 
-    (visible + tag.span(" #{hidden}", class: "govuk-visually-hidden")).html_safe
+    (visible + tag.span(" #{hidden}", class: "#{brand}-visually-hidden")).html_safe
   end
 end

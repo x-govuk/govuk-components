@@ -9,6 +9,7 @@ RSpec.describe(GovukComponent::PanelComponent, type: :component) do
 
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
+  it_behaves_like 'a component that supports custom branding'
 
   specify 'contains a panel with the correct title and text' do
     render_inline(described_class.new(**kwargs))

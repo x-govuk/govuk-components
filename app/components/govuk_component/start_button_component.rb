@@ -1,11 +1,4 @@
 class GovukComponent::StartButtonComponent < GovukComponent::Base
-  BUTTON_ATTRIBUTES = {
-    draggable: 'false',
-    data: { module: 'govuk-button' }
-  }.freeze
-
-  LINK_ATTRIBUTES = BUTTON_ATTRIBUTES.merge({ role: 'button' }).freeze
-
   attr_reader :text, :href, :as_button
 
   def initialize(text:, href:, as_button: config.default_start_button_as_button, classes: [], html_attributes: {})
@@ -31,8 +24,13 @@ class GovukComponent::StartButtonComponent < GovukComponent::Base
 private
 
   def default_attributes
-    (as_button ? BUTTON_ATTRIBUTES : LINK_ATTRIBUTES)
-      .merge({ class: %w(govuk-button govuk-button--start) })
+    attrs = {
+      class: ["#{brand}-button", "#{brand}-button--start"],
+      data: { module: "#{brand}-button" },
+      draggable: 'false',
+    }
+    attrs.merge!(role: 'button') unless as_button
+    attrs
   end
 
   def icon
@@ -43,7 +41,7 @@ private
 
   def svg_attributes
     {
-      class: "govuk-button__start-icon",
+      class: "#{brand}-button__start-icon",
       xmlns: "http://www.w3.org/2000/svg",
       width: "17.5",
       height: "19",

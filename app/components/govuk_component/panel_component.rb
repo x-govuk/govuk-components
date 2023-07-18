@@ -21,7 +21,7 @@ class GovukComponent::PanelComponent < GovukComponent::Base
 private
 
   def default_attributes
-    { class: %w(govuk-panel govuk-panel--confirmation) }
+    { class: "#{brand}-panel #{brand}-panel--confirmation" }
   end
 
   def heading_tag
@@ -39,13 +39,13 @@ private
   def panel_title
     return if title.blank?
 
-    content_tag(heading_tag, title, class: "govuk-panel__title")
+    content_tag(heading_tag, title, class: "#{brand}-panel__title")
   end
 
   def panel_body
     return if panel_content.blank?
 
-    tag.div(class: "govuk-panel__body") do
+    tag.div(class: "#{brand}-panel__body") do
       panel_content
     end
   end
