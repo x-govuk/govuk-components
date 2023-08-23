@@ -1,0 +1,18 @@
+---
+title: Task list
+---
+
+p The task list component displays all the tasks a user needs to do, and allows
+  users to easily identify which ones are done and which they still need to do.
+
+== render('/partials/example.*',
+  caption: "Default task list",
+  code: default_task_list)
+
+== render('/partials/example.*',
+  caption: "Task list with coloured tags",
+  code: task_list_with_coloured_tags) do
+
+  markdown:
+    Task statuses are [tags](/components/tag) and can be customised by passing
+    the arguments as a hash.
