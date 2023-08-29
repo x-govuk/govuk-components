@@ -43,6 +43,25 @@ module Examples
       SUMMARY_LIST_WITHOUT_ACTIONS
     end
 
+    def summary_list_with_missing_information
+      <<~SUMMARY_LIST_WITH_MISSING_INFORMATION
+        = govuk_summary_list do |summary_list|
+          - summary_list.with_row do |row|
+            - row.with_key { 'Name' }
+            - row.with_value { 'Sherlock Holmes' }
+            - row.with_action(text: "Change", href: '#', visually_hidden_text: 'name')
+
+          - summary_list.with_row do |row|
+            - row.with_key(text: 'Address')
+            - row.with_value { govuk_link_to("Enter address", "#") }
+
+          - summary_list.with_row do |row|
+            - row.with_key(text: 'Phone number')
+            - row.with_value(text: '020 123 1234')
+            - row.with_action(text: "Change", href: '#', visually_hidden_text: 'phone number')
+      SUMMARY_LIST_WITH_MISSING_INFORMATION
+    end
+
     def summary_list_from_rows
       <<~SUMMARY_LIST_FROM_ROWS
         = govuk_summary_list(rows: rows)
