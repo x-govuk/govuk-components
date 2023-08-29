@@ -39,6 +39,13 @@ p
     consuming the remaining space.
 
 == render('/partials/example.*',
+  caption: "Summary lists with missing information",
+  code: summary_list_with_missing_information) do
+
+  markdown:
+    If a row has missing information, include a link to add the information within the value column instead of as an action.
+
+== render('/partials/example.*',
   caption: "Building a summary list directly from data",
   code: summary_list_from_rows,
   data: summary_list_from_rows_data) do
