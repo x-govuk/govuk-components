@@ -25,5 +25,13 @@ RSpec.describe(TitleWithErrorPrefixHelper, type: 'helper') do
         expect { subject }.to raise_error(ArgumentError)
       end
     end
+
+    context 'when an alternative error prefix is given' do
+      subject { title_with_error_prefix('What is their name?', error: true, error_prefix: "Opps: ") }
+
+      it 'should include the alternative error prefix' do
+        expect(subject).to eql('Opps: What is their name?')
+      end
+    end
   end
 end
