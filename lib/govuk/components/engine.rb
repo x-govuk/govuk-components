@@ -38,6 +38,7 @@ module Govuk
     # +:default_breadcrumbs_hide_in_print+ false
     # +:default_cookie_banner_aria_label+ "Cookie banner"
     # +:default_cookie_banner_hide_in_print+ true
+    # +:default_error_prefix+ Text to use at the start of the page title tag when there is an error on the page. Default is 'Error: '
     # +:default_exit_this_page_redirect_url+ The URL that the exit this page component links to by default. Defaults to https://www.bbc.co.uk/weather
     # +:default_exit_this_page_text+ The default text that forms the link. Defaults to 'Exit this page'
     # +:default_exit_this_page_activated_text+ Text announced by screen readers when Exit this Page has been activated via the keyboard shortcut. Default in govuk-frontend is 'Exiting page.' Defaults to nil so govuk-frontend value is used unless overridden.
@@ -79,6 +80,7 @@ module Govuk
       default_breadcrumbs_hide_in_print: false,
       default_cookie_banner_aria_label: "Cookie banner",
       default_cookie_banner_hide_in_print: true,
+      default_error_prefix: "Error: ",
       default_exit_this_page_redirect_url: "https://www.bbc.co.uk/weather",
       default_exit_this_page_text: "Exit this page",
       default_exit_this_page_activated_text: nil,
@@ -110,10 +112,7 @@ module Govuk
       default_notification_title_success: false,
       default_warning_text_icon_fallback_text: "Warning",
       default_warning_text_icon: "!",
-
       default_link_new_tab_text: "(opens in new tab)",
-
-      error_prefix: "Error: ",
       require_summary_list_action_visually_hidden_text: false,
       enable_auto_table_scopes: true,
     }.freeze
