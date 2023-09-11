@@ -108,3 +108,4 @@ use_helper Examples::TagHelpers
 use_helper Examples::WarningTextHelpers
 use_helper Examples::CommonOptionsHelpers
 use_helper Examples::BackToTopLinkHelpers
+use_helper Examples::TitleWithErrorPrefixHelpers
