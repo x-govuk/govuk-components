@@ -2,7 +2,6 @@ require 'ostruct'
 
 module Examples
   module TitleWithErrorPrefixHelpers
-
     def title_containing_error
       <<~TITLE_WITH_ERROR_PREFIX
         = title_with_error_prefix("Personal details", error: true)
@@ -20,6 +19,5 @@ module Examples
         = title_with_error_prefix("Manylion personol", error: true, error_prefix: "Gwall: ")
       TITLE_WITH_ERROR_PREFIX
     end
-
   end
 end
