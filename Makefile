@@ -8,7 +8,7 @@ check: ruby-lint slim-lint rspec nanoc-check
 nanoc-check: nanoc-check-all
 
 ruby-lint:
-	${prefix} rubocop lib spec guide/lib
+	${prefix} rubocop app lib spec guide/lib
 slim-lint:
 	${prefix} slim-lint guide
 rspec:
