@@ -44,7 +44,7 @@ module GovukLinkHelper
   def govuk_button_to(name = nil, options = nil, extra_options = {}, &block)
     extra_options = options if block_given?
     html_options = {
-      data: {module: "govuk-button"}
+      data: { module: "govuk-button" }
     }
 
     if extra_options && extra_options[:prevent_double_click]
