@@ -7,5 +7,5 @@
       <%= tag.div(summary_content, id: id(suffix: 'summary'), class: "#{brand}-accordion__section-summary #{brand}-body") %>
     <% end %>
   </div>
-  <%= tag.div(content, id: id(suffix: 'content'), class: "#{brand}-accordion__section-content", aria: { labelledby: id }) %>
+  <%= tag.div(content, id: id(suffix: 'content'), role: 'region', class: "#{brand}-accordion__section-content", aria: { labelledby: id }) %>
 <% end %>
