@@ -54,7 +54,7 @@ module Govuk
     # +:default_footer_meta_text+ nil
     # +:default_footer_copyright_text+ '© Crown copyright'
     # +:default_footer_copyright_url+ "https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
-    # +:default_pagination_landmark_label+ "results"
+    # +:default_pagination_landmark_label+ "Pagination"
     # +:default_pagination_next_text+ Default 'next' text for pagination. An +Array+ where the first item is visible and the second visually hidden. Defaults to ["Next", "page"]
     # +:default_pagination_previous_text+ Default 'previous' text for pagination. An +Array+ where the first item is visible and the second visually hidden. Defaults to ["Previous", "page"]
     # +:default_phase_banner_tag+ nil
@@ -96,7 +96,7 @@ module Govuk
       default_footer_meta_text: nil,
       default_footer_copyright_text: '© Crown copyright',
       default_footer_copyright_url: "https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/",
-      default_pagination_landmark_label: "results",
+      default_pagination_landmark_label: "Pagination",
       default_pagination_next_text: %w(Next page),
       default_pagination_previous_text: %w(Previous page),
       default_phase_banner_tag: nil,
