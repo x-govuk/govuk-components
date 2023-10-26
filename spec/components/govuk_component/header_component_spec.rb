@@ -48,19 +48,6 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
           with_tag('svg', with: { class: 'govuk-header__logotype-crown', 'aria-hidden' => true })
         end
       end
-
-      context 'when a fallback image path is provided' do
-        let(:custom_path) { '/an-alternative-crown-file.jpg' }
-        let(:kwargs) { { crown_fallback_image_path: custom_path } }
-
-        specify 'renders the fallback image with the custom path' do
-          expect(rendered_content).to have_tag('.govuk-header__logotype') do |logotype|
-            # NOTE: it's rendered inside a IE8 conditional comment so we can't
-            # assert its presence normally, just ensure the path's included
-            expect(logotype.current_scope.inner_html).to include(custom_path)
-          end
-        end
-      end
     end
 
     context 'when the crown is disabled' do

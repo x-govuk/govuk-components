@@ -5,7 +5,6 @@ class GovukComponent::HeaderComponent < GovukComponent::Base
 
   attr_reader :logotype,
               :crown,
-              :crown_fallback_image_path,
               :homepage_url,
               :service_name,
               :service_url,
@@ -18,7 +17,6 @@ class GovukComponent::HeaderComponent < GovukComponent::Base
                  html_attributes: {},
                  logotype: config.default_header_logotype,
                  crown: true,
-                 crown_fallback_image_path: nil,
                  homepage_url: config.default_header_homepage_url,
                  menu_button_label: config.default_header_menu_button_label,
                  navigation_classes: [],
@@ -29,7 +27,6 @@ class GovukComponent::HeaderComponent < GovukComponent::Base
 
     @logotype                  = logotype
     @crown                     = crown
-    @crown_fallback_image_path = crown_fallback_image_path
     @homepage_url              = homepage_url
     @service_name              = service_name
     @service_url               = service_url
@@ -55,14 +52,6 @@ private
 
   def container_html_attributes
     { class: ["#{brand}-header__container", "#{brand}-width-container"].append(custom_container_classes).compact }
-  end
-
-  def crown_fallback_image_attributes
-    {
-      class: "#{brand}-header__logotype-crown-fallback-image",
-      width: "36",
-      height: "32",
-    }
   end
 
   class NavigationItem < GovukComponent::Base
