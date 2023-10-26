@@ -14,7 +14,7 @@ RSpec.describe(GovukComponent::DetailsComponent, type: :component) do
     before { render_inline(described_class.new(**kwargs)) }
 
     specify 'contains a details element with the correct summary and text' do
-      expect(rendered_content).to have_tag('details', with: { class: 'govuk-details', 'data-module' => 'govuk-details' }) do
+      expect(rendered_content).to have_tag('details', with: { class: 'govuk-details' }) do
         with_tag('summary', with: { class: 'govuk-details__summary' }) do
           with_tag('span', with: { class: 'govuk-details__summary-text' }, text: summary_text)
         end
@@ -53,7 +53,7 @@ RSpec.describe(GovukComponent::DetailsComponent, type: :component) do
     end
 
     specify 'contains a details element with the correct summary and text' do
-      expect(rendered_content).to have_tag('details', with: { class: 'govuk-details', 'data-module' => 'govuk-details' }) do
+      expect(rendered_content).to have_tag('details', with: { class: 'govuk-details' }) do
         with_tag('summary', with: { class: 'govuk-details__summary' }) do
           with_tag('span', with: { class: 'govuk-details__summary-text' }, text: summary_text)
         end
