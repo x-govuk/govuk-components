@@ -169,9 +169,19 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
     context "when provided with button text and url params" do
       subject { govuk_button_to(button_text, button_params) }
 
-      specify "renders a form with an input of type submit and the correct attributes" do
+      specify "renders a form with a button and the correct attributes" do
         expect(subject).to have_tag("form", with: { class: "button_to", action: button_url }) do
-          with_tag("input", with: { type: "submit", class: "govuk-button" })
+          with_tag("button", with: { class: "govuk-button", "data-module": "govuk-button" }, text: button_text)
+        end
+      end
+    end
+
+    context "when provided with button text, a path and preventing double click" do
+      subject { govuk_button_to(button_text, "/", prevent_double_click: true) }
+
+      specify "renders a form with a button and the correct attributes" do
+        expect(subject).to have_tag("form", with: { class: "button_to", action: button_url }) do
+          with_tag("button", with: { class: "govuk-button", "data-module": "govuk-button", "data-prevent-double-click": "true" }, text: button_text)
         end
       end
     end
@@ -181,9 +191,9 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
 
       subject { govuk_button_to(button_params) { button_html } }
 
-      specify "renders a form with an button of type submit and the correct attributes" do
+      specify "renders a form with a button and the correct attributes" do
         expect(subject).to have_tag("form", with: { class: "button_to", action: button_url }) do
-          with_tag("button", with: { class: "govuk-button" })
+          with_tag("button", with: { class: "govuk-button", "data-module": "govuk-button" }, text: button_text)
         end
       end
     end
@@ -193,9 +203,9 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
 
       subject { govuk_button_to(button_text, button_params, custom_button_options) }
 
-      specify "renders a form with an button that has the GOV.UK modifier classes" do
+      specify "renders a form with a button that has the GOV.UK modifier classes" do
         expect(subject).to have_tag("form", with: { class: "button_to", action: button_url }) do
-          with_tag("input", with: { type: "submit", class: %w(govuk-button govuk-button--secondary) })
+          with_tag("button", with: { class: %w(govuk-button govuk-button--secondary), "data-module": "govuk-button" }, text: button_text)
         end
       end
     end
@@ -205,7 +215,7 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
 
       specify "renders a form with an button that has the custom classes" do
         expect(subject).to have_tag("form", with: { class: "button_to", action: button_url }) do
-          with_tag("input", with: { type: "submit", class: %w(govuk-button yellow govuk-button--disabled) })
+          with_tag("button", with: { type: "submit", class: %w(govuk-button yellow govuk-button--disabled), "data-module": "govuk-button" }, text: button_text)
         end
       end
     end

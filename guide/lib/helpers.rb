@@ -1,11 +1,12 @@
 require 'rails'
+require 'action_view'
+ActionView::Helpers::UrlHelper.button_to_generates_button_tag = true
 
 module FakeRails
   class Application < Rails::Application; end
 end
 
 require 'pry'
-require 'action_view'
 require 'action_controller'
 require 'htmlbeautifier'
 require 'slim/erb_converter'
@@ -113,3 +114,4 @@ use_helper Examples::TaskListHelpers
 use_helper Examples::WarningTextHelpers
 use_helper Examples::CommonOptionsHelpers
 use_helper Examples::BackToTopLinkHelpers
+use_helper Examples::TitleWithErrorPrefixHelpers

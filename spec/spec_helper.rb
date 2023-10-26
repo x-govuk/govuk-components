@@ -16,6 +16,7 @@ include GovukLinkHelper
 include GovukBackToTopLinkHelper
 include GovukSkipLinkHelper
 include GovukExitThisPageLinkHelper
+include TitleWithErrorPrefixHelper
 
 module Pagy::UrlHelpers
   def request

@@ -1,0 +1,28 @@
+---
+title: Title with error prefix
+---
+
+markdown:
+  If you have a page containing a form, you should add the "Error: " prefix to the page title if there is a validation error on the page.
+
+  This means that screen readers will read it out as soon as possible.
+
+  To do this, you can use the `title_with_error_prefix` helper.
+
+  If you are using a Rails form, you can set the error attribute by calling `errors.any?` on the form object:
+
+  ```
+    = title_with_error_prefix("Personal details", error: @personal_details_form.errors.any?)
+  ```
+
+== render('/partials/example.*',
+  caption: "Title with an error present",
+  code: title_containing_error)
+
+== render('/partials/example.*',
+  caption: "Title with an error present",
+  code: title_not_containing_error)
+
+== render('/partials/example.*',
+  caption: "Title with a custom error prefix",
+  code: title_containing_error_and_custom_error_prefix)
