@@ -1,19 +1,15 @@
 module GovukComponent
   class TaskListComponent::StatusComponent < GovukComponent::Base
-    attr_reader :text, :href, :colour
+    attr_reader :text
 
-    def initialize(text: nil, href: nil, colour: nil, classes: [], html_attributes: {})
+    def initialize(text: nil, classes: [], html_attributes: {})
       @text = text
-      @href = href
-      @colour = colour
 
       super(classes: classes, html_attributes: html_attributes)
     end
 
     def call
-      tag.div(**html_attributes) do
-        render(GovukComponent::TagComponent.new(text: text, colour: colour))
-      end
+      tag.div(text, **html_attributes)
     end
 
   private
