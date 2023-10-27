@@ -9,7 +9,7 @@ module GovukComponent
     end
 
     def call
-      tag.div(text, **html_attributes)
+      tag.div(content || text, **html_attributes)
     end
 
   private

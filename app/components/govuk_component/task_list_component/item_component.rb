@@ -2,53 +2,52 @@ module GovukComponent
   class TaskListComponent::ItemComponent < GovukComponent::Base
     renders_one :title, "GovukComponent::TaskListComponent::TitleComponent"
     renders_one :status, "GovukComponent::TaskListComponent::StatusComponent"
-    renders_one :hint
 
-    attr_reader :title_text, :raw_status, :raw_hint, :href
+    attr_reader :raw_title, :hint, :href, :raw_status
 
-    def initialize(title: nil, href: nil, hint: nil, status: nil, classes: [], html_attributes: {})
-      @title_text = title
+    def initialize(title: nil, href: nil, hint: nil, status: {}, classes: [], html_attributes: {})
+      @raw_title = title
       @href       = href
-      @raw_hint   = hint
+      @hint       = hint
       @raw_status = status
 
       super(classes: classes, html_attributes: html_attributes)
     end
 
     def call
-      tag.li(safe_join([title_content, status_content, hint_content].compact), **html_attributes)
+      adjusted_html_attributes = if href.present? || title&.href.present?
+                                   html_attributes_with_link_class
+                                 else
+                                   html_attributes
+                                 end
+
+      tag.li(safe_join([title_content, status_content].compact), **adjusted_html_attributes)
     end
 
   private
 
     def title_content
-      title || with_title(text: title_text, href: href, hint: hint)
+      title || with_title(**title_attributes)
     end
 
     def status_content
-      case status
-      when String
-        with_status(text: status)
-      when Hash
-        with_status(**status)
-      else status
-      end
-    end
-
-    def hint_content
-      tag.div(hint, class: %w(govuk-task-list__task_hint))
+      status || with_status(**status_attributes)
     end
 
     def default_attributes
       { class: 'govuk-task-list__item' }
     end
 
-    def status_attributes
-      { class: 'govuk-task-list__status' }
+    def title_attributes
+      { text: raw_title, href: href, hint: hint }
     end
 
-    def hint_attributes
-      { class: 'govuk-task-list__task_hint' }
+    def html_attributes_with_link_class
+      html_attributes.tap { |h| h[:class].append("govuk-task-list__item--with-link") }
+    end
+
+    def status_attributes
+      raw_status.is_a?(String) ? { text: raw_status } : raw_status
     end
   end
 end

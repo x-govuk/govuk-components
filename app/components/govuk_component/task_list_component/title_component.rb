@@ -11,7 +11,7 @@ module GovukComponent
     end
 
     def call
-      tag.div(**html_attributes) { title_content }
+      tag.div(**html_attributes) { safe_join([title_content, hint_content]) }
     end
 
   private
