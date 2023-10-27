@@ -51,7 +51,6 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
     {
       secondary: 'govuk-button--secondary',
       warning:   'govuk-button--warning',
-      disabled:  'govuk-button--disabled',
       inverse:   'govuk-button--inverse',
     }.each do |style, css_class|
       describe "generating a #{style}-style button with '#{style}: true'" do
@@ -211,11 +210,11 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
     end
 
     context "adding custom classes" do
-      subject { govuk_button_to(button_text, button_params, { class: "yellow", disabled: true }) }
+      subject { govuk_button_to(button_text, button_params, { class: "yellow" }) }
 
       specify "renders a form with an button that has the custom classes" do
         expect(subject).to have_tag("form", with: { class: "button_to", action: button_url }) do
-          with_tag("button", with: { type: "submit", class: %w(govuk-button yellow govuk-button--disabled), "data-module": "govuk-button" }, text: button_text)
+          with_tag("button", with: { type: "submit", class: %w(govuk-button yellow), "data-module": "govuk-button" }, text: button_text)
         end
       end
     end

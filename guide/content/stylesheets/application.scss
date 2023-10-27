@@ -7,7 +7,7 @@ $govuk-font-family: system-ui, sans-serif;
 $govuk-brand-colour: #28a;
 
 // Import GOV.UK Frontend
-@import "govuk/all";
+@import "dist/govuk/all";
 
 // Application components
 @import "components/breadcrumbs";
@@ -88,12 +88,6 @@ $govuk-inverse-button-shadow-colour: govuk-shade($govuk-inverse-button-text-colo
   &:active,
   &:hover {
     color: $govuk-inverse-button-text-colour;
-  }
-
-  @include _govuk-compatibility(govuk_template) {
-    &:link:focus {
-      color: $govuk-inverse-button-text-colour;
-    }
   }
 
   &:hover {

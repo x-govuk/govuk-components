@@ -31,8 +31,8 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
     expect(rendered_content).not_to have_tag("nav", with: { class: %w(govuk-pagination--block) })
   end
 
-  specify "renders a default landmark label of 'results'" do
-    expect(rendered_content).to have_tag("nav", with: { "aria-label" => "results" })
+  specify "renders a default landmark label of 'Pagination'" do
+    expect(rendered_content).to have_tag("nav", with: { "aria-label" => "Pagination" })
   end
 
   specify "renders a previous link" do

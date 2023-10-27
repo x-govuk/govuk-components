@@ -105,7 +105,6 @@ private
 
   def button_styles
     {
-      disabled:  "#{brand}-button--disabled",
       secondary: "#{brand}-button--secondary",
       warning:   "#{brand}-button--warning",
       inverse:   "#{brand}-button--inverse",

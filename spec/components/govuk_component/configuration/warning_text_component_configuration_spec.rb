@@ -18,7 +18,7 @@ RSpec.describe(GovukComponent::WarningTextComponent, type: :component) do
       subject! { render_inline(GovukComponent::WarningTextComponent.new(**kwargs)) }
 
       specify "renders the warning text with overridden icon fallback text" do
-        expect(rendered_content).to have_tag("span", text: overridden_fallback_text, with: { class: "govuk-warning-text__assistive" })
+        expect(rendered_content).to have_tag("span", text: overridden_fallback_text, with: { class: "govuk-visually-hidden" })
       end
     end
 

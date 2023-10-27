@@ -21,7 +21,7 @@ RSpec.describe(GovukComponent::WarningTextComponent, type: :component) do
   specify 'the default assistive text is included' do
     expect(rendered_content).to have_tag(component_css_class_matcher) do
       with_tag('strong', with: { class: 'govuk-warning-text__text' }) do
-        with_tag('span', text: 'Warning', with: { class: 'govuk-warning-text__assistive' })
+        with_tag('span', text: 'Warning', with: { class: 'govuk-visually-hidden' })
       end
     end
   end
@@ -32,7 +32,7 @@ RSpec.describe(GovukComponent::WarningTextComponent, type: :component) do
     specify 'the custom assistive text is included' do
       expect(rendered_content).to have_tag('div', class: component_css_class) do
         with_tag('strong', with: { class: 'govuk-warning-text__text' }) do
-          with_tag('span', text: custom_icon_fallback_text, with: { class: 'govuk-warning-text__assistive' })
+          with_tag('span', text: custom_icon_fallback_text, with: { class: 'govuk-visually-hidden' })
         end
       end
     end
