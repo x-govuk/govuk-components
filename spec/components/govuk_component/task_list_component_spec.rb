@@ -53,7 +53,7 @@ RSpec.describe(GovukComponent::TaskListComponent, type: :component) do
 
     context "when a tag is present in the status" do
       let(:status_text) { "Everything's OK" }
-      let(:list_item_two_kwargs) { { title: "Two", status: govuk_tag("ok") } }
+      let(:list_item_two_kwargs) { { title: "Two", status: helper.govuk_tag(text: "ok") } }
 
       specify "a status tag is rendered with the correct attributes and text" do
         expect(rendered_content).to have_tag("li") do
