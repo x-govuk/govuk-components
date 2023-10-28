@@ -16,12 +16,31 @@ module Examples
           - task_list.with_item(title: "Prototype", status: govuk_tag(text: "Incomplete", colour: "blue"))
           - task_list.with_item(title: "Implementation", status: govuk_tag(text: "Incomplete", colour: "light-blue"))
           - task_list.with_item(title: "User acceptance testing", status: govuk_tag(text: "Incomplete", colour: "red"))
-          - task_list.with_item(title: "Handover", status: govuk_tag(text: "Incomplete", colour: "turquoise"))
+          - task_list.with_item(title: "Handover") do |item|
+            - item.with_status do
+              = govuk_tag(text: "Incomplete", colour: "turquoise")
       SNIPPET
     end
 
-    def task_list_with_data
-      # TODO: demonstrate building a task list with an array of hashes
+    def task_list_with_hints
+      <<~SNIPPET
+        = govuk_task_list do |task_list|
+          - task_list.with_item do |item|
+            - item.with_title(text: "Check your qualifications", hint: "You need GCSEs in English and maths", href: "#")
+            - item.with_status(text: govuk_tag(text: "Done", colour: "green"))
+
+          - task_list.with_item do |item|
+            - item.with_title(text: "Understand funding", hint: "Teacher training course fees are around £9,250 per year", href: "#")
+            - item.with_status(text: govuk_tag(text: "Done", colour: "green"))
+
+          - task_list.with_item do |item|
+            - item.with_title(text: "Consider getting experience", hint: "Experiencing life in a school can help you decide if teaching is right for you", href: "#")
+            - item.with_status(text: govuk_tag(text: "Arranged", colour: "yellow"))
+
+          - task_list.with_item do |item|
+            - item.with_title(text: "Find a teacher training course", hint: "Through teacher training you can get QTS, a PGCE, or both", href: "#")
+            - item.with_status(text: govuk_tag(text: "To do", colour: "red"))
+      SNIPPET
     end
   end
 end

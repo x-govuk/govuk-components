@@ -15,4 +15,12 @@ p The task list component displays all the tasks a user needs to do, and allows
 
   markdown:
     Task statuses are [tags](/components/tag) and can be customised by passing
-    the arguments as a hash.
+    the arguments as a hash, or overridden with a block.
+
+== render('/partials/example.*',
+  caption: "Task list with hints",
+  code: task_list_with_hints) do
+
+  markdown:
+    When an explanation is needed to better describe a task, hints can be added
+    with the `hint` keyword.
