@@ -50,7 +50,7 @@ RSpec.describe(GovukComponent::TaskListComponent, type: :component) do
 
         specify "a hint is rendered with the correct attributes" do
           expect(rendered_content).to have_tag("li") do
-            with_tag("div", text: hint_two, with: { class: "govuk-task-list__task_hint" })
+            with_tag("div", text: hint_two, with: { class: "govuk-task-list__hint" })
           end
         end
       end
@@ -89,8 +89,8 @@ RSpec.describe(GovukComponent::TaskListComponent, type: :component) do
 
       specify "the title and hint are rendered" do
         expect(rendered_content).to have_tag("li") do
-          with_tag('div', with: { class: 'govuk-task-list__task-name-and-hint' }, text: Regexp.new(title_text)) do
-            with_tag('div', with: { class: 'govuk-task-list__task_hint' }, text: hint_text)
+          with_tag('div', with: { class: 'govuk-task-list__name-and-hint' }, text: Regexp.new(title_text)) do
+            with_tag('div', with: { class: 'govuk-task-list__hint' }, text: hint_text)
           end
         end
       end

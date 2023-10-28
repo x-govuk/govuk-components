@@ -27,11 +27,11 @@ module GovukComponent
     end
 
     def hint_content
-      tag.div(hint, class: "govuk-task-list__task_hint")
+      tag.div(hint, class: "govuk-task-list__hint")
     end
 
     def default_attributes
-      { class: "govuk-task-list__task-name-and-hint" }
+      { class: "govuk-task-list__name-and-hint" }
     end
   end
 end
