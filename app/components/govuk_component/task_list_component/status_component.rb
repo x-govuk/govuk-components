@@ -9,13 +9,21 @@ module GovukComponent
     end
 
     def call
-      tag.div(content || text, **html_attributes)
+      tag.div(status_text, **html_attributes)
+    end
+
+    def render?
+      status_text.present?
     end
 
   private
 
     def default_attributes
       { class: %w(govuk-task-list__status) }
+    end
+
+    def status_text
+      text || content
     end
   end
 end

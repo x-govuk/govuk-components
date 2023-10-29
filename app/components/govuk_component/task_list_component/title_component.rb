@@ -17,21 +17,21 @@ module GovukComponent
   private
 
     def title_content
-      return link if href.present?
-
-      text
-    end
-
-    def link
-      govuk_link_to(text, href, class: "govuk-task-list__link")
+      (href.present?) ? govuk_link_to(text, href, **link_attributes) : text
     end
 
     def hint_content
+      return if hint.blank?
+
       tag.div(hint, class: "govuk-task-list__hint")
     end
 
     def default_attributes
       { class: "govuk-task-list__name-and-hint" }
+    end
+
+    def link_attributes
+      { class: "govuk-task-list__link" }
     end
   end
 end
