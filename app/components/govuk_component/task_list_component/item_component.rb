@@ -1,15 +1,35 @@
 module GovukComponent
   class TaskListComponent::ItemComponent < GovukComponent::Base
-    renders_one :title, "GovukComponent::TaskListComponent::TitleComponent"
-    renders_one :status, "GovukComponent::TaskListComponent::StatusComponent"
+    renders_one :status, ->(text: nil, classes: [], html_attributes: {}, &block) do
+      GovukComponent::TaskListComponent::StatusComponent.new(
+        identifier: @identifier,
+        text: text,
+        classes: classes,
+        html_attributes: html_attributes,
+        &block
+      )
+    end
+
+    renders_one :title, ->(text: nil, href: nil, hint: nil, classes: [], html_attributes: {}, &block) do
+      GovukComponent::TaskListComponent::TitleComponent.new(
+        identifier: @identifier,
+        text: text,
+        href: href,
+        hint: hint,
+        classes: classes,
+        html_attributes: html_attributes,
+        &block
+      )
+    end
 
     attr_reader :raw_title, :hint, :href, :raw_status
 
-    def initialize(title: nil, href: nil, hint: nil, status: {}, classes: [], html_attributes: {})
-      @raw_title = title
+    def initialize(title: nil, href: nil, hint: nil, identifier: SecureRandom.hex(3), status: {}, classes: [], html_attributes: {})
+      @raw_title  = title
       @href       = href
       @hint       = hint
       @raw_status = status
+      @identifier = identifier
 
       super(classes: classes, html_attributes: html_attributes)
     end

@@ -163,6 +163,75 @@ RSpec.describe(GovukComponent::TaskListComponent, type: :component) do
     end
   end
 
+  describe "ids and aria-describedby" do
+    let(:identifier) { "abc" }
+    let(:href) { "/things" }
+    let(:hint) { "Yes, things" }
+    let(:expected_hint_id) { "#{identifier}-hint" }
+    let(:expected_status_id) { "#{identifier}-status" }
+
+    subject! do
+      render_inline(GovukComponent::TaskListComponent.new(**kwargs)) do |task_list|
+        task_list.with_item(identifier: identifier, title: "A thing", href: href, status: "Alright", hint: hint)
+      end
+    end
+
+    context "when a href is present" do
+      specify("the hint has an id ending with the identifier") { expect(rendered_content).to have_tag("div", with: { id: expected_hint_id }) }
+      specify("the status has an id ending with the identifier") { expect(rendered_content).to have_tag("div", with: { id: expected_status_id }) }
+
+      specify "the title link is aria-describedby the hint and status ids" do
+        expect(rendered_content).to have_tag(
+          "a",
+          with: {
+            class: "govuk-link govuk-task-list__link",
+            "aria-describedby" => %(#{expected_status_id} #{expected_hint_id}),
+          }
+        )
+      end
+    end
+
+    context "when a href isn't present" do
+      let(:href) { nil }
+      specify("the hint has an id ending with the identifier") { expect(rendered_content).to have_tag("div", with: { id: expected_hint_id }) }
+      specify("the status has an id ending with the identifier") { expect(rendered_content).to have_tag("div", with: { id: expected_status_id }) }
+
+      specify "the title is aria-describedby the hint and status ids" do
+        expect(rendered_content).to have_tag(
+          "div",
+          with: {
+            class: "govuk-task-list__name-and-hint",
+            "aria-describedby" => %(#{expected_status_id} #{expected_hint_id}),
+          }
+        )
+      end
+    end
+
+    context "when the status is present but the hint isn't" do
+      let(:hint) { nil }
+      specify("the hint is not rendered") { expect(rendered_content).not_to have_tag("div", with: { id: expected_hint_id }) }
+      specify("the status has an id ending with the identifier") { expect(rendered_content).to have_tag("div", with: { id: expected_status_id }) }
+
+      specify "the title is aria-describedby only the status id" do
+        expect(rendered_content).to have_tag(
+          "a",
+          with: {
+            class: "govuk-link govuk-task-list__link",
+            "aria-describedby" => expected_status_id,
+          }
+        )
+      end
+    end
+
+    # TODO: what should happen when there's no status. Components can't see
+    #       their siblings so we don't really know whether or not there's a
+    #       status to reference
+    #
+    #       assume it's there for now
+    #
+    # context "when the hint is present but the status isn't" do
+  end
+
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
 end
