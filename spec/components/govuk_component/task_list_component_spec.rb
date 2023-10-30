@@ -196,14 +196,8 @@ RSpec.describe(GovukComponent::TaskListComponent, type: :component) do
       specify("the hint has an id ending with the identifier") { expect(rendered_content).to have_tag("div", with: { id: expected_hint_id }) }
       specify("the status has an id ending with the identifier") { expect(rendered_content).to have_tag("div", with: { id: expected_status_id }) }
 
-      specify "the title is aria-describedby the hint and status ids" do
-        expect(rendered_content).to have_tag(
-          "div",
-          with: {
-            class: "govuk-task-list__name-and-hint",
-            "aria-describedby" => %(#{expected_status_id} #{expected_hint_id}),
-          }
-        )
+      specify "there is no aria-describeby attribute" do
+        expect(rendered_content).not_to have_tag("*[aria-describedby]")
       end
     end
 

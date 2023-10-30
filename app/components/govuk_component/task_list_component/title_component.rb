@@ -14,13 +14,7 @@ module GovukComponent
     end
 
     def call
-      adjusted_html_attributes = if href.blank?
-                                   html_attributes_with_identifier
-                                 else
-                                   html_attributes
-                                 end
-
-      tag.div(**adjusted_html_attributes) { safe_join([title_content, hint_content]) }
+      tag.div(**html_attributes) { safe_join([title_content, hint_content]) }
     end
 
   private
@@ -37,10 +31,6 @@ module GovukComponent
 
     def default_attributes
       { class: "govuk-task-list__name-and-hint" }
-    end
-
-    def html_attributes_with_identifier
-      html_attributes.deep_merge_html_attributes(aria_described_by_attributes)
     end
 
     def link_attributes
