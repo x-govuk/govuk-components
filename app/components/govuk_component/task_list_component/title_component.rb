@@ -2,13 +2,14 @@ module GovukComponent
   class TaskListComponent::TitleComponent < GovukComponent::Base
     using HTMLAttributesUtils
 
-    attr_reader :identifier, :text, :href, :hint
+    attr_reader :id_prefix, :text, :href, :hint, :count
 
-    def initialize(identifier: nil, text: nil, href: nil, hint: nil, classes: [], html_attributes: {})
+    def initialize(text: nil, href: nil, hint: nil, id_prefix: nil, count: nil, classes: [], html_attributes: {})
       @text       = text
       @href       = href
       @hint       = hint
-      @identifier = identifier
+      @id_prefix  = id_prefix
+      @count      = count
 
       super(classes: classes, html_attributes: html_attributes)
     end
@@ -38,13 +39,15 @@ module GovukComponent
     end
 
     def aria_described_by_attributes
-      status_id = "#{identifier}-status"
-
       { aria: { describedby: [*status_id, *hint_id] } }
     end
 
     def hint_id
-      "#{identifier}-hint" if hint.present?
+      [id_prefix, count, "hint"].compact.join("-") if hint.present?
+    end
+
+    def status_id
+      [id_prefix, count, "status"].compact.join("-")
     end
   end
 end

@@ -2,7 +2,8 @@ module GovukComponent
   class TaskListComponent::ItemComponent < GovukComponent::Base
     renders_one :status, ->(text: nil, classes: [], html_attributes: {}, &block) do
       GovukComponent::TaskListComponent::StatusComponent.new(
-        identifier: @identifier,
+        id_prefix: @id_prefix,
+        count: @count,
         text: text,
         classes: classes,
         html_attributes: html_attributes,
@@ -12,7 +13,8 @@ module GovukComponent
 
     renders_one :title, ->(text: nil, href: nil, hint: nil, classes: [], html_attributes: {}, &block) do
       GovukComponent::TaskListComponent::TitleComponent.new(
-        identifier: @identifier,
+        id_prefix: @id_prefix,
+        count: @count,
         text: text,
         href: href,
         hint: hint,
@@ -23,13 +25,15 @@ module GovukComponent
     end
 
     attr_reader :raw_title, :hint, :href, :raw_status
+    attr_writer :count
 
-    def initialize(title: nil, href: nil, hint: nil, identifier: SecureRandom.hex(3), status: {}, classes: [], html_attributes: {})
+    def initialize(title: nil, href: nil, hint: nil, count: nil, id_prefix: nil, status: {}, classes: [], html_attributes: {})
       @raw_title  = title
       @href       = href
       @hint       = hint
       @raw_status = status
-      @identifier = identifier
+      @id_prefix  = id_prefix
+      @count      = count
 
       super(classes: classes, html_attributes: html_attributes)
     end

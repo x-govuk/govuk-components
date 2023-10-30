@@ -2,7 +2,8 @@ require 'spec_helper'
 
 RSpec.describe(GovukComponent::TaskListComponent, type: :component) do
   let(:component_css_class) { 'govuk-task-list' }
-  let(:kwargs) { {} }
+  let(:id_prefix) { nil }
+  let(:kwargs) { { id_prefix: id_prefix }.compact }
   let(:list_item_one_kwargs) { { title: "One", status: "in progress" } }
   let(:list_item_two_kwargs) { { title: "Two", status: "ok" } }
 
@@ -164,66 +165,126 @@ RSpec.describe(GovukComponent::TaskListComponent, type: :component) do
   end
 
   describe "ids and aria-describedby" do
-    let(:identifier) { "abc" }
     let(:href) { "/things" }
     let(:hint) { "Yes, things" }
-    let(:expected_hint_id) { "#{identifier}-hint" }
-    let(:expected_status_id) { "#{identifier}-status" }
 
     subject! do
       render_inline(GovukComponent::TaskListComponent.new(**kwargs)) do |task_list|
-        task_list.with_item(identifier: identifier, title: "A thing", href: href, status: "Alright", hint: hint)
+        task_list.with_item(title: "A thing", href: href, status: "Alright", hint: hint)
       end
     end
 
-    context "when a href is present" do
-      specify("the hint has an id ending with the identifier") { expect(rendered_content).to have_tag("div", with: { id: expected_hint_id }) }
-      specify("the status has an id ending with the identifier") { expect(rendered_content).to have_tag("div", with: { id: expected_status_id }) }
+    context "when id_prefix is not present" do
+      let(:expected_hint_id) { "1-hint" }
+      let(:expected_status_id) { "1-status" }
 
-      specify "the title link is aria-describedby the hint and status ids" do
-        expect(rendered_content).to have_tag(
-          "a",
-          with: {
-            class: "govuk-link govuk-task-list__link",
-            "aria-describedby" => %(#{expected_status_id} #{expected_hint_id}),
-          }
-        )
+      context "when a href is present" do
+        specify("the hint has an id starting with the id_prefix") { expect(rendered_content).to have_tag("div", with: { id: expected_hint_id }) }
+        specify("the status has an id starting with the id_prefix") { expect(rendered_content).to have_tag("div", with: { id: expected_status_id }) }
+
+        specify "the title link is aria-describedby the hint and status ids" do
+          expect(rendered_content).to have_tag(
+            "a",
+            with: {
+              class: "govuk-link govuk-task-list__link",
+              "aria-describedby" => %(#{expected_status_id} #{expected_hint_id}),
+            }
+          )
+        end
+      end
+
+      context "when a href isn't present" do
+        let(:href) { nil }
+        specify("the hint has an id starting with the id_prefix") { expect(rendered_content).to have_tag("div", with: { id: expected_hint_id }) }
+        specify("the status has an id starting with the id_prefix") { expect(rendered_content).to have_tag("div", with: { id: expected_status_id }) }
+
+        specify "there is no aria-describeby attribute" do
+          expect(rendered_content).not_to have_tag("*[aria-describedby]")
+        end
+      end
+
+      context "when the status is present but the hint isn't" do
+        let(:hint) { nil }
+        specify("the hint is not rendered") { expect(rendered_content).not_to have_tag("div", with: { id: expected_hint_id }) }
+        specify("the status has an id starting with the id_prefix") { expect(rendered_content).to have_tag("div", with: { id: expected_status_id }) }
+
+        specify "the title is aria-describedby only the status id" do
+          expect(rendered_content).to have_tag(
+            "a",
+            with: {
+              class: "govuk-link govuk-task-list__link",
+              "aria-describedby" => expected_status_id,
+            }
+          )
+        end
       end
     end
 
-    context "when a href isn't present" do
-      let(:href) { nil }
-      specify("the hint has an id ending with the identifier") { expect(rendered_content).to have_tag("div", with: { id: expected_hint_id }) }
-      specify("the status has an id ending with the identifier") { expect(rendered_content).to have_tag("div", with: { id: expected_status_id }) }
+    context "when id_prefix is present" do
+      let(:expected_hint_id) { "#{id_prefix}-1-hint" }
+      let(:expected_status_id) { "#{id_prefix}-1-status" }
+      let(:id_prefix) { "abc" }
 
-      specify "there is no aria-describeby attribute" do
-        expect(rendered_content).not_to have_tag("*[aria-describedby]")
+      context "when a href is present" do
+        specify("the hint has an id starting with the id_prefix") { expect(rendered_content).to have_tag("div", with: { id: expected_hint_id }) }
+        specify("the status has an id starting with the id_prefix") { expect(rendered_content).to have_tag("div", with: { id: expected_status_id }) }
+
+        specify "the title link is aria-describedby the hint and status ids" do
+          expect(rendered_content).to have_tag(
+            "a",
+            with: {
+              class: "govuk-link govuk-task-list__link",
+              "aria-describedby" => %(#{expected_status_id} #{expected_hint_id}),
+            }
+          )
+        end
+      end
+
+      context "when a href isn't present" do
+        let(:href) { nil }
+        specify("the hint has an id starting with the id_prefix") { expect(rendered_content).to have_tag("div", with: { id: expected_hint_id }) }
+        specify("the status has an id starting with the id_prefix") { expect(rendered_content).to have_tag("div", with: { id: expected_status_id }) }
+
+        specify "there is no aria-describeby attribute" do
+          expect(rendered_content).not_to have_tag("*[aria-describedby]")
+        end
+      end
+
+      context "when the status is present but the hint isn't" do
+        let(:hint) { nil }
+        specify("the hint is not rendered") { expect(rendered_content).not_to have_tag("div", with: { id: expected_hint_id }) }
+        specify("the status has an id starting with the id_prefix") { expect(rendered_content).to have_tag("div", with: { id: expected_status_id }) }
+
+        specify "the title is aria-describedby only the status id" do
+          expect(rendered_content).to have_tag(
+            "a",
+            with: {
+              class: "govuk-link govuk-task-list__link",
+              "aria-describedby" => expected_status_id,
+            }
+          )
+        end
+      end
+    end
+  end
+
+  describe "item numbering" do
+    let(:items) { 4 }
+    let(:list_item) { { title: "What a", hint: "very", status: "nice list" } }
+
+    subject! do
+      render_inline(GovukComponent::TaskListComponent.new(**kwargs)) do |task_list|
+        items.times { task_list.with_item(**list_item) }
       end
     end
 
-    context "when the status is present but the hint isn't" do
-      let(:hint) { nil }
-      specify("the hint is not rendered") { expect(rendered_content).not_to have_tag("div", with: { id: expected_hint_id }) }
-      specify("the status has an id ending with the identifier") { expect(rendered_content).to have_tag("div", with: { id: expected_status_id }) }
+    specify "the items are sequentially numbered starting at 1" do
+      actual_status_ids = html.css(".govuk-task-list__status").map { |element| element[:id] }
+      actual_hint_ids = html.css(".govuk-task-list__hint").map { |element| element[:id] }
 
-      specify "the title is aria-describedby only the status id" do
-        expect(rendered_content).to have_tag(
-          "a",
-          with: {
-            class: "govuk-link govuk-task-list__link",
-            "aria-describedby" => expected_status_id,
-          }
-        )
-      end
+      expect(actual_status_ids).to eql(1.upto(items).map { |i| "#{i}-status" })
+      expect(actual_hint_ids).to eql(1.upto(items).map { |i| "#{i}-hint" })
     end
-
-    # TODO: what should happen when there's no status. Components can't see
-    #       their siblings so we don't really know whether or not there's a
-    #       status to reference
-    #
-    #       assume it's there for now
-    #
-    # context "when the hint is present but the status isn't" do
   end
 
   it_behaves_like 'a component that accepts custom classes'

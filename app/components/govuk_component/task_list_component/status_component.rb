@@ -1,10 +1,11 @@
 module GovukComponent
   class TaskListComponent::StatusComponent < GovukComponent::Base
-    attr_reader :identifier, :text
+    attr_reader :id_prefix, :text, :count
 
-    def initialize(identifier: nil, text: nil, classes: [], html_attributes: {})
-      @text       = text
-      @identifier = identifier
+    def initialize(text: nil, id_prefix: nil, count: nil, classes: [], html_attributes: {})
+      @text      = text
+      @count     = count
+      @id_prefix = id_prefix
 
       super(classes: classes, html_attributes: html_attributes)
     end
@@ -20,7 +21,7 @@ module GovukComponent
   private
 
     def default_attributes
-      { class: %w(govuk-task-list__status), id: "#{identifier}-status" }
+      { class: %w(govuk-task-list__status), id: [id_prefix, count, "status"].compact.join("-") }
     end
 
     def status_text
