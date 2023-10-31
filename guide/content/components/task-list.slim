@@ -9,13 +9,15 @@ p The task list component displays all the tasks a user needs to do, and allows
   caption: "Default task list",
   code: default_task_list)
 
+  markdown:
+    Task statuses can either contain plain text, or can contain a [`govuk_tag`](/components/tag).
+
 == render('/partials/example.*',
   caption: "Task list with coloured tags",
   code: task_list_with_coloured_tags) do
 
   markdown:
-    Task statuses are [tags](/components/tag) and can be customised by passing
-    the arguments as a hash, or overridden with a block.
+    The tags can be given different colours by passing a `colour` keyword.
 
 == render('/partials/example.*',
   caption: "Task list with hints",
@@ -23,4 +25,11 @@ p The task list component displays all the tasks a user needs to do, and allows
 
   markdown:
     When an explanation is needed to better describe a task, hints can be added
-    with the `hint` keyword.
+    with the `hint` keyword on either `with_item` or `with_title`.
+
+== render('/partials/example.*',
+  caption: "Task list with cannot start yet items",
+  code: task_list_with_cannot_start_yet) do
+
+  markdown:
+    Tasks can omit the `href` keyword if they cannot be started yet. When doing this you should add the `govuk-task-list__status--cannot-start-yet` to the status, and a hint to explain why the task cannot be started yet.
