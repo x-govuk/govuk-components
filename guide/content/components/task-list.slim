@@ -36,3 +36,13 @@ markdown:
 
   markdown:
     Tasks can omit the `href` keyword if they cannot be started yet. When doing this you should add the `govuk-task-list__status--cannot-start-yet` to the status, and a hint to explain why the task cannot be started yet.
+
+== render('/partials/example.*',
+  caption: "Task list with custom classes",
+  code: task_list_with_custom_classes) do
+
+  markdown:
+    If you need to customise the task list, you can add custom modifier classes to the task list, items, titles or statuses.
+
+    You can also add additional html attributes using the `html_attributes` keyword.
+

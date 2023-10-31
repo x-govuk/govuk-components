@@ -55,5 +55,19 @@ module Examples
             - item.with_status(text: govuk_tag(text: "To do", colour: "red"))
       SNIPPET
     end
+
+    def task_list_with_custom_classes
+      <<~SNIPPET
+        = govuk_task_list(id_prefix: "task-list-with-custom-classes", classes: "app-task-list--my-modifier", html_attributes: {"data-my-key" => "my-value"}) do |task_list|
+
+          - task_list.with_item(classes: "app-task-list__item--my-modifier") do |item|
+            - item.with_title(text: "Personal details", href: "#", classes: "app-task-list__name-and-hint--my-modifier")
+            - item.with_status(text: "Completed", classes: "app-task-list__status--my-modifier")
+
+          - task_list.with_item(classes: "app-task-list__item--my-modifier") do |item|
+            - item.with_title(text: "Contact information", href: "#", classes: "app-task-list__name-and-hint--my-modifier")
+            - item.with_status(text: "Completed", classes: "app-task-list__status--my-modifier")
+      SNIPPET
+    end
   end
 end
