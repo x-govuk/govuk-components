@@ -175,8 +175,8 @@ RSpec.describe(GovukComponent::TaskListComponent, type: :component) do
     end
 
     context "when id_prefix is not present" do
-      let(:expected_hint_id) { "1-hint" }
-      let(:expected_status_id) { "1-status" }
+      let(:expected_hint_id) { "task-list-1-hint" }
+      let(:expected_status_id) { "task-list-1-status" }
 
       context "when a href is present" do
         specify("the hint has an id starting with the id_prefix") { expect(rendered_content).to have_tag("div", with: { id: expected_hint_id }) }
@@ -282,8 +282,8 @@ RSpec.describe(GovukComponent::TaskListComponent, type: :component) do
       actual_status_ids = html.css(".govuk-task-list__status").map { |element| element[:id] }
       actual_hint_ids = html.css(".govuk-task-list__hint").map { |element| element[:id] }
 
-      expect(actual_status_ids).to eql(1.upto(items).map { |i| "#{i}-status" })
-      expect(actual_hint_ids).to eql(1.upto(items).map { |i| "#{i}-hint" })
+      expect(actual_status_ids).to eql(1.upto(items).map { |i| "task-list-#{i}-status" })
+      expect(actual_hint_ids).to eql(1.upto(items).map { |i| "task-list-#{i}-hint" })
     end
   end
 

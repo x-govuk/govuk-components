@@ -13,7 +13,7 @@ module GovukComponent
       )
     end
 
-    def initialize(id_prefix: nil, classes: [], html_attributes: {})
+    def initialize(id_prefix: "task-list", classes: [], html_attributes: {})
       @id_prefix = id_prefix
       @count = 0
 
