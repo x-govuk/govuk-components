@@ -2,9 +2,14 @@ module Examples
   module TaskListHelpers
     def default_task_list
       <<~SNIPPET
-        = govuk_task_list(id_prefix: "project-tasks") do |task_list|
-          - task_list.with_item(title: "Contact details", href: '#', status: "Completed")
-          - task_list.with_item(title: "Project details", href: '#', status: "Completed")
+        <h2 class="govuk-heading-m">About you</h2>
+        = govuk_task_list(id_prefix: "about-you") do |task_list|
+          - task_list.with_item(title: "Personal details", href: '#', status: "Completed")
+          - task_list.with_item(title: "Contact details", href: '#', status: govuk_tag(text: "Incomplete", colour: "blue"))
+
+        <h2 class="govuk-heading-m">Your project</h2>
+        = govuk_task_list(id_prefix: "your-project") do |task_list|
+          - task_list.with_item(title: "Project description", href: '#', status: "Completed")
           - task_list.with_item(title: "Funding",         href: '#', status: govuk_tag(text: "Incomplete", colour: "blue"))
       SNIPPET
     end
