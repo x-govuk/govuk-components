@@ -26,6 +26,7 @@ module Helpers
         "Table" => "/components/table",
         "Tabs" => "/components/tabs",
         "Tag" => "/components/tag",
+        "Task list" => "/components/task-list",
         "Warning text" => "/components/warning-text",
       }
     end

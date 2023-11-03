@@ -20,6 +20,7 @@ module GovukComponentsHelper
     govuk_table: 'GovukComponent::TableComponent',
     govuk_tabs: 'GovukComponent::TabComponent',
     govuk_tag: 'GovukComponent::TagComponent',
+    govuk_task_list: 'GovukComponent::TaskListComponent',
     govuk_warning_text: 'GovukComponent::WarningTextComponent',
   }.each do |name, klass|
     define_method(name) do |*args, **kwargs, &block|

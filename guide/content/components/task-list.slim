@@ -1,0 +1,47 @@
+---
+title: Task list
+---
+
+markdown:
+  The task list component displays a list of related tasks that user needs to do, and allows
+  them to easily identify which ones are done and which they still need to do.
+
+  You can have multiple tasks lists on a page. Where you have multiple tasks lists, you must add a unique `id_prefix` to each one.
+
+== render('/partials/example.*',
+  caption: "Default task list",
+  code: default_task_list)
+
+  markdown:
+    Task statuses can either contain plain text, or can contain a [`govuk_tag`](/components/tag).
+
+== render('/partials/example.*',
+  caption: "Task list with coloured tags",
+  code: task_list_with_coloured_tags) do
+
+  markdown:
+    The tags can be given different colours by passing a `colour` keyword.
+
+== render('/partials/example.*',
+  caption: "Task list with hints",
+  code: task_list_with_hints) do
+
+  markdown:
+    When an explanation is needed to better describe a task, hints can be added
+    with the `hint` keyword on either `with_item` or `with_title`.
+
+== render('/partials/example.*',
+  caption: "Task list with cannot start yet items",
+  code: task_list_with_cannot_start_yet) do
+
+  markdown:
+    Tasks can omit the `href` keyword if they cannot be started yet. When doing this you should add the `govuk-task-list__status--cannot-start-yet` to the status, and a hint to explain why the task cannot be started yet.
+
+== render('/partials/example.*',
+  caption: "Task list with custom classes",
+  code: task_list_with_custom_classes) do
+
+  markdown:
+    If you need to customise the task list, you can add custom modifier classes to the task list, items, titles or statuses.
+
+    You can also add additional html attributes using the `html_attributes` keyword.
