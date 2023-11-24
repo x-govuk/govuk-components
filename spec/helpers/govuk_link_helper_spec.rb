@@ -94,7 +94,7 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
           let(:kwargs) { invalid_combination }
 
           specify "throws an error" do
-            expect { subject }.to raise_error("links can be either text_colour, inverse or muted - not combinations of the three")
+            expect { subject }.to raise_error("links can be only be one of text_colour, inverse or muted")
           end
         end
       end
@@ -181,7 +181,7 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
           let(:kwargs) { invalid_combination }
 
           specify "throws an error" do
-            expect { subject }.to raise_error("links can be either text_colour, inverse or muted - not combinations of the three")
+            expect { subject }.to raise_error("links can be only be one of text_colour, inverse or muted")
           end
         end
       end
@@ -299,7 +299,7 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
           let(:kwargs) { invalid_combination }
 
           specify "throws an error" do
-            expect { subject }.to raise_error("buttons can be either inverse, secondary or warning - not combinations of the three")
+            expect { subject }.to raise_error("buttons can only be one of inverse, secondary or warning")
           end
         end
       end
@@ -402,7 +402,7 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
           let(:kwargs) { invalid_combination }
 
           specify "throws an error" do
-            expect { subject }.to raise_error("buttons can be either inverse, secondary or warning - not combinations of the three")
+            expect { subject }.to raise_error("buttons can only be one of inverse, secondary or warning")
           end
         end
       end

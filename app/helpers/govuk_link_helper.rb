@@ -3,35 +3,6 @@ require "html_attributes_utils"
 module GovukLinkHelper
   using HTMLAttributesUtils
 
-  def govuk_link_classes(inverse: false, muted: false, no_underline: false, no_visited_state: false, text_colour: false)
-    if [text_colour, inverse, muted].count(true) > 1
-      fail("links can be either text_colour, inverse or muted - not combinations of the three")
-    end
-
-    class_names(
-      "#{brand}-link",
-      "#{brand}-link--inverse"          => inverse,
-      "#{brand}-link--muted"            => muted,
-      "#{brand}-link--no-underline"     => no_underline,
-      "#{brand}-link--no-visited-state" => no_visited_state,
-      "#{brand}-link--text-colour"      => text_colour,
-    )
-  end
-
-  def govuk_button_classes(disabled: false, inverse: false, secondary: false, warning: false)
-    if [inverse, secondary, warning].count(true) > 1
-      fail("buttons can be either inverse, secondary or warning - not combinations of the three")
-    end
-
-    class_names(
-      "#{brand}-button",
-      "#{brand}-button--disabled"  => disabled,
-      "#{brand}-button--inverse"   => inverse,
-      "#{brand}-button--secondary" => secondary,
-      "#{brand}-button--warning"   => warning,
-    )
-  end
-
   def govuk_link_to(name, href = nil, new_tab: false, inverse: false, muted: false, no_underline: false, no_visited_state: false, text_colour: false, **kwargs, &block)
     link_args = extract_link_args(new_tab: new_tab, inverse: inverse, muted: muted, no_underline: no_underline, no_visited_state: no_visited_state, text_colour: text_colour, **kwargs)
 
@@ -80,6 +51,35 @@ module GovukLinkHelper
     else
       link_to(name, href, **link_args)
     end
+  end
+
+  def govuk_link_classes(inverse: false, muted: false, no_underline: false, no_visited_state: false, text_colour: false)
+    if [text_colour, inverse, muted].count(true) > 1
+      fail("links can be only be one of text_colour, inverse or muted")
+    end
+
+    class_names(
+      "#{brand}-link",
+      "#{brand}-link--inverse"          => inverse,
+      "#{brand}-link--muted"            => muted,
+      "#{brand}-link--no-underline"     => no_underline,
+      "#{brand}-link--no-visited-state" => no_visited_state,
+      "#{brand}-link--text-colour"      => text_colour,
+    )
+  end
+
+  def govuk_button_classes(disabled: false, inverse: false, secondary: false, warning: false)
+    if [inverse, secondary, warning].count(true) > 1
+      fail("buttons can only be one of inverse, secondary or warning")
+    end
+
+    class_names(
+      "#{brand}-button",
+      "#{brand}-button--disabled"  => disabled,
+      "#{brand}-button--inverse"   => inverse,
+      "#{brand}-button--secondary" => secondary,
+      "#{brand}-button--warning"   => warning,
+    )
   end
 
 private
