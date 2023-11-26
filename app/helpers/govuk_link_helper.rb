@@ -5,42 +5,30 @@ module GovukLinkHelper
 
   def govuk_link_to(name, href = nil, new_tab: false, inverse: false, muted: false, no_underline: false, no_visited_state: false, text_colour: false, **kwargs, &block)
     link_args = extract_link_args(new_tab: new_tab, inverse: inverse, muted: muted, no_underline: no_underline, no_visited_state: no_visited_state, text_colour: text_colour, **kwargs)
+    link_text = (block_given?) ? block.call : name
 
-    if block_given?
-      link_to(block.call, href, **link_args)
-    else
-      link_to(name, href, **link_args)
-    end
+    link_to(link_text, href, **link_args)
   end
 
   def govuk_mail_to(email_address, name = nil, new_tab: false, inverse: false, muted: false, no_underline: false, no_visited_state: false, text_colour: false, **kwargs, &block)
     link_args = extract_link_args(new_tab: new_tab, inverse: inverse, muted: muted, no_underline: no_underline, no_visited_state: no_visited_state, text_colour: text_colour, **kwargs)
+    link_text = (block_given?) ? block.call : name
 
-    if block_given?
-      mail_to(email_address, block.call, **link_args)
-    else
-      mail_to(email_address, name, **link_args)
-    end
+    mail_to(email_address, link_text, **link_args)
   end
 
   def govuk_button_to(name, href = nil, disabled: false, inverse: false, secondary: false, warning: false, **kwargs, &block)
     button_args = extract_button_args(new_tab: false, disabled: disabled, inverse: inverse, secondary: secondary, warning: warning, **kwargs)
+    button_text = (block_given?) ? block.call : name
 
-    if block_given?
-      button_to(block.call, href, **button_args)
-    else
-      button_to(name, href, **button_args)
-    end
+    button_to(button_text, href, **button_args)
   end
 
   def govuk_button_link_to(name, href = nil, new_tab: false, disabled: false, inverse: false, secondary: false, warning: false, **kwargs, &block)
     button_args = extract_button_link_args(new_tab: new_tab, disabled: disabled, inverse: inverse, secondary: secondary, warning: warning, **kwargs)
+    button_text = (block_given?) ? block.call : name
 
-    if block_given?
-      link_to(block.call, href, **button_args)
-    else
-      link_to(name, href, **button_args)
-    end
+    link_to(button_text, href, **button_args)
   end
 
   def govuk_breadcrumb_link_to(name, href = nil, **kwargs, &block)
