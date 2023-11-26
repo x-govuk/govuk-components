@@ -60,7 +60,7 @@ RSpec.describe(GovukComponent::CookieBannerComponent, type: :component) do
     subject! do
       render_inline(described_class.new(**kwargs)) do |cookie_banner|
         cookie_banner.with_message(heading_text: custom_heading_text, role: custom_role, text: custom_message_text) do |message|
-          message.with_action { helper.govuk_button_link_to("/accept") { "Accept" } }
+          message.with_action { helper.govuk_button_link_to("Accept", "/accept") }
           message.with_action { helper.govuk_link_to("View cookie policy", "/cookie-policy") }
         end
       end
