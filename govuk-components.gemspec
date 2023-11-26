@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency("html-attributes-utils", "~> 1.0.0", ">= 1.0.0")
   spec.add_dependency("pagy", "~> 6.0")
-  spec.add_dependency("view_component", ">= 3.3", "< 3.7")
+  spec.add_dependency("view_component", ">= 3.3", "< 3.8")
 
   spec.add_development_dependency "deep_merge"
   spec.add_development_dependency "pry-byebug"
@@ -39,7 +39,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency("htmlbeautifier", "~> 1.4.1")
   spec.add_development_dependency("nanoc", "~> 4.11")
   spec.add_development_dependency("redcarpet", "~> 3.6.0")
-  spec.add_development_dependency("rouge", "~> 4.1.0")
+  spec.add_development_dependency("rouge", "~> 4.2.0")
   spec.add_development_dependency("rubypants", "~> 0.7.0")
   spec.add_development_dependency("sass")
   spec.add_development_dependency("sassc", "~> 2.4.0")

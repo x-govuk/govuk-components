@@ -46,6 +46,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
       specify 'the crown SVG is rendered along with no fallback image' do
         expect(rendered_content).to have_tag('.govuk-header__logotype') do
           with_tag('svg', with: { class: 'govuk-header__logotype-crown', 'aria-hidden' => true })
+          expect(html).to contain_svgs_with_viewBox_attributes
         end
       end
     end
@@ -191,6 +192,10 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
         expect(rendered_content).to have_tag('nav')
       end
 
+      specify 'nav element contains default aria label' do
+        expect(rendered_content).to have_tag('nav', with: { 'aria-label' => 'Menu' })
+      end
+
       specify 'nav contains the right number of items' do
         expect(rendered_content).to have_tag("li", with: { class: "govuk-header__navigation-item" }, count: navigation_items.count)
       end
@@ -279,7 +284,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
       describe 'menu button (for mobile)' do
         let(:button_text) { 'Menu' }
         let(:button_classes) { %w(govuk-header__menu-button govuk-js-header-toggle) }
-        let(:button_aria_label) { 'Show or hide navigation menu' }
+        let(:button_aria_label) { 'Show or hide menu' }
 
         specify 'the button is rendered' do
           expect(rendered_content).to have_tag('div', with: { class: 'govuk-header__content' }) do

@@ -16,8 +16,8 @@ require 'pagy'
 
 Dir.glob(File.join('./lib', '**', '*.rb')).sort.each { |f| require f }
 
+use_helper ActionView::Helpers::UrlHelper
 use_helper Nanoc::Helpers::Rendering
-use_helper Nanoc::Helpers::LinkTo
 use_helper Nanoc::Helpers::XMLSitemap
 use_helper Helpers::LinkHelpers
 use_helper Helpers::TitleAnchorHelpers
@@ -115,3 +115,5 @@ use_helper Examples::WarningTextHelpers
 use_helper Examples::CommonOptionsHelpers
 use_helper Examples::BackToTopLinkHelpers
 use_helper Examples::TitleWithErrorPrefixHelpers
+
+ActiveSupport.on_load(:action_view) { include GovukLinkHelper }

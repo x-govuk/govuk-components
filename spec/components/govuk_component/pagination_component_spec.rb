@@ -304,6 +304,8 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
       expect(rendered_content).to have_tag("nav") do
         with_tag("div", class: "govuk-pagination__prev")
         with_tag("div", class: "govuk-pagination__next")
+
+        expect(html).to contain_svgs_with_viewBox_attributes
       end
     end
 
@@ -326,6 +328,7 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
         specify "has an arrow" do
           expect(rendered_content).to have_tag(selector) do
             with_tag("svg", with: { class: ["govuk-pagination__icon", "govuk-pagination__icon--#{page.suffix}"] })
+            expect(html).to contain_svgs_with_viewBox_attributes
           end
         end
 

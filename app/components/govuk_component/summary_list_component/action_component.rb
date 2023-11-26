@@ -27,7 +27,7 @@ class GovukComponent::SummaryListComponent::ActionComponent < GovukComponent::Ba
 private
 
   def default_attributes
-    link_classes = govuk_link_classes.append(classes).flatten
+    link_classes = safe_join([govuk_link_classes, classes], " ")
 
     { class: link_classes }
   end
