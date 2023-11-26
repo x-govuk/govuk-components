@@ -34,7 +34,7 @@ module GovukLinkHelper
   end
 
   def govuk_button_link_to(name, href = nil, new_tab: false, disabled: false, inverse: false, secondary: false, warning: false, **kwargs, &block)
-    button_args = extract_button_args(new_tab: new_tab, disabled: disabled, inverse: inverse, secondary: secondary, warning: warning, **kwargs)
+    button_args = extract_button_link_args(new_tab: new_tab, disabled: disabled, inverse: inverse, secondary: secondary, warning: warning, **kwargs)
 
     if block_given?
       link_to(block.call, href, **button_args)
@@ -92,28 +92,43 @@ private
   end
 
   def extract_link_args(new_tab: false, inverse: false, muted: false, no_underline: false, no_visited_state: false, text_colour: false, **kwargs)
+    link_classes = extract_link_classes(inverse: inverse, muted: muted, no_underline: no_underline, no_visited_state: no_visited_state, text_colour: text_colour)
+
+    { **link_classes, **new_tab_args(new_tab) }.deep_merge_html_attributes(kwargs)
+  end
+
+  def extract_button_link_args(new_tab: false, disabled: false, inverse: false, secondary: false, warning: false, **kwargs)
+    button_classes = extract_button_classes(inverse: inverse, secondary: secondary, warning: warning)
+
+    { **button_classes, **button_attributes(disabled), **new_tab_args(new_tab) }.deep_merge_html_attributes(kwargs)
+  end
+
+  def extract_button_args(disabled: false, inverse: false, secondary: false, warning: false, **kwargs)
+    button_classes = extract_button_classes(inverse: inverse, secondary: secondary, warning: warning)
+
+    { **button_classes, **button_attributes(disabled) }.deep_merge_html_attributes(kwargs)
+  end
+
+  def extract_link_classes(inverse: false, muted: false, no_underline: false, no_visited_state: false, text_colour: false)
     {
       class: govuk_link_classes(
         inverse: inverse,
         muted: muted,
         no_underline: no_underline,
         no_visited_state: no_visited_state,
-        text_colour: text_colour
-      ),
-      **new_tab_args(new_tab)
-    }.deep_merge_html_attributes(kwargs)
+        text_colour: text_colour,
+      )
+    }
   end
 
-  def extract_button_args(new_tab: false, disabled: false, inverse: false, secondary: false, warning: false, **kwargs)
+  def extract_button_classes(inverse: false, secondary: false, warning: false)
     {
       class: govuk_button_classes(
         inverse: inverse,
         secondary: secondary,
         warning: warning
-      ),
-      **button_attributes(disabled),
-      **new_tab_args(new_tab)
-    }.deep_merge_html_attributes(kwargs)
+      )
+    }
   end
 
   def brand
