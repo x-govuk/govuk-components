@@ -3,30 +3,30 @@ require "html_attributes_utils"
 module GovukLinkHelper
   using HTMLAttributesUtils
 
-  def govuk_link_to(name, href = nil, new_tab: false, inverse: false, muted: false, no_underline: false, no_visited_state: false, text_colour: false, **kwargs, &block)
+  def govuk_link_to(name, href = nil, new_tab: false, inverse: false, muted: false, no_underline: false, no_visited_state: false, text_colour: false, visually_hidden_prefix: nil, visually_hidden_suffix: nil, **kwargs, &block)
     link_args = extract_link_args(new_tab: new_tab, inverse: inverse, muted: muted, no_underline: no_underline, no_visited_state: no_visited_state, text_colour: text_colour, **kwargs)
-    link_text = (block_given?) ? block.call : name
+    link_text = build_text(name, visually_hidden_prefix: visually_hidden_prefix, visually_hidden_suffix: visually_hidden_suffix, &block)
 
     link_to(link_text, href, **link_args)
   end
 
-  def govuk_mail_to(email_address, name = nil, new_tab: false, inverse: false, muted: false, no_underline: false, no_visited_state: false, text_colour: false, **kwargs, &block)
+  def govuk_mail_to(email_address, name = nil, new_tab: false, inverse: false, muted: false, no_underline: false, no_visited_state: false, text_colour: false, visually_hidden_prefix: nil, visually_hidden_suffix: nil, **kwargs, &block)
     link_args = extract_link_args(new_tab: new_tab, inverse: inverse, muted: muted, no_underline: no_underline, no_visited_state: no_visited_state, text_colour: text_colour, **kwargs)
-    link_text = (block_given?) ? block.call : name
+    link_text = build_text(name, visually_hidden_prefix: visually_hidden_prefix, visually_hidden_suffix: visually_hidden_suffix, &block)
 
     mail_to(email_address, link_text, **link_args)
   end
 
-  def govuk_button_to(name, href = nil, disabled: false, inverse: false, secondary: false, warning: false, **kwargs, &block)
+  def govuk_button_to(name, href = nil, disabled: false, inverse: false, secondary: false, warning: false, visually_hidden_prefix: nil, visually_hidden_suffix: nil, **kwargs, &block)
     button_args = extract_button_args(new_tab: false, disabled: disabled, inverse: inverse, secondary: secondary, warning: warning, **kwargs)
-    button_text = (block_given?) ? block.call : name
+    button_text = build_text(name, visually_hidden_prefix: visually_hidden_prefix, visually_hidden_suffix: visually_hidden_suffix, &block)
 
     button_to(button_text, href, **button_args)
   end
 
-  def govuk_button_link_to(name, href = nil, new_tab: false, disabled: false, inverse: false, secondary: false, warning: false, **kwargs, &block)
+  def govuk_button_link_to(name, href = nil, new_tab: false, disabled: false, inverse: false, secondary: false, warning: false, visually_hidden_prefix: nil, visually_hidden_suffix: nil, **kwargs, &block)
     button_args = extract_button_link_args(new_tab: new_tab, disabled: disabled, inverse: inverse, secondary: secondary, warning: warning, **kwargs)
-    button_text = (block_given?) ? block.call : name
+    button_text = build_text(name, visually_hidden_prefix: visually_hidden_prefix, visually_hidden_suffix: visually_hidden_suffix, &block)
 
     link_to(button_text, href, **button_args)
   end
@@ -121,6 +121,19 @@ private
 
   def brand
     Govuk::Components.brand
+  end
+
+  def build_text(original, visually_hidden_prefix:, visually_hidden_suffix:, &block)
+    text = (block_given?) ? block.call : original
+
+    safe_join(
+      [
+        govuk_visually_hidden(visually_hidden_prefix),
+        text,
+        govuk_visually_hidden(visually_hidden_suffix),
+      ].compact,
+      " "
+    )
   end
 end
 
