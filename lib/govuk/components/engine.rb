@@ -47,7 +47,6 @@ module Govuk
     # +:default_exit_this_page_press_one_more_time_text+ Text announced by screen readers when the user must press *Shift* one more time to activate the button. Default in govuk-frontend is 'Shift, press 1 more time to exit.' Defaults to nil so govuk-frontend value is used unless overridden.
     # +:default_header_navigation_label+ 'Navigation menu'
     # +:default_header_menu_button_label+ 'Show or hide navigation menu'
-    # +:default_header_logotype+ 'GOV.UK'
     # +:default_header_homepage_url+ '/'
     # +:default_header_service_name+ nil
     # +:default_header_service_url+ '/'
@@ -89,7 +88,6 @@ module Govuk
       default_exit_this_page_press_one_more_time_text: nil,
       default_header_navigation_label: 'Menu',
       default_header_menu_button_label: 'Show or hide menu',
-      default_header_logotype: 'GOV.UK',
       default_header_homepage_url: '/',
       default_header_service_name: nil,
       default_header_service_url: '/',

@@ -48,24 +48,6 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
       end
     end
 
-    describe 'default_header_logotype' do
-      let(:overridden_logotype) { 'DfE' }
-
-      before do
-        Govuk::Components.configure do |config|
-          config.default_header_logotype = overridden_logotype
-        end
-      end
-
-      subject! { component_with_a_nav_item }
-
-      specify "renders header with overridden logotype" do
-        expect(rendered_content).to have_tag("span", with: { class: "govuk-header__logotype" }) do
-          with_tag("span", text: overridden_logotype, with: { class: "govuk-header__logotype-text" })
-        end
-      end
-    end
-
     describe 'default_header_homepage_url' do
       let(:overriddden_homepage_url) { "/some-page" }
 

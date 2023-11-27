@@ -3,9 +3,7 @@ class GovukComponent::HeaderComponent < GovukComponent::Base
   renders_one :custom_logo
   renders_one :product_name, "ProductName"
 
-  attr_reader :logotype,
-              :crown,
-              :homepage_url,
+  attr_reader :homepage_url,
               :service_name,
               :service_url,
               :menu_button_label,
@@ -15,8 +13,6 @@ class GovukComponent::HeaderComponent < GovukComponent::Base
 
   def initialize(classes: [],
                  html_attributes: {},
-                 logotype: config.default_header_logotype,
-                 crown: true,
                  homepage_url: config.default_header_homepage_url,
                  menu_button_label: config.default_header_menu_button_label,
                  navigation_classes: [],
@@ -25,8 +21,6 @@ class GovukComponent::HeaderComponent < GovukComponent::Base
                  service_url: config.default_header_service_url,
                  container_classes: nil)
 
-    @logotype                  = logotype
-    @crown                     = crown
     @homepage_url              = homepage_url
     @service_name              = service_name
     @service_url               = service_url
