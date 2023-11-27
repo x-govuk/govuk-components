@@ -19,18 +19,18 @@ p
 
   markdown:
     Use the header with a service name if your service is more than 5 pages long - this can help users understand which service they are using.
-    
+
     The service name can be set using the `service_name` keyword argument.
-    
+
     The GOV.UK logo should link to the the GOV.UK homepage, and the service name should link to your service homepage.
 
 == render('/partials/example.*',
   caption: "Header with a product name",
   code: header_with_custom_product_name)
-  
+
   markdown:
     This is used when the product name follows on directly from ‘GOV.UK’. For example, GOV.UK Pay or GOV.UK Design System. In most circumstances, you should use a  service name instead.
-    
+
     Use the `homepage_url` to link to your product homepage.
 
 == render('/partials/example.*',
@@ -52,4 +52,3 @@ p
     This example uses an SVG graphic paired with text.
 
 == render('/partials/related-info.*', links: header_info)
-
