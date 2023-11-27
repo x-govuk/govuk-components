@@ -11,30 +11,27 @@ p
   code: header_normal) do
 
   markdown:
-    When no arguments are provided to the header, it is rendered with only the
-    crown logo and logotype text.
+    Use the default header if your service has 5 pages or fewer.
 
 == render('/partials/example.*',
-  caption: "Header with custom logo and service name",
-  code: header_with_custom_logo_and_service_name) do
+  caption: "Header with service name",
+  code: header_with_service_name) do
 
   markdown:
+    Use the header with a service name if your service is more than 5 pages long - this can help users understand which service they are using.
+    
     The service name can be set using the `service_name` keyword argument.
-
-    If a custom logo is needed, it can be set using the `custom_logo` slot.
-    This example uses an emoji but any graphic or text can be used instead.
-
-== render('/partials/example.*',
-  caption: "Header with custom logotype",
-  code: header_with_custom_logotype_and_homepage_url) do
-
-  markdown:
-    If you want to keep the crown logo but change the text, use the `logotype`
-    argument.
+    
+    The GOV.UK logo should link to the the GOV.UK homepage, and the service name should link to your service homepage.
 
 == render('/partials/example.*',
-  caption: "Header with custom product name",
+  caption: "Header with a product name",
   code: header_with_custom_product_name)
+  
+  markdown:
+    This is used when the product name follows on directly from ‘GOV.UK’. For example, GOV.UK Pay or GOV.UK Design System. In most circumstances, you should use a  service name instead.
+    
+    Use the `homepage_url` to link to your product homepage.
 
 == render('/partials/example.*',
   caption: "Header with navigation items",
@@ -46,4 +43,13 @@ p
     Navigation items can be added using the `navigation_item` slot. When viewed
     on mobile, they will appear in a dropdown menu.
 
+== render('/partials/example.*',
+  caption: "Header with an alternative logo",
+  code: header_with_custom_logo_and_service_name) do
+
+  markdown:
+    If an alternative logo is needed, it can be set using the `custom_logo` slot.
+    This example uses an SVG graphic paired with text.
+
 == render('/partials/related-info.*', links: header_info)
+

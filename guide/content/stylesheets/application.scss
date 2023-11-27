@@ -98,3 +98,19 @@ $govuk-inverse-button-shadow-colour: govuk-shade($govuk-inverse-button-text-colo
     }
   }
 }
+
+// Used as an example of a custom logo
+.app-header__logotype {
+  display: inline-block;
+  position: relative;
+  top: -3px;
+
+  margin-right: 0;
+  fill: tomato;
+  vertical-align: top;
+}
+
+.app-header__logotext {
+  color: tomato;
+  font-weight: bold;
+}
