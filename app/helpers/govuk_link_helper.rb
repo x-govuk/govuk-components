@@ -124,16 +124,11 @@ private
   end
 
   def build_text(original, visually_hidden_prefix:, visually_hidden_suffix:, &block)
+    prefix = (visually_hidden_prefix.present?) ? visually_hidden_prefix + " " : nil
     text = (block_given?) ? block.call : original
+    suffix = (visually_hidden_suffix.present?) ? " " + visually_hidden_suffix : nil
 
-    safe_join(
-      [
-        govuk_visually_hidden(visually_hidden_prefix),
-        text,
-        govuk_visually_hidden(visually_hidden_suffix),
-      ].compact,
-      " "
-    )
+    safe_join([govuk_visually_hidden(prefix), text, govuk_visually_hidden(suffix)].compact)
   end
 end
 
