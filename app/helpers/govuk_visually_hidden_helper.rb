@@ -10,4 +10,4 @@ module GovukVisuallyHiddenHelper
   end
 end
 
-ActiveSupport.on_load(:action_view) { include GovukSkipLinkHelper }
+ActiveSupport.on_load(:action_view) { include GovukVisuallyHiddenHelper }
