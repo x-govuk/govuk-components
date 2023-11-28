@@ -1,3 +1,25 @@
 ---
 title: Visually hidden text
 ---
+
+markdown:
+  Most of the time content should be both visible on the screen and availble to
+  screen readers. However, somtimes when space is at a premium, we may want
+  to hide text that would clutter the screen. This puts users of assistive
+  technology like screen readers at a disadvantage.
+
+  We can hide content but make it available to users of assistive technology
+  using the `govuk-visually-hidden` class. This library provides a helper method
+  which makes hiding content easier.
+
+== render('/partials/example.*',
+  caption: "Setting visually hidden text with an argument",
+  code: visually_hidden_text_via_argument)
+
+== render('/partials/example.*',
+  caption: "Setting visually hidden text with a block",
+  code: visually_hidden_text_via_block)
+
+== render('/partials/example.*',
+  caption: "Focusable visually hidden text",
+  code: focusable_visually_hidden_text)

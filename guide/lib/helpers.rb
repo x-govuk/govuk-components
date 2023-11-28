@@ -117,6 +117,7 @@ use_helper Examples::WarningTextHelpers
 use_helper Examples::CommonOptionsHelpers
 use_helper Examples::BackToTopLinkHelpers
 use_helper Examples::TitleWithErrorPrefixHelpers
+use_helper Examples::VisuallyHiddenHelpers
 
 ActiveSupport.on_load(:action_view) { include GovukVisuallyHiddenHelper }
 ActiveSupport.on_load(:action_view) { include GovukLinkHelper }

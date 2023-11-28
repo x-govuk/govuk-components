@@ -1,10 +1,12 @@
 module GovukVisuallyHiddenHelper
-  def govuk_visually_hidden(text, focusable: false)
-    return if text.nil?
+  def govuk_visually_hidden(text = nil, focusable: false, &block)
+    content = (block_given?) ? block.call : text
+
+    return if content.blank?
 
     visually_hidden_class = focusable ? "govuk-visually-hidden-focusable" : "govuk-visually-hidden"
 
-    tag.span(text, class: visually_hidden_class)
+    tag.span(content, class: visually_hidden_class)
   end
 end
 
