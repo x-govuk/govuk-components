@@ -50,6 +50,12 @@ module Examples
       BUTTON
     end
 
+    def govuk_link_with_visually_hidden_text
+      <<~VISUALLY_HIDDEN_LINK
+        = govuk_link_to('View', '#', visually_hidden_suffix: 'account')
+      VISUALLY_HIDDEN_LINK
+    end
+
     def govuk_button_other_styles
       <<~BUTTONS
         .govuk-button-group

@@ -12,6 +12,7 @@ if ENV.fetch('SIMPLECOV') { '1' } == '1'
   SimpleCov.start
 end
 
+include GovukVisuallyHiddenHelper
 include GovukLinkHelper
 include GovukBackToTopLinkHelper
 include GovukSkipLinkHelper

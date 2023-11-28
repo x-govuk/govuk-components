@@ -87,7 +87,9 @@ require 'components/govuk_component/task_list_component/title_component'
 require 'components/govuk_component/warning_text_component'
 
 require 'helpers/govuk_link_helper'
+require 'helpers/govuk_visually_hidden_helper'
 
+use_helper GovukVisuallyHiddenHelper
 use_helper GovukLinkHelper
 use_helper GovukComponentsHelper
 use_helper Examples::LinkHelpers
@@ -115,5 +117,7 @@ use_helper Examples::WarningTextHelpers
 use_helper Examples::CommonOptionsHelpers
 use_helper Examples::BackToTopLinkHelpers
 use_helper Examples::TitleWithErrorPrefixHelpers
+use_helper Examples::VisuallyHiddenHelpers
 
+ActiveSupport.on_load(:action_view) { include GovukVisuallyHiddenHelper }
 ActiveSupport.on_load(:action_view) { include GovukLinkHelper }
