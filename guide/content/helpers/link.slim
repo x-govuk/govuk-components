@@ -28,6 +28,23 @@ markdown:
   caption: "Other link styles",
   code: govuk_link_other_styles)
 
+== render('/partials/example.*',
+  caption: "Links with visually hidden text",
+  code: govuk_link_with_visually_hidden_text) do
+
+  markdown:
+    When space is limited we sometimes rely on the link's position to provide
+    context about its target. An example of this is in admin interfaces where rows
+    in a table often have a 'View' link, or a 'Delete' button.
+
+    Omitting the extra text entirely leaves users of assistive technologies like
+    screen readers at a disadvantage, as they can't infer that context. We can
+    solve this problem using visually hidden text that isn't visible on the screen
+    but will be read out by screen readers.
+
+    The keyword arguments automatically add a space between the visually
+    hidden and regular text.
+
 hr.govuk-section-break.govuk-section-break--xl.govuk-section-break--visible
 
 == render('/partials/example.*',
