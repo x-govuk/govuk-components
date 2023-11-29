@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-RSpec.describe(GovukRailsCompatibileLinkHelper, type: 'helper') do
+RSpec.describe(GovukRailsCompatibleLinkHelper, type: 'helper') do
   include ActionView::Helpers::UrlHelper
   include ActionView::Context
-  include GovukRailsCompatibileLinkHelper
+  include GovukRailsCompatibleLinkHelper
 
   let(:text) { 'Menu' }
   let(:url) { '/stuff/menu/' }

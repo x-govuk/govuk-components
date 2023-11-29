@@ -1,6 +1,6 @@
 require "html_attributes_utils"
 
-module GovukRailsCompatibileLinkHelper
+module GovukRailsCompatibleLinkHelper
   using HTMLAttributesUtils
 
   def govuk_link_classes(*styles, default_class: "#{brand}-link")
