@@ -5,40 +5,48 @@ module GovukLinkHelper
 
   def govuk_link_to(name, href = nil, new_tab: false, inverse: false, muted: false, no_underline: false, no_visited_state: false, text_colour: false, visually_hidden_prefix: nil, visually_hidden_suffix: nil, **kwargs, &block)
     link_args = extract_link_args(new_tab: new_tab, inverse: inverse, muted: muted, no_underline: no_underline, no_visited_state: no_visited_state, text_colour: text_colour, **kwargs)
-    link_text = build_text(name, visually_hidden_prefix: visually_hidden_prefix, visually_hidden_suffix: visually_hidden_suffix, &block)
+    link_text = build_text(name, visually_hidden_prefix: visually_hidden_prefix, visually_hidden_suffix: visually_hidden_suffix)
 
-    link_to(link_text, href, **link_args)
+    if block_given?
+      link_to(link_text, **link_args, &block)
+    else
+      link_to(link_text, href, **link_args)
+    end
   end
 
   def govuk_mail_to(email_address, name = nil, new_tab: false, inverse: false, muted: false, no_underline: false, no_visited_state: false, text_colour: false, visually_hidden_prefix: nil, visually_hidden_suffix: nil, **kwargs, &block)
     link_args = extract_link_args(new_tab: new_tab, inverse: inverse, muted: muted, no_underline: no_underline, no_visited_state: no_visited_state, text_colour: text_colour, **kwargs)
-    link_text = build_text(name, visually_hidden_prefix: visually_hidden_prefix, visually_hidden_suffix: visually_hidden_suffix, &block)
+    link_text = build_text(name, visually_hidden_prefix: visually_hidden_prefix, visually_hidden_suffix: visually_hidden_suffix)
 
-    mail_to(email_address, link_text, **link_args)
+    mail_to(email_address, link_text, **link_args, &block)
   end
 
   def govuk_button_to(name, href = nil, disabled: false, inverse: false, secondary: false, warning: false, visually_hidden_prefix: nil, visually_hidden_suffix: nil, **kwargs, &block)
     button_args = extract_button_args(new_tab: false, disabled: disabled, inverse: inverse, secondary: secondary, warning: warning, **kwargs)
-    button_text = build_text(name, visually_hidden_prefix: visually_hidden_prefix, visually_hidden_suffix: visually_hidden_suffix, &block)
+    button_text = build_text(name, visually_hidden_prefix: visually_hidden_prefix, visually_hidden_suffix: visually_hidden_suffix)
 
-    button_to(button_text, href, **button_args)
+    if block_given?
+      button_to(href, **button_args, &block)
+    else
+      button_to(button_text, href, **button_args)
+    end
   end
 
   def govuk_button_link_to(name, href = nil, new_tab: false, disabled: false, inverse: false, secondary: false, warning: false, visually_hidden_prefix: nil, visually_hidden_suffix: nil, **kwargs, &block)
     button_args = extract_button_link_args(new_tab: new_tab, disabled: disabled, inverse: inverse, secondary: secondary, warning: warning, **kwargs)
-    button_text = build_text(name, visually_hidden_prefix: visually_hidden_prefix, visually_hidden_suffix: visually_hidden_suffix, &block)
+    button_text = build_text(name, visually_hidden_prefix: visually_hidden_prefix, visually_hidden_suffix: visually_hidden_suffix)
 
-    link_to(button_text, href, **button_args)
+    if block_given?
+      link_to(href, **button_args, &block)
+    else
+      link_to(button_text, href, **button_args)
+    end
   end
 
   def govuk_breadcrumb_link_to(name, href = nil, **kwargs, &block)
     link_args = { class: "#{brand}-breadcrumbs--link" }.deep_merge_html_attributes(kwargs)
 
-    if block_given?
-      link_to(block.call, href, **link_args)
-    else
-      link_to(name, href, **link_args)
-    end
+    link_to(name, href, **link_args, &block)
   end
 
   def govuk_link_classes(inverse: false, muted: false, no_underline: false, no_visited_state: false, text_colour: false)
@@ -123,9 +131,9 @@ private
     Govuk::Components.brand
   end
 
-  def build_text(original, visually_hidden_prefix:, visually_hidden_suffix:, &block)
+  def build_text(text, visually_hidden_prefix:, visually_hidden_suffix:)
+    return nil if text.nil?
     prefix = (visually_hidden_prefix.present?) ? visually_hidden_prefix + " " : nil
-    text = (block_given?) ? block.call : original
     suffix = (visually_hidden_suffix.present?) ? " " + visually_hidden_suffix : nil
 
     safe_join([govuk_visually_hidden(prefix), text, govuk_visually_hidden(suffix)].compact)
