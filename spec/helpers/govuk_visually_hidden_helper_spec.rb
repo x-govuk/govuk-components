@@ -15,5 +15,11 @@ RSpec.describe(GovukVisuallyHiddenHelper, type: 'helper') do
 
       it { is_expected.to have_tag('span', with: { class: "govuk-visually-hidden" }, text: "first item") }
     end
+
+    context 'when text is provided as a block' do
+      subject { govuk_visually_hidden { "first item" } }
+
+      it { is_expected.to have_tag('span', with: { class: "govuk-visually-hidden" }, text: "first item") }
+    end
   end
 end
