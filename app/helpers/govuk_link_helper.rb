@@ -133,6 +133,7 @@ private
 
   def build_text(text, visually_hidden_prefix:, visually_hidden_suffix:)
     return nil if text.nil?
+
     prefix = (visually_hidden_prefix.present?) ? visually_hidden_prefix + " " : nil
     suffix = (visually_hidden_suffix.present?) ? " " + visually_hidden_suffix : nil
 
