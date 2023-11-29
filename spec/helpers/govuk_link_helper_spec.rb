@@ -15,7 +15,7 @@ INVALID_LINK_COMBINATIONS = [
 ].freeze
 
 RSpec.describe(GovukLinkHelper, type: 'helper') do
-  include GovukLinkHelper
+  include ActionView::Context
   include ActionView::Helpers::UrlHelper
 
   before do
