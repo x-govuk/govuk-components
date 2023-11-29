@@ -19,7 +19,9 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
   include ActionView::Helpers::UrlHelper
 
   before do
-    allow(self).to receive(:url_for).with(any_args).and_return("/world")
+    def url_for(path)
+      return path
+    end
   end
 
   describe "govuk_link_to" do

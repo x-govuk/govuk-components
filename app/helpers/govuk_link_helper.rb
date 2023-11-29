@@ -26,7 +26,7 @@ module GovukLinkHelper
     button_text = build_text(name, visually_hidden_prefix: visually_hidden_prefix, visually_hidden_suffix: visually_hidden_suffix)
 
     if block_given?
-      button_to(href, **button_args, &block)
+      button_to(name, **button_args, &block)
     else
       button_to(button_text, href, **button_args)
     end
@@ -37,7 +37,7 @@ module GovukLinkHelper
     button_text = build_text(name, visually_hidden_prefix: visually_hidden_prefix, visually_hidden_suffix: visually_hidden_suffix)
 
     if block_given?
-      link_to(href, **button_args, &block)
+      link_to(name, **button_args, &block)
     else
       link_to(button_text, href, **button_args)
     end
