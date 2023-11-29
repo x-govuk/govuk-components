@@ -20,7 +20,7 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
 
   before do
     def url_for(path)
-      return path
+      path
     end
   end
 
