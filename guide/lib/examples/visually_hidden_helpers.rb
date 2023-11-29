@@ -20,18 +20,5 @@ module Examples
         p More regular text
       SNIPPET
     end
-
-    def focusable_visually_hidden_text
-      <<~SNIPPET
-        p Regular text
-
-        p
-          a href="#"
-            | Some link
-            = govuk_visually_hidden("Focus on me", focusable: true)
-
-        p More regular text
-      SNIPPET
-    end
   end
 end
