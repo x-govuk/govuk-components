@@ -55,7 +55,7 @@ module GovukComponent
         with_row(**data.slice(:classes, :html_attributes)) do |r|
           r.with_key(**k)
           r.with_value(**v)
-          Array.wrap(a).each { |ad| r.with_action(**ad) }
+          Array.wrap(a).each { |ad| r.with_action(card_title: card&.title, **ad) }
         end
       end
     end
