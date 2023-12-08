@@ -145,6 +145,13 @@ RSpec.describe(GovukComponentsHelper, type: 'helper') do
       css_matcher: %(.govuk-tag)
     },
     {
+      helper_method: :govuk_task_list,
+      klass: GovukComponent::TaskListComponent,
+      args: [],
+      kwargs: {},
+      css_matcher: %(.govuk-task-list)
+    },
+    {
       helper_method: :govuk_warning_text,
       klass: GovukComponent::WarningTextComponent,
       args: [],

@@ -13,7 +13,7 @@ class GovukComponent::DetailsComponent < GovukComponent::Base
   end
 
   def call
-    tag.details(data: { module: "#{brand}-details" }, id: id, open: open, **html_attributes) do
+    tag.details(id: id, open: open, **html_attributes) do
       safe_join([summary, description])
     end
   end

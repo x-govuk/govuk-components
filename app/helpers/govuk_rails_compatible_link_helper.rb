@@ -1,6 +1,6 @@
 require "html_attributes_utils"
 
-module GovukRailsCompatibileLinkHelper
+module GovukRailsCompatibleLinkHelper
   using HTMLAttributesUtils
 
   def govuk_link_classes(*styles, default_class: "#{brand}-link")
@@ -105,7 +105,6 @@ private
 
   def button_styles
     {
-      disabled:  "#{brand}-button--disabled",
       secondary: "#{brand}-button--secondary",
       warning:   "#{brand}-button--warning",
       inverse:   "#{brand}-button--inverse",

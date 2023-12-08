@@ -19,7 +19,6 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
 
   let(:all_kwargs) do
     {
-      logotype: logotype,
       homepage_url: homepage_url,
       service_name: service_name,
       service_url: service_url
@@ -35,44 +34,8 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
 
     specify 'outputs a header with correct logo text and no content' do
       expect(rendered_content).to have_tag('header', with: { class: component_css_class }) do
-        with_tag('span', with: { class: 'govuk-header__logotype-text' }, text: default_header_text)
+        with_tag('svg', with: { class: 'govuk-header__logotype' })
         without_tag('.govuk-header__content')
-      end
-    end
-  end
-
-  describe 'the crown' do
-    context 'when the crown is not disabled' do
-      specify 'the crown SVG is rendered along with no fallback image' do
-        expect(rendered_content).to have_tag('.govuk-header__logotype') do
-          with_tag('svg', with: { class: 'govuk-header__logotype-crown', 'aria-hidden' => true })
-          expect(html).to contain_svgs_with_viewBox_attributes
-        end
-      end
-
-      context 'when a fallback image path is provided' do
-        let(:custom_path) { '/an-alternative-crown-file.jpg' }
-        let(:kwargs) { { crown_fallback_image_path: custom_path } }
-
-        specify 'renders the fallback image with the custom path' do
-          expect(rendered_content).to have_tag('.govuk-header__logotype') do |logotype|
-            # NOTE: it's rendered inside a IE8 conditional comment so we can't
-            # assert its presence normally, just ensure the path's included
-            expect(logotype.current_scope.inner_html).to include(custom_path)
-          end
-        end
-      end
-    end
-
-    context 'when the crown is disabled' do
-      let(:kwargs) { { crown: false } }
-
-      specify "doesn't render the crown" do
-        expect(rendered_content).not_to have_tag("svg")
-      end
-
-      specify "renders the default logotype" do
-        expect(rendered_content).to have_tag("span", text: /GOV.UK/)
       end
     end
   end
@@ -91,7 +54,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
 
     specify 'renders header with right logotype and provided service name' do
       expect(rendered_content).to have_tag('header', with: { class: component_css_class }) do
-        with_tag('span', with: { class: 'govuk-header__logotype-text' }, text: logotype)
+        with_tag('svg', with: { class: 'govuk-header__logotype' })
 
         with_tag('div', class: 'govuk-header__content') do
           with_tag('a', text: service_name, with: { href: service_url, class: expected_service_name_classes })

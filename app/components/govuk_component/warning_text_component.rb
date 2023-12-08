@@ -23,12 +23,12 @@ private
 
   def warning_text
     tag.strong(class: "#{brand}-warning-text__text") do
-      safe_join([assistive, (content || text)])
+      safe_join([visually_hidden_text, (content || text)])
     end
   end
 
-  def assistive
-    tag.span(icon_fallback_text, class: "#{brand}-warning-text__assistive")
+  def visually_hidden_text
+    tag.span(icon_fallback_text, class: "#{brand}-visually-hidden")
   end
 
   def default_attributes

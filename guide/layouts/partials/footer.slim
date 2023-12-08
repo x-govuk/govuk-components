@@ -25,6 +25,7 @@ footer.govuk-footer role="contentinfo"
       .govuk-footer__meta-item
          | © X-GOVUK
 
-script src="/javascripts/govuk-frontend.js"
-script
-  | window.GOVUKFrontend.initAll() ;
+script type="module" src="/javascripts/govuk-frontend.min.js"
+script type="module"
+  | import { initAll } from '/javascripts/govuk-frontend.min.js';
+  | initAll() ;

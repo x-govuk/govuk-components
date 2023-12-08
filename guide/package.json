@@ -7,13 +7,13 @@
     "lib": "lib"
   },
   "scripts": {
-    "postinstall": "cp -R node_modules/govuk-frontend/govuk/assets/images content/assets && cp node_modules/govuk-frontend/govuk/all.js content/javascripts/govuk-frontend.js",
+    "postinstall": "cp -R node_modules/govuk-frontend/dist/govuk/assets/images content/assets && cp node_modules/govuk-frontend/dist/govuk/govuk-frontend.min.js content/javascripts/govuk-frontend.min.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "govuk-frontend": "^4.7.0",
+    "govuk-frontend": "5.0.0",
     "sass": "^1.52.1"
   }
 }
