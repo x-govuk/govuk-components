@@ -1,7 +1,7 @@
 class GovukComponent::SummaryListComponent::ActionComponent < GovukComponent::Base
-  attr_reader :href, :text, :visually_hidden_text, :attributes, :classes
+  attr_reader :href, :text, :visually_hidden_text, :card_title, :attributes, :classes
 
-  def initialize(href: nil, text: 'Change', visually_hidden_text: false, classes: [], html_attributes: {})
+  def initialize(href: nil, text: 'Change', visually_hidden_text: false, card_title: nil, classes: [], html_attributes: {})
     @visually_hidden_text = visually_hidden_text
 
     if config.require_summary_list_action_visually_hidden_text && visually_hidden_text == false
@@ -10,8 +10,9 @@ class GovukComponent::SummaryListComponent::ActionComponent < GovukComponent::Ba
 
     super(classes: classes, html_attributes: html_attributes)
 
-    @href = href
-    @text = text
+    @href       = href
+    @text       = text
+    @card_title = card_title
   end
 
   def render?
@@ -36,7 +37,13 @@ private
     content || text || fail(ArgumentError, "no text or content")
   end
 
+  def visually_hidden_content
+    return "#{visually_hidden_text} (#{card_title})" if card_title
+
+    visually_hidden_text
+  end
+
   def visually_hidden_span
-    tag.span(%( #{visually_hidden_text}), class: "#{brand}-visually-hidden") if visually_hidden_text.present?
+    tag.span(%( #{visually_hidden_content}), class: "#{brand}-visually-hidden") if visually_hidden_text.present?
   end
 end

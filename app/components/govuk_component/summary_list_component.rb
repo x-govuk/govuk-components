@@ -5,6 +5,7 @@ module GovukComponent
     renders_many :rows, ->(classes: [], html_attributes: {}, &block) do
       GovukComponent::SummaryListComponent::RowComponent.new(
         show_actions_column: @show_actions_column,
+        card_title: card&.title,
         classes: classes,
         html_attributes: html_attributes,
         &block
@@ -14,7 +15,7 @@ module GovukComponent
     def initialize(rows: nil, actions: true, borders: config.default_summary_list_borders, card: nil, classes: [], html_attributes: {})
       @borders             = borders
       @show_actions_column = actions
-      @card                = card
+      @card                = GovukComponent::SummaryListComponent::CardComponent.new(**card) unless card.blank?
 
       super(classes: classes, html_attributes: html_attributes)
 
@@ -26,16 +27,20 @@ module GovukComponent
     def call
       summary_list = tag.dl(**html_attributes) { safe_join(rows) }
 
-      (card.nil?) ? summary_list : card_with(summary_list)
+      (card?) ? card_with(summary_list) : summary_list
     end
 
   private
+
+    def card?
+      @card.present?
+    end
 
     # we're not using `renders_one` here because we always want the card to render
     # outside of the summary list. when manually building use
     # govuk_summary_list_card { govuk_summary_list }
     def card_with(summary_list)
-      render(GovukComponent::SummaryListComponent::CardComponent.new(**card)) { summary_list }
+      render(@card) { summary_list }
     end
 
     def borders_class

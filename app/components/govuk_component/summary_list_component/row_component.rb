@@ -1,12 +1,23 @@
 class GovukComponent::SummaryListComponent::RowComponent < GovukComponent::Base
-  attr_reader :href, :visually_hidden_text, :show_actions_column
+  attr_reader :href, :visually_hidden_text, :show_actions_column, :card_title
 
   renders_one :key, GovukComponent::SummaryListComponent::KeyComponent
   renders_one :value, GovukComponent::SummaryListComponent::ValueComponent
-  renders_many :actions, GovukComponent::SummaryListComponent::ActionComponent
+  renders_many :actions, ->(href: nil, text: 'Change', visually_hidden_text: false, classes: [], html_attributes: {}, &block) do
+    GovukComponent::SummaryListComponent::ActionComponent.new(
+      href: href,
+      text: text,
+      visually_hidden_text: visually_hidden_text,
+      card_title: card_title,
+      classes: classes,
+      html_attributes: html_attributes,
+      &block
+    )
+  end
 
-  def initialize(show_actions_column: nil, classes: [], html_attributes: {})
+  def initialize(show_actions_column: nil, card_title: nil, classes: [], html_attributes: {})
     @show_actions_column = show_actions_column
+    @card_title = card_title
 
     super(classes: classes, html_attributes: html_attributes)
   end
