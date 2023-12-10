@@ -1,7 +1,7 @@
 class GovukComponent::SummaryListComponent::ActionComponent < GovukComponent::Base
-  attr_reader :href, :text, :visually_hidden_text, :card_title, :attributes, :classes
+  attr_reader :href, :text, :visually_hidden_text, :action_suffix, :attributes, :classes
 
-  def initialize(href: nil, text: 'Change', visually_hidden_text: false, card_title: nil, classes: [], html_attributes: {})
+  def initialize(href: nil, text: 'Change', visually_hidden_text: false, action_suffix: nil, classes: [], html_attributes: {})
     @visually_hidden_text = visually_hidden_text
 
     if config.require_summary_list_action_visually_hidden_text && visually_hidden_text == false
@@ -12,7 +12,7 @@ class GovukComponent::SummaryListComponent::ActionComponent < GovukComponent::Ba
 
     @href       = href
     @text       = text
-    @card_title = card_title
+    @action_suffix = action_suffix
   end
 
   def render?
@@ -38,7 +38,7 @@ private
   end
 
   def visually_hidden_content
-    return "#{visually_hidden_text} (#{card_title})" if card_title
+    return "#{visually_hidden_text} (#{action_suffix})" if action_suffix
 
     visually_hidden_text
   end
