@@ -177,6 +177,10 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
     specify "the summary list is wrapped in a card" do
       expect(rendered_content).to have_tag("div", with: { class: "govuk-summary-card" })
     end
+
+    specify "the summary card's title is included in the visually hidden action suffix" do
+      expect(rendered_content).to have_tag("span", with: { class: "govuk-visually-hidden" }, text: "Value for key (Hi)")
+    end
   end
 
   describe "visually hidden text" do
