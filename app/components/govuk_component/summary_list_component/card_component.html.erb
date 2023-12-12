@@ -5,7 +5,7 @@
     <% if actions.any? %>
       <ul class="<%= brand %>-summary-card__actions">
         <% actions.each do |action| %>
-          <%= tag.li(action, class: "#{brand}-summary-card__action") %>
+          <%= tag.li(action_text(action), class: "#{brand}-summary-card__action") %>
         <% end %>
       </ul>
     <% end %>
