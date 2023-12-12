@@ -1,22 +1,22 @@
 module GovukComponent
   class SummaryListComponent < GovukComponent::Base
-    attr_reader :borders, :actions, :card, :action_suffix
+    attr_reader :borders, :actions, :card, :visually_hidden_action_suffix
 
     renders_many :rows, ->(classes: [], html_attributes: {}, &block) do
       GovukComponent::SummaryListComponent::RowComponent.new(
         show_actions_column: @show_actions_column,
-        action_suffix: action_suffix || card&.title,
+        visually_hidden_action_suffix: visually_hidden_action_suffix || card&.title,
         classes: classes,
         html_attributes: html_attributes,
         &block
       )
     end
 
-    def initialize(rows: nil, actions: true, borders: config.default_summary_list_borders, card: {}, action_suffix: nil, classes: [], html_attributes: {})
-      @borders             = borders
-      @show_actions_column = actions
-      @card                = GovukComponent::SummaryListComponent::CardComponent.new(**card) if card.present?
-      @action_suffix       = action_suffix
+    def initialize(rows: nil, actions: true, borders: config.default_summary_list_borders, card: {}, visually_hidden_action_suffix: nil, classes: [], html_attributes: {})
+      @borders                       = borders
+      @show_actions_column           = actions
+      @card                          = GovukComponent::SummaryListComponent::CardComponent.new(**card) if card.present?
+      @visually_hidden_action_suffix = visually_hidden_action_suffix
 
       super(classes: classes, html_attributes: html_attributes)
 
