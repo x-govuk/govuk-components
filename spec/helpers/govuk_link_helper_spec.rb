@@ -141,6 +141,28 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
         expect(subject).to have_tag("a", text: "hello", with: { href: "/world", class: "govuk-link", lang: "en-GB", dir: "ltr" })
       end
     end
+
+    context "when legacy arguments are passed" do
+      before { allow(Rails.logger).to receive(:warn).and_return(true) }
+
+      describe "actions" do
+        let(:kwargs) { { action: "some-action" } }
+
+        specify "triggers a warning about using legacy action: param" do
+          subject
+          expect(Rails.logger).to have_received(:warn).once.with(/action: 'some-action' parameter detected/)
+        end
+      end
+
+      describe "controller" do
+        let(:kwargs) { { controller: "some-controller" } }
+
+        specify "triggers a warning about using legacy controller: param" do
+          subject
+          expect(Rails.logger).to have_received(:warn).once.with(/controller: 'some-controller' parameter detected/)
+        end
+      end
+    end
   end
 
   describe "govuk_mail_to" do
