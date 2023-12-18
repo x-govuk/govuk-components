@@ -44,7 +44,7 @@ module GovukLinkHelper
   end
 
   def govuk_breadcrumb_link_to(name, href = nil, **kwargs, &block)
-    link_args = { class: "#{brand}-breadcrumbs--link" }.deep_merge_html_attributes(kwargs)
+    link_args = { class: "#{brand}-breadcrumbs__link" }.deep_merge_html_attributes(kwargs)
 
     link_to(name, href, **link_args, &block)
   end

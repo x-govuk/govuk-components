@@ -543,4 +543,21 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
       end
     end
   end
+
+  describe "govuk_breadcrumb_link_to" do
+    let(:kwargs) { {} }
+    subject { govuk_breadcrumb_link_to("hello", "/world", **kwargs) }
+
+    specify "creates a breadcrumb link with the correct class" do
+      expect(subject).to have_tag("a", with: { class: "govuk-breadcrumbs__link", href: "/world" }, text: "hello")
+    end
+
+    context "when extra classes and attributes are provided" do
+      let(:kwargs) { { class: "bright-pink", lang: "fr" } }
+
+      specify "creates a breadcrumb link with the additional attributes and classes" do
+        expect(subject).to have_tag("a", with: { class: %w(govuk-breadcrumbs__link bright-pink), href: "/world", lang: "fr" }, text: "hello")
+      end
+    end
+  end
 end
