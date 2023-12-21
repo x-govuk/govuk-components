@@ -22,3 +22,4 @@ guide/*.log
 guide/node_modules
 guide/content/assets/images
 guide/content/javascripts/*.js
+guide/content/javascripts/*.map
