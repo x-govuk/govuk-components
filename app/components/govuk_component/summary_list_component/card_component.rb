@@ -16,4 +16,8 @@ private
   def default_attributes
     { class: "#{brand}-summary-card" }
   end
+
+  def action_text(action)
+    safe_join([action, tag.span(" (" + title + ")", class: "#{brand}-visually-hidden")])
+  end
 end

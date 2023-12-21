@@ -98,7 +98,7 @@ RSpec.describe(GovukComponent::SummaryListComponent::CardComponent, type: :compo
 
     specify "the actions are rendered" do
       expect(rendered_content).to have_tag("ul", with: { class: "govuk-summary-card__actions" }) do
-        actions.each { |action| with_tag("li", text: action, with: { class: "govuk-summary-card__action" }) }
+        actions.each { |action| with_tag("li", text: "#{action} (#{title})", with: { class: "govuk-summary-card__action" }) }
       end
     end
   end

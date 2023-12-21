@@ -170,12 +170,54 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
   context "when there is a card" do
     subject! do
       render_inline(described_class.new(card: { title: "Hi" }, **kwargs)) do |component|
-        component.with_row { |row| helper.safe_join([row.with_key(text: "Key"), row.with_value(text: "Value"), row.with_action(href: "/a", visually_hidden_text: "for key")]) }
+        component.with_row { |row| helper.safe_join([row.with_key(text: "Key"), row.with_value(text: "Value"), row.with_action(href: "/a", visually_hidden_text: "this row")]) }
       end
     end
 
-    specify "the summary list is wrapped in a card" do
-      expect(rendered_content).to have_tag("div", with: { class: "govuk-summary-card" })
+    specify "when the card parameters are passed into the summary list via card:" do
+      expect(rendered_content).to have_tag("div", with: { class: "govuk-summary-card" }) do
+        with_tag("dl", with: { class: "govuk-summary-list" })
+      end
+    end
+
+    specify "the summary card's title is included in the visually hidden action suffix" do
+      expect(rendered_content).to have_tag("dd", with: { class: "govuk-summary-list__actions" }) do
+        with_text("Change this row (Hi)")
+        with_tag("span", with: { class: "govuk-visually-hidden" }, text: %r{this row \(Hi\)})
+      end
+    end
+
+    context "when the visually_hidden_action_suffix is present" do
+      subject! do
+        render_inline(described_class.new(card: { title: "Hi" }, visually_hidden_action_suffix: "Hello", **kwargs)) do |component|
+          component.with_row { |row| helper.safe_join([row.with_key(text: "Key"), row.with_value(text: "Value"), row.with_action(href: "/a", visually_hidden_text: "this row")]) }
+        end
+      end
+
+      specify "the visually_hidden_action_suffix overrides the card's title in action links" do
+        expect(rendered_content).to have_tag("dd", with: { class: "govuk-summary-list__actions" }) do
+          with_tag("span", with: { class: "govuk-visually-hidden" }, text: %r{this row \(Hello\)})
+        end
+      end
+    end
+  end
+
+  context "when the summary list is manually placed within a card and the title is set with visually_hidden_action_suffix:" do
+    subject! do
+      render_inline(described_class.new(visually_hidden_action_suffix: "Hi", **kwargs)) do |component|
+        component.with_row { |row| helper.safe_join([row.with_key(text: "Key"), row.with_value(text: "Value"), row.with_action(href: "/a", visually_hidden_text: "this row")]) }
+      end
+    end
+
+    specify "the summary list isn't wrapped in a card" do
+      expect(rendered_content).not_to have_tag("div", with: { class: "govuk-summary-card" })
+    end
+
+    specify "the summary card's title is included in the visually hidden action suffix" do
+      expect(rendered_content).to have_tag("dd", with: { class: "govuk-summary-list__actions" }) do
+        with_text("Change this row (Hi)")
+        with_tag("span", with: { class: "govuk-visually-hidden" }, text: %r{this row \(Hi\)})
+      end
     end
   end
 
