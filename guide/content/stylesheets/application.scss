@@ -69,6 +69,11 @@ $govuk-brand-colour: #28a;
   }
 }
 
+// Remove bottom border on header, i.e. when masthead appears below it
+.app-header--no-border {
+  border-bottom: 0;
+}
+
 // X-GOVUK custom logo used in header
 // Visually adjusts placement of X-GOVUK logo which has a height of 35px
 .x-govuk-header__logotype {
