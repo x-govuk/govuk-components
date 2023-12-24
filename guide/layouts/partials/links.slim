@@ -1,30 +1,9 @@
 .govuk-width-container
   .govuk-main-wrapper
-    nav class="govuk-grid-row govuk-!-margin-bottom-4"
-      .govuk-grid-column-one-third
-        h2.govuk-heading-m Introduction
-
-        ul.govuk-list
-          li== govuk_link_to 'Get started', '/introduction/get-started'
-          li== govuk_link_to 'About ViewComponent', '/introduction/about-viewcomponent'
-          li== govuk_link_to 'Using components', '/introduction/using-components'
-          li== govuk_link_to 'Common options', '/introduction/common-options'
-          li== govuk_link_to 'Supported versions', '/introduction/supported-versions'
-          li== govuk_link_to 'Configuration', '/introduction/configuration'
-
-        h2.govuk-heading-m Helpers
-
-        ul.govuk-list
-          li== govuk_link_to('Button', '/helpers/button')
-          li== govuk_link_to('Link', '/helpers/link')
-          li== govuk_link_to('Skip link', '/helpers/skip-link')
-          li== govuk_link_to('Back to top link', '/helpers/back-to-top-link')
-          li== govuk_link_to('Title with error prefix', '/helpers/title-with-error-prefix')
-          li== govuk_link_to('Visually hidden text', '/helpers/visually-hidden-text')
-
-      .govuk-grid-column-two-thirds
-        h2.govuk-heading-m Components
-
-        ul.govuk-list.app-list--two-columns
-          - component_links.each do |name, path|
-            li== govuk_link_to(name, path)
+    nav class="govuk-grid-row"
+      - navigation_links.each_with_index do |(theme, links), index|
+        div class="govuk-grid-column-one-#{index == 2 ? 'half' : 'quarter'}"
+          h2.govuk-heading-m #{theme}
+          ul.govuk-list class=(index == 2 && "app-list--two-columns")
+            - links.each do |name, path|
+              li== govuk_link_to(name, path)
