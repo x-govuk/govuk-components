@@ -9,13 +9,15 @@ $govuk-brand-colour: #28a;
 // Import GOV.UK Frontend
 @import "dist/govuk/all";
 
+// Import GOV.UK Prototype Components
+@import "x-govuk/components/masthead/masthead";
+
 // Application components
 @import "components/example";
 @import "components/header";
 @import "components/highlight";
 @import "components/iframe";
 @import "components/list";
-@import "components/masthead";
 @import "components/prose";
 
 // Classes used in examples
