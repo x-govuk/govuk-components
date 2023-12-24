@@ -10,8 +10,6 @@ $govuk-brand-colour: #28a;
 @import "dist/govuk/all";
 
 // Application components
-@import "components/breadcrumbs";
-@import "components/button";
 @import "components/example";
 @import "components/header";
 @import "components/highlight";
@@ -65,36 +63,6 @@ $govuk-brand-colour: #28a;
       .govuk-table__footer {
         &:last-child { padding-right: 0; }
       }
-    }
-  }
-}
-
-// inverse buttons, this can be removed once the functionality is supported by
-// the design system. https://github.com/alphagov/govuk-frontend/pull/3556
-$govuk-inverse-button-colour: govuk-colour("white");
-$govuk-inverse-button-text-colour: govuk-colour("blue");
-$govuk-inverse-button-hover-colour: govuk-tint($govuk-inverse-button-text-colour, 90%);
-$govuk-inverse-button-shadow-colour: govuk-shade($govuk-inverse-button-text-colour, 30%);
-
-.blue-bg { background: govuk-colour("blue"); }
-
-.govuk-button--inverse {
-  background-color: $govuk-inverse-button-colour;
-  box-shadow: 0 2px 0 $govuk-inverse-button-shadow-colour;
-
-  &,
-  &:link,
-  &:visited,
-  &:active,
-  &:hover {
-    color: $govuk-inverse-button-text-colour;
-  }
-
-  &:hover {
-    background-color: $govuk-inverse-button-hover-colour;
-
-    &[disabled] {
-      background-color: $govuk-inverse-button-colour;
     }
   }
 }
