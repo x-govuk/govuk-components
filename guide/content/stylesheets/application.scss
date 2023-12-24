@@ -99,7 +99,13 @@ $govuk-inverse-button-shadow-colour: govuk-shade($govuk-inverse-button-text-colo
   }
 }
 
-// Used as an example of a custom logo
+// X-GOVUK custom logo used in header
+// Visually adjusts placement of X-GOVUK logo which has a height of 35px
+.x-govuk-header__logotype {
+  margin-bottom: -5px;
+}
+
+// Example custom logo used in documentation
 .app-header__logotype {
   display: inline-block;
   position: relative;
