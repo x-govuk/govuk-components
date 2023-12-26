@@ -1,10 +1,11 @@
 module GovukComponent
   class TaskListComponent::ItemComponent < GovukComponent::Base
-    renders_one :status, ->(text: nil, classes: [], html_attributes: {}, &block) do
+    renders_one :status, ->(text: nil, cannot_start_yet: false, classes: [], html_attributes: {}, &block) do
       GovukComponent::TaskListComponent::StatusComponent.new(
         id_prefix: @id_prefix,
         count: @count,
         text: text,
+        cannot_start_yet: cannot_start_yet,
         classes: classes,
         html_attributes: html_attributes,
         &block
