@@ -4,9 +4,11 @@ Nanoc::Filter.define(:dart_sass) do |content, opts|
   cmd = [%(node node_modules/sass/sass.js)].tap do |c|
     c << opts[:targets].join(' ')
 
-    if (lp = opts[:load_paths])
-      c << %(--load-path)
-      c << lp
+    if (paths = opts[:load_paths])
+      paths.each do |path|
+        c << %(--load-path)
+        c << path
+      end
     end
   end
 

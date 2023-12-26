@@ -1,7 +1,7 @@
 # https://gds-way.cloudapps.digital/manuals/programming-languages/editorconfig
 root = true
 
-[*.{css,erb,js,json,rb,scss,sh,yml,md}]
+[*.{css,erb,js,json,rb,scss,sh,slim,yml,md}]
 indent_size = 2
 indent_style = space
 charset = utf-8

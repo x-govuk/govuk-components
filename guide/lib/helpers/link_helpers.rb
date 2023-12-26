@@ -6,28 +6,46 @@ module Helpers
   end
 
   module LinkHelpers
-    def component_links
+    def navigation_links
       {
-        "Accordion" => "/components/accordion",
-        "Back link" => "/components/back-link",
-        "Breadcrumbs" => "/components/breadcrumbs",
-        "Cookie banner" => "/components/cookie-banner",
-        "Details" => "/components/details",
-        "Exit this page" => "/components/exit-this-page",
-        "Footer" => "/components/footer",
-        "Header" => "/components/header",
-        "Inset text" => "/components/inset-text",
-        "Notification banner" => "/components/notification-banner",
-        "Pagination" => "/components/pagination",
-        "Panel" => "/components/panel",
-        "Phase banner" => "/components/phase-banner",
-        "Start button" => "/components/start-button",
-        "Summary list" => "/components/summary-list",
-        "Table" => "/components/table",
-        "Tabs" => "/components/tabs",
-        "Tag" => "/components/tag",
-        "Task list" => "/components/task-list",
-        "Warning text" => "/components/warning-text",
+        "Introduction" => {
+          "Get started" => "/introduction/get-started/",
+          "About ViewComponent" => "/introduction/about-viewcomponent/",
+          "Using components" => "/introduction/using-components/",
+          "Common options" => "/introduction/common-options/",
+          "Configuration" => "/introduction/configuration/",
+          "Supported versions" => "/introduction/supported-versions/",
+        },
+        "Helpers" => {
+          "Back to top link" => "/helpers/back-to-top-link/",
+          "Button" => "/helpers/button/",
+          "Link" => "/helpers/link/",
+          "Skip link" => "/helpers/skip-link/",
+          "Title with error prefix" => "/helpers/title-with-error-prefix/",
+          "Visually hidden text" => "/helpers/visually-hidden-text/",
+        },
+        "Components" => {
+          "Accordion" => "/components/accordion/",
+          "Back link" => "/components/back-link/",
+          "Breadcrumbs" => "/components/breadcrumbs/",
+          "Cookie banner" => "/components/cookie-banner/",
+          "Details" => "/components/details/",
+          "Exit this page" => "/components/exit-this-page/",
+          "Footer" => "/components/footer/",
+          "Header" => "/components/header/",
+          "Inset text" => "/components/inset-text/",
+          "Notification banner" => "/components/notification-banner/",
+          "Pagination" => "/components/pagination/",
+          "Panel" => "/components/panel/",
+          "Phase banner" => "/components/phase-banner/",
+          "Start button" => "/components/start-button/",
+          "Summary list" => "/components/summary-list/",
+          "Table" => "/components/table/",
+          "Tabs" => "/components/tabs/",
+          "Tag" => "/components/tag/",
+          "Task list" => "/components/task-list/",
+          "Warning text" => "/components/warning-text/",
+        }
       }
     end
 

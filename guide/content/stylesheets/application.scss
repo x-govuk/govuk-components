@@ -1,23 +1,29 @@
+// Application options
+$app-iframe-mobile-height: 15rem;
+
 // GOV.UK Frontend options
 $govuk-global-styles: true;
 $govuk-assets-path: "/assets/";
-$app-iframe-mobile-height: 15rem;
-$govuk-new-link-styles: true;
 $govuk-font-family: system-ui, sans-serif;
-$govuk-brand-colour: #28a;
+$govuk-brand-colour: #2288aa;
+$govuk-link-colour: #006688;
+$govuk-hover-colour: #004466;
+$govuk-visited-colour: #333366;
+$govuk-page-width: 1100px;
 
 // Import GOV.UK Frontend
 @import "dist/govuk/all";
 
+// Import GOV.UK Prototype Components
+@import "x-govuk/components/masthead/masthead";
+@import "x-govuk/components/sub-navigation/sub-navigation";
+
 // Application components
-@import "components/breadcrumbs";
-@import "components/button";
 @import "components/example";
 @import "components/header";
 @import "components/highlight";
 @import "components/iframe";
 @import "components/list";
-@import "components/masthead";
 @import "components/prose";
 
 // Classes used in examples
@@ -69,37 +75,18 @@ $govuk-brand-colour: #28a;
   }
 }
 
-// inverse buttons, this can be removed once the functionality is supported by
-// the design system. https://github.com/alphagov/govuk-frontend/pull/3556
-$govuk-inverse-button-colour: govuk-colour("white");
-$govuk-inverse-button-text-colour: govuk-colour("blue");
-$govuk-inverse-button-hover-colour: govuk-tint($govuk-inverse-button-text-colour, 90%);
-$govuk-inverse-button-shadow-colour: govuk-shade($govuk-inverse-button-text-colour, 30%);
-
-.blue-bg { background: govuk-colour("blue"); }
-
-.govuk-button--inverse {
-  background-color: $govuk-inverse-button-colour;
-  box-shadow: 0 2px 0 $govuk-inverse-button-shadow-colour;
-
-  &,
-  &:link,
-  &:visited,
-  &:active,
-  &:hover {
-    color: $govuk-inverse-button-text-colour;
-  }
-
-  &:hover {
-    background-color: $govuk-inverse-button-hover-colour;
-
-    &[disabled] {
-      background-color: $govuk-inverse-button-colour;
-    }
-  }
+// Remove bottom border on header, i.e. when masthead appears below it
+.app-header--no-border {
+  border-bottom: 0;
 }
 
-// Used as an example of a custom logo
+// X-GOVUK custom logo used in header
+// Visually adjusts placement of X-GOVUK logo which has a height of 35px
+.x-govuk-header__logotype {
+  margin-bottom: -5px;
+}
+
+// Example custom logo used in documentation
 .app-header__logotype {
   display: inline-block;
   position: relative;
