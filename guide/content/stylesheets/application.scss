@@ -28,7 +28,7 @@ $govuk-page-width: 1100px;
 
 // Classes used in examples
 
-// advanced table example, change some alignment to make multiple sets
+// Advanced table example, change some alignment to make multiple sets
 // of headers more readable
 .govuk-table {
   &.starter-pokemon-weights {
@@ -73,17 +73,6 @@ $govuk-page-width: 1100px;
       }
     }
   }
-}
-
-// Remove bottom border on header, i.e. when masthead appears below it
-.app-header--no-border {
-  border-bottom: 0;
-}
-
-// X-GOVUK custom logo used in header
-// Visually adjusts placement of X-GOVUK logo which has a height of 35px
-.x-govuk-header__logotype {
-  margin-bottom: -5px;
 }
 
 // Example custom logo used in documentation
