@@ -40,6 +40,10 @@ module GovukComponent
     end
 
     def call
+      if href.presence && status_content.cannot_start_yet
+        fail(ArgumentError, "item cannot have a href with status where cannot_start_yet: true")
+      end
+
       adjusted_html_attributes = if href.present? || title&.href.present?
                                    html_attributes_with_link_class
                                  else
