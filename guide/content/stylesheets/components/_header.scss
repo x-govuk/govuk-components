@@ -1,12 +1,16 @@
 .app-header {
+  // Remove bottom border on header, i.e. when masthead appears below it
+  &--no-border {
+    border-bottom: 0;
+  }
+
   .govuk-header__logo {
     width: auto;
   }
 
-  // visually adjust placement to accept larger icon with a height of 35px
-  .app-header__logotype--large {
-    margin-bottom: -10px;
-    position: relative;
-    top: -3px;
+  // X-GOVUK custom logo used in header
+  // Visually adjusts placement of X-GOVUK logo which has a height of 35px
+  .x-govuk-header__logotype {
+    margin-bottom: -5px;
   }
 }

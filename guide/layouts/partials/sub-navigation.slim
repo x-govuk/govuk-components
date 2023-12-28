@@ -1,9 +1,12 @@
 nav.x-govuk-sub-navigation aria-labelledby="sub-navigation-heading"
-  h2.govuk-visually-hidden#sub-navigation-heading Pages in this section
+  h2.govuk-visually-hidden#sub-navigation-heading
+    | Pages in this section
 
   - navigation_links.each do |theme, links|
-    h3.x-govuk-sub-navigation__theme #{theme}
+    h3.x-govuk-sub-navigation__theme
+      | #{theme}
     ul.x-govuk-sub-navigation__section
       - links.each do |name, path|
         li.x-govuk-sub-navigation__section-item class=(path == @item.path && "x-govuk-sub-navigation__section-item--current")
-          a.x-govuk-sub-navigation__link href="#{path}" aria-current=(path == @item.path && "true") #{name}
+          a.x-govuk-sub-navigation__link href="#{path}" aria-current=(path == @item.path && "true")
+            | #{name}

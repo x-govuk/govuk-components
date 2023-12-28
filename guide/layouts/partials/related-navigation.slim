@@ -1,0 +1,10 @@
+.x-govuk-related-navigation class="govuk-!-margin-top-9"
+  nav.x-govuk-related-navigation__nav-section role="navigation" aria-labelledby="related"
+    h2#related.x-govuk-related-navigation__main-heading
+      | Related information
+
+    ul.x-govuk-related-navigation__link-list
+      - links.each do |name, path|
+        li.x-govuk-related-navigation__link
+          a.x-govuk-related-navigation__section-link.govuk-link  href="#{path}"
+            | #{name}

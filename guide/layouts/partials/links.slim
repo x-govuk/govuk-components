@@ -3,7 +3,8 @@
     nav class="govuk-grid-row"
       - navigation_links.each_with_index do |(theme, links), index|
         div class="govuk-grid-column-one-#{index == 2 ? 'half' : 'quarter'}"
-          h2.govuk-heading-m #{theme}
+          h2.govuk-heading-m
+            | #{theme}
           ul.govuk-list class=(index == 2 && "app-list--two-columns")
             - links.each do |name, path|
               li== govuk_link_to(name, path)
