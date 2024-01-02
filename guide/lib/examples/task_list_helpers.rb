@@ -20,7 +20,7 @@ module Examples
           - task_list.with_item(title: "Contact details", href: '#', status: "Completed")
           - task_list.with_item(title: "Project details", href: '#', status: "Completed")
           - task_list.with_item(title: "Funding", hint: "The funds will be announced on 1 April 2022") do |item|
-            - item.with_status(text: "Cannot start yet", classes: "govuk-task-list__status--cannot-start-yet")
+            - item.with_status(text: "Cannot start yet", cannot_start_yet: true)
       SNIPPET
     end
 

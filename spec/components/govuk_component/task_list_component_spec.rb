@@ -92,6 +92,30 @@ RSpec.describe(GovukComponent::TaskListComponent, type: :component) do
           end
         end
       end
+
+      context "when items have an element that cannot start yet" do
+        let(:list_item_two_kwargs) { { title: "Two", status: { text: "todo", cannot_start_yet: true } } }
+
+        specify "the status has an extra class marking that it cannot yet be started" do
+          expect(rendered_content).to have_tag(
+            "div",
+            with: { class: %w(govuk-task-list__status govuk-task-list__status--cannot-start-yet) },
+            text: "todo",
+          )
+        end
+      end
+
+      context "when an item has an element that cannot start yet and a href" do
+        let(:failing_component) do
+          render_inline(GovukComponent::TaskListComponent.new(**kwargs)) do |task_list|
+            task_list.with_item(title: "Two", href: "#", status: { text: "todo", cannot_start_yet: true })
+          end
+        end
+
+        specify "the component raises an error because an item has both a href and cannot_start_yet: true" do
+          expect { failing_component }.to raise_error(ArgumentError, /item cannot have a href with status where cannot_start_yet: true/)
+        end
+      end
     end
 
     describe "when rendered with blocks" do
@@ -126,6 +150,64 @@ RSpec.describe(GovukComponent::TaskListComponent, type: :component) do
             with_text(status_text)
           end
         end
+      end
+    end
+  end
+
+  describe "status cannot_start_yet" do
+    let(:title_text) { "Choose a course" }
+    let(:hint_text) { "Determine eligibility" }
+    let(:status_text) { "Not done" }
+    let(:cannot_start_yet) { false }
+    let(:item_kwargs) { {} }
+
+    subject! do
+      render_inline(GovukComponent::TaskListComponent.new(**kwargs)) do |task_list|
+        task_list.with_item(**item_kwargs) do |item|
+          helper.safe_join(
+            [
+              item.with_title(text: title_text, hint: hint_text),
+              item.with_status(text: status_text, cannot_start_yet: cannot_start_yet),
+            ]
+          )
+        end
+      end
+    end
+
+    context "when false (default)" do
+      specify "there is no govuk-task-list__status--cannot-start-yet class" do
+        expect(rendered_content).not_to have_tag(".govuk-task-list__status--cannot-start-yet")
+      end
+    end
+
+    context "when true" do
+      let(:cannot_start_yet) { true }
+
+      specify "the status has an extra class marking that it cannot yet be started" do
+        expect(rendered_content).to have_tag(
+          "div",
+          with: { class: %w(govuk-task-list__status govuk-task-list__status--cannot-start-yet) },
+          text: status_text,
+        )
+      end
+    end
+
+    context "when an item has an element that cannot start yet and a href" do
+      let(:failing_component) do
+        render_inline(GovukComponent::TaskListComponent.new(**kwargs)) do |task_list|
+          task_list.with_item(href: "https://www.gov.uk") do |item|
+            helper.safe_join(
+              [
+                item.with_title(text: title_text, hint: hint_text),
+                item.with_status(text: status_text, cannot_start_yet: true),
+              ]
+            )
+          end
+        end
+      end
+
+      specify "the component raises an error because an item has both a href and cannot_start_yet: true" do
+        expect { failing_component }.to raise_error(ArgumentError, /item cannot have a href with status where cannot_start_yet: true/)
       end
     end
   end
