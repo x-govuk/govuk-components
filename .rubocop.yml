@@ -9,6 +9,7 @@ AllCops:
   Exclude:
     - govuk_design_system_formbuilder.gemspec
     - spec/dummy/**/*
+    - guide/node_modules/**/*
 Security/Eval:
   Exclude:
     - guide/lib/helpers/formatters.rb
