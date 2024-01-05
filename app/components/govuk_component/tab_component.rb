@@ -23,7 +23,7 @@ private
 
     def initialize(label:, text: nil, classes: [], html_attributes: {})
       @label = label
-      @text  = text
+      @text  = h(text)
 
       super(classes: classes, html_attributes: html_attributes)
     end
