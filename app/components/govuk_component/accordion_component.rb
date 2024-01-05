@@ -3,7 +3,7 @@ class GovukComponent::AccordionComponent < GovukComponent::Base
     GovukComponent::AccordionComponent::SectionComponent.new(
       classes: classes,
       expanded: expanded,
-      heading_level: heading_level,      # set once at parent level, passed to all children
+      heading_level: heading_level, # set once at parent level, passed to all children
       html_attributes: html_attributes,
       summary_text: summary_text,
       heading_text: heading_text,
