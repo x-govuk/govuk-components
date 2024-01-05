@@ -3,7 +3,9 @@ require 'spec_helper'
 RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
   before do
     allow_any_instance_of(GovukComponent::HeaderComponent::NavigationItem).to(
-      receive(:request).and_return(double(ActionDispatch::Request, get?: true, path: current_page))
+      receive(:current_page?).and_wrap_original do |_original_method, path|
+        path == current_page
+      end
     )
   end
 

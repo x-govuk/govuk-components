@@ -21,7 +21,7 @@ include TitleWithErrorPrefixHelper
 
 module Pagy::UrlHelpers
   def request
-    OpenStruct.new(GET: {}, session: nil, host: "https://somesite/")
+    OpenStruct.new(GET: {}, session: nil, host: "https://somesite/", format: OpenStruct.new(html?: true))
   end
 end
 
