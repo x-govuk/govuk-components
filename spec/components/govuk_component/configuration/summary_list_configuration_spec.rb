@@ -32,7 +32,7 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
             sl.with_row do |row|
               row.with_key(text: "key one")
               row.with_value(text: "value one")
-              row.with_action(text: "action one", href: "/action-one", visually_hidden_text: visually_hidden_text)
+              row.with_action(text: "action one", href: "/action-one", visually_hidden_text:)
             end
           end
         end

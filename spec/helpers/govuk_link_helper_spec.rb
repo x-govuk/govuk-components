@@ -91,7 +91,7 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
     context "when visually_hidden_prefix: 'some text'" do
       let(:visually_hidden_prefix) { "some prefix" }
       let(:visually_hidden_prefix_with_trailing_space) { "some prefix " }
-      let(:kwargs) { { visually_hidden_prefix: visually_hidden_prefix } }
+      let(:kwargs) { { visually_hidden_prefix: } }
 
       specify "the prefix is present and visually hidden" do
         expect(subject).to have_tag("a", text: /hello/, with: { href: "/world", class: "govuk-link" }) do
@@ -107,7 +107,7 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
     context "when visually_hidden_suffix: 'some text'" do
       let(:visually_hidden_suffix) { "some suffix" }
       let(:visually_hidden_suffix_with_leading_space) { " some suffix" }
-      let(:kwargs) { { visually_hidden_suffix: visually_hidden_suffix } }
+      let(:kwargs) { { visually_hidden_suffix: } }
 
       specify "the suffix is present and visually hidden" do
         expect(subject).to have_tag("a", text: /hello/, with: { href: "/world", class: "govuk-link" }) do
@@ -232,7 +232,7 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
     context "when visually_hidden_prefix: 'some text'" do
       let(:visually_hidden_prefix) { "some prefix" }
       let(:visually_hidden_prefix_with_trailing_space) { "some prefix " }
-      let(:kwargs) { { visually_hidden_prefix: visually_hidden_prefix } }
+      let(:kwargs) { { visually_hidden_prefix: } }
 
       specify "the prefix is present and visually hidden" do
         expect(subject).to have_tag("a", text: /hello/, with: { href: "mailto:world@solar.system", class: "govuk-link" }) do
@@ -248,7 +248,7 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
     context "when visually_hidden_suffix: 'some text'" do
       let(:visually_hidden_suffix) { "some suffix" }
       let(:visually_hidden_suffix_with_leading_space) { " some suffix" }
-      let(:kwargs) { { visually_hidden_suffix: visually_hidden_suffix } }
+      let(:kwargs) { { visually_hidden_suffix: } }
 
       specify "the suffix is present and visually hidden" do
         expect(subject).to have_tag("a", text: /hello/, with: { href: "mailto:world@solar.system", class: "govuk-link" }) do
@@ -365,7 +365,7 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
     context "when visually_hidden_prefix: 'some text'" do
       let(:visually_hidden_prefix) { "some prefix" }
       let(:visually_hidden_prefix_with_trailing_space) { "some prefix " }
-      let(:kwargs) { { visually_hidden_prefix: visually_hidden_prefix } }
+      let(:kwargs) { { visually_hidden_prefix: } }
 
       specify "the prefix is present and visually hidden" do
         expect(subject).to have_tag("a", text: /hello/, with: { href: "/world", class: "govuk-button" }) do
@@ -381,7 +381,7 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
     context "when visually_hidden_suffix: 'some text'" do
       let(:visually_hidden_suffix) { "some suffix" }
       let(:visually_hidden_suffix_with_leading_space) { " some suffix" }
-      let(:kwargs) { { visually_hidden_suffix: visually_hidden_suffix } }
+      let(:kwargs) { { visually_hidden_suffix: } }
 
       specify "the suffix is present and visually hidden" do
         expect(subject).to have_tag("a", text: /hello/, with: { href: "/world", class: "govuk-button" }) do
@@ -500,7 +500,7 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
     context "when visually_hidden_prefix: 'some text'" do
       let(:visually_hidden_prefix) { "some prefix" }
       let(:visually_hidden_prefix_with_trailing_space) { "some prefix " }
-      let(:kwargs) { { visually_hidden_prefix: visually_hidden_prefix } }
+      let(:kwargs) { { visually_hidden_prefix: } }
 
       specify "the prefix is present and visually hidden" do
         expect(subject).to have_tag("form", with: { method: "post", action: "/world" }) do
@@ -518,7 +518,7 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
     context "when visually_hidden_suffix: 'some text'" do
       let(:visually_hidden_suffix) { "some suffix" }
       let(:visually_hidden_suffix_with_leading_space) { " some suffix" }
-      let(:kwargs) { { visually_hidden_suffix: visually_hidden_suffix } }
+      let(:kwargs) { { visually_hidden_suffix: } }
 
       specify "the suffix is present and visually hidden" do
         expect(subject).to have_tag("form", with: { method: "post", action: "/world" }) do

@@ -21,7 +21,7 @@ class GovukComponent::ExitThisPageComponent < GovukComponent::Base
     @press_two_more_times_text = press_two_more_times_text
     @press_one_more_time_text = press_one_more_time_text
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(classes:, html_attributes:)
   end
 
   def call

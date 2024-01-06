@@ -10,7 +10,7 @@ RSpec.describe(GovukComponent::BreadcrumbsComponent, type: :component) do
     }
   end
 
-  let(:kwargs) { { breadcrumbs: breadcrumbs } }
+  let(:kwargs) { { breadcrumbs: } }
 
   let(:component_css_class) { 'govuk-breadcrumbs' }
 
@@ -60,7 +60,7 @@ RSpec.describe(GovukComponent::BreadcrumbsComponent, type: :component) do
   end
 
   context 'when hide_in_print is enabled' do
-    let(:kwargs) { { breadcrumbs: breadcrumbs, hide_in_print: true } }
+    let(:kwargs) { { breadcrumbs:, hide_in_print: true } }
     let(:expected_class) { 'govuk-breadcrumbs.govuk-\!-display-none-print' }
 
     specify 'breadcrumbs are suppressed when printing' do
@@ -69,7 +69,7 @@ RSpec.describe(GovukComponent::BreadcrumbsComponent, type: :component) do
   end
 
   context 'when collapse_on_mobile is true' do
-    let(:kwargs) { { breadcrumbs: breadcrumbs, collapse_on_mobile: true } }
+    let(:kwargs) { { breadcrumbs:, collapse_on_mobile: true } }
     let(:expected_class) { 'govuk-breadcrumbs.govuk-\!-display-none-print' }
 
     specify 'breadcrumbs are collapsed on mobile' do
@@ -78,7 +78,7 @@ RSpec.describe(GovukComponent::BreadcrumbsComponent, type: :component) do
   end
 
   context 'when breadcrumb colours are inverted' do
-    let(:kwargs) { { breadcrumbs: breadcrumbs, inverse: true } }
+    let(:kwargs) { { breadcrumbs:, inverse: true } }
     let(:expected_class) { 'govuk-breadcrumbs.govuk-breadcrumbs--inverse' }
 
     specify 'breadcrumbs colours are inverted' do

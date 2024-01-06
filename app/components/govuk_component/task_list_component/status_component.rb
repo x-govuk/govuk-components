@@ -8,7 +8,7 @@ module GovukComponent
       @id_prefix        = id_prefix
       @cannot_start_yet = cannot_start_yet
 
-      super(classes: classes, html_attributes: html_attributes)
+      super(classes:, html_attributes:)
     end
 
     def call

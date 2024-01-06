@@ -5,7 +5,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
   let(:component_css_class) { 'govuk-table' }
   let(:caption_text) { "What a nice table" }
 
-  let(:kwargs) { { id: id } }
+  let(:kwargs) { { id: } }
 
   subject! do
     render_inline(GovukComponent::TableComponent.new(**kwargs)) do |table|
@@ -35,7 +35,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
   end
 
   specify "table has the provided id" do
-    expect(rendered_content).to have_tag("table", with: { id: id })
+    expect(rendered_content).to have_tag("table", with: { id: })
   end
 
   specify "renders a thead element" do
@@ -78,7 +78,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
         let(:caption_text) { "Argument-supplied caption" }
 
         subject! do
-          render_inline(GovukComponent::TableComponent.new(**kwargs.merge(rows: rows, caption: caption_text)))
+          render_inline(GovukComponent::TableComponent.new(**kwargs.merge(rows:, caption: caption_text)))
         end
 
         specify "renders the caption with the provided text" do
@@ -92,7 +92,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
         let(:caption_text) { nil }
 
         subject! do
-          render_inline(GovukComponent::TableComponent.new(**kwargs.merge(rows: rows, caption: caption_text)))
+          render_inline(GovukComponent::TableComponent.new(**kwargs.merge(rows:, caption: caption_text)))
         end
 
         specify "renders no caption element" do
@@ -118,7 +118,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
           let(:body_rows) { rows[1..] }
 
           subject! do
-            render_inline(GovukComponent::TableComponent.new(**kwargs.merge(rows: rows)))
+            render_inline(GovukComponent::TableComponent.new(**kwargs.merge(rows:)))
           end
 
           specify "renders one header row" do
@@ -156,14 +156,14 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
           end
 
           subject! do
-            render_inline(GovukComponent::TableComponent.new(**kwargs.merge(head: head, rows: rows, foot: foot)))
+            render_inline(GovukComponent::TableComponent.new(**kwargs.merge(head:, rows:, foot:)))
           end
 
           specify "renders one thead row" do
             expect(rendered_content).to have_tag("table", with: { class: component_css_class }) do
               with_tag("thead", with: { class: "govuk-table__head" }) do
                 with_tag("tr", with: { class: "govuk-table__row" }, count: 1) do
-                  head.all? { |text| with_tag("th", text: text, with: { class: "govuk-table__header" }) }
+                  head.all? { |text| with_tag("th", text:, with: { class: "govuk-table__header" }) }
                 end
               end
             end
@@ -173,7 +173,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
             expect(rendered_content).to have_tag("table", with: { class: component_css_class }) do
               with_tag("tbody", with: { class: "govuk-table__body" }) do
                 with_tag("tr", with: { class: "govuk-table__row" }, count: 3) do
-                  rows.flatten.all? { |text| with_tag("td", text: text, with: { class: "govuk-table__cell" }) }
+                  rows.flatten.all? { |text| with_tag("td", text:, with: { class: "govuk-table__cell" }) }
                 end
               end
             end
@@ -183,7 +183,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
             expect(rendered_content).to have_tag("table", with: { class: component_css_class }) do
               with_tag("tfoot", with: { class: "govuk-table__foot" }) do
                 with_tag("tr", with: { class: "govuk-table__row" }, count: 1) do
-                  foot.all? { |text| with_tag("td", text: text, with: { class: "govuk-table__footer" }) }
+                  foot.all? { |text| with_tag("td", text:, with: { class: "govuk-table__footer" }) }
                 end
               end
             end
@@ -211,9 +211,9 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
           render_inline(
             GovukComponent::TableComponent.new(
               first_cell_is_header: true,
-              head: head,
-              rows: rows,
-              foot: foot
+              head:,
+              rows:,
+              foot:
             )
           )
         end
@@ -276,7 +276,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
       end
 
       subject! do
-        render_inline(GovukComponent::TableComponent.new(**kwargs.merge(head: head, rows: rows, first_cell_is_header: true)))
+        render_inline(GovukComponent::TableComponent.new(**kwargs.merge(head:, rows:, first_cell_is_header: true)))
       end
 
       specify "renders the table header" do
@@ -426,7 +426,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
 
             subject do
               render_inline(GovukComponent::TableComponent.new(**kwargs)) do |table|
-                table.with_caption(text: "Caption size: #{size}", size: size)
+                table.with_caption(text: "Caption size: #{size}", size:)
               end
             end
 
@@ -481,7 +481,7 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
         table.with_head do |head|
           head.with_row do |row|
             GovukComponent::TableComponent::CellComponent.widths.each_key do |width|
-              row.with_cell(text: width, header: true, width: width)
+              row.with_cell(text: width, header: true, width:)
             end
           end
         end

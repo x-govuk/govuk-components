@@ -12,13 +12,13 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
     }
   end
 
-  let(:kwargs) { { html_attributes: { id: id } } }
+  let(:kwargs) { { html_attributes: { id: } } }
 
   subject! do
     render_inline(GovukComponent::AccordionComponent.new(**kwargs)) do |component|
       helper.safe_join(
         sections.map do |heading_text, content|
-          component.with_section(heading_text: heading_text) { content }
+          component.with_section(heading_text:) { content }
         end
       )
     end
@@ -36,7 +36,7 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
     end
 
     specify 'the container div has the right id' do
-      expect(rendered_content).to have_tag('div', with: { id: id, class: component_css_class })
+      expect(rendered_content).to have_tag('div', with: { id:, class: component_css_class })
     end
   end
 
@@ -74,7 +74,7 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
 
   describe 'building unique section ids' do
     context 'when the accordion has an ID' do
-      let(:kwargs) { { html_attributes: { id: id } } }
+      let(:kwargs) { { html_attributes: { id: } } }
 
       specify 'the accordion id is prefixes the section id' do
         expect(html.css('.govuk-accordion__section').map { |e| e[:id] }).to all(start_with(id))
@@ -157,7 +157,7 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
 
       subject! do
         render_inline(GovukComponent::AccordionComponent.new) do |component|
-          component.with_section(heading_text: heading_text, summary_text: summary_text) { 'abc' }
+          component.with_section(heading_text:, summary_text:) { 'abc' }
         end
       end
 
@@ -177,7 +177,7 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
 
       subject! do
         render_inline(GovukComponent::AccordionComponent.new(**kwargs)) do |component|
-          component.with_section(heading_text: heading_text) do |section|
+          component.with_section(heading_text:) do |section|
             section.with_summary_html do
               helper.content_tag(custom_tag, custom_text, class: custom_class)
             end

@@ -2,7 +2,7 @@ class GovukComponent::TableComponent::ColGroupComponent < GovukComponent::Base
   renders_many :cols, "ColComponent"
 
   def initialize(classes: [], cols: [], html_attributes: {})
-    super(classes: classes, html_attributes: html_attributes)
+    super(classes:, html_attributes:)
 
     return if cols.blank?
 
@@ -29,11 +29,11 @@ private
     def initialize(span: 1, classes: [], html_attributes: {})
       @span = span.to_s
 
-      super(classes: classes, html_attributes: html_attributes)
+      super(classes:, html_attributes:)
     end
 
     def call
-      tag.col(span: span, **html_attributes)
+      tag.col(span:, **html_attributes)
     end
 
   private

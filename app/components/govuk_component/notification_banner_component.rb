@@ -23,7 +23,7 @@ class GovukComponent::NotificationBannerComponent < GovukComponent::Base
     @title_heading_level = title_heading_level
     @disable_auto_focus  = disable_auto_focus
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(classes:, html_attributes:)
   end
 
   def render?
@@ -38,7 +38,7 @@ class GovukComponent::NotificationBannerComponent < GovukComponent::Base
       @link_text = link_text
       @link_href = link_href
 
-      super(classes: classes, html_attributes: html_attributes)
+      super(classes:, html_attributes:)
     end
 
     def call
@@ -72,7 +72,7 @@ private
         "module" => "#{brand}-notification-banner",
         "disable-auto-focus" => disable_auto_focus
       },
-      role: role,
+      role:,
       aria: { labelledby: title_id },
     }
   end

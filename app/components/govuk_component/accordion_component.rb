@@ -1,13 +1,13 @@
 class GovukComponent::AccordionComponent < GovukComponent::Base
   renders_many :sections, ->(heading_text: nil, summary_text: nil, expanded: false, classes: [], html_attributes: {}, &block) do
     GovukComponent::AccordionComponent::SectionComponent.new(
-      classes: classes,
-      expanded: expanded,
-      heading_level: heading_level, # set once at parent level, passed to all children
-      html_attributes: html_attributes,
-      summary_text: summary_text,
-      heading_text: heading_text,
-      accordion_id: accordion_id,
+      classes:,
+      expanded:,
+      heading_level:, # set once at parent level, passed to all children
+      html_attributes:,
+      summary_text:,
+      heading_text:,
+      accordion_id:,
       &block
     )
   end
@@ -18,7 +18,7 @@ class GovukComponent::AccordionComponent < GovukComponent::Base
     @heading_level = heading_tag(heading_level)
     @accordion_id  = html_attributes[:id]
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(classes:, html_attributes:)
   end
 
 private

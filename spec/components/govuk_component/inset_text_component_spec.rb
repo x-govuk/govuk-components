@@ -4,7 +4,7 @@ RSpec.describe(GovukComponent::InsetTextComponent, type: :component) do
   let(:component_css_class) { 'govuk-inset-text' }
 
   let(:text) { 'Bake him away, toys.' }
-  let(:kwargs) { { text: text } }
+  let(:kwargs) { { text: } }
 
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
@@ -14,7 +14,7 @@ RSpec.describe(GovukComponent::InsetTextComponent, type: :component) do
     before { render_inline(described_class.new(**kwargs)) }
 
     specify 'the text is rendered' do
-      expect(rendered_content).to have_tag('div', with: { class: component_css_class }, text: text)
+      expect(rendered_content).to have_tag('div', with: { class: component_css_class }, text:)
     end
   end
 
@@ -39,7 +39,7 @@ RSpec.describe(GovukComponent::InsetTextComponent, type: :component) do
     before { render_inline(described_class.new(**kwargs.merge(id: custom_id))) }
 
     specify 'the text is rendered with the custom id' do
-      expect(rendered_content).to have_tag('div', with: { id: custom_id, class: component_css_class }, text: text)
+      expect(rendered_content).to have_tag('div', with: { id: custom_id, class: component_css_class }, text:)
     end
   end
 end

@@ -15,11 +15,11 @@ module GovukComponent
       @hidden        = hidden
       @hide_in_print = hide_in_print
 
-      super(classes: classes, html_attributes: html_attributes)
+      super(classes:, html_attributes:)
     end
 
     def call
-      tag.div(role: "region", aria: { label: aria_label }, data: { nosnippet: true }, hidden: hidden, **html_attributes) do
+      tag.div(role: "region", aria: { label: aria_label }, data: { nosnippet: true }, hidden:, **html_attributes) do
         safe_join(messages)
       end
     end

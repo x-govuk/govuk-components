@@ -5,12 +5,12 @@ class GovukComponent::SummaryListComponent::RowComponent < GovukComponent::Base
   renders_one :value, GovukComponent::SummaryListComponent::ValueComponent
   renders_many :actions, ->(href: nil, text: 'Change', visually_hidden_text: false, classes: [], html_attributes: {}, &block) do
     GovukComponent::SummaryListComponent::ActionComponent.new(
-      href: href,
-      text: text,
-      visually_hidden_text: visually_hidden_text,
-      visually_hidden_action_suffix: visually_hidden_action_suffix,
-      classes: classes,
-      html_attributes: html_attributes,
+      href:,
+      text:,
+      visually_hidden_text:,
+      visually_hidden_action_suffix:,
+      classes:,
+      html_attributes:,
       &block
     )
   end
@@ -19,7 +19,7 @@ class GovukComponent::SummaryListComponent::RowComponent < GovukComponent::Base
     @show_actions_column = show_actions_column
     @visually_hidden_action_suffix = visually_hidden_action_suffix
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(classes:, html_attributes:)
   end
 
   def call

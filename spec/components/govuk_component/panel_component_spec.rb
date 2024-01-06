@@ -5,7 +5,7 @@ RSpec.describe(GovukComponent::PanelComponent, type: :component) do
 
   let(:title_text) { 'Springfield' }
   let(:text) { 'A noble spirit embiggens the smallest man' }
-  let(:kwargs) { { title_text: title_text, text: text } }
+  let(:kwargs) { { title_text:, text: } }
 
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
@@ -16,7 +16,7 @@ RSpec.describe(GovukComponent::PanelComponent, type: :component) do
 
     expect(rendered_content).to have_tag('div', with: { class: %w(govuk-panel govuk-panel--confirmation) }) do
       with_tag('h1', with: { class: 'govuk-panel__title' }, text: title_text)
-      with_tag('div', with: { class: 'govuk-panel__body' }, text: text)
+      with_tag('div', with: { class: 'govuk-panel__body' }, text:)
     end
   end
 
@@ -52,7 +52,7 @@ RSpec.describe(GovukComponent::PanelComponent, type: :component) do
     specify 'contains a panel with no title and the text' do
       expect(rendered_content).to have_tag('div', with: { class: %w(govuk-panel govuk-panel--confirmation) }) do
         without_tag('h1', with: { class: 'govuk-panel__title' }, text: title_text)
-        with_tag('div', with: { class: 'govuk-panel__body' }, text: text)
+        with_tag('div', with: { class: 'govuk-panel__body' }, text:)
       end
     end
   end
@@ -72,7 +72,7 @@ RSpec.describe(GovukComponent::PanelComponent, type: :component) do
     specify 'contains a panel with the title and no text' do
       expect(rendered_content).to have_tag('div', with: { class: %w(govuk-panel govuk-panel--confirmation) }) do
         with_tag('h1', with: { class: 'govuk-panel__title' }, text: title_text)
-        without_tag('div', with: { class: 'govuk-panel__body' }, text: text)
+        without_tag('div', with: { class: 'govuk-panel__body' }, text:)
       end
     end
   end

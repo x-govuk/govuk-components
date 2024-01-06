@@ -48,7 +48,7 @@ RSpec.describe(GovukComponent::NotificationBannerComponent, type: :component) do
 
     context "when supplied with some text" do
       let(:text) { "Some custom text" }
-      let(:kwargs) { { title_text: title, text: text } }
+      let(:kwargs) { { title_text: title, text: } }
 
       subject! { render_inline(described_class.new(**kwargs)) }
 

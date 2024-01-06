@@ -10,11 +10,11 @@ class GovukComponent::CookieBannerComponent::MessageComponent < GovukComponent::
     @hidden       = hidden
     @role         = role
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(classes:, html_attributes:)
   end
 
   def call
-    tag.div(role: role, hidden: hidden, **html_attributes) do
+    tag.div(role:, hidden:, **html_attributes) do
       safe_join([
         tag.div(class: "#{brand}-grid-row") do
           tag.div(class: "#{brand}-grid-column-two-thirds") { safe_join([heading_element, message_element]) }

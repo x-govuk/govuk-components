@@ -4,7 +4,7 @@ RSpec.describe(GovukComponent::DetailsComponent, type: :component) do
   let(:component_css_class) { 'govuk-details' }
   let(:summary_text) { 'The new Ribwich' }
   let(:text) { 'Now without lettuce' }
-  let(:kwargs) { { summary_text: summary_text, text: text } }
+  let(:kwargs) { { summary_text:, text: } }
 
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
@@ -19,7 +19,7 @@ RSpec.describe(GovukComponent::DetailsComponent, type: :component) do
           with_tag('span', with: { class: 'govuk-details__summary-text' }, text: summary_text)
         end
 
-        with_tag('div', with: { class: 'govuk-details__text' }, text: text)
+        with_tag('div', with: { class: 'govuk-details__text' }, text:)
       end
     end
   end

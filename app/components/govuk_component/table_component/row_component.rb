@@ -1,16 +1,16 @@
 class GovukComponent::TableComponent::RowComponent < GovukComponent::Base
   renders_many :cells, ->(scope: nil, header: nil, text: nil, numeric: false, width: nil, rowspan: nil, colspan: nil, classes: [], html_attributes: {}, &block) do
     GovukComponent::TableComponent::CellComponent.new(
-      scope: scope,
-      header: header,
-      text: text,
-      numeric: numeric,
-      width: width,
-      parent: parent,
-      rowspan: rowspan,
-      colspan: colspan,
-      classes: classes,
-      html_attributes: html_attributes,
+      scope:,
+      header:,
+      text:,
+      numeric:,
+      width:,
+      parent:,
+      rowspan:,
+      colspan:,
+      classes:,
+      html_attributes:,
       &block
     )
   end
@@ -21,7 +21,7 @@ class GovukComponent::TableComponent::RowComponent < GovukComponent::Base
     @first_cell_is_header = first_cell_is_header
     @parent = parent
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(classes:, html_attributes:)
 
     build_cells_from_cell_data(cell_data)
   end

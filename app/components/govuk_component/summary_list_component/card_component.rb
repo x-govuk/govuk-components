@@ -8,7 +8,7 @@ class GovukComponent::SummaryListComponent::CardComponent < GovukComponent::Base
     @title = title
     actions.each { |a| with_action { a } } if actions.any?
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(classes:, html_attributes:)
   end
 
 private

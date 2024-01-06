@@ -66,8 +66,8 @@ RSpec.describe(GovukComponent::SummaryListComponent::CardComponent, type: :compo
   let(:title) { "Some title" }
 
   subject! do
-    render_inline(described_class.new(title: title)) do |component|
-      component.with_summary_list(rows: rows)
+    render_inline(described_class.new(title:)) do |component|
+      component.with_summary_list(rows:)
     end
   end
 
@@ -91,8 +91,8 @@ RSpec.describe(GovukComponent::SummaryListComponent::CardComponent, type: :compo
     let(:actions) { %w[abc def] }
 
     subject! do
-      render_inline(described_class.new(title: title, actions: actions)) do |component|
-        component.with_summary_list(rows: rows)
+      render_inline(described_class.new(title:, actions:)) do |component|
+        component.with_summary_list(rows:)
       end
     end
 

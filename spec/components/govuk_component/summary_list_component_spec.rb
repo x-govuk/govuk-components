@@ -286,7 +286,7 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
   end
 
   describe "passing data directly into the summary list component" do
-    subject! { render_inline(described_class.new(rows: rows, actions: actions)) }
+    subject! { render_inline(described_class.new(rows:, actions:)) }
     let(:actions) { true }
 
     describe "setting keys, values and actions" do

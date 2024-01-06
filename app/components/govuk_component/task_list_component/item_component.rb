@@ -4,10 +4,10 @@ module GovukComponent
       GovukComponent::TaskListComponent::StatusComponent.new(
         id_prefix: @id_prefix,
         count: @count,
-        text: text,
-        cannot_start_yet: cannot_start_yet,
-        classes: classes,
-        html_attributes: html_attributes,
+        text:,
+        cannot_start_yet:,
+        classes:,
+        html_attributes:,
         &block
       )
     end
@@ -16,11 +16,11 @@ module GovukComponent
       GovukComponent::TaskListComponent::TitleComponent.new(
         id_prefix: @id_prefix,
         count: @count,
-        text: text,
-        href: href,
-        hint: hint,
-        classes: classes,
-        html_attributes: html_attributes,
+        text:,
+        href:,
+        hint:,
+        classes:,
+        html_attributes:,
         &block
       )
     end
@@ -36,7 +36,7 @@ module GovukComponent
       @id_prefix  = id_prefix
       @count      = count
 
-      super(classes: classes, html_attributes: html_attributes)
+      super(classes:, html_attributes:)
     end
 
     def call
@@ -68,7 +68,7 @@ module GovukComponent
     end
 
     def title_attributes
-      { text: raw_title, href: href, hint: hint }
+      { text: raw_title, href:, hint: }
     end
 
     def html_attributes_with_link_class

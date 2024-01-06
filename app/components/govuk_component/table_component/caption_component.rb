@@ -8,7 +8,7 @@ class GovukComponent::TableComponent::CaptionComponent < GovukComponent::Base
     @text = text
     @size = size
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(classes:, html_attributes:)
   end
 
   def call

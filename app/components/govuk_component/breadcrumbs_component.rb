@@ -13,7 +13,7 @@ class GovukComponent::BreadcrumbsComponent < GovukComponent::Base
     @collapse_on_mobile = collapse_on_mobile
     @inverse            = inverse
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(classes:, html_attributes:)
   end
 
 private

@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe(GovukComponent::TaskListComponent, type: :component) do
   let(:component_css_class) { 'govuk-task-list' }
   let(:id_prefix) { nil }
-  let(:kwargs) { { id_prefix: id_prefix }.compact }
+  let(:kwargs) { { id_prefix: }.compact }
   let(:list_item_one_kwargs) { { title: "One", status: "in progress" } }
   let(:list_item_two_kwargs) { { title: "Two", status: "ok" } }
 
@@ -37,11 +37,11 @@ RSpec.describe(GovukComponent::TaskListComponent, type: :component) do
       context "when href is present" do
         let(:href) { "/item-one" }
         let(:title) { "One" }
-        let(:list_item_one_kwargs) { { title: title, href: href } }
+        let(:list_item_one_kwargs) { { title:, href: } }
 
         specify "a link is rendered with the correct attributes" do
           expect(rendered_content).to have_tag("li", with: { class: %(govuk-task-list__item govuk-task-list__item--with-link) }) do
-            with_tag("a", with: { class: %w(govuk-link govuk-task-list__link), href: href }, text: title)
+            with_tag("a", with: { class: %w(govuk-link govuk-task-list__link), href: }, text: title)
           end
         end
       end
@@ -167,7 +167,7 @@ RSpec.describe(GovukComponent::TaskListComponent, type: :component) do
           helper.safe_join(
             [
               item.with_title(text: title_text, hint: hint_text),
-              item.with_status(text: status_text, cannot_start_yet: cannot_start_yet),
+              item.with_status(text: status_text, cannot_start_yet:),
             ]
           )
         end
@@ -217,7 +217,7 @@ RSpec.describe(GovukComponent::TaskListComponent, type: :component) do
 
     subject! do
       render_inline(GovukComponent::TaskListComponent.new(**kwargs)) do |task_list|
-        task_list.with_item(title: "Sample", status: status)
+        task_list.with_item(title: "Sample", status:)
       end
     end
 
@@ -252,7 +252,7 @@ RSpec.describe(GovukComponent::TaskListComponent, type: :component) do
 
     subject! do
       render_inline(GovukComponent::TaskListComponent.new(**kwargs)) do |task_list|
-        task_list.with_item(title: "A thing", href: href, status: "Alright", hint: hint)
+        task_list.with_item(title: "A thing", href:, status: "Alright", hint:)
       end
     end
 

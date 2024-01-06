@@ -6,7 +6,7 @@ class GovukComponent::StartButtonComponent < GovukComponent::Base
     @href = href
     @as_button = as_button
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(classes:, html_attributes:)
   end
 
   def call

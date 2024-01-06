@@ -25,7 +25,7 @@ class GovukComponent::TableComponent::CellComponent < GovukComponent::Base
     @rowspan = rowspan
     @header  = (header.nil?) ? in_thead? : header
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(classes:, html_attributes:)
   end
 
   def call
@@ -51,11 +51,11 @@ private
   end
 
   def default_attributes
-    { class: default_classes, scope: determine_scope, colspan: colspan, rowspan: rowspan }.compact
+    { class: default_classes, scope: determine_scope, colspan:, rowspan: }.compact
   end
 
   def determine_scope
-    conditions = { scope: scope, parent: parent, header: header, auto_table_scopes: config.enable_auto_table_scopes }
+    conditions = { scope:, parent:, header:, auto_table_scopes: config.enable_auto_table_scopes }
 
     case conditions
     in { scope: String }

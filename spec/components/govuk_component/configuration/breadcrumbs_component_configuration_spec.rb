@@ -4,7 +4,7 @@ RSpec.describe(GovukComponent::BreadcrumbsComponent, type: :component) do
   let(:href) { 'https://www.gov.uk/government/organisations/department-for-education' }
   let(:link_text) { 'Organisations' }
   let(:breadcrumbs) { { link_text => href } }
-  let(:kwargs) { { breadcrumbs: breadcrumbs } }
+  let(:kwargs) { { breadcrumbs: } }
   let(:component_css_class) { 'govuk-breadcrumbs' }
 
   describe 'configuration' do
@@ -27,7 +27,7 @@ RSpec.describe(GovukComponent::BreadcrumbsComponent, type: :component) do
           'div',
           with: { class: [component_css_class, collapse_on_mobile_css_class] },
         ) do
-          with_tag('a', text: link_text, with: { href: href })
+          with_tag('a', text: link_text, with: { href: })
         end
       end
     end
@@ -49,7 +49,7 @@ RSpec.describe(GovukComponent::BreadcrumbsComponent, type: :component) do
           'div',
           with: { class: [component_css_class, hide_in_print_css_class] },
         ) do
-          with_tag('a', text: link_text, with: { href: href })
+          with_tag('a', text: link_text, with: { href: })
         end
       end
     end

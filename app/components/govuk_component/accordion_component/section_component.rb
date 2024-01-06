@@ -13,7 +13,7 @@ class GovukComponent::AccordionComponent::SectionComponent < GovukComponent::Bas
     @heading_level = heading_level
     @accordion_id  = accordion_id
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(classes:, html_attributes:)
   end
 
   def id(suffix: nil)

@@ -9,11 +9,11 @@ class GovukComponent::PanelComponent < GovukComponent::Base
     @text          = text
     @id            = id
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(classes:, html_attributes:)
   end
 
   def call
-    tag.div(id: id, **html_attributes) do
+    tag.div(id:, **html_attributes) do
       safe_join([panel_title, panel_body].compact)
     end
   end

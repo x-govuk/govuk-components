@@ -4,8 +4,8 @@ module GovukLinkHelper
   using HTMLAttributesUtils
 
   def govuk_link_to(name, href = nil, new_tab: false, inverse: false, muted: false, no_underline: false, no_visited_state: false, text_colour: false, visually_hidden_prefix: nil, visually_hidden_suffix: nil, **kwargs, &block)
-    link_args = extract_link_args(new_tab: new_tab, inverse: inverse, muted: muted, no_underline: no_underline, no_visited_state: no_visited_state, text_colour: text_colour, **kwargs)
-    link_text = build_text(name, visually_hidden_prefix: visually_hidden_prefix, visually_hidden_suffix: visually_hidden_suffix)
+    link_args = extract_link_args(new_tab:, inverse:, muted:, no_underline:, no_visited_state:, text_colour:, **kwargs)
+    link_text = build_text(name, visually_hidden_prefix:, visually_hidden_suffix:)
 
     if block_given?
       link_to(link_text, **link_args, &block)
@@ -15,15 +15,15 @@ module GovukLinkHelper
   end
 
   def govuk_mail_to(email_address, name = nil, new_tab: false, inverse: false, muted: false, no_underline: false, no_visited_state: false, text_colour: false, visually_hidden_prefix: nil, visually_hidden_suffix: nil, **kwargs, &block)
-    link_args = extract_link_args(new_tab: new_tab, inverse: inverse, muted: muted, no_underline: no_underline, no_visited_state: no_visited_state, text_colour: text_colour, **kwargs)
-    link_text = build_text(name, visually_hidden_prefix: visually_hidden_prefix, visually_hidden_suffix: visually_hidden_suffix)
+    link_args = extract_link_args(new_tab:, inverse:, muted:, no_underline:, no_visited_state:, text_colour:, **kwargs)
+    link_text = build_text(name, visually_hidden_prefix:, visually_hidden_suffix:)
 
     mail_to(email_address, link_text, **link_args, &block)
   end
 
   def govuk_button_to(name, href = nil, disabled: false, inverse: false, secondary: false, warning: false, visually_hidden_prefix: nil, visually_hidden_suffix: nil, **kwargs, &block)
-    button_args = extract_button_args(new_tab: false, disabled: disabled, inverse: inverse, secondary: secondary, warning: warning, **kwargs)
-    button_text = build_text(name, visually_hidden_prefix: visually_hidden_prefix, visually_hidden_suffix: visually_hidden_suffix)
+    button_args = extract_button_args(new_tab: false, disabled:, inverse:, secondary:, warning:, **kwargs)
+    button_text = build_text(name, visually_hidden_prefix:, visually_hidden_suffix:)
 
     if block_given?
       button_to(name, **button_args, &block)
@@ -33,8 +33,8 @@ module GovukLinkHelper
   end
 
   def govuk_button_link_to(name, href = nil, new_tab: false, disabled: false, inverse: false, secondary: false, warning: false, visually_hidden_prefix: nil, visually_hidden_suffix: nil, **kwargs, &block)
-    button_args = extract_button_link_args(new_tab: new_tab, disabled: disabled, inverse: inverse, secondary: secondary, warning: warning, **kwargs)
-    button_text = build_text(name, visually_hidden_prefix: visually_hidden_prefix, visually_hidden_suffix: visually_hidden_suffix)
+    button_args = extract_button_link_args(new_tab:, disabled:, inverse:, secondary:, warning:, **kwargs)
+    button_text = build_text(name, visually_hidden_prefix:, visually_hidden_suffix:)
 
     if block_given?
       link_to(name, **button_args, &block)
@@ -91,7 +91,7 @@ private
     Rails.logger.warn(actions_warning_message(kwargs.fetch(:action))) if kwargs.key?(:action)
     Rails.logger.warn(controller_warning_message(kwargs.fetch(:controller))) if kwargs.key?(:controller)
 
-    link_classes = extract_link_classes(inverse: inverse, muted: muted, no_underline: no_underline, no_visited_state: no_visited_state, text_colour: text_colour)
+    link_classes = extract_link_classes(inverse:, muted:, no_underline:, no_visited_state:, text_colour:)
 
     { **link_classes, **new_tab_args(new_tab) }.deep_merge_html_attributes(kwargs)
   end
@@ -100,13 +100,13 @@ private
     Rails.logger.warn(actions_warning_message(kwargs.fetch(:action))) if kwargs.key?(:action)
     Rails.logger.warn(controller_warning_message(kwargs.fetch(:controller))) if kwargs.key?(:controller)
 
-    button_classes = extract_button_classes(inverse: inverse, secondary: secondary, warning: warning)
+    button_classes = extract_button_classes(inverse:, secondary:, warning:)
 
     { **button_classes, **button_attributes(disabled), **new_tab_args(new_tab) }.deep_merge_html_attributes(kwargs)
   end
 
   def extract_button_args(disabled: false, inverse: false, secondary: false, warning: false, **kwargs)
-    button_classes = extract_button_classes(inverse: inverse, secondary: secondary, warning: warning)
+    button_classes = extract_button_classes(inverse:, secondary:, warning:)
 
     { **button_classes, **button_attributes(disabled) }.deep_merge_html_attributes(kwargs)
   end
@@ -114,11 +114,11 @@ private
   def extract_link_classes(inverse: false, muted: false, no_underline: false, no_visited_state: false, text_colour: false)
     {
       class: govuk_link_classes(
-        inverse: inverse,
-        muted: muted,
-        no_underline: no_underline,
-        no_visited_state: no_visited_state,
-        text_colour: text_colour,
+        inverse:,
+        muted:,
+        no_underline:,
+        no_visited_state:,
+        text_colour:,
       )
     }
   end
@@ -126,9 +126,9 @@ private
   def extract_button_classes(inverse: false, secondary: false, warning: false)
     {
       class: govuk_button_classes(
-        inverse: inverse,
-        secondary: secondary,
-        warning: warning
+        inverse:,
+        secondary:,
+        warning:
       )
     }
   end

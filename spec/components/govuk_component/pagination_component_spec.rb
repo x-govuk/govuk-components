@@ -4,12 +4,12 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
   let(:count) { 30 }
   let(:items) { 5 }
   let(:size) { [1, 2, 2, 1] }
-  let(:defaults) { { count: count, items: items, size: size } }
+  let(:defaults) { { count:, items:, size: } }
   let(:current_page) { 2 }
   let(:pagy) { Pagy.new(page: current_page, **defaults) }
   let(:component_css_class) { 'govuk-pagination' }
 
-  let(:kwargs) { { pagy: pagy } }
+  let(:kwargs) { { pagy: } }
 
   subject! { render_inline(GovukComponent::PaginationComponent.new(**kwargs)) }
 
@@ -63,7 +63,7 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
 
   context "when the landmark_label is overridden" do
     let(:custom_landmark_label) { "Events" }
-    let(:kwargs) { { pagy: pagy, landmark_label: custom_landmark_label } }
+    let(:kwargs) { { pagy:, landmark_label: custom_landmark_label } }
 
     specify "replaces the default landmark label with the custom one" do
       expect(rendered_content).to have_tag("nav", with: { "aria-label" => custom_landmark_label })
@@ -424,7 +424,7 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
     context "when the next text is overridden" do
       let(:next_text) { "Proceed" }
 
-      subject! { render_inline(GovukComponent::PaginationComponent.new(next_text: next_text, pagy: pagy)) }
+      subject! { render_inline(GovukComponent::PaginationComponent.new(next_text:, pagy:)) }
 
       specify "the text value should be set correctly" do
         expect(rendered_content).to have_tag("div", with: { class: "govuk-pagination__next" }, text: next_text)
@@ -434,7 +434,7 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
     context "when the previous text is overridden" do
       let(:previous_text) { "Regress" }
 
-      subject! { render_inline(GovukComponent::PaginationComponent.new(previous_text: previous_text, pagy: pagy)) }
+      subject! { render_inline(GovukComponent::PaginationComponent.new(previous_text:, pagy:)) }
 
       specify "the text value should be set correctly" do
         expect(rendered_content).to have_tag("div", with: { class: "govuk-pagination__prev" }, text: previous_text)

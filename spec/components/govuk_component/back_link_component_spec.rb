@@ -3,30 +3,30 @@ require 'spec_helper'
 RSpec.describe(GovukComponent::BackLinkComponent, type: :component) do
   let(:default_text) { 'Back' }
   let(:href) { 'https://www.gov.uk/government/organisations/department-for-education' }
-  let(:kwargs) { { href: href } }
+  let(:kwargs) { { href: } }
   let(:component_css_class) { 'govuk-back-link' }
 
   subject! { render_inline(GovukComponent::BackLinkComponent.new(**kwargs)) }
 
   specify 'renders a link with the right href and text' do
-    expect(rendered_content).to have_tag('a', text: default_text, with: { href: href, class: component_css_class })
+    expect(rendered_content).to have_tag('a', text: default_text, with: { href:, class: component_css_class })
   end
 
   context 'when custom text is provided via the text argument' do
     let(:custom_text) { 'Department for Education' }
-    let(:kwargs) { { href: href, text: custom_text } }
+    let(:kwargs) { { href:, text: custom_text } }
 
     specify 'renders the component with custom text' do
-      expect(rendered_content).to have_tag('a', with: { href: href, class: component_css_class }, text: custom_text)
+      expect(rendered_content).to have_tag('a', with: { href:, class: component_css_class }, text: custom_text)
     end
   end
 
   context 'when back link colours are inverted' do
-    let(:kwargs) { { href: href, inverse: true } }
+    let(:kwargs) { { href:, inverse: true } }
     let(:expected_classes) { [component_css_class, "govuk-back-link--inverse"] }
 
     specify 'renders the component with the inverted colour class present' do
-      expect(rendered_content).to have_tag('a', with: { href: href, class: expected_classes }, text: default_text)
+      expect(rendered_content).to have_tag('a', with: { href:, class: expected_classes }, text: default_text)
     end
   end
 
@@ -34,13 +34,13 @@ RSpec.describe(GovukComponent::BackLinkComponent, type: :component) do
     let(:custom_text) { "Some text" }
     let(:custom_tag) { :code }
     subject! do
-      render_inline(GovukComponent::BackLinkComponent.new(href: href)) do
+      render_inline(GovukComponent::BackLinkComponent.new(href:)) do
         helper.content_tag(custom_tag, custom_text)
       end
     end
 
     specify 'renders the component with custom tag and text' do
-      expect(rendered_content).to have_tag('a', with: { href: href, class: component_css_class }) do
+      expect(rendered_content).to have_tag('a', with: { href:, class: component_css_class }) do
         with_tag(custom_tag, text: custom_text)
       end
     end

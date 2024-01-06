@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
   let(:pagy) { Pagy.new(page: 2, count: 20, items: 5, size: [1, 1, 1, 1]) }
-  let(:kwargs) { { pagy: pagy } }
+  let(:kwargs) { { pagy: } }
 
   describe "configuration" do
     after { Govuk::Components.reset! }
