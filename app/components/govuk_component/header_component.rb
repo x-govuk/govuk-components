@@ -29,7 +29,7 @@ class GovukComponent::HeaderComponent < GovukComponent::Base
     @navigation_label          = navigation_label
     @custom_container_classes  = container_classes
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(classes:, html_attributes:)
   end
 
 private
@@ -57,7 +57,7 @@ private
       @options         = options
       @active_override = active
 
-      super(classes: classes, html_attributes: html_attributes)
+      super(classes:, html_attributes:)
     end
 
     def before_render
@@ -104,7 +104,7 @@ private
     def initialize(name: nil, html_attributes: {}, classes: [])
       @name = name
 
-      super(classes: classes, html_attributes: html_attributes)
+      super(classes:, html_attributes:)
     end
 
     def render?

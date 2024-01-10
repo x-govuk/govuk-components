@@ -9,12 +9,12 @@ class GovukComponent::PaginationComponent::AdjacentPage < GovukComponent::Base
     @block_mode           = block_mode
     @suffix               = suffix
 
-    super(html_attributes: html_attributes, classes: classes)
+    super(html_attributes:, classes:)
   end
 
   def call
     tag.div(**html_attributes) do
-      tag.a(href: href, class: ["#{brand}-link", "#{brand}-pagination__link"], rel: suffix) do
+      tag.a(href:, class: ["#{brand}-link", "#{brand}-pagination__link"], rel: suffix) do
         safe_join([body, divider, label_content])
       end
     end

@@ -21,9 +21,9 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
 
   let(:all_kwargs) do
     {
-      homepage_url: homepage_url,
-      service_name: service_name,
-      service_url: service_url
+      homepage_url:,
+      service_name:,
+      service_url:
     }
   end
   let(:kwargs) { all_kwargs }

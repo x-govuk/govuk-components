@@ -5,7 +5,7 @@ RSpec.describe(GovukComponent::StartButtonComponent, type: :component) do
   let(:text) { 'Department for Education' }
   let(:href) { 'https://www.gov.uk/government/organisations/department-for-education' }
   let(:as_button) { false }
-  let(:kwargs) { { text: text, href: href, as_button: as_button } }
+  let(:kwargs) { { text:, href:, as_button: } }
 
   before do
     allow_any_instance_of(GovukComponent::StartButtonComponent)
@@ -17,7 +17,7 @@ RSpec.describe(GovukComponent::StartButtonComponent, type: :component) do
   context 'as a link' do
     specify 'renders a link element with the right text and href' do
       expected_classes = %w(govuk-button govuk-button--start)
-      expect(rendered_content).to have_tag('a', text: text, with: { class: expected_classes })
+      expect(rendered_content).to have_tag('a', text:, with: { class: expected_classes })
     end
 
     specify 'the link contains an SVG chevron' do
@@ -46,7 +46,7 @@ RSpec.describe(GovukComponent::StartButtonComponent, type: :component) do
 
     specify 'renders a button element with the right text and href' do
       expected_classes = %w(govuk-button govuk-button--start)
-      expect(rendered_content).to have_tag('button', text: text, with: { class: expected_classes })
+      expect(rendered_content).to have_tag('button', text:, with: { class: expected_classes })
     end
 
     specify 'the link contains an SVG chevron' do

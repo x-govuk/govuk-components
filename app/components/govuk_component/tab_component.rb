@@ -9,13 +9,13 @@ class GovukComponent::TabComponent < GovukComponent::Base
     @title = title
     @id    = id
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(classes:, html_attributes:)
   end
 
 private
 
   def default_attributes
-    { id: id, class: "#{brand}-tabs", data: { module: "#{brand}-tabs" } }
+    { id:, class: "#{brand}-tabs", data: { module: "#{brand}-tabs" } }
   end
 
   class Tab < GovukComponent::Base
@@ -25,7 +25,7 @@ private
       @label = label
       @text  = h(text)
 
-      super(classes: classes, html_attributes: html_attributes)
+      super(classes:, html_attributes:)
     end
 
     def id(prefix: nil)
@@ -47,7 +47,7 @@ private
     end
 
     def default_attributes
-      { id: id, class: "#{brand}-tabs__panel" }
+      { id:, class: "#{brand}-tabs__panel" }
     end
 
     def combined_attributes(i)

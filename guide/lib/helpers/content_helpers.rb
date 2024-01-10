@@ -5,8 +5,8 @@ module Helpers
       rows = component_helper_mapping.to_a.map { |v| v.map { |c| "<code>#{c}</code>".html_safe } }
 
       GovukComponent::TableComponent.new(
-        head: head,
-        rows: rows,
+        head:,
+        rows:,
         caption: "Component to helper mappings"
       )
     end

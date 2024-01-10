@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe(GovukComponent::TagComponent, type: :component) do
   let(:text) { 'Alert' }
-  let(:kwargs) { { text: text } }
+  let(:kwargs) { { text: } }
   let(:component_css_class) { 'govuk-tag' }
 
   let(:default_colour) { "green" }

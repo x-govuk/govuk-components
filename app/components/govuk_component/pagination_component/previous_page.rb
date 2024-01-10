@@ -2,12 +2,12 @@ class GovukComponent::PaginationComponent::PreviousPage < GovukComponent::Pagina
   def initialize(href:, text:, label_text: nil, block_mode: true, classes: [], html_attributes: {})
     super(
       suffix: "prev",
-      text: text,
-      href: href,
-      label_text: label_text,
-      block_mode: block_mode,
-      classes: classes,
-      html_attributes: html_attributes
+      text:,
+      href:,
+      label_text:,
+      block_mode:,
+      classes:,
+      html_attributes:
     )
   end
 

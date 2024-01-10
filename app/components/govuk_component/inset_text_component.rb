@@ -5,11 +5,11 @@ class GovukComponent::InsetTextComponent < GovukComponent::Base
     @text = text
     @id   = id
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(classes:, html_attributes:)
   end
 
   def call
-    tag.div(id: id, **html_attributes) { inset_text_content }
+    tag.div(id:, **html_attributes) { inset_text_content }
   end
 
   def render?

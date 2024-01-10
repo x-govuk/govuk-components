@@ -78,7 +78,7 @@ RSpec.describe(GovukComponent::ExitThisPageComponent, type: :component) do
 
     describe "activated_text" do
       let(:activated_text) { 'Exiting the page now' }
-      let(:kwargs) { { activated_text: activated_text } }
+      let(:kwargs) { { activated_text: } }
 
       specify "adds the i18n data attribute for activated text" do
         expect(element.attributes["data-i18n.activated"].value).to eql(activated_text)
@@ -87,7 +87,7 @@ RSpec.describe(GovukComponent::ExitThisPageComponent, type: :component) do
 
     describe "timed_out_text" do
       let(:timed_out_text) { 'Unfortunately Exit this page has expired.' }
-      let(:kwargs) { { timed_out_text: timed_out_text } }
+      let(:kwargs) { { timed_out_text: } }
 
       specify "adds the i18n data attribute for timed out" do
         expect(element.attributes["data-i18n.timed-out"].value).to eql(timed_out_text)
@@ -96,7 +96,7 @@ RSpec.describe(GovukComponent::ExitThisPageComponent, type: :component) do
 
     describe "press_two_more_times_text" do
       let(:press_two_more_times_text) { 'Shift, press 2 more times to leave.' }
-      let(:kwargs) { { press_two_more_times_text: press_two_more_times_text } }
+      let(:kwargs) { { press_two_more_times_text: } }
 
       specify "adds the i18n data attribute for press two more times" do
         expect(element.attributes["data-i18n.press-two-more-times"].value).to eql(press_two_more_times_text)
@@ -105,7 +105,7 @@ RSpec.describe(GovukComponent::ExitThisPageComponent, type: :component) do
 
     describe "press_one_more_time_text" do
       let(:press_one_more_time_text) { 'Shift, press 1 more times to leave.' }
-      let(:kwargs) { { press_one_more_time_text: press_one_more_time_text } }
+      let(:kwargs) { { press_one_more_time_text: } }
 
       specify "adds the i18n data attribute for press one more time" do
         expect(element.attributes["data-i18n.press-one-more-time"].value).to eql(press_one_more_time_text)

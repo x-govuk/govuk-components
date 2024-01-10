@@ -2,14 +2,14 @@ require 'spec_helper'
 
 RSpec.describe(GovukComponent::TagComponent, type: :component) do
   let(:text) { 'Alert' }
-  let(:kwargs) { { text: text } }
+  let(:kwargs) { { text: } }
   let(:component_css_class) { 'govuk-tag' }
 
   describe 'content' do
     subject! { render_inline(GovukComponent::TagComponent.new(**kwargs)) }
 
     specify 'renders strong element with right class and text' do
-      expect(rendered_content).to have_tag('strong', with: { class: component_css_class }, text: text)
+      expect(rendered_content).to have_tag('strong', with: { class: component_css_class }, text:)
     end
 
     context 'when content is supplied in a block' do
@@ -43,13 +43,13 @@ RSpec.describe(GovukComponent::TagComponent, type: :component) do
 
       GovukComponent::TagComponent::COLOURS.each do |colour|
         context %('colour: #{colour}') do
-          let(:kwargs) { { text: text, colour: colour } }
+          let(:kwargs) { { text:, colour: } }
 
           specify %(adds class .govuk-colour--#{colour}) do
             expect(rendered_content).to have_tag(
               'strong',
               with: { class: [component_css_class, "govuk-tag--#{colour}"] },
-              text: text
+              text:
             )
           end
         end
@@ -58,7 +58,7 @@ RSpec.describe(GovukComponent::TagComponent, type: :component) do
 
     context 'when invalid colours are provided' do
       let(:invalid_colour) { 'hotdog' }
-      subject { render_inline(GovukComponent::TagComponent.new(text: text, colour: invalid_colour)) }
+      subject { render_inline(GovukComponent::TagComponent.new(text:, colour: invalid_colour)) }
 
       specify %(raises an error when colour isn't supported) do
         expect { subject }.to raise_error(ArgumentError, /invalid tag colour/)

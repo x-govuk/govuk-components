@@ -22,7 +22,7 @@ class GovukComponent::PaginationComponent::Item < GovukComponent::Base
     # ignored
     @mode = from_pagy ? pagy_mode(number) : manual_mode(ellipsis, current)
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(classes:, html_attributes:)
   end
 
   def call
@@ -56,7 +56,7 @@ private
     attributes = html_attributes.tap { |ha| ha[:class] << "#{brand}-pagination__item--current" if current }
 
     tag.li(**attributes) do
-      tag.a(href: href, class: ["#{brand}-link", "#{brand}-pagination__link"]) { number.to_s }
+      tag.a(href:, class: ["#{brand}-link", "#{brand}-pagination__link"]) { number.to_s }
     end
   end
 

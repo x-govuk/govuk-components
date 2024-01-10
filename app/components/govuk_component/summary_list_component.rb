@@ -6,8 +6,8 @@ module GovukComponent
       GovukComponent::SummaryListComponent::RowComponent.new(
         show_actions_column: @show_actions_column,
         visually_hidden_action_suffix: visually_hidden_action_suffix || card&.title,
-        classes: classes,
-        html_attributes: html_attributes,
+        classes:,
+        html_attributes:,
         &block
       )
     end
@@ -18,7 +18,7 @@ module GovukComponent
       @card                          = GovukComponent::SummaryListComponent::CardComponent.new(**card) if card.present?
       @visually_hidden_action_suffix = visually_hidden_action_suffix
 
-      super(classes: classes, html_attributes: html_attributes)
+      super(classes:, html_attributes:)
 
       return unless rows.presence
 

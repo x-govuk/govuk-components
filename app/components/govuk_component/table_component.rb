@@ -14,7 +14,7 @@ module GovukComponent
       @first_cell_is_header = first_cell_is_header
       @caption_text         = caption
 
-      super(classes: classes, html_attributes: html_attributes)
+      super(classes:, html_attributes:)
 
       # when no rows are passed in it's likely we're taking the slot approach
       return unless rows.presence
@@ -32,12 +32,12 @@ module GovukComponent
     def build(head_data, body_data, foot_data, caption_text)
       with_caption(text: caption_text)
       with_head(rows: [head_data])
-      with_body(rows: body_data, first_cell_is_header: first_cell_is_header)
-      with_foot(rows: foot_data, first_cell_is_header: first_cell_is_header)
+      with_body(rows: body_data, first_cell_is_header:)
+      with_foot(rows: foot_data, first_cell_is_header:)
     end
 
     def default_attributes
-      { id: id, class: "#{brand}-table" }
+      { id:, class: "#{brand}-table" }
     end
   end
 end

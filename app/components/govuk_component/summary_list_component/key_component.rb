@@ -4,7 +4,7 @@ class GovukComponent::SummaryListComponent::KeyComponent < GovukComponent::Base
   def initialize(text: nil, classes: [], html_attributes: {})
     @text = text
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(classes:, html_attributes:)
   end
 
   def call

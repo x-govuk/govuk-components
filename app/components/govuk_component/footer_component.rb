@@ -31,7 +31,7 @@ class GovukComponent::FooterComponent < GovukComponent::Base
     @custom_container_classes         = container_classes
     @custom_container_html_attributes = container_html_attributes
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(classes:, html_attributes:)
   end
 
 private

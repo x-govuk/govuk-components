@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe(GovukComponent::BackLinkComponent, type: :component) do
   let(:href) { 'https://www.gov.uk/government/organisations/department-for-education' }
-  let(:kwargs) { { href: href } }
+  let(:kwargs) { { href: } }
   let(:component_css_class) { 'govuk-back-link' }
 
   describe 'configuration' do
@@ -22,7 +22,7 @@ RSpec.describe(GovukComponent::BackLinkComponent, type: :component) do
       specify 'renders the component with overriden default text' do
         expect(rendered_content).to have_tag(
           'a',
-          with: { href: href, class: component_css_class },
+          with: { href:, class: component_css_class },
           text: overriden_default_text
         )
       end

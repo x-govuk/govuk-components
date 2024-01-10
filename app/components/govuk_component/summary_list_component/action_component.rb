@@ -8,7 +8,7 @@ class GovukComponent::SummaryListComponent::ActionComponent < GovukComponent::Ba
       fail(ArgumentError, "missing keyword: visually_hidden_text")
     end
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(classes:, html_attributes:)
     @href = href
     @text = text
     @visually_hidden_action_suffix = visually_hidden_action_suffix

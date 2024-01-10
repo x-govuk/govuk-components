@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe(GovukComponent::WarningTextComponent, type: :component) do
   let(:component_css_class) { 'govuk-warning-text' }
   let(:custom_icon_fallback_text) { 'Informative text goes here' }
-  let(:kwargs) { { text: text } }
+  let(:kwargs) { { text: } }
   let(:text) { 'Some fancy warning' }
 
   subject! { render_inline(GovukComponent::WarningTextComponent.new(**kwargs)) }

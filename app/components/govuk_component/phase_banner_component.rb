@@ -10,7 +10,7 @@ class GovukComponent::PhaseBannerComponent < GovukComponent::Base
     @phase_tag = tag
     @text      = text
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(classes:, html_attributes:)
   end
 
   def phase_tag_component

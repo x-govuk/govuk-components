@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe(GovukComponent::TableComponent::CellComponent, type: :component) do
   let(:text) { 'Content' }
-  let(:kwargs) { { text: text, header: true, parent: 'tbody' } }
+  let(:kwargs) { { text:, header: true, parent: 'tbody' } }
   let(:component_css_class) { 'govuk-table__cell' }
 
   describe 'configuration' do

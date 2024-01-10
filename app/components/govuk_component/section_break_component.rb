@@ -10,7 +10,7 @@ class GovukComponent::SectionBreakComponent < GovukComponent::Base
     @visible = visible
     @size    = size
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(classes:, html_attributes:)
   end
 
   def call

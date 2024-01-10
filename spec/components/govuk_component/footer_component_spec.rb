@@ -66,7 +66,7 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
       end
 
       context "when meta items are provided" do
-        let(:kwargs) { { meta_items_title: heading_text, meta_items: meta_items } }
+        let(:kwargs) { { meta_items_title: heading_text, meta_items: } }
 
         specify "the title should be rendered but visually hidden" do
           expect(rendered_content).to have_tag("h2", text: heading_text, with: { class: "govuk-visually-hidden" })
@@ -78,7 +78,7 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
 
             meta_items.each do |text, href|
               with_tag("li", with: { class: "govuk-footer__inline-list-item" }) do
-                with_tag("a", with: { href: href }, text: text)
+                with_tag("a", with: { href: }, text:)
               end
             end
           end
@@ -93,7 +93,7 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
             { text: "Three", href: "/two" }
           ]
         end
-        let(:kwargs) { { meta_items_title: heading_text, meta_items: meta_items } }
+        let(:kwargs) { { meta_items_title: heading_text, meta_items: } }
 
         specify "each meta item is rendered" do
           expect(rendered_content).to have_tag(selector) do
@@ -164,7 +164,7 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
     end
 
     describe "adding custom content under the meta items list" do
-      let(:kwargs) { { meta_items_title: heading_text, meta_items: meta_items } }
+      let(:kwargs) { { meta_items_title: heading_text, meta_items: } }
 
       subject! do
         render_inline(GovukComponent::FooterComponent.new(**kwargs)) do |footer|
@@ -223,7 +223,7 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
   end
 
   describe "overwriting all meta information entirely with custom content" do
-    let(:kwargs) { { meta_items_title: heading_text, meta_items: meta_items } }
+    let(:kwargs) { { meta_items_title: heading_text, meta_items: } }
 
     subject! do
       render_inline(GovukComponent::FooterComponent.new(**kwargs)) do |footer|
@@ -247,7 +247,7 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
   describe "replacing the default copyright information" do
     let(:copyright_text) { "Copyright goes here" }
     let(:copyright_url) { "https://www.copyright.info" }
-    let(:kwargs) { { copyright_text: copyright_text, copyright_url: copyright_url } }
+    let(:kwargs) { { copyright_text:, copyright_url: } }
 
     specify "the custom copyright text and link are rendered" do
       expect(rendered_content).to have_tag(selector) do

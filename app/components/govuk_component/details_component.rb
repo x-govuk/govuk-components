@@ -9,11 +9,11 @@ class GovukComponent::DetailsComponent < GovukComponent::Base
     @id           = id
     @open         = open
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(classes:, html_attributes:)
   end
 
   def call
-    tag.details(id: id, open: open, **html_attributes) do
+    tag.details(id:, open:, **html_attributes) do
       safe_join([summary, description])
     end
   end

@@ -6,7 +6,7 @@ class GovukComponent::WarningTextComponent < GovukComponent::Base
     @icon = icon
     @icon_fallback_text = icon_fallback_text
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(classes:, html_attributes:)
   end
 
   def call

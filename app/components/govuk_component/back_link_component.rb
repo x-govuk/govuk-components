@@ -6,7 +6,7 @@ class GovukComponent::BackLinkComponent < GovukComponent::Base
     @href = href
     @inverse = inverse
 
-    super(classes: classes, html_attributes: html_attributes)
+    super(classes:, html_attributes:)
   end
 
   def call
