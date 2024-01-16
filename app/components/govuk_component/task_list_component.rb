@@ -31,7 +31,7 @@ module GovukComponent
   private
 
     def default_attributes
-      { class: 'govuk-task-list' }
+      { class: "#{brand}-task-list" }
     end
   end
 end

@@ -64,7 +64,7 @@ module GovukComponent
     end
 
     def default_attributes
-      { class: 'govuk-task-list__item' }
+      { class: "#{brand}-task-list__item" }
     end
 
     def title_attributes
@@ -72,7 +72,7 @@ module GovukComponent
     end
 
     def html_attributes_with_link_class
-      html_attributes.tap { |h| h[:class].append("govuk-task-list__item--with-link") }
+      html_attributes.tap { |h| h[:class].append("#{brand}-task-list__item--with-link") }
     end
 
     def status_attributes
