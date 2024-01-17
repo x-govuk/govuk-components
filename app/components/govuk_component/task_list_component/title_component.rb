@@ -27,15 +27,15 @@ module GovukComponent
     def hint_content
       return if hint.blank?
 
-      tag.div(hint, class: "govuk-task-list__hint", id: hint_id)
+      tag.div(hint, class: "#{brand}-task-list__hint", id: hint_id)
     end
 
     def default_attributes
-      { class: "govuk-task-list__name-and-hint" }
+      { class: "#{brand}-task-list__name-and-hint" }
     end
 
     def link_attributes
-      { class: "govuk-task-list__link", **aria_described_by_attributes }
+      { class: "#{brand}-task-list__link", **aria_described_by_attributes }
     end
 
     def aria_described_by_attributes

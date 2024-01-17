@@ -24,8 +24,8 @@ module GovukComponent
     def default_attributes
       {
         class: class_names(
-          "govuk-task-list__status",
-          "govuk-task-list__status--cannot-start-yet" => cannot_start_yet,
+          "#{brand}-task-list__status",
+          "#{brand}-task-list__status--cannot-start-yet" => cannot_start_yet,
         ),
         id: [id_prefix, count, "status"].compact.join("-"),
       }
