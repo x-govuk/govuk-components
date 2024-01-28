@@ -54,3 +54,5 @@ Gemspec/RequiredRubyVersion:
 Style/MixinUsage:
   Exclude:
     - spec/spec_helper.rb
+Style/ParallelAssignment:
+  Enabled: false
