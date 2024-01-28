@@ -14,8 +14,8 @@ module GovukLinkHelper
     end
   end
 
-  def govuk_mail_to(email_address, name = nil, new_tab: false, inverse: false, muted: false, no_underline: false, no_visited_state: false, text_colour: false, visually_hidden_prefix: nil, visually_hidden_suffix: nil, **kwargs, &block)
-    link_args = extract_link_args(new_tab:, inverse:, muted:, no_underline:, no_visited_state:, text_colour:, **kwargs)
+  def govuk_mail_to(email_address, name = nil, inverse: false, muted: false, no_underline: false, no_visited_state: false, text_colour: false, visually_hidden_prefix: nil, visually_hidden_suffix: nil, **kwargs, &block)
+    link_args = extract_link_args(inverse:, muted:, no_underline:, no_visited_state:, text_colour:, **kwargs)
     link_text = build_text(name, visually_hidden_prefix:, visually_hidden_suffix:)
 
     mail_to(email_address, link_text, **link_args, &block)

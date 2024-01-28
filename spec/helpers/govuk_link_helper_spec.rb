@@ -221,14 +221,6 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
       end
     end
 
-    context "when new_tab: true" do
-      let(:kwargs) { { new_tab: true } }
-
-      specify "the new tab attributes are present on the link" do
-        expect(subject).to have_tag("a", text: "hello", with: { href: "mailto:world@solar.system", class: "govuk-link", target: "_blank", rel: "noreferrer noopener" })
-      end
-    end
-
     context "when visually_hidden_prefix: 'some text'" do
       let(:visually_hidden_prefix) { "some prefix" }
       let(:visually_hidden_prefix_with_trailing_space) { "some prefix " }
