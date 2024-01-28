@@ -12,6 +12,9 @@ module Examples
 
         = govuk_link_to('#', new_tab: true) { "A block hyperlink that opens a new tab" }
 
+        br
+
+        = govuk_link_to 'A text hyperlink with custom new tab text ', '#', new_tab: "(this will open in a new window)"
       NEW_TAB
     end
 

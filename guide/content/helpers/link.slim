@@ -45,6 +45,26 @@ markdown:
     The keyword arguments automatically add a space between the visually
     hidden and regular text.
 
+== render('/partials/example.*',
+  caption: "Links that open in a new tab",
+  code: govuk_link_to_new_tab) do
+
+  markdown:
+    You can use the `new_tab` parameter to automatically set the `target` and
+    `rel` [attributes as suggested by the design system][0].
+
+    When the link text is passed in as a string argument, 'opens in new tab' is
+    added to the end automatically. No suffix is added when the helper is used
+    in block mode.
+
+    The default text can be set using the `default_link_new_tab_text` configuration option
+    and it can be suppressed by setting it to an empty string.
+
+    If you don't want any extra text to be rendered you suppress the behaviour
+    with `new_tab: nil`.
+
+    [0]: https://design-system.service.gov.uk/styles/typography/#opening-links-in-a-new-tab
+
 hr.govuk-section-break.govuk-section-break--xl.govuk-section-break--visible
 
 == render('/partials/example.*',
