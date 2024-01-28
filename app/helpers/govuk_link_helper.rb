@@ -5,7 +5,7 @@ module GovukLinkHelper
 
   def govuk_link_to(name, href = nil, new_tab: false, inverse: false, muted: false, no_underline: false, no_visited_state: false, text_colour: false, visually_hidden_prefix: nil, visually_hidden_suffix: nil, **kwargs, &block)
     link_args = extract_link_args(new_tab:, inverse:, muted:, no_underline:, no_visited_state:, text_colour:, **kwargs)
-    link_text = build_text(name, visually_hidden_prefix:, visually_hidden_suffix:)
+    link_text = build_text(name, new_tab:, visually_hidden_prefix:, visually_hidden_suffix:)
 
     if block_given?
       link_to(link_text, **link_args, &block)
@@ -34,7 +34,7 @@ module GovukLinkHelper
 
   def govuk_button_link_to(name, href = nil, new_tab: false, disabled: false, inverse: false, secondary: false, warning: false, visually_hidden_prefix: nil, visually_hidden_suffix: nil, **kwargs, &block)
     button_args = extract_button_link_args(new_tab:, disabled:, inverse:, secondary:, warning:, **kwargs)
-    button_text = build_text(name, visually_hidden_prefix:, visually_hidden_suffix:)
+    button_text = build_text(name, new_tab:, visually_hidden_prefix:, visually_hidden_suffix:)
 
     if block_given?
       link_to(name, **button_args, &block)
@@ -80,7 +80,7 @@ module GovukLinkHelper
 private
 
   def new_tab_args(new_tab)
-    new_tab ? { target: "_blank", rel: "noreferrer noopener" } : {}
+    new_tab != false ? { target: "_blank", rel: "noreferrer noopener" } : {}
   end
 
   def button_attributes(disabled)
@@ -137,13 +137,29 @@ private
     Govuk::Components.brand
   end
 
-  def build_text(text, visually_hidden_prefix:, visually_hidden_suffix:)
+  def build_text(text, visually_hidden_prefix:, visually_hidden_suffix:, new_tab: false)
     return nil if text.nil?
 
     prefix = (visually_hidden_prefix.present?) ? visually_hidden_prefix + " " : nil
     suffix = (visually_hidden_suffix.present?) ? " " + visually_hidden_suffix : nil
 
-    safe_join([govuk_visually_hidden(prefix), text, govuk_visually_hidden(suffix)].compact)
+    parts = [govuk_visually_hidden(prefix), text, govuk_visually_hidden(suffix), new_tab_text(new_tab)]
+
+    safe_join(parts.compact)
+  end
+
+  def new_tab_text(new_tab)
+    return unless new_tab
+
+    text = if new_tab.is_a?(String)
+             new_tab
+           else
+             Govuk::Components.config.default_link_new_tab_text
+           end
+
+    return if text.blank?
+
+    text.starts_with?(" ") ? text : " " + text
   end
 
   def actions_warning_message(value)

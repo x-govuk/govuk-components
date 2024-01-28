@@ -80,11 +80,40 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
       end
     end
 
-    context "when new_tab: true" do
-      let(:kwargs) { { new_tab: true } }
+    describe "new_tab" do
+      let(:expected_new_tab_attributes) { { href: "/world", class: "govuk-link", target: "_blank", rel: "noreferrer noopener" } }
 
-      specify "the new tab attributes are present on the link" do
-        expect(subject).to have_tag("a", text: "hello", with: { href: "/world", class: "govuk-link", target: "_blank", rel: "noreferrer noopener" })
+      context "when new_tab: true" do
+        let(:kwargs) { { new_tab: true } }
+
+        specify "the link has the new tab attributes and the default 'new tab' text is appended" do
+          expect(subject).to have_tag("a", text: "hello (opens in new tab)", with: expected_new_tab_attributes)
+        end
+      end
+
+      context "when new_tab: '(opens in a new window)'" do
+        let(:kwargs) { { new_tab: '(opens in a new window)' } }
+
+        specify "the link has the new tab attributes and the provided text is appended" do
+          expect(subject).to have_tag("a", text: "hello (opens in a new window)", with: expected_new_tab_attributes)
+        end
+      end
+
+      context "when new_tab: nil" do
+        let(:kwargs) { { new_tab: nil } }
+
+        specify "the link has the new tab attributes and no extra appended text" do
+          expect(subject).to have_tag("a", text: "hello", with: expected_new_tab_attributes)
+        end
+      end
+
+      context "when called with a block" do
+        let(:kwargs) { { new_tab: true } }
+        subject { govuk_link_to("/world", **kwargs) { "hello" } }
+
+        specify "the link has the new tab attributes but no text is appended" do
+          expect(subject).to have_tag("a", text: "hello", with: expected_new_tab_attributes)
+        end
       end
     end
 
@@ -337,20 +366,40 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
       end
     end
 
-    context "when new_tab: true" do
-      let(:kwargs) { { new_tab: true } }
+    describe "new_tab" do
+      let(:expected_new_tab_attributes) { { href: "/world", class: "govuk-button", target: "_blank", rel: "noreferrer noopener" } }
 
-      specify "the warning class is present on the button link" do
-        expect(subject).to have_tag(
-          "a",
-          text: "hello",
-          with: {
-            href: "/world",
-            class: %w(govuk-button),
-            target: "_blank",
-            rel: "noreferrer noopener"
-          }
-        )
+      context "when new_tab: true" do
+        let(:kwargs) { { new_tab: true } }
+
+        specify "the link has the new tab attributes and the default 'new tab' text is appended" do
+          expect(subject).to have_tag("a", text: "hello (opens in new tab)", with: expected_new_tab_attributes)
+        end
+      end
+
+      context "when new_tab: '(opens in a new window)'" do
+        let(:kwargs) { { new_tab: '(opens in a new window)' } }
+
+        specify "the link has the new tab attributes and the provided text is appended" do
+          expect(subject).to have_tag("a", text: "hello (opens in a new window)", with: expected_new_tab_attributes)
+        end
+      end
+
+      context "when new_tab: nil" do
+        let(:kwargs) { { new_tab: nil } }
+
+        specify "the link has the new tab attributes and no extra appended text" do
+          expect(subject).to have_tag("a", text: "hello", with: expected_new_tab_attributes)
+        end
+      end
+
+      context "when called with a block" do
+        let(:kwargs) { { new_tab: true } }
+        subject { govuk_button_link_to("/world", **kwargs) { "hello" } }
+
+        specify "the link has the new tab attributes but no text is appended" do
+          expect(subject).to have_tag("a", text: "hello", with: expected_new_tab_attributes)
+        end
       end
     end
 
