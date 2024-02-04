@@ -33,7 +33,7 @@ jobs:
           SIMPLECOV: '0'
         run: make rspec
 
-  quality_checks:
+  quality-checks:
     runs-on: ubuntu-20.04
     name: Code quality, test coverage and documentation checks
     steps:
@@ -79,3 +79,9 @@ jobs:
 
       - name: Run Guide Check
         run: make slim-lint
+  permit-merge:
+    name: Permit merge
+    needs: [rspec, quality-checks]
+    runs-on: ubuntu-latest
+    steps:
+      - run: "echo 'All checks passed ✅'"
