@@ -18,6 +18,11 @@
     // make dark so the inverted hyperlinks (where the text is white) are visible
     &.inverse {
       background: govuk-colour('blue');
+
+      // force the link text to be govuk blue so there's sufficient contrast
+      .govuk-button.govuk-button--inverse {
+        color: govuk-colour('blue');
+      }
     }
   }
 
