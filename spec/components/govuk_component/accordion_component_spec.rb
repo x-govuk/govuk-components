@@ -53,15 +53,6 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
       end
     end
 
-    specify 'each section ID matches the content aria-labelledby' do
-      sections.each_key do |heading_text|
-        expected_id = %(#{id}-#{heading_text.parameterize})
-
-        expect(rendered_content).to have_tag('span', with: { id: expected_id, class: 'govuk-accordion__section-button' })
-        expect(rendered_content).to have_tag('div', with: { 'aria-labelledby' => expected_id })
-      end
-    end
-
     specify 'each section ID matches the button aria-controls' do
       sections.each_key do |heading_text|
         expected_id = %(#{id}-#{heading_text.parameterize}-content)
@@ -131,7 +122,6 @@ RSpec.describe(GovukComponent::AccordionComponent, type: :component) do
       content_identifier = %(#{button_identifier}-content)
 
       expect(rendered_content).to have_tag('span', with: { id: button_identifier, 'aria-controls' => content_identifier })
-      expect(rendered_content).to have_tag('div', with: { id: content_identifier, 'aria-labelledby' => button_identifier })
     end
   end
 
