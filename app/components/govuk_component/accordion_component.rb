@@ -21,6 +21,10 @@ class GovukComponent::AccordionComponent < GovukComponent::Base
     super(classes:, html_attributes:)
   end
 
+  def call
+    tag.div(**html_attributes) { safe_join(sections) }
+  end
+
 private
 
   def default_attributes
