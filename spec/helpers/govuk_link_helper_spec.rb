@@ -91,6 +91,15 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
         end
       end
 
+      context "when new_tab: false" do
+        let(:kwargs) { { new_tab: false } }
+
+        specify "the link has the no new tab attributes and no 'new tab' text appended" do
+          expect(subject).to have_tag("a", text: "hello")
+          expect(subject).not_to have_tag("a", with: expected_new_tab_attributes)
+        end
+      end
+
       context "when new_tab: '(opens in a new window)'" do
         let(:kwargs) { { new_tab: '(opens in a new window)' } }
 
@@ -382,6 +391,15 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
 
         specify "the link has the new tab attributes and the default 'new tab' text is appended" do
           expect(subject).to have_tag("a", text: "hello (opens in new tab)", with: expected_new_tab_attributes)
+        end
+      end
+
+      context "when new_tab: false" do
+        let(:kwargs) { { new_tab: false } }
+
+        specify "the link has the no new tab attributes and no 'new tab' text appended" do
+          expect(subject).to have_tag("a", text: "hello")
+          expect(subject).not_to have_tag("a", with: expected_new_tab_attributes)
         end
       end
 
