@@ -99,6 +99,14 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
         end
       end
 
+      context "when new_tab: ''" do
+        let(:kwargs) { { new_tab: "" } }
+
+        specify "the link has the new tab attributes and no extra appended text" do
+          expect(subject).to have_tag("a", text: "hello", with: expected_new_tab_attributes)
+        end
+      end
+
       context "when new_tab: nil" do
         let(:kwargs) { { new_tab: nil } }
 
@@ -382,6 +390,14 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
 
         specify "the link has the new tab attributes and the provided text is appended" do
           expect(subject).to have_tag("a", text: "hello (opens in a new window)", with: expected_new_tab_attributes)
+        end
+      end
+
+      context "when new_tab: ''" do
+        let(:kwargs) { { new_tab: "" } }
+
+        specify "the link has the new tab attributes and no extra appended text" do
+          expect(subject).to have_tag("a", text: "hello", with: expected_new_tab_attributes)
         end
       end
 

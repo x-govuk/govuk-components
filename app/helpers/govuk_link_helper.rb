@@ -157,12 +157,12 @@ private
   end
 
   def new_tab_text(new_tab)
-    return unless new_tab
+    return if new_tab.blank?
 
-    text = if new_tab.is_a?(String)
-             new_tab
-           else
+    text = if new_tab == true
              Govuk::Components.config.default_link_new_tab_text
+           else
+             new_tab
            end
 
     return if text.blank?
