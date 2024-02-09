@@ -7,13 +7,15 @@ p
     displaying one section at a time.
 
 == render('/partials/example.*',
-  caption: "Tabs with text and block content",
+  caption: "How to use the component",
   code: tabs_normal,
   render_in_boxes: true) do
 
   markdown:
-    The tabs component can contain one or more `tab` slots. Each tab requires a
-    `label` which will form the link at the top, and the content can be set
-    either using the `text` argument or via a block of HTML.
+    The tabs component must be given a `title`, which is displayed above a list of jump links on narrow screens or if javascript is unavailable. This is usually set to ‘Contents’.
+
+    Each tab requires a `label` which will form the link at the top.
+
+    The content can be set by using either a block of HTML, or the `text` argument.
 
 == render('/partials/related-navigation.*', links: tabs_info)
