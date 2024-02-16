@@ -1,5 +1,5 @@
 module Govuk
   module Components
-    VERSION = '5.0.2'.freeze
+    VERSION = '5.1.0b1'.freeze
   end
 end
