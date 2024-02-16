@@ -3,11 +3,11 @@ module Examples
     def tabs_normal
       <<~TABS
         = govuk_tabs(title: "Contents") do |tabs|
-          - tabs.with_tab(label: "Monday")
-            | Monday’s child is fair of face
-          - tabs.with_tab(label: "Tuesday")
-            | Tuesday’s child is full of grace
-          - tabs.with_tab(label: "Wednesday", text: "Wednesday’s child is full of woe")
+          - tabs.with_tab(label: "Text", text: "This was set using a text argument")
+          - tabs.with_tab(label: "Inline block") { "This was set using an inline block of content" }
+          - tabs.with_tab(label: "Regular block") do
+            p This was set using a block of HTML.
+            p Use this style if you need complex markup within your tab.
       TABS
     end
   end
