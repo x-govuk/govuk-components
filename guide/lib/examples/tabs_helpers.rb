@@ -2,11 +2,12 @@ module Examples
   module TabsHelpers
     def tabs_normal
       <<~TABS
-        = govuk_tabs(title: "Monday’s child nursery rhyme") do |c|
-          - c.with_tab(label: "Monday", text: "Monday’s child is fair of face")
-          - c.with_tab(label: "Tuesday", text: "Tuesday’s child is full of grace")
-          - c.with_tab(label: "Wednesday")
-            | Wednesday’s child is full of woe
+        = govuk_tabs(title: "Contents") do |tabs|
+          - tabs.with_tab(label: "Text", text: "This was set using a text argument")
+          - tabs.with_tab(label: "Inline block") { "This was set using an inline block of content" }
+          - tabs.with_tab(label: "Regular block") do
+            p This was set using a block of HTML.
+            p Use this style if you need complex markup within your tab.
       TABS
     end
   end
