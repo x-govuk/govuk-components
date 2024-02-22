@@ -73,7 +73,7 @@ module Helpers
 
     def section_break_info
       {
-        "GOV.UK Design System section break documentation" => "https://design-system.service.gov.uk/styles/typography/#section-break"
+        "GOV.UK Design System section break documentation" => "https://design-system.service.gov.uk/styles/section-break/"
       }
     end
 
