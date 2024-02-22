@@ -5,7 +5,7 @@
         <%= navigation %>
       </div>
 
-      <hr class="<% brand %>-footer__section-break">
+      <%= tag.hr(class: "#{brand}-footer__section-break") %>
     <% end %>
 
     <%= tag.div(class: meta_classes, **meta_html_attributes) do %>

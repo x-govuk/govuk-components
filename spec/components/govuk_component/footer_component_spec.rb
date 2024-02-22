@@ -277,5 +277,9 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
         with_tag(custom_tag, text: Regexp.new(custom_text))
       end
     end
+
+    specify "content is followed by a section break" do
+      expect(rendered_content).to have_tag("hr", with: { class: "govuk-footer__section-break" })
+    end
   end
 end
