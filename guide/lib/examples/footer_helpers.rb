@@ -34,10 +34,8 @@ module Examples
     def footer_with_custom_meta_html
       <<~FOOTER_META_HTML
         = render GovukComponent::FooterComponent.new do |footer|
-          - footer.meta_html do
-            .govuk-footer__meta-custom class="govuk-\!-margin-top-1"
-              | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                a porta purus. Fusce faucibus aliquam massa sed eleifend.
+          - footer.with_meta_html do
+            | Built with love by x-govuk.
       FOOTER_META_HTML
     end
 
