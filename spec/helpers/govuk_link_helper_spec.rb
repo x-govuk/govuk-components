@@ -657,4 +657,21 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
       end
     end
   end
+
+  describe "govuk_footer_link_to" do
+    let(:kwargs) { {} }
+    subject { govuk_footer_link_to("hello", "/world", **kwargs) }
+
+    specify "creates a footer link with the correct class" do
+      expect(subject).to have_tag("a", with: { class: "govuk-footer__link", href: "/world" }, text: "hello")
+    end
+
+    context "when extra classes and attributes are provided" do
+      let(:kwargs) { { class: "deep-orange", lang: "nl" } }
+
+      specify "creates a footer link with the additional attributes and classes" do
+        expect(subject).to have_tag("a", with: { class: %w(govuk-footer__link deep-orange), href: "/world", lang: "nl" }, text: "hello")
+      end
+    end
+  end
 end

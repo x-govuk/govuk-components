@@ -34,10 +34,9 @@ module Examples
     def footer_with_custom_meta_html
       <<~FOOTER_META_HTML
         = render GovukComponent::FooterComponent.new do |footer|
-          - footer.meta_html do
-            .govuk-footer__meta-custom class="govuk-\!-margin-top-1"
-              | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                a porta purus. Fusce faucibus aliquam massa sed eleifend.
+          - footer.with_meta_html do
+            | Built with love by
+            = govuk_footer_link_to("X-GOVUK", "https://x-govuk.github.io/")
       FOOTER_META_HTML
     end
 
@@ -75,43 +74,27 @@ module Examples
               h2.govuk-footer__heading.govuk-heading-m Section one
 
               ul.govuk-footer__list.govuk-footer__list--columns-2
-                li: a.govuk-footer__link href="#"
-                  | First
-                li: a.govuk-footer__link href="#"
-                  | Second
-                li: a.govuk-footer__link href="#"
-                  | Third
-                li: a.govuk-footer__link href="#"
-                  | Fourth
-                li: a.govuk-footer__link href="#"
-                  | Fifth
-                li: a.govuk-footer__link href="#"
-                  | Sixth
+                li == govuk_footer_link_to("First", "#")
+                li == govuk_footer_link_to("Second", "#")
+                li == govuk_footer_link_to("Third", "#")
+                li == govuk_footer_link_to("Fourth", "#")
+                li == govuk_footer_link_to("Fifth", "#")
+                li == govuk_footer_link_to("Sixth", "#")
 
             .govuk-footer__section.govuk-grid-column-two-thirds
               h2.govuk-footer__heading.govuk-heading-m Section two
 
               ul.govuk-footer__list.govuk-footer__list--columns-3
-                li: a.govuk-footer__link href="#"
-                  | First
-                li: a.govuk-footer__link href="#"
-                  | Second
-                li: a.govuk-footer__link href="#"
-                  | Third
-                li: a.govuk-footer__link href="#"
-                  | Fourth
-                li: a.govuk-footer__link href="#"
-                  | Fifth
-                li: a.govuk-footer__link href="#"
-                  | Sixth
-                li: a.govuk-footer__link href="#"
-                  | Seventh
-                li: a.govuk-footer__link href="#"
-                  | Eighth
-                li: a.govuk-footer__link href="#"
-                  | Nineth
-                li: a.govuk-footer__link href="#"
-                  | Tenth
+                li == govuk_footer_link_to("First", "#")
+                li == govuk_footer_link_to("Second", "#")
+                li == govuk_footer_link_to("Third", "#")
+                li == govuk_footer_link_to("Fourth", "#")
+                li == govuk_footer_link_to("Fifth", "#")
+                li == govuk_footer_link_to("Sixth", "#")
+                li == govuk_footer_link_to("Seventh", "#")
+                li == govuk_footer_link_to("Eighth", "#")
+                li == govuk_footer_link_to("Ninth", "#")
+                li == govuk_footer_link_to("Tenth", "#")
       FOOTER_WITH_NAVIGATION
     end
   end
