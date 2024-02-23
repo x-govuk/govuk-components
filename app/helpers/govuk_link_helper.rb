@@ -57,6 +57,12 @@ module GovukLinkHelper
     link_to(name, href, **link_args, &block)
   end
 
+  def govuk_footer_link_to(name, href = nil, **kwargs, &block)
+    link_args = { class: "#{brand}-footer__link" }.deep_merge_html_attributes(kwargs)
+
+    link_to(name, href, **link_args, &block)
+  end
+
   def govuk_link_classes(inverse: false, muted: false, no_underline: false, no_visited_state: false, text_colour: false)
     if [text_colour, inverse, muted].count(true) > 1
       fail("links can be only be one of text_colour, inverse or muted")

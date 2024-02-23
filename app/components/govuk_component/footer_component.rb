@@ -67,9 +67,9 @@ private
 
     case links
     when Array
-      links.map { |link| raw(link_to(link[:text], link[:href], class: "#{brand}-footer__link", **link.fetch(:attr, {}))) }
+      links.map { |link| govuk_footer_link_to(link[:text], link[:href], **link.fetch(:attr, {})) }
     when Hash
-      links.map { |text, href| raw(link_to(text, href, class: "#{brand}-footer__link")) }
+      links.map { |text, href| govuk_footer_link_to(text, href) }
     else
       fail(ArgumentError, 'meta links must be a hash or array of hashes') unless links.is_a?(Hash)
     end
