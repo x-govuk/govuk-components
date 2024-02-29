@@ -219,6 +219,31 @@ RSpec.describe(GovukRailsCompatibleLinkHelper, type: 'helper') do
         end
       end
     end
+
+    context "when a custom brand is set" do
+      let(:custom_brand) { "globex-corp" }
+
+      around do |ex|
+        Govuk::Components.configure do |conf|
+          conf.brand = custom_brand
+        end
+
+        ex.run
+
+        Govuk::Components.reset!
+      end
+
+      subject { govuk_button_to("hello", "/globex") }
+
+      specify "the data-module attribute is branded" do
+        expect(subject).to have_tag("form") do
+          with_tag(
+            "button",
+            with: { "data-module": "#{custom_brand}-button" }
+          )
+        end
+      end
+    end
   end
 
   describe "#govuk_button_link_to" do
@@ -283,6 +308,26 @@ RSpec.describe(GovukRailsCompatibleLinkHelper, type: 'helper') do
 
       specify "renders a form with an button that has the custom classes" do
         expect(subject).to have_tag("a", with: { href: button_link_url, class: %w(govuk-button yellow) }, text: button_link_text)
+      end
+    end
+
+    context "when a custom brand is set" do
+      let(:custom_brand) { "globex-corp" }
+
+      around do |ex|
+        Govuk::Components.configure do |conf|
+          conf.brand = custom_brand
+        end
+
+        ex.run
+
+        Govuk::Components.reset!
+      end
+
+      subject { govuk_button_link_to(button_link_text, link_params) }
+
+      specify "the data-module attribute is branded" do
+        expect(subject).to have_tag("a", with: { "data-module": "globex-corp-button" })
       end
     end
   end
