@@ -327,7 +327,25 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
     subject { govuk_button_link_to("hello", "/world", **kwargs) }
 
     specify "renders a link styled as a button with the correct class" do
-      expect(subject).to have_tag("a", text: "hello", with: { href: "/world", class: "govuk-button" })
+      expect(subject).to have_tag("a", text: "hello", with: { href: "/world", class: "govuk-button", "data-module": "govuk-button-to" })
+    end
+
+    context "when a custom brand is set" do
+      let(:custom_brand) { "globex-corp" }
+
+      around do |ex|
+        Govuk::Components.configure do |conf|
+          conf.brand = custom_brand
+        end
+
+        ex.run
+
+        Govuk::Components.reset!
+      end
+
+      specify "attributes are branded" do
+        expect(subject).to have_tag("a", text: "hello", with: { href: "/world", class: "globex-corp-button", "data-module": "globex-corp-button-to" })
+      end
     end
 
     context "calling with a block of content" do
@@ -498,7 +516,27 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
 
     specify "renders a form with a button that has the right attributes and classes" do
       expect(subject).to have_tag("form", with: { method: "post", action: "/world" }) do
-        with_tag("button", with: { class: "govuk-button" }, text: "hello")
+        with_tag("button", with: { class: "govuk-button", "data-module": "govuk-button-to" }, text: "hello")
+      end
+    end
+
+    context "when a custom brand is set" do
+      let(:custom_brand) { "globex-corp" }
+
+      around do |ex|
+        Govuk::Components.configure do |conf|
+          conf.brand = custom_brand
+        end
+
+        ex.run
+
+        Govuk::Components.reset!
+      end
+
+      specify "attributes are branded" do
+        expect(subject).to have_tag("form", with: { method: "post", action: "/world" }) do
+          with_tag("button", with: { class: "globex-corp-button", "data-module": "globex-corp-button-to" }, text: "hello")
+        end
       end
     end
 

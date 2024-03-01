@@ -115,14 +115,16 @@ private
     Rails.logger.warn(controller_warning_message(kwargs.fetch(:controller))) if kwargs.key?(:controller)
 
     button_classes = extract_button_classes(inverse:, secondary:, warning:)
+    data_module = { "data-module": "#{brand}-button-to" }
 
-    { **button_classes, **button_attributes(disabled), **new_tab_args(new_tab) }.deep_merge_html_attributes(kwargs)
+    { **button_classes, **data_module, **button_attributes(disabled), **new_tab_args(new_tab) }.deep_merge_html_attributes(kwargs)
   end
 
   def extract_button_args(disabled: false, inverse: false, secondary: false, warning: false, **kwargs)
     button_classes = extract_button_classes(inverse:, secondary:, warning:)
+    data_module = { "data-module": "#{brand}-button-to" }
 
-    { **button_classes, **button_attributes(disabled) }.deep_merge_html_attributes(kwargs)
+    { **button_classes, **data_module, **button_attributes(disabled) }.deep_merge_html_attributes(kwargs)
   end
 
   def extract_link_classes(inverse: false, muted: false, no_underline: false, no_visited_state: false, text_colour: false)
