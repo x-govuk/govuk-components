@@ -115,16 +115,16 @@ private
     Rails.logger.warn(controller_warning_message(kwargs.fetch(:controller))) if kwargs.key?(:controller)
 
     button_classes = extract_button_classes(inverse:, secondary:, warning:)
-    data_module = { "data-module": "#{brand}-button-to" }
+    data_attributes = build_data_attributes("#{brand}-button")
 
-    { **button_classes, **data_module, **button_attributes(disabled), **new_tab_args(new_tab) }.deep_merge_html_attributes(kwargs)
+    { **button_classes, **data_attributes, **button_attributes(disabled), **new_tab_args(new_tab) }.deep_merge_html_attributes(kwargs)
   end
 
-  def extract_button_args(disabled: false, inverse: false, secondary: false, warning: false, **kwargs)
+  def extract_button_args(disabled: false, inverse: false, secondary: false, warning: false, prevent_double_click: nil, **kwargs)
     button_classes = extract_button_classes(inverse:, secondary:, warning:)
-    data_module = { "data-module": "#{brand}-button-to" }
+    data_attributes = build_data_attributes("#{brand}-button", prevent_double_click:)
 
-    { **button_classes, **data_module, **button_attributes(disabled) }.deep_merge_html_attributes(kwargs)
+    { **button_classes, **data_attributes, **button_attributes(disabled) }.deep_merge_html_attributes(kwargs)
   end
 
   def extract_link_classes(inverse: false, muted: false, no_underline: false, no_visited_state: false, text_colour: false)
@@ -184,6 +184,13 @@ private
 
   def controller_warning_message(value)
     "controller: '#{value}' parameter detected. Support for old style controller/action links has been removed. See https://github.com/x-govuk/govuk-components/releases/tag/v5.0.0"
+  end
+
+  def build_data_attributes(data_module, prevent_double_click: nil)
+    {
+      "data-module": data_module,
+      "data-prevent-double-click": prevent_double_click
+    }.compact
   end
 end
 
