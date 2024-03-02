@@ -4,6 +4,8 @@ class GovukComponent::FooterComponent < GovukComponent::Base
   renders_one :meta_html
   renders_one :meta
   renders_one :navigation
+  renders_one :content_before_meta_items
+  renders_one :content_after_meta_items
 
   attr_reader :meta_items, :meta_text, :meta_items_title, :meta_licence, :copyright_text, :copyright_url, :custom_container_classes
 
