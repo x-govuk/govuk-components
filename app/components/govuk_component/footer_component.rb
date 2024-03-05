@@ -5,7 +5,7 @@ class GovukComponent::FooterComponent < GovukComponent::Base
   renders_one :meta
   renders_one :navigation
 
-  attr_reader :meta_items, :meta_text, :meta_items_title, :meta_licence, :copyright, :custom_container_classes
+  attr_reader :meta_items, :meta_text, :meta_items_title, :meta_licence, :copyright_text, :copyright_url, :custom_container_classes
 
   def initialize(
     classes: [],
@@ -27,7 +27,8 @@ class GovukComponent::FooterComponent < GovukComponent::Base
     @meta_licence                     = meta_licence
     @custom_meta_classes              = meta_classes
     @custom_meta_html_attributes      = meta_html_attributes
-    @copyright                        = build_copyright(copyright_text, copyright_url)
+    @copyright_text                   = copyright_text
+    @copyright_url                    = copyright_url
     @custom_container_classes         = container_classes
     @custom_container_html_attributes = container_html_attributes
 
@@ -81,7 +82,7 @@ private
     raw(%(All content is available under the #{link}, except where otherwise stated))
   end
 
-  def build_copyright(text, url)
-    link_to(text, url, class: "#{brand}-footer__link #{brand}-footer__copyright-logo")
+  def copyright
+    link_to(copyright_text, copyright_url, class: "#{brand}-footer__link #{brand}-footer__copyright-logo")
   end
 end
