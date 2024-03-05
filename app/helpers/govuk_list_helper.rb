@@ -1,24 +1,15 @@
 module GovukListHelper
   def govuk_list(array = nil, type: nil, spaced: nil, classes: nil, html_attributes: {}, &block)
+    type = type.to_s
+
+    fail "Unrecognised type for govuk_list - should be :bullet or :number or nil" unless type.in?(["bullet", "number", ""])
+
+    tag_type = (type == "number") ? "ol" : "ul"
+
     html_classes = ["#{brand}-list"]
-
-    case type.to_s.to_sym
-    when :bullet
-      html_classes << ["#{brand}-list--bullet"]
-      tag_type = "ul"
-    when :number
-      html_classes << ["#{brand}-list--number"]
-      tag_type = "ol"
-    when :""
-      tag_type = "ul"
-    else
-      raise "Unrecognised type for govuk_list - should be :bullet or :number or nil"
-    end
-
-    if spaced
-      html_classes << ["#{brand}-list--spaced"]
-    end
-
+    html_classes << "#{brand}-list--bullet" if type == "bullet"
+    html_classes << "#{brand}-list--number" if type == "number"
+    html_classes << "#{brand}-list--spaced" if spaced
     html_classes += Array.wrap(classes)
 
     if block_given?
