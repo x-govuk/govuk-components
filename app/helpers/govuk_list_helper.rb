@@ -6,11 +6,13 @@ module GovukListHelper
 
     tag_type = (type == "number") ? "ol" : "ul"
 
-    html_classes = ["#{brand}-list"]
-    html_classes << "#{brand}-list--bullet" if type == "bullet"
-    html_classes << "#{brand}-list--number" if type == "number"
-    html_classes << "#{brand}-list--spaced" if spaced
-    html_classes += Array.wrap(classes)
+    html_classes = class_names(
+      "#{brand}-list",
+      *classes,
+      "#{brand}-list--bullet" => (type == "bullet"),
+      "#{brand}-list--number" => (type == "number"),
+      "#{brand}-list--spaced" => spaced
+    )
 
     if block_given?
       content_tag(tag_type, class: html_classes, **html_attributes, &block)
