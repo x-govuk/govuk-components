@@ -14,6 +14,7 @@ end
 
 include GovukVisuallyHiddenHelper
 include GovukLinkHelper
+include GovukListHelper
 include GovukBackToTopLinkHelper
 include GovukSkipLinkHelper
 include GovukExitThisPageLinkHelper

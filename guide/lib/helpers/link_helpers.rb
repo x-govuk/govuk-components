@@ -19,6 +19,7 @@ module Helpers
         "Helpers" => {
           "Back to top link" => "/helpers/back-to-top-link/",
           "Button" => "/helpers/button/",
+          "List" => "/helpers/list/",
           "Link" => "/helpers/link/",
           "Skip link" => "/helpers/skip-link/",
           "Title with error prefix" => "/helpers/title-with-error-prefix/",
