@@ -106,6 +106,22 @@ RSpec.describe(GovukComponent::TabComponent, type: :component) do
     end
   end
 
+  context 'when the title isn’t specified' do
+    subject { render_inline(GovukComponent::TabComponent.new) }
+
+    it 'should use the default title ‘Contents’' do
+      expect(rendered_content).to have_tag('.govuk-tabs__title', text: 'Contents')
+    end
+  end
+
+  context 'when the title is nil' do
+    subject { render_inline(GovukComponent::TabComponent.new(title: nil)) }
+
+    it 'should not contain a title' do
+      expect(rendered_content).not_to have_tag('.govuk-tabs__title')
+    end
+  end
+
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
   it_behaves_like 'a component that supports custom branding'

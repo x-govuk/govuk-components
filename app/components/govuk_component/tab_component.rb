@@ -5,7 +5,7 @@ class GovukComponent::TabComponent < GovukComponent::Base
 
   attr_reader :title, :id
 
-  def initialize(title:, id: nil, classes: [], html_attributes: {})
+  def initialize(title: 'Contents', id: nil, classes: [], html_attributes: {})
     @title = title
     @id    = id
 
