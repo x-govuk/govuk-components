@@ -1,5 +1,5 @@
 <%= tag.div(**html_attributes) do %>
-  <%= tag.h2(title, class: "#{brand}-tabs__title") %>
+  <%= tag.h2(title, class: "#{brand}-tabs__title") if title %>
   <ul class="<%= brand %>-tabs__list">
     <% tabs.each.with_index do |tab, i| %>
       <%= tag.li(tab.li_link, class: tab.li_classes(i)) %>
