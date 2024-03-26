@@ -15,7 +15,7 @@
         <div class="<%= brand %>-footer__meta-item <%= brand %>-footer__meta-item--grow">
           <% if meta_items.any? %>
             <h2 class="<%= brand %>-visually-hidden"><%= meta_items_title %></h2>
-
+            <%= content_before_meta_items %>
             <ul class="<%= brand %>-footer__inline-list">
               <% @meta_items.each do |hyperlink| %>
                 <li class="<%= brand %>-footer__inline-list-item">
@@ -23,6 +23,7 @@
                 </li>
               <% end %>
             </ul>
+            <%= content_after_meta_items %>
           <% end %>
 
           <% if meta_content.present? %>

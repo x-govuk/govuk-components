@@ -117,6 +117,28 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
       end
     end
 
+    describe "content before and after meta items" do
+      let(:kwargs) { { meta_items: } }
+
+      subject! do
+        render_inline(GovukComponent::FooterComponent.new(**kwargs)) do |footer|
+          footer.with_content_before_meta_items { "before" }
+          footer.with_content_after_meta_items { "after" }
+        end
+      end
+
+      specify "renders the content before and after the meta item links" do
+        expect(rendered_content).to have_tag("div", with: { class: "govuk-footer__meta-item" }) do
+          with_text(/before/)
+          with_text(/after/)
+        end
+      end
+
+      specify "renders the content in the right order" do
+        expect(rendered_content).to have_tag(".govuk-footer__meta-item") { with_text(/before.*one.*two.*three.*after/m) }
+      end
+    end
+
     describe "custom meta_licence text" do
       let(:licence_text) { "Permission is hereby granted, free of charge, to any person obtaining a copy of this software" }
       let(:kwargs) { { meta_licence: licence_text } }
