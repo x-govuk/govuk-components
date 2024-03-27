@@ -85,7 +85,7 @@ class GovukComponent::PaginationComponent < GovukComponent::Base
 private
 
   def default_attributes
-    { role: "navigation", aria: { label: landmark_label }, class: "#{brand}-pagination" }
+    { aria: { label: landmark_label }, class: "#{brand}-pagination" }
   end
 
   def build_previous

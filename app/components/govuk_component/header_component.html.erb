@@ -1,4 +1,4 @@
-<%= tag.header(role: 'banner', data: { module: "#{brand}-header" }, **html_attributes) do %>
+<%= tag.header(data: { module: "#{brand}-header" }, **html_attributes) do %>
   <%= tag.div(**container_html_attributes) do %>
     <div class="<%= brand %>-header__logo">
       <%= link_to(homepage_url, class: ["#{brand}-header__link", "#{brand}-header__link--homepage"]) do %>
