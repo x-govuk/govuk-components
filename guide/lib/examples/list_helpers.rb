@@ -14,7 +14,7 @@ module Examples
 
     def govuk_list_number
       <<~EXAMPLE
-        = govuk_list ["Delivery address.", "Payment.", "Confirmation."], type: :bullet
+        = govuk_list ["Delivery address.", "Payment.", "Confirmation."], type: :number
       EXAMPLE
     end
 
