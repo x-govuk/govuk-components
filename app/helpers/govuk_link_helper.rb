@@ -188,9 +188,11 @@ private
 
   def build_data_attributes(data_module, prevent_double_click: nil)
     {
-      "data-module": data_module,
-      "data-prevent-double-click": prevent_double_click
-    }.compact
+      data: {
+        module: data_module,
+        "prevent-double-click": prevent_double_click
+      }.compact
+    }
   end
 end
 
