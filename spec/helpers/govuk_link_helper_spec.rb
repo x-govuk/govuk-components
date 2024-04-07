@@ -181,10 +181,10 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
     end
 
     context "when there are custom attributes" do
-      let(:kwargs) { { lang: "en-GB", dir: "ltr" } }
+      let(:kwargs) { { lang: "en-GB", dir: "ltr", data: { module: "custom-module" } } }
 
       specify "the custom attributes are present on the link" do
-        expect(subject).to have_tag("a", text: "hello", with: { href: "/world", class: "govuk-link", lang: "en-GB", dir: "ltr" })
+        expect(subject).to have_tag("a", text: "hello", with: { href: "/world", class: "govuk-link", lang: "en-GB", dir: "ltr", "data-module": "custom-module" })
       end
     end
 
@@ -314,10 +314,10 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
     end
 
     context "when there are custom attributes" do
-      let(:kwargs) { { lang: "en-GB", dir: "ltr" } }
+      let(:kwargs) { { lang: "en-GB", dir: "ltr", data: { module: "custom-module" } } }
 
       specify "the custom attributes are present on the link" do
-        expect(subject).to have_tag("a", text: "hello", with: { href: "mailto:world@solar.system", class: "govuk-link", lang: "en-GB", dir: "ltr" })
+        expect(subject).to have_tag("a", text: "hello", with: { href: "mailto:world@solar.system", class: "govuk-link", lang: "en-GB", dir: "ltr", "data-module": "custom-module" })
       end
     end
   end
@@ -502,10 +502,10 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
     end
 
     context "when there are custom attributes" do
-      let(:kwargs) { { lang: "en-GB", dir: "ltr" } }
+      let(:kwargs) { { lang: "en-GB", dir: "ltr", data: { module: "custom-module" } } }
 
       specify "the custom attributes are present on the link" do
-        expect(subject).to have_tag("a", text: "hello", with: { href: "/world", class: "govuk-button", lang: "en-GB", dir: "ltr" })
+        expect(subject).to have_tag("a", text: "hello", with: { href: "/world", class: "govuk-button", lang: "en-GB", dir: "ltr", "data-module": "custom-module" })
       end
     end
   end
@@ -661,7 +661,7 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
     end
 
     context "when there are custom attributes" do
-      let(:kwargs) { { lang: "en-GB", dir: "ltr" } }
+      let(:kwargs) { { lang: "en-GB", dir: "ltr", data: { module: "custom-module" } } }
 
       specify "the custom attributes are present on the button" do
         expect(subject).to have_tag("form", with: { method: "post", action: "/world" }) do
@@ -672,6 +672,7 @@ RSpec.describe(GovukLinkHelper, type: 'helper') do
               class: %w[govuk-button],
               dir: "ltr",
               lang: "en-GB",
+              "data-module": "custom-module"
             }
           )
         end
