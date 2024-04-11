@@ -21,15 +21,16 @@ private
   class Tab < GovukComponent::Base
     attr_reader :label, :text
 
-    def initialize(label:, text: nil, classes: [], html_attributes: {})
+    def initialize(label:, text: nil, id: nil, classes: [], html_attributes: {})
       @label = label
       @text  = h(text)
+      @id    = id || label.parameterize
 
       super(classes:, html_attributes:)
     end
 
     def id(prefix: nil)
-      [prefix, label.parameterize].join
+      [prefix, @id].join
     end
 
     def hidden_class(i = nil)
