@@ -19,7 +19,7 @@ private
   end
 
   class Tab < GovukComponent::Base
-    attr_reader :label, :text
+    attr_reader :label, :text, :id
 
     def initialize(label:, text: nil, id: nil, classes: [], html_attributes: {})
       @label = label
@@ -27,10 +27,6 @@ private
       @id    = id || label.parameterize
 
       super(classes:, html_attributes:)
-    end
-
-    def id(prefix: nil)
-      [prefix, @id].join
     end
 
     def hidden_class(i = nil)
@@ -44,7 +40,7 @@ private
     end
 
     def li_link
-      link_to(label, id(prefix: '#'), class: "#{brand}-tabs__tab")
+      link_to(label, "#" + id, class: "#{brand}-tabs__tab")
     end
 
     def default_attributes
