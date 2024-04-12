@@ -133,5 +133,27 @@ RSpec.describe(GovukComponent::TabComponent, type: :component) do
 
     it_behaves_like 'a component with a slot that accepts custom classes'
     it_behaves_like 'a component with a slot that accepts custom html attributes'
+
+    context "when id is supplied" do
+      let(:id) { "some-id" }
+
+      subject! do
+        render_inline(described_class.send(:new, **kwargs)) do |component|
+          component.send("with_#{slot}", label: "id testination", id:) do
+            content.call
+          end
+        end
+      end
+
+      specify "the id is present in the rendered output" do
+        expect(rendered_content).to have_tag("div", with: { id: "some-id" })
+      end
+
+      specify "the link anchor uses the given id" do
+        expect(rendered_content).to have_tag("a", with: { href: "#some-id" }) do
+          with_text("id testination")
+        end
+      end
+    end
   end
 end
