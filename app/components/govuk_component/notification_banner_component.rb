@@ -31,18 +31,19 @@ class GovukComponent::NotificationBannerComponent < GovukComponent::Base
   end
 
   class Heading < GovukComponent::Base
-    attr_reader :text, :link_href, :link_text
+    attr_reader :text, :link_href, :link_text, :tag
 
-    def initialize(text: nil, link_text: nil, link_href: nil, classes: [], html_attributes: {})
+    def initialize(text: nil, link_text: nil, link_href: nil, tag: 'p', classes: [], html_attributes: {})
       @text      = text
       @link_text = link_text
       @link_href = link_href
+      @tag       = tag
 
       super(classes:, html_attributes:)
     end
 
     def call
-      tag.div(**html_attributes) do
+      content_tag(tag, **html_attributes) do
         if text.present?
           safe_join([text, link].compact, " ")
         else
