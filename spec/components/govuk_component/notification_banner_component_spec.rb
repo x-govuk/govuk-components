@@ -25,22 +25,25 @@ RSpec.describe(GovukComponent::NotificationBannerComponent, type: :component) do
         render_inline(described_class.new(**kwargs)) do |component|
           component.with_heading(**slot_kwargs)
           component.with_heading(text: 'More text here')
+          component.with_heading(tag: 'h3', text: "A heading with a custom tag")
           component.with_heading do
-            helper.tag.p('some special content')
+            helper.tag.span('some special content')
           end
         end
       end
 
       specify 'headings are rendered with content' do
         expect(rendered_content).to have_tag('div', with: { class: 'govuk-notification-banner__content' }) do
-          with_tag('div', with: { class: 'govuk-notification-banner__heading' }, text: /some text/) do
+          with_tag('p', with: { class: 'govuk-notification-banner__heading' }, text: /some text/) do
             with_tag('a', with: { class: 'govuk-notification-banner__link', href: '#look-at-me' }, text: 'With a link')
           end
 
-          with_tag('div', with: { class: 'govuk-notification-banner__heading' }, text: 'More text here')
+          with_tag('p', with: { class: 'govuk-notification-banner__heading' }, text: 'More text here')
 
-          with_tag('div', with: { class: 'govuk-notification-banner__heading' }) do
-            with_tag('p', text: 'some special content')
+          with_tag('h3', with: { class: 'govuk-notification-banner__heading' }, text: 'A heading with a custom tag')
+
+          with_tag('p', with: { class: 'govuk-notification-banner__heading' }) do
+            with_tag('span', text: 'some special content')
           end
         end
       end
@@ -214,6 +217,21 @@ RSpec.describe(GovukComponent::NotificationBannerComponent, type: :component) do
           expect(rendered_content).to have_tag('div', with: { class: 'govuk-notification-banner__content' }, text: 'Some text')
           expect(rendered_content).not_to have_tag('div', with: { class: 'govuk-notification-banner__content' }, text: heading_text)
         end
+      end
+    end
+
+    describe 'custom heading tag' do
+      let(:heading_text) { 'What a nice heading' }
+      let(:heading_tag) { 'h3' }
+
+      before do
+        render_inline(described_class.new(**kwargs)) do |component|
+          component.with_heading(tag: heading_tag) { heading_text }
+        end
+      end
+
+      specify 'the title has the custom tag' do
+        expect(rendered_content).to have_tag(heading_tag, with: { class: 'govuk-notification-banner__heading' }, text: heading_text)
       end
     end
 
