@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.files = Dir["{app,config,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
   spec.add_dependency("html-attributes-utils", "~> 1.0.0", ">= 1.0.0")
-  spec.add_dependency("pagy", ">= 6", "< 8")
+  spec.add_dependency("pagy", ">= 6", "< 9")
   spec.add_dependency("view_component", ">= 3.9", "< 3.13")
 
   spec.add_development_dependency "deep_merge"
