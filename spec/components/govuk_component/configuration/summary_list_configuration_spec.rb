@@ -18,6 +18,27 @@ RSpec.describe(GovukComponent::SummaryListComponent, type: :component) do
       end
     end
 
+    describe 'default_summary_list_value_text' do
+      before do
+        Govuk::Components.configure do |config|
+          config.default_summary_list_value_text = "Nothing"
+        end
+      end
+
+      subject! do
+        render_inline(GovukComponent::SummaryListComponent.new) do |sl|
+          sl.with_row do |row|
+            row.with_key(text: "Key without value")
+            row.with_value(text: nil)
+          end
+        end
+      end
+
+      specify 'renders a value with the overridden default text' do
+        expect(rendered_content).to have_tag("dd", text: "Nothing", with: { class: "govuk-summary-list__value" })
+      end
+    end
+
     describe 'require_summary_list_action_visually_hidden_text' do
       before do
         Govuk::Components.configure do |config|

@@ -63,6 +63,7 @@ module Govuk
     # +:default_tag_colour+ the default colour for tags, possible values: +grey+, +green+, +turquoise+, +blue+, +red+, +purple+, +pink+, +orange+, +yellow+. Defaults to +nil+
     # +:default_start_button_as_button+ false
     # +:default_summary_list_borders+ true
+    # +:default_summary_list_value_text+ the fallback text for summary list values which will be displayed when the value is nil. Defaults to +""+
     # +:default_notification_banner_title_id+ "govuk-notification-banner-title"
     # +:default_notification_disable_auto_focus+ nil
     # +:default_notification_title_heading_level+ 2
@@ -104,6 +105,7 @@ module Govuk
       default_tag_colour: nil,
       default_start_button_as_button: false,
       default_summary_list_borders: true,
+      default_summary_list_value_text: "",
       default_notification_banner_title_id: "govuk-notification-banner-title",
       default_notification_disable_auto_focus: nil,
       default_notification_title_heading_level: 2,
