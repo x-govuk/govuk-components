@@ -43,7 +43,12 @@ p
   code: summary_list_with_missing_information) do
 
   markdown:
-    If a row has missing information, include a link to add the information within the value column instead of as an action.
+    If a row has missing information, include a link to add the information
+    within the value column instead of as an action.
+
+    When there is no link fallback text will be used. By default it's
+    a blank string but can be overridden by [configuring](/introduction/configuration/)
+    the `default_summary_list_value_text`.
 
 == render('/partials/example.*',
   caption: "Building a summary list directly from data",
