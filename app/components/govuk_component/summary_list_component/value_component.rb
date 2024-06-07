@@ -18,6 +18,6 @@ private
   end
 
   def value_content
-    content || text || ""
+    content || text || config.default_summary_list_value_text
   end
 end
