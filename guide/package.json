@@ -13,8 +13,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@x-govuk/govuk-prototype-components": "^3.0.0",
-    "govuk-frontend": "5.4.0",
-    "sass": "^1.52.1"
+    "@x-govuk/govuk-prototype-components": "^3.0.6",
+    "govuk-frontend": "5.4.1",
+    "sass": "^1.77.8"
   }
 }
