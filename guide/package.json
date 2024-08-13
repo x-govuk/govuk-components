@@ -14,7 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "@x-govuk/govuk-prototype-components": "^3.0.6",
-    "govuk-frontend": "5.4.1",
+    "govuk-frontend": "5.5.0",
     "sass": "^1.77.8"
   }
 }
