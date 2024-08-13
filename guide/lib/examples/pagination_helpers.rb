@@ -30,7 +30,7 @@ module Examples
 
     def pagination_lots_of_pages_data
       <<~PAGINATION_DATA
-        { pagy: Pagy.new(count: 100, page: 9, size: [1, 1, 1, 1], items: 5) }
+        { pagy: Pagy.new(count: 100, page: 9, size: [1, 1, 1, 1], limit: 5) }
       PAGINATION_DATA
     end
 

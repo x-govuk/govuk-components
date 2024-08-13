@@ -2,9 +2,9 @@ require 'spec_helper'
 
 RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
   let(:count) { 30 }
-  let(:items) { 5 }
+  let(:limit) { 5 }
   let(:size) { [1, 2, 2, 1] }
-  let(:defaults) { { count:, items:, size: } }
+  let(:defaults) { { count:, limit:, size: } }
   let(:current_page) { 2 }
   let(:pagy) { Pagy.new(page: current_page, **defaults) }
   let(:component_css_class) { 'govuk-pagination' }
