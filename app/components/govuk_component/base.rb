@@ -27,6 +27,13 @@ class GovukComponent::Base < ViewComponent::Base
   end
 
   def brand(override = nil)
-    override || config.brand
+    override || config.brand_overrides.fetch(class_prefix, config.brand)
+  end
+
+  # We want the main component and the subcomponents here so
+  # match on the second segment of the component class name
+  def class_prefix
+    # FIXME: this looks a bit dodgy...
+    self.class.name.match(/\w+::\w+/).to_s
   end
 end
