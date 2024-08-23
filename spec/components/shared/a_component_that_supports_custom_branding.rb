@@ -31,11 +31,7 @@ shared_examples 'a component that supports brand overrides' do
 
   before do
     class_name = defined?(component_class_name) ? component_class_name : described_class.name
-    extra_classes = if defined?(extra_overrides)
-                      extra_overrides.index_with(custom_brand)
-                    else
-                      {}
-                    end
+    extra_classes = defined?(extra_overrides) ? extra_overrides.index_with(custom_brand) : {}
 
     Govuk::Components.configure do |conf|
       conf.brand_overrides = { class_name => custom_brand, **extra_classes }

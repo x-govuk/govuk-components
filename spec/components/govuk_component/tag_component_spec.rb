@@ -70,4 +70,7 @@ RSpec.describe(GovukComponent::TagComponent, type: :component) do
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
   it_behaves_like 'a component that supports custom branding'
+  it_behaves_like 'a component that supports brand overrides' do
+    let(:component_class) { "GovukComponent::TagComponent" }
+  end
 end

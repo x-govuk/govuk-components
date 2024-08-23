@@ -18,6 +18,7 @@ RSpec.describe(GovukComponent::NotificationBannerComponent, type: :component) do
       let(:kwargs) { { title_text: title, text: "something", title_id: 'custom-id' } }
 
       it_behaves_like 'a component that supports custom branding'
+      it_behaves_like 'a component that supports brand overrides'
     end
 
     context "when supplied with a block" do
