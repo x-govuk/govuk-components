@@ -9,7 +9,8 @@ class GovukComponent::HeaderComponent < GovukComponent::Base
               :menu_button_label,
               :navigation_label,
               :custom_navigation_classes,
-              :custom_container_classes
+              :custom_container_classes,
+              :full_width_border
 
   def initialize(classes: [],
                  html_attributes: {},
@@ -19,7 +20,8 @@ class GovukComponent::HeaderComponent < GovukComponent::Base
                  navigation_label: config.default_header_navigation_label,
                  service_name: config.default_header_service_name,
                  service_url: config.default_header_service_url,
-                 container_classes: nil)
+                 container_classes: nil,
+                 full_width_border: false)
 
     @homepage_url              = homepage_url
     @service_name              = service_name
@@ -28,6 +30,7 @@ class GovukComponent::HeaderComponent < GovukComponent::Base
     @custom_navigation_classes = navigation_classes
     @navigation_label          = navigation_label
     @custom_container_classes  = container_classes
+    @full_width_border         = full_width_border
 
     super(classes:, html_attributes:)
   end
@@ -35,7 +38,12 @@ class GovukComponent::HeaderComponent < GovukComponent::Base
 private
 
   def default_attributes
-    { class: ["#{brand}-header"] }
+    {
+      class: class_names(
+        "#{brand}-header",
+        "#{brand}-header--full-width-border" => full_width_border
+      )
+    }
   end
 
   def navigation_html_attributes
