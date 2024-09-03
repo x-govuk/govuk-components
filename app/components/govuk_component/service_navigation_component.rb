@@ -32,8 +32,8 @@ class GovukComponent::ServiceNavigationComponent < GovukComponent::Base
 
   def call
     outer_element do
-      tag.div(class: 'govuk-width_container') do
-        tag.div(class: 'govuk-service-navigation__container') do
+      tag.div(class: "#{brand}-width_container") do
+        tag.div(class: "#{brand}-service-navigation__container") do
           safe_join([service_name, navigation].compact)
         end
       end
@@ -43,13 +43,13 @@ class GovukComponent::ServiceNavigationComponent < GovukComponent::Base
   def navigation
     return unless navigation_items?
 
-    tag.nav(aria: { label: "Menu" }, class: 'govuk-service-navigation__wrapper') do
+    tag.nav(aria: { label: "Menu" }, class: "#{brand}-service-navigation__wrapper") do
       safe_join([menu_button, navigation_list])
     end
   end
 
   def navigation_list
-    tag.ul(safe_join(navigation_items), class: 'govuk-service-navigation__list')
+    tag.ul(safe_join(navigation_items), class: "#{brand}-service-navigation__list")
   end
 
 private
@@ -63,7 +63,7 @@ private
   end
 
   def default_attributes
-    { class: 'govuk-service-navigation', data: { module: 'govuk-service-navigation' } }
+    { class: "#{brand}-service-navigation", data: { module: "#{brand}-service-navigation" } }
   end
 
   def aria_attributes
@@ -73,7 +73,7 @@ private
   def menu_button
     tag.button(
       type: 'button',
-      class: %w(govuk-service-navigation__toggle govuk-js-service-navigation-toggle),
+      class: ["#{brand}-service-navigation__toggle", "#{brand}-js-service-navigation-toggle"],
       aria: { controls: 'navigation' },
       hidden: true
     )

@@ -17,14 +17,14 @@ class GovukComponent::ServiceNavigationComponent::ServiceNameComponent < GovukCo
 private
 
   def build_link
-    link_to(service_name, service_url, class: 'govuk-service-navigation__link')
+    link_to(service_name, service_url, class: "#{brand}-service-navigation__link")
   end
 
   def build_span
-    tag.span(service_name, class: 'govuk-service-navigation__text')
+    tag.span(service_name, class: "#{brand}-service-navigation__text")
   end
 
   def default_attributes
-    { class: 'govuk-service-navigation__service-name' }
+    { class: "#{brand}-service-navigation__service-name" }
   end
 end

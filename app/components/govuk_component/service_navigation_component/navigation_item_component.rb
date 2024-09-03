@@ -16,9 +16,9 @@ class GovukComponent::ServiceNavigationComponent::NavigationItemComponent < Govu
   def call
     tag.li(**html_attributes) do
       if href.present?
-        wrap_link(link_to(text, href, class: 'govuk-service-navigation__link', **aria_current))
+        wrap_link(link_to(text, href, class: "#{brand}-service-navigation__link", **aria_current))
       else
-        tag.span(text, class: 'govuk-service-navigation__text')
+        tag.span(text, class: "#{brand}-service-navigation__text")
       end
     end
   end
@@ -27,7 +27,7 @@ private
 
   def wrap_link(link)
     if current_or_active?
-      tag.strong(link, class: 'govuk-service-navigation__active-fallback')
+      tag.strong(link, class: "#{brand}-service-navigation__active-fallback")
     else
       link
     end
@@ -69,8 +69,8 @@ private
   def default_attributes
     {
       class: class_names(
-        'govuk-service-navigation__item',
-        'govuk-service-navigation__item--active' => current_or_active?
+        "#{brand}-service-navigation__item",
+        "#{brand}-service-navigation__item--active" => current_or_active?
       )
     }
   end

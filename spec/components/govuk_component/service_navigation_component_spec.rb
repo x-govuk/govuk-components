@@ -11,6 +11,10 @@ RSpec.describe(GovukComponent::ServiceNavigationComponent, type: :component) do
 
   subject! { render_inline(GovukComponent::ServiceNavigationComponent.new(**kwargs)) }
 
+  it_behaves_like 'a component that accepts custom classes'
+  it_behaves_like 'a component that accepts custom HTML attributes'
+  it_behaves_like 'a component that supports custom branding'
+
   specify 'renders a div with the expected attributes' do
     expect(rendered_content).to have_tag("div", with: { class: component_css_class, 'data-module' => 'govuk-service-navigation' })
   end
@@ -205,4 +209,26 @@ RSpec.describe(GovukComponent::ServiceNavigationComponent, type: :component) do
       end
     end
   end
+end
+
+RSpec.describe(GovukComponent::ServiceNavigationComponent::ServiceNameComponent, type: :component) do
+  let(:component_css_class) { 'govuk-service-navigation__service-name' }
+  let(:kwargs) { { service_name: "A service", service_url: "https://a-service.service.gov.uk" } }
+
+  subject! { render_inline(GovukComponent::ServiceNavigationComponent::ServiceNameComponent.new(**kwargs)) }
+
+  it_behaves_like 'a component that accepts custom classes'
+  it_behaves_like 'a component that accepts custom HTML attributes'
+  it_behaves_like 'a component that supports custom branding'
+end
+
+RSpec.describe(GovukComponent::ServiceNavigationComponent::NavigationItemComponent, type: :component) do
+  let(:component_css_class) { 'govuk-service-navigation__item' }
+  let(:kwargs) { { text: "A node", href: "/a-node" } }
+
+  subject! { render_inline(GovukComponent::ServiceNavigationComponent::NavigationItemComponent.new(**kwargs)) }
+
+  it_behaves_like 'a component that accepts custom classes'
+  it_behaves_like 'a component that accepts custom HTML attributes'
+  it_behaves_like 'a component that supports custom branding'
 end
