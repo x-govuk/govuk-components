@@ -113,6 +113,12 @@ module Helpers
       }
     end
 
+    def service_navigation_info
+      {
+        "GOV.UK Design System service navigation documentation" => "https://design-system.service.gov.uk/components/service-navigation/"
+      }
+    end
+
   private
 
     def component_helper_mapping
