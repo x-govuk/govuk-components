@@ -1,7 +1,7 @@
 class GovukComponent::ServiceNavigationComponent::ServiceNameComponent < GovukComponent::Base
   attr_reader :service_name, :service_url
 
-  def initialize(service_name:, service_url:, classes: [], html_attributes: {})
+  def initialize(service_name:, service_url: nil, classes: [], html_attributes: {})
     @service_name = service_name
     @service_url = service_url
 

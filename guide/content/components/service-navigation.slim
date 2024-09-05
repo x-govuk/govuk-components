@@ -7,7 +7,7 @@ p
     and lets them navigate around your service.
 
 == render('/partials/example.*',
-  caption: "Service navigation with only a service name",
+  caption: "With only a service name",
   code: service_navigation_with_only_service_name) do
 
   markdown:
@@ -16,13 +16,17 @@ p
     services this means the service navigation can be rendered without any navigation links.
 
 == render('/partials/example.*',
-  caption: "Service navigation with navigation items",
+  caption: "With navigation items",
   code: service_navigation_with_a_current_page,
   data: service_navigation_with_a_current_page_data) do
 
   markdown:
     Show navigation links to let users navigate to different parts of your
     service and find useful links and tools.
+
+    When you are on the linked page you can use `current: true` to mark it. If
+    you're on a page within the section but not on the page itself, use
+    `active: true` instead.
 
 == render('/partials/example.*',
   caption: "Automatically detecting the current page",
@@ -36,7 +40,7 @@ p
     the current page.
 
 == render('/partials/example.*',
-  caption: "Service navigation with automatic active page matching",
+  caption: "Automatic active page matching",
   code: service_navigation_with_matching_subpages,
   data: service_navigation_with_matching_subpages_data) do
 
@@ -48,5 +52,15 @@ p
     When `active_when` is a string the component will check if the beginning of
     the `current_path` matches it. For more complex scenarios a regular expression
     can be used instead.
+
+== render('/partials/example.*',
+  caption: "Manaully building the service navigation",
+  code: service_navigation_manual) do
+
+  markdown:
+    For extra customisation the service navigation can be assembled manually. We can
+    use the `start_slot` and `end_slot` to add custom HTML at the beginning and
+    end of the service navigation. This content needs its own custom styling or it will
+    be rendered above and below the other content.
 
 == render('/partials/related-navigation.*', links: service_navigation_info)

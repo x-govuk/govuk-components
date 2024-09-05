@@ -7,7 +7,8 @@ RSpec.describe(GovukComponent::ServiceNavigationComponent, type: :component) do
   let(:service_url) { nil }
   let(:navigation_items) { [] }
   let(:current_path) { nil }
-  let(:kwargs) { { service_name:, service_url:, navigation_items:, current_path: } }
+  let(:navigation_id) { nil }
+  let(:kwargs) { { service_name:, service_url:, navigation_items:, current_path:, navigation_id: }.compact }
 
   subject! { render_inline(GovukComponent::ServiceNavigationComponent.new(**kwargs)) }
 
@@ -73,6 +74,33 @@ RSpec.describe(GovukComponent::ServiceNavigationComponent, type: :component) do
               end
             end
           end
+        end
+      end
+    end
+
+    specify %(the list and button are correctly cross-referenced with 'navigation' by default) do
+      expect(rendered_content).to have_tag('ul', with: { id: 'navigation' })
+      expect(rendered_content).to have_tag('button', with: { 'aria-controls' => 'navigation' })
+    end
+
+    context 'when the navigation_id is overridden' do
+      let(:navigation_id) { 'another-example' }
+
+      specify %(the list and button are correctly cross-referenced with 'navigation' by default) do
+        expect(rendered_content).to have_tag('ul', with: { id: navigation_id })
+        expect(rendered_content).to have_tag('button', with: { 'aria-controls' => navigation_id })
+      end
+    end
+
+    specify 'the menu button is present' do
+      expect(rendered_content).to have_tag("div", with: { class: component_css_class }) do
+        with_tag('div', with: { class: 'govuk-service-navigation__container' }) do
+          with_tag('button', with: {
+            type: 'button',
+            class: %w(govuk-service-navigation__toggle govuk-js-service-navigation-toggle),
+            hidden: 'hidden',
+            'aria-controls' => 'navigation'
+          })
         end
       end
     end
@@ -206,6 +234,38 @@ RSpec.describe(GovukComponent::ServiceNavigationComponent, type: :component) do
 
       specify %(the active link has aria-current='true') do
         expect(rendered_content).to have_tag('a', text: 'Finance', with: { href: '/finance', 'aria-current' => 'true' })
+      end
+    end
+  end
+
+  context 'building the component manually' do
+    let(:kwargs) { {} }
+    subject! do
+      render_inline(GovukComponent::ServiceNavigationComponent.new) do |sn|
+        sn.with_service_name(service_name: 'A nice service')
+        sn.with_navigation_item(text: 'Page 1', href: '/page-1')
+        sn.with_navigation_item(text: 'Page 2', href: '/page-2', current: true)
+        sn.with_navigation_item(text: 'Page 3', href: '/page-3')
+      end
+    end
+
+    specify 'renders a section with the expected attributes' do
+      expect(rendered_content).to have_tag("section", with: { class: component_css_class, 'data-module' => 'govuk-service-navigation' })
+    end
+
+    specify 'renders the navigation items' do
+      1.upto(3) do |i|
+        expect(rendered_content).to have_tag('li', with: { class: 'govuk-service-navigation__item' }) do
+          with_tag('a', text: "Page #{i}", with: { href: "/page-#{i}" })
+        end
+      end
+    end
+
+    specify %(marks the page with 'current: true' properly) do
+      expect(rendered_content).to have_tag('li', with: { class: 'govuk-service-navigation__item' }) do
+        with_tag('strong', with: { class: 'govuk-service-navigation__active-fallback' }) do
+          with_tag('a', text: "Page 2", with: { href: "/page-2" })
+        end
       end
     end
   end
