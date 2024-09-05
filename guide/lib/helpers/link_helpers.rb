@@ -39,6 +39,7 @@ module Helpers
           "Pagination" => "/components/pagination/",
           "Panel" => "/components/panel/",
           "Phase banner" => "/components/phase-banner/",
+          "Service navigation" => "/components/service-navigation/",
           "Start button" => "/components/start-button/",
           "Summary list" => "/components/summary-list/",
           "Table" => "/components/table/",

@@ -63,6 +63,9 @@ require 'components/govuk_component/pagination_component/previous_page'
 require 'components/govuk_component/panel_component'
 require 'components/govuk_component/phase_banner_component'
 require 'components/govuk_component/section_break_component'
+require 'components/govuk_component/service_navigation_component'
+require 'components/govuk_component/service_navigation_component/navigation_item_component'
+require 'components/govuk_component/service_navigation_component/service_name_component'
 require 'components/govuk_component/start_button_component'
 require 'components/govuk_component/summary_list_component'
 require 'components/govuk_component/summary_list_component/key_component'
@@ -106,6 +109,7 @@ use_helper Examples::PaginationHelpers
 use_helper Examples::PanelHelpers
 use_helper Examples::PhaseBannerHelpers
 use_helper Examples::SectionBreakHelpers
+use_helper Examples::ServiceNavigationHelpers
 use_helper Examples::SkipLinkHelpers
 use_helper Examples::StartButtonHelpers
 use_helper Examples::SummaryListHelpers

@@ -40,6 +40,19 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
         without_tag('.govuk-header__content')
       end
     end
+
+    specify "the header doesn't have a full width border" do
+      expect(rendered_content).to have_tag('.govuk-header')
+      expect(rendered_content).not_to have_tag('.govuk-header--full-width-border')
+    end
+  end
+
+  context 'when full_width_border is true' do
+    let(:kwargs) { { full_width_border: true } }
+
+    specify 'adds the custom classes to the header container' do
+      expect(rendered_content).to have_tag('header', with: { class: %w(govuk-header govuk-header--full-width-border) })
+    end
   end
 
   context 'customising the container classes' do

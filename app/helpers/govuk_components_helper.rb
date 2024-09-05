@@ -13,6 +13,7 @@ module GovukComponentsHelper
     govuk_pagination: 'GovukComponent::PaginationComponent',
     govuk_panel: 'GovukComponent::PanelComponent',
     govuk_phase_banner: 'GovukComponent::PhaseBannerComponent',
+    govuk_service_navigation: 'GovukComponent::ServiceNavigationComponent',
     govuk_section_break: 'GovukComponent::SectionBreakComponent',
     govuk_start_button: 'GovukComponent::StartButtonComponent',
     govuk_summary_list: 'GovukComponent::SummaryListComponent',

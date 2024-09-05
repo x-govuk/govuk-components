@@ -91,3 +91,10 @@ $govuk-page-width: 1100px;
   color: tomato;
   font-weight: bold;
 }
+
+// Manual service navigation
+.app-service-navigation .govuk-width_container {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}

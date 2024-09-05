@@ -1,0 +1,66 @@
+---
+title: Service navigation
+---
+
+p
+  | Service navigation helps users understand that they’re using your service
+    and lets them navigate around your service.
+
+== render('/partials/example.*',
+  caption: "With only a service name",
+  code: service_navigation_with_only_service_name) do
+
+  markdown:
+    The Design System recommendation is [to display the service name in
+    the service navigation instead of in the header](https://design-system.service.gov.uk/components/service-navigation/#showing-your-service-name-only). On basic
+    services this means the service navigation can be rendered without any navigation links.
+
+== render('/partials/example.*',
+  caption: "With navigation items",
+  code: service_navigation_with_a_current_page,
+  data: service_navigation_with_a_current_page_data) do
+
+  markdown:
+    Show navigation links to let users navigate to different parts of your
+    service and find useful links and tools.
+
+    When you are on the linked page you can use `current: true` to mark it. If
+    you're on a page within the section but not on the page itself, use
+    `active: true` instead.
+
+== render('/partials/example.*',
+  caption: "Automatically detecting the current page",
+  code: service_navigation_with_navigation_items,
+  data: service_navigation_with_navigation_items_data) do
+
+  markdown:
+    Having to work out which page is current and adjust the parameters manually
+    would be complicated. If you pass in the `current_path`, when navigation
+    nodes that have a matching `href` are rendered, they'll be rendered as
+    the current page.
+
+== render('/partials/example.*',
+  caption: "Automatic active page matching",
+  code: service_navigation_with_matching_subpages,
+  data: service_navigation_with_matching_subpages_data) do
+
+  markdown:
+    Often we have pages deeply nested within sections of the site and want
+    the navigation to show which section we're currently in. We can do this
+    using `active_when`.
+
+    When `active_when` is a string the component will check if the beginning of
+    the `current_path` matches it. For more complex scenarios a regular expression
+    can be used instead.
+
+== render('/partials/example.*',
+  caption: "Manaully building the service navigation",
+  code: service_navigation_manual) do
+
+  markdown:
+    For extra customisation the service navigation can be assembled manually. We can
+    use the `start_slot` and `end_slot` to add custom HTML at the beginning and
+    end of the service navigation. This content needs its own custom styling or it will
+    be rendered above and below the other content.
+
+== render('/partials/related-navigation.*', links: service_navigation_info)
