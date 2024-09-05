@@ -91,6 +91,7 @@ module Govuk
         # 'GovukComponent::PanelComponent'               => 'another-brand',
         # 'GovukComponent::PhaseBannerComponent'         => 'another-brand',
         # 'GovukComponent::SectionBreakComponent'        => 'another-brand',
+        # 'GovukComponent::ServiceNavigationComponent'   => 'another-brand',
         # 'GovukComponent::StartButtonComponent'         => 'another-brand',
         # 'GovukComponent::SummaryListComponent'         => 'another-brand',
         # 'GovukComponent::TableComponent'               => 'another-brand',

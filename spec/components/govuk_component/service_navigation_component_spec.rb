@@ -15,6 +15,7 @@ RSpec.describe(GovukComponent::ServiceNavigationComponent, type: :component) do
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
   it_behaves_like 'a component that supports custom branding'
+  it_behaves_like 'a component that supports brand overrides'
 
   specify 'renders a div with the expected attributes' do
     expect(rendered_content).to have_tag("div", with: { class: component_css_class, 'data-module' => 'govuk-service-navigation' })
