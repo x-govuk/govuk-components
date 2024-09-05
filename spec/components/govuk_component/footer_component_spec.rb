@@ -282,6 +282,7 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
   it_behaves_like 'a component that supports custom branding'
+  it_behaves_like 'a component that supports brand overrides'
 
   describe "navigation" do
     let(:custom_text) { "Some meta html" }

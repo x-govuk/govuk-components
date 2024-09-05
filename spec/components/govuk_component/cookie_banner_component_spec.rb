@@ -106,6 +106,9 @@ RSpec.describe(GovukComponent::CookieBannerComponent::MessageComponent, type: :c
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
   it_behaves_like 'a component that supports custom branding'
+  it_behaves_like 'a component that supports brand overrides' do
+    let(:component_class_name) { "GovukComponent::CookieBannerComponent" }
+  end
 
   context "when there is no text or block" do
     specify "raises an appropriate error" do

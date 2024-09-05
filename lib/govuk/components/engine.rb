@@ -33,6 +33,7 @@ module Govuk
     # Default components configuration
     #
     # +:brand+ sets the value used to prefix all classes, used to allow the components to be branded for alternative (similar) design systems
+    # +:brand_overrides+ sets the value used to prefix classes and slots for the component class.
     # +:default_back_link_text+ Default text for the back link, defaults to +Back+
     # +:default_breadcrumbs_collapse_on_mobile+ false
     # +:default_breadcrumbs_hide_in_print+ false
@@ -75,6 +76,30 @@ module Govuk
     # +:enable_auto_table_scopes+ automatically adds a scope of 'col' to th elements in thead and 'row' to th elements in tbody.
     DEFAULTS = {
       brand: 'govuk',
+      brand_overrides: {
+        # 'GovukComponent::AccordionComponent'           => 'another-brand',
+        # 'GovukComponent::BackLinkComponent'            => 'another-brand',
+        # 'GovukComponent::BreadcrumbsComponent'         => 'another-brand',
+        # 'GovukComponent::CookieBannerComponent'        => 'another-brand',
+        # 'GovukComponent::DetailsComponent'             => 'another-brand',
+        # 'GovukComponent::ExitThisPageComponent'        => 'another-brand',
+        # 'GovukComponent::FooterComponent'              => 'another-brand',
+        # 'GovukComponent::HeaderComponent'              => 'another-brand',
+        # 'GovukComponent::InsetTextComponent'           => 'another-brand',
+        # 'GovukComponent::NotificationBannerComponent'  => 'another-brand',
+        # 'GovukComponent::PaginationComponent'          => 'another-brand',
+        # 'GovukComponent::PanelComponent'               => 'another-brand',
+        # 'GovukComponent::PhaseBannerComponent'         => 'another-brand',
+        # 'GovukComponent::SectionBreakComponent'        => 'another-brand',
+        # 'GovukComponent::ServiceNavigationComponent'   => 'another-brand',
+        # 'GovukComponent::StartButtonComponent'         => 'another-brand',
+        # 'GovukComponent::SummaryListComponent'         => 'another-brand',
+        # 'GovukComponent::TableComponent'               => 'another-brand',
+        # 'GovukComponent::TabComponent'                 => 'another-brand',
+        # 'GovukComponent::TagComponent'                 => 'another-brand',
+        # 'GovukComponent::TaskListComponent'            => 'another-brand',
+        # 'GovukComponent::WarningTextComponent'         => 'another-brand',
+      },
       default_back_link_text: 'Back',
       default_breadcrumbs_collapse_on_mobile: false,
       default_breadcrumbs_hide_in_print: false,
