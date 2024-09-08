@@ -34,9 +34,11 @@ RSpec.describe(GovukComponent::ServiceNavigationComponent, type: :component) do
 
     specify 'contains the service name in a span' do
       expect(rendered_content).to have_tag("section", with: { class: component_css_class }) do
-        with_tag('div', with: { class: 'govuk-service-navigation__container' }) do
-          with_tag('span', class: 'govuk-service-navigation__service-name') do
-            with_tag('span', text: service_name, with: { class: 'govuk-service-navigation__text' })
+        with_tag('div', with: { class: 'govuk-width-container' }) do
+          with_tag('div', with: { class: 'govuk-service-navigation__container' }) do
+            with_tag('span', class: 'govuk-service-navigation__service-name') do
+              with_tag('span', text: service_name, with: { class: 'govuk-service-navigation__text' })
+            end
           end
         end
       end
@@ -47,9 +49,11 @@ RSpec.describe(GovukComponent::ServiceNavigationComponent, type: :component) do
 
       specify 'contains a hyperlink with the service name and url' do
         expect(rendered_content).to have_tag("section", with: { class: component_css_class }) do
-          with_tag('div', with: { class: 'govuk-service-navigation__container' }) do
-            with_tag('span', class: 'govuk-service-navigation__service-name') do
-              with_tag('a', text: service_name, with: { href: service_url, class: 'govuk-service-navigation__link' })
+          with_tag('div', with: { class: 'govuk-width-container' }) do
+            with_tag('div', with: { class: 'govuk-service-navigation__container' }) do
+              with_tag('span', class: 'govuk-service-navigation__service-name') do
+                with_tag('a', text: service_name, with: { href: service_url, class: 'govuk-service-navigation__link' })
+              end
             end
           end
         end
@@ -67,11 +71,13 @@ RSpec.describe(GovukComponent::ServiceNavigationComponent, type: :component) do
 
     specify 'the items are rendered in a list' do
       expect(rendered_content).to have_tag("div", with: { class: component_css_class }) do
-        with_tag('div', with: { class: 'govuk-service-navigation__container' }) do
-          with_tag('ul', with: { class: 'govuk-service-navigation__list' }) do
-            navigation_items.each do |ni|
-              with_tag('li', with: { class: 'govuk-service-navigation__item' }) do
-                with_tag('a', text: ni.fetch(:text), with: { href: ni.fetch(:href) })
+        with_tag('div', with: { class: 'govuk-width-container' }) do
+          with_tag('div', with: { class: 'govuk-service-navigation__container' }) do
+            with_tag('ul', with: { class: 'govuk-service-navigation__list' }) do
+              navigation_items.each do |ni|
+                with_tag('li', with: { class: 'govuk-service-navigation__item' }) do
+                  with_tag('a', text: ni.fetch(:text), with: { href: ni.fetch(:href) })
+                end
               end
             end
           end
@@ -95,13 +101,15 @@ RSpec.describe(GovukComponent::ServiceNavigationComponent, type: :component) do
 
     specify 'the menu button is present' do
       expect(rendered_content).to have_tag("div", with: { class: component_css_class }) do
-        with_tag('div', with: { class: 'govuk-service-navigation__container' }) do
-          with_tag('button', with: {
-            type: 'button',
-            class: %w(govuk-service-navigation__toggle govuk-js-service-navigation-toggle),
-            hidden: 'hidden',
-            'aria-controls' => 'navigation'
-          })
+        with_tag('div', with: { class: 'govuk-width-container' }) do
+          with_tag('div', with: { class: 'govuk-service-navigation__container' }) do
+            with_tag('button', with: {
+              type: 'button',
+              class: %w(govuk-service-navigation__toggle govuk-js-service-navigation-toggle),
+              hidden: 'hidden',
+              'aria-controls' => 'navigation'
+            })
+          end
         end
       end
     end

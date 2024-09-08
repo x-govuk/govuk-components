@@ -36,7 +36,7 @@ class GovukComponent::ServiceNavigationComponent < GovukComponent::Base
 
   def call
     outer_element do
-      tag.div(class: "#{brand}-width_container") do
+      tag.div(class: "#{brand}-width-container") do
         safe_join(
           [
             start_slot,
