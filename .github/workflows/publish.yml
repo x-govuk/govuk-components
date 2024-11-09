@@ -8,7 +8,7 @@ on:
 jobs:
   publish:
     name: Publish to RubyGems.org and GitHub Packages
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
