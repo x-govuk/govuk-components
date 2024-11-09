@@ -12,7 +12,7 @@ jobs:
       matrix:
         ruby: ['3.1.6', '3.2.5', '3.3.6']
         rails: ['7.1.5', '7.2.2', '8.0.0']
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     name: Testing with Ruby ${{ matrix.ruby }} and Rails ${{ matrix.rails }}
     steps:
       - uses: actions/checkout@v3
@@ -35,7 +35,7 @@ jobs:
         run: make rspec
 
   quality-checks:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     name: Code quality, test coverage and documentation checks
     steps:
       - uses: actions/checkout@v3
