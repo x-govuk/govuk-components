@@ -1,6 +1,6 @@
 <%= tag.div(**html_attributes) do %>
   <div class="<%= brand %>-summary-card__title-wrapper">
-    <%= tag.h2(title, class: "#{brand}-summary-card__title") %>
+    <%= content_tag(heading_tag, title, class: "#{brand}-summary-card__title") %>
 
     <% if actions.any? %>
       <ul class="<%= brand %>-summary-card__actions">

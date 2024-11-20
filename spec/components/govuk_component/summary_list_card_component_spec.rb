@@ -79,6 +79,15 @@ RSpec.describe(GovukComponent::SummaryListComponent::CardComponent, type: :compo
     expect(rendered_content).to have_tag("h2", text: title, with: { class: "govuk-summary-card__title" })
   end
 
+  context "with a custom heading level" do
+    let(:custom_heading_level) { 3 }
+    before { render_inline(described_class.new(title:, heading_level: custom_heading_level)) }
+
+    specify "the card has the right heading level" do
+      expect(rendered_content).to have_tag(%(h#{custom_heading_level}), with: { class: 'govuk-summary-card__title' })
+    end
+  end
+
   specify "card contains a summary list" do
     expect(rendered_content).to have_tag("dl", with: { class: "govuk-summary-list" })
   end
