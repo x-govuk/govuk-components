@@ -80,11 +80,23 @@ RSpec.describe(GovukComponent::SummaryListComponent::CardComponent, type: :compo
   end
 
   context "with a custom heading level" do
-    let(:custom_heading_level) { 3 }
-    before { render_inline(described_class.new(title:, heading_level: custom_heading_level)) }
+    context "when the heading level is valid" do
+      let(:custom_heading_level) { 3 }
+      before { render_inline(described_class.new(title:, heading_level: custom_heading_level)) }
 
-    specify "the card has the right heading level" do
-      expect(rendered_content).to have_tag(%(h#{custom_heading_level}), with: { class: 'govuk-summary-card__title' })
+      specify "the card has the right heading level" do
+        expect(rendered_content).to have_tag(%(h#{custom_heading_level}), with: { class: 'govuk-summary-card__title' })
+      end
+    end
+
+    context "when the heading level is invalid" do
+      let(:custom_heading_level) { 8 }
+
+      specify "has the overriden level" do
+        expected_message = "heading_level must be 1-6"
+
+        expect { described_class.new(title:, heading_level: custom_heading_level) }.to raise_error(ArgumentError, expected_message)
+      end
     end
   end
 

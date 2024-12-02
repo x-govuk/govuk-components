@@ -6,7 +6,7 @@ class GovukComponent::SummaryListComponent::CardComponent < GovukComponent::Base
 
   def initialize(title:, heading_level: 2, actions: [], classes: [], html_attributes: {})
     @title = title
-    @heading_level = heading_level
+    @heading_level = heading_tag(heading_level)
     actions.each { |a| with_action { a } } if actions.any?
 
     super(classes:, html_attributes:)
@@ -18,8 +18,10 @@ private
     { class: "#{brand}-summary-card" }
   end
 
-  def heading_tag
-    "h#{heading_level}"
+  def heading_tag(level)
+    fail(ArgumentError, "heading_level must be 1-6") unless level.in?(1..6)
+
+    "h#{level}"
   end
 
   def action_text(action)
