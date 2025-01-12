@@ -41,6 +41,8 @@ Style/PercentLiteralDelimiters:
   Enabled: false
 Layout/HashAlignment:
   Enabled: false
+Layout/EmptyLinesAroundMethodBody:
+  Enabled: false
 Style/SignalException:
   Enabled: false
 Style/Proc:
