@@ -35,6 +35,12 @@ class GovukComponent::HeaderComponent < GovukComponent::Base
     super(classes:, html_attributes:)
   end
 
+  def before_render
+    if service_name.present? || navigation_items.present?
+      Rails.logger.warn('Service name and navigation links are deprecated and will be removed in the next breaking release of GOV.UK Frontend. See https://github.com/alphagov/govuk-frontend/releases/tag/v5.9.0')
+    end
+  end
+
 private
 
   def default_attributes

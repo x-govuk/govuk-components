@@ -24,6 +24,8 @@ use_helper Helpers::TitleAnchorHelpers
 use_helper Helpers::Formatters
 use_helper Helpers::ContentHelpers
 
+Rails.logger = Logger.new($stdout)
+
 $LOAD_PATH.unshift(File.expand_path("../../app", "app"))
 $LOAD_PATH.unshift(File.expand_path("../../lib", "lib"))
 
