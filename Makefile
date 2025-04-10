@@ -14,7 +14,8 @@ slim-lint:
 rspec:
 	${prefix} rspec --format progress
 npm-install:
-	${guide_dir} npm ci --silent
+	# FIXME: remove --legacy-peer-deps once the prototype components lib has been updated
+	${guide_dir} npm ci --silent --legacy-peer-deps
 nanoc-check-internal:
 	( ${guide_dir} ${prefix} nanoc check ${nanoc_internal_checks} )
 nanoc-check-external:
