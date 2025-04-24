@@ -27,6 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency("view_component", ">= 3.18", "< 3.22")
 
   spec.add_development_dependency "deep_merge"
+  spec.add_development_dependency "ostruct"
   spec.add_development_dependency "pry-byebug"
   spec.add_development_dependency "rspec-html-matchers", "~> 0.9"
   spec.add_development_dependency "rspec-rails"
