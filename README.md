@@ -1,6 +1,6 @@
 # GOV.UK Components for Ruby on Rails
 
-[![Tests](https://github.com/x-govuk/govuk-components/workflows/Tests/badge.svg)](https://github.com/x-govuk/govuk-components/actions?query=workflow%3ATests)
+[![Tests](https://github.com/x-govuk/govuk-components/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/x-govuk/govuk-components/actions/workflows/tests.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/cbcbc140f300b920d833/maintainability)](https://codeclimate.com/github/x-govuk/govuk-components/maintainability)
 [![Gem version](https://badge.fury.io/rb/govuk-components.svg)](https://badge.fury.io/rb/govuk-components)
 [![Gem](https://img.shields.io/gem/dt/govuk-components?logo=rubygems)](https://rubygems.org/gems/govuk-components)
