@@ -44,6 +44,15 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
     end
   end
 
+  specify 'the crown is present' do
+    expect(rendered_content).to have_tag('svg', with: { class: 'govuk-footer__crown', role: 'presentation', }) do
+      with_tag('g') do
+        with_tag('circle', count: 8)
+        with_tag('path')
+      end
+    end
+  end
+
   specify "the copyright information is present" do
     expect(rendered_content).to have_tag(selector) do
       with_tag("div", with: { class: "govuk-footer__meta-item" }, text: /Crown copyright/)
