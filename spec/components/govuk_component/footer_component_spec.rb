@@ -139,19 +139,48 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
       end
     end
 
-    describe "custom meta_licence text" do
-      let(:licence_text) { "Permission is hereby granted, free of charge, to any person obtaining a copy of this software" }
-      let(:kwargs) { { meta_licence: licence_text } }
+    describe "custom licence content" do
       let(:licence_selector) { [selector, ".govuk-footer__licence-description"].join(" ") }
 
-      specify "the custom licence text should be rendered" do
-        expect(rendered_content).to have_tag(licence_selector, text: licence_text)
+      describe "meta_licence" do
+        let(:licence_text) { "Permission is hereby granted, free of charge, to any person obtaining a copy of this software" }
+        let(:kwargs) { { meta_licence: licence_text } }
+
+        specify "the custom licence text should be rendered" do
+          expect(rendered_content).to have_tag(licence_selector, text: licence_text)
+        end
+
+        specify "the licence SVG is not rendered" do
+          expect(rendered_content).to have_tag("footer", with: { class: "govuk-footer" }) do
+            with_tag("div", with: { class: "govuk-footer__meta" }) do
+              without_tag("svg")
+            end
+          end
+        end
       end
 
-      specify "the licence SVG is not rendered" do
-        expect(rendered_content).to have_tag("footer", with: { class: "govuk-footer" }) do
-          with_tag("div", with: { class: "govuk-footer__meta" }) do
-            without_tag("svg")
+      describe "meta_licence_html" do
+        let(:custom_text) { "Some licence HTML" }
+        let(:custom_tag) { "strong" }
+        let(:custom_html) { helper.content_tag(custom_tag, custom_text) }
+
+        subject! do
+          render_inline(GovukComponent::FooterComponent.new(**kwargs)) do |component|
+            component.with_meta_licence_html { custom_html }
+          end
+        end
+
+        specify "the custom licence custom HTML is rendered" do
+          expect(rendered_content).to have_tag(licence_selector) do
+            with_tag(custom_tag, text: Regexp.new(custom_text))
+          end
+        end
+
+        specify "the licence SVG is not rendered" do
+          expect(rendered_content).to have_tag("footer", with: { class: "govuk-footer" }) do
+            with_tag("div", with: { class: "govuk-footer__meta" }) do
+              without_tag("svg")
+            end
           end
         end
       end
