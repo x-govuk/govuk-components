@@ -1,8 +1,9 @@
 doctype html
-html.govuk-template lang="en"
+html.govuk-template.govuk-template--rebranded lang="en"
   == render '/partials/head.*'
   body.govuk-template__body
     == render '/partials/header.*'
+    == render '/partials/service-navigation.*'
 
     main#main-content
       == yield
