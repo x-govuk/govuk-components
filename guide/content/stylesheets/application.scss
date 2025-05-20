@@ -3,6 +3,8 @@ $app-iframe-mobile-height: 15rem;
 
 // GOV.UK Frontend options
 $govuk-global-styles: true;
+$govuk-new-organisation-colours: true;
+$govuk-new-typography-scale: true;
 $govuk-assets-path: "/assets/";
 $govuk-font-family: system-ui, sans-serif;
 $govuk-brand-colour: #2288aa;
@@ -12,7 +14,7 @@ $govuk-link-visited-colour: #333366;
 $govuk-page-width: 1100px;
 
 // Import GOV.UK Frontend
-@import "dist/govuk/all";
+@import "dist/govuk";
 
 // Import GOV.UK Prototype Components
 @import "x-govuk/components/masthead/masthead";
@@ -21,7 +23,6 @@ $govuk-page-width: 1100px;
 
 // Application components
 @import "components/example";
-@import "components/header";
 @import "components/highlight";
 @import "components/iframe";
 @import "components/list";
@@ -46,9 +47,15 @@ $govuk-page-width: 1100px;
     .govuk-table__body,
     .govuk-table__foot {
       > .govuk-table__row {
-        .border-left { border-left: 1px solid $govuk-border-colour; }
-        .thick-border-bottom { border-bottom: 3px solid $govuk-border-colour; }
-        .no-border-bottom { border-bottom: none }
+        .border-left {
+          border-left: 1px solid $govuk-border-colour;
+        }
+        .thick-border-bottom {
+          border-bottom: 3px solid $govuk-border-colour;
+        }
+        .no-border-bottom {
+          border-bottom: none;
+        }
       }
     }
   }
@@ -62,15 +69,21 @@ $govuk-page-width: 1100px;
         text-align: left;
         padding: govuk-spacing(2) govuk-spacing(4) govuk-spacing(2) 0;
 
-        &--numeric { text-align: right; }
+        &--numeric {
+          text-align: right;
+        }
       }
 
       &:last-of-type {
-        .govuk-table__header { border-bottom: none; }
+        .govuk-table__header {
+          border-bottom: none;
+        }
       }
 
       .govuk-table__footer {
-        &:last-child { padding-right: 0; }
+        &:last-child {
+          padding-right: 0;
+        }
       }
     }
   }
