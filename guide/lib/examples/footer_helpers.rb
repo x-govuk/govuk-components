@@ -66,6 +66,16 @@ module Examples
       FOOTER_COPYRIGHT_AND_LICENCE
     end
 
+    def footer_with_custom_licence_html
+      <<~FOOTER
+        = govuk_footer do |footer|
+          - footer.with_meta_licence_html do
+            |> Some custom HTML for the licence,
+               perhaps with a
+            = govuk_footer_link_to("link", "https://x-govuk.github.io/")
+      FOOTER
+    end
+
     def footer_with_navigation
       <<~FOOTER_WITH_NAVIGATION
         = govuk_footer do |footer|
