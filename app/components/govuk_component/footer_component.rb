@@ -6,6 +6,7 @@ class GovukComponent::FooterComponent < GovukComponent::Base
   renders_one :navigation
   renders_one :content_before_meta_items
   renders_one :content_after_meta_items
+  renders_one :meta_licence_html
 
   attr_reader :meta_items, :meta_text, :meta_items_title, :meta_licence, :copyright_text, :copyright_url, :custom_container_classes
 
@@ -45,6 +46,10 @@ private
 
   def meta_content
     meta_html || meta_text
+  end
+
+  def meta_licence_content
+    meta_licence_html || meta_licence
   end
 
   def meta_classes

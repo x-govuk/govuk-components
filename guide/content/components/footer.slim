@@ -52,6 +52,13 @@ p The footer provides copyright, licensing and other information about your
   data: footer_copyright_and_licence_arguments)
 
 == render('/partials/example.*',
+  caption: "Footer with custom licence HTML",
+  code: footer_with_custom_licence_html) do
+
+  markdown:
+    The `meta_licence_html` slot allows replacing the licence information with any custom HTML.
+
+== render('/partials/example.*',
   caption: "Footer with navigation",
   code: footer_with_navigation)
 
