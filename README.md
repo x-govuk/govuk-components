@@ -7,7 +7,7 @@
 [![Test coverage](https://api.codeclimate.com/v1/badges/cbcbc140f300b920d833/test_coverage)](https://codeclimate.com/github/x-govuk/govuk-components/test_coverage)
 [![Licence](https://img.shields.io/github/license/x-govuk/govuk-components)](https://github.com/x-govuk/govuk-components/blob/main/LICENSE.txt)
 [![GOV.UK Design System version](https://img.shields.io/badge/GOV.UK%20Design%20System-5.10.0-brightgreen)](https://design-system.service.gov.uk)
-[![ViewComponent](https://img.shields.io/badge/ViewComponent-3.16.0-brightgreen)](https://viewcomponent.org/)
+[![ViewComponent](https://img.shields.io/badge/ViewComponent-3.23.0-brightgreen)](https://viewcomponent.org/)
 [![Rails](https://img.shields.io/badge/Rails-7.1.5%20%E2%95%B1%207.2.2%20%E2%95%B1%208.0.0-E16D6D)](https://weblog.rubyonrails.org/releases/)
 [![Ruby](https://img.shields.io/badge/Ruby-3.2.5%20%20%E2%95%B1%203.2.6%20%20%E2%95%B1%203.3.6-E16D6D)](https://www.ruby-lang.org/en/downloads/)
 
