@@ -20,6 +20,7 @@ use_helper ActionView::Helpers::UrlHelper
 use_helper Nanoc::Helpers::Rendering
 use_helper Nanoc::Helpers::XMLSitemap
 use_helper Helpers::LinkHelpers
+use_helper Helpers::ServiceNavigationHelpers
 use_helper Helpers::TitleAnchorHelpers
 use_helper Helpers::Formatters
 use_helper Helpers::ContentHelpers
