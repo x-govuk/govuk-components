@@ -475,12 +475,23 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
     end
   end
 
-  describe "custom colum widths" do
+  describe "custom column widths" do
+    let(:widths) do
+      {
+        "full"           => "govuk-!-width-full",
+        "three-quarters" => "govuk-!-width-three-quarters",
+        "two-thirds"     => "govuk-!-width-two-thirds",
+        "one-half"       => "govuk-!-width-one-half",
+        "one-third"      => "govuk-!-width-one-third",
+        "one-quarter"    => "govuk-!-width-one-quarter",
+      }
+    end
+
     subject! do
       render_inline(GovukComponent::TableComponent.new) do |table|
         table.with_head do |head|
           head.with_row do |row|
-            GovukComponent::TableComponent::CellComponent.widths.each_key do |width|
+            widths.each_key do |width|
               row.with_cell(text: width, header: true, width:)
             end
           end
@@ -489,8 +500,9 @@ RSpec.describe(GovukComponent::TableComponent, type: :component) do
     end
 
     specify "adds the width class correctly" do
-      GovukComponent::TableComponent::CellComponent.widths.each_key do |width, expected_class|
-        expect(rendered_content).to have_tag("table > thead > tr > th", with: { class: expected_class }, text: width)
+      widths.each do |width, expected_class|
+        escaped_expected_class = expected_class.gsub("!", "\\!") # Escape the exclamation mark for CSS selectors.
+        expect(rendered_content).to have_tag("table > thead > tr > th", with: { class: escaped_expected_class }, text: width)
       end
     end
   end

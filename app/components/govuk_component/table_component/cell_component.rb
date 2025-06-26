@@ -4,17 +4,6 @@ class GovukComponent::TableComponent::CellComponent < GovukComponent::Base
   alias_method :numeric?, :numeric
   alias_method :header?, :header
 
-  def self.widths
-    {
-      "full"           => "#{brand}-!-width-full",
-      "three-quarters" => "#{brand}-!-width-three-quarters",
-      "two-thirds"     => "#{brand}-!-width-two-thirds",
-      "one-half"       => "#{brand}-!-width-one-half",
-      "one-third"      => "#{brand}-!-width-one-third",
-      "one-quarter"    => "#{brand}-!-width-one-quarter",
-    }.freeze
-  end
-
   def initialize(scope: nil, header: nil, numeric: false, text: nil, width: nil, parent: nil, rowspan: nil, colspan: nil, classes: [], html_attributes: {})
     @text    = text
     @numeric = numeric
@@ -24,6 +13,7 @@ class GovukComponent::TableComponent::CellComponent < GovukComponent::Base
     @colspan = colspan
     @rowspan = rowspan
     @header  = (header.nil?) ? in_thead? : header
+    @width   = widths.fetch(width, nil)
 
     super(classes:, html_attributes:)
   end
@@ -33,6 +23,17 @@ class GovukComponent::TableComponent::CellComponent < GovukComponent::Base
   end
 
 private
+
+  def widths
+    @widths ||= {
+      "full"           => "#{brand}-!-width-full",
+      "three-quarters" => "#{brand}-!-width-three-quarters",
+      "two-thirds"     => "#{brand}-!-width-two-thirds",
+      "one-half"       => "#{brand}-!-width-one-half",
+      "one-third"      => "#{brand}-!-width-one-third",
+      "one-quarter"    => "#{brand}-!-width-one-quarter",
+    }
+  end
 
   def width?
     width.present?
