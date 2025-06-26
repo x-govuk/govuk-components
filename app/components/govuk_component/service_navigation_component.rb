@@ -16,14 +16,15 @@ class GovukComponent::ServiceNavigationComponent < GovukComponent::Base
     )
   end
 
-  attr_reader :aria_label_text, :navigation_id
+  attr_reader :aria_label_text, :navigation_id, :inverse
 
-  def initialize(service_name: nil, service_url: nil, navigation_items: [], current_path: nil, aria_label: "Service information", navigation_id: 'navigation', classes: [], html_attributes: {})
+  def initialize(service_name: nil, service_url: nil, navigation_items: [], current_path: nil, aria_label: "Service information", navigation_id: 'navigation', inverse: false, classes: [], html_attributes: {})
     @service_name_text = service_name
     @service_url = service_url
     @current_path = current_path
     @aria_label_text = aria_label
     @navigation_id = navigation_id
+    @inverse = inverse
 
     if @service_name_text.present?
       with_service_name(service_name: @service_name_text, service_url:)
@@ -73,7 +74,13 @@ private
   end
 
   def default_attributes
-    { class: "#{brand}-service-navigation", data: { module: "#{brand}-service-navigation" } }
+    {
+      class: class_names(
+        "#{brand}-service-navigation",
+        "#{brand}-service-navigation--inverse" => inverse,
+      ),
+      data: { module: "#{brand}-service-navigation" },
+    }
   end
 
   def aria_attributes

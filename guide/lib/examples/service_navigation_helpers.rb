@@ -81,5 +81,14 @@ module Examples
           = sn.with_end_slot { '🌆' }
       SNIPPET
     end
+
+    def service_navigation_with_inverted_colours
+      <<~SNIPPET
+        = govuk_service_navigation(inverse: true,
+                                   service_name: 'An inverted service',
+                                   navigation_items: navigation_items,
+                                   current_path: "/components/header")
+      SNIPPET
+    end
   end
 end

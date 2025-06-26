@@ -8,7 +8,8 @@ RSpec.describe(GovukComponent::ServiceNavigationComponent, type: :component) do
   let(:navigation_items) { [] }
   let(:current_path) { nil }
   let(:navigation_id) { nil }
-  let(:kwargs) { { service_name:, service_url:, navigation_items:, current_path:, navigation_id: }.compact }
+  let(:inverse) { false }
+  let(:kwargs) { { service_name:, service_url:, navigation_items:, current_path:, navigation_id:, inverse: }.compact }
 
   subject! { render_inline(GovukComponent::ServiceNavigationComponent.new(**kwargs)) }
 
@@ -243,6 +244,44 @@ RSpec.describe(GovukComponent::ServiceNavigationComponent, type: :component) do
 
       specify %(the active link has aria-current='true') do
         expect(rendered_content).to have_tag('a', text: 'Finance', with: { href: '/finance', 'aria-current' => 'true' })
+      end
+    end
+  end
+
+  describe 'inverting the colours' do
+    let(:inverse_class) { 'govuk-service-navigation--inverse' }
+    let(:inverse_class_selector) { '.' + inverse_class }
+
+    context 'when inverse is not set' do
+      let(:inverse) { nil }
+
+      it 'renders the component without the inverse class' do
+        expect(rendered_content).not_to have_tag(inverse_class_selector)
+      end
+    end
+
+    context 'when inverse is false' do
+      let(:inverse) { false }
+
+      it 'renders the component without the inverse class' do
+        expect(rendered_content).not_to have_tag(inverse_class_selector)
+      end
+    end
+
+    context 'when inverse is true' do
+      let(:inverse) { true }
+
+      it 'renders the component with the inverse class' do
+        expect(rendered_content).to have_tag("div", with: { class: [component_css_class, inverse_class], 'data-module' => 'govuk-service-navigation' })
+      end
+    end
+
+    context 'when a service name is present and inverse is true' do
+      let(:service_name) { 'A very nice service' }
+      let(:inverse) { true }
+
+      it 'renders the component with the inverse class' do
+        expect(rendered_content).to have_tag("section", with: { class: [component_css_class, inverse_class], 'data-module' => 'govuk-service-navigation' })
       end
     end
   end

@@ -63,4 +63,12 @@ p
     end of the service navigation. This content needs its own custom styling or it will
     be rendered above and below the other content.
 
+== render('/partials/example.*',
+  caption: "Inverting the service navigation colour",
+  code: service_navigation_with_inverted_colours,
+  data: service_navigation_with_navigation_items_data) do
+
+  markdown:
+    Use `inverse: true` to render the service navigation component with white links on a blue background.
+
 == render('/partials/related-navigation.*', links: service_navigation_info)
