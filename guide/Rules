@@ -20,6 +20,13 @@ compile '/**/*.slim' do
   write item.identifier.without_ext + '/index.html'
 end
 
+compile '/**/*.md' do
+  filter :govuk_markdown
+  filter :colorize_syntax, default_colorizer: :rouge
+  layout '/default.*'
+  write item.identifier.without_ext + '/index.html'
+end
+
 ignore '/**/_*.scss'
 compile '/**/*.scss' do
   filter :dart_sass,
