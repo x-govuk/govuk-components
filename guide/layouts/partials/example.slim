@@ -1,5 +1,5 @@
-h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-8" id=anchor_id(caption)
-  == link_to caption, "#".concat(anchor_id(caption)), class: "header-anchor"
+h2 class="govuk-heading-l govuk-!-margin-top-8" id=anchor_id(caption)
+  == link_to caption, "#".concat(anchor_id(caption)), class: "app-link--heading"
 
 - if block_given? && (content = yield)
   == content

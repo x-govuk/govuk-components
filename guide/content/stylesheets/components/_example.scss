@@ -1,10 +1,12 @@
+@use "../vendor/govuk-frontend" as *;
+
 .app-example {
+  margin-left: 0;
+  margin-right: 0;
   @include govuk-font($size: 19);
   @include govuk-text-colour;
   @include govuk-responsive-margin(6, "top");
   @include govuk-responsive-margin(6, "bottom");
-  margin-left: 0;
-  margin-right: 0;
 
   .govuk-tabs__panel {
     pre {
@@ -15,19 +17,19 @@
       margin-bottom: govuk-spacing(-2)
     }
 
-    // make dark so the inverted hyperlinks (where the text is white) are visible
+    // Make dark so inverted hyperlinks (where the text is white) are visible
     &.inverse {
-      background: govuk-colour('blue');
+      background: govuk-colour("blue");
 
-      // force the link text to be govuk blue so there's sufficient contrast
+      // Force the link text to be govuk blue so there’s sufficient contrast
       .govuk-button.govuk-button--inverse {
-        color: govuk-colour('blue');
+        color: govuk-colour("blue");
       }
     }
   }
 
-  // pull the with container in so rendered previews don't push
-  // up against the sides of the preview area
+  // Pull width container in so rendered previews don’t push up against sides
+  // of the preview area
   .govuk-width-container {
     max-width: $govuk-page-width - 100px;
   }
@@ -36,12 +38,12 @@
     width: 100%;
     border: none;
 
-    height: $app-iframe-mobile-height;
-    background: white;
+    height: 15rem;
+    background: govuk-colour("white");
   }
 
-  // display the example in its own block formatting context so floating
-  // components (exit this page) don't make the tab panel collapse
+  // Display the example in its own block formatting context so floating
+  // components (exit this page) don’t make the tab panel collapse
   &__output {
     display: flow-root;
   }

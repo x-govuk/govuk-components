@@ -1,0 +1,83 @@
+@use "vendor/govuk-frontend" as *;
+
+// Advanced table example, change some alignment to make multiple sets
+// of headers more readable
+.govuk-table {
+  &.starter-pokemon-weights {
+    .govuk-table__head > .govuk-table__row {
+      > .govuk-table__header {
+        &.generation-heading {
+          border-bottom: none;
+          text-align: center;
+        }
+      }
+    }
+
+    .govuk-table__head,
+    .govuk-table__body,
+    .govuk-table__foot {
+      > .govuk-table__row {
+        .border-left {
+          border-left: 1px solid $govuk-border-colour;
+        }
+        .thick-border-bottom {
+          border-bottom: 3px solid $govuk-border-colour;
+        }
+        .no-border-bottom {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+
+  .govuk-table__foot {
+    @include govuk-typography-weight-bold;
+    border-top: 3px solid $govuk-border-colour;
+
+    .govuk-table__row {
+      .govuk-table__footer {
+        text-align: left;
+        padding: govuk-spacing(2) govuk-spacing(4) govuk-spacing(2) 0;
+
+        &--numeric {
+          text-align: right;
+        }
+      }
+
+      &:last-of-type {
+        .govuk-table__header {
+          border-bottom: none;
+        }
+      }
+
+      .govuk-table__footer {
+        &:last-child {
+          padding-right: 0;
+        }
+      }
+    }
+  }
+}
+
+// Example custom logo used in documentation
+.app-header__logotype {
+  display: inline-block;
+  position: relative;
+  top: -3px;
+
+  margin-right: 0;
+  fill: tomato;
+  vertical-align: top;
+}
+
+.app-header__logotext {
+  color: tomato;
+  font-weight: bold;
+}
+
+// Manual service navigation
+.app-service-navigation .govuk-width-container {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
