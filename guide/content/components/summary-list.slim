@@ -2,9 +2,9 @@
 title: Summary list
 ---
 
-p
-  | Use the summary list to summarise information, such as a user’s
-    responses at the end of a form.
+markdown:
+  Use the summary list to summarise information, such as a user’s responses at
+  the end of a form.
 
 == render('/partials/example.*',
   caption: "A summary list with various entries",
@@ -81,7 +81,7 @@ p
     * actions that will apply to all the items in a list
 
 markdown:
-  Arbitrary HTML content can be passed into the `govuk_summary_card` block and it will
-  render in the place of a summary list.
+  Arbitrary HTML content can be passed into the `govuk_summary_card` block and
+  it will render in the place of a summary list.
 
 == render('/partials/related-navigation.*', links: summary_list_info)
