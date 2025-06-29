@@ -30,11 +30,11 @@ end
 ignore '/**/_*.scss'
 compile '/**/*.scss' do
   filter :dart_sass,
-    targets: %w(content/stylesheets/application.scss),
-    load_paths: %w(
-      node_modules/govuk-frontend/
-      node_modules/@x-govuk/govuk-prototype-components/
-    )
+    load_paths: %w(.),
+    pkg_importer: 'node',
+    quiet_deps: true,
+    silence_deprecation: 'import',
+    style: 'compressed'
   write item.identifier.without_ext + '.css'
 end
 
