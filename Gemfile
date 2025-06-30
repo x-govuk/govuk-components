@@ -15,5 +15,6 @@ gemspec
 # gem 'byebug', group: [:development, :test]
 
 group 'nanoc' do
+  gem 'govuk_markdown'
   gem 'nanoc-live'
 end

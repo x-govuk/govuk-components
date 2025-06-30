@@ -1,0 +1,24 @@
+@use "../vendor/govuk-frontend" as *;
+
+.app-link--heading {
+  @include govuk-link-style-text;
+  @include govuk-link-style-no-underline;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:hover::after,
+  :target &::after {
+    color: govuk-colour("dark-grey");
+    content: "#";
+    font-variant: all-small-caps;
+    font-weight: normal;
+    margin-left: govuk-spacing(1);
+    opacity: 0.5;
+  }
+}
+
+[class^="govuk-heading"][tabindex] {
+  outline: none;
+}

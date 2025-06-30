@@ -1,0 +1,13 @@
+// Use GOV.UK Frontend
+$_font-family: system-ui, sans-serif;
+@forward "pkg:govuk-frontend/dist/govuk" with (
+  $govuk-global-styles: true,
+  $govuk-new-organisation-colours: true,
+  $govuk-new-typography-scale: true,
+  $govuk-font-family: $_font-family,
+  $govuk-brand-colour: #2288aa,
+  $govuk-link-colour: #006688,
+  $govuk-link-hover-colour: #004466,
+  $govuk-link-visited-colour: #333366,
+  $govuk-page-width: 1100px
+);

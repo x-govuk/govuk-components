@@ -2,9 +2,9 @@
 title: Back link
 ---
 
-p
-  | Use the back link component to help users go back to the previous page in a
-    multi-page transaction.
+markdown:
+  Use the back link component to help users go back to the previous page in a
+  multi-page transaction.
 
 == render('/partials/example.*',
   caption: "Basic back link",
@@ -20,7 +20,7 @@ p
   inverse: true) do
 
   markdown:
-    When back links are displayed on darker backgrounds the `inverse` keyword argument can
-    be used to make them readable.
+    When back links are displayed on darker backgrounds the `inverse` keyword
+    argument can be used to make them readable.
 
 == render('/partials/related-navigation.*', links: back_link_info)

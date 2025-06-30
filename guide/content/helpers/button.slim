@@ -2,26 +2,26 @@
 title: Button helpers
 ---
 
-p.govuk-body
-  | In addition to the components, this gem also comes with button helpers that
-    are frequently duplicated and reimplemented across projects.
+markdown:
+  In addition to the components, this gem also comes with button helpers that
+  are frequently duplicated and reimplemented across projects.
 
 == render('/partials/example.*',
   caption: "Regular button",
   code: govuk_button_to_normal) do
 
-  p.govuk-body
-    | The <code>govuk_button_to</code> helper wraps Rails'
-      #{link_to('button_to', rails_docs_button_to).html_safe}
-      directly, rendering a form that will <code>POST</code> by default.
+  markdown:
+    The `govuk_button_to` helper wraps Rails'
+    #{link_to('button_to', rails_docs_button_to).html_safe}
+    directly, rendering a form that will `POST` by default.
 
 == render('/partials/example.*',
   caption: "Link styled like a button",
   code: govuk_button_link_to_normal) do
 
-  p.govuk-body
-    | When using buttons for navigation, we usually want a link styled like a
-      button instead.
+  markdown:
+    When using buttons for navigation, we usually want a link styled like a
+    button instead.
 
 == render('/partials/example.*',
   caption: "Inverse buttons",
@@ -29,8 +29,8 @@ p.govuk-body
   inverse: true) do
 
   markdown:
-    Inverse buttons can be used to make buttons stand out on coloured backgrounds. They
-    are frequently used on landing pages.
+    Inverse buttons can be used to make buttons stand out on coloured
+    backgrounds. They are frequently used on landing pages.
 
 == render('/partials/example.*',
   caption: "Other button styles",

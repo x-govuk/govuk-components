@@ -5,8 +5,7 @@ title: Using components
 markdown:
   You can use view components in Rails templates by:
 
-  * passing a ViewComponent object to Rails’ <code>render</code>
-    method directly
+  * passing a ViewComponent object to Rails’ `render` method directly
   * using the packaged helpers that build and render the ViewComponent
 
   The result and functionality of the components is the same
@@ -14,45 +13,39 @@ markdown:
 
   ## Capturing content
 
-  This library uses Rails' default capture functionalty. It's intended to work
+  This library uses Rails' default capture functionality. It’s intended to work
   with strings but [renders nothing](https://github.com/rails/rails/issues/17661)
   when other kinds of objects are provided. For example, if we capture a
   floating point number and a string in a `tag#span` block, only the string is
   rendered.
 
-.code-sample
-  pre
-    code.highlight.language-slim
-      |
-        = tag.span { 1.0 }
-        = tag.span { "2.0" }
+  ```language-slim
+  = tag.span { 1.0 }
+  = tag.span { "2.0" }
+  ```
 
-  pre
-    code.highlight.language-html
-        = "<span></span>\n"
-        = "<span>2.0</span>"
+  ```language-html
+  <span></span>
+  <span>2.0</span>
+  ```
 
-markdown:
   ## Using component objects directly
 
   Rails supports the rendering of ViewComponent objects natively. You can
   pass them straight to `render` in your template.
 
-.code-sample
-  pre
-    code.highlight.language-slim
-      | = render(GovukComponent::InsetTextComponent.new(text: "Important message"))
+  ```language-slim
+  = render(GovukComponent::InsetTextComponent.new(text: "Important message"))
+  ```
 
-markdown:
   ## Using the provided helper methods
 
-  The helper methods make rendering components easier and they
-  provide a more consistent experience when using with the
-  [link helpers](/helpers/link) and [GOV.UK Form Builder](https://govuk-form-builder.netlify.app/).
+  The helper methods make rendering components easier and they provide a more
+  consistent experience when using with the [link helpers](/helpers/link) and
+  [GOV.UK Form Builder](https://govuk-form-builder.netlify.app/).
 
-.code-sample
-  pre
-    code.highlight.language-slim
-      | = govuk_inset_text(text: "Important message")
+  ```language-slim
+  = govuk_inset_text(text: "Important message")
+  ```
 
 == ActionController::Base.render(component_helper_mapping_table)
