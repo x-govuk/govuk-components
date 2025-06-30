@@ -9,42 +9,14 @@
   @include govuk-responsive-margin(6, "bottom");
 
   .govuk-tabs__panel {
-    pre {
+    > *:last-child {
+      margin-bottom: govuk-spacing(-2);
       margin-top: govuk-spacing(-2);
-    }
-
-    pre:last-child {
-      margin-bottom: govuk-spacing(-2)
     }
 
     // Make dark so inverted hyperlinks (where the text is white) are visible
     &.inverse {
       background: govuk-colour("blue");
-
-      // Force the link text to be govuk blue so there’s sufficient contrast
-      .govuk-button.govuk-button--inverse {
-        color: govuk-colour("blue");
-      }
     }
-  }
-
-  // Pull width container in so rendered previews don’t push up against sides
-  // of the preview area
-  .govuk-width-container {
-    max-width: $govuk-page-width - 100px;
-  }
-
-  iframe {
-    width: 100%;
-    border: none;
-
-    height: 15rem;
-    background: govuk-colour("white");
-  }
-
-  // Display the example in its own block formatting context so floating
-  // components (exit this page) don’t make the tab panel collapse
-  &__output {
-    display: flow-root;
   }
 }

@@ -69,10 +69,8 @@ figure.app-example
 
       - unless defined?(hide_html_output) && hide_html_output
 
-        .govuk-tabs__panel.app-example__output id=%(output-rendered-#{anchor_id(caption)}) class=("inverse" if defined?(inverse) && inverse)
-          - if defined?(rendered_partial)
-            iframe src=rendered_partial sandbox=(!defined?(rendered_partial_js) || (defined?(rendered_partial_js) && !rendered_partial_js))
-          - else
+        .govuk-tabs__panel id=%(output-rendered-#{anchor_id(caption)}) class=("inverse" if defined?(inverse) && inverse)
+          scoped-preview
             - if defined?(data)
               == format_slim(code, data)
             - else

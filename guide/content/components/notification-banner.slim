@@ -20,12 +20,10 @@ markdown:
 == render('/partials/example.*',
   caption: "Notification banner with heading",
   code: notification_banner_with_heading,
-  data: notification_banner_heading_arguments,
-  rendered_partial: "/components/notification_banner/notification_banner_with_heading")
+  data: notification_banner_heading_arguments)
 
 == render('/partials/example.*',
   caption: "Notification banner with success",
-  code: notification_banner_success,
-  rendered_partial: "/components/notification_banner/notification_banner_success")
+  code: notification_banner_success)
 
 == render('/partials/related-navigation.*', links: notification_banner_info)

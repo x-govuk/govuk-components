@@ -7,7 +7,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "postinstall": "cp -R node_modules/govuk-frontend/dist/govuk/assets/images content/assets && cp node_modules/govuk-frontend/dist/govuk/govuk-frontend.min.js content/javascripts/govuk-frontend.min.js && cp node_modules/govuk-frontend/dist/govuk/govuk-frontend.min.js.map content/javascripts/govuk-frontend.min.js.map",
+    "postinstall": "cp -R node_modules/govuk-frontend/dist/govuk/assets content && cp node_modules/govuk-frontend/dist/govuk/govuk-frontend.min.js content/javascripts/govuk-frontend.min.js && cp node_modules/govuk-frontend/dist/govuk/govuk-frontend.min.js.map content/javascripts/govuk-frontend.min.js.map",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
