@@ -75,17 +75,11 @@
 
 // Example custom logo used in documentation
 .app-header__logotype {
-  display: inline-block;
-  position: relative;
-  top: -3px;
-
-  margin-right: 0;
-  fill: tomato;
-  vertical-align: top;
+  fill: #00ffe0;
 }
 
 .app-header__logotext {
-  color: tomato;
+  color: #00ffe0;
   font-weight: bold;
 }
 
