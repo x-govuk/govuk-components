@@ -2,10 +2,10 @@
 title: Exit this page
 ---
 
-p.govuk-body
-  | Give users a way to quickly and safely exit a service, website or
-    application. Keyboard-only users can quickly tap the shift key 3 times to
-    exit the page.
+markdown:
+  Give users a way to quickly and safely exit a service, website or
+  application. Keyboard-only users can quickly tap the shift key 3 times to
+  exit the page.
 
 == render('/partials/example.*',
   caption: "Exit this page with no parameters",
@@ -21,8 +21,9 @@ p.govuk-body
   code: exit_this_page_custom_link_and_text) do
 
   markdown:
-    Both the link text and redirect URL can be overridden with arguments. For consistency
-    with other link helpers, `href` can be used instead of `redirect_url`.
+    Both the link text and redirect URL can be overridden with arguments. For
+    consistency with other link helpers, `href` can be used instead of
+    `redirect_url`.
 
 == render('/partials/example.*',
   caption: "Exit this page with custom HTML",
@@ -36,8 +37,9 @@ p.govuk-body
   code: exit_this_page_link_helper) do
 
   markdown:
-    In addition to the component a link can be added alongside the [skip link](/helpers/skip-link) that
-    allows people to quickly exit the site using their keyboard.
+    In addition to the component a link can be added alongside the
+    [skip link](/helpers/skip-link) that allows people to quickly exit the site
+    using their keyboard.
 
 == render('/partials/example.*',
   caption: "Overriding the assistive text",

@@ -1,0 +1,70 @@
+@use "../vendor/govuk-frontend" as *;
+
+// Use same colour for inline code as that used on GOV.UK Design System site.
+// https://github.com/alphagov/govuk-design-system/blob/main/src/stylesheets/main.scss
+$_code-color: #d13118;
+
+.app-prose-scope {
+  @include govuk-responsive-margin(8, "bottom");
+
+  p,
+  ul:not([class]),
+  ol{
+    max-width: 38em;
+  }
+
+  code,
+  pre {
+    font-family: ui-monospace, monospace;
+    -webkit-font-smoothing: auto;
+  }
+
+  code {
+    background-color: govuk-colour("light-grey");
+    color: $_code-color;
+    font-size: 0.875em;
+    padding: 2px govuk-spacing(1);
+
+    a & {
+      color: inherit;
+    }
+
+    // Ensure links within inline code blocks receive focus colour
+    a:focus & {
+      background: $govuk-focus-colour;
+    }
+  }
+
+  pre {
+    background-color: govuk-colour("light-grey");
+    overflow: auto;
+    padding: govuk-spacing(4);
+    scrollbar-color: $govuk-border-colour govuk-colour("light-grey");
+    @include govuk-font(16, $line-height: 1.4);
+    @include govuk-responsive-margin(4, "bottom");
+
+    code {
+      background: transparent;
+      font-size: inherit;
+      padding: 0;
+    }
+
+    + .govuk-heading-l {
+      padding-top: govuk-spacing(4);
+    }
+
+    + .govuk-heading-m,
+    + .govuk-heading-s {
+      padding-top: govuk-spacing(2);
+    }
+
+    &::-webkit-scrollbar {
+      height: govuk-spacing(1);
+      width: govuk-spacing(1);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $govuk-border-colour;
+    }
+  }
+}

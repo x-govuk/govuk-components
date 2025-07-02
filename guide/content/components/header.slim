@@ -2,9 +2,9 @@
 title: GOV.UK header
 ---
 
-p
-  | The GOV.UK header shows users that they are on GOV.UK and which service they
-    are using.
+markdown:
+  The GOV.UK header shows users that they are on GOV.UK and which service they
+  are using.
 
 == render('/partials/example.*',
   caption: "Default header",
@@ -35,9 +35,7 @@ p
 
 == render('/partials/example.*',
   caption: "Header with navigation items",
-  code: header_with_navigation_items,
-  rendered_partial: "/components/header/header_with_navigation_items",
-  rendered_partial_js: true)
+  code: header_with_navigation_items)
 
   markdown:
     Navigation items can be added using the `navigation_item` slot. When viewed

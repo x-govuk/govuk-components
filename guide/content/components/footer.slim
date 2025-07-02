@@ -2,7 +2,8 @@
 title: GOV.UK footer
 ---
 
-p The footer provides copyright, licensing and other information about your
+markdown:
+  The footer provides copyright, licensing and other information about your
   service and department.
 
 == render('/partials/example.*',
@@ -27,9 +28,9 @@ p The footer provides copyright, licensing and other information about your
   data: footer_meta_complex_items) do
 
   markdown:
-    If you need greater control of the meta links you can
-    provide them as an array of hashes with the keys `text:`, `href:` and `attr:` where
-    attr is a hash of HTML attributes.
+    If you need greater control of the meta links you can provide them as an
+    array of hashes with the keys `text:`, `href:` and `attr:` where attr is a
+    hash of HTML attributes.
 
 == render('/partials/example.*',
   caption: "Footer with custom content above the licence information",

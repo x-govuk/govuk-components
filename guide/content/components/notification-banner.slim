@@ -2,13 +2,12 @@
 title: Notification banner
 ---
 
-p
-  | Use a notification banner to tell the user about something they need to
-    know, but that’s not directly related to the page content.
+markdown:
+  Use a notification banner to tell the user about something they need to know,
+  but that’s not directly related to the page content.
 
-p
-  | Use notification banners sparingly. There’s evidence that people often miss
-    them, and using them too often is likely to make this problem worse.
+  Use notification banners sparingly. There’s evidence that people often miss
+  them, and using them too often is likely to make this problem worse.
 
 == render('/partials/example.*',
   caption: "Notification banner with text arguments",
@@ -21,12 +20,10 @@ p
 == render('/partials/example.*',
   caption: "Notification banner with heading",
   code: notification_banner_with_heading,
-  data: notification_banner_heading_arguments,
-  rendered_partial: "/components/notification_banner/notification_banner_with_heading")
+  data: notification_banner_heading_arguments)
 
 == render('/partials/example.*',
   caption: "Notification banner with success",
-  code: notification_banner_success,
-  rendered_partial: "/components/notification_banner/notification_banner_success")
+  code: notification_banner_success)
 
 == render('/partials/related-navigation.*', links: notification_banner_info)

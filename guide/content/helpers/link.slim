@@ -21,8 +21,8 @@ markdown:
   code: govuk_link_to_inverse,
   inverse: true) do
 
-  p.govuk-body
-    | Use inverse hyperlinks on dark backgrounds.
+  markdown:
+    Use inverse hyperlinks on dark backgrounds.
 
 == render('/partials/example.*',
   caption: "Other link styles",
@@ -34,13 +34,13 @@ markdown:
 
   markdown:
     When space is limited we sometimes rely on the link's position to provide
-    context about its target. An example of this is in admin interfaces where rows
-    in a table often have a 'View' link, or a 'Delete' button.
+    context about its target. An example of this is in admin interfaces where
+    rows in a table often have a 'View' link, or a 'Delete' button.
 
     Omitting the extra text entirely leaves users of assistive technologies like
     screen readers at a disadvantage, as they can't infer that context. We can
-    solve this problem using visually hidden text that isn't visible on the screen
-    but will be read out by screen readers.
+    solve this problem using visually hidden text that isn't visible on the
+    screen but will be read out by screen readers.
 
     The keyword arguments automatically add a space between the visually
     hidden and regular text.
@@ -71,16 +71,14 @@ hr.govuk-section-break.govuk-section-break--xl.govuk-section-break--visible
   caption: "Class helpers",
   code: govuk_link_classes_multiple) do
 
-  p.govuk-body
-    markdown:
-      Rails has [lots of link helpers][0]
-      and only the most frequently used are wrapped by this library. If you need
-      to use another variant, like `link_to_if`, you can use the
-      `govuk_link_classes` and `govuk_button_classes`
-      helpers to ensure the correct classes are assigned.
+  markdown:
+    Rails has [lots of link helpers][0] and only the most frequently used are
+    wrapped by this library. If you need to use another variant, like
+    `link_to_if`, you can use the `govuk_link_classes` and
+    `govuk_button_classes` helpers to ensure the correct classes are assigned.
 
-      When no arguments are provided to `govuk_link_classes`, only
-      the default `govuk-link` will be added. Alternate styles
-      can be passed in as a snake cased array of variants.
+    When no arguments are provided to `govuk_link_classes`, only the default
+    `govuk-link` will be added. Alternate styles can be passed in as a snake
+    cased array of variants.
 
-      [0]: #{rails_docs_url_helper}
+    [0]: #{rails_docs_url_helper}
