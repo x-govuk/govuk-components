@@ -89,3 +89,10 @@
   align-items: center;
   gap: 1em;
 }
+
+// Isolate the preview from the rest of the page so components that only
+// contain floating elements (i.e. the exit this page component) maintain
+// height
+.app-scoped-preview {
+  contain: layout;
+}
