@@ -23,7 +23,7 @@ class GovukComponent::Base < ViewComponent::Base
       .deep_merge_html_attributes(html_attributes)
       .deep_tidy_html_attributes
 
-    super
+    super()
   end
 
   def brand(override = nil)
