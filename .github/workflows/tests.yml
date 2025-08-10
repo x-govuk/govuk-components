@@ -53,28 +53,6 @@ jobs:
       - name: Run Rubocop
         run: make ruby-lint
 
-      - name: Download CodeClimate reporter
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-        run: |
-          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-          chmod +x ./cc-test-reporter
-          ./cc-test-reporter before-build
-
-      - name: Run RSpec
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-          SIMPLECOV: '1'
-        run: make rspec
-
-      - name: Report coverage to CodeClimate
-        continue-on-error: true
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-          GIT_BRANCH: ${{ steps.extract_branch.outputs.branch }}
-          GIT_COMMIT_SHA: ${{ github.sha }}
-        run: ./cc-test-reporter after-build -t simplecov
-
       - name: Run Nanoc Check
         run: make nanoc-check-all
 

@@ -71,10 +71,6 @@ module Helpers
       'https://www.rubydoc.info/gems/govuk-components/'
     end
 
-    def code_climate_report_link
-      'https://codeclimate.com/github/x-govuk/govuk-components'
-    end
-
     def dfe_rails_boilerplate_link
       'https://github.com/DFE-Digital/govuk-rails-boilerplate'
     end
