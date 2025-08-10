@@ -26,7 +26,6 @@ module Dummy
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
-    config.view_component.preview_paths << Rails.root.join("lib/components/previews")
     config.view_component.default_preview_layout = "preview"
   end
 end
