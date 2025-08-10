@@ -1,10 +1,8 @@
 # GOV.UK Components for Ruby on Rails
 
 [![Tests](https://github.com/x-govuk/govuk-components/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/x-govuk/govuk-components/actions/workflows/tests.yml)
-[![Maintainability](https://api.codeclimate.com/v1/badges/cbcbc140f300b920d833/maintainability)](https://codeclimate.com/github/x-govuk/govuk-components/maintainability)
 [![Gem version](https://badge.fury.io/rb/govuk-components.svg)](https://badge.fury.io/rb/govuk-components)
 [![Gem](https://img.shields.io/gem/dt/govuk-components?logo=rubygems)](https://rubygems.org/gems/govuk-components)
-[![Test coverage](https://api.codeclimate.com/v1/badges/cbcbc140f300b920d833/test_coverage)](https://codeclimate.com/github/x-govuk/govuk-components/test_coverage)
 [![Licence](https://img.shields.io/github/license/x-govuk/govuk-components)](https://github.com/x-govuk/govuk-components/blob/main/LICENSE.txt)
 [![GOV.UK Design System version](https://img.shields.io/badge/GOV.UK%20Design%20System-5.11.0-brightgreen)](https://design-system.service.gov.uk)
 [![ViewComponent](https://img.shields.io/badge/ViewComponent-3.24.0-brightgreen)](https://viewcomponent.org/)
