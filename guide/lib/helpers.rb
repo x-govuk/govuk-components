@@ -42,6 +42,11 @@ require 'govuk/components'
 #        https://github.com/ViewComponent/view_component/issues/1565
 ViewComponent::Base.config.view_component_path = "app/components"
 
+# rubocop:disable Style/MixinUsage
+include GovukVisuallyHiddenHelper
+include GovukLinkHelper
+# rubocop:enable Style/MixinUsage
+
 require 'components/govuk_component'
 require 'components/govuk_component/traits'
 require 'components/govuk_component/traits/custom_html_attributes'
@@ -95,8 +100,6 @@ require 'components/govuk_component/warning_text_component'
 require 'helpers/govuk_link_helper'
 require 'helpers/govuk_visually_hidden_helper'
 
-use_helper GovukVisuallyHiddenHelper
-use_helper GovukLinkHelper
 use_helper GovukComponentsHelper
 use_helper Examples::LinkHelpers
 use_helper Examples::AccordionHelpers
@@ -126,6 +129,3 @@ use_helper Examples::BackToTopLinkHelpers
 use_helper Examples::TitleWithErrorPrefixHelpers
 use_helper Examples::VisuallyHiddenHelpers
 use_helper Examples::ListHelpers
-
-ActiveSupport.on_load(:action_view) { include GovukVisuallyHiddenHelper }
-ActiveSupport.on_load(:action_view) { include GovukLinkHelper }
