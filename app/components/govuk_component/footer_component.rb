@@ -25,7 +25,7 @@ class GovukComponent::FooterComponent < GovukComponent::Base
     meta_html_attributes: {}
   )
     @meta_text                        = meta_text
-    @meta_items                       = build_meta_links(meta_items)
+    @raw_meta_items                   = meta_items
     @meta_items_title                 = meta_items_title
     @meta_licence                     = meta_licence
     @custom_meta_classes              = meta_classes
@@ -35,7 +35,16 @@ class GovukComponent::FooterComponent < GovukComponent::Base
     @custom_container_classes         = container_classes
     @custom_container_html_attributes = container_html_attributes
 
+    unless meta_items.blank? || meta_items.is_a?(Hash) || meta_items.is_a?(Array)
+      raise ArgumentError, 'meta links must be a hash or array of hashes'
+    end
+
     super(classes:, html_attributes:)
+  end
+
+  def before_render
+    super
+    @meta_items = build_meta_links(@raw_meta_items)
   end
 
 private
@@ -75,11 +84,11 @@ private
 
     case links
     when Array
-      links.map { |link| govuk_footer_link_to(link[:text], link[:href], **link.fetch(:attr, {})) }
+      links.map { |link| helpers.govuk_footer_link_to(link[:text], link[:href], **link.fetch(:attr, {})) }
     when Hash
-      links.map { |text, href| govuk_footer_link_to(text, href) }
+      links.map { |text, href| helpers.govuk_footer_link_to(text, href) }
     else
-      fail(ArgumentError, 'meta links must be a hash or array of hashes') unless links.is_a?(Hash)
+      raise ArgumentError, 'meta links must be a hash or array of hashes'
     end
   end
 

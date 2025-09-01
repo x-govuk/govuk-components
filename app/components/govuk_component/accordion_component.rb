@@ -16,9 +16,13 @@ class GovukComponent::AccordionComponent < GovukComponent::Base
 
   def initialize(heading_level: 2, classes: [], html_attributes: {})
     @heading_level = heading_tag(heading_level)
-    @accordion_id  = html_attributes[:id]
 
     super(classes:, html_attributes:)
+  end
+
+  def before_render
+    super
+    @accordion_id = html_attributes[:id]
   end
 
   def call
