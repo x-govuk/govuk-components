@@ -19,7 +19,10 @@ class GovukComponent::SummaryListComponent::ActionComponent < GovukComponent::Ba
   end
 
   def call
-    link_to(href, **html_attributes) do
+    attrs = html_attributes.dup
+    attrs[:class] = safe_join([helpers.govuk_link_classes, classes, attrs[:class]].compact, " ")
+
+    link_to(href, **attrs) do
       safe_join([action_text, visually_hidden_span].compact)
     end
   end
@@ -27,9 +30,7 @@ class GovukComponent::SummaryListComponent::ActionComponent < GovukComponent::Ba
 private
 
   def default_attributes
-    link_classes = safe_join([govuk_link_classes, classes], " ")
-
-    { class: link_classes }
+    {}
   end
 
   def action_text
