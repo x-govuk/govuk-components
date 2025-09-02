@@ -1,4 +1,7 @@
 class GovukComponent::ExitThisPageComponent < GovukComponent::Base
+  include GovukLinkHelper
+  include GovukVisuallyHiddenHelper
+
   attr_reader :text, :redirect_url, :activated_text, :timed_out_text, :press_two_more_times_text, :press_one_more_time_text
 
   def initialize(

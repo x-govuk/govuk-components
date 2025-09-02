@@ -1,5 +1,8 @@
 module GovukComponent
   class TaskListComponent::TitleComponent < GovukComponent::Base
+    include GovukLinkHelper
+    include GovukVisuallyHiddenHelper
+
     using HTMLAttributesUtils
 
     attr_reader :id_prefix, :text, :href, :hint, :count
