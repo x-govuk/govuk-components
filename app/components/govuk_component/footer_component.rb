@@ -1,4 +1,6 @@
 class GovukComponent::FooterComponent < GovukComponent::Base
+  include GovukLinkHelper
+
   using HTMLAttributesUtils
 
   renders_one :meta_html

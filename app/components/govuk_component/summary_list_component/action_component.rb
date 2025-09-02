@@ -1,4 +1,7 @@
 class GovukComponent::SummaryListComponent::ActionComponent < GovukComponent::Base
+  include GovukLinkHelper
+  include GovukVisuallyHiddenHelper
+
   attr_reader :href, :text, :visually_hidden_text, :visually_hidden_action_suffix, :attributes, :classes
 
   def initialize(href: nil, text: 'Change', visually_hidden_text: false, visually_hidden_action_suffix: nil, classes: [], html_attributes: {})
