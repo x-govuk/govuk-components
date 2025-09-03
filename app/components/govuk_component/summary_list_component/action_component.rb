@@ -30,8 +30,7 @@ class GovukComponent::SummaryListComponent::ActionComponent < GovukComponent::Ba
 private
 
   def default_attributes
-    link_classes = safe_join([govuk_link_classes, classes], " ")
-
+    link_classes = safe_join(["#{brand}-link", classes], " ")
     { class: link_classes }
   end
 
