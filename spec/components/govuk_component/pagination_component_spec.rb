@@ -263,8 +263,8 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
   context "when there are more pages than can be shown" do
     let(:count) { 90 }
 
-    specify "renders ellipses" do
-      expect(rendered_content).to have_tag("li", with: { class: %w(govuk-pagination__item govuk-pagination__item--ellipses) })
+    specify "renders an ellipsis" do
+      expect(rendered_content).to have_tag("li", with: { class: %w(govuk-pagination__item govuk-pagination__item--ellipsis) })
     end
   end
 
