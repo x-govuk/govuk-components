@@ -61,7 +61,7 @@ private
   end
 
   def ellipsis_item
-    tag.li("⋯", class: ["#{brand}-pagination__item", "#{brand}-pagination__item--ellipses"])
+    tag.li("⋯", class: ["#{brand}-pagination__item", "#{brand}-pagination__item--ellipsis"])
   end
 
   def default_attributes
