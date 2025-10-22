@@ -71,6 +71,10 @@ module Helpers
       'https://www.rubydoc.info/gems/govuk-components/'
     end
 
+    def netlify_link
+      'https://www.netlify.com'
+    end
+
     def dfe_rails_boilerplate_link
       'https://github.com/DFE-Digital/govuk-rails-boilerplate'
     end
