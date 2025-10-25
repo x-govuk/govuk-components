@@ -22,9 +22,9 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir["{app,config,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  spec.add_dependency("html-attributes-utils", "~> 1.0.0", ">= 1.0.0")
-  spec.add_dependency("pagy", ">= 6", "< 10")
-  spec.add_dependency("view_component", ">= 4.0", "< 4.1")
+  spec.add_dependency "html-attributes-utils", "~> 1.0.0", ">= 1.0.0"
+  spec.add_dependency "pagy", ">= 6", "< 10"
+  spec.add_dependency "view_component", ">= 4.0", "< 4.1"
 
   spec.add_development_dependency "deep_merge"
   spec.add_development_dependency "ostruct"
@@ -33,18 +33,18 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec-rails"
   spec.add_development_dependency "rubocop-govuk", "= 5.1.18"
   spec.add_development_dependency "sassc-rails"
-  spec.add_development_dependency("simplecov", "~> 0.20")
+  spec.add_development_dependency "simplecov", "~> 0.20"
   spec.add_development_dependency "sqlite3"
 
   # Required for the guide
-  spec.add_development_dependency("htmlbeautifier", "~> 1.4.1")
-  spec.add_development_dependency("nanoc", "~> 4.11")
-  spec.add_development_dependency("redcarpet", "~> 3.6.0")
-  spec.add_development_dependency("rouge", "~> 4.6.0")
-  spec.add_development_dependency("rubypants", "~> 0.7.0")
-  spec.add_development_dependency("sass")
-  spec.add_development_dependency("sassc", "~> 2.4.0")
-  spec.add_development_dependency("slim", "~> 5.2.0")
-  spec.add_development_dependency("slim_lint", "~> 0.33.0")
-  spec.add_development_dependency("webrick", "~> 1.9.0")
+  spec.add_development_dependency "htmlbeautifier", "~> 1.4.1"
+  spec.add_development_dependency "nanoc", "~> 4.11"
+  spec.add_development_dependency "redcarpet", "~> 3.6.0"
+  spec.add_development_dependency "rouge", "~> 4.6.0"
+  spec.add_development_dependency "rubypants", "~> 0.7.0"
+  spec.add_development_dependency "sass"
+  spec.add_development_dependency "sassc", "~> 2.4.0"
+  spec.add_development_dependency "slim", "~> 5.2.0"
+  spec.add_development_dependency "slim_lint", "~> 0.33.0"
+  spec.add_development_dependency "webrick", "~> 1.9.0"
 end
