@@ -1,11 +1,18 @@
 require "rails/engine"
-require "active_support/configurable"
+require "active_support/ordered_options"
 
 module Govuk
   module Components
-    include ActiveSupport::Configurable
-
     class << self
+      class_attribute :config,
+                      instance_predicate: false,
+                      default: ActiveSupport::OrderedOptions.new
+
+      def inherited(klass) # :nodoc:
+        klass.config = ActiveSupport::InheritableOptions.new(config)
+        super
+      end
+
       # Configure the form builder in the usual manner. All of the
       # keys in {DEFAULTS} can be configured as per the example below
       #
@@ -14,7 +21,7 @@ module Govuk
       #     conf.do_some_things = 'yes'
       #   end
       def configure
-        yield(config)
+        yield config
       end
 
       # Resets each of the configurable values to its default
@@ -142,7 +149,18 @@ module Govuk
       enable_auto_table_scopes: true,
     }.freeze
 
-    DEFAULTS.each_key { |k| config_accessor(k) { DEFAULTS[k] } }
+    DEFAULTS.each do |key, value|
+      reader, reader_line = "def #{key}; config.#{key}; end", __LINE__
+      writer, writer_line = "def #{key}=(value); config.#{key} = value; end", __LINE__
+
+      singleton_class.class_eval reader, __FILE__, reader_line
+      singleton_class.class_eval writer, __FILE__, writer_line
+
+      class_eval reader, __FILE__, reader_line
+      class_eval writer, __FILE__, writer_line
+
+      send("#{key}=", value)
+    end
 
     class Engine < ::Rails::Engine
       isolate_namespace Govuk::Components

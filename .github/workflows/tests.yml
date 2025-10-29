@@ -11,7 +11,7 @@ jobs:
       fail-fast: false
       matrix:
         ruby: ['3.2.5', '3.3.6']
-        rails: ['7.1.5', '7.2.2', '8.0.0']
+        rails: ['7.1.5', '7.2.2', '8.0.0', '8.1.0']
     runs-on: ubuntu-latest
     name: Testing with Ruby ${{ matrix.ruby }} and Rails ${{ matrix.rails }}
     steps:
