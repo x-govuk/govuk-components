@@ -27,7 +27,7 @@ build-guide: npm-install
 	( ${guide_dir} ${prefix} nanoc )
 view-guide: build-guide
 	( ${guide_dir} ${prefix} nanoc view --port ${nanoc_default_port} )
-watch-guide: npm-install
+watch-guide:
 	( ${guide_dir} ${prefix} nanoc live --port ${nanoc_default_port} )
 docs-server:
 	yard server --reload
