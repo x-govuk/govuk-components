@@ -40,7 +40,7 @@ $_code-color: #d13118;
     overflow: auto;
     padding: govuk-spacing(4);
     scrollbar-color: $govuk-border-colour govuk-colour("light-grey");
-    @include govuk-font(16, $line-height: 1.4);
+    @include govuk-font-size(16, $line-height: 1.4);
     @include govuk-responsive-margin(4, "bottom");
 
     code {

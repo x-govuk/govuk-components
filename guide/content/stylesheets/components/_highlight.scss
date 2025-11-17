@@ -4,15 +4,15 @@ code {
   color: $govuk-text-colour;
 
   .s, .s1, .s2, .vi, .sx {
-    color: govuk-shade(govuk-colour("magenta"), 20%);
+    color: govuk-colour('magenta', $variant: 'shade-20');
   }
 
   .nt, .nf, .nc {
-    color: govuk-shade(govuk-colour("orange"), 20%);
+    color: govuk-colour("orange", 'shade-20');
     }
 
   .n, .p, .k, .mi, .n, .o, .na, .ss {
-    color: govuk-colour("dark-blue");
+    color: govuk-colour('dark-blue');
   }
 
   .k {
@@ -20,11 +20,11 @@ code {
   }
 
   .no {
-    color: govuk-shade(govuk-colour("teal"), 20%);
+    color: govuk-colour('teal', 'shade-20');
   }
 
   .kp {
-    color: govuk-colour("green");
+    color: govuk-colour('green');
   }
 
   .c, .c1 {

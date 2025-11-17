@@ -3,7 +3,7 @@
 .app-example {
   margin-left: 0;
   margin-right: 0;
-  @include govuk-font($size: 19);
+  @include govuk-font-size($size: 19);
   @include govuk-text-colour;
   @include govuk-responsive-margin(6, "top");
   @include govuk-responsive-margin(6, "bottom");
