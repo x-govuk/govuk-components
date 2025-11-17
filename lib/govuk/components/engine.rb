@@ -68,7 +68,7 @@ module Govuk
     # +:default_phase_banner_text+ nil
     # +:default_section_break_visible+ false
     # +:default_section_break_size+ Size of the section break, possible values: +m+, +l+ and +xl+. Defaults to nil.
-    # +:default_tag_colour+ the default colour for tags, possible values: +grey+, +green+, +turquoise+, +blue+, +red+, +purple+, +pink+, +orange+, +yellow+. Defaults to +nil+
+    # +:default_tag_colour+ the default colour for tags, possible values: +grey+, +green+, +teal+, +blue+, +red+, +purple+, +magenta+, +orange+, +yellow+. Defaults to +nil+
     # +:default_start_button_as_button+ false
     # +:default_summary_list_borders+ true
     # +:default_summary_list_value_text+ the fallback text for summary list values which will be displayed when the value is nil. Defaults to +""+

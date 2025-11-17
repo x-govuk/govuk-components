@@ -4,7 +4,7 @@ code {
   color: $govuk-text-colour;
 
   .s, .s1, .s2, .vi, .sx {
-    color: govuk-shade(govuk-colour("pink"), 20%);
+    color: govuk-shade(govuk-colour("magenta"), 20%);
   }
 
   .nt, .nf, .nc {
@@ -20,7 +20,7 @@ code {
   }
 
   .no {
-    color: govuk-shade(govuk-colour("turquoise"), 20%);
+    color: govuk-shade(govuk-colour("teal"), 20%);
   }
 
   .kp {

@@ -18,7 +18,7 @@ Govuk::Components.configure do |conf|
   conf.default_header_service_name = "Apply for a Juggling Licence"
   conf.default_phase_banner_text = "Beta"
   conf.default_summary_list_borders = false
-  conf.default_tag_colour = "turquoise"
+  conf.default_tag_colour = "teal"
 end
 ```
 

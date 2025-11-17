@@ -8,7 +8,7 @@ module Examples
 
     def tag_colours
       <<~TAG
-        - %w(Grey Green Turquoise Blue Light-blue Red Purple Pink Orange Yellow).each do |colour|
+        - %w(Grey Green Teal Blue Light-blue Red Purple Magenta Orange Yellow).each do |colour|
           = govuk_tag(text: colour, colour: colour.downcase)
       TAG
     end
