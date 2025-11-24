@@ -76,8 +76,13 @@ private
   end
 
   def aria_current
-    current = (current?) ? 'page' : true
+    { aria: { current: aria_current_value } }
+  end
 
-    { aria: { current: } }
+  def aria_current_value
+    return 'page' if current?
+    return true if active?
+
+    nil
   end
 end

@@ -136,6 +136,11 @@ RSpec.describe(GovukComponent::ServiceNavigationComponent, type: :component) do
       specify %(the current link has aria-current='page') do
         expect(rendered_content).to have_tag('a', text: 'Item two', with: { href: '/item-two', 'aria-current' => 'page' })
       end
+
+      specify %(only current links have an aria-current attribute) do
+        expect(rendered_content).to have_tag('a', with: { 'aria-current' => 'page' }, count: 1)
+        expect(rendered_content).not_to have_tag('a', with: { 'aria-current' => true })
+      end
     end
 
     describe 'matching the current page' do
@@ -154,6 +159,11 @@ RSpec.describe(GovukComponent::ServiceNavigationComponent, type: :component) do
               with_tag('a', text: 'Admin', with: { href: '/admin' })
             end
           end
+        end
+
+        specify %(only current links have an aria-current attribute) do
+          expect(rendered_content).to have_tag('a', with: { 'aria-current' => 'page' }, count: 1)
+          expect(rendered_content).not_to have_tag('a', with: { 'aria-current' => true })
         end
       end
     end
@@ -179,6 +189,11 @@ RSpec.describe(GovukComponent::ServiceNavigationComponent, type: :component) do
       specify %(the active link has aria-current='true') do
         expect(rendered_content).to have_tag('a', text: 'Item two', with: { href: '/item-two', 'aria-current' => 'true' })
       end
+
+      specify %(only active links have an aria-current attribute) do
+        expect(rendered_content).to have_tag('a', with: { 'aria-current' => true }, count: 1)
+        expect(rendered_content).not_to have_tag('a', with: { 'aria-current' => 'page' })
+      end
     end
 
     context 'when active_when is set with a string' do
@@ -200,6 +215,11 @@ RSpec.describe(GovukComponent::ServiceNavigationComponent, type: :component) do
 
       specify %(the active link has aria-current='true') do
         expect(rendered_content).to have_tag('a', text: 'Admin', with: { href: '/admin', 'aria-current' => 'true' })
+      end
+
+      specify %(only active links have an aria-current attribute) do
+        expect(rendered_content).to have_tag('a', with: { 'aria-current' => true }, count: 1)
+        expect(rendered_content).not_to have_tag('a', with: { 'aria-current' => 'page' })
       end
     end
 
@@ -223,6 +243,11 @@ RSpec.describe(GovukComponent::ServiceNavigationComponent, type: :component) do
       specify %(the active link has aria-current='true') do
         expect(rendered_content).to have_tag('a', text: 'Sales', with: { href: '/sales', 'aria-current' => 'true' })
       end
+
+      specify %(only active links have an aria-current attribute) do
+        expect(rendered_content).to have_tag('a', with: { 'aria-current' => true }, count: 1)
+        expect(rendered_content).not_to have_tag('a', with: { 'aria-current' => 'page' })
+      end
     end
 
     context 'when active_when is set with a regular expression' do
@@ -244,6 +269,11 @@ RSpec.describe(GovukComponent::ServiceNavigationComponent, type: :component) do
 
       specify %(the active link has aria-current='true') do
         expect(rendered_content).to have_tag('a', text: 'Finance', with: { href: '/finance', 'aria-current' => 'true' })
+      end
+
+      specify %(only active links have an aria-current attribute) do
+        expect(rendered_content).to have_tag('a', with: { 'aria-current' => true }, count: 1)
+        expect(rendered_content).not_to have_tag('a', with: { 'aria-current' => 'page' })
       end
     end
   end

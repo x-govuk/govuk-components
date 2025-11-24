@@ -36,7 +36,7 @@ module Examples
         = render GovukComponent::FooterComponent.new do |footer|
           - footer.with_meta_html do
             | Built with love by
-            = govuk_footer_link_to("X-GOVUK", "https://x-govuk.github.io/")
+            = govuk_footer_link_to("X-GOVUK", "https://x-govuk.org/")
       FOOTER_META_HTML
     end
 
@@ -72,7 +72,7 @@ module Examples
           - footer.with_meta_licence_html do
             |> Some custom HTML for the licence,
                perhaps with a
-            = govuk_footer_link_to("link", "https://x-govuk.github.io/")
+            = govuk_footer_link_to("link", "https://x-govuk.org/")
       FOOTER
     end
 
