@@ -15,41 +15,41 @@ It aims to implement the functionality from the original Nunjucks macros in a wa
 
 ## Documentation
 
-The gem comes with [a full guide](https://govuk-components.netlify.app/) that covers most aspects of day-to-day use, along with code and output examples. The examples in the guide (and the guide itself) are built using the components, so it will always be up to date.
+The gem comes with [a full guide](https://govuk-components.x-govuk.org/) that covers most aspects of day-to-day use, along with code and output examples. The examples in the guide (and the guide itself) are built using the components, so it will always be up to date.
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/d40a5a0a-b086-4c35-b046-97fbcbf9f219/deploy-status)](https://app.netlify.com/sites/govuk-components/deploys)
 
 ## What’s included?
 
-All of the non-form components from the GOV.UK Design System are implemented by this library as ViewComponents. Form components are implemented by the [GOV.UK Form Builder](https://govuk-form-builder.netlify.app/).
+All of the non-form components from the GOV.UK Design System are implemented by this library as ViewComponents. Form components are implemented by the [GOV.UK Form Builder](https://govuk-form-builder.x-govuk.org/).
 
 The provided components are:
 
-* [Accordion](https://govuk-components.netlify.app/components/accordion)
-* [Back link](https://govuk-components.netlify.app/components/back-link)
-* [Breadcrumbs](https://govuk-components.netlify.app/components/breadcrumbs)
-* [Cookie banner](https://govuk-components.netlify.app/components/cookie-banner)
-* [Details](https://govuk-components.netlify.app/components/details)
-* [Exit this page](https://govuk-components.netlify.app/components/exit-this-page)
-* [GOV.UK footer](https://govuk-components.netlify.app/components/footer)
-* [GOV.UK header](https://govuk-components.netlify.app/components/header)
-* [Inset text](https://govuk-components.netlify.app/components/inset-text)
-* [Notification banner](https://govuk-components.netlify.app/components/notification-banner)
-* [Panel](https://govuk-components.netlify.app/components/panel)
-* [Pagination](https://govuk-components.netlify.app/components/pagination)
-* [Phase banner](https://govuk-components.netlify.app/components/phase-banner)
-* [Section break](https://govuk-components.netlify.app/components/section-break)
-* [Start button](https://govuk-components.netlify.app/components/start-button)
-* [Summary list](https://govuk-components.netlify.app/components/summary-list)
-* [Tabs](https://govuk-components.netlify.app/components/tabs)
-* [Tables](https://govuk-components.netlify.app/components/table)
-* [Tags](https://govuk-components.netlify.app/components/tag)
-* [Task list](https://govuk-components.netlify.app/components/task-list)
-* [Warning text](https://govuk-components.netlify.app/components/warning-text)
+* [Accordion](https://govuk-components.x-govuk.org/components/accordion)
+* [Back link](https://govuk-components.x-govuk.org/components/back-link)
+* [Breadcrumbs](https://govuk-components.x-govuk.org/components/breadcrumbs)
+* [Cookie banner](https://govuk-components.x-govuk.org/components/cookie-banner)
+* [Details](https://govuk-components.x-govuk.org/components/details)
+* [Exit this page](https://govuk-components.x-govuk.org/components/exit-this-page)
+* [GOV.UK footer](https://govuk-components.x-govuk.org/components/footer)
+* [GOV.UK header](https://govuk-components.x-govuk.org/components/header)
+* [Inset text](https://govuk-components.x-govuk.org/components/inset-text)
+* [Notification banner](https://govuk-components.x-govuk.org/components/notification-banner)
+* [Panel](https://govuk-components.x-govuk.org/components/panel)
+* [Pagination](https://govuk-components.x-govuk.org/components/pagination)
+* [Phase banner](https://govuk-components.x-govuk.org/components/phase-banner)
+* [Section break](https://govuk-components.x-govuk.org/components/section-break)
+* [Start button](https://govuk-components.x-govuk.org/components/start-button)
+* [Summary list](https://govuk-components.x-govuk.org/components/summary-list)
+* [Tabs](https://govuk-components.x-govuk.org/components/tabs)
+* [Tables](https://govuk-components.x-govuk.org/components/table)
+* [Tags](https://govuk-components.x-govuk.org/components/tag)
+* [Task list](https://govuk-components.x-govuk.org/components/task-list)
+* [Warning text](https://govuk-components.x-govuk.org/components/warning-text)
 
-This library also provides helpers for creating [links](https://govuk-components.netlify.app/helpers/link),
-[buttons](https://govuk-components.netlify.app/helpers/button), [skip links](https://govuk-components.netlify.app/helpers/skip-link)
-and [back to top links](https://govuk-components.netlify.app/helpers/back-to-top-link).
+This library also provides helpers for creating [links](https://govuk-components.x-govuk.org/helpers/link),
+[buttons](https://govuk-components.x-govuk.org/helpers/button), [skip links](https://govuk-components.x-govuk.org/helpers/skip-link)
+and [back to top links](https://govuk-components.x-govuk.org/helpers/back-to-top-link).
 
 ## Alternative syntax
 
@@ -97,7 +97,7 @@ Here are the rendered tabs:
 
 ![Tabs preview](docs/images/tabs.png)
 
-For examples on usage see the [guide page](https://govuk-components.netlify.app/).
+For examples on usage see the [guide page](https://govuk-components.x-govuk.org/).
 
 ## Setup
 

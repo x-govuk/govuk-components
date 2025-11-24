@@ -17,4 +17,4 @@ checks:
       # made which nano reports as failure (202)
       - '^https?://www.rubydoc.info/'
 
-base_url: https://govuk-components.netlify.app
+base_url: https://govuk-components.x-govuk.org
