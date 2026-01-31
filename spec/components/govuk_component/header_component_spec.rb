@@ -18,9 +18,11 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
     let(:kwargs) { {} }
 
     specify 'outputs a header with correct logo text and no content' do
-      expect(rendered_content).to have_tag('header', with: { class: component_css_class }) do
-        with_tag('svg', with: { class: 'govuk-header__logotype' })
-        without_tag('.govuk-header__content')
+      expect(rendered_content).to have_tag('header') do
+        with_tag('div', with: { class: component_css_class }) do
+          with_tag('svg', with: { class: 'govuk-header__logotype' })
+          without_tag('.govuk-header__content')
+        end
       end
     end
 
@@ -38,7 +40,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
     let(:kwargs) { { full_width_border: true } }
 
     specify 'adds the custom classes to the header container' do
-      expect(rendered_content).to have_tag('header', with: { class: %w(govuk-header govuk-header--full-width-border) })
+      expect(rendered_content).to have_tag('div', with: { class: %w(govuk-header govuk-header--full-width-border) })
     end
   end
 
@@ -121,6 +123,39 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
           with_tag('a', with: { class: 'govuk-header__link' }) do
             without_tag('.govuk-header__product-name')
           end
+        end
+      end
+    end
+  end
+
+  describe 'rendering service navigation within the header' do
+    subject! do
+      render_inline(GovukComponent::HeaderComponent.new(**kwargs)) do |header|
+        header.with_service_navigation(service_name: "My new service", service_url: "#")
+      end
+    end
+
+    specify "the service navigation component is rendered within the header element" do
+      expect(rendered_content).to have_tag('header') do
+        with_tag('section', with: { class: 'govuk-service-navigation' }) do
+          with_tag('a', text: 'My new service', href: '#')
+        end
+      end
+    end
+  end
+
+  describe 'rendering phase banner within the header' do
+    subject! do
+      render_inline(GovukComponent::HeaderComponent.new(**kwargs)) do |header|
+        header.with_phase_banner(tag: { text: 'Alpha' }, text: 'This is a brand new service')
+      end
+    end
+
+    specify 'the service navigation component is rendered within the header element' do
+      expect(rendered_content).to have_tag('header') do
+        with_tag('div', with: { class: 'govuk-phase-banner' }) do
+          with_tag('strong', text: 'Alpha')
+          with_text('This is a brand new service')
         end
       end
     end

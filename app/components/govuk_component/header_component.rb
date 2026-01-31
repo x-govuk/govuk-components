@@ -1,6 +1,8 @@
 class GovukComponent::HeaderComponent < GovukComponent::Base
   renders_one :custom_logo
   renders_one :product_name, "ProductName"
+  renders_one :service_navigation, "GovukComponent::ServiceNavigationComponent"
+  renders_one :phase_banner, "GovukComponent::PhaseBannerComponent"
 
   attr_reader :homepage_url,
               :service_name,
