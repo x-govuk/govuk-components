@@ -37,24 +37,5 @@
         <% end %>
       <% end %>
     </div>
-
-    <% if service_name.present? || navigation_items.present? %>
-      <div class="<%= brand %>-header__content">
-        <% if service_name.present? %>
-          <%= link_to(service_name, service_url, class: ["#{brand}-header__link", "#{brand}-header__service-name"]) %>
-        <% end %>
-
-        <% if navigation_items.any? %>
-          <%= tag.nav(**navigation_html_attributes) do %>
-            <%= tag.button("Menu", type: "button", class: ["#{brand}-header__menu-button", "#{brand}-js-header-toggle"], hidden: true, aria: { controls: "navigation", label: menu_button_label }) %>
-            <ul id="navigation" class="<%= brand %>-header__navigation-list">
-              <% navigation_items.each do |item| %>
-                <%= item %>
-              <% end %>
-            </ul>
-          <% end %>
-        <% end %>
-      </div>
-    <% end %>
   <% end %>
 <% end %>
