@@ -41,6 +41,10 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
       end
     end
 
+    specify 'contains a link with the homepage link class' do
+      expect(rendered_content).to have_tag('a', text: 'GOV.UK', with: { class: 'govuk-header__homepage-link' })
+    end
+
     specify "the header doesn't have a full width border" do
       expect(rendered_content).to have_tag('.govuk-header')
       expect(rendered_content).not_to have_tag('.govuk-header--full-width-border')

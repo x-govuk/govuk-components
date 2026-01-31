@@ -1,7 +1,7 @@
 <%= tag.header(data: { module: "#{brand}-header" }, **html_attributes) do %>
   <%= tag.div(**container_html_attributes) do %>
     <div class="<%= brand %>-header__logo">
-      <%= link_to(homepage_url, class: ["#{brand}-header__link", "#{brand}-header__link--homepage"]) do %>
+      <%= link_to(homepage_url, class: ["#{brand}-header__link", "#{brand}-header__homepage-link"]) do %>
         <% if custom_logo.present? %>
           <%= custom_logo %>
         <% else %>
