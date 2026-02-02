@@ -45,5 +45,14 @@ module Examples
         }
       NAV_DATA
     end
+
+    def header_with_extra_content
+      <<~HEADER
+        = govuk_header(classes: %w(with-extra-content)) do
+          .govuk-header__container.account-options
+            = govuk_link_to('#', inverse: true, no_underline: true)
+              | Sign in
+      HEADER
+    end
   end
 end

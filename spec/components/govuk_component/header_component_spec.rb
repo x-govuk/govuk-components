@@ -161,6 +161,22 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
     end
   end
 
+  describe 'rendering arbitrary content within the header' do
+    subject! do
+      render_inline(GovukComponent::HeaderComponent.new(**kwargs)) do
+        '<nav>Navigation goes here</nav>'.html_safe
+      end
+    end
+
+    specify 'the service navigation component is rendered within the header element' do
+      expect(rendered_content).to have_tag('header') do
+        with_tag('div', with: { class: 'govuk-header' }) do
+          with_tag('nav', text: 'Navigation goes here')
+        end
+      end
+    end
+  end
+
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
   it_behaves_like 'a component that supports custom branding'

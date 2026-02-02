@@ -40,4 +40,11 @@ markdown:
     [service navigation](/components/service-navigation) and a [phase banner](/components/service-navigation) alongside using
     the provided slots.
 
+== render('/partials/example.*',
+  caption: "Adding more content to the header",
+  code: header_with_extra_content) do
+
+  markdown:
+    Additional content can be added to the header by passing it in via the block. This is useful for adding sign in and sign out links or other account information.
+
 == render('/partials/related-navigation.*', links: header_info)
