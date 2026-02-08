@@ -3,7 +3,7 @@
 <%= render "shared/example", title: 'Tag colour examples', example: <<~TAG
     tag.ul(class: 'govuk-list') do
       safe_join(
-        %w(grey green turquoise blue red purple pink orange yellow)
+        %w(grey green turquoise blue red purple magenta orange yellow)
           .map do |colour|
             tag.li do
               render(GovukComponent::TagComponent.new(text: colour, colour: colour))

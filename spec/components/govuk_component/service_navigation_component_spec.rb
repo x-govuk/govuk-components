@@ -108,7 +108,8 @@ RSpec.describe(GovukComponent::ServiceNavigationComponent, type: :component) do
               type: 'button',
               class: %w(govuk-service-navigation__toggle govuk-js-service-navigation-toggle),
               hidden: 'hidden',
-              'aria-controls' => 'navigation'
+              'aria-controls' => 'navigation',
+              'aria-hidden' => true
             })
           end
         end

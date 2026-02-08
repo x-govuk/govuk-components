@@ -4,7 +4,7 @@
   margin-left: 0;
   margin-right: 0;
   @include govuk-font($size: 19);
-  @include govuk-text-colour;
+  color: govuk-functional-colour('text');
   @include govuk-responsive-margin(6, "top");
   @include govuk-responsive-margin(6, "bottom");
 

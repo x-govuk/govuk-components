@@ -92,7 +92,7 @@ private
       "Menu",
       type: 'button',
       class: ["#{brand}-service-navigation__toggle", "#{brand}-js-service-navigation-toggle"],
-      aria: { controls: navigation_id },
+      aria: { controls: navigation_id, hidden: true },
       hidden: true
     )
   end

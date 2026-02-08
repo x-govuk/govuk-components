@@ -1,18 +1,18 @@
 @use "../vendor/govuk-frontend" as *;
 
 code {
-  color: $govuk-text-colour;
+  color: govuk-functional-colour('text');
 
   .s, .s1, .s2, .vi, .sx {
-    color: govuk-shade(govuk-colour("pink"), 20%);
+    color: govuk-colour('magenta', $variant: 'shade-25');
   }
 
   .nt, .nf, .nc {
-    color: govuk-shade(govuk-colour("orange"), 20%);
-    }
+    color: govuk-colour("orange", 'shade-25');
+  }
 
   .n, .p, .k, .mi, .n, .o, .na, .ss {
-    color: govuk-colour("dark-blue");
+    color: govuk-colour('dark-blue');
   }
 
   .k {
@@ -20,15 +20,15 @@ code {
   }
 
   .no {
-    color: govuk-shade(govuk-colour("turquoise"), 20%);
+    color: govuk-colour('teal', 'shade-25');
   }
 
   .kp {
-    color: govuk-colour("green");
+    color: govuk-colour('green');
   }
 
   .c, .c1 {
-    color: $govuk-secondary-text-colour;
+    color: govuk-functional-colour('secondary-text');
     font-style: italic;
   }
 }

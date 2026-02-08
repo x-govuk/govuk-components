@@ -19,7 +19,7 @@ module Examples
 
     def phase_banner_with_custom_tag_colour
       <<~PHASE_BANNER
-        = govuk_phase_banner(tag: { text: "Warning", colour: "pink" }, text: "This is a test environment, don't enter any real data")
+        = govuk_phase_banner(tag: { text: "Warning", colour: "magenta" }, text: "This is a test environment, don't enter any real data")
       PHASE_BANNER
     end
   end
