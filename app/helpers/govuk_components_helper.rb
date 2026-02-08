@@ -26,8 +26,8 @@ module GovukComponentsHelper
   }.each do |name, klass|
     define_method(name) do |*args, **kwargs, &block|
       capture do
-        render(klass.constantize.new(*args, **kwargs)) do |com|
-          block.call(com) if block_given?
+        render(klass.constantize.new(*args, **kwargs)) do |component|
+          block.presence&.call(component)
         end
       end
     end
