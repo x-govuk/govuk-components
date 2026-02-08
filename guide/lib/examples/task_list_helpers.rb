@@ -33,7 +33,7 @@ module Examples
           - task_list.with_item(title: "User acceptance testing", href: "#", status: govuk_tag(text: "Red", colour: "red"))
           - task_list.with_item(title: "Handover", href: "#") do |item|
             - item.with_status do
-              = govuk_tag(text: "Turquoise", colour: "turquoise")
+              = govuk_tag(text: "Teal", colour: "teal")
       SNIPPET
     end
 
