@@ -17,7 +17,7 @@ class ScopedPreview extends HTMLElement {
 
     // Move component HTML into shadow DOM
     const content = document.createElement('div');
-    content.classList.add('govuk-template--rebranded', 'govuk-frontend-supported', 'app-scoped-preview');
+    content.classList.add('govuk-frontend-supported', 'app-scoped-preview');
     content.innerHTML = this.innerHTML;
     shadow.appendChild(content);
 

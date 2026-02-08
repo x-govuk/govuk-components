@@ -1,11 +1,5 @@
 @use "pkg:govuk-frontend/dist/govuk" as *;
 
-// Add govuk-template--rebranded to enable rebranded component styles
-// Remove the background that this modifier applies
-.govuk-template--rebranded {
-  background: none;
-}
-
 // Ensure width-container maintains inline margin insider narrow preview frame
 .govuk-width-container {
   @include govuk-media-query($from: tablet) {
