@@ -1,30 +1,13 @@
 require 'spec_helper'
 
 RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
-  before do
-    allow_any_instance_of(GovukComponent::HeaderComponent::NavigationItem).to(
-      receive(:current_page?).and_wrap_original do |_original_method, path|
-        path == current_page
-      end
-    )
-  end
-
-  let(:current_page) { "/item-3" }
   let(:component_css_class) { 'govuk-header' }
-
   let(:product_name) { 'Order an amazing ID' }
-
   let(:logotype) { 'OMG.UK' }
   let(:homepage_url) { 'https://omg.uk/bbq' }
-  let(:service_name) { 'Amazing service 1' }
-  let(:service_url) { 'https://omg.uk/bbq/amazing-service-1/home' }
 
   let(:all_kwargs) do
-    {
-      homepage_url:,
-      service_name:,
-      service_url:
-    }
+    { homepage_url:, }
   end
   let(:kwargs) { all_kwargs }
 
@@ -35,10 +18,16 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
     let(:kwargs) { {} }
 
     specify 'outputs a header with correct logo text and no content' do
-      expect(rendered_content).to have_tag('header', with: { class: component_css_class }) do
-        with_tag('svg', with: { class: 'govuk-header__logotype' })
-        without_tag('.govuk-header__content')
+      expect(rendered_content).to have_tag('header') do
+        with_tag('div', with: { class: component_css_class }) do
+          with_tag('svg', with: { class: 'govuk-header__logotype' })
+          without_tag('.govuk-header__content')
+        end
       end
+    end
+
+    specify 'contains a link with the homepage link class that defaults to https://www.gov.uk' do
+      expect(rendered_content).to have_tag('a', text: 'GOV.UK', with: { class: 'govuk-header__homepage-link', href: 'https://www.gov.uk' })
     end
 
     specify "the header doesn't have a full width border" do
@@ -51,7 +40,7 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
     let(:kwargs) { { full_width_border: true } }
 
     specify 'adds the custom classes to the header container' do
-      expect(rendered_content).to have_tag('header', with: { class: %w(govuk-header govuk-header--full-width-border) })
+      expect(rendered_content).to have_tag('div', with: { class: %w(govuk-header govuk-header--full-width-border) })
     end
   end
 
@@ -61,20 +50,6 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
 
     specify 'adds the custom classes to the header container' do
       expect(rendered_content).to have_tag('.govuk-header__container', with: { class: custom_classes })
-    end
-  end
-
-  context 'when custom logotype and service name are provided' do
-    let(:expected_service_name_classes) { %w(govuk-header__link govuk-header__service-name) }
-
-    specify 'renders header with right logotype and provided service name' do
-      expect(rendered_content).to have_tag('header', with: { class: component_css_class }) do
-        with_tag('svg', with: { class: 'govuk-header__logotype' })
-
-        with_tag('div', class: 'govuk-header__content') do
-          with_tag('a', text: service_name, with: { href: service_url, class: expected_service_name_classes })
-        end
-      end
     end
   end
 
@@ -153,164 +128,50 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
     end
   end
 
-  describe 'navigation menus' do
-    context 'when no navigation items are supplied' do
-      specify 'navigation block is not rendered' do
-        expect(rendered_content).not_to have_tag('nav')
+  describe 'rendering service navigation within the header' do
+    subject! do
+      render_inline(GovukComponent::HeaderComponent.new(**kwargs)) do |header|
+        header.with_service_navigation(service_name: "My new service", service_url: "#")
       end
     end
 
-    context 'when navigation items are supplied' do
-      let(:custom_classes) { %w(blue shiny) }
-      let(:navigation_items) do
-        [
-          { text: 'Item 1', href: '/item-1' },
-          { text: 'Item 2', href: '/item-2', active: true },
-          { text: 'Item 3', href: '/item-3' },
-          { text: 'Item 4', href: '/item-4', options: { method: :delete } },
-          { text: 'Item 5' }
-        ]
-      end
-
-      subject! do
-        header_kwargs = kwargs.merge(navigation_classes: custom_classes)
-        render_inline(GovukComponent::HeaderComponent.new(**header_kwargs)) do |component|
-          navigation_items.each { |navigation_item| component.with_navigation_item(**navigation_item) }
+    specify "the service navigation component is rendered within the header element" do
+      expect(rendered_content).to have_tag('header') do
+        with_tag('section', with: { class: 'govuk-service-navigation' }) do
+          with_tag('a', text: 'My new service', href: '#')
         end
       end
+    end
+  end
 
-      specify 'nav element is rendered' do
-        expect(rendered_content).to have_tag('nav')
+  describe 'rendering phase banner within the header' do
+    subject! do
+      render_inline(GovukComponent::HeaderComponent.new(**kwargs)) do |header|
+        header.with_phase_banner(tag: { text: 'Alpha' }, text: 'This is a brand new service')
       end
+    end
 
-      specify 'nav element contains default aria label' do
-        expect(rendered_content).to have_tag('nav', with: { 'aria-label' => 'Menu' })
-      end
-
-      specify 'nav contains the right number of items' do
-        expect(rendered_content).to have_tag("li", with: { class: "govuk-header__navigation-item" }, count: navigation_items.count)
-      end
-
-      specify 'the naviation items with a href present are rendered as links' do
-        expect(rendered_content).to have_tag('nav') do
-          navigation_items.select { |ni| ni.key?(:href) }.each do |item|
-            with_tag('li', with: { class: 'govuk-header__navigation-item' }) do
-              with_tag('a', with: { class: 'govuk-header__link' }, text: item[:text])
-            end
-          end
+    specify 'the service navigation component is rendered within the header element' do
+      expect(rendered_content).to have_tag('header') do
+        with_tag('div', with: { class: 'govuk-phase-banner' }) do
+          with_tag('strong', text: 'Alpha')
+          with_text('This is a brand new service')
         end
       end
+    end
+  end
 
-      specify 'the naviation items without a href present are rendered as text' do
-        expect(rendered_content).to have_tag('nav') do
-          navigation_items.reject { |ni| ni.key?(:href) }.each do |item|
-            with_tag('li', with: { class: 'govuk-header__navigation-item' }, text: item[:text])
-            without_tag("a", text: item[:text])
-          end
-        end
+  describe 'rendering arbitrary content within the header' do
+    subject! do
+      render_inline(GovukComponent::HeaderComponent.new(**kwargs)) do
+        '<nav>Navigation goes here</nav>'.html_safe
       end
+    end
 
-      specify 'custom classes provided via navigation_classes are present' do
-        expect(rendered_content).to have_tag('nav', with: { class: custom_classes.append('govuk-header__navigation') })
-      end
-
-      specify 'nav items are rendered in the right structure' do
-        expect(rendered_content).to have_tag('nav', with: { class: 'govuk-header__navigation' }) do
-          with_tag('ul', with: { class: 'govuk-header__navigation-list' }) do
-            with_tag('li', with: { class: 'govuk-header__navigation-item' }) do
-              with_tag('a', with: { class: 'govuk-header__link' })
-            end
-          end
-        end
-      end
-
-      specify 'nav items have the right text and links' do
-        expect(rendered_content).to have_tag('nav') do
-          navigation_items.each do |item|
-            if item.key?(:options)
-              with_tag('a', with: { href: item.fetch(:href), "data-method": item.dig(:options, :method) }, text: item.fetch(:text))
-            elsif item.key?(:href)
-              with_tag('a', with: { href: item.fetch(:href) }, text: item.fetch(:text))
-            else
-              with_tag('li', text: item.fetch(:text))
-            end
-          end
-        end
-      end
-
-      specify 'active nav item has active class' do
-        active_link = navigation_items.detect { |item| item[:active] }
-
-        expect(rendered_content).to have_tag('nav') do
-          with_tag('li', with: { class: 'govuk-header__navigation-item--active' }) do
-            with_tag('a', text: active_link.fetch(:text), count: 1)
-          end
-        end
-      end
-
-      specify 'only the active item has the active class' do
-        # two pages are active, /page-2 is overridden and the current path is /page-3
-        expect(rendered_content).to have_tag('nav') do
-          without_tag('li', text: 'Item 1', with: { class: 'govuk-header__navigation-item--active' })
-          with_tag('li', text: 'Item 1', with: { class: 'govuk-header__navigation-item' })
-
-          with_tag('li', text: 'Item 2', with: { class: 'govuk-header__navigation-item--active' })
-          with_tag('li', text: 'Item 3', with: { class: 'govuk-header__navigation-item--active' })
-
-          without_tag('li', text: 'Item 4', with: { class: 'govuk-header__navigation-item--active' })
-          with_tag('li', text: 'Item 4', with: { class: 'govuk-header__navigation-item' })
-        end
-      end
-
-      specify 'nav item on current page has active class' do
-        active_link = navigation_items.detect { |item| item[:href] == current_page }
-
-        expect(rendered_content).to have_tag('nav') do
-          with_tag('li', with: { class: 'govuk-header__navigation-item--active' }) do
-            with_tag('a', text: active_link.fetch(:text), count: 1)
-          end
-        end
-      end
-
-      describe 'menu button (for mobile)' do
-        let(:button_text) { 'Menu' }
-        let(:button_classes) { %w(govuk-header__menu-button govuk-js-header-toggle) }
-        let(:button_aria_label) { 'Show or hide menu' }
-
-        specify 'the button is rendered' do
-          expect(rendered_content).to have_tag('div', with: { class: 'govuk-header__content' }) do
-            with_tag('button', with: { class: button_classes, 'aria-label' => button_aria_label, hidden: 'hidden' }, text: button_text)
-          end
-        end
-
-        context 'when the menu button label is overriden' do
-          let(:custom_label) { 'More stuff' }
-
-          subject! do
-            render_inline(GovukComponent::HeaderComponent.new(**kwargs.merge(menu_button_label: custom_label))) do |component|
-              navigation_items.each { |item| component.with_navigation_item(**item) }
-            end
-          end
-
-          specify 'the button is rendered with the provided aria-label' do
-            expect(rendered_content).to have_tag('div', with: { class: 'govuk-header__content' }) do
-              with_tag('button', with: { class: button_classes, 'aria-label' => custom_label }, text: button_text)
-            end
-          end
-        end
-      end
-
-      context 'when the navigation label is overriden' do
-        let(:custom_label) { 'Top level navigation' }
-
-        subject! do
-          render_inline(GovukComponent::HeaderComponent.new(**kwargs.merge(navigation_label: custom_label))) do |component|
-            navigation_items.each { |item| component.with_navigation_item(**item) }
-          end
-        end
-
-        specify 'the navigation label contains the custom text' do
-          expect(rendered_content).to have_tag('nav', with: { class: 'govuk-header__navigation', 'aria-label' => custom_label })
+    specify 'the service navigation component is rendered within the header element' do
+      expect(rendered_content).to have_tag('header') do
+        with_tag('div', with: { class: 'govuk-header' }) do
+          with_tag('nav', text: 'Navigation goes here')
         end
       end
     end
@@ -322,9 +183,9 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
   it_behaves_like 'a component that supports brand overrides'
 
   context 'slot arguments' do
-    let(:slot) { :navigation_item }
+    let(:slot) { :product_name }
     let(:content) { nil }
-    let(:slot_kwargs) { { text: 'text', href: '/one/two/three', active: true } }
+    let(:slot_kwargs) { { name: 'A product' } }
 
     it_behaves_like 'a component with a slot that accepts custom classes'
     it_behaves_like 'a component with a slot that accepts custom html attributes'

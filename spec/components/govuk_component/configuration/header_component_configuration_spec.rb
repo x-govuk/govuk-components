@@ -6,48 +6,6 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
   describe 'configuration' do
     after { Govuk::Components.reset! }
 
-    let(:component_with_a_nav_item) do
-      render_inline(GovukComponent::HeaderComponent.new) do |header|
-        header.with_navigation_item(text: "one")
-      end
-    end
-
-    describe 'default_header_navigation_label' do
-      let(:overridden_navigation_label) { "New nav label" }
-
-      before do
-        Govuk::Components.configure do |config|
-          config.default_header_navigation_label = overridden_navigation_label
-        end
-      end
-
-      subject! { component_with_a_nav_item }
-
-      specify "renders nav with overridden aria label" do
-        expect(rendered_content).to have_tag("div", with: { class: "govuk-header__content" }) do
-          with_tag("nav", with: { "aria-label" => overridden_navigation_label })
-        end
-      end
-    end
-
-    describe 'default_header_menu_button_label' do
-      let(:overriddden_menu_button_label) { 'Toggle menu' }
-
-      before do
-        Govuk::Components.configure do |config|
-          config.default_header_menu_button_label = overriddden_menu_button_label
-        end
-      end
-
-      subject! { component_with_a_nav_item }
-
-      specify "renders nav button with overridden aria label" do
-        expect(rendered_content).to have_tag("div", with: { class: "govuk-header__content" }) do
-          with_tag("button", with: { "aria-label" => overriddden_menu_button_label })
-        end
-      end
-    end
-
     describe 'default_header_homepage_url' do
       let(:overriddden_homepage_url) { "/some-page" }
 
@@ -57,34 +15,12 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
         end
       end
 
-      subject! { component_with_a_nav_item }
-
       specify "renders header with overridden homepage url" do
+        render_inline(GovukComponent::HeaderComponent.new)
+
         expect(rendered_content).to have_tag("a", {
-          with: { href: overriddden_homepage_url, class: "govuk-header__link--homepage" }
+          with: { href: overriddden_homepage_url, class: "govuk-header__homepage-link" }
         })
-      end
-    end
-
-    describe 'default_header_service_name and default_header_service_url' do
-      let(:current_page) { "/item-3" }
-
-      let(:overridden_service_name) { "A new service" }
-      let(:overridden_service_url) { "https://wwww.new-service.org" }
-
-      before do
-        Govuk::Components.configure do |config|
-          config.default_header_service_name = overridden_service_name
-          config.default_header_service_url = overridden_service_url
-        end
-      end
-
-      subject! { component_with_a_nav_item }
-
-      specify "renders header with overridden service name and url" do
-        expect(rendered_content).to have_tag("div", with: { class: "govuk-header__content" }) do
-          with_tag("a", href: overridden_service_url, text: overridden_service_name)
-        end
       end
     end
   end

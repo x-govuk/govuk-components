@@ -14,17 +14,6 @@ markdown:
     Use the default header if your service has 5 pages or fewer.
 
 == render('/partials/example.*',
-  caption: "Header with service name",
-  code: header_with_service_name) do
-
-  markdown:
-    Use the header with a service name if your service is more than 5 pages long - this can help users understand which service they are using.
-
-    The service name can be set using the `service_name` keyword argument.
-
-    The GOV.UK logo should link to the the GOV.UK homepage, and the service name should link to your service homepage.
-
-== render('/partials/example.*',
   caption: "Header with a product name",
   code: header_with_custom_product_name)
 
@@ -34,19 +23,28 @@ markdown:
     Use the `homepage_url` to link to your product homepage.
 
 == render('/partials/example.*',
-  caption: "Header with navigation items",
-  code: header_with_navigation_items)
-
-  markdown:
-    Navigation items can be added using the `navigation_item` slot. When viewed
-    on mobile, they will appear in a dropdown menu.
-
-== render('/partials/example.*',
   caption: "Header with an alternative logo",
-  code: header_with_custom_logo_and_service_name) do
+  code: header_with_custom_logo) do
 
   markdown:
     If an alternative logo is needed, it can be set using the `custom_logo` slot.
     This example uses an SVG graphic paired with text.
+
+== render('/partials/example.*',
+  caption: "Header with service navigation and phase banner",
+  code: header_with_service_nav_and_phase_banner,
+  data: header_with_service_nav_and_phase_banner_data) do
+
+  markdown:
+    The header component is rendered inside a `<header>` element automatically. You can place
+    [service navigation](/components/service-navigation) and a [phase banner](/components/service-navigation) alongside using
+    the provided slots.
+
+== render('/partials/example.*',
+  caption: "Adding more content to the header",
+  code: header_with_extra_content) do
+
+  markdown:
+    Additional content can be added to the header by passing it in via the block. This is useful for adding sign in and sign out links or other account information.
 
 == render('/partials/related-navigation.*', links: header_info)

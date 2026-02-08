@@ -67,6 +67,19 @@
   }
 }
 
+.govuk-header.with-extra-content > .govuk-header__container {
+  display: flex;
+
+  .govuk-header__logo {
+    flex-grow: 1;
+  }
+
+  .account-options {
+    align-content: center;
+    font-weight: bold;
+  }
+}
+
 // Example custom logo used in documentation
 .app-header__logotype {
   fill: #00ffe0;
