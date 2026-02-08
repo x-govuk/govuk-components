@@ -10,7 +10,8 @@
 
   &:hover::after,
   :target &::after {
-    color: govuk-colour("dark-grey");
+    color: govuk-colour("black", $variant: "tint-25");
+    color: black;
     content: "#";
     font-variant: all-small-caps;
     font-weight: normal;
