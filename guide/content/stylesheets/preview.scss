@@ -102,4 +102,8 @@
 // height
 .app-scoped-preview {
   contain: layout;
+
+  // this doesn't work for some reason
+  // --_govuk-brand-colour: govuk-functional-colour(brand);
+  --_govuk-brand-colour: #1d70b8;
 }
