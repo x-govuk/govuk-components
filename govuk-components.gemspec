@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "html-attributes-utils", "~> 1.0.0", ">= 1.0.0"
   spec.add_dependency "pagy", ">= 6", "< 10"
-  spec.add_dependency "view_component", ">= 4.0", "< 4.3"
+  spec.add_dependency "view_component", ">= 4.0", "< 4.6"
 
   spec.add_development_dependency "deep_merge"
   spec.add_development_dependency "ostruct"
