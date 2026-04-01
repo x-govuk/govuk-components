@@ -14,7 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "@x-govuk/govuk-prototype-components": "git://github.com/x-govuk/govuk-prototype-components#govuk-frontend-v6",
-    "govuk-frontend": "6.0.0-rc.0",
+    "govuk-frontend": "6.1.0",
     "sass": "^1.77.8"
   }
 }
