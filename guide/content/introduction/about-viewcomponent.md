@@ -15,10 +15,8 @@ helpers, view components are:
 ## Slots
 
 Some components contain elements that are repeated one or many times. For
-example, the [header component can display multiple navigation
-items](/components/header/#header-with-navigation-items). These are
-implemented using
-[ViewComponent's Slot API](https://viewcomponent.org/guide/slots.html).
+example, the [table component can contain many rows](https://govuk-components.x-govuk.org/components/table/). These are
+implemented using [ViewComponent's Slot API](https://viewcomponent.org/guide/slots.html).
 
 Slots are view components that belong to other view components. For example,
 the [table component](/components/table) has many rows and each row can have
