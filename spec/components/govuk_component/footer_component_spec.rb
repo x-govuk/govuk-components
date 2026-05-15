@@ -7,7 +7,7 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
   let(:kwargs) { {} }
   let(:meta_items_title) { 'Useful things' }
   let(:meta_licence) { 'MIT' }
-  let(:selector) { "footer.govuk-footer .govuk-width-container .govuk-footer__meta" }
+  let(:selector) { "div.govuk-footer .govuk-width-container .govuk-footer__meta" }
 
   let(:default_licence_text) { /All content is available under/ }
 
@@ -19,14 +19,14 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
     render_inline(GovukComponent::FooterComponent.new(**kwargs))
   end
 
-  specify 'renders a footer element' do
-    expect(rendered_content).to have_tag("footer", with: { class: component_css_class })
+  specify 'renders a div element' do
+    expect(rendered_content).to have_tag("div", with: { class: component_css_class })
   end
 
   specify 'the footer contains licencing information and a link to the OGL licence' do
     expected_link = "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
 
-    expect(rendered_content).to have_tag('footer', with: { class: 'govuk-footer' }) do
+    expect(rendered_content).to have_tag('div', with: { class: 'govuk-footer' }) do
       with_tag('div', with: { class: 'govuk-footer__meta' }) do
         with_tag('span', with: { class: 'govuk-footer__licence-description' }, text: default_licence_text) do
           with_tag('a', with: { href: expected_link }, text: "Open Government Licence v3.0")
@@ -36,7 +36,7 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
   end
 
   specify 'the OGL logo is present' do
-    expect(rendered_content).to have_tag('footer', with: { class: component_css_class }) do
+    expect(rendered_content).to have_tag('div', with: { class: component_css_class }) do
       with_tag("div", with: { class: "govuk-footer__meta" }) do
         with_tag("svg", with: { class: "govuk-footer__licence-logo", 'aria-hidden' => true })
         expect(html).to contain_svgs_with_viewBox_attributes
@@ -160,7 +160,7 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
         end
 
         specify "the licence SVG is not rendered" do
-          expect(rendered_content).to have_tag("footer", with: { class: "govuk-footer" }) do
+          expect(rendered_content).to have_tag("div", with: { class: "govuk-footer" }) do
             with_tag("div", with: { class: "govuk-footer__meta" }) do
               without_tag("svg")
             end
@@ -186,7 +186,7 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
         end
 
         specify "the licence SVG is not rendered" do
-          expect(rendered_content).to have_tag("footer", with: { class: "govuk-footer" }) do
+          expect(rendered_content).to have_tag("div", with: { class: "govuk-footer" }) do
             with_tag("div", with: { class: "govuk-footer__meta" }) do
               without_tag("svg")
             end
