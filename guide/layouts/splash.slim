@@ -8,4 +8,5 @@ html.govuk-template lang="en"
     main#main-content
       == yield
 
-    == render '/partials/footer.*'
+    footer.govuk-template__footer
+      == render '/partials/footer.*'
