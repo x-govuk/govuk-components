@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe(GovukComponent::FooterComponent, type: :component) do
-  let(:selector) { "footer.govuk-footer .govuk-width-container .govuk-footer__meta" }
+  let(:selector) { "footer > div.govuk-footer .govuk-width-container .govuk-footer__meta" }
   let(:kwargs) { {} }
 
   describe 'configuration' do
