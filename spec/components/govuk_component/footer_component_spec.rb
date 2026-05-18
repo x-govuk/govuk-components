@@ -344,4 +344,26 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
       expect(rendered_content).to have_tag("hr", with: { class: "govuk-footer__section-break" })
     end
   end
+
+  describe "adding custom content above the footer" do
+    let(:custom_class) { 'before-footer' }
+    let(:custom_text) { 'this appears in the footer element above the rest of the content' }
+    let(:custom_html) { helper.tag.h3(custom_text, class: 'before-footer') }
+
+    subject! do
+      render_inline(GovukComponent::FooterComponent.new(**kwargs)) do |component|
+        custom_html
+      end
+    end
+
+    it 'renders the custom html' do
+      expect(rendered_content).to have_tag('footer > h3', text: custom_text)
+    end
+
+    it 'renders the custom html above the GOV.UK footer content' do
+      classes = html.css("footer").children.map { |n| n['class'] }.compact
+
+      expect(classes).to eql([custom_class, component_css_class])
+    end
+  end
 end
