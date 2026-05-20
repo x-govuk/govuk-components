@@ -1,4 +1,4 @@
-<%= tag.footer do %>
+<%= tag.footer(**footer_attributes) do %>
   <%= content %>
   <%= tag.div(role: 'contentinfo', **html_attributes) do %>
     <%= tag.div(**container_html_attributes) do %>

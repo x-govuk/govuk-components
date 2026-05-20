@@ -351,7 +351,7 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
     let(:custom_html) { helper.tag.h3(custom_text, class: 'before-footer') }
 
     subject! do
-      render_inline(GovukComponent::FooterComponent.new(**kwargs)) do |component|
+      render_inline(GovukComponent::FooterComponent.new(**kwargs)) do
         custom_html
       end
     end
@@ -364,6 +364,19 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
       classes = html.css("footer").children.map { |n| n['class'] }.compact
 
       expect(classes).to eql([custom_class, component_css_class])
+    end
+  end
+
+  describe "adding custom attributes to the footer element" do
+    let(:footer_attributes) { { lang: 'es', class: 'purple' } }
+    let(:kwargs) { { footer_attributes: } }
+
+    subject! do
+      render_inline(GovukComponent::FooterComponent.new(**kwargs))
+    end
+
+    it "renders the footer wth custom attributes" do
+      expect(rendered_content).to have_tag('footer', with: footer_attributes)
     end
   end
 end

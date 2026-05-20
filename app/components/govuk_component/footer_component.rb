@@ -10,7 +10,7 @@ class GovukComponent::FooterComponent < GovukComponent::Base
   renders_one :content_after_meta_items
   renders_one :meta_licence_html
 
-  attr_reader :meta_items, :meta_text, :meta_items_title, :meta_licence, :copyright_text, :copyright_url, :custom_container_classes
+  attr_reader :meta_items, :meta_text, :meta_items_title, :meta_licence, :copyright_text, :copyright_url, :custom_container_classes, :footer_attributes
 
   def initialize(
     classes: [],
@@ -18,6 +18,7 @@ class GovukComponent::FooterComponent < GovukComponent::Base
     container_html_attributes: {},
     copyright_text: config.default_footer_copyright_text,
     copyright_url: config.default_footer_copyright_url,
+    footer_attributes: {},
     html_attributes: {},
     meta_items: {},
     meta_items_title: "Support links",
@@ -36,6 +37,7 @@ class GovukComponent::FooterComponent < GovukComponent::Base
     @copyright_url                    = copyright_url
     @custom_container_classes         = container_classes
     @custom_container_html_attributes = container_html_attributes
+    @footer_attributes                = footer_attributes
 
     super(classes:, html_attributes:)
   end
