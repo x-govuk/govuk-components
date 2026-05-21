@@ -107,5 +107,12 @@ module Examples
                 li == govuk_footer_link_to("Tenth", "#")
       FOOTER_WITH_NAVIGATION
     end
+
+    def footer_with_content_above
+      <<~FOOTER_WITH_CONTENT_ABOVE
+        = govuk_footer do
+          = govuk_phase_banner(tag: { text: "Beta", colour: "red" }, text: "This is a new service")
+      FOOTER_WITH_CONTENT_ABOVE
+    end
   end
 end

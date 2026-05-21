@@ -63,4 +63,10 @@ markdown:
   caption: "Footer with navigation",
   code: footer_with_navigation)
 
+== render('/partials/example.*',
+  caption: "Footer with content above",
+  code: footer_with_content_above) do
+  markdown:
+    You can place content inside the `<footer>` element before the GOV.UK footer by passing it in as a block of HTML.
+
 == render('/partials/related-navigation.*', links: footer_info)
