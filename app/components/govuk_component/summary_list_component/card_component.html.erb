@@ -1,16 +1,21 @@
 <%= tag.div(**html_attributes) do %>
-  <div class="<%= brand %>-summary-card__title-wrapper">
+  <%= tag.div(class: "#{brand}-summary-card__title-wrapper") do %>
     <%= content_tag(heading_level, title, class: "#{brand}-summary-card__title") %>
 
-    <% if actions.any? %>
-      <ul class="<%= brand %>-summary-card__actions">
+    <% if actions.count == 1 && (action = actions.first) %>
+      <%= tag.div(class: "#{brand}-summary-card__actions") do %>
+        <%= action_text(action) %>
+      <% end %>
+    <% elsif actions.count > 1 %>
+      <%= tag.ul(class: "#{brand}-summary-card__actions") do %>
         <% actions.each do |action| %>
           <%= tag.li(action_text(action), class: "#{brand}-summary-card__action") %>
         <% end %>
-      </ul>
+      <% end %>
     <% end %>
-  </div>
-  <div class="<%= brand %>-summary-card__content">
+  <% end %>
+
+  <%= tag.div(class: "#{brand}-summary-card__content") do %>
     <%= summary_list || content %>
-  </div>
+  <% end %>
 <% end %>
