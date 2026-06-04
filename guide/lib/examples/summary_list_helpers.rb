@@ -87,7 +87,6 @@ module Examples
       <<~SUMMARY_LIST_CARD
         = govuk_summary_card(title: "Araquanid") do |card|
           - card.with_action { govuk_link_to("Status", "#") }
-          - card.with_action { govuk_link_to("Choose", "#") }
           - card.with_summary_list(rows: araquanid_data)
 
         = govuk_summary_list(card: { title: "Emboar", actions: emboar_actions }, rows: emboar_data)

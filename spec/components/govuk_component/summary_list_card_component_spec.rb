@@ -108,6 +108,21 @@ RSpec.describe(GovukComponent::SummaryListComponent::CardComponent, type: :compo
     expect(rendered_content).not_to have_tag("ul", with: { class: "govuk-summary-card__actions" })
   end
 
+  context "when there is one action" do
+    let(:actions) { %w[abc] }
+    subject! do
+      render_inline(described_class.new(title:, actions:)) do |component|
+        component.with_summary_list(rows:)
+      end
+    end
+
+    specify "the action is rendered in a div" do
+      expect(rendered_content).to have_tag("div", with: { class: "govuk-summary-card__actions" }) do
+        with_text(/abc/)
+      end
+    end
+  end
+
   context "when there are actions" do
     let(:actions) { %w[abc def] }
 
@@ -117,7 +132,7 @@ RSpec.describe(GovukComponent::SummaryListComponent::CardComponent, type: :compo
       end
     end
 
-    specify "the actions are rendered" do
+    specify "the actions are rendered in a list" do
       expect(rendered_content).to have_tag("ul", with: { class: "govuk-summary-card__actions" }) do
         actions.each { |action| with_tag("li", text: "#{action} (#{title})", with: { class: "govuk-summary-card__action" }) }
       end
