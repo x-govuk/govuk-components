@@ -19,9 +19,9 @@ Gem::Specification.new do |spec|
   spec.summary     = "GOV.UK Components for Ruby on Rails"
   spec.description = "This library provides view components for the GOV.UK Design System. It makes creating services more familiar for Ruby on Rails developers."
   spec.license     = "MIT"
-
   spec.files = Dir["{app,config,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
+  spec.required_ruby_version = ">= 3.3"
   spec.add_dependency "html-attributes-utils", "~> 1.0.0", ">= 1.0.0"
   spec.add_dependency "pagy", ">= 6", "< 10"
   spec.add_dependency "view_component", ">= 4.9", "< 4.13"
