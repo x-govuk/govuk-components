@@ -7,6 +7,7 @@ module GovukComponentsHelper
     govuk_details: 'GovukComponent::DetailsComponent',
     govuk_exit_this_page: 'GovukComponent::ExitThisPageComponent',
     govuk_footer: 'GovukComponent::FooterComponent',
+    govuk_generic_header: 'GovukComponent::GenericHeaderComponent',
     govuk_header: 'GovukComponent::HeaderComponent',
     govuk_inset_text: 'GovukComponent::InsetTextComponent',
     govuk_notification_banner: 'GovukComponent::NotificationBannerComponent',

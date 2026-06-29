@@ -67,6 +67,13 @@ RSpec.describe(GovukComponentsHelper, type: 'helper') do
       css_matcher: %(.govuk-header)
     },
     {
+      helper_method: :govuk_generic_header,
+      klass: GovukComponent::GenericHeaderComponent,
+      args: [],
+      kwargs: { url: '/', logo_text: 'Some logo' },
+      css_matcher: %(.govuk-generic-header)
+    },
+    {
       helper_method: :govuk_inset_text,
       klass: GovukComponent::InsetTextComponent,
       args: [],

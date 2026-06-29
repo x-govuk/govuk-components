@@ -1,0 +1,18 @@
+<%= tag.header(**header_html_attributes) do %>
+  <%= tag.div(class: "#{brand}-generic-header", **html_attributes) do %>
+    <%= tag.div(class: ["#{brand}-generic-header__container", "#{brand}-width-container"]) do %>
+      <%= tag.div(class: "#{brand}-generic-header__logo") do %>
+        <%=
+          case
+          when logo.present? then logo
+          when url.present? then link_to(logo_text, url, class: "#{brand}-generic-header__homepage-link")
+          else logo_text
+          end
+        %>
+      <% end %>
+      <%= content %>
+    <% end %>
+  <% end %>
+  <%= service_navigation %>
+  <%= phase_banner %>
+<% end %>

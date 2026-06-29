@@ -55,6 +55,7 @@ require 'components/govuk_component/cookie_banner_component/message_component'
 require 'components/govuk_component/details_component'
 require 'components/govuk_component/exit_this_page_component'
 require 'components/govuk_component/footer_component'
+require 'components/govuk_component/generic_header_component'
 require 'components/govuk_component/header_component'
 require 'components/govuk_component/inset_text_component'
 require 'components/govuk_component/notification_banner_component'
@@ -105,6 +106,7 @@ use_helper Examples::BackLinkHelpers
 use_helper Examples::CookieBannerHelpers
 use_helper Examples::DetailsHelpers
 use_helper Examples::FooterHelpers
+use_helper Examples::GenericHeaderHelpers
 use_helper Examples::HeaderHelpers
 use_helper Examples::InsetTextHelpers
 use_helper Examples::NotificationBannerHelpers

@@ -1,0 +1,36 @@
+---
+title: Generic header
+---
+
+markdown:
+  If your service is public-facing and isn't on GOV.UK, use the generic header
+  instead of the [GOV.UK header](/components/header/).
+
+== render('/partials/example.*',
+  caption: "Generic header with logo text and URL",
+  code: generic_header_with_logo_text_and_url)
+
+== render('/partials/example.*',
+  caption: "Generic header with a custom logo",
+  code: generic_header_with_custom_logo)
+
+== render('/partials/example.*',
+  caption: "Generic header with custom content",
+  code: generic_header_with_custom_content) do
+
+  markdown:
+    Any HTML passed into the component's block will be rendered inside the
+    header after the logo.
+
+    It will need custom CSS to position it.
+
+== render('/partials/example.*',
+  caption: "Generic header with service navigation and a phase banner",
+  code: generic_header_with_service_navigation_and_phase_banner) do
+
+  markdown:
+    Like with the [GOV.UK header](/components/header/), the header is rendered
+    inside a `<header>` element. Service navigation and phase banner components
+    can be rendered beneath using slots.
+
+== render('/partials/related-navigation.*', links: generic_header_info)
