@@ -5,9 +5,10 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
   let(:product_name) { 'Order an amazing ID' }
   let(:logotype) { 'OMG.UK' }
   let(:homepage_url) { 'https://omg.uk/bbq' }
+  let(:header_html_attributes) { {} }
 
   let(:all_kwargs) do
-    { homepage_url:, }
+    { homepage_url:, header_html_attributes: }
   end
   let(:kwargs) { all_kwargs }
 
@@ -75,6 +76,14 @@ RSpec.describe(GovukComponent::HeaderComponent, type: :component) do
 
     specify "doesn't render the default logotype" do
       expect(rendered_content).not_to have_tag("span", text: /GOV.UK/)
+    end
+  end
+
+  context 'when header html attributes are provided' do
+    let(:header_html_attributes) { { class: 'header-inverse', lang: 'de' } }
+
+    specify 'the outer header element has the custom attributes' do
+      expect(rendered_content).to have_tag('header', with: { class: 'header-inverse', lang: 'de' })
     end
   end
 
