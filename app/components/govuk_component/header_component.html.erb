@@ -1,4 +1,4 @@
-<header>
+<%= tag.header(**header_html_attributes) do %>
   <%= tag.div(data: { module: "#{brand}-header" }, **html_attributes) do %>
     <%= tag.div(**container_html_attributes) do %>
       <div class="<%= brand %>-header__logo">
@@ -41,4 +41,4 @@
   <% end %>
   <%= service_navigation %>
   <%= phase_banner %>
-</header>
+<% end %>
