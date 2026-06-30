@@ -119,6 +119,12 @@ module Helpers
       }
     end
 
+    def generic_header_info
+      {
+        "GOV.UK Design System generic header documentation" => "https://design-system.service.gov.uk/components/generic-header/"
+      }
+    end
+
   private
 
     def component_helper_mapping

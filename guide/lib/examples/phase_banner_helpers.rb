@@ -2,7 +2,7 @@ module Examples
   module PhaseBannerHelpers
     def phase_banner_normal
       <<~PHASE_BANNER
-        = govuk_phase_banner(tag: { text: "Alpha" }, text: "This is a new service – your feedback will help us to improve it. ")
+        = govuk_phase_banner(tag: { text: "Alpha" }, text: "This is a new service – your feedback will help us to improve it.")
       PHASE_BANNER
     end
 

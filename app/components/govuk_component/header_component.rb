@@ -5,9 +5,7 @@ class GovukComponent::HeaderComponent < GovukComponent::Base
   renders_one :phase_banner, "GovukComponent::PhaseBannerComponent"
 
   attr_reader :homepage_url,
-              :service_name,
               :service_url,
-              :menu_button_label,
               :custom_container_classes,
               :full_width_border,
               :header_html_attributes
@@ -15,15 +13,11 @@ class GovukComponent::HeaderComponent < GovukComponent::Base
   def initialize(classes: [],
                  html_attributes: {},
                  homepage_url: config.default_header_homepage_url,
-                 menu_button_label: config.default_header_menu_button_label,
                  container_classes: nil,
                  full_width_border: false,
                  header_html_attributes: {})
 
     @homepage_url              = homepage_url
-    @service_name              = service_name
-    @service_url               = service_url
-    @menu_button_label         = menu_button_label
     @custom_container_classes  = container_classes
     @full_width_border         = full_width_border
     @header_html_attributes    = header_html_attributes
