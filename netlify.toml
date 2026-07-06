@@ -1,3 +1,9 @@
 [build]
   command = "make build-guide"
   publish = "guide/output"
+
+[[redirects]]
+  from = "https://govuk-components.netlify.app/*"
+  to = "https://govuk-components.x-govuk.org/:splat"
+  status = 301
+  force = true
