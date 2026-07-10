@@ -5,7 +5,8 @@ RSpec.describe(GovukComponent::PanelComponent, type: :component) do
 
   let(:title_text) { 'Springfield' }
   let(:text) { 'A noble spirit embiggens the smallest man' }
-  let(:kwargs) { { title_text:, text: } }
+  let(:interruption_mode) { false }
+  let(:kwargs) { { title_text:, text:, interruption: interruption_mode } }
 
   it_behaves_like 'a component that accepts custom classes'
   it_behaves_like 'a component that accepts custom HTML attributes'
@@ -96,6 +97,64 @@ RSpec.describe(GovukComponent::PanelComponent, type: :component) do
 
     specify 'nothing is rendered' do
       expect(rendered_content).to be_blank
+    end
+  end
+
+  context 'when in interruption: true' do
+    let(:interruption_mode) { true }
+
+    specify 'renders interruption panel' do
+      render_inline(described_class.new(**kwargs))
+
+      expect(rendered_content).to have_tag('div', with: { class: %w(govuk-panel govuk-panel--interruption) })
+    end
+
+    context 'when actions are present' do
+      describe 'buttons' do
+        specify 'actions are inverse buttons by default and rendered in a actions div within the panel' do
+          render_inline(described_class.new(**kwargs)) do |component|
+            component.with_action(text: "Yes", href: "#")
+          end
+
+          expect(rendered_content).to have_tag('div', with: { class: %w(govuk-panel govuk-panel--interruption) }) do
+            with_tag('div', with: { class: 'govuk-panel__actions' }) do
+              with_tag('a', text: 'Yes', with: { href: '#', class: %w(govuk-button govuk-button--inverse) })
+            end
+          end
+        end
+      end
+
+      describe 'links' do
+        specify 'links are inverse links rendered in a actions div within the panel' do
+          render_inline(described_class.new(**kwargs)) do |component|
+            component.with_action(text: "No", href: "#", type: :link)
+          end
+
+          expect(rendered_content).to have_tag('div', with: { class: %w(govuk-panel govuk-panel--interruption) }) do
+            with_tag('div', with: { class: 'govuk-panel__actions' }) do
+              with_tag('a', text: 'No', with: { href: '#', class: %w(govuk-link govuk-link--inverse) })
+            end
+          end
+        end
+
+        specify 'passing the type in as a string works too' do
+          render_inline(described_class.new(**kwargs)) do |component|
+            component.with_action(text: "No", href: "#", type: 'link')
+          end
+
+          expect(rendered_content).to have_tag('a', text: 'No', with: { href: '#', class: %w(govuk-link govuk-link--inverse) })
+        end
+      end
+
+      describe 'invalid types' do
+        specify 'links are inverse links rendered in a actions div within the panel' do
+          expect {
+            render_inline(described_class.new(**kwargs)) do |component|
+              component.with_action(text: "No", href: "#", type: :other)
+            end
+          }.to raise_error(ArgumentError, 'unrecognised type (must be :link or :button)')
+        end
+      end
     end
   end
 end
