@@ -56,6 +56,14 @@ private
     title.present? || panel_content.present?
   end
 
+  def show_actions?
+    if !interruption && actions?
+      Rails.logger.warn(%(Actions will not be rendered unless the panel is in interruption mode))
+    end
+
+    interruption && actions?
+  end
+
   class Action < GovukComponent::Base
     include GovukLinkHelper
     include GovukVisuallyHiddenHelper

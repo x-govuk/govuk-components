@@ -155,6 +155,26 @@ RSpec.describe(GovukComponent::PanelComponent, type: :component) do
           }.to raise_error(ArgumentError, 'unrecognised type (must be :link or :button)')
         end
       end
+
+      context 'when not in interruption mode' do
+        let(:interruption_mode) { false }
+
+        before do
+          allow(Rails.logger).to receive(:warn).and_call_original
+
+          render_inline(described_class.new(**kwargs)) do |component|
+            component.with_action(text: "Yes", href: "#")
+          end
+        end
+
+        specify 'no actions are rendered' do
+          expect(rendered_content).not_to have_tag('div', with: { class: 'govuk-panel__actions' })
+        end
+
+        specify 'a warning is logged' do
+          expect(Rails.logger).to have_received(:warn).with(%(Actions will not be rendered unless the panel is in interruption mode))
+        end
+      end
     end
   end
 end

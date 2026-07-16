@@ -2,7 +2,7 @@
   <%= panel_title %>
   <%= panel_body %>
 
-  <% if actions&.any? %>
+  <% if show_actions? %>
     <%= tag.div(class: "#{brand}-panel__actions") do %>
       <%= tag.div(class: "#{brand}-button-group") do %>
         <% actions.each do |action| %>
