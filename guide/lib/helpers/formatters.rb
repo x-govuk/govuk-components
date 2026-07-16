@@ -65,17 +65,7 @@ module Helpers
   private
 
     def beautify(html)
-      # All tags except textarea appear to line up correctly when
-      # newlines are placed after tags and before closing tags,
-      # except textarea which we need to account for manually 😒
-      HtmlBeautifier
-        .beautify(
-          html
-            .gsub(">", ">\n")
-            .gsub("\<\/", "\n\<\/")
-            .gsub(/>\s+<\/textarea>/, "></textarea>")
-            .strip
-        )
+      HtmlBeautifier.beautify(html)
     end
   end
 end
