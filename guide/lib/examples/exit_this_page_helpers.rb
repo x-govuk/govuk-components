@@ -1,5 +1,5 @@
 module Examples
-  module BreadcrumbsHelpers
+  module ExitThisPageHelpers
     def exit_this_page_normal
       <<~EXIT_THIS_PAGE
         = govuk_exit_this_page

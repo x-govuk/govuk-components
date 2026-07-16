@@ -1,27 +1,29 @@
 class GovukComponent::PanelComponent < GovukComponent::Base
-  attr_reader :id, :title_text, :text, :heading_level
+  attr_reader :id, :title_text, :text, :heading_level, :interruption
 
   renders_one :title_html
+  renders_many :actions, "Action"
 
-  def initialize(title_text: nil, text: nil, heading_level: 1, id: nil, classes: [], html_attributes: {})
+  def initialize(title_text: nil, text: nil, interruption: false, heading_level: 1, id: nil, classes: [], html_attributes: {})
     @heading_level = heading_level
     @title_text    = title_text
     @text          = text
     @id            = id
+    @interruption  = interruption
 
     super(classes:, html_attributes:)
-  end
-
-  def call
-    tag.div(id:, **html_attributes) do
-      safe_join([panel_title, panel_body].compact)
-    end
   end
 
 private
 
   def default_attributes
-    { class: "#{brand}-panel #{brand}-panel--confirmation" }
+    {
+      class: "#{brand}-panel #{brand}-panel--#{mode}",
+    }
+  end
+
+  def mode
+    interruption ? 'interruption' : 'confirmation'
   end
 
   def heading_tag
@@ -52,5 +54,40 @@ private
 
   def render?
     title.present? || panel_content.present?
+  end
+
+  def show_actions?
+    if !interruption && actions?
+      Rails.logger.warn(%(Actions will not be rendered unless the panel is in interruption mode))
+    end
+
+    interruption && actions?
+  end
+
+  class Action < GovukComponent::Base
+    include GovukLinkHelper
+    include GovukVisuallyHiddenHelper
+
+    attr_reader :text, :href, :type
+
+    def initialize(text:, href:, type: :button, classes: [], html_attributes: {})
+      @text = text
+      @href = href
+      @type = type
+
+      super(classes:, html_attributes:)
+    end
+
+    def default_attributes
+      {}
+    end
+
+    def call
+      case type.to_sym
+      when :button then govuk_button_link_to(text, href, inverse: true, **html_attributes)
+      when :link then govuk_link_to(text, href, inverse: true, **html_attributes)
+      else fail ArgumentError, "unrecognised type (must be :link or :button)"
+      end
+    end
   end
 end

@@ -17,4 +17,10 @@ markdown:
   markdown:
     Any content passed in via the block will be rendered beneath the title.
 
+== render('/partials/example.*',
+  caption: "Interruption panels",
+  code: interruption_panel) do
+
+  markdown:
+    Interruption panels can be used to pause the user's journey to give them important information.
 == render('/partials/related-navigation.*', links: panel_info)

@@ -105,6 +105,7 @@ use_helper Examples::BreadcrumbsHelpers
 use_helper Examples::BackLinkHelpers
 use_helper Examples::CookieBannerHelpers
 use_helper Examples::DetailsHelpers
+use_helper Examples::ExitThisPageHelpers
 use_helper Examples::FooterHelpers
 use_helper Examples::GenericHeaderHelpers
 use_helper Examples::HeaderHelpers

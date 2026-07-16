@@ -1,0 +1,14 @@
+<%= tag.div(id:, **html_attributes) do %>
+  <%= panel_title %>
+  <%= panel_body %>
+
+  <% if show_actions? %>
+    <%= tag.div(class: "#{brand}-panel__actions") do %>
+      <%= tag.div(class: "#{brand}-button-group") do %>
+        <% actions.each do |action| %>
+          <%= action %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
