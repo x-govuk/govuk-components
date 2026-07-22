@@ -368,15 +368,15 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
   end
 
   describe "adding custom attributes to the footer element" do
-    let(:footer_attributes) { { lang: 'es', class: 'purple' } }
-    let(:kwargs) { { footer_attributes: } }
+    let(:footer_html_attributes) { { lang: 'es', class: 'purple' } }
+    let(:kwargs) { { footer_html_attributes: } }
 
     subject! do
       render_inline(GovukComponent::FooterComponent.new(**kwargs))
     end
 
     it "renders the footer wth custom attributes" do
-      expect(rendered_content).to have_tag('footer', with: footer_attributes)
+      expect(rendered_content).to have_tag('footer', with: footer_html_attributes)
     end
   end
 end
