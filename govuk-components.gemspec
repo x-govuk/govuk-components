@@ -26,9 +26,9 @@ Gem::Specification.new do |spec|
   spec.add_dependency "pagy", ">= 6", "< 10"
   spec.add_dependency "view_component", ">= 4.9", "< 4.13"
 
+  spec.add_development_dependency "debug"
   spec.add_development_dependency "deep_merge"
   spec.add_development_dependency "ostruct"
-  spec.add_development_dependency "pry-byebug"
   spec.add_development_dependency "rspec-html-matchers", "~> 0.9"
   spec.add_development_dependency "rspec-rails"
   spec.add_development_dependency "rubocop-govuk", "= 5.2.1"

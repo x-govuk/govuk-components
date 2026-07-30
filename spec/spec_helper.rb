@@ -1,5 +1,4 @@
-require 'pry'
-require 'pry-byebug'
+require 'debug'
 require 'view_component/test_helpers'
 require 'simplecov'
 require 'action_controller'
