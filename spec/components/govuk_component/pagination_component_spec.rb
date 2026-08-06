@@ -1,12 +1,13 @@
 require 'spec_helper'
 
 RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
+  let(:ellipsis) { "⋯" }
   let(:count) { 30 }
   let(:limit) { 5 }
-  let(:size) { [1, 2, 2, 1] }
-  let(:defaults) { { count:, limit:, size: } }
+  let(:defaults) { { count:, limit: } }
   let(:current_page) { 2 }
-  let(:pagy) { Pagy.new(page: current_page, **defaults) }
+  let(:request) { ActionDispatch::TestRequest.create }
+  let(:pagy) { Pagy::Offset.new(page: current_page, **defaults, request: request) }
   let(:component_css_class) { 'govuk-pagination' }
 
   let(:kwargs) { { pagy: } }
@@ -19,12 +20,15 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
   it_behaves_like 'a component that supports brand overrides'
 
   specify "renders some page items" do
+    expected_items = [1, 2, 3, ellipsis, 6]
+    selector = "ul.govuk-pagination__list"
+
     expect(rendered_content).to have_tag("nav", with: { class: component_css_class }) do
-      with_tag("ul.govuk-pagination__list") do
-        (1..5).to_a.all? do |i|
-          with_tag("li.govuk-pagination__item", text: i)
-        end
+      with_tag(selector) do
+        expected_items.each { |text| with_tag("li.govuk-pagination__item", text:) }
       end
+
+      expect(html.css(selector + "> li").size).to eql(expected_items.size)
     end
   end
 
@@ -86,9 +90,7 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
     #
     # Pagy is configurable so we'll override set the defaults here:
     let(:count) { 500 }
-    let(:size) { [1, 1, 1, 1] }
     let(:nav_element_text) { html.css("nav > div,ul > li").map(&:text) }
-    let(:ellipsis) { "⋯" }
 
     # [1] 2 ⋯ 100
     context "we're on the first page" do
@@ -154,7 +156,6 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
         expect(rendered_content).to have_tag("nav", with: { class: "govuk-pagination" }) do
           with_tag("div", text: /Previous/)
           with_tag("a", text: /1/)
-          with_tag("a", text: /2/)
           with_tag("a", text: /3/)
           with_tag("li", text: /4/)
           with_tag("a", text: /5/)
@@ -163,7 +164,7 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
           with_tag("div", text: /Next/)
         end
 
-        expect(nav_element_text).to eql(["Previous page", "1", "2", "3", "4", "5", ellipsis, "100", "Next page"])
+        expect(nav_element_text).to eql(["Previous page", "1", ellipsis, "3", "4", "5", ellipsis, "100", "Next page"])
       end
     end
 

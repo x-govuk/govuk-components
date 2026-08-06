@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
-  let(:pagy) { Pagy.new(page: 2, count: 20, limit: 5, size: [1, 1, 1, 1]) }
+  let(:request) { ActionDispatch::TestRequest.create }
+  let(:pagy) { Pagy::Offset.new(page: 2, count: 20, limit: 5, request: request) }
   let(:kwargs) { { pagy: } }
 
   describe "configuration" do

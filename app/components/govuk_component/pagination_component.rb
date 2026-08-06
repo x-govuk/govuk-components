@@ -1,5 +1,5 @@
 class GovukComponent::PaginationComponent < GovukComponent::Base
-  include Pagy::UrlHelpers
+  using Govuk::Components::Refinements::CustomPagy
 
   attr_reader :pagy,
               :next_text,
@@ -79,7 +79,11 @@ class GovukComponent::PaginationComponent < GovukComponent::Base
 
   def render?
     # probably isn't any point rendering if there's only one page
-    (pagy.present? && pagy.series.size > 1) || @previous_content.present? || @next_content.present?
+    (pagy.present? && series.size > 1) || @previous_content.present? || @next_content.present?
+  end
+
+  def series
+    pagy.send(:series)
   end
 
 private
@@ -89,10 +93,10 @@ private
   end
 
   def build_previous
-    return unless pagy&.prev
+    return unless pagy&.previous
 
     kwargs = {
-      href: pagy_url_for(pagy, pagy.prev),
+      href: pagy.page_url(pagy.previous),
       text: @previous_text,
     }
 
@@ -103,7 +107,7 @@ private
     return unless pagy&.next
 
     kwargs = {
-      href: pagy_url_for(pagy, pagy.next),
+      href: pagy.page_url(pagy.next),
       text: @next_text,
     }
 
@@ -111,7 +115,7 @@ private
   end
 
   def build_items
-    pagy.series.map { |i| with_item(number: i, href: pagy_url_for(pagy, i), from_pagy: true) }
+    series.map { |i| with_item(number: i, href: pagy.page_url(i), from_pagy: true) }
   end
 
   def default_adjacent_text(side)
