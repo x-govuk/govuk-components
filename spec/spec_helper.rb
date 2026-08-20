@@ -7,7 +7,7 @@ require 'action_controller/test_case'
 require File.expand_path("dummy/config/environment", __dir__)
 
 if ENV.fetch('SIMPLECOV') { '1' } == '1'
-  SimpleCov.add_filter('spec/dummy')
+  SimpleCov.skip('spec/dummy')
   SimpleCov.start
 end
 
