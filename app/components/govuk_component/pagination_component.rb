@@ -8,7 +8,8 @@ class GovukComponent::PaginationComponent < GovukComponent::Base
               :previous_content,
               :next_content,
               :block_mode,
-              :landmark_label
+              :landmark_label,
+              :pages_around_current
 
   alias_method :block_mode?, :block_mode
 
@@ -39,15 +40,17 @@ class GovukComponent::PaginationComponent < GovukComponent::Base
   def initialize(pagy: nil,
                  next_text: nil,
                  previous_text: nil,
+                 pages_around_current: 1,
                  block_mode: false,
                  landmark_label: config.default_pagination_landmark_label,
                  classes: [],
                  html_attributes: {})
-    @pagy                          = pagy
-    @next_text                     = next_text
-    @previous_text                 = previous_text
-    @block_mode                    = block_mode
-    @landmark_label                = landmark_label
+    @pagy                 = pagy
+    @next_text            = next_text
+    @previous_text        = previous_text
+    @block_mode           = block_mode
+    @landmark_label       = landmark_label
+    @pages_around_current = pages_around_current
 
     super(classes:, html_attributes:)
   end
@@ -83,7 +86,7 @@ class GovukComponent::PaginationComponent < GovukComponent::Base
   end
 
   def series
-    pagy.send(:series)
+    pagy.send(:series, pages_around_current:)
   end
 
 private

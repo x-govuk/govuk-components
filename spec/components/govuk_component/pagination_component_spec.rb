@@ -9,6 +9,7 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
   let(:request) { ActionDispatch::TestRequest.create }
   let(:pagy) { Pagy::Offset.new(page: current_page, **defaults, request: request) }
   let(:component_css_class) { 'govuk-pagination' }
+  let(:nav_element_text) { html.css("nav > div,ul > li").map(&:text) }
 
   let(:kwargs) { { pagy: } }
 
@@ -90,7 +91,6 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
     #
     # Pagy is configurable so we'll override set the defaults here:
     let(:count) { 500 }
-    let(:nav_element_text) { html.css("nav > div,ul > li").map(&:text) }
 
     # [1] 2 ⋯ 100
     context "we're on the first page" do
@@ -241,6 +241,39 @@ RSpec.describe(GovukComponent::PaginationComponent, type: :component) do
         end
 
         expect(nav_element_text).to eql(["Previous page", "1", ellipsis, "99", "100"])
+      end
+    end
+  end
+
+  context "when pages_around_current is overridden" do
+    let(:count) { 150 }
+    let(:limit) { 10 }
+
+    let(:kwargs) { { pagy:, pages_around_current: } }
+
+    context "when pages_around_current: 2" do
+      let(:pages_around_current) { 2 }
+      let(:current_page) { 7 }
+
+      specify "renders 1 ⋯ 5 6 [7] 8 9 ⋯ 15" do
+        expect(rendered_content).to have_tag("nav", with: { class: "govuk-pagination" }) do
+          with_tag("li", text: "7", with: { class: "govuk-pagination__item--current" })
+        end
+
+        expect(nav_element_text).to eql(["Previous page", "1", ellipsis, "5", "6", "7", "8", "9", ellipsis, "15", "Next page"])
+      end
+    end
+
+    context "when pages_around_current: 4" do
+      let(:pages_around_current) { 4 }
+      let(:current_page) { 12 }
+
+      specify "renders 1 ⋯ 8 9 10 11 [12] 13 14 15" do
+        expect(rendered_content).to have_tag("nav", with: { class: "govuk-pagination" }) do
+          with_tag("li", text: "12", with: { class: "govuk-pagination__item--current" })
+        end
+
+        expect(nav_element_text).to eql(["Previous page", "1", ellipsis, "8", "9", "10", "11", "12", "13", "14", "15", "Next page"])
       end
     end
   end
