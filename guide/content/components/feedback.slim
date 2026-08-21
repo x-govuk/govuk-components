@@ -1,0 +1,27 @@
+---
+title: Feedback
+---
+
+markdown:
+  Use the Feedback component to give users the opportunity to give feedback at
+  any point in their journey. This helps you gather a wide range of feedback to
+  understand how well your service performs and improvements you can make.
+
+== render('/partials/example.*',
+  caption: "Basic usage",
+  code: govuk_feedback_minimal) do
+
+  markdown:
+    You can use the component by just passing in the `title_text` and `text` parameters.
+
+    Optionally, the `heading_level` can be set from `1` to `6`. It defaults to `2`.
+
+== render('/partials/example.*',
+  caption: "Customising the HTML",
+  code: govuk_feedback_with_slots) do
+
+  markdown:
+    Custom HTML can be passed into the `header` and `body` slots for more
+    control of the output.
+
+== render('/partials/related-navigation.*', links: feedback_info)
