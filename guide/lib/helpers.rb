@@ -54,6 +54,7 @@ require 'components/govuk_component/cookie_banner_component'
 require 'components/govuk_component/cookie_banner_component/message_component'
 require 'components/govuk_component/details_component'
 require 'components/govuk_component/exit_this_page_component'
+require 'components/govuk_component/feedback_component'
 require 'components/govuk_component/footer_component'
 require 'components/govuk_component/generic_header_component'
 require 'components/govuk_component/header_component'
@@ -106,6 +107,7 @@ use_helper Examples::BackLinkHelpers
 use_helper Examples::CookieBannerHelpers
 use_helper Examples::DetailsHelpers
 use_helper Examples::ExitThisPageHelpers
+use_helper Examples::FeedbackHelpers
 use_helper Examples::FooterHelpers
 use_helper Examples::GenericHeaderHelpers
 use_helper Examples::HeaderHelpers

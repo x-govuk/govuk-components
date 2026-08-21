@@ -41,6 +41,12 @@ module Helpers
       }
     end
 
+    def feedback_info
+      {
+        "GOV.UK Design System feedback documentation" => "https://design-system.service.gov.uk/components/feedback/"
+      }
+    end
+
     def exit_this_page_info
       {
         "GOV.UK Design System exit this page documentation" => "https://design-system.service.gov.uk/components/exit-this-page/"

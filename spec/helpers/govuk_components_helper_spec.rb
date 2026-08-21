@@ -53,6 +53,13 @@ RSpec.describe(GovukComponentsHelper, type: 'helper') do
       css_matcher: %(.govuk-exit-this-page)
     },
     {
+      helper_method: :govuk_feedback,
+      klass: GovukComponent::FeedbackComponent,
+      args: [],
+      kwargs: { title_text: 'Some title', text: 'Some text' },
+      css_matcher: %(.govuk-feedback)
+    },
+    {
       helper_method: :govuk_footer,
       klass: GovukComponent::FooterComponent,
       args: [],

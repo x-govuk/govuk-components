@@ -6,6 +6,7 @@ module GovukComponentsHelper
     govuk_cookie_banner: 'GovukComponent::CookieBannerComponent',
     govuk_details: 'GovukComponent::DetailsComponent',
     govuk_exit_this_page: 'GovukComponent::ExitThisPageComponent',
+    govuk_feedback: 'GovukComponent::FeedbackComponent',
     govuk_footer: 'GovukComponent::FooterComponent',
     govuk_generic_header: 'GovukComponent::GenericHeaderComponent',
     govuk_header: 'GovukComponent::HeaderComponent',

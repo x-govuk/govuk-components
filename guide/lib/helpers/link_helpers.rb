@@ -32,6 +32,7 @@ module Helpers
           "Cookie banner" => "/components/cookie-banner/",
           "Details" => "/components/details/",
           "Exit this page" => "/components/exit-this-page/",
+          "Feedback" => "/components/feedback/",
           "Generic header" => "/components/generic-header/",
           "GOV.UK footer" => "/components/footer/",
           "GOV.UK header" => "/components/header/",
