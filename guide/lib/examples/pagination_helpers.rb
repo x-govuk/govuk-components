@@ -18,7 +18,7 @@ module Examples
 
     def pagination_normal_data
       <<~PAGINATION_DATA
-        { pagy: Pagy.new(count: 100, page: 2) }
+        { pagy: Pagy::Offset.new(count: 100, page: 2, request: ActionDispatch::TestRequest.create) }
       PAGINATION_DATA
     end
 
@@ -30,7 +30,7 @@ module Examples
 
     def pagination_lots_of_pages_data
       <<~PAGINATION_DATA
-        { pagy: Pagy.new(count: 100, page: 9, size: [1, 1, 1, 1], limit: 5) }
+        { pagy: Pagy::Offset.new(count: 100, page: 9, size: [1, 1, 1, 1], limit: 5, request: ActionDispatch::TestRequest.create) }
       PAGINATION_DATA
     end
 
