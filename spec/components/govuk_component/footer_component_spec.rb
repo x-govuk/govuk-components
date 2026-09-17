@@ -379,4 +379,37 @@ RSpec.describe(GovukComponent::FooterComponent, type: :component) do
       expect(rendered_content).to have_tag('footer', with: footer_html_attributes)
     end
   end
+
+  describe "localisation" do
+    around do |ex|
+      original_locale = I18n.locale
+      original_available = I18n.available_locales
+
+      I18n.available_locales = %i[en cy]
+      I18n.backend.store_translations(
+        :cy,
+        govuk_components: {
+          footer: {
+            open_government_licence: "Trwydded Llywodraeth Agored v3.0",
+            open_government_licence_url: "https://www.example.com/ogl",
+            licence_html: "Mae'r holl gynnwys ar gael o dan %{link}, ac eithrio lle y nodir yn wahanol",
+          }
+        }
+      )
+
+      I18n.with_locale(:cy) { ex.run }
+    ensure
+      I18n.locale = original_locale
+      I18n.available_locales = original_available
+    end
+
+    it "uses the downstream translation override" do
+      expect(rendered_content).to have_tag(footer_selector, with: { class: 'govuk-footer' }) do
+        with_tag('div', with: { class: 'govuk-footer__meta' }) do
+          with_tag("span", with: { class: "govuk-footer__licence-description" }, text: /Mae'r holl gynnwys ar gael o dan/)
+          with_tag("a", with: { href: "https://www.example.com/ogl" }, text: /Trwydded Llywodraeth Agored v3.0/)
+        end
+      end
+    end
+  end
 end

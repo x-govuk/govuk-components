@@ -87,10 +87,14 @@ private
     end
   end
 
-  def default_licence
-    link = link_to("Open Government Licence v3.0", "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/", class: "#{brand}-footer__link")
+  def open_government_licence
+    link = link_to(
+      t("govuk_components.footer.open_government_licence"),
+      t("govuk_components.footer.open_government_licence_url"),
+      class: "#{brand}-footer__link",
+    )
 
-    raw(%(All content is available under the #{link}, except where otherwise stated))
+    t("govuk_components.footer.licence_html", link:)
   end
 
   def copyright

@@ -1,0 +1,7 @@
+en:
+  govuk_components:
+    footer:
+      open_government_licence: Open Government Licence v3.0
+      open_government_licence_url: https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
+      licence_html: All content is available under the %{link}, except where otherwise stated
+      copyright_text: '© Crown copyright'
