@@ -5,7 +5,7 @@ class GovukComponent::BreadcrumbsComponent < GovukComponent::Base
                  hide_in_print: config.default_breadcrumbs_hide_in_print,
                  collapse_on_mobile: config.default_breadcrumbs_collapse_on_mobile,
                  inverse: false,
-                 label: "Breadcrumb",
+                 label: config.default_breadcrumbs_label,
                  classes: [],
                  html_attributes: {})
 

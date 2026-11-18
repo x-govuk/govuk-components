@@ -44,6 +44,7 @@ module Govuk
     # +:default_back_link_text+ Default text for the back link, defaults to +Back+
     # +:default_breadcrumbs_collapse_on_mobile+ false
     # +:default_breadcrumbs_hide_in_print+ false
+    # +:default_breadcrumbs_label+ sets the default aria label for the breadcrumbs component, defaults to +Breadcrumb+
     # +:default_cookie_banner_aria_label+ "Cookie banner"
     # +:default_cookie_banner_hide_in_print+ true
     # +:default_error_prefix+ Text to use at the start of the page title tag when there is an error on the page. Default is 'Error: '
@@ -106,6 +107,7 @@ module Govuk
       default_back_link_text: 'Back',
       default_breadcrumbs_collapse_on_mobile: false,
       default_breadcrumbs_hide_in_print: false,
+      default_breadcrumbs_label: 'Breadcrumb',
       default_cookie_banner_aria_label: "Cookie banner",
       default_cookie_banner_hide_in_print: true,
       default_error_prefix: "Error: ",

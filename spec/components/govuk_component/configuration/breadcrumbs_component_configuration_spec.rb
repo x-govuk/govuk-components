@@ -53,5 +53,21 @@ RSpec.describe(GovukComponent::BreadcrumbsComponent, type: :component) do
         end
       end
     end
+
+    describe 'default_breadcrumbs_label' do
+      let(:custom_label) { "Crumbs" }
+
+      before do
+        Govuk::Components.configure do |config|
+          config.default_breadcrumbs_label = custom_label
+        end
+      end
+
+      subject! { render_inline(GovukComponent::BreadcrumbsComponent.new(**kwargs)) }
+
+      specify 'renders the component with the correct class' do
+        expect(rendered_content).to have_tag('nav', with: { class: component_css_class, 'aria-label' => custom_label })
+      end
+    end
   end
 end
