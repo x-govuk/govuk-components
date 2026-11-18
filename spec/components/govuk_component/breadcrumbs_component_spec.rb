@@ -16,8 +16,8 @@ RSpec.describe(GovukComponent::BreadcrumbsComponent, type: :component) do
 
   subject! { render_inline(GovukComponent::BreadcrumbsComponent.new(**kwargs)) }
 
-  specify 'renders a div element containing an ordered list of breadcrumbs' do
-    expect(rendered_content).to have_tag('div', with: { class: component_css_class }) do
+  specify 'renders a nav element containing an ordered list of breadcrumbs' do
+    expect(rendered_content).to have_tag('nav', with: { class: component_css_class }) do
       with_tag('ol', with: { class: 'govuk-breadcrumbs__list' }) do
         with_tag('li', with: { class: 'govuk-breadcrumbs__list-item' }, count: 4)
       end
@@ -28,7 +28,7 @@ RSpec.describe(GovukComponent::BreadcrumbsComponent, type: :component) do
     let(:breadcrumbs) { %w(one two three four five) }
 
     specify 'renders the array items in the breadcrumbs list' do
-      expect(rendered_content).to have_tag('div', with: { class: component_css_class }) do
+      expect(rendered_content).to have_tag('nav', with: { class: component_css_class }) do
         with_tag('ol', with: { class: 'govuk-breadcrumbs__list' }) do
           with_tag('li', with: { class: 'govuk-breadcrumbs__list-item' }, count: breadcrumbs.size)
 
@@ -64,7 +64,7 @@ RSpec.describe(GovukComponent::BreadcrumbsComponent, type: :component) do
     let(:expected_class) { 'govuk-breadcrumbs.govuk-\!-display-none-print' }
 
     specify 'breadcrumbs are suppressed when printing' do
-      expect(rendered_content).to have_tag('div', with: { class: expected_class })
+      expect(rendered_content).to have_tag('nav', with: { class: expected_class })
     end
   end
 
@@ -73,7 +73,7 @@ RSpec.describe(GovukComponent::BreadcrumbsComponent, type: :component) do
     let(:expected_class) { 'govuk-breadcrumbs.govuk-\!-display-none-print' }
 
     specify 'breadcrumbs are collapsed on mobile' do
-      expect(rendered_content).to have_tag('div', with: { class: %w(govuk-breadcrumbs govuk-breadcrumbs--collapse-on-mobile) })
+      expect(rendered_content).to have_tag('nav', with: { class: %w(govuk-breadcrumbs govuk-breadcrumbs--collapse-on-mobile) })
     end
   end
 
@@ -82,7 +82,7 @@ RSpec.describe(GovukComponent::BreadcrumbsComponent, type: :component) do
     let(:expected_class) { 'govuk-breadcrumbs.govuk-breadcrumbs--inverse' }
 
     specify 'breadcrumbs colours are inverted' do
-      expect(rendered_content).to have_tag('div', with: { class: %w(govuk-breadcrumbs govuk-breadcrumbs--inverse) })
+      expect(rendered_content).to have_tag('nav', with: { class: %w(govuk-breadcrumbs govuk-breadcrumbs--inverse) })
     end
   end
 

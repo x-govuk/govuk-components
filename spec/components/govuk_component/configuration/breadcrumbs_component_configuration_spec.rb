@@ -24,7 +24,7 @@ RSpec.describe(GovukComponent::BreadcrumbsComponent, type: :component) do
 
       specify 'renders the component with the correct class' do
         expect(rendered_content).to have_tag(
-          'div',
+          'nav',
           with: { class: [component_css_class, collapse_on_mobile_css_class] },
         ) do
           with_tag('a', text: link_text, with: { href: })
@@ -46,7 +46,7 @@ RSpec.describe(GovukComponent::BreadcrumbsComponent, type: :component) do
 
       specify 'renders the component with the correct class' do
         expect(rendered_content).to have_tag(
-          'div',
+          'nav',
           with: { class: [component_css_class, hide_in_print_css_class] },
         ) do
           with_tag('a', text: link_text, with: { href: })
