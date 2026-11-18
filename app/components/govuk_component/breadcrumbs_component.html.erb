@@ -1,7 +1,7 @@
 <%= tag.nav(**html_attributes) do %>
-  <ol class="<%= brand %>-breadcrumbs__list">
+  <%= tag.ol(class: "#{brand}-breadcrumbs__list") do %>
     <% @breadcrumbs.each do |link| %>
       <%= link %>
     <% end %>
-  </ol>
+  <% end %>
 <% end %>
