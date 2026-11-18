@@ -24,7 +24,7 @@ RSpec.describe(GovukComponent::BreadcrumbsComponent, type: :component) do
 
       specify 'renders the component with the correct class' do
         expect(rendered_content).to have_tag(
-          'div',
+          'nav',
           with: { class: [component_css_class, collapse_on_mobile_css_class] },
         ) do
           with_tag('a', text: link_text, with: { href: })
@@ -46,11 +46,27 @@ RSpec.describe(GovukComponent::BreadcrumbsComponent, type: :component) do
 
       specify 'renders the component with the correct class' do
         expect(rendered_content).to have_tag(
-          'div',
+          'nav',
           with: { class: [component_css_class, hide_in_print_css_class] },
         ) do
           with_tag('a', text: link_text, with: { href: })
         end
+      end
+    end
+
+    describe 'default_breadcrumbs_label' do
+      let(:custom_label) { "Crumbs" }
+
+      before do
+        Govuk::Components.configure do |config|
+          config.default_breadcrumbs_label = custom_label
+        end
+      end
+
+      subject! { render_inline(GovukComponent::BreadcrumbsComponent.new(**kwargs)) }
+
+      specify 'renders the component with the correct class' do
+        expect(rendered_content).to have_tag('nav', with: { class: component_css_class, 'aria-label' => custom_label })
       end
     end
   end
