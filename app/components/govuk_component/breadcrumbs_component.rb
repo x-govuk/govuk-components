@@ -1,10 +1,11 @@
 class GovukComponent::BreadcrumbsComponent < GovukComponent::Base
-  attr_reader :breadcrumbs, :hide_in_print, :collapse_on_mobile, :inverse
+  attr_reader :breadcrumbs, :hide_in_print, :collapse_on_mobile, :inverse, :label
 
   def initialize(breadcrumbs:,
                  hide_in_print: config.default_breadcrumbs_hide_in_print,
                  collapse_on_mobile: config.default_breadcrumbs_collapse_on_mobile,
                  inverse: false,
+                 label: "Breadcrumb",
                  classes: [],
                  html_attributes: {})
 
@@ -12,6 +13,7 @@ class GovukComponent::BreadcrumbsComponent < GovukComponent::Base
     @hide_in_print      = hide_in_print
     @collapse_on_mobile = collapse_on_mobile
     @inverse            = inverse
+    @label              = label
 
     super(classes:, html_attributes:)
   end
@@ -20,6 +22,7 @@ private
 
   def default_attributes
     {
+      aria: { label: },
       class: class_names(
         "#{brand}-breadcrumbs",
         "#{brand}-!-display-none-print" => hide_in_print,

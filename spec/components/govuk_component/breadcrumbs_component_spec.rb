@@ -17,7 +17,7 @@ RSpec.describe(GovukComponent::BreadcrumbsComponent, type: :component) do
   subject! { render_inline(GovukComponent::BreadcrumbsComponent.new(**kwargs)) }
 
   specify 'renders a nav element containing an ordered list of breadcrumbs' do
-    expect(rendered_content).to have_tag('nav', with: { class: component_css_class }) do
+    expect(rendered_content).to have_tag('nav', with: { class: component_css_class, 'aria-label' => 'Breadcrumb' }) do
       with_tag('ol', with: { class: 'govuk-breadcrumbs__list' }) do
         with_tag('li', with: { class: 'govuk-breadcrumbs__list-item' }, count: 4)
       end
